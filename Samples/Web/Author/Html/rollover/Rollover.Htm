@@ -1,0 +1,90 @@
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<HTML>
+<HEAD>
+<TITLE>Rollover Effects</TITLE>
+<META NAME="FILENAME" CONTENT="rollover.HTM">
+
+
+<style>
+.Item {
+   cursor: hand;
+   font-family: verdana; 
+   font-size: 20;
+   font-style: normal;
+   background-color: blue;
+   color: white
+ }
+.Highlight {
+   cursor: hand; 
+   font-family: verdana;
+   font-size: 20;
+   font-style: italic;
+   background-color: white;
+   color: blue
+ }
+</style>
+<body>
+
+<body TOPMARGIN=20 LEFTMARGIN=40 bgcolor="#FFFFFF" LINK="#000066" VLINK="#666666" TEXT="#000000">
+<H2>Rollover Effects</H2>
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT>
+<P>
+<P>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+<hr>
+
+<div id=Rollover>
+<br>
+<B>Move the cursor over any of the seven elements to change their style.</B><P>
+<span class=Item>Milk</span>
+<span class=Item>Cookies</span>
+<span class=Item>Eggs</span>
+<span class=Item>Ham</span>
+<span class=Item>Cheese</span>
+<span class=Item>Pasta</span>
+<span class=Item>Chicken</span>
+</div>
+
+<br>
+
+<p> In this example, we have seven SPAN elements, initially set to use the class Item. 
+When the mouse moves over any one of those elements, it will be changed to use the 
+class Highlight. Innovations in Internet Explorer 4 and 5 enable the following: 
+<ul>
+	<li>Events can now be generated from a SPAN element. Previously, an HTML author 
+	would have had to wrap each SPAN in an anchor to get the right events. </li>
+	<li>With event bubbling, events can be captured at the 
+	document level. You do not need to create separate event 
+	handlers for each element that will participate in the effect. </li>
+</ul>
+<script>
+function rollon() {
+  if (window.event.srcElement.className == "Item") {
+     window.event.srcElement.className = "Highlight";
+  }
+}
+
+Rollover.onmouseover = rollon;
+
+function rolloff() {
+  if (window.event.srcElement.className == "Highlight") {
+     window.event.srcElement.className = "Item";
+  }
+}
+
+Rollover.onmouseout = rolloff;
+</script>
+
+<P>
+<P>
+<P>
+<FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">
+&copy; <A HREF="/misc/cpyright.htm" TARGET="_top">1999 Microsoft Corporation. All rights reserved. Terms of use</A>.
+</FONT>
+
+</body>
+</html>

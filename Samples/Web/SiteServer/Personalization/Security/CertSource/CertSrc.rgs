@@ -1,0 +1,34 @@
+HKCR
+{
+	CertSrc.CertSrc.1 = s 'CertSrc Class'
+	{
+		CLSID = s '{A01F8A51-CE73-11D1-A728-00C04FB66DAF}'
+	}
+	CertSrc.CertSrc = s 'CertSrc Class'
+	{
+		CurVer = s 'CertSrc.CertSrc.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {A01F8A51-CE73-11D1-A728-00C04FB66DAF} = s 'CertSrc Class'
+		{
+			ProgID = s 'CertSrc.CertSrc.1'
+			VersionIndependentProgID = s 'CertSrc.CertSrc'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			ForceRemove 'Control'
+			ForceRemove 'Programmable'
+			ForceRemove 'Insertable'
+			ForceRemove 'ToolboxBitmap32' = s '%MODULE%, 1'
+			'MiscStatus' = s '0'
+			{
+			    '1' = s '131473'
+			}
+			'TypeLib' = s '{A01F8A41-CE73-11D1-A728-00C04FB66DAF}'
+			'Version' = s '1.0'
+		}
+	}
+}

@@ -1,0 +1,20 @@
+#----------------------------------------------------------------------------
+# Description:
+#   Makefile for CRARun.Dll
+#
+# Copyright (C) Microsoft Corp. 1986-1998.  All Rights Reserved.
+#----------------------------------------------------------------------------
+
+USE_EXCHANGE=1
+dll=1
+crtdll=1
+
+Proj = CRARun
+
+!include <BkOffice.Mak>
+
+LibList = Shell32.Lib
+
+all:    $(ObjDir)\$(Proj).Dll
+
+$(ObjDir)\$(Proj).Dll: $(@R).Obj $(@D)\Entry.Obj

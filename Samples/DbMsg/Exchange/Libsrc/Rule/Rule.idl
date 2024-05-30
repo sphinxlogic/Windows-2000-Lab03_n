@@ -1,0 +1,506 @@
+// ----------------------------------------------------------------------------
+//	Rule.idl : IDL source for Rule.dll
+//
+//	This file will be processed by the MIDL tool to
+//	produce the type library (Rule.tlb) and marshalling code.
+//
+//	Copyright (C) Microsoft Corp. 1986-1998.  All rights reserved.
+// ----------------------------------------------------------------------------
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+typedef [uuid(59B981E0-07A4-11d2-BC0D-00C04F8C92F7),
+        helpstring("Restriction Types"), helpcontext(234)]
+enum
+{
+    [helpstring("AND Restriction")]					R_LOGICAL		= 1,
+    [helpstring("Bitmask Restriction")]				R_BITMASK		= 2,
+    [helpstring("Comment Restriction")]				R_COMMENT		= 3,
+    [helpstring("Compare Properties Restriction")]	R_COMPAREPROPS	= 4,
+    [helpstring("Content Restriction")]				R_CONTENT		= 5,
+    [helpstring("Exists Restriction")]				R_EXISTS		= 6,
+    [helpstring("Property Restriction")]			R_PROPERTY		= 7,
+    [helpstring("Size Restriction")]				R_SIZE			= 8,
+    [helpstring("Sub Restriction")]					R_SUB			= 9
+} CONDITION_TYPES;
+
+typedef [uuid(3635BF70-0969-11d2-BC0F-00C04F8C92F7),
+        helpstring("Logical Operators"), helpcontext(234)]
+enum
+{
+    [helpstring("AND")]								L_AND			= 1,
+    [helpstring("OR")]								L_OR			= 2,
+	[helpstring("NOT")]								L_NOT			= 3
+} LOGICALOP_TYPES;
+
+typedef [uuid(5B41FE40-0965-11d2-BC0F-00C04F8C92F7),
+        helpstring("Bitmask Operators"), helpcontext(234)]
+enum
+{
+    [helpstring("Bitwise AND equal to zero")]		B_EQZ			= 1,
+    [helpstring("Bitmask AND not equal to zero")]	B_NEZ			= 2
+} BITMAPOP_TYPES;
+
+typedef [uuid(5B41FE41-0965-11d2-BC0F-00C04F8C92F7),
+        helpstring("Relational Opetrators"), helpcontext(234)]
+enum
+{
+    [helpstring("Greater than or equal to")]		REL_GE		= 1,
+    [helpstring("Greater than")]					REL_GT		= 2,
+    [helpstring("Less than or equal to")]			REL_LE		= 3,
+    [helpstring("Less than")]						REL_LT		= 4,
+    [helpstring("Not equal to")]					REL_NE		= 5,
+    [helpstring("Like ")]							REL_RE		= 6,
+    [helpstring("Equal to")]						REL_EQ		= 7
+} RELOP_TYPES;
+
+typedef [uuid(5B41FE42-0965-11d2-BC0F-00C04F8C92F7),
+        helpstring("Fuzzy Level"), helpcontext(234)]
+enum
+{
+    [helpstring("Full String")]						FULLSTRING	= 0,
+    [helpstring("Sub String")]						SUBSTRING	= 1,
+    [helpstring("Prefix")]							PREFIX		= 2,
+    [helpstring("Ignore Case")]						IGNORECASE	=	0x00010000,
+    [helpstring("Ignore NonSpace")]					IGNORENONSPACE=	0x00020000,
+    [helpstring("Loose")]							LOOSE		=	0x00040000
+} FUZZYLEVEL_TYPES;
+
+typedef [uuid(76249F10-0972-11d2-BC0F-00C04F8C92F7),
+        helpstring("Sub Restriciton Operators"), helpcontext(234)]
+enum
+{
+    [helpstring("Message Recipients ")]				MSG_RECIP		= 1,
+    [helpstring("Message Attachments")]				MSG_ATTCH		= 2,
+} SUBOBJECT_TYPES;
+
+typedef [uuid(9AD56A50-0C41-11d2-BC10-00C04F8C92F7),
+        helpstring("Action Types"), helpcontext(234)]
+enum
+{
+    [helpstring("Move")]					ACTION_MOVE		= 1,
+    [helpstring("Copy")]					ACTION_COPY		= 2,
+    [helpstring("Delete")]					ACTION_DELETE	= 3,
+    [helpstring("Reply")]					ACTION_REPLY	= 4,
+    [helpstring("OOF Reply")]				ACTION_OOFREPLY	= 5,
+    [helpstring("Forward")]					ACTION_FORWARD	= 6,
+    [helpstring("Delegate")]				ACTION_DELEGATE = 7,
+    [helpstring("Bounce")]					ACTION_BOUNCE	= 8,
+    [helpstring("Tag")]						ACTION_TAG		= 9,
+    [helpstring("Mark Read")]				ACTION_MARKREAD = 10,
+    [helpstring("DeferAction")]				ACTION_DEFER	= 11
+} ACTION_TYPES;
+
+
+	[
+		object,
+		uuid(92C2FEE4-00A6-11D2-BC07-00C04F8C92F7),
+		dual,
+		helpstring("Rules Collection Interface"),
+		pointer_default(unique)
+	]
+	interface IRules : IDispatch
+	{
+		[id(DISPID_VALUE), helpstring("Get a Rule by index")] HRESULT Item([in] VARIANT index, [out, retval] LPDISPATCH *pItem);
+		[propget, id(DISPID_NEWENUM), helpstring("_NewEnum"), restricted] HRESULT _NewEnum([out, retval] LPUNKNOWN *pVal);
+		[propget, id(1), helpstring("Folder")] HRESULT Folder([out, retval] LPDISPATCH *pVal);
+		[propput, id(1), helpstring("Folder")] HRESULT Folder([in] LPDISPATCH newVal);
+		[id(2), helpstring("Add a Rule to the collection")] HRESULT Add([in] VARIANT index, [in] LPDISPATCH pRule);
+		[propget, id(3), helpstring("Rules Count")] HRESULT Count([out, retval] long *pVal);
+		[id(4), helpstring("Delete")] HRESULT Delete([in] VARIANT index);
+		[id(5), helpstring("Update Indices")] HRESULT Update();
+		[id(6), helpstring("updateIndices")] HRESULT UpdateIndices();
+		[id(7), helpstring("Remove all rules from the collection")] HRESULT Clear();
+	};
+
+	[
+		object,
+		uuid(92C2FEE5-00A6-11D2-BC07-00C04F8C92F7),
+		dual,
+		helpstring("Rule Interface"),
+		pointer_default(unique)
+	]
+	interface IRule : IDispatch
+	{
+		typedef [unique]	IRule*		LPRULE;
+		[propget, id(1), helpstring("Rule Sequence")] HRESULT Sequence([out, retval] long *pVal);
+		[propget, id(2), helpstring("Index")] HRESULT Index([out, retval] long *pVal);
+		[propget, id(3), helpstring("State")] HRESULT State([out, retval] long *pVal);
+		[propput, id(3), helpstring("State")] HRESULT State([in] long newVal);
+		[propget, id(4), helpstring("Provider")] HRESULT Provider([out, retval] BSTR *pVal);
+		[propput, id(4), helpstring("Provider")] HRESULT Provider([in] BSTR newVal);
+		[propget, id(5), helpstring("Level")] HRESULT Level([out, retval] long *pVal);
+		[propput, id(5), helpstring("Level")] HRESULT Level([in] long newVal);
+		[propget, id(6), helpstring("Name")] HRESULT Name([out, retval] BSTR *pVal);
+		[propput, id(6), helpstring("Name")] HRESULT Name([in] BSTR newVal);
+		[propget, id(7), helpstring("Condition")] HRESULT Condition([out, retval] LPDISPATCH *pVal);
+		[propput, id(7), helpstring("Condition")] HRESULT Condition([in] LPDISPATCH newVal);
+		[propget, id(8), helpstring("Actions Collection")] HRESULT Actions([out, retval] LPDISPATCH *pVal);
+		[propget, id(9), helpstring("NewIndex")] HRESULT NewIndex([out, retval] long *pVal);
+		[propput, id(9), helpstring("NewIndex")] HRESULT NewIndex([in] long newVal);
+		[propget, id(10), helpstring("Is Read Only")] HRESULT ReadOnly([out, retval] BOOL *pVal);
+	};
+
+	[
+		object, 
+		uuid(40E6B494-0976-11D2-BC0F-00C04F8C92F7),
+		dual,
+		helpstring("Actions Collection Interface"),
+		pointer_default(unique)
+	]
+	interface IActions : IDispatch
+	{
+		typedef [unique]	IActions*				LPACTIONCOLLECTION;
+		[id(DISPID_VALUE), helpstring("Item")] HRESULT Item([in] VARIANT index, [out, retval] LPDISPATCH *pItem);
+		[propget, id(DISPID_NEWENUM), helpstring("Enumerator")] HRESULT _NewEnum([out, retval] LPUNKNOWN *pVal);
+		[propget, id(1), helpstring("Count")] HRESULT Count([out, retval] long *pVal);
+		[id(2), helpstring("Add")] HRESULT Add([in] VARIANT index, [in] LPDISPATCH pAction);
+		[id(3), helpstring("Delete")] HRESULT Delete([in] VARIANT index);
+		[id(4), helpstring("Remove all Actions in the collection")] HRESULT Clear();
+	};
+
+	[
+		object,
+		uuid(40E6B496-0976-11D2-BC0F-00C04F8C92F7),
+		dual,
+		helpstring("Action Interface"),
+		pointer_default(unique)
+	]
+	interface IAction : IDispatch
+	{
+		typedef [unique]	IAction*				LPAction;
+		[propget, id(1), helpstring("Argument")] HRESULT Arg([out, retval] VARIANT *pVal);
+		[propput, id(1), helpstring("Argument")] HRESULT Arg([in] VARIANT newVal);
+		[propget, id(2), helpstring("Action Type")] HRESULT ActionType([out, retval] ACTION_TYPES *pVal);
+		[propput, id(2), helpstring("Action Type")] HRESULT ActionType([in] ACTION_TYPES newVal);
+	};
+
+	[
+		object,
+		uuid(D61B2A9B-07A1-11D2-BC0D-00C04F8C92F7),
+		dual,
+		helpstring("Condition Interface"),
+		pointer_default(unique)
+	]
+	interface ICondition : IDispatch
+	{
+		typedef [unique]	ICondition*				LPCONDITION;
+		[propget, id(1), helpstring("Condition Type")] HRESULT Type([out, retval] CONDITION_TYPES *pVal);
+	};
+	[
+		object,
+		uuid(95525545-095F-11D2-BC0F-00C04F8C92F7),
+		dual,
+		helpstring("Logical Condition Interface"),
+		pointer_default(unique)
+	]
+	interface ILogicalCondition : IDispatch
+	{
+		typedef [unique]	ILogicalCondition*		LPLOGICALCONDITION;
+		[id(DISPID_VALUE), helpstring("Item")] HRESULT Item([in] VARIANT index, [out, retval] LPDISPATCH *pItem);
+		[propget, id(DISPID_NEWENUM), helpstring(" _NewEnum"), restricted] HRESULT _NewEnum([out, retval] LPUNKNOWN *pVal);
+		[propget, id(1), helpstring("Condition Type")] HRESULT Type([out, retval] CONDITION_TYPES *pVal);
+		[propget, id(2), helpstring("Operator")] HRESULT Operator([out, retval] LOGICALOP_TYPES *pVal);
+		[propput, id(2), helpstring("Operator")] HRESULT Operator([in] LOGICALOP_TYPES newVal);
+		[propget, id(3), helpstring("Count")] HRESULT Count([out, retval] long *pVal);
+		[id(4), helpstring("Add")] HRESULT Add([in] LPDISPATCH pItem);
+		[id(5), helpstring("Delete")] HRESULT Delete([in] VARIANT index);
+		[id(6), helpstring("Remove all conditions from the LogicalCondition")] HRESULT Clear();
+	};
+
+	[
+		object,
+		uuid(95525547-095F-11D2-BC0F-00C04F8C92F7),
+		dual,
+		helpstring("Bitmask Condition Interface"),
+		pointer_default(unique)
+	]
+	interface IBitmaskCondition : IDispatch
+	{
+		typedef [unique]	IBitmaskCondition*			LPBITMASKCONDITION;
+		[propget, id(1), helpstring("Condition Type")] HRESULT Type([out, retval] CONDITION_TYPES *pVal);
+		[propget, id(2), helpstring("Operator")] HRESULT Operator([out, retval] BITMAPOP_TYPES *pVal);
+		[propput, id(2), helpstring("Operator")] HRESULT Operator([in] BITMAPOP_TYPES newVal);
+		[propget, id(3), helpstring("PropertyTag")] HRESULT PropertyTag([out, retval] long *pVal);
+		[propput, id(3), helpstring("PropertyTag")] HRESULT PropertyTag([in] long newVal);
+		[propget, id(4), helpstring("Bitmask Value")] HRESULT Value([out, retval] long *pVal);
+		[propput, id(4), helpstring("Bitmask Value")] HRESULT Value([in] long newVal);
+	};
+
+	[
+		object,
+		uuid(D61B2A89-07A1-11D2-BC0D-00C04F8C92F7),
+		dual,
+		helpstring("Comment Condition Interface"),
+		pointer_default(unique)
+	]
+	interface ICommentCondition : IDispatch
+	{
+		typedef [unique]	ICommentCondition*		LPCOMMENTCONDITION;
+		[id(DISPID_VALUE), helpstring("Item")] HRESULT Item([in] VARIANT index, [out, retval] LPDISPATCH *pItem);
+		[propget, id(DISPID_NEWENUM), helpstring("_NewEnum"), hidden] HRESULT _NewEnum([out, retval] LPUNKNOWN *pVal);
+		[propget, id(1), helpstring("Condition Type")] HRESULT Type([out, retval] CONDITION_TYPES *pVal);
+		[propget, id(2), helpstring("Count Of Values")] HRESULT Count([out, retval] long *pVal);
+		[propget, id(3), helpstring("Condition")] HRESULT Condition([out, retval] LPDISPATCH *pVal);
+		[propput, id(3), helpstring("Condition")] HRESULT Condition([in] LPDISPATCH newVal);
+		[id(4), helpstring("Add")] HRESULT Add([in] LPDISPATCH pComment);
+		[id(5), helpstring("Delete")] HRESULT Delete([in] VARIANT index);
+		[id(6), helpstring("Remove all property values from the CommentCondition")] HRESULT Clear();
+	};
+
+	[
+		object,
+		uuid(D61B2A8B-07A1-11D2-BC0D-00C04F8C92F7),
+		dual,
+		helpstring("Compare Propertiess Condition Interface"),
+		pointer_default(unique)
+	]
+	interface IComparePropsCondition : IDispatch
+	{
+		typedef [unique]	IComparePropsCondition*	LPCOMPAREPROPSCONDITION;
+		[propget, id(1), helpstring("Condition Type")] HRESULT Type([out, retval] CONDITION_TYPES *pVal);
+		[propget, id(2), helpstring("Operator")] HRESULT Operator([out, retval] RELOP_TYPES *pVal);
+		[propput, id(2), helpstring("Operator")] HRESULT Operator([in] RELOP_TYPES newVal);
+		[propget, id(3), helpstring("PropertyTag1")] HRESULT PropertyTag1([out, retval] long *pVal);
+		[propput, id(3), helpstring("PropertyTag1")] HRESULT PropertyTag1([in] long newVal);
+		[propget, id(4), helpstring("PropertyTag2")] HRESULT PropertyTag2([out, retval] long *pVal);
+		[propput, id(4), helpstring("PropertyTag2")] HRESULT PropertyTag2([in] long newVal);
+	};
+
+	[
+		object,
+		uuid(D61B2A8D-07A1-11D2-BC0D-00C04F8C92F7),
+		dual,
+		helpstring("Content Condition Interface"),
+		pointer_default(unique)
+	]
+	interface IContentCondition : IDispatch
+	{
+		typedef [unique]	IContentCondition*		LPCONTENTCONDITION;
+		[propget, id(1), helpstring("Condition Type")] HRESULT Type([out, retval] CONDITION_TYPES *pVal);
+		[propget, id(2), helpstring("Operator")] HRESULT Operator([out, retval] FUZZYLEVEL_TYPES *pVal);
+		[propput, id(2), helpstring("Operator")] HRESULT Operator([in] FUZZYLEVEL_TYPES newVal);
+		[propget, id(3), helpstring("Type")] HRESULT PropertyType([out, retval] long *pVal);
+		[propput, id(3), helpstring("Type")] HRESULT PropertyType([in] long newVal);
+		[propget, id(4), helpstring("Property Value")] HRESULT Value([out, retval] LPDISPATCH *pVal);
+		[propput, id(4), helpstring("Property Value")] HRESULT Value([in] LPDISPATCH newVal);
+	};
+
+	[
+		object,
+		uuid(D61B2A8F-07A1-11D2-BC0D-00C04F8C92F7),
+		dual,
+		helpstring("ExistsCondition Interface"),
+		pointer_default(unique)
+	]
+	interface IExistsCondition : IDispatch
+	{
+		typedef [unique]	IExistsCondition*		LPEXISTSCONDITION;
+		[propget, id(1), helpstring("Condition Type")] HRESULT Type([out, retval] CONDITION_TYPES *pVal);
+		[propget, id(2), helpstring("PropertyTag")] HRESULT PropertyTag([out, retval] long *pVal);
+		[propput, id(2), helpstring("PropertyTag")] HRESULT PropertyTag([in] long newVal);
+	};
+
+	[
+		object,
+		uuid(D61B2A95-07A1-11D2-BC0D-00C04F8C92F7),
+		dual,
+		helpstring("Property Condition Interface"),
+		pointer_default(unique)
+	]
+	interface IPropertyCondition : IDispatch
+	{
+		typedef [unique]	IPropertyCondition*		LPPROPERTYCONDITION;
+		[propget, id(1), helpstring("Condition Type")] HRESULT Type([out, retval] CONDITION_TYPES *pVal);
+		[propget, id(2), helpstring("PropertyTag")] HRESULT PropertyTag([out, retval] long *pVal);
+		[propput, id(2), helpstring("PropertyTag")] HRESULT PropertyTag([in] long newVal);
+		[propget, id(3), helpstring("PropertyValue")] HRESULT Value([out, retval] LPDISPATCH *pVal);
+		[propput, id(3), helpstring("PropertyValue")] HRESULT Value([in] LPDISPATCH newVal);
+		[propget, id(4), helpstring("Operator")] HRESULT Operator([out, retval] RELOP_TYPES *pVal);
+		[propput, id(4), helpstring("Operator")] HRESULT Operator([in] RELOP_TYPES newVal);
+	};
+
+	[
+		object,
+		uuid(D61B2A97-07A1-11D2-BC0D-00C04F8C92F7),
+		dual,
+		helpstring("Size Condition Interface"),
+		pointer_default(unique)
+	]
+	interface ISizeCondition : IDispatch
+	{
+		typedef [unique]	ISizeCondition*			LPSIZECONDITION;
+		[propget, id(1), helpstring("Condition Type")] HRESULT Type([out, retval] CONDITION_TYPES *pVal);
+		[propget, id(2), helpstring("Operator")] HRESULT Operator([out, retval] RELOP_TYPES *pVal);
+		[propput, id(2), helpstring("Operator")] HRESULT Operator([in] RELOP_TYPES newVal);
+		[propget, id(3), helpstring("PropertyTag")] HRESULT PropertyTag([out, retval] long *pVal);
+		[propput, id(3), helpstring("PropertyTag")] HRESULT PropertyTag([in] long newVal);
+		[propget, id(4), helpstring("Property Size")] HRESULT Size([out, retval] long *pVal);
+		[propput, id(4), helpstring("Property Size")] HRESULT Size([in] long newVal);
+	};
+
+	[
+		object,
+		uuid(D61B2A99-07A1-11D2-BC0D-00C04F8C92F7),
+		dual,
+		helpstring("Sub Condition Interface"),
+		pointer_default(unique)
+	]
+	interface ISubCondition : IDispatch
+	{
+		typedef [unique]	ISubCondition*			LPSUBCONDITION;
+		[propget, id(1), helpstring("Condition Type")] HRESULT Type([out, retval] CONDITION_TYPES *pVal);
+		[propget, id(2), helpstring("Operator")] HRESULT Operator([out, retval] SUBOBJECT_TYPES *pVal);
+		[propput, id(2), helpstring("Operator")] HRESULT Operator([in] SUBOBJECT_TYPES newVal);
+		[propget, id(3), helpstring("Condition")] HRESULT Condition([out, retval] LPDISPATCH *pVal);
+		[propput, id(3), helpstring("Condition")] HRESULT Condition([in] LPDISPATCH newVal);
+	};
+
+	[
+		object,
+		uuid(0C5D91B4-0D1B-11D2-BC12-00C04F8C92F7),
+		dual,
+		helpstring("Property Value Interface"),
+		pointer_default(unique)
+	]
+	interface IPropVal : IDispatch
+	{
+		typedef [unique]	IPropVal*				LPPROPVAL;
+		[propget, id(1), helpstring("Property Tag")] HRESULT Tag([out, retval] long *pVal);
+		[propput, id(1), helpstring("Property Tag")] HRESULT Tag([in] long newVal);
+		[propget, id(2), helpstring("Property Value")] HRESULT Value([out, retval] VARIANT *pVal);
+		[propput, id(2), helpstring("Property Value")] HRESULT Value([in] VARIANT newVal);
+	};
+
+[
+	uuid(92C2FED5-00A6-11D2-BC07-00C04F8C92F7),
+	version(1.0),
+	helpstring("Microsoft Exchange SDK 5.5 Rules 1.0")
+]
+library MSExchange
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(92C2FED1-00A6-11D2-BC07-00C04F8C92F7),
+		helpstring("Rule Collection Class")
+	]
+	coclass Rules
+	{
+		[default] interface IRules;
+	};
+	[
+		uuid(92C2FEE7-00A6-11D2-BC07-00C04F8C92F7),
+		helpstring("Rule Class")
+	]
+	coclass Rule
+	{
+		[default] interface IRule;
+	};
+	[
+		uuid(40E6B495-0976-11D2-BC0F-00C04F8C92F7),
+		helpstring("Actions Collection Class")
+	]
+	coclass Actions
+	{
+		[default] interface IActions;
+	};
+	[
+		uuid(40E6B497-0976-11D2-BC0F-00C04F8C92F7),
+		helpstring("Action Class")
+	]
+	coclass Action
+	{
+		[default] interface IAction;
+	};
+	[
+		uuid(D61B2A9C-07A1-11D2-BC0D-00C04F8C92F7),
+		helpstring("Condition Class")
+	]
+	coclass Condition
+	{
+		[default] interface ICondition;
+	};
+	[
+		uuid(95525546-095F-11D2-BC0F-00C04F8C92F7),
+		helpstring("Logical Condition Class")
+	]
+	coclass LogicalCondition
+	{
+		[default] interface ILogicalCondition;
+	};
+	[
+		uuid(95525549-095F-11D2-BC0F-00C04F8C92F7),
+		helpstring("Bitmask Condition Class")
+	]
+	coclass BitmaskCondition
+	{
+		[default] interface IBitmaskCondition;
+	};
+	[
+		uuid(D61B2A8A-07A1-11D2-BC0D-00C04F8C92F7),
+		helpstring("Comment Condition Class")
+	]
+	coclass CommentCondition
+	{
+		[default] interface ICommentCondition;
+	};
+	[
+		uuid(D61B2A8C-07A1-11D2-BC0D-00C04F8C92F7),
+		helpstring("Compare Properties Condition Class")
+	]
+	coclass ComparePropsCondition
+	{
+		[default] interface IComparePropsCondition;
+	};
+	[
+		uuid(D61B2A8E-07A1-11D2-BC0D-00C04F8C92F7),
+		helpstring("Content Condition Class")
+	]
+	coclass ContentCondition
+	{
+		[default] interface IContentCondition;
+	};
+	[
+		uuid(D61B2A90-07A1-11D2-BC0D-00C04F8C92F7),
+		helpstring("Exists Condition Class")
+	]
+	coclass ExistsCondition
+	{
+		[default] interface IExistsCondition;
+	};
+	[
+		uuid(D61B2A96-07A1-11D2-BC0D-00C04F8C92F7),
+		helpstring("Property Condition Class")
+	]
+	coclass PropertyCondition
+	{
+		[default] interface IPropertyCondition;
+	};
+	[
+		uuid(D61B2A98-07A1-11D2-BC0D-00C04F8C92F7),
+		helpstring("Size Condition Class")
+	]
+	coclass SizeCondition
+	{
+		[default] interface ISizeCondition;
+	};
+	[
+		uuid(D61B2A9A-07A1-11D2-BC0D-00C04F8C92F7),
+		helpstring("Sub Condition Class")
+	]
+	coclass SubCondition
+	{
+		[default] interface ISubCondition;
+	};
+	[
+		uuid(0C5D91B5-0D1B-11D2-BC12-00C04F8C92F7),
+		helpstring("Property Value Class")
+	]
+	coclass PropVal
+	{
+		[default] interface IPropVal;
+	};
+};

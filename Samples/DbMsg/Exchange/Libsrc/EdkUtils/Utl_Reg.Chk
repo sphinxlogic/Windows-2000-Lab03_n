@@ -1,0 +1,207 @@
+// --utl_reg.chk----------------------------------------------------------------
+//
+// Parameter checking for utl_reg.cpp
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+//
+// -----------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_HrIdentifyRegistryRootKey(a,b,c)    NOERROR
+#define CHK__HrReadRegistrySZ(a,b,c,d)        NOERROR
+#define CHK__HrReadRegistryDWORD(a,b,c)       NOERROR
+#define CHK__HrWriteRegistrySZ(a,b,c)         NOERROR
+#define CHK__HrWriteRegistryDWORD(a,b,c)      NOERROR
+
+#else
+
+//$--CHK_HrIdentifyRegistryRootKey----------------------------------------------
+//  Check parameters for HrIdentifyRegistryRootKey().
+// -----------------------------------------------------------------------------
+static _inline HRESULT CHK_HrIdentifyRegistryRootKey(
+    IN  char *pszKey,   // pointer to fully qualified key name
+    OUT HKEY *phkKeyHandle, // pointer to key handle
+    OUT char **ppszSubKey)  // pointer to subkey section
+{
+    HRESULT     hr  =   NOERROR;
+
+    if ( ! TEST_STRINGA_PTR(pszKey) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_WRITE_PTR(phkKeyHandle, sizeof(HKEY)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_WRITE_PTR(ppszSubKey, sizeof(char *)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK__HrReadRegistrySZ----------------------------------------------------
+//  Check parameters for _HrReadRegistrySZ().
+// -----------------------------------------------------------------------------
+static _inline HRESULT CHK__HrReadRegistrySZ(
+	IN HKEY hRegistryKey,				// registry key to read value from
+	IN LPSTR lpszValueName,			// name of value to read
+	OUT LPSTR lpszBuffer,				// buffer to read value into
+	IN OUT DWORD *lpcbBufferSize)		// size of buffer to read value into
+{
+    HRESULT     hr          = NOERROR;
+
+    if ( (!hRegistryKey) || (hRegistryKey == INVALID_HANDLE_VALUE) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_STRINGA_PTR(lpszValueName) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_READ_PTR(lpcbBufferSize, sizeof(DWORD *)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( *lpcbBufferSize == 0 )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_WRITE_PTR(lpszBuffer, *lpcbBufferSize) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK__HrReadRegistryDWORD-------------------------------------------------
+//  Check parameters for hrEDKReadRegistryDWORD().
+// -----------------------------------------------------------------------------
+static _inline HRESULT CHK__HrReadRegistryDWORD(
+	IN HKEY hRegistryKey,				// registry key to read value from
+	IN LPSTR lpszValueName,			// name of value to read
+	OUT LPDWORD lpdwBuffer)				// address of DWORD to read value into
+{
+    HRESULT     hr              = NOERROR;
+
+    if ( (!hRegistryKey) || (hRegistryKey == INVALID_HANDLE_VALUE) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_STRINGA_PTR(lpszValueName) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_WRITE_PTR(lpdwBuffer, sizeof(DWORD)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK__HrWriteRegistrySZ---------------------------------------------------
+//  Check parameters for _HrWriteRegistrySZ().
+// -----------------------------------------------------------------------------
+static _inline HRESULT CHK__HrWriteRegistrySZ(
+	IN HKEY hRegistryKey,				// registry key to write value to
+	IN LPSTR lpszValueName,			// name of value to write
+	IN LPCSTR lpszValue)				// string value to write
+{
+    HRESULT     hr          = NOERROR;
+
+    if ( (!hRegistryKey) || (hRegistryKey == INVALID_HANDLE_VALUE) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_STRINGA_PTR(lpszValueName) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_STRINGA_PTR(lpszValue) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK__HrWriteRegistryDWORD------------------------------------------------
+//  Check parameters for _HrWriteRegistryDWORD().
+// -----------------------------------------------------------------------------
+static _inline HRESULT CHK__HrWriteRegistryDWORD(
+	IN HKEY hRegistryKey,				// registry key to write value to
+	IN LPSTR lpszValueName,			// name of value to write
+	IN DWORD dwValue)					// DWORD value to write
+{
+    HRESULT     hr          = NOERROR;
+
+    if ( (!hRegistryKey) || (hRegistryKey == INVALID_HANDLE_VALUE) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_STRINGA_PTR(lpszValueName) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+#endif /* DEBUG */

@@ -1,0 +1,257 @@
+Platform SDK Development Kit Redistributables
+==============================================
+Unless otherwise noted, the following redistributables are 
+provided in the Platform SDK in the \mssdk\redist
+directories. Rights are granted strictly to the versions of 
+the redist files that are found on the Platform SDK CD or via
+the Platform SDK installation program.
+
+Any redist.txt files located in the \mssdk\redist supercede the
+rights granted within this file.
+
+
+====================
+Web Telephony Engine
+====================
+
+The Web Telephone Engine may only be redistributed as part of WebTE.Exe. You
+may not modify WebTE.Exe.
+
+WebTE.Exe is a self-extracting executable that will install the Web Telephony
+Engine if a newer version is not already present.
+
+In addition to the rights granted in Section 1 of the Agreement
+("Agreement"), with respect to the Web Telephony Engine, you have
+the following non-exclusive, royalty free rights subject to the
+Distribution Requirements detailed in Section 1 of the Agreement:
+
+(1)  You may distribute WebTE.Exe.
+
+
+====================================
+Web Telephony Engine Schema Importer
+====================================
+
+The Web Telephone Engine Scheme Importer may only be redistributed as part
+of WebTEImp.Exe. You may not modify WebTEImp.Exe.
+
+WebTEImp.Exe is a self-extracting executable that will install the Web
+Telephony Engine Schema into the Active Directory.
+
+In addition to the rights granted in Section 1 of the Agreement
+("Agreement"), with respect to the Web Telephony Engine Schema Importer,
+you have the following non-exclusive, royalty free rights subject to
+the Distribution Requirements detailed in Section 1 of the Agreement:
+
+(1)  You may distribute WebTEImp.Exe.
+
+
+===================
+Common Controls DLL
+===================
+
+The COMCTL32.DLL may only be redistributed as part of 50COMUPD.EXE. You may
+not redistribute COMCTL32.DLL except by using 50COMUPD.EXE. You may not
+modify 50COMUPD.EXE
+
+50COMUPD.EXE is a self-extracting executable that will install the COMCTL32.DLL
+only if there is not a more recent version of the COMCTL32.DLL in the system
+directory.  50COMUPD.EXE will write the registry keys required by COMCTL32.DLL.
+50COMUPD.EXE may be used on Windows NT 4.0, Windows 95, or Windows 98
+
+In addition to the rights granted in Section 1 of the Agreement ("Agreement"),
+with respect to the COMCTL32 Redistributable Code,
+you have the following non-exclusive, royalty free rights subject to the
+Distribution Requirements detailed in Section 1 of the Agreement:
+
+(1)  You may distribute 50COMUPD.EXE
+
+
+============
+ShFolder DLL
+============
+
+The SHFOLDER.DLL may only be redistributed as part of SHFOLDER.EXE. You may
+not redistribute COMCTL32.DLL except by using SHFOLDER.EXE. You may not
+modify SHFOLDER.EXE
+
+SHFOLDER.EXE is a self-extracting executable that will install the SHFOLDER.DLL
+only if there is not a more recent version of the SHFOLDER.DLL in the system
+directory.  SHFOLDER.EXE will write the registry keys required by SHFOLDER.DLL.
+SHFOLDER.EXE may be used on Windows NT 4.0, Windows 95, or Windows 98
+
+In addition to the rights granted in Section 1 of the Agreement ("Agreement"),
+with respect to the SHFOLDER Redistributable Code,
+you have the following non-exclusive, royalty free rights subject to the
+Distribution Requirements detailed in Section 1 of the Agreement:
+
+(1)  You may distribute SHFOLDER.EXE
+
+
+===========================================================
+Component Categories Manager for Windows NT and Windows 95
+===========================================================
+
+The COMCAT.DLL may only be redistributed as part of CCDIST.EXE or CCDIST35.EXE.
+You may not redistribute COMCAT.DLL except by using CCDIST.EXE or CCDIST35.EXE.
+You may not modify CCDIST.EXE or CCDIST35.EXE.
+
+CCDIST.EXE is a self-extracting executable that will install the COMCAT.DLL
+only if there is not a more recent version of the COMCAT.DLL in the system
+directory.  CCDIST.EXE will write the registry keys required by COMCAT.DLL.
+CCDIST.EXE may be used on Windows NT 4.0 or Windows 95.  CCDIST35.EXE provides
+the same functionality for Windows NT 3.51.
+
+If CCDIST.EXE or CCDIST35.EXE do not meet your distribution needs for
+COMCAT.DLL, please send detailed feedback to oleidea@microsoft.com.
+
+In addition to the rights granted in Section 1 of the Agreement ("Agreement"), 
+with respect to the COMCAT Redistributable Code,
+you have the following non-exclusive, royalty free rights subject to the
+Distribution Requirements detailed in Section 1 of the Agreement:
+
+(1)  You may distribute CCDIST.EXE and CCDIST35.EXE.
+
+
+=======================================
+Performance Data Helper for Windows NT
+=======================================
+
+To install the performance data helper DLL on Windows NT copy PDH.DLL into
+the %windir%\system directory.  The PDH.DLL should never be installed over
+an existing copy of the same DLL that has a later version resource.  The
+PDH.DLL should never be installed on a Windows 95 system (it will not work).
+
+The PDH.DLL is located in the \mssdk\bin\winnt directory in the Platform SDK.
+
+In addition to the rights granted in Section 1 of the Agreement ("Agreement"), 
+with respect to the performance data helper DLL
+for Windows NT Redistributable Code, you have the following non-exclusive,
+royalty free rights subject to the Distribution Requirements detailed in
+Section 1 of the Agreement:
+
+(1)  You may distribute PDH.DLL.
+
+
+
+========================
+DCOM95 Redistributables
+========================
+
+The DCOM95 redistributables may only be redistributed as part of DCOM95.EXE.  
+You may not redistribute any of the DLLs in DCOM95.EXE except by using 
+DCOM95.EXE. You may not modify DCOM95.EXE. DCOM95.EXE is provided in the 
+\mssdk\redist\dcom95 directory in the Platform SDK.
+
+DCOM95.EXE is a self-extracting executable that will install the DCOM95 
+redistributables only if there is not a more recent version of the DLLs 
+in the system directory. 
+
+In addition to the rights granted in Section 1 of the Agreement ("Agreement"), 
+with respect to the DCOM95 Redistributable Code,
+you have the following non-exclusive, royalty free rights subject to the
+Distribution Requirements detailed in Section 1 of the Agreement:
+
+(1)  You may distribute DCOM95.EXE as part of your software application 
+     product solely for use with Windows 95.
+
+
+
+==================================================
+OLE Automation for Windows NT 3.51 and Windows 95
+==================================================
+To install the updated OLE Automation on Windows NT 3.51, copy 
+OLEAUT32.DLL and STDOLE2.TLB into the %systemroot%\system32 directory.
+These two files are provided in the \Redist\oa351 directory in the 
+Platform SDK.
+
+These two files should never be installed over an existing copy of the
+same DLL that has a later version resource.  These two files should not
+be installed on a Windows NT 4.0 system (they are already built in).
+
+In addition to the rights granted in Section 1 of the Agreement ("Agreement"), 
+with respect to the OLE Automation 
+Redistributable Code, you have the following non-exclusive, royalty 
+free rights subject to the Distribution Requirements detailed in 
+Section 1 of the Agreement:
+
+(1)  You may distribute OLEAUT32.DLL and STDOLE2.TLB as part of your 
+     software application product solely for use with Windows NT 3.51.
+
+
+
+=====================
+OpenGL for Windows 95
+=====================
+The OpenGL for Windows 95 Redistributables are located in 
+\mssdk\redist\opengl\win95\dll. These files must be installed as 
+described in \mssdk\redist\opengl\win95\readme.txt.
+
+In addition to the rights granted in Section 1 of the Agreement ("Agreement"), 
+with respect to the OpenGL for Windows 95
+Redistributable Code, you have the following non-exclusive, royalty free
+rights subject to the Distribution Requirements detailed in Section 1 of
+the Agreement:
+
+(1)  You may distribute OPENGL95.DLL and GLU32.DLL.
+
+
+============================
+Microsoft Management Console
+============================
+The Microsoft Management Console (MMC) redistributables may only be 
+redistributed as part of iMMC.EXE or aMMC.EXE. You may not redistribute 
+any of the DLLs in iMMC.EXE or aMMC.EXE except by using iMMC.EXE or aMMC.EXE. 
+You may not modify iMMC.EXE or aMMC.EXE.
+
+iMMC.EXE and aMMC.EXE are self-extracting executables that will install 
+the MMC redistributables only if there is not a more recent version of 
+the DLLs in the system directory. iMMC.EXE or aMMC.EXE will write the 
+registry keys required by MMC.
+
+In addition to the rights granted in Section 1 of the Development License 
+Agreement ("Agreement"), with respect to the MMC Redistributable Code, 
+you have the following non-exclusive, royalty free rights subject to 
+the Distribution Requirements detailed in Section 1 of the Agreement:
+
+(1)  You may distribute iMMC.EXE or aMMC.EXE.
+
+
+=========================
+Microsoft Agent version 1
+=========================
+The following uses for Microsoft Agent Version 1 are currently royalty-free,
+subject to the End-User License Agreement found in 
+\mssdk\redist\msagent\agteula.doc in the Platform SDK: 
+
+* You can automatically cause Microsoft Agent to download from the Microsoft 
+site by including the CLSID for Microsoft Agent in an HTML <OBJECT> tag on 
+one of your site's pages.
+
+* You can also automatically cause the Microsoft Command and Control speech 
+recognition engine and the Lernout & Hauspie® TruVoice Text-To-Speech 
+Engine for Microsoft Agent to download from the Microsoft site, by 
+including their CLSIDs in an HTML <OBJECT> tag on one of your site's pages, 
+provided that these engines are only downloaded and installed for use with 
+Microsoft Agent.
+
+* You can load Microsoft's designated characters or images from the Microsoft 
+Web site in your script code using the Microsoft Agent Load and Get (Prepare) 
+methods. 
+
+However, the Distribution Requirements contained in the Development License 
+Agreement ("Agreement") do not apply to Microsoft Agent.  To add or include 
+Microsoft Agent and any of its components to or with an application, or post 
+Microsoft Agent and any of its components on a 
+server, or distribute Microsoft Agent and any of its components using other 
+electronic media, you must first obtain and submit a redistribution license 
+for Microsoft Agent. The Microsoft Agent character files, the Microsoft 
+Command and Control speech engine, and the Lernout & Hauspie TruVoice 
+Text-To-Speech Engine cannot be redistributed without Microsoft Agent. This 
+license for Microsoft Agent Version 1 is currently royalty-free to 
+redistribute within your organization or to your customers. The license does 
+not include the Microsoft Agent Character Editor or the Microsoft Linguistic 
+Sound Editing Tool. 
+
+To request a redistribution license or further information, contact the 
+Microsoft Agent Product Group at msagent@microsoft.com. 

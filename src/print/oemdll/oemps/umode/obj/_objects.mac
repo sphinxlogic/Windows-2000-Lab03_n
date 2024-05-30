@@ -1,0 +1,48 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\oemps.res \
+    $(_OBJ_DIR)\alpha\dllentry.obj \
+    $(_OBJ_DIR)\alpha\intrface.obj \
+    $(_OBJ_DIR)\alpha\command.obj \
+    $(_OBJ_DIR)\alpha\ddihook.obj \
+    $(_OBJ_DIR)\alpha\debug.obj \
+    $(_OBJ_DIR)\alpha\devmode.obj \
+    $(_OBJ_DIR)\alpha\enable.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\oemps.res \
+    $(_OBJ_DIR)\axp64\dllentry.obj \
+    $(_OBJ_DIR)\axp64\intrface.obj \
+    $(_OBJ_DIR)\axp64\command.obj \
+    $(_OBJ_DIR)\axp64\ddihook.obj \
+    $(_OBJ_DIR)\axp64\debug.obj \
+    $(_OBJ_DIR)\axp64\devmode.obj \
+    $(_OBJ_DIR)\axp64\enable.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\oemps.res \
+    $(_OBJ_DIR)\i386\dllentry.obj \
+    $(_OBJ_DIR)\i386\intrface.obj \
+    $(_OBJ_DIR)\i386\command.obj \
+    $(_OBJ_DIR)\i386\ddihook.obj \
+    $(_OBJ_DIR)\i386\debug.obj \
+    $(_OBJ_DIR)\i386\devmode.obj \
+    $(_OBJ_DIR)\i386\enable.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\oemps.res \
+    $(_OBJ_DIR)\ia64\dllentry.obj \
+    $(_OBJ_DIR)\ia64\intrface.obj \
+    $(_OBJ_DIR)\ia64\command.obj \
+    $(_OBJ_DIR)\ia64\ddihook.obj \
+    $(_OBJ_DIR)\ia64\debug.obj \
+    $(_OBJ_DIR)\ia64\devmode.obj \
+    $(_OBJ_DIR)\ia64\enable.obj
+
+PASS0_IA64_OBJECTS=
+

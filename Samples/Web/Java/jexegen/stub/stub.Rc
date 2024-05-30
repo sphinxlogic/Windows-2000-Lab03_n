@@ -1,0 +1,121 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include <winnt.h>
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include <winnt.h>\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+1 VERSIONINFO
+ FILEVERSION    1,0,0,0
+ PRODUCTVERSION 1,0,0,0
+ FILEFLAGSMASK  0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0xbL
+#else
+ FILEFLAGS 0xaL
+#endif
+ FILEOS 0x10001L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904E4"
+        BEGIN
+            VALUE "CompanyName",      "\0"
+            VALUE "FileDescription",  "One Fine Stub\0"
+            VALUE "FileVersion",      "1.0.0.0\0"
+            VALUE "InternalName",     "\0"
+            VALUE "LegalCopyright",   "\0"
+            VALUE "OriginalFilename", "STUB.EXE\0"
+            VALUE "ProductName",      "\0"
+            VALUE "ProductVersion",   "1.0.0\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_OUTOFMEMORY         "Out of memory"
+    IDS_SCODE               "SCODE 0x%lx: Error message unavailable."
+    IDS_ERROR               "\nERROR: "
+    IDS_COULDNOTINITOLE     "Could not initialize Ole"
+    IDS_JAVAVM              "Could not locate Java Virtual Machine"
+    IDS_CLASSLOADER         "Could not obtain Java class loader"
+    IDS_NOPATHGIVEN         "No path given for %s switch"
+    IDS_INVALIDSWITCH       "Invalid command line switch: %s"
+    IDS_INVALIDPARAMETER    "Invalid parameter assignment: %s"
+    IDS_NOCLASSGIVEN        "No class file given"
+    IDS_UNKNOWNERROR        "Unknown error!"
+    IDS_EXECUTINGCLASS      "Could not execute %s"
+    IDS_PRESSANYKEY         "\nPress any key to continue..."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MEMBERNOTFOUND      "Member not found.\r\n"
+    IDS_NOMAIN              "\t%s must have a method of the following form to be run using JView:\n\n\t\tpublic static void main(String args[])\n\n\tIf %s is an applet, you must run it using a browser."
+    IDS_NOJAVATHREAD        "Couldn't create thread."
+    IDS_VMCANTFINDRESOURCE  "VM Could not find class resource data."
+END
+
+#endif
+
+

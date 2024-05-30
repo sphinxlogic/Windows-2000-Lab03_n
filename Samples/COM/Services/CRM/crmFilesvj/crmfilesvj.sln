@@ -1,0 +1,16 @@
+Microsoft Visual Studio Solution File, Format Version 1.00
+Project("{66355F20-A65B-11D0-BFB5-00A0C91EBFA0}") = "crmfilesvj", "crmfilesvj.vjp", "{FCA7EF42-C399-441C-AC92-9992CB55CFDD}"
+EndProject
+Project("{66355F20-A65B-11D0-BFB5-00A0C91EBFA0}") = "comsvcs", "comsvcs.vjp", "{D6917099-B146-4916-AFD7-C800FEB09F54}"
+EndProject
+Global
+	GlobalSection(LocalDeployment) = postSolution
+		StartupProject = {FCA7EF42-C399-441C-AC92-9992CB55CFDD}
+	EndGlobalSection
+	GlobalSection(BuildOrder) = postSolution
+		0 = {FCA7EF42-C399-441C-AC92-9992CB55CFDD}
+		1 = {D6917099-B146-4916-AFD7-C800FEB09F54}
+	EndGlobalSection
+	GlobalSection(DeploymentRoot) = postSolution
+	EndGlobalSection
+EndGlobal

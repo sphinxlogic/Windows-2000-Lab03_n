@@ -1,0 +1,78 @@
+<html>
+
+<head>
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 3.0">
+<title>Server</title>
+<meta NAME="Version" CONTENT="8.0.3410">
+<meta NAME="Date" CONTENT="10/11/96">
+<meta NAME="Template" CONTENT="C:\Program Files\Office\Office\HTML.DOT">
+</head>
+
+<body TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<font FACE="Arial" SIZE="4"><b>
+
+<p><a NAME="_Toc397403937">Server</a></p>
+</b></font>
+
+<p>The <b>Server</b> object provides access to methods and properties on the server. Most
+of these methods and properties serve as utility functions.</p>
+
+<p>The createObject method should always be used to create any other COM objects that your
+class needs to create. Furthermore, if you are creating any other Java objects that
+are registered with COM and Microsoft Transaction Server, and which support transactions,
+you should create them via createObject, as well, and not via the <em>new </em>operator.<font
+FACE="Courier New" SIZE="1">
+
+<dir>
+  </font><font FACE="Courier New" size="2">public class Server {<br>
+  <blockquote>
+    public String <a HREF="#mapPath">mapPath</a>(String path);<br>
+    public String <a HREF="#URLEncode">URLEncode</a>(String str);<br>
+    public String <a HREF="#HTMLEncode">HTMLEncode</a>(String str);<br>
+    public int <a HREF="#ScriptTimeout">getScriptTimeout</a>();<br>
+    public void <a HREF="#ScriptTimeout">setScriptTimeout</a>(int timeout);<br>
+    public Object <a HREF="#createObject">createObject</a>(String progID);<br>
+  </blockquote>
+  }</font><font FACE="Courier New" SIZE="1"><br>
+</dir>
+</font><a NAME="mapPath">
+
+<hr>
+<b><font SIZE="3">
+
+<p></font></a><font FACE="Arial" color="#0000A0"><em>Server Methods</em></font><a
+NAME="mapPath"><font SIZE="3"></p>
+</font></b>
+
+<p><font SIZE="3"><b>public String mapPath(String path)</b></font></p>
+
+<p></a>Maps the specified virtual path--either the absolute path on the current server, or
+the path relative to the current page--into a physical path.</p>
+<font SIZE="3"><b>
+
+<p><a NAME="URLEncode">public String URLEncode(String str)</p>
+</b></font>
+
+<p></a>Applies URL encoding rules, including escape characters, to the string. </p>
+<font SIZE="3"><b>
+
+<p><a NAME="HTMLEncode">public String HTMLEncode(String str)</p>
+</b></font>
+
+<p></a>Applies HTML encoding to the specified string. </p>
+<font SIZE="3"><b>
+
+<p><a NAME="ScriptTimeout"></a>public int getScriptTimeout( )<br>
+public void setScriptTimeout(int timeout)</p>
+</b></font>
+
+<p>Provides the length of time that a script can run before it times out.</p>
+<font SIZE="3"><b>
+
+<p><a NAME="createObject"></a>public Object createObject(String progID)</p>
+</b></font>
+
+<p>Creates an instance of a server component.</p>
+</body>
+</html>

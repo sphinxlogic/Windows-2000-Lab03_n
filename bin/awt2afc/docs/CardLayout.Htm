@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>CardLayout -> UITabLayout</title>
+<base target="descriptions">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">CardLayout to UITabLayout</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.CardLayout should be transformed into instances of
+com.ms.ui.UITabLayout. </p>
+
+<p align="left">CardLayout implements <a
+href="LayoutManager2.htm" target="descriptions">LayoutManager2</a>:
+be sure to see its changes.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">AFC does not provide a direct transformation for
+CardLayout in the UILayoutManager. Instead, CardLayout is
+replaced by UITabLayout, which provides a layout manager for a
+set of tab controls and their pages, which is an improvement on
+the idea behind CardLayout. UITabViewer, the object that uses
+UITabLayout as its layout manager, can include UITabs with all
+types of UIComponents embedded inside.</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">There is no direct port of CardLayout: you will
+need to use UITabLayout instead. </p>
+
+<p>&nbsp;</p>
+</body>
+</html>

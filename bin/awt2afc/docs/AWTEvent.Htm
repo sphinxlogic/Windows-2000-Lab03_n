@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>AWTEvent -> UIEvent</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">AWTEvent to UIEvent</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.AWTEvent should be transformed into instances of
+com.ms.ui.event.UIEvent.</p>
+
+<p align="left">AWTEvent extends <a href="EventObject.htm"
+target="descriptions">EventObject</a>: be sure to see its
+changes.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">UIEvents are defined to match their AWT
+counterparts. This class defines base level functionality of
+UIEvents.</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">This is the set of changes you need to make to
+port all AWTEvent methods to UIEvent methods. Any method not
+listed here or below does not need to be changed.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial"><strong>AWT Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">AWTEvent(Object,
+        int)</font></td>
+        <td nowrap><font size="2" face="Courier">UIEvent((IUIComponent)
+        Object, int)</font></td>
+        <td><font size="2">When creating a UIEvent, you need to
+        specify an IUIComponent with it, so you can work with
+        multiple components.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">id</font></td>
+        <td><font size="2" face="Courier">getId()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h3>Unsupported Methods</h3>
+
+<p>Some methods in java.awt.AWTEvent are not directly supported
+in com.ms.ui.event.UIEvent. Those methods and suggested changes
+are described here.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial">AWT Code<strong>/Suggested
+        AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">AWTEvent(Event)</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td><font size="2">This constructor allows you to convert
+        1.0.2 event objects to 1.1 event objects. UI is built
+        around the 1.1 event model and so this is unnecessary to
+        the model.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">consumed,
+        consume(),<br>
+        isConsumed()</font><p><font size="2" face="Courier"><strong>(no
+        suggestions)</strong></font></p>
+        </td>
+        <td><font size="2">AFC does not use consume.</font></td>
+    </tr>
+</table>
+</body>
+</html>

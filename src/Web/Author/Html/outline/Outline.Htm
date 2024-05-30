@@ -1,0 +1,99 @@
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<HTML>
+<HEAD>
+<TITLE>Outline</TITLE>
+<META NAME="FILENAME" CONTENT="outline.HTM">
+
+
+</HEAD>
+<body topmargin=20 leftmargin=10 bgcolor="#ffffff" link="#000066" vlink="#666666" text="#000000">
+<H2>Outline</H2>
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT>
+<P>
+<P>
+<hr>
+
+<FONT FACE="Verdana, Arial, Helvetica" SIZE="4"><B>Use the mouse to expand the outline!</B></FONT>
+<BR><BR>
+
+<DIV ID="Out0">
+  <IMG SRC="images/folder.gif" ID="Out1" CLASS="Outline" STYLE="cursor: hand" WIDTH="16" HEIGHT="16">&nbsp;Item 1<BR>
+  <DIV ID="Out1d" STYLE="display:None">
+    &nbsp;&nbsp;<IMG SRC="images/folder.gif" ID="Out2" CLASS="Outline" STYLE="cursor: hand" WIDTH="16" HEIGHT="16">&nbsp;Item 1.1<BR>
+    <DIV ID="Out2d" STYLE="display:None">
+       &nbsp;&nbsp;&nbsp;&nbsp;<IMG SRC="images/60-60-60.gif" WIDTH="20" HEIGHT="15">&nbsp;Item 1.1.1<BR>
+       &nbsp;&nbsp;&nbsp;&nbsp;<IMG SRC="images/60-60-60.gif" WIDTH="20" HEIGHT="15">&nbsp;Item 1.1.2<BR>
+    </DIV>
+    &nbsp;&nbsp;<IMG SRC="images/60-60-60.gif" WIDTH="20" HEIGHT="15">&nbsp;Item 1.2<BR>
+  </DIV>
+  <IMG SRC="images/60-60-60.gif" WIDTH="20" HEIGHT="15">&nbsp;Item 2<BR>
+</DIV>
+
+<SCRIPT LANGUAGE="JavaScript">
+function clickHandler() {
+  var targetId, srcElement, targetElement;
+  srcElement = window.event.srcElement;
+  if (srcElement.className == "Outline") {
+     targetId = srcElement.id + "d";
+     targetElement = document.all(targetId);
+     if (targetElement.style.display == "none") {
+        targetElement.style.display = "";
+        srcElement.src = "images/ofolder.gif";
+     } else {
+        targetElement.style.display = "none";
+        srcElement.src = "images/folder.gif";
+     }
+  }
+}
+
+document.onclick = clickHandler;
+
+</SCRIPT>
+
+<HR>
+
+<TABLE CELLPADDING="0" CELLSPACING="0" BORDER="0">
+<TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><FONT FACE="Verdana, Arial, Helvetica" SIZE="2"><B>Description</B></TD>
+</TR>
+<TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><FONT FACE="Verdana, Arial, Helvetica" SIZE="2">This example shows how to build an interactive outline that expands and collapses. Click closed folders to open them, and click open folders to close them. The items automatically expand and collapse.
+
+<P>No matter how many items you would like to include in your outline,
+or what those items contain, the code to collapse and expand
+items never has to change. A simple naming convention is used to
+allow this. In the example above, all of the images that are used
+to control the collapsing and expanding of elements are given the
+class &quot;Outline.&quot; The element that will be hidden or
+shown when its associated image is clicked has a name consisting of the ID of its
+associated images, followed by a &quot;d,&quot; for example, if the Image ID is &quot;image 1,&quot; the outline element would have an ID of &quot;image1d.&quot; So, when a
+click occurs, the code checks to see if the source of the click
+is an object with class = Outline and, if so, it gets
+the element that has an ID equal to the clicked image's
+ID+&quot;d.&quot; That element's display status is then toggled.</P>
+
+</FONT>
+</TD>
+</TR>
+<TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><FONT FACE="Verdana, Arial, Helvetica" SIZE="2"><P><BR><B>Usage</B></FONT></TD>
+</TR>
+
+<TR>
+<TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"><FONT FACE="Verdana, Arial, Helvetica" SIZE="2">As explained above, the code to control the outline does not have to change based on the contents of the outline. Simply take the script from this page, use the naming convention described above, and you will have instant outlines.</FONT></TD>
+</TR>
+</TABLE>
+<P>
+<P>
+<P>
+<P>
+<FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">
+&copy; <A HREF="/misc/cpyright.htm" TARGET="_top">1999 Microsoft Corporation. All rights reserved. Terms of use</A>.
+</FONT>
+
+</BODY>
+</HTML>

@@ -1,0 +1,149 @@
+// --convcwrp.chk---------------------------------------------------------------
+// 
+// Parameter checking for convcwrp.cpp
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+//
+// -----------------------------------------------------------------------------
+#ifndef DEBUG
+#define CHK_HrConvInitInstance(a,b)      NOERROR
+#define CHK_HrConvUninitInstance(a)       NOERROR
+#define CHK_HrConvConvert(a,b,c,d,e,f)   NOERROR
+
+#else
+//$--CHK_HrConvInitInstance-----------------------------------------------
+//
+//  DESCRIPTION: Parameter checking for HrConvInitInstance.
+//
+//  INPUT:  hEventSource    --  event source handle
+//
+//  OUTPUT:  ppvConvInst --  conversion engine instance
+//
+//  RETURNS:    HRESULT --  NOERROR if no error,
+//                          E_INVALIDARG if bad input,
+//
+//---------------------------------------------------------------------
+static inline HRESULT CHK_HrConvInitInstance(       
+    IN HANDLE hEventSource,     // event source handle
+    OUT PVOID * ppvConvInst)    // new conversion engine instance
+{
+    HRESULT hr = NOERROR;       // return code
+
+    if ( ! TEST_WRITE_PTR(ppvConvInst, sizeof(PVOID)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( (hEventSource == INVALID_HANDLE_VALUE) ||
+         (hEventSource == NULL) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return hr;
+}
+
+//$--CHK_HrConvUninitInstance----------------------------------------------
+//
+// DESCRIPTION: Parameter checking for HrConvUninitInstance
+//
+// INPUT:   pvConvInst  --  conversion engine instance to free.
+//
+// RETURNS: HRESULT --  NOERROR if successful,
+//                      E_INVALIDARG if bad input
+//
+//---------------------------------------------------------------------
+static inline HRESULT CHK_HrConvUninitInstance(     
+    IN PVOID pvConvInst)                    // handle to instance to free.
+{
+    HRESULT hr  =   NOERROR;    // return code
+
+    if ( pvConvInst == NULL )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+}
+
+//$--CHK_HrConvConvert----------------------------------------------------
+//
+// DESCRIPTION: Parameter checking for HrConvConvert
+//
+// INPUT:   pvConvInst  --  conversion engine instance
+//          pEnv    --  conversion environment
+//          pszContentClass --  class of source
+//          pContentIn  --  source to be converted
+//          pContentOut --  converted object
+// 
+// OUTPUT:  
+//          pcrResult   --  result
+//
+// RETURNS: HRESULT --  NOERROR if no error,
+//                      E_INVALIDARG if bad input,
+//
+//---------------------------------------------------------------------
+static inline HRESULT CHK_HrConvConvert(           
+    IN PVOID pvConvInst,            // handle to instance of engine.
+    IN PEDKCNVENV pEnv,             // environment of the convrsion
+    IN LPCWSTR pszContentClass,     // class of source to be converted.
+    IN PVOID pContentIn,            // source to be converted.
+    IN PVOID pContentOut,           // converted object
+    OUT EDKCNVRES *pcrResult)       // result.
+{
+    HRESULT hr  =   NOERROR;    // return code
+
+    if ( (pvConvInst == NULL) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_READ_PTR(pEnv, sizeof(EDKCNVENV)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( (pszContentClass == NULL) || IsBadStringPtrW(pszContentClass, INFINITE) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if (pContentIn == NULL)
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if (pContentOut == NULL)
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_WRITE_PTR(pcrResult, sizeof(EDKCNVRES)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return hr;
+
+}
+#endif

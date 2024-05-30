@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>Font -> FxFont</title>
+<base target="descriptions">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">Font to FxFont</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.Font should be transformed into instances of
+com.ms.fx.FxFont.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">FxFont extends from Font, so none of your older
+work needs to change. However, using FxFont and related classes
+allows you to use extensible objects in place of Font in a
+graphics context. With FxFont, you can include styles like
+underline, strikeout, or embedded in your declaration, like</p>
+
+<p align="left"><font size="3" face="Courier">new
+FxFont(&quot;Courier&quot;, FxFont.PLAIN, 18, FxFont.UNDERLINE)</font></p>
+
+<p align="left">Using FxFont allows you to take advantage of
+FxOutlineFont (which includes anti-aliasing) and FxSystemFont
+(which handles system-specific fonts, like those in dialogs and
+menus), two classes that extend from FxFont, and the advantages
+of formatted text and other benefits of extensible objects.</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">FxFont extends Font, so no changes need to be
+made to create AFC applications. It is recommended, though, that
+you change Font instances to FxFont instances.</p>
+</body>
+</html>

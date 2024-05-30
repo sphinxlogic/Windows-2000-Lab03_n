@@ -1,0 +1,5 @@
+LIBRARY		toupper
+
+DESCRIPTION	'Upper case conversion example of a conversion dll'
+
+EXPORTS		GetTrivialVector = HrGetExportVector @32

@@ -1,0 +1,32 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\pjlmon.res \
+    $(_OBJ_DIR)\alpha\util.obj \
+    $(_OBJ_DIR)\alpha\pjlmon.obj \
+    $(_OBJ_DIR)\alpha\parsepjl.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\pjlmon.res \
+    $(_OBJ_DIR)\axp64\util.obj \
+    $(_OBJ_DIR)\axp64\pjlmon.obj \
+    $(_OBJ_DIR)\axp64\parsepjl.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\pjlmon.res \
+    $(_OBJ_DIR)\i386\util.obj \
+    $(_OBJ_DIR)\i386\pjlmon.obj \
+    $(_OBJ_DIR)\i386\parsepjl.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\pjlmon.res \
+    $(_OBJ_DIR)\ia64\util.obj \
+    $(_OBJ_DIR)\ia64\pjlmon.obj \
+    $(_OBJ_DIR)\ia64\parsepjl.obj
+
+PASS0_IA64_OBJECTS=
+

@@ -1,0 +1,19 @@
+# Microsoft Developer Studio Generated Dependency File, included by Query.mak
+
+.\MAIN.C : \
+	"..\..\..\..\tools\vc98\include\basetsd.h"\
+	".\QURYDEMO.H"\
+	
+
+.\QUERY.C : \
+	"..\..\..\..\tools\vc98\include\basetsd.h"\
+	".\QURYDEMO.H"\
+	
+
+.\QURYDEMO.RC : \
+	".\newquery.bmp"\
+	".\querywdw.ico"\
+	".\QURYDEMO.H"\
+	".\qurydemo.ico"\
+	".\runquery.bmp"\
+	

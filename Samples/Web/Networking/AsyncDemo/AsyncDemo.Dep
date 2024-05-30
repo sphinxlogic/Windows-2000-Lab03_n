@@ -1,0 +1,12 @@
+# Microsoft Developer Studio Generated Dependency File, included by AsyncDemo.mak
+
+.\AsyncDemo.cpp : \
+	"..\..\..\include\nt50\basetsd.h"\
+	"..\..\..\include\nt50\propidl.h"\
+	"..\..\..\include\nt50\winefs.h"\
+	".\resource.h"\
+	
+
+.\AsyncDemo.rc : \
+	".\resource.h"\
+	

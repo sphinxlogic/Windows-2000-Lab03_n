@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Content Rotator</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_content_rotator"></a>  Content Rotator</h3>
+<p>
+This example demonstrates how you can use the Content Rotator component to create dynamic, informative applications. Content Rotator allows you to develop a Web page that displays a new HTML content string each time the page is accessed by a client browser. </p>
+<p>
+This script first calls <b>Server.CreateObject</b> to create an instance of the <b>ContentRotator</b> object. The <b>ChooseContent</b> method of the <b>ContentRotator</b> object is then used to extract one content string from the content schedule file. </p>
+<p>
+This sample's schedule file, tiprot.txt, illustrates how easy it is to create a schedule file for the Content Rotator component. Basically, each entry is separated from the other entries by entry delimiters, %%. Comments, on lines with %% followed by // can explain any additional information required about an entry, and a relative weight, denoted by the # sign, can be assigned to each entry. For instance, if you assign the first entry a weight of 4, and a the second entry a weight of 6, the first entry will be displayed for the visiting client browser for 40 percent of the hits on that page, and the second entry will be displayed for 60 percent of the hits. </p>
+<p>
+Any string valid in HTML is valid in the schedule file. Thus, this example shows an unformatted text string, a formatted HTML string, and an &lt;IMG&gt; element pointing to a .gif file. Note that you could also include hyperlinks, tables, or anything else that makes up a Web page. </p>
+<p>
+<b>Note</b>&nbsp;&nbsp;This component is not installed with IIS. You can install it from the Microsoft Web site at <b>http://www.microsoft.com/iis/</b>, or from the CD included with the IIS Resource Kit. The ProgID declared by the component version installed from these sources specifies &quot;IISSamples&quot; in the vendor component of the ProgID, not &quot;MSWC.&quot; Therefore, the <b>Server.CreateObject</b> invocation in this sample script must be modified to reflect the proper component ProgID.</p>
+</BODY>
+</HTML>

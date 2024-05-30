@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD W3 HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>HTML+TIME Sample</TITLE>
+<XML:NAMESPACE PREFIX="t"/>
+<STYLE>
+/* hook up time tags */
+.time { behavior: url(#DEFAULT#TIME); }
+t\:MEDIA { behavior: url(#DEFAULT#TIME); }
+t\:AUDIO { behavior: url(#DEFAULT#TIME); }
+t\:VIDEO { behavior: url(#DEFAULT#TIME); }
+t\:IMG { behavior: url(#DEFAULT#TIME); }
+t\:PAR { behavior: url(#DEFAULT#TIME); }
+t\:SEQ { behavior: url(#DEFAULT#TIME); }
+
+A:hover { color: #FFFFFF; }
+A { color: #FFCC00; }
+</STYLE>
+<SCRIPT>
+<!-- 
+// apply the filter to fade things in
+function doFilter(object, dur) {
+	object.filters[0].Apply();
+	object.filters[0].Play(dur);
+}
+-->
+</SCRIPT>
+</HEAD>
+
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT><hr>
+<BODY>
+
+<BR>
+
+<TABLE CELLPADDING=0 CELLSPACING=0 BORDER=0 ALIGN=CENTER>
+<TR>
+<TD VALIGN=BOTTOM><IMG SRC="images/top_left.gif"></TD>
+<TD VALIGN=BOTTOM><IMG SRC="images/top.gif"></TD>
+</TR>
+
+<TR ID="bannerBody" STYLE="height: 50px;">
+<TD><DIV ID="blackBanner" STYLE="margin-left: 18px; margin-right: 20px; background-color: #000000; text-align: center; width: 256; height: 100%;">
+
+<!-- quotes to appear in black banner - begin immediately, end when the presentation starts ======= -->
+<t:SEQ t:DUR="20" t:REPEAT="indefinite" ID="quotes" t:BEGINEVENT="click.onbegin; link.onbegin" t:ENDEVENT="click.onclick" t:TIMEACTION="display" STYLE="color: #FFFFFF; font: 18px Times;">
+  <DIV CLASS="time" t:TIMEACTION="display" t:DUR="4">"a work of art"<BR> 
+    <SPAN STYLE="font: 12px;">GamePen.com 8/97</SPAN></DIV>
+  <DIV CLASS="time" t:TIMEACTION="display" t:DUR="4">"blew my socks off"<BR> 
+    <SPAN STYLE="font: 12px;">Canada Computes 5/97</SPAN></DIV>
+  <DIV CLASS="time" t:TIMEACTION="display" t:DUR="4">"instant classic"<BR> 
+    <SPAN STYLE="font: 12px;">Online Gaming Review 7/97</SPAN></DIV>
+  <DIV CLASS="time" t:TIMEACTION="display" t:DUR="4">"the 8th wonder of the world"<BR> 
+    <SPAN STYLE="font: 12px;">Gamespot 6/97</SPAN></DIV>
+  <DIV CLASS="time" t:TIMEACTION="display" t:DUR="4">"sure fire epic hit"<BR> 
+    <SPAN STYLE="font: 12px;">Canada Computes 5/97</SPAN></DIV>
+</t:SEQ>
+<!-- end quotes ============================= -->
+
+<!-- images to fill the black banner space - begin on click -->
+<t:PAR t:BEGINEVENT="click.onclick">
+
+  <IMG CLASS="time" t:TIMEACTION="display" ID="mslogo" onBegin="doFilter(this,1);" t:BEGIN="0.4" t:END="2.5" SRC="images/ms_logo.gif" STYLE="z-index: 4; filter:blendTrans(Duration=1);"/>
+
+  <IMG CLASS="time" t:TIMEACTION="display" ID="aoeBlack" t:BEGIN="7" t:END="29" onBegin="doFilter(this,1);" SRC="images/aoe_black.gif" STYLE="margin-top: 15px; filter:blendTrans(Duration=1);">
+
+  <!-- sequence of screenshots -->
+  <t:SEQ t:BEGIN="12" t:END="27">
+    <IMG CLASS="time" t:TIMEACTION="display" ID="img1" SRC="images/image_one.gif"   t:BEGIN="0.01" t:DUR="5"   onBegin="doFilter(this,1);" STYLE="filter: blendTrans(Duration=1);">
+    <IMG CLASS="time" t:TIMEACTION="display" ID="img2" SRC="images/image_two.gif"   t:BEGIN="0.1"  t:DUR="4"   onBegin="doFilter(this,1);" STYLE="filter: blendTrans(Duration=1);">
+    <IMG CLASS="time" t:TIMEACTION="display" ID="img3" SRC="images/image_three.gif" t:BEGIN="0.6"  t:DUR="5.4" onBegin="doFilter(this,1);" STYLE="filter: blendTrans(Duration=1);">
+  </t:SEQ>
+  
+  <IMG CLASS="time" t:TIMEACTION="display" ID="img4" SRC="images/image_three.gif" t:BEGIN="31" onBegin="doFilter(this,1);" STYLE="margin-top: 20px; filter: blendTrans(Duration=1);">
+
+</t:PAR>
+
+</DIV></TD>
+
+<TD><DIV STYLE="margin-left: 18px; margin-right: 20px; background-color: #660000; color: #FFCC00; text-align: center; width: 156px; height: 100%;">
+
+<!-- link to start presentation -->
+<SPAN CLASS="time" ID="click" t:TIMEACTIION="display" t:ENDEVENT="click.onclick" STYLE="font: 9pt Verdana; text-decoration: underline; cursor: hand;">
+<BR>click to begin</SPAN>
+
+<!-- timeline of voiceover text - started on click as well -->
+<t:PAR t:BEGINEVENT="click.onclick">
+
+<!-- sound clip -->
+<t:MEDIA CLASS="time" ID="sound" t:SRC="sounds/aoe_audio.asf" t:BEGIN="0.01" t:SYNCBEHAVIOR="locked" t:CLOCKSOURCE="true"/>
+
+<DIV STYLE="padding: 3px; color: #FFEE66; font-weight: bold;">
+<!-- when this text starts, resize the banners so that the text has room to display -->
+  <P ID="p1" CLASS="time" t:BEGIN="3.0" t:DUR="5.0" t:TIMEACTION="display" onBegin="bannerBody.style.height = 280;">
+    From the co-designer of the hit title, Civilization, comes Age of Empires<BR><BR>
+    <IMG SRC="images/florish.gif">
+  </P>
+  <P ID="p2" CLASS="time" t:BEGIN="8.1" t:DUR="9.4" t:TIMEACTION="display">
+    From the stone age to the iron age, 
+    experience ten thousand years of amazing discovery 
+    as you build your tribe into a great civilization.<BR><BR>
+    <IMG SRC="images/florish.gif">
+  </P>
+  <P ID="p3" CLASS="time" t:BEGIN="17.8" t:DUR="1.4" t:TIMEACTION="display">
+    Explore new lands<BR><BR>
+    <IMG SRC="images/florish.gif">
+  </P>
+  <P ID="p4" CLASS="time" t:BEGIN="19.5" t:DUR="1.5" t:TIMEACTION="display">
+    Amass great riches<BR><BR>
+    <IMG SRC="images/florish.gif">
+  </P>
+  <P ID="p5" CLASS="time" t:BEGIN="21.1" t:DUR="2.0" t:TIMEACTION="display">
+    Conquer all in your path<BR><BR>
+    <IMG SRC="images/florish.gif">
+  </P>
+  <P ID="p6" CLASS="time" t:BEGIN="23.4" t:DUR="3.9" t:TIMEACTION="display">
+    You choose from your favorite form of world domination<BR><BR>
+    <IMG SRC="images/florish.gif">
+  </P>
+</DIV>
+
+<!-- aoe image - begin after the last voiceover text -->
+<IMG CLASS="time" t:BEGINEVENT="p6.onend" t:TIMEACTION="display" SRC="images/small_logo.gif" 
+     STYLE="padding-top: 1px; margin-bottom: 15px; margin-top: 10px;">
+
+<!-- link to web site - appear after the sound end -->
+<A HREF="http://www.microsoft.com/games/empires/" CLASS="time" ID="link" t:BEGINEVENT="sound.onend" t:TIMEACTION="display">visit the web site</A>
+
+</t:PAR>
+
+</DIV></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP><IMG SRC="images/bottom_left.gif"></TD>
+<TD VALIGN=TOP><IMG SRC="images/bottom.gif"></TD>
+</TR>
+
+</TABLE>
+<P>
+<P>
+<FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">
+&copy; <A HREF="/misc/cpyright.htm" TARGET="_top">1999 Microsoft Corporation. All rights reserved. Terms of use</A>.
+</FONT>
+</BODY></HTML>

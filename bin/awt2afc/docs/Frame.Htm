@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>Frame -> UIFrame</title>
+<base target="descriptions">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">Frame to UIFrame</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.Frame should be transformed into instances of
+com.ms.ui.UIFrame.</p>
+
+<p align="left">Frame extends <a href="Window.htm"
+target="descriptions">Window</a>: be sure to see its changes.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">AFCs UIFrame class replaces Frame and takes
+advantage of what UIComponent provides. When using AFC, you may
+sometimes need a reference to a Frame (from java.awt.frame), like
+when using java.awt.FileDialog or another class. If you have a
+current UIFrame, you can get the underlying Frame by using the
+method <font size="2" face="Courier">getFrame()</font>.</p>
+
+<p>&nbsp;</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">This is the set of changes you need to make to
+port all Frame methods to UIFrame methods. Any method not listed
+here or below does not need to be changed.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial"><strong>AWT Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">Frame() or<br>
+        Frame(String)</font></td>
+        <td nowrap><font size="2" face="Courier">UIFrame() or<br>
+        UIFrame(String)</font></td>
+        <td><font size="2">The int refers to the style--see
+        above.</font></td>
+    </tr>
+</table>
+
+<h3>Unsupported Methods</h3>
+
+<p>Some methods in java.awt.Frame are not directly supported in
+com.ms.ui.UIFrame. Those methods and suggested changes are
+described here.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial">AWT Code<strong>/Suggested
+        AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">dispose()</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">getCursorType()</font><p><font
+        size="2" face="Courier"><strong>getCursor()</strong></font></p>
+        </td>
+        <td><font size="2">getCursor is a method of UIComponent
+        that returns a Cursor object, not an int: getCursorType
+        is Deprecated in AWT 1.1, replaced with something similar
+        to AFC's getCursor.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getMenuBar()</font><p><font
+        size="2" face="Courier"><strong>(use UIBand)</strong></font></p>
+        </td>
+        <td><font size="2">In AFC, there is not one menu bar:
+        instead, you put menus on UIBands and then place the
+        UIBand where you like. See MenuBar for more information
+        about how this works.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">isResizable()</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">paramString()</font><p><font
+        size="2" face="Courier"><strong>getName(), etc.</strong></font></p>
+        </td>
+        <td><font size="2">Use the getXXX function that provides
+        the information you need.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">remove(MenuComponent)</font><p><font
+        size="2" face="Courier"><strong>(use UIBand)</strong></font></p>
+        </td>
+        <td><font size="2">AFC does not use MenuComponents:
+        instead, menu parts are put in UIComponents. See MenuBar
+        for more information.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setCursor(int)</font><p><font
+        size="2" face="Courier"><strong>setCursor(Cursor)</strong></font></p>
+        </td>
+        <td><font size="2">AWT's setCursor is Deprecated in AWT
+        1.1.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setIconImage(Image)</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setMenuBar(MenuBar)</font><p><font
+        size="2" face="Courier"><strong>(use UIBand)</strong></font></p>
+        </td>
+        <td><font size="2">In AFC, there is not one menu bar:
+        instead, you put menus on UIBands and then place the
+        UIBand where you like. See MenuBar for more information
+        about how this works.</font></td>
+    </tr>
+</table>
+</body>
+</html>

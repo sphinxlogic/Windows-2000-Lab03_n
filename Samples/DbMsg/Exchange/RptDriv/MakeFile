@@ -1,0 +1,18 @@
+#---------------------------------------------------------------------------
+# Description:
+#   Make file to generate RptDriv.Exe
+#
+# Copyright (C) Microsoft Corporation 1986 - 1998.  All Rights Reserved.
+#---------------------------------------------------------------------------
+
+USE_EXCHANGE=1
+
+Proj = RptDriv
+
+ObjList = $(@D)\Report.Obj $(@D)\RptDriv.Obj
+
+!Include <BkOffice.Mak>
+
+all:     $(ObjDir)\$(Proj).Exe
+
+$(ObjDir)\$(Proj).Exe: $(ObjList)

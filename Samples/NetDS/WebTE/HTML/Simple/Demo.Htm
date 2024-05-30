@@ -1,0 +1,165 @@
+<HTML>
+<!--
+/**************************************************************************
+ *
+ * Copyright (c) 1998 Microsoft Corporation.  All rights reserved.
+ *
+ * This is prerelease software and is provided as is and Microsoft
+ * makes no warranties, either express or implied.  The entire risk of
+ * the use or the results of the use of this prerelease software
+ * remains with the user.
+ **************************************************************************/
+
+-->
+<HEAD><Title>Microsoft Web Telephony Engine DEMO</Title></HEAD>
+
+<!-- Style Sheet for the links -->
+<STYLE>
+        a:link
+                {
+                        color:green;
+                        font-family:verdana;
+                        font-size:14pt;
+                        text-decoration:none;
+                        cursor:hand;
+                }
+        a:vlink
+                {
+                        color:green;
+                        font-family:verdana;
+                        font-size:14pt;
+                        text-decoration:none;
+                        cursor:hand;
+                }
+        a:hover
+                {
+                        color:forstgreen;
+                        font-family:verdana;
+                        font-size:14pt;
+                        font-weight:bold;
+                        text-decoration:none;
+                        cursor:hand;
+                }
+        a:alink
+                {
+                        color:green;
+                        font-family:verdana;
+                        font-size:14pt;
+                        text-decoration:underline;
+                        font-weight:bold;
+                        cursor:hand;
+                }
+        P       
+                {
+                        color:black;
+                        font-family:arial;
+                        font-size:10pt;
+                }
+
+
+</STYLE>
+<!-- End of stylesheet -->
+
+<BODY STYLE="background:MOCCASIN">
+
+<!-- The logo -->
+<CENTER>
+        <IMG SRC="ivrdemo.gif" HEIGHT=46 WIDTH=465>
+</CENTER>
+<!-- End of Logo -->
+
+<h2 VoiceFile="waves/demointroduction.wav"></H2>
+
+    <FONT FACE="Arial" STYLE="color:red">
+
+<BR><BR><BR>
+<DIV STYLE="margin-left:70pt;margin-top:50pt">
+
+<!-- This is the father invisible table, which makes the two son tables stick one by each other,
+     and so on for each row
+-->
+<TABLE BORDER=0 CELLPADDING=2 CELLSPACING=2>
+
+<TR>
+<TD>
+
+   <!-- One link all the rest are the same -->
+        <TABLE BORDER=8 CELLPADDING=4 WIDTH=430 HEIGHT=150 STYLE="background:OLDLACE">
+        <TD>
+                <IMG SRC="talkinghead.gif" WIDTH=40 HEIGHT=40>
+                <A Style="cue-before:url(waves/for.wav);cue-after:url(waves/press1.wav)" accessKey="1" VoiceFile="Waves/DemoTextToSpeech.wav" HREF="TextToSpeech.htm">Text To Speech Integration
+                <P STYLE="margin:2pt;margin-bottom:5pt">
+                         Microsoft Web Telephony Engine uses SAPI to convert you HTML text to audio<BR>
+                </P>
+                </A>
+        </TD>
+        </TABLE>
+        <!-- End of one link -->
+        
+</TD>
+<TD>
+        <TABLE BORDER=8 CELLPADDING=4 WIDTH=430 HEIGHT=150 STYLE="background:OLDLACE">
+        <TD>
+                <IMG SRC="phone.gif" WIDTH=40 HEIGHT=40>
+                <A Style="cue-before:url(waves/for.wav);cue-after:url(waves/press2.wav)" accessKey="2" VoiceFile="Waves/DemoCallTransfer.wav" HREF="Transfer.htm">Call transfer
+                <P STYLE="margin:2pt;margin-bottom:5pt">
+                        Demonstrate how to create a script <BR> and apply TAPI 3.0 methods <BR> on the current call
+                </P>
+                </A>
+        </TD>
+        </TABLE>
+</TD>
+<TR>
+<TD>
+
+        <TABLE BORDER=8 CELLPADDING=4 WIDTH=430 HEIGHT=150 STYLE="background:OLDLACE">
+        <TD>
+                <IMG SRC="disk.gif" WIDTH=27 HEIGHT=27>
+                <A Style="cue-before:url(waves/for.wav);cue-after:url(waves/press3.wav)" accessKey="3" VoiceFile="Waves/DemoDataEntry.wav" HREF="DataEntry.htm">Data Entry
+                <P STYLE="margin:2pt;margin-bottom:5pt">
+                        The ASP based demo shows the operation of <BR> Web based client server <BR> computing
+                </P>
+                </A>
+        </TD>
+        </TABLE>
+
+</TD>
+
+<TD>
+        <TABLE BORDER=8 CELLPADDING=4 WIDTH=430 HEIGHT=150 STYLE="background:OLDLACE">
+        <TD>
+                <IMG SRC="tables.gif" WIDTH=40 HEIGHT=40>
+                <A Style="cue-before:url(waves/for.wav);cue-after:url(waves/press4.wav)" accessKey="4" VoiceFile="Waves/DemoTables.wav" HREF="Table.htm">Tables
+                <P STYLE="margin:2pt;margin-bottom:5pt">
+                        Microsoft Web Telephony Engine reads tables for you <br>in a sensible way
+                </P>
+                </A>
+        </TD>
+        </TABLE>
+
+</TD>
+
+<TR>
+<TD>
+        <TABLE BORDER=8 CELLPADDING=4 WIDTH=430 HEIGHT=150 STYLE="background:OLDLACE">
+        <TD>
+                <IMG SRC="speech.gif" WIDTH=40 HEIGHT=40>
+                <A Style="cue-before:url(waves/for.wav);cue-after:url(waves/press5.wav)" accessKey="5" VoiceFile="Waves/DemoSpeechRec.wav" HREF="SpeechRecognition.htm">Speech Recognition
+                <P STYLE="margin:2pt;margin-bottom:5pt">
+                        Demonstrate how SAPI is used to <BR> take selection from the caller
+                </P>
+                </A>
+        </TD>
+        </TABLE>
+</TD>
+
+
+</TR>
+
+</TABLE>
+<!-- End of father Table -->
+
+</DIV>
+</BODY>
+
+</HTML>

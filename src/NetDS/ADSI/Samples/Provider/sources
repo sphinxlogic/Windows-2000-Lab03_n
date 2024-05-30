@@ -1,0 +1,105 @@
+!IF 0
+
+Copyright (c) 1995-96  Microsoft Corporation
+
+Module Name:
+
+    sources.
+
+Abstract:
+
+    This file specifies the target component being built and the list of
+    sources files needed to build that component.  Also specifies optional
+    compiler switches and libraries that are unique for the component being
+    built.
+
+
+Author:
+
+
+NOTE:   Commented description of this file is in \nt\bak\bin\sources.tpl
+
+!ENDIF
+
+!INCLUDE $(BASEDIR)\private\oleds\oleds.inc
+
+MAJORCOMP=ADs
+MINORCOMP=adssmp
+BLDCRT=1
+USE_CRTDLL=1
+
+NTTARGETFILES=adssmp.def
+DLLBASE=0x66400000
+
+DLLDEF=adssmp.def
+TARGETNAME=adssmp
+TARGETTYPE=DYNLINK
+TARGETPATH=$(BASEDIR)\public\sdk\lib
+DLLENTRY=_DllMainCRTStartup
+
+INCLUDES= ..;\
+          $(BASEDIR)\private\oleds\public\include; \
+          $(BASEDIR)\private\inc;
+
+
+MSC_WARNING_LEVEL=/W3 /WX
+
+SOURCES=\
+    smpoper.cpp \
+    cprops.cpp \
+    pack.cpp \
+    property.cpp \
+    cprpobj.cpp \
+    cenumsch.cpp \
+    cclsobj.cpp \
+    cschobj.cpp \
+    cdispmgr.cpp \
+    cenumns.cpp \
+    cenumobj.cpp \
+    Cenumvar.cpp \
+    cgenobj.cpp \
+    cnamcf.cpp \
+    cnamesp.cpp \
+    common.cpp \
+    core.cpp \
+    cprov.cpp \
+    CPROVCF.cpp \
+    getobj.cpp \
+    globals.cpp \
+    memory.cpp \
+    libmain.cpp \
+    guid.cpp \
+    object.cpp \
+    ADsSmp.rc \
+    parse.cpp \
+    regdsapi.cpp \
+    StdFact.cpp
+
+UMTYPE=console
+UMTEST=
+UMLIBS=
+
+
+TARGETLIBS = \
+             $(BASEDIR)\public\sdk\lib\*\activeds.lib   \
+             $(BASEDIR)\public\sdk\lib\*\adsiid.lib   \
+             $(BASEDIR)\public\sdk\lib\*\uuid.lib  \
+             $(BASEDIR)\public\sdk\lib\*\ole32.lib    \
+             $(BASEDIR)\public\sdk\lib\*\winspool.lib \
+             $(BASEDIR)\public\sdk\lib\*\comdlg32.lib \
+             $(BASEDIR)\public\sdk\lib\*\kernel32.lib \
+             $(BASEDIR)\public\sdk\lib\*\shell32.lib  \
+             $(BASEDIR)\public\sdk\lib\*\user32.lib   \
+             $(BASEDIR)\public\sdk\lib\*\gdi32.lib    \
+             $(BASEDIR)\public\sdk\lib\*\advapi32.lib \
+             $(BASEDIR)\public\sdk\lib\*\oleaut32.lib
+
+
+
+C_DEFINES=$(C_DEFINES) -DDAYTONA
+
+
+PRECOMPILED_INCLUDE=adssmp.h
+PRECOMPILED_OBJ=adssmp.obj
+PRECOMPILED_PCH=adssmp.pch
+PRECOMPILED_CXX=1

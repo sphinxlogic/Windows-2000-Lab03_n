@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		{BACEDF7B-74AB-11D0-B162-00AA00BA3258} = s 'CopyFileRm'
+		'CopyFileRm.EXE'
+		{
+			val AppID = s {BACEDF7B-74AB-11D0-B162-00AA00BA3258}
+		}
+	}
+}

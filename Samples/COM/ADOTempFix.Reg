@@ -1,0 +1,25 @@
+REGEDIT4
+
+[HKEY_CLASSES_ROOT\CLSID\{c8b522cb-5cf3-11ce-ade5-00aa0044773d}]
+@="MSDASQL"
+"OLEDB_SERVICES"=dword:00000000
+
+[HKEY_CLASSES_ROOT\CLSID\{c8b522cb-5cf3-11ce-ade5-00aa0044773d}\ExtendedErrors]
+@="Extended Error Service"
+
+[HKEY_CLASSES_ROOT\CLSID\{c8b522cb-5cf3-11ce-ade5-00aa0044773d}\ExtendedErrors\{c8b522cc-5cf3-11ce-ade5-00aa0044773d}]
+@="MSDASQL Error Lookup"
+
+[HKEY_CLASSES_ROOT\CLSID\{c8b522cb-5cf3-11ce-ade5-00aa0044773d}\InprocServer32]
+@="C:\\Program Files\\Common Files\\system\\ole db\\MSDASQL.DLL"
+"ThreadingModel"="Both"
+
+[HKEY_CLASSES_ROOT\CLSID\{c8b522cb-5cf3-11ce-ade5-00aa0044773d}\OLE DB Provider]
+@="Microsoft OLE DB Provider for ODBC Drivers"
+
+[HKEY_CLASSES_ROOT\CLSID\{c8b522cb-5cf3-11ce-ade5-00aa0044773d}\ProgID]
+@="MSDASQL.1"
+
+[HKEY_CLASSES_ROOT\CLSID\{c8b522cb-5cf3-11ce-ade5-00aa0044773d}\VersionIndependentProgID]
+@="MSDASQL"
+

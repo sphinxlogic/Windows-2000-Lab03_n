@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Logging Module Enumerator</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h2><a name="_logging_module_enumerator"></a>Logging Module Enumerator</h2>
+<p>
+Multiple logging modules can lead to multiple headaches if you aren't prepared. This sample tool illustrates some techniques you can use to create logging management tools of your own. </p>
+<p>
+This tool serves two separate functions. If it is invoked without command-line arguments, then it simply lists all logging modules that currently have entries in the metabase on your server. If an ADsPath is given, such as IIS://LocalHost/W3SVC/3, then the tool will try to determine what is considered the active logging module for that metabase node, and will give you information about that logging module.</p>
+<p>
+To list the available logging modules, the <b>GetObject</b> method is invoked to gain access to the IIS://LocalHost/Logging node of the metabase. A <b>For ... Each</b> loop is then used to enumerate the modules that are founded in that node. </p>
+<p>
+Gathering information about a specific server's logging module is a bit more involved. The difficulty arises because the only property at the server level that indicates what logging module is currently in use by the server is the <b>LogPluginClsId</b> property. This value must be compared to each and every module listed at the //LocalHost level until a match is found. </p>
+<p>
+<b>GetObject</b> is used to gain access to the list of logging modules provided at the //LocalHost level. The CLISID of the logging module is compared to the CLSID of each logging module provided in this main list until a match is found. When a match is found, the script tells you all it can about the logging module; if no match is found between the CLSIDs, the script aborts with an error. </p>
+<p>
+This sample is provided for educational purposes only. It has not been tested in a production environment, and Microsoft&reg; will not provide technical support for it. </p>
+</BODY>
+</HTML>

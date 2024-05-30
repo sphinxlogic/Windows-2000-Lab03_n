@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Using Components</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_using_components"></a>  Using Components</h3>
+<p>
+The server components included when you install IIS provide functionality to ASP scripts in powerful, easy-to-use packages. You could spend a lot of time and resources creating and implementing this functionality with ASP scripting alone. </p>
+<p>
+You can access a component's functionality from within an ASP script in the same way, no matter which component you require. First, create an instance of the object using the appropriate and unique program ID of the component you want to instantiate. Once the instance is created, you can use references to the object to access any of the properties or methods provided by that component.</p>
+<p>
+This example uses the <b>Tools</b> object of the Tools component, which you can use to accomplish a number of miscellaneous tasks, including form processing and file ownership management. The random number generation capabilities of the <b>Tools</b> object are demonstrated here. </p>
+<p>
+The <b>Server.CreateObject</b> method is used to create an instance of the <b>Tools</b> object, using the program ID <b>MSWC.Tools</b>, and the variable <i>example</i> is set as an object reference to the new component instance. You access the desired method, <b>Random</b> in this case, by using the standard <i>object.method </i>format. Thus, each time this script is run, <i>example.</i><b>Random</b> returns a random number between -32767 and 32767. This number is then sent to the client browser. </p>
+<p>
+<b>Note</b>&nbsp;&nbsp;This component is not installed with IIS. You can install it from the CD included with the IIS Resource Kit. The ProgID declared by the component version installed from this source specifies &quot;IISSamples&quot; in the vendor component of the ProgID, not &quot;MSWC.&quot; Therefore, the <b>Server.CreateObject</b> invocation in this sample script must be modified to reflect the proper component ProgID.</p>
+</BODY>
+</HTML>

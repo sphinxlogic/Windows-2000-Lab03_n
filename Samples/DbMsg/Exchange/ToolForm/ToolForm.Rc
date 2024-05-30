@@ -1,0 +1,398 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "#include ""afxres.rc""  \t// Standard components\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "toolform.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU PRELOAD DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Send",                       ID_FILE_SEND
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About ...",                  ID_APP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE 
+BEGIN
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY 
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT
+END
+
+IDR_ACCELERATOR1 ACCELERATORS DISCARDABLE 
+BEGIN
+    "(",            ID_ACCEL32773,          ASCII,  NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  34, 22, 217, 102
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About Tool Form"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,10,18,20
+    LTEXT           "Copyright © 1986-1996. Microsoft Corperation",IDC_STATIC,36,
+                    87,161,8
+    DEFPUSHBUTTON   "OK",IDOK,176,6,32,14,WS_GROUP
+    LTEXT           "This MAPI form is used for sample forms written in MFC C++.  The Microsoft Foundation Classes can be changed to be able to handle different kinds of forms without have to rewrite the MAPI Forms functions.",
+                    IDC_STATIC,8,44,200,36
+    LTEXT           "Tool Form Sample 1.0",IDC_STATIC,39,12,129,8
+END
+
+IDD_FORM DIALOG DISCARDABLE  0, 0, 373, 267
+STYLE DS_MODALFRAME | DS_3DLOOK | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "To:",IDC_STATIC,17,6,19,9
+    LTEXT           "Tools",IDC_TO,43,6,43,9
+    LTEXT           "Topic:",IDC_STATIC,8,21,31,11
+    EDITTEXT        IDC_TOPIC,43,20,204,12,ES_AUTOHSCROLL
+    LTEXT           "-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+                    IDC_STATIC,10,41,345,8
+    ICON            IDR_MAINFRAME,IDC_MAINFRAME,10,60,18,20
+    LTEXT           "Test/Developement Tools Form",IDC_STATIC,32,61,334,17
+    LTEXT           "Name of Tool:",IDC_STATIC,10,93,50,12
+    EDITTEXT        IDC_TOOLNAME,62,91,87,12,ES_AUTOHSCROLL
+    LTEXT           "PlatForm:",IDC_STATIC,10,108,50,12
+    COMBOBOX        IDC_PLATFORM,61,107,89,63,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Type of Tool:",IDC_STATIC,178,92,50,12
+    COMBOBOX        IDC_TOOLTYPE,231,91,82,63,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "OS:",IDC_STATIC,180,107,47,12
+    COMBOBOX        IDC_OS,231,107,82,63,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+                    IDC_STATIC,9,123,345,8
+    LTEXT           "Developed by:",IDC_STATIC,11,139,50,12
+    EDITTEXT        IDC_DEVELOPEDBY,61,136,257,12,ES_AUTOHSCROLL
+    LTEXT           "Location:",IDC_STATIC,11,157,37,12
+    EDITTEXT        IDC_LOCATION,61,157,257,12,ES_AUTOHSCROLL
+    LTEXT           "-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+                    IDC_STATIC,9,176,345,8
+    LTEXT           "Introduction:",IDC_STATIC,13,189,51,8
+    EDITTEXT        IDC_INTRODUCTION,9,204,347,55,ES_MULTILINE | 
+                    ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "TOOLFORM MFC Application\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "TOOLFORM\0"
+            VALUE "LegalCopyright", "Copyright © 1986-1996\0"
+            VALUE "OriginalFilename", "TOOLFORM.EXE\0"
+            VALUE "ProductName", "FORM Application\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_FORM, DIALOG
+    BEGIN
+        RIGHTMARGIN, 372
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_FORM DLGINIT
+BEGIN
+    IDC_PLATFORM, 0x403, 10, 0
+0x4e49, 0x4554, 0x204c, 0x3878, 0x0036, 
+    IDC_PLATFORM, 0x403, 5, 0
+0x494d, 0x5350, "\000" 
+    IDC_PLATFORM, 0x403, 6, 0
+0x4c41, 0x4850, 0x0041, 
+    IDC_PLATFORM, 0x403, 4, 0
+0x414d, 0x0043, 
+    IDC_TOOLTYPE, 0x403, 7, 0
+0x7453, 0x6572, 0x7373, "\000" 
+    IDC_TOOLTYPE, 0x403, 12, 0
+0x6550, 0x6672, 0x726f, 0x616d, 0x636e, 0x0065, 
+    IDC_TOOLTYPE, 0x403, 13, 0
+0x6f4c, 0x6163, 0x696c, 0x617a, 0x6974, 0x6e6f, "\000" 
+    IDC_TOOLTYPE, 0x403, 9, 0
+0x6f42, 0x6e75, 0x6164, 0x7972, "\000" 
+    IDC_TOOLTYPE, 0x403, 13, 0
+0x654d, 0x6f6d, 0x7972, 0x4c20, 0x6165, 0x736b, "\000" 
+    IDC_TOOLTYPE, 0x403, 8, 0
+0x6547, 0x656e, 0x6172, 0x006c, 
+    IDC_TOOLTYPE, 0x403, 10, 0
+0x7250, 0x666f, 0x6c69, 0x6e69, 0x0067, 
+    IDC_OS, 0x403, 10, 0
+0x4957, 0x204e, 0x544e, 0x2e33, 0x0035, 
+    IDC_OS, 0x403, 7, 0
+0x4957, 0x204e, 0x3539, "\000" 
+    IDC_OS, 0x403, 8, 0
+0x4657, 0x2057, 0x2e33, 0x0031, 
+    IDC_OS, 0x403, 8, 0
+0x4f44, 0x2053, 0x2e36, 0x0032, 
+    IDC_OS, 0x403, 5, 0
+0x534f, 0x322f, "\000" 
+    IDC_OS, 0x403, 8, 0
+0x614d, 0x2063, 0x2e37, 0x0032, 
+    IDC_OS, 0x403, 12, 0
+0x3631, 0x622d, 0x7469, 0x6f20, 0x6c6e, 0x0079, 
+    IDC_OS, 0x403, 12, 0
+0x3233, 0x622d, 0x7469, 0x6f20, 0x6c6e, 0x0079, 
+    IDC_OS, 0x403, 9, 0
+0x3631, 0x3326, 0x6232, 0x7469, "\000" 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    IDR_MAINFRAME           "ToolForm\n\nToolForm\n\n\nToolForm.Document\nToolForm Document"
+END
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "ToolForm"
+    AFX_IDS_IDLEMESSAGE     "Ready"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_NEW             "Create a new document\nNew"
+    ID_FILE_OPEN            "Open an existing document\nOpen"
+    ID_FILE_CLOSE           "Close the active document\nClose"
+    ID_FILE_SAVE            "Save the active document\nSave"
+    ID_FILE_SAVE_AS         "Save the active document with a new name\nSave As"
+    ID_FILE_SEND_MAIL       "Send the form to the recipient."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
+    ID_APP_EXIT             "Quit the application and don't send the form."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "Open this document"
+    ID_FILE_MRU_FILE2       "Open this document"
+    ID_FILE_MRU_FILE3       "Open this document"
+    ID_FILE_MRU_FILE4       "Open this document"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
+    ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EDIT_CLEAR           "Erase the selection\nErase"
+    ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
+    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "Find the specified text\nFind"
+    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
+    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
+    ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
+    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
+    ID_EDIT_UNDO            "Undo the last action\nUndo"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "Change the window size"
+    AFX_IDS_SCMOVE          "Change the window position"
+    AFX_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    AFX_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    AFX_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    AFX_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "Restore the window to normal size"
+    AFX_IDS_SCTASKLIST      "Activate Task List"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_ADDRESS         "Select the recipient of this ToolForm message"
+    ID_FILE_SEND            "Send this message and close the form."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+#include "afxres.rc"  	// Standard components
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

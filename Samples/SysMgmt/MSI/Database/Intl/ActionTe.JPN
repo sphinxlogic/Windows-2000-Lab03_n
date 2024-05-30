@@ -1,0 +1,70 @@
+Action	Description	Template
+s72	L64	L128
+932	ActionText	Action
+Advertise	後で使用するためにアプリケーションを設定しています	
+AllocateRegistrySpace	レジストリ領域を割り振っています	空き領域 : [1]
+AppSearch	インストールされているアプリケーションを検索しています	プロパティ : [1], 署名 : [2]
+BindImage	実行ファイルをバィンディングしています	ファイル : [1]
+CCPSearch	正規の製品を検索しています	
+CostFinalize	必要な領域を計算しています	
+CostInitialize	必要な領域を計算しています	
+CreateFolders	フォルダを作成しています	フォルダ : [1]
+CreateShortcuts	ショートカットを作成しています	ショートカット : [1]
+DeleteServices	サービスを削除しています	サービス : [1]
+DuplicateFiles	ファイルの複製を作成しています	ファイル : [1],  ディレクトリ : [9],  サイズ : [6]
+FileCost	必要な領域を計算しています	
+FindRelatedProducts	関連のアプリケーションを検索しています	見つかったアプリケーション : [1]
+GenerateScript	アクションに対するスクリプト オペレーションを生成しています :	[1]
+InstallAdminPackage	ネットワーク インストール ファイルをコピーしています	ファイル : [1], ディレクトリ : [9], サイズ : [6]
+InstallFiles	新しいファイルをコピーしています	ファイル : [1],  ディレクトリ : [9],  サイズ : [6]
+InstallODBC	ODBC コンポーネントをインストールしています	
+InstallServices	新しいサービスをインストールしています	サービス : [2]
+InstallValidate	インストールを検証しています	
+LaunchConditions	起動状態を検証しています	
+MigrateFeatureStates	関連のアプリケーションから機能の状態を移行しています	アプリケーション : [1]
+MoveFiles	ファイルを移動しています	ファイル : [1],  ディレクトリ : [9],  サイズ : [6]
+PatchFiles	ファイルを修正しています	ファイル : [1],  ディレクトリ : [2],  サイズ : [3]
+ProcessComponents	コンポーネントの登録を更新しています	
+PublishComponents	正規のコンポーネントを発行しています	コンポーネント ID : [1], Qualifier : [2]
+PublishFeatures	製品機能を発行しています	機能 : [1]
+PublishProduct	製品情報を発行しています	
+RegisterClassInfo	クラス サーバーを登録しています	Class Id: [1]
+RegisterComPlus	COM+ アプリケーションとコンポーネントを登録しています	AppId : [1]{{, AppType : [2], Users : [3], RSN : [4]}}
+RegisterExtensionInfo	エクステンション サーバーを登録しています	エクステンション : [1]
+RegisterFonts	フォントを登録しています	フォント : [1]
+RegisterMIMEInfo	MIME 情報を登録しています	MIME コンテント タイプ : [1], エクステンション : [2]
+RegisterProduct	製品を登録しています	[1]
+RegisterProgIdInfo	プログラム識別子の登録を解除しています	ProgId: [1]
+RegisterTypeLibraries	タイプ ライブラリを登録しています	LibID: [1]
+RegisterUser	ユーザーを登録しています	[1]
+RemoveDuplicateFiles	重複しているファイルを削除しています	ファイル : [1], ディレクトリ : [9]
+RemoveEnvironmentStrings	環境ストリングを更新しています	名前 : [1], 値 : [2], アクション [3]
+RemoveExistingProducts	アプリケーションを削除しています	アプリケーション : [1], コマンド ライン : [2]
+RemoveFiles	ファイルを削除しています	ファイル : [1], ディレクトリ : [9]
+RemoveFolders	フォルダを削除しています	フォルダ : [1]
+RemoveIniValues	INI ファイルのエントリを削除しています	ファイル : [1],  セクション : [2],  キー : [3], 値 : [4]
+RemoveODBC	ODBC コンポーネントを削除しています	
+RemoveRegistryValues	システム レジストリの値を削除しています	キー : [1], 名前 : [2]
+RemoveShortcuts	ショートカットを削除しています	ショートカット : [1]
+RMCCPSearch	正規の製品を検索しています	
+Rollback	アクションを元に戻しています :	[1]
+RollbackCleanup	バックアップ ファイルを削除しています	ファイル : [1]
+SelfRegModules	モジュールを削除しています	ファイル : [1], フォルダ : [2]
+SelfUnregModules	モジュールの登録を解除しています	ファイル : [1], フォルダ : [2]
+SetODBCFolders	ODBC ディレクトリを初期化しています	
+StartServices	サービスを開始しています	サービス : [1]
+StopServices	サービスを停止しています	サービス : [1]
+UnmoveFiles	移動したファイルを削除しています	ファイル : [1], ディレクトリ : [9]
+UnpublishComponents	正規のコンポーネントの発行を停止しています	コンポーネント ID : [1], Qualifier : [2]
+UnpublishFeatures	製品機能の発行を停止しています	機能 : [1]
+UnpublishProduct	製品情報の発行を停止しています	
+UnregisterClassInfo	クラス サーバーの登録を解除しています	Class Id: [1]
+UnregisterComPlus	COM+ アプリケーションとコンポーネントの登録を解除しています	AppId : [1]{{, AppType : [2]}}
+UnregisterExtensionInfo	エクステンション サーバーの登録を解除しています	エクステンション : [1]
+UnregisterFonts	フォントの登録を解除しています	フォント : [1]
+UnregisterMIMEInfo	MIME 情報の登録を解除しています	MIME コンテント タイプ : [1], エクステンション : [2]
+UnregisterProgIdInfo	プログラム識別子の登録を解除しています	ProgId: [1]
+UnregisterTypeLibraries	タイプライブラリの登録を解除しています	LibID: [1]
+WriteEnvironmentStrings	環境ストリングを更新しています	名前 : [1], 値 : [2], アクション [3]
+WriteIniValues	INI ファイルに値を書き込んでいます	ファイル : [1],  セクション : [2],  キー : [3], 値 : [4]
+WriteRegistryValues	システム レジストリの値を書き込んでいます	キー : [1], 名前 : [2], 値 : [3]

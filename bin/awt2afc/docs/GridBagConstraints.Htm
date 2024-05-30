@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>GridBagConstraints -> UIGridBagConstraints</title>
+<base target="descriptions">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">GridBagConstraints to UIGridBagConstraints</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.GridBagConstraints should be transformed into instances
+of com.ms.ui.UIGridBagConstraints.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">AFC provides UIGridBagConstraints to complement
+UIGridBagLayout, AFC's replacement for <a
+href="GridBagLayout.htm" target="descriptions">GridBagLayout</a>,
+as part of its improved UILayoutManager. UIGridBagConstraints
+provides two advantages over GridBagConstraints: first, you can
+use the variables <font size="2" face="Courier">cellX</font> and <font
+size="2" face="Courier">cellY</font> to specify the coordinates
+into which the component should be placed; second, there's a new
+static method, <font size="2" face="Courier">getOffsetFromAnchor(Dimension
+container, Dimension dim, int anchor)</font>, which allows you to
+calculate the location of the top-left point of a component
+placed inside an area with a given anchor.</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">The only change necessary is in the constructor:
+each instance of<font size="2" face="Courier">
+GridBagConstraints() </font>should be changed to <font size="2"
+face="Courier">UIGridBagConstraints()</font>.</p>
+</body>
+</html>

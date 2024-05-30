@@ -1,0 +1,24 @@
+HKCR
+{
+	WBWAB.WBWAB.1 = s 'WBWAB Class'
+	{
+		CLSID = s '{0340F05F-E75D-11D1-AFDB-000086189887}'
+	}
+	WBWAB.WBWAB = s 'WBWAB Class'
+	{
+		CurVer = s 'WBWAB.WBWAB.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {0340F05F-E75D-11D1-AFDB-000086189887} = s 'WBWAB Class'
+		{
+			ProgID = s 'WBWAB.WBWAB.1'
+			VersionIndependentProgID = s 'WBWAB.WBWAB'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+		}
+	}
+}

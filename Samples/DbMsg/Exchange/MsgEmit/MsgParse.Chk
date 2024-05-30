@@ -1,0 +1,260 @@
+// --msgparse.chk--------------------------------------------------------------
+//
+// Parameter checking for msgparse.cpp
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All rights reserved.
+//
+// ----------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_HrFindStringValue(a,b,c,d)                    NOERROR
+#define CHK_HrReadNextString(a,b,c,d)                     NOERROR
+#define CHK_HrParseTagAndData(a,b,c,d)                    NOERROR
+#define CHK_HrParseDateTimeString(a,b)                    NOERROR
+#define CHK_HrParsePriorityString(a,b)                    NOERROR
+#define CHK_HrParseImportanceString(a,b)                  NOERROR
+#define CHK_HrParseExternalTraceString(a,b,c,d,e)         NOERROR
+#define CHK_HrParseInternalTraceString(a,b,c,d,e, f)      NOERROR
+#define CHK_HrParseAttachmentHeader(a,b,c)                NOERROR
+#define CHK_HrEDKDecodeBinaryStreamDataToStream(a,b,c)    NOERROR
+#define CHK_HrEDKParseSubjectPrefix(a,b,c)                NOERROR
+
+#else
+
+//$--CHK_HrFindStringValue------------------------------------------------------
+//  Check parameters for HrFindStringValue().
+// -----------------------------------------------------------------------------
+static inline HRESULT CHK_HrFindStringValue(
+    IN LPSTR lpString,         // string
+    IN UINT nValues,            // number values in array
+    IN const STRINGVALUEPAIR rgValue[],   // string value pair array
+    OUT ULONG * pulValue)       // value pointer
+{
+    HRESULT hr          =   NOERROR;
+
+    if( !TEST_STRINGA_PTR(lpString) ||
+        nValues == 0 ||
+        !TEST_READ_PTR(rgValue, sizeof(STRINGVALUEPAIR) * nValues) ||
+        !TEST_WRITE_PTR(pulValue, sizeof(ULONG)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+}
+
+//$--CHK_HrReadNextString---------------------------------------------------------
+//  Check parameters for HrReadNextString().
+// ----------------------------------------------------------------------------
+static inline HRESULT CHK_HrReadNextString(
+    IN LPSTR lpString,      // input string
+    IN CHAR chSeparator,   // separator character
+    IN UINT cbBuffer,       // # bytes in buffer
+    OUT CHAR * pszOutput)  // output buffer
+{
+    HRESULT hr      =   NOERROR;
+
+    if( !TEST_STRINGA_PTR(lpString) ||
+        cbBuffer == 0 ||
+        !TEST_WRITE_PTR(pszOutput, sizeof(CHAR) * cbBuffer) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+}
+
+//$--CHK_HrParseTagAndData-------------------------------------------------------
+//  Check parameters for HrParseTagAndData().
+// ---------------------------------------------------------------------------
+static inline HRESULT CHK_HrParseTagAndData(
+    IN LPSTREAM lpStream,   // stream pointer
+    OUT ULONG * pcbRead,    // # of bytes read
+    OUT LPSTR * lppTag,     // pointer to tag buffer
+    OUT LPSTR * lppData)    // pointer to data buffer
+{
+    HRESULT hr      =   NOERROR;
+    
+    if( !TEST_IUNKNOWN_PTR(lpStream) ||
+        !TEST_WRITE_PTR(pcbRead, sizeof(ULONG)) ||
+        !TEST_WRITE_PTR(lppTag, sizeof(LPSTR)) ||
+        !TEST_WRITE_PTR(lppData, sizeof(LPSTR)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+
+}
+
+//$--CHK_HrParseDateTimeString----------------------------------------------------
+//  Check parameters for HrParseDateTimeString().
+// ----------------------------------------------------------------------------
+static inline HRESULT CHK_HrParseDateTimeString(
+    IN LPSTR lpDateTimeString,      // date and time string
+    OUT FILETIME * pFileTime)       // file time pointer
+{
+    HRESULT     hr                              = NOERROR;    
+
+    if( !TEST_STRINGA_PTR(lpDateTimeString) ||
+        lstrlenA(lpDateTimeString) >= cbDateTimeString ||
+        !TEST_WRITE_PTR(pFileTime, sizeof(FILETIME)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+}
+
+//$--CHK_HrParsePriorityString----------------------------------------------------
+//  Check parameters for HrParsePriorityString().
+// ----------------------------------------------------------------------------
+static inline HRESULT CHK_HrParsePriorityString(
+    IN LPSTR lpPriority,        // Priority string
+    OUT ULONG * pulPriority)    // priority value pointer
+{
+    HRESULT hr          =   NOERROR;
+
+    if( !TEST_STRINGA_PTR(lpPriority) ||
+        lstrlenA(lpPriority) >= ulMaxOutStringLen ||
+        !TEST_WRITE_PTR(pulPriority, sizeof(ULONG)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+}
+
+//$--CHK_HrParseImportanceString----------------------------------------------------
+//  Check parameters for HrParseImportanceString().
+// ----------------------------------------------------------------------------
+static inline HRESULT CHK_HrParseImportanceString(
+    IN LPSTR lpImportance,      // Importance string
+    OUT ULONG * pulImportance)  // importance value pointer
+{
+    HRESULT hr          =   NOERROR;
+
+    if( !TEST_STRINGA_PTR(lpImportance) ||
+        lstrlenA(lpImportance) >= ulMaxOutStringLen ||
+        !TEST_WRITE_PTR(pulImportance, sizeof(ULONG)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+}
+
+//$--CHK_HrParseExternalTraceString---------------------------------------------
+//  Check parameters for HrParseExternalTraceString().
+// -----------------------------------------------------------------------------
+static inline HRESULT CHK_HrParseExternalTraceString(
+    IN LPSTR lpTraceString,      // trace information string
+    OUT LONG * plAction,         // trace action pointer
+    OUT CHAR * pCountry,         // country name
+    OUT CHAR * pADMDName,        // ADMD name
+    OUT CHAR * pPRMDId)          // PRMD identifier
+{
+    HRESULT hr      =   NOERROR;
+
+    if( !TEST_STRINGA_PTR(lpTraceString) ||
+        lstrlenA(lpTraceString) >= ulMaxOutStringLen ||
+        !TEST_WRITE_PTR(plAction, sizeof(LONG)) ||
+        !TEST_WRITE_PTR(pCountry, sizeof(CHAR) * MAX_COUNTRY_NAME_SIZ) ||
+        !TEST_WRITE_PTR(pADMDName, sizeof(CHAR) * MAX_ADMD_NAME_SIZ) ||
+        !TEST_WRITE_PTR(pPRMDId, sizeof(CHAR) * MAX_PRMD_NAME_SIZ) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+}
+
+//$--CHK_HrParseInternalTraceString---------------------------------------------
+//  Check parameters for HrParseInternalTraceString().
+// -----------------------------------------------------------------------------
+static inline HRESULT CHK_HrParseInternalTraceString(
+    IN LPSTR lpTraceString,      // trace information string
+    OUT LONG * plAction,         // trace action pointer
+    OUT CHAR * pCountry,         // country name
+    OUT CHAR * pADMDName,        // ADMD name
+    OUT CHAR * pPRMDId,          // PRMD identifier
+    OUT CHAR * pMTAName)         // MTA name
+{
+    HRESULT hr      =   NOERROR;
+
+    if( !TEST_STRINGA_PTR(lpTraceString) ||
+        lstrlenA(lpTraceString) >= ulMaxOutStringLen ||
+        !TEST_WRITE_PTR(plAction, sizeof(LONG)) ||
+        !TEST_WRITE_PTR(pCountry, sizeof(CHAR) * MAX_COUNTRY_NAME_SIZ) ||
+        !TEST_WRITE_PTR(pADMDName, sizeof(CHAR) * MAX_ADMD_NAME_SIZ) ||
+        !TEST_WRITE_PTR(pPRMDId, sizeof(CHAR) * MAX_PRMD_NAME_SIZ) ||
+        !TEST_WRITE_PTR(pMTAName, sizeof(CHAR) * MAX_MTA_NAME_SIZ) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+}
+
+//$--CHK_HrParseAttachmentHeader--------------------------------------------------
+//  Check parameters for HrParseAttachmentHeader().
+// ----------------------------------------------------------------------------
+static inline HRESULT CHK_HrParseAttachmentHeader(
+    IN LPSTR lpHeader,         // attachment header data string
+    OUT LPSTR * lppFileName,   // attachment file name
+    OUT ULONG * pcb)           // pointer to number of bytes in file name
+{
+    HRESULT hr      =   NOERROR;
+
+    if( !TEST_STRINGA_PTR(lpHeader) ||
+        lstrlenA(lpHeader) >= ulMaxOutStringLen ||
+        !TEST_WRITE_PTR(lppFileName, sizeof(LPSTR)) ||
+        !TEST_WRITE_PTR(pcb, sizeof(ULONG)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+}
+
+//$--CHK_HrEDKDecodeBinaryStreamDataToStream-----------------------------------------------
+//  Check parameters for HrEDKDecodeBinaryStreamDataToStream().
+// ----------------------------------------------------------------------------
+static inline HRESULT CHK_HrEDKDecodeBinaryStreamDataToStream(
+    IN LPSTREAM lpStreamIn,     // input stream
+    IN ULONG cb,                // number of bytes in original binary data
+    IN LPSTREAM lpStreamOut)    // output stream
+{
+    HRESULT     hr          =   NOERROR;
+
+    if( !TEST_IUNKNOWN_PTR(lpStreamIn) ||
+        !TEST_IUNKNOWN_PTR(lpStreamOut) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+}
+
+//$--CHK_HrEDKParseSubjectPrefix---------------------------------------------------
+//  Check parameters for HrEDKParseSubjectPrefix().
+// ----------------------------------------------------------------------------
+static inline HRESULT CHK_HrEDKParseSubjectPrefix(
+    IN LPSTR pszSubject,       // subject text
+    OUT LPSTR * ppszPrefix,    // subject prefix
+    OUT LPSTR * ppszOrigSub)   // original subject text
+{
+    HRESULT hr  =   NOERROR;
+   
+    if( !TEST_STRINGA_PTR(pszSubject) ||
+        !TEST_WRITE_PTR(ppszPrefix, sizeof(LPSTR)) ||
+        !TEST_WRITE_PTR(ppszOrigSub, sizeof(LPSTR)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+}
+
+#endif /* DEBUG */

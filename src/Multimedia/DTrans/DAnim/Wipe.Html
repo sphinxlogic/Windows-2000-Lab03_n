@@ -1,0 +1,66 @@
+<HTML>
+<HEAD>
+<TITLE>Wipe Image transform in DirectAnimation</TITLE>
+</HEAD>
+<BODY BGCOLOR=WHITE LINK=#0033CC TOPMARGIN=15 LEFTMARGIN=20>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=2> 
+<CENTER>
+<H1>Wipe Image Transform in DirectAnimation</H1>
+
+<OBJECT ID="DAControl"
+  STYLE="position:relative; left:0; top:50;width:256;height:171"
+  CLASSID="CLSID:B6FFC24C-7E13-11D0-9B47-00C04FC2F51D">
+</OBJECT>
+</CENTER>
+
+<SCRIPT LANGUAGE="JScript">
+<!--
+   // The DirectAnimation library
+   m = DAControl.PixelLibrary;
+
+   img1 = m.ImportImage("../../media/image/tulipshol1.jpg");
+   img2 = m.ImportImage("../../media/image/tulipshol2.jpg");
+   
+   inputImgs = new Array(img1, img2);
+
+   wipe = new ActiveXObject("DXImageTransform.Microsoft.Wipe");
+
+   // set the width of the transition band,
+   // which is a custom property on the transform
+   wipe.GradientSize = "0.4";
+
+   function myInterp(duration) {
+       forward = m.Interpolate(0, 1, duration);
+       back = m.Interpolate(1, 0, duration);
+       return m.Sequence(forward, back).RepeatForever();
+   }
+
+   // cycle through effect in 4 seconds
+   result = m.ApplyDXTransform(wipe, inputImgs, myInterp(4));
+
+   finalImage = result.OutputBvr;
+
+   fpsImg = m.StringImageAnim(m.ViewFrameRate.ToString(1),
+                              m.DefaultFont.Color(m.Red));
+
+   fpsImg = fpsImg.Transform(m.Scale2Uniform(2))
+                  .Transform(m.Translate2(0, -60));
+
+   fpsImg = m.Cond(m.LeftButtonState, fpsImg, m.EmptyImage);
+
+   finalImage = m.Overlay(fpsImg, finalImage);
+
+   DAControl.Image = finalImage;
+   DAControl.Start();
+
+-->
+</SCRIPT>
+<center>
+
+<FONT SIZE=4 FACE="Verdana,Tahoma,Arial"> 
+
+</FONT>
+</center>
+</BODY>
+</HTML>
+

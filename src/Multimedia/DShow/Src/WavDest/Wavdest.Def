@@ -1,0 +1,7 @@
+LIBRARY         wavdest.ax
+PROTMODE
+EXPORTS
+		DllGetClassObject   PRIVATE
+		DllCanUnloadNow     PRIVATE
+		DllRegisterServer   PRIVATE
+		DllUnregisterServer PRIVATE

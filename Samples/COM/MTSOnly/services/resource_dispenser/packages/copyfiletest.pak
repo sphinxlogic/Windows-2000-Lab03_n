@@ -1,0 +1,38 @@
+[{F2C67D17-5447-11D0-B152-00AA00BA3258} - I1]
+Roles=0
+InterfaceID={F2C67D15-5447-11D0-B152-00AA00BA3258}
+Description=
+AuthLevel=4
+ProxyStubDLL=
+[{E87A51E7-95A4-11D0-B17E-00AA00BA3258} - C1]
+Roles=0
+Clsid={F2C67D17-5447-11D0-B152-00AA00BA3258}
+Description=
+ProgID=TxFile.CpyImage.1
+Transaction=Required
+RunInASP=Y
+RemoteServer=
+InProc=N
+Local=Y
+Remote=N
+Internet=N
+Security=Y
+AuthLevel=4
+System=N
+CompDLL=CpyImage.dll
+TypeLib=CpyImage.dll
+Interfaces=1
+[{E87A51E7-95A4-11D0-B17E-00AA00BA3258}]
+Name=CopyFile Test
+Description= 
+System=N
+Latency=3
+Shutdown=N
+Security=N
+AuthLevel=4
+Components=1
+Roles=0
+[Packages]
+Package1={E87A51E7-95A4-11D0-B17E-00AA00BA3258}
+Packages=1
+Version=1.0

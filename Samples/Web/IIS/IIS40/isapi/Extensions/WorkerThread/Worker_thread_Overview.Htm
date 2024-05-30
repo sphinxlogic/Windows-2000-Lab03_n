@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Worker Thread</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_worker_thread"></a>Worker Thread</h3>
+<p>
+IIS maintains a pool of threads to handle incoming HTTP requests. When all threads are in use, new requests will be rejected, which is, in general, good behavior. However, if all the threads are blocked in a wait state, perhaps querying a remote database or another DLL, IIS may reject incoming requests even though there is sufficient of CPU time to handle the new requests.</p>
+<p>
+This sample is an implementation of a simple solution to this problem, the worker thread. Worker threads can accomplish a wide variety of tasks, but this worker thread implementation specifically offloads processing of certain types of special requests, such as database access, so that the primary IIS threads can remain available for HTTP requests. </p>
+<p>
+When <b>HttpExtensionProc</b> is called by IIS, the extension creates a new thread with the Windows&reg; API <b>CreateThread</b> function and passes the extension's own ECB pointer to the new thread. In addition, the address of the thread's function, <b>WorkerFunction</b> in this example, is passed as a parameter as well. The primary IIS thread, executing <b>HttpExtensionProc</b>, then returns the status code HSE_STATUS_PENDING, which informs the server that there is still processing going on, and that the extension will notify the server when it is complete. The main server thread can then return back to the pool made available for new requests. </p>
+<p>
+Meanwhile, the worker thread, immediately after <b>CreateThread</b> successfully returns, begins executing <b>WorkerFunction</b>. For the purposes of this example, this function simulates a computationally-intensive data access operation by causing the thread to sleep for 5 seconds. After the thread completes its simulated task, it then sends the server request HSE_REQ_DONE_WITH_SESSION, using the <b>ServerSupportFunction</b> method, to inform the server that all extended processing is now complete. The worker function then returns, which implicitly calls the Windows API <b>ExitThread</b> function and terminates the thread.</p>
+<p>
+This sample is provided for educational purposes only. It has not been tested in a production environment, and Microsoft&reg; will not provide technical support for it. </p>
+</BODY>
+</HTML>

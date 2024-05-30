@@ -1,0 +1,32 @@
+// EventMonEventClass.idl : IDL source for EventMonEventClass.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (EventMonEventClass.tlb) and marshalling code.
+
+import "..\include\EventMon.idl";
+
+
+
+[
+	uuid(FB02E250-D1E2-11D2-9A34-00C04F72EB9B),
+	version(1.0),
+	helpstring("EventMonEventClass 1.0 Type Library")
+]
+library EventMonEVENTCLASSLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(992FE540-D1E3-11D2-9A34-00C04F72EB9B),
+		helpstring("EventMonEventClass Class")
+	]
+	coclass EventMonEventClass
+	{
+		interface IDiskEvents;
+		interface IFileSystemEvents;
+		interface ISystemEvents;
+	};
+};
+

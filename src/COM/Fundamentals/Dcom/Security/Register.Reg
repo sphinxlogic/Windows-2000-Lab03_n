@@ -1,0 +1,18 @@
+REGEDIT4
+
+[HKEY_CLASSES_ROOT\CLSID\{73A30D75-C27E-11d0-B72A-00AA00C006CF}]
+@="Security Sample Server"
+"AppID"="{73A30D75-C27E-11d0-B72A-00AA00C006CF}"
+
+[HKEY_CLASSES_ROOT\CLSID\{73A30D75-C27E-11d0-B72A-00AA00C006CF}\LocalServer32]
+@="d:\\public\\pdc\\sserver\\sserver\\sserver.exe"
+
+[HKEY_CLASSES_ROOT\AppID\{73A30D75-C27E-11d0-B72A-00AA00C006CF}]
+@="Security Sample Server"
+"RunAs"="Interactive User"
+
+[HKEY_CLASSES_ROOT\AppID\sserver.exe]
+@="Security Sample Server"
+"AppID"="{73A30D75-C27E-11d0-B72A-00AA00C006CF}"
+
+

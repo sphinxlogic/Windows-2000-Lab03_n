@@ -1,0 +1,44 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\acpiec.res \
+    $(_OBJ_DIR)\alpha\acpiec.obj \
+    $(_OBJ_DIR)\alpha\eclowio.obj \
+    $(_OBJ_DIR)\alpha\ecpnp.obj \
+    $(_OBJ_DIR)\alpha\handlers.obj \
+    $(_OBJ_DIR)\alpha\service.obj \
+    $(_OBJ_DIR)\alpha\query.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\acpiec.res \
+    $(_OBJ_DIR)\axp64\acpiec.obj \
+    $(_OBJ_DIR)\axp64\eclowio.obj \
+    $(_OBJ_DIR)\axp64\ecpnp.obj \
+    $(_OBJ_DIR)\axp64\handlers.obj \
+    $(_OBJ_DIR)\axp64\service.obj \
+    $(_OBJ_DIR)\axp64\query.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\acpiec.res \
+    $(_OBJ_DIR)\i386\acpiec.obj \
+    $(_OBJ_DIR)\i386\eclowio.obj \
+    $(_OBJ_DIR)\i386\ecpnp.obj \
+    $(_OBJ_DIR)\i386\handlers.obj \
+    $(_OBJ_DIR)\i386\service.obj \
+    $(_OBJ_DIR)\i386\query.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\acpiec.res \
+    $(_OBJ_DIR)\ia64\acpiec.obj \
+    $(_OBJ_DIR)\ia64\eclowio.obj \
+    $(_OBJ_DIR)\ia64\ecpnp.obj \
+    $(_OBJ_DIR)\ia64\handlers.obj \
+    $(_OBJ_DIR)\ia64\service.obj \
+    $(_OBJ_DIR)\ia64\query.obj
+
+PASS0_IA64_OBJECTS=
+

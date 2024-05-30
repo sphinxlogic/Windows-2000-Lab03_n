@@ -1,0 +1,19 @@
+DESCRIPTION 'Test DLL'
+
+EXPORTS
+        DllMain
+        RNIGetCompatibleVersion
+
+        TemplateMarshaler_toJava
+        TemplateMarshaler_copyToExternal
+
+        TemplateMarshaler_releaseByValExternal
+
+        TemplateMarshaler_copyToJava
+        TemplateMarshaler_toUninitJava
+
+        TemplateMarshaler_toExternal
+        TemplateMarshaler_releaseExternal
+
+        TemplateMarshaler_toUninitExternal
+

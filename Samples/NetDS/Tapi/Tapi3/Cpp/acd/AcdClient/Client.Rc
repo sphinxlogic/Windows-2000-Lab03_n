@@ -1,0 +1,192 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MAINDLG DIALOG DISCARDABLE  0, 0, 353, 215
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "TAPI 3.0 Sample ACD client application"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    PUSHBUTTON      "Create Agent",IDC_CREATEAGENT,152,57,50,14
+    PUSHBUTTON      "Create Session",IDC_CREATESESSION,151,131,50,14
+    COMBOBOX        IDC_AGENTHANDLERS,23,58,119,55,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_HSCROLL
+    COMBOBOX        IDC_ACDGROUPS,21,116,119,90,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_HSCROLL
+    COMBOBOX        IDC_ADDRESSES,21,147,119,115,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_HSCROLL
+    GROUPBOX        "Available Agent Handlers",IDC_STATIC,15,39,191,47
+    GROUPBOX        "Session",IDC_STATIC,16,94,192,78
+    LTEXT           "ACDGroups",IDC_STATIC,23,107,70,8
+    LTEXT           "Addresses",IDC_STATIC,21,137,63,8
+    PUSHBUTTON      "OK",IDC_OK,248,72,50,14
+    PUSHBUTTON      "Cancel",IDC_CANCEL,249,102,50,14
+    EDITTEXT        IDC_STATUS,20,16,289,14,ES_AUTOHSCROLL | ES_READONLY
+    GROUPBOX        "Status",IDC_STATIC,16,6,298,29
+END
+
+IDD_DIALOG1 DIALOG DISCARDABLE  0, 0, 420, 362
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Client Status",IDC_STATIC,17,6,234,62
+    EDITTEXT        IDC_STATUS,31,29,123,14,ES_AUTOHSCROLL | ES_READONLY
+    DEFPUSHBUTTON   "Answer",IDC_ANSWER,192,19,50,14
+    PUSHBUTTON      "Disconnect",IDC_DISCONNECT,193,42,50,14
+    GROUPBOX        "Queues",IDC_STATIC,17,99,236,39
+    COMBOBOX        IDC_QUEUES,33,113,119,145,CBS_DROPDOWNLIST | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_HSCROLL
+    GROUPBOX        "Status Information",IDC_STATIC,12,156,390,193
+    LTEXT           "Agent Status",IDC_STATIC,21,174,50,8
+    LTEXT           "Session Status",IDC_STATIC,140,175,50,8
+    LTEXT           "Queue Status",IDC_STATIC,262,175,50,8
+    EDITTEXT        IDC_AGENTSTATUS,20,187,110,150,ES_MULTILINE | 
+                    ES_AUTOHSCROLL | ES_READONLY | WS_HSCROLL
+    EDITTEXT        IDC_SESSIONSTATUS,140,187,110,150,ES_MULTILINE | 
+                    ES_AUTOHSCROLL | ES_READONLY | WS_HSCROLL
+    EDITTEXT        IDC_QUEUESTATUS,261,187,110,150,ES_MULTILINE | 
+                    ES_AUTOHSCROLL | ES_READONLY | WS_HSCROLL
+    PUSHBUTTON      "Exit",IDC_EXIT,325,66,65,14
+    DEFPUSHBUTTON   "Agent Ready",IDC_READY,325,30,65,14
+    DEFPUSHBUTTON   "Agent Wrap Up",IDC_WRAPUP,325,48,65,14
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 5,0,1570,1
+ PRODUCTVERSION 5,0,1570,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "CompanyName", "Microsoft Corporation\0"
+            VALUE "FileDescription", "Microsoft® Windows(TM) TAPI 3.0 Sample ACD client application\0"
+            VALUE "FileVersion", "5.00.1940.1\0"
+            VALUE "InternalName", "CLIENT\0"
+            VALUE "LegalCopyright", "Copyright (C) Microsoft Corp. 1997-1998\0"
+            VALUE "OriginalFilename", "CLIENT.EXE\0"
+            VALUE "ProductName", "Microsoft(R) Windows(R) Operating System\0"
+            VALUE "ProductVersion", "5.00.1940.1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_MAINDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 323
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 185
+    END
+
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 413
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 355
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

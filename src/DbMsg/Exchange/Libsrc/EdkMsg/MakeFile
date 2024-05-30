@@ -1,0 +1,25 @@
+#---------------------------------------------------------------------------
+# Description:
+#   Make file to generate EdkMsg.Dll
+#
+# Copyright 1986 - 1998 Microsoft Corporation.  All Rights Reserved.
+#---------------------------------------------------------------------------
+
+
+USE_EXCHANGE=1
+dll=1
+
+Proj = EdkMsg
+Building_ExchSDK =1
+
+!Include <BkOffice.Mak>
+
+all:    $(ObjDir)\$(Proj).Dll $(IncDir)\$(Proj).h
+
+$(ObjDir)\$(Proj).Dll: $(ObjDir)\EdkMsg.Res $(ObjDir)\$(Proj).Obj
+
+$(ObjDir)\$(Proj).Obj: $(ObjDir)\EdkMsg.Res $(IncDir)\$(Proj).h $(@B).c
+
+$(IncDir)\$(Proj).h:
+      Set CopyCmd=/y
+      XCopy /R "$(ObjDir)\EDKMsg.h" "$(IncDir)"

@@ -1,0 +1,40 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\ports.res \
+    $(_OBJ_DIR)\alpha\pp.obj \
+    $(_OBJ_DIR)\alpha\advandlg.obj \
+    $(_OBJ_DIR)\alpha\ports.obj \
+    $(_OBJ_DIR)\alpha\util.obj \
+    $(_OBJ_DIR)\alpha\pp_lpt.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\ports.res \
+    $(_OBJ_DIR)\axp64\pp.obj \
+    $(_OBJ_DIR)\axp64\advandlg.obj \
+    $(_OBJ_DIR)\axp64\ports.obj \
+    $(_OBJ_DIR)\axp64\util.obj \
+    $(_OBJ_DIR)\axp64\pp_lpt.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\ports.res \
+    $(_OBJ_DIR)\i386\pp.obj \
+    $(_OBJ_DIR)\i386\advandlg.obj \
+    $(_OBJ_DIR)\i386\ports.obj \
+    $(_OBJ_DIR)\i386\util.obj \
+    $(_OBJ_DIR)\i386\pp_lpt.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\ports.res \
+    $(_OBJ_DIR)\ia64\pp.obj \
+    $(_OBJ_DIR)\ia64\advandlg.obj \
+    $(_OBJ_DIR)\ia64\ports.obj \
+    $(_OBJ_DIR)\ia64\util.obj \
+    $(_OBJ_DIR)\ia64\pp_lpt.obj
+
+PASS0_IA64_OBJECTS=
+

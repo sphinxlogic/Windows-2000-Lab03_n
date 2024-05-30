@@ -1,0 +1,20 @@
+
+//-----------------------------------------------------------------------------
+// This is a part of the Microsoft Source Code Samples. 
+// Copyright (C) 1996-97 Microsoft Corporation.
+// All rights reserved. 
+//  
+// This source code is only intended as a supplement to 
+// Microsoft Development Tools and/or WinHelp documentation.
+// See these sources for detailed information regarding the 
+// Microsoft samples programs.
+//-----------------------------------------------------------------------------
+
+
+#define ICP
+
+#define RC_VERSION_FILE_DESCRIPTION "Sicily Client test program\0"
+#define RC_VERSION_INTERNAL_NAME "ICPCLNT\0"
+#define RC_VERSION_ORIGINAL_FILE_NAME "ICPCLNT.EXE\0"
+
+#include <bldver.rc>

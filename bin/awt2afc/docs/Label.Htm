@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>Label -> UIText</title>
+<base target="descriptions">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">Label to UIText</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.Label should be transformed into instances of
+com.ms.ui.UIText.</p>
+
+<p align="left">Label extends <a href="Component.htm"
+target="descriptions">Component</a>: be sure to see its changes.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">AFC's UIText extends the power of plain text in a
+number of ways. First, you have more control over alignment:
+instead of just left, center, and right, you have options like
+horizontal centering, vertical centering, corner alignment (like
+topleft or bottomright), and just top or bottom alignment.
+Second, you can hot-track a control: text objects are by default
+not hot-tracked, but instantiating them like</p>
+
+<p align="left"><font size="2" face="Courier">new
+UIText(&quot;foo&quot;, UIText.HOTTRACK &amp; UIText.TOPLEFT);</font></p>
+
+<p align="left">formats the text accordingly. You also can
+specify that the control has no defining edge. Finally, UIText
+objects can be instantiated inside all types of different
+UIComponents to add new capabilities.</p>
+
+<p align="left">&nbsp;</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">This is the set of changes you need to make to
+port all Label methods to UIText methods. Any method not listed
+here or below does not need to be changed.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial"><strong>AWT Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">Label() or<br>
+        Label(String) or<br>
+        Label(String, int)</font></td>
+        <td><font size="2" face="Courier">UIText() or<br>
+        UIText(String) or<br>
+        UIText(String, int)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">CENTER</font></td>
+        <td nowrap><font size="2" face="Courier">CENTERED</font></td>
+        <td><font size="2">This is just replacing the style flag.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">getText()</font></td>
+        <td nowrap><font size="2" face="Courier">getName()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setText(String)</font></td>
+        <td><font size="2" face="Courier">setName(String)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getAlignment()</font></td>
+        <td><font size="2" face="Courier">getFlags()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setAlignment(int)</font></td>
+        <td><font size="2" face="Courier">setFlags(int)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h3>Unsupported Methods</h3>
+
+<p>A method in java.awt.Label is not directly supported in
+com.ms.ui.UIText. That method and suggested changes are described
+here.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial">AWT Code<strong>/Suggested
+        AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">paramString()</font><p><font
+        size="2" face="Courier"><strong>getName() or getFlags()</strong></font></p>
+        </td>
+        <td><font size="2">These separate method calls allow you
+        to get the exact information you want.</font></td>
+    </tr>
+</table>
+</body>
+</html>

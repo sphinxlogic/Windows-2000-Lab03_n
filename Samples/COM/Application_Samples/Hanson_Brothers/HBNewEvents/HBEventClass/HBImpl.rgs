@@ -1,0 +1,26 @@
+HKCR
+{
+	HBEventClass.HBEventClass.1 = s 'HBEvent Class'
+	{
+		CLSID = s '{1B62DA42-0180-11D3-8403-0000F8751B94}'
+	}
+	HBEventClass.HBEventClass = s 'HBEvent Class'
+	{
+		CLSID = s '{1B62DA42-0180-11D3-8403-0000F8751B94}'
+		CurVer = s 'HBEventClass.HBEventClass.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {1B62DA42-0180-11D3-8403-0000F8751B94} = s 'HBEvent Class'
+		{
+			ProgID = s 'HBEventClass.HBEventClass.1'
+			VersionIndependentProgID = s 'HBEventClass.HBEventClass'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+			'TypeLib' = s '{F9D703F2-017F-11D3-8403-0000F8751B94}'
+		}
+	}
+}

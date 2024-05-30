@@ -1,0 +1,72 @@
+<HTML> 
+<HEAD>
+<TITLE>DirectAnimation SDK, JScript sample</TITLE>
+<SCRIPT LANGUAGE="JScript">
+<!--
+if (window.top.frames.length!=0 && window.top.frames[0].ShowNoButtons!=null)
+    window.top.frames[0].ShowNoButtons();
+//-->
+</SCRIPT>
+</HEAD>	 
+
+<BODY BGCOLOR=WHITE LINK="#0033CC" TOPMARGIN=15 LEFTMARGIN=20>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=2>
+<CENTER>
+<H1>Using UntilEx
+</H1>
+</CENTER>
+<OBJECT ID="DAControl"
+  WIDTH=300
+  HEIGHT=300    
+  ALIGN=LEFT 
+  CLASSID="CLSID:B6FFC24C-7E13-11D0-9B47-00C04FC2F51D">
+</OBJECT>
+<P>
+This sample illustrates the use of UntilEx(). Left click on the image to
+change it, and then right click it again to return it to the original image.
+<BR><BR>
+The following is the equivalent Until() code:
+
+<BR><BR>
+m = DAControl.MeterLibrary;
+<BR><BR>
+mediaBase = mediaBase = "..\\..\\..\\Media\\";
+<BR>
+imgBase = mediaBase + "image\\"
+<BR><BR>
+firstImg = m.ImportImage(imgBase + "apple.gif");
+<BR>
+secondImg = m.ImportImage(imgBase + "cherries.gif");
+<BR><BR>
+ExImg = new ActiveXObject( "DirectAnimation.DAImage" );
+<BR>
+ExImg.Init( m.Until( firstImg, m.LeftButtonDown, m.Until( secondImg, m.RightButtonDown, ExImg )  ) );
+<BR><BR>
+DAControl.Image = m.Overlay( ExImg, m.SolidColorImage( m.Black ) );
+<BR><BR>
+DAControl.Start();
+ 
+<SCRIPT LANGUAGE="JScript">
+<!--
+  m = DAControl.MeterLibrary;
+
+  mediaBase = mediaBase = "..\\..\\..\\Media\\";
+  imgBase = mediaBase + "image\\"
+
+  firstImg = m.ImportImage(imgBase + "apple.gif");
+  secondImg = m.ImportImage(imgBase + "cherries.gif");
+
+  ExImg= new ActiveXObject("DirectAnimation.DAImage");
+
+  // Put the second UntilEx inside the first AttachData.
+  ExImg.Init(m.UntilEx(firstImg, m.LeftButtonDown.AttachData(m.UntilEx(secondImg, 
+    m.RightButtonDown.AttachData(ExImg)))));
+
+  DAControl.Image = m.Overlay( ExImg, m.SolidColorImage(m.Black));
+
+  DAControl.Start();
+//-->
+</SCRIPT>
+</FONT>
+</BODY>
+</HTML>

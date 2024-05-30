@@ -1,0 +1,23 @@
+// --xlatdriv.rc---------------------------------------------------------------
+//
+// Resource strings for xlatdriv.
+//
+// ----------------------------------------------------------------------------
+
+#include <windows.h>
+#include "xlatmsg.h"
+
+STRINGTABLE
+BEGIN
+    IDS_ERROR_USAGE,    "USAGE: XLATDRIV NOTSERV ProfileName [/DLE]\r\rNOTSERV\tRun as application\rProfileName\tGateway profile name\r/DIRECTION=\tINBOUND or OUTBOUND\r/LOCATION=\tdirectory for .TMP files\r/ENCODE\tDo TNEF encoding/decoding"
+    IDS_ERROR_HELP,     "USAGE: XLATDRIV NOTSERV ProfileName [/DLE]\r\rNOTSERV\tRun as application\rProfileName\tGateway profile name\r/DIRECTION=\tINBOUND or OUTBOUND\r/LOCATION=\tdirectory for .TMP files\r/ENCODE\tDo TNEF encoding/decoding"
+    IDS_INVALID_ARG,    "ERROR: Invalid flag %s.\r\rEnter XLATDIRV notserv ProfileName /? for help."
+    IDS_CONFLICTING_DIRECTION,  "ERROR: Conflicting translation directions.\r\rEnter XLATDRIV notserv ProfileName /? for help."
+    IDS_1_ERROR,        "ERROR: 1 error written to the event log"
+    IDS_NUM_ERRORS,     "ERROR: %ld errors written to the event log"
+    IDS_1_WARNING,      "WARNING: 1 error written to the event log"
+    IDS_NUM_WARNINGS    "WARNING: %ld errors written to the event log"
+    IDS_SUCCESS,        "Converted %ld messages."
+    IDS_INVALID_VALUE,  "ERROR:  Invalid value '%s' for flag %s.\r\rEnter XLATDRIV notserv ProfileName /? for help."
+    IDS_ERROR_NOVALUE,  "ERROR:  NULL value not allowed for flag %s.\r\rEnter XLATDRIV notserv ProfileName /? for help."
+END

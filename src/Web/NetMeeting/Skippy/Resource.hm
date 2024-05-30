@@ -1,0 +1,4 @@
+// Microsoft Developer Studio generated Help ID include file.
+// Used by skippy.rc
+//
+#define HIDC_AUTH_METHOD                0x806d0408    // IDD_DLG_SERVERNAME

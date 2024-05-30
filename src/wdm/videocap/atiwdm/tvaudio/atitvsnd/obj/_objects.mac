@@ -1,0 +1,36 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\atitvsnd.res \
+    $(_OBJ_DIR)\alpha\atitvsnd.obj \
+    $(_OBJ_DIR)\alpha\tsndhdw.obj \
+    $(_OBJ_DIR)\alpha\tsndprop.obj \
+    $(_OBJ_DIR)\alpha\wdmtvsnd.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\atitvsnd.res \
+    $(_OBJ_DIR)\axp64\atitvsnd.obj \
+    $(_OBJ_DIR)\axp64\tsndhdw.obj \
+    $(_OBJ_DIR)\axp64\tsndprop.obj \
+    $(_OBJ_DIR)\axp64\wdmtvsnd.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\atitvsnd.res \
+    $(_OBJ_DIR)\i386\atitvsnd.obj \
+    $(_OBJ_DIR)\i386\tsndhdw.obj \
+    $(_OBJ_DIR)\i386\tsndprop.obj \
+    $(_OBJ_DIR)\i386\wdmtvsnd.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\atitvsnd.res \
+    $(_OBJ_DIR)\ia64\atitvsnd.obj \
+    $(_OBJ_DIR)\ia64\tsndhdw.obj \
+    $(_OBJ_DIR)\ia64\tsndprop.obj \
+    $(_OBJ_DIR)\ia64\wdmtvsnd.obj
+
+PASS0_IA64_OBJECTS=
+

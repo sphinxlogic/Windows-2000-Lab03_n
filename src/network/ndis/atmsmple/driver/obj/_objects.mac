@@ -1,0 +1,56 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\atmsmdrv.res \
+    $(_OBJ_DIR)\alpha\atmsmdrv.obj \
+    $(_OBJ_DIR)\alpha\adapter.obj \
+    $(_OBJ_DIR)\alpha\atmsmdbg.obj \
+    $(_OBJ_DIR)\alpha\callmgr.obj \
+    $(_OBJ_DIR)\alpha\globals.obj \
+    $(_OBJ_DIR)\alpha\misc.obj \
+    $(_OBJ_DIR)\alpha\ioctl.obj \
+    $(_OBJ_DIR)\alpha\request.obj \
+    $(_OBJ_DIR)\alpha\sendrecv.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\atmsmdrv.res \
+    $(_OBJ_DIR)\axp64\atmsmdrv.obj \
+    $(_OBJ_DIR)\axp64\adapter.obj \
+    $(_OBJ_DIR)\axp64\atmsmdbg.obj \
+    $(_OBJ_DIR)\axp64\callmgr.obj \
+    $(_OBJ_DIR)\axp64\globals.obj \
+    $(_OBJ_DIR)\axp64\misc.obj \
+    $(_OBJ_DIR)\axp64\ioctl.obj \
+    $(_OBJ_DIR)\axp64\request.obj \
+    $(_OBJ_DIR)\axp64\sendrecv.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\atmsmdrv.res \
+    $(_OBJ_DIR)\i386\atmsmdrv.obj \
+    $(_OBJ_DIR)\i386\adapter.obj \
+    $(_OBJ_DIR)\i386\atmsmdbg.obj \
+    $(_OBJ_DIR)\i386\callmgr.obj \
+    $(_OBJ_DIR)\i386\globals.obj \
+    $(_OBJ_DIR)\i386\misc.obj \
+    $(_OBJ_DIR)\i386\ioctl.obj \
+    $(_OBJ_DIR)\i386\request.obj \
+    $(_OBJ_DIR)\i386\sendrecv.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\atmsmdrv.res \
+    $(_OBJ_DIR)\ia64\atmsmdrv.obj \
+    $(_OBJ_DIR)\ia64\adapter.obj \
+    $(_OBJ_DIR)\ia64\atmsmdbg.obj \
+    $(_OBJ_DIR)\ia64\callmgr.obj \
+    $(_OBJ_DIR)\ia64\globals.obj \
+    $(_OBJ_DIR)\ia64\misc.obj \
+    $(_OBJ_DIR)\ia64\ioctl.obj \
+    $(_OBJ_DIR)\ia64\request.obj \
+    $(_OBJ_DIR)\ia64\sendrecv.obj
+
+PASS0_IA64_OBJECTS=
+

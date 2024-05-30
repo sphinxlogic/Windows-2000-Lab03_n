@@ -1,0 +1,223 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033\deflangfe1033{\fonttbl{\f0\fswiss\fprq2\fcharset0 Arial;}{\f1\froman\fprq2\fcharset0 Times New Roman;}{\f2\froman\fprq2\fcharset2 Symbol;}{\f3\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red0\green0\blue255;}
+{\stylesheet{ Normal;}{\s1 heading 1;}}
+\viewkind4\uc1\pard\nowidctlpar\f0\fs20\par
+\b\fs28 Hanson Brothers Sample\fs24\par
+\b0\fs20\par
+\par
+This is a greatly simplified trading floor example. The quotes and news are generated superficially and not in response to trading activity. Orders are matched against a single pending table instead of separate Bid and Ask queues. Outstanding issues are best practices for error handling, moving large data between tiers (for Charting), monitoring, Security (3-roles), and Object Pooling.  No performance pass-throughs have yet to be done on this app.\par
+\par
+\b\par
+\fs24 WorkFlow Overview:\fs20\par
+\b0\par
+\tab When an order is placed, two operations must be successfully completed. First, the order is verified for things such as enough shares, enough money, and so forth. If the verification process is successful, the customer is asked to execute the order. This results in a Requires transaction HBInstitution.IOrder.Execute method  call. This method again verifies the order (since some time may have passed since last verification). If successfully passed, the order is sent to the queued component HBExchange.IMarketFloor.  Immediately after (firing and forgetting the markets eventual actions)  the Institution creates a new holding record for this trade. This record is uniquely identified by the institution via an "institutional" confirmation number (orderId).  Upon successful insert,  HBInstitution.IOrder.Execute returns this number to the customer. During this method call, the status of the order in the market remains indeterminate.\par
+\tab\par
+Meanwhile, the MarketFloor.IEnterOrder method, upon receiving (listening to)  this order adds the order information to the PendingOrder table. If successfully added, this method returns a "market" confirmation number to the institution through yet another queued component method  HBNotify.INotify.ConfirmOrder. At this point, the order is considered fully CONFIRMED (received) by both the institution and th market.\par
+\par
+The HBExchange components never talk to the HBInstitution components directly. Instead, they communicate through the HBNotify components. This allows the Institution to control or schedule the market messages in a controlled environment. The Settled order msgs may come in during Market hours but be actually processed during the Institutions nightly (after 4 pm)  batch. The Confirmed order msgs may still be processed during the day.\par
+\par
+\tab\par
+At some point, HBFeed.exe will call HBExchange.IUpdateQuote.Update method. It will respond by reading the current quote for that symbol from the Quote table. If the  quote is different from the passed quote, this method will update the Quote table and pass the quote information to HBExchange.IMarketFloor.GetMatchingTrades. This method will then check it's PendingOrders table for any matched (confirmed)  trades. If a match is found, this method will mark the trade order as being SETTLED (i.e., FILLED) and make a QC call (straight COM call in the workstation setup) to the Queued component HBInstitution.IOrderSettlement.ProcessOrder At some later time, typically at the end of the day, all SETTLED orders are reconciled with the customers accounts. As a result, all  Holdings are updated.\par
+\par
+\b\par
+\fs24 INSTALLATION SUMMARY:\par
+\par
+Note: To run the Hanson Brothers sample a Domain Controller is needed for MSMQ.  To find instructions on Domain Controller setup see: \\Services\\Queued_Components\\msmq.htm\fs20\par
+\par
+\fs24 Build Dependencies\fs20\par
+\par
+\pard\nowidctlpar\fi-360\li720\tx720 1.\tab All VC Files: HBNewEvents \b0\par
+\pard\nowidctlpar\li720\tx720 Note: Build with NMAKE -A from the \\Hanson_Brothers folder\b\par
+\pard\nowidctlpar\fi-360\li720\tx720 2.\tab All VB Projects\par
+\pard\nowidctlpar\li720\tx720\b0 Note: Run VBBuild.bat from the \\Hanson_Brothers folder and update dependencies in Project - References.\par
+\pard\nowidctlpar\fi-360\li720\tx720\b\tab Components\\HBNews\par
+\tab Components\\HBExchange\par
+\tab Components\\HBInstitution\par
+\tab Components\\HBNotify\par
+\tab HBFeed\par
+\tab HBTradeStation\par
+\tab XML\\HBXMLServer\par
+\tab XML\\HBXMLClient\par
+\pard\nowidctlpar\fi-360\li720\tab HBInstall\par
+\pard\nowidctlpar\b0\par
+\par
+\b\fs24 Create COM+ Applications:\ul\fs20\par
+\ulnone\b0 The COM+ Applications can be created and configured in one of two ways, (a) using the HBInstall utility, or, (b) manually creating the COM+ applications through the \i Component Services\i0  snap in. \par
+\par
+Note: You will only be able to create and configure the COM+ applications if your machine has been configured for MSMQ.\par
+\par
+\pard\nowidctlpar\li720\b (a) Run HBInstall:\par
+\pard\nowidctlpar\fi-1440\li1440\b0\f1\tab\tab - \f0 Click "Install All Components\rdblquote  button. If there is a problem - start and stop DTC. HBInstall will create all of the COM+ Applications and configure them accordingly, including setting up the queued components.\par
+\pard\nowidctlpar\fi-1080\li1080\tab\tab - If HBInstall hangs, it's probably because MSMQ has not been setup correctly. To re-Install, Stop DTC, manually delete All HB COM+ Applications from Component Services, Start DTC and run HBInstall again. \par
+\tab\tab - Close HBInstall. \par
+\par
+\pard\nowidctlpar\tab\b (b) Start the Component Services Explorer \b0 (select Start->Settings->Control Panel->Administrative Tools)\par
+\pard\nowidctlpar\fi-1080\li1080\par
+\pard\nowidctlpar\fi-1080\li1440\b\tab\tab Create HBInstitution\b0  COM+ Application using Component Services\par
+\tab\tab Choose new server app, Use "administrator" to Logon, \{no passwd\}\par
+\tab\tab Drag \\Hanson\\Components\\HBInstitution\\HBInstitution.dll to HBInstitution applications components folder\par
+\par
+\b\tab\tab Create HBMarket\b0  COM+ Application using Component Services\par
+\tab\tab Choose new server app, Use "administrator" to Logon, \{no passwd\}\par
+\tab\tab Drag \\Hanson\\Components\\HBMarket\\HBMarket.dll to HBMarket applications components folder\par
+\par
+\b\tab\tab Create HBNotify\b0  COM+ Application using Component Services\par
+\tab\tab Choose new server app, Use "administrator" to Logon, \{no passwd\}\par
+\tab\tab Drag \\Hanson\\Components\\HBNotify\\HBNotify.dll to HBNotify applications components folder\par
+\par
+\b\tab\tab Create HBNews\b0  COM+ Application using Component Services\par
+\tab\tab Choose new server app, Use "administrator" to Logon, \{no passwd\}\par
+\tab\tab Drag \\Hanson\\Components\\HBNews\\HBNews.dll to HBNews applications components folder\par
+\par
+\b\tab\tab Enable The Queued Components:\b0  NOTE: The HBInstall program will set up these Queues. When configuring the COM+ applications for queuing you will recieve an error if MSMQ has not been correctly setup.\par
+\par
+      \tab\b Enable HBNotify.INotify\b0  Component:\par
+\tab\tab Right click Component Services Explorer->Computers->My Computer->COM+ Applications->HBNotify. Choose Properties and select the Queuing Tab. Enable the Queued and Listen check boxes (if MSMQ is not installed, you may get a warning). Hit OK. Next: Drill down into HBNotify.INotify component to the _INotify Interface. Right click the icon, choose properties and select the Queuing Tab. Enable the Queued check box.\par
+     \par
+\b\tab\tab Enable HBExchange.IExchangeOrder\b0  Component:\par
+\tab\tab Right click Component Services Explorer->Computers->My Computer->COM+ Applications->HBExchange. Choose Properties and select the Queuing Tab. Enable the Queued and Listen check boxes (if MSMQ is not installed, you may get a warning). Hit OK. Next: Drill down into HBExchange.IExchangeOrder Component to the _IExchangeOrder Interface. Right click the icon, choose properties and select the Queuing Tab. Enable the Queued check box.\par
+    \par
+\b\tab\tab Enable HBNews.INews\b0  Component\par
+\tab\tab Right click Component Services Explorer->Computers->My Computer->COM+ Applications->HBNews Choose Properties and select the Queuing Tab. Enable the Queued and Listen check boxes (if MSMQ is not installed, you may get a warning). Hit OK Next: Drill down into HBNews.INews Component to the _INews Interface. Right click the icon, choose properties and select the Queuing Tab. Enable the Queued check box.\par
+\par
+\par
+\pard\keepn\nowidctlpar\s1\b\fs24 Install Hanson \ldblquote market\rdblquote  DB\par
+\pard\nowidctlpar\b0\fs20\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlblt\pnf3\pnindent360{\pntxtb\'B7}}\nowidctlpar\fi-360\li360\tx360 Create a "market" database using SQL Server Enterprise Manager.\par
+{\pntext\f3\'B7\tab}Generate market tables and SPROCs with \\Hanson_Brothers\\Database\\MarketScript.sql. Go To SQL Server Enterprise Manager, Tools menu --> SQL Server Query Analyzer, Open and run MarketScript (make sure you select \b market \b0 in the DB combo box.)\par
+{\pntext\f3\'B7\tab}Open the SQL Enterprise manager, expand tree in left pane to the \b market \b0 database then double-click on \b market\b0 .  Then double-click \b Tables\b0 .  Right-click \b Quote \b0 table and select \b Design Table\b0 .  Right-click on Arrow next to \b symbol \b0 field and select \b Set Primary Key\b0 .  Make sure to save your changes.\par
+\pard\nowidctlpar\par
+\b\fs24 Installing Hanson Brothers Web:\par
+\pard\nowidctlpar\fi-360\li360\tx360\b0\f1\fs20 -\tab\f0 Create a directory called HBWebClient under \\Inetpub\\wwwroot (example: F:\\Inetpub\\wwwroot\\HBWebClient). \par
+\pard\nowidctlpar\fi-360\li360\f1 -\tab\f0 Copy all web files from Hanson_Brothers\\HbWebClient to this directory. \par
+\pard\nowidctlpar\par
+\par
+\b\fs24 Set Environment Variable\b0\fs20  (In future this will be in a Register)\par
+\par
+- In User Environment Variables set:\par
+\tab Variable Name: HBPATH\par
+\tab Variable Value: (Location of Hanson_Brothers\\dsn.txt)\par
+\par
+\par
+\b\fs24 Update DSN:\par
+\par
+\pard\nowidctlpar\fi-360\li360\tx360\b0\f1\fs20 -\tab\f0 In your root (Hanson_Brothers) directory, update the DSN.txt file with your dB machine name  NOTE:This may not be required if you are running  (local). Make sure to remove the parentheses when referring to a remote machine.\par
+\pard\nowidctlpar\fi-360\li360\f1 -\tab\f0 Set the HBPATH environment variable to point to your Hanson_Brothers Folder. Go to Start->Settings->System. Choose Advanced  Tab, Select Environment Variables Button. Add to User Variables for Administrator. NOTE: If you do not set this variable, Components will fail.\par
+\pard\nowidctlpar\b\par
+\fs24 Renew MSMQ Certificates:\par
+\b0\fs20\par
+\tab Go to Settings ->Control Panel->Message Queueing (applet), choose Security Tab, select \b Renew Internal Certificates\b0\par
+\par
+\b\fs24 Services:\par
+\b0\fs20\par
+\pard\nowidctlpar\fi-360\li360\tx360\f2\'b7\tab\f0 Bring up the Component Services (from Start->Settings->Control Panel->Administrative Tools)\par
+\f2\'b7\tab\f0 Bring up the Computer Management (from Start->Settings->Control Panel->Administrative Tools)\par
+\pard\nowidctlpar\par
+\par
+\b\fs24 TO RUN SAMPLE:\ul\par
+\par
+\ulnone Start News and Notify Components\par
+\par
+\pard\nowidctlpar\fi-360\li360\tx360\b0\f1\fs20 -\tab\f0 In Component Services, start the HBNews and HBNotify COM+ Applications\par
+\pard\nowidctlpar\b\fs24\par
+\pard\keepn\nowidctlpar Run HBFeed from \\Bin\par
+\par
+\pard\nowidctlpar\fi-360\li360\tx360\b0\f1\fs20 -\tab\f0 Click \b Init Quotes \b0 button to initialize all quotes (Only needs to be done once)\par
+\pard\nowidctlpar\fi-360\li360\f1 -\tab\f0 Click \b OK\b0\par
+\f1 -\tab\f0 Wait for\b  Successfully re-generated\b0  dialog box\par
+\pard\nowidctlpar\fi-360\li360\tx360\f1 -\tab\f0 Click \b OK\b0\par
+\pard\nowidctlpar\fi-360\li360\f1 -\tab\f0 Click \b Start Exchange\b0   (If any connection problems, make sure you have HBPATH and the DSN.txt file set up correctly)\par
+\pard\nowidctlpar\par
+\b\fs24 Running the Web Client:\par
+\pard\nowidctlpar\fi-360\li360\tx360\b0\f1\fs20 -\tab\f0 Copy the entire \\Hanson_Brothers\\HBWebClient folder into the \\Inetpub\\wwwroot folder\par
+\f1 -\tab\f0 Enter \cf1\ul <http://<servername>/HbWebClient/hbmain.htm>\cf0\ulnone  in IE (where server name is the name of the machine hosting \\Inetpub\\wwwroot\\HBWebClient).\par
+\pard\nowidctlpar\fi-360\li360\f1 -\tab\f0 To run the web client directly from VID open HBClient.vip from the HBWebClient directory.\par
+\pard\keepn\nowidctlpar\s1\b\fs24\par
+Run HBTradeStation\par
+\pard\nowidctlpar\fs20\par
+Initializing the Customer database from HBTradeStation:\par
+\pard\nowidctlpar\fi-360\li360\tx360\b0\f1 -\tab\f0 Hanson brothers comes installed with un-populated database tables. To populate, execute the HBTradeStation.exe and enter "000000000" (9 zeroes) for the SSN.  Afterwards, go directly to the \ldblquote Settings\rdblquote  tab to generate customers data (Quote data is generated from Feed.exe). \par
+\pard\nowidctlpar\par
+\b\fs24 Screen Settings:\fs20\par
+\b0\par
+Configured for a minimum of 800x600 screen. If you drop to 640x480 the HBTradeStation window won't fit.\par
+\par
+\par
+\b\fs24 ERROR CHECKS:\fs20\par
+\par
+\b0 If Object Not instantiated, make sure that the HBPATH points to your Hanson Brothers Folder. See instructions \par
+\par
+\par
+\b\fs24 SECURITY:\fs20\par
+\par
+\pard\nowidctlpar\li360\b0 Is not implemented. When implemented, three Security Roles will be applied (i.e., Win2000 Groups that need to be set up). These roles are:\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlblt\pnf3\pnindent360{\pntxtb\'B7}}\nowidctlpar\fi-360\li720\tx720 Trader: All Permissions\par
+{\pntext\f3\'B7\tab}Rep:  Cannot Execute Orders (HBInstitution.IOrder), All other permissions\par
+{\pntext\f3\'B7\tab}Cust: All Permissions (Can Trade) for His/Her Account only. Authorization needs to be done on HBInstitution.IOrder. May only look at his/her account info. HBInstitution.IAccount\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlcont\pnf3\pnindent0{\pntxtb\'B7}}\nowidctlpar\par
+{\pntext\f3\'B7\tab}\par
+\b\fs24{\pntext\f3\'B7\tab}The HBTradeStation Settings:\ul\par
+\ulnone\b0\fs20{\pntext\f3\'B7\tab}\par
+{\pntext\f3\'B7\tab}\tab\b "Cntrl" check button:\par
+\b0{\pntext\f3\'B7\tab}\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlcont\pnf3\pnindent0{\pntxtb\'B7}}\nowidctlpar\li1440 Unchecked gives acces to IMAGES and Docs: A Visio document is provided in C:\\Hanson\\Doc. It contains 6 images, each which has been broken out into JPEG files. Each JPEG file has a related text file. Each can be accessed through the Settings Tab from HBTradeStation and by un-checking the "Cntrl" check button on the far right of the panel.\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlcont\pnf3\pnindent0{\pntxtb\'B7}}\nowidctlpar\par
+{\pntext\f3\'B7\tab}\tab\b Timers\b0 :\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlcont\pnf3\pnindent0{\pntxtb\'B7}}\nowidctlpar\li1440 There is a Quote timer in the Settings tab that handles the Quotes on the Quotes Tab.\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlcont\pnf3\pnindent0{\pntxtb\'B7}}\nowidctlpar\par
+{\pntext\f3\'B7\tab}\tab\b Queued Check Button: \par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlcont\pnf3\pnindent0{\pntxtb\'B7}}\nowidctlpar\li1440\b0 Determines whether Serialization or Queuing is enabled: \par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlcont\pnf3\pnindent0{\pntxtb\'B7}}\nowidctlpar\li1440\tx360\b About the Serialization mode:\par
+\b0{\pntext\f3\'B7\tab}If Serialized (i.e., queued set to unchecked  in the settings of HBTradeStation) you will receive a timeout (particularly from HBFeed). This is due to the HBInstitution.IOrder.Execute being transacted resulting in the same record being locked (even though the record set is tried to be closed). The serialization will therefore include this call in it's transaction. This is left as a serialization problem and is not designed for in this application. This mode is left to illustrate this point and to enable debugging.\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlcont\pnf3\pnindent0{\pntxtb\'B7}}\nowidctlpar\li2880\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlcont\pnf3\pnindent0{\pntxtb\'B7}}\nowidctlpar\par
+{\pntext\f3\'B7\tab}\tab\b All Object:\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlcont\pnf3\pnindent0{\pntxtb\'B7}}\nowidctlpar\li1440\b0 Determines whether all HBTradeStation called components are instantiated once up-front or when needed (and released). This is a way to check performance if a number of clients are in use.\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlcont\pnf3\pnindent0{\pntxtb\'B7}}\nowidctlpar\par
+{\pntext\f3\'B7\tab}\tab\b Reconcile All Settled Orders:\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlcont\pnf3\pnindent0{\pntxtb\'B7}}\nowidctlpar\li1440\b0 After an order is Confirmed (M_CONF) and SETTLED (FILLED), it can be Reconciled. This Takes all orders (all customers / all accounts) and updates the net amounts. The result is the working debit is changed back to zero and the balances are updated. This is usually a batch job.\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlcont\pnf3\pnindent0{\pntxtb\'B7}}\nowidctlpar\par
+{\pntext\f3\'B7\tab}\tab\b Publish\b0 :\par
+{\pntext\f3\'B7\tab}\tab\tab Test Events\par
+{\pntext\f3\'B7\tab}\par
+{\pntext\f3\'B7\tab}\tab\b Initialize Symbol and LongQuote Table: \par
+\b0{\pntext\f3\'B7\tab}\tab\tab Found also on HBFeed\par
+{\pntext\f3\'B7\tab}\par
+{\pntext\f3\'B7\tab}\tab\b Initialize Customer and Accounts:\par
+\b0{\pntext\f3\'B7\tab}\tab\tab Only found here\par
+{\pntext\f3\'B7\tab}\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlcont\pnf3\pnindent0{\pntxtb\'B7}}\nowidctlpar\li720\b TRADING:\par
+\b0{\pntext\f3\'B7\tab}\tab You can only SELL a stock if you own it. You only own it AFTER it' has been \b RECONCILED\b0  \par
+{\pntext\f3\'B7\tab}\tab with your account. Stock can only be traded if the market is up (HBFeed running).The \b Market (HBExchange)\b0\par
+{\pntext\f3\'B7\tab}\tab CAN Confirm orders however, even if the Market is down.\par
+{\pntext\f3\'B7\tab}\par
+\b{\pntext\f3\'B7\tab}HISTORY STATUS:\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlcont\pnf3\pnindent0{\pntxtb\'B7}}\nowidctlpar\li1440 I_CONF\b0 : Institute Confirmed: Sent to HBExchange but not confirmed by the Market Floor. HBNotify is probably not activated or HBFeed suspened or down (Market Halted)\par
+\b{\pntext\f3\'B7\tab}M_CONF\b0 : Market Floor Confirmed: Order received by Market and Market conf # received by Institute. Order Not filled yet, either because it was a limit order, Or, the HBNotify app went down, or th HBFeed is stopped (Market halted), or not up\par
+\b{\pntext\f3\'B7\tab}FILLED\b0 : HBExchange has filled the order and HBNotify has passed it on. Order is ready to be reconciled RECON: Order Reconciled. Can only happen if Reconciled button is pushed\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlcont\pnf3\pnindent0{\pntxtb\'B7}}\nowidctlpar\li720\par
+\b{\pntext\f3\'B7\tab}REFRESH Button:\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlcont\pnf3\pnindent0{\pntxtb\'B7}}\nowidctlpar\li1440\b0 The History is updated automatically with the I_CONFIRM, and MAY Appear updated with M_CONF (If the market response occurs before the client is finished processing the Order Button. However, all confirms and filled orders are sent to the HBInstitution and it is up to the client (Trader) to check back on whether the order is confirmed or settled (FILLED).\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlcont\pnf3\pnindent0{\pntxtb\'B7}}\nowidctlpar\li720\b\par
+{\pntext\f3\'B7\tab}\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlcont\pnf3\pnindent0{\pntxtb\'B7}}\nowidctlpar\b0 NO Warranties are made or implied with this application.\par
+{\pntext\f3\'B7\tab}\par
+\b{\pntext\f3\'B7\tab}NOTES:\b0\par
+{\pntext\f3\'B7\tab}\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlblt\pnf3\pnindent360{\pntxtb\'B7}}\nowidctlpar\fi-360\li360\tx360 This application sample does not currently represent best practices in all cases. \par
+{\pntext\f3\'B7\tab}HBXMLClient.exe may be used to view the XML stream of individual customers, this tool is usefull to visually inspect the XML structure. \par
+{\pntext\f3\'B7\tab}The HBTradeStation and Web clients supports XML vs ADO data access. Default is XML. \par
+{\pntext\f3\'B7\tab}DSN uses a flat file. This is to be eventually changed to system DSN\par
+{\pntext\f3\'B7\tab}Commissions are currently calculated when the order is placed, this is to be done upon reconciliation using the settled price.\par
+{\pntext\f3\'B7\tab}Security is not implemented (yet)\par
+{\pntext\f3\'B7\tab}HB is not performance optimized or tuned. This is forthcoming. Simple (unsupported & undocumented) performance testing from HBITradeStation is currently provided - However, The Perf Kit should be used to access any and all performance accurately\par
+{\pntext\f3\'B7\tab}Creation of limited Test Data (Customer/accounts & quotes) is also part of this release\par
+{\pntext\f3\'B7\tab}A J++ version of HB has been complete, it will be provided in the PSDK at RTM\par
+{\pntext\f3\'B7\tab}Recompiling HBInstitution, HBNotify, or HBExchange while Orders are queued up (See public Queues) will cause an error when HBNotify or HBExchange is restarted. May require building new HB component CLSIDs. Remember to purge your queues before changing the app and restarting.\par
+{\pntext\f3\'B7\tab}XML will return zero amounts for "Current" holding values. Using ADO mode will set current amounts. The solution is to have XML call CalculateHoldings\par
+{\pntext\f3\'B7\tab}During certain very high contention scenarios it's possible to get a Market Order that is marked filled by HBExchange but not by HBInstitution. This will require compensation code not currently provided in HB and will be addressed during performance testing - (this will either be done during end of day via reconciliation, or during order execution). \par
+\pard\nowidctlpar\tx360    \par
+\pard\nowidctlpar\par
+\par
+}
+ 

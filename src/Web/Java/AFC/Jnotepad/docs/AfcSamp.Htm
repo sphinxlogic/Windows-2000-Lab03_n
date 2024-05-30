@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD><TITLE>The JNotepad Application</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=iso8859-1">
+<META NAME="MS.LOCALE" CONTENT="EN-US">
+<META NAME="ROBOTS" CONTENT="all">
+</HEAD>
+<BODY BGCOLOR="White" TOPMARGIN=0 LEFTMARGIN=0 VLINK="Gray">
+<A NAME="top"></A>
+<!--TOOLBAR_START-->
+<TABLE WIDTH="100%" CELLPADDING=0 CELLSPACING=0 BORDER=0>
+<TR><TD WIDTH=500 ROWSPAN=2 VALIGN=TOP><NOBR><FONT FACE="VERDANA,ARIAL,Helvetica" SIZE=1>
+<!--TOOLBAR_FRAMES_START-->
+
+<!--MS home button-->
+<A HREF="http://www.microsoft.com" TARGET="_top"><IMG SRC="../../images/home.gif" WIDTH="103" HEIGHT="21"  BORDER=0 ALT="Microsoft Home"></A><A HREF="http://www.microsoft.com/products/default.asp" TARGET="_top"><IMG SRC="../../images/prod.gif" WIDTH="81" HEIGHT="21"  BORDER=0 ALT="Products"></A><A HREF="http://www.microsoft.com/search/default.asp" TARGET="_top"><IMG SRC="../../images/search.gif" WIDTH="68" HEIGHT="21"  BORDER=0 ALT="Search"></A><A HREF="http://www.microsoft.com/support/" TARGET="_top"><IMG SRC="../../images/support.gif" WIDTH="74" HEIGHT="21"  BORDER=0 ALT="Support"></A><A HREF="http://www.microsoft.com/referral/default.asp" TARGET="_top"><IMG SRC="../../images/shop.gif" WIDTH="55" HEIGHT="21"  BORDER=0 ALT="Shop"></A><A HREF="http://www.microsoft.com/regwiz/regwiz.asp" TARGET="_top"><IMG SRC="../../images/write.gif" WIDTH="78" HEIGHT="21"  BORDER=0 ALT="Write Us"></A><IMG SRC="../../images/spacer.gif" WIDTH="49" HEIGHT="21"  BORDER=0 ALT="spacer.gif"></FONT></NOBR></TD><TD BGCOLOR="#000000" WIDTH="100%" HEIGHT=20></TD><TD WIDTH=91 ROWSPAN=2 ALIGN=RIGHT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,Helvetica" SIZE=1>
+<A HREF="http://www.microsoft.com" TARGET="_top"><IMG SRC="../../images/msft.gif" WIDTH="91" HEIGHT="21"  BORDER=0 ALT="Microsoft Home"></A></FONT></TD></TR><TR><TD BGCOLOR="#FFFFFF" WIDTH="100%" HEIGHT=1></TD></TR></TABLE>
+<!--TOOLBAR_END-->
+<TABLE BORDER=0 CELLPADDING=0 CELLSPACING=0 WIDTH="98%">
+<TR>
+<TD ROWSPAN=2 WIDTH=162 ALIGN="LEFT" VALIGN="TOP">
+<IMG SRC="../../images/titleAFC.gif" WIDTH="160" HEIGHT="108"  BORDER=0 ALT="AFC Samples"><TABLE CELLPADDING=0 CELLSPACING=0 BORDER=0 WIDTH="100%">
+<TR><TD WIDTH=10>&nbsp;</TD><TD VALIGN="top"><FONT FACE="Verdana,Arial,Helvetica" SIZE=1><B STYLE="color:#006699">In this topic</B><P><IMG SRC="../../images/linkbull.gif" WIDTH="10" HEIGHT="8"  BORDER=0 ALT="*"><A STYLE="color: #333366;text-decoration:none" HREF="afcsamp.htm#afcsamp_000000010c010000">Description</A>
+</FONT></TD></TR></TABLE>
+</TD>
+<TD WIDTH=20>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP">
+<P>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR>
+<TD WIDTH="355" VALIGN="bottom"><IMG SRC="../../images/afcsamp1.gif" WIDTH="355" HEIGHT="27"  BORDER=0 ALT="AFC Samples"></TD>
+<TD WIDTH=20>&nbsp;</TD>
+<TD ALIGN="center" VALIGN="bottom"><A HREF="../../JTreeVue/classes/afcsamp.htm"><IMG SRC="../../images/prevnrm.gif" WIDTH="51" HEIGHT="38"  BORDER=0 ALT="Previous"></A></TD><TD ALIGN="center" VALIGN="bottom"><A HREF="../../afcsamp.htm#afcsamp_0000000100000000"><IMG SRC="../../images/butt_gen.gif" WIDTH="51" HEIGHT="38"  BORDER=0 ALT="AFC Samples"></A></TD><TD ALIGN="center" VALIGN="bottom"><A HREF="../../AFCDetect/classes/afcsamp.htm"><IMG SRC="../../images/nextnrm.gif" WIDTH="51" HEIGHT="38"  BORDER=0 ALT="Next"></A></TD></TR>
+<TR>
+<TD WIDTH="355" ALIGN="right" VALIGN="top">&nbsp;</TD>
+<TD WIDTH=20>&nbsp;</TD>
+<TD ALIGN="center" VALIGN="top"><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="1">Previous</FONT></TD>
+<TD ALIGN="center" VALIGN="top"><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="1">AFC<BR>Samples</FONT></TD>
+<TD ALIGN="center" VALIGN="top"><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="1">Next</FONT></TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD WIDTH=20>&nbsp;</TD>
+<TD>
+<BR>
+<FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2">
+<BR><BR><H2 STYLE="color:#333366">The JNotepad Application</H2>
+<P>
+<H3 STYLE="color:#333366"><A NAME="afcsamp_000000010c010000">Description</A></H3><H4 STYLE="color:#333366"><A NAME="afcsamp_000000010c010100">JNotepad Class Structure</A></H4><P>This document contains technical information about the class structure and layout of JNotepad. JNotepad was written to be very extensible and reusable. Many classes in JNotepad can be easily taken out and used in your own applications. This is one of the major benefits of object-oriented programming; if done correctly, most classes can be self-contained and used outside of JNotepad. Read this document if you're interested in how JNotepad was designed and written and how you can use JNotepad classes in your own program. 
+
+<P>JNotepad contains extensive internal documentation in the JavaDoc format. To obtain this, use the javadoc tool to extract documentation from the JNotepad source code. Javadoc will create a set of nicely formatted web pages which will document every class, method, and interface. It will also construct a JNotepad class hierarchy, which is useful when trying to understand JNotepad.
+
+<P>The rest of this document contains a brief description of the JNotepad class structure. This will explain what classes do what, and how they communicate with each other. This is not intended to be a complete description of JNotepad, but simply to help you see where the major classes fit into the structure of the program and where to go for more specific information. The details of each class may be found in the Javadoc files and the source code.
+
+<H4 STYLE="color:#333366"><A NAME="afcsamp_000000010c010200">Startup</A></H4><P>Typically, the JNotePad application is run as a executable (the JNotepad.exe program in the Samples\AFC\JNotepad\Classes directory). However, you can also run JNotepad with the jview utility, using the following command line.</Font><pre>C:\..\Samples\AFC\JNotepad\Classes\>jview JNotepad</pre> 
+<FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2"><P>The JNotePad class is the main starting point of the program. JNotePad creates a JNotePadFrame as the main frame window. All user interface elements reside in this frame. JNotePadFrame creates all of the user interface items inside of it and handles the exit command.
+
+<H4 STYLE="color:#333366"><A NAME="afcsamp_000000010c010300">User Interface</A></H4><P>JNotepad consists of three main user interface components; the menubar (JNotepadMenubar), the toolbar (JNotepadToolbar), and the tab file viewer (JNoteTabFileViewer). 
+
+<H4 STYLE="color:#333366"><A NAME="afcsamp_000000010c010400">The Menu Bar</A></H4><P>JNoteMenubar encapsulates the menu bar at the top of the screen. It loads itself from a resource file and puts all of its elements in a hashtable for easy lookup later. When users select commands from the menu, it sends them to the <B>JNoteCommandObject</B> for processing. It also accepts state change commands (i.e. enabling and disabling menu items) via the <B>ICommandFeedback</B> interface. 
+
+<H4 STYLE="color:#333366"><A NAME="afcsamp_000000010c010500">The Toolbar</A></H4><P>JNoteToolbar holds the toolbar. It reads from the INI file the buttons it should display and what command is associated with each one. The commands the user chooses are sent to the <B>JNoteCommandObject</B> for processing. State change commands (i.e. enabling and disabling buttons) is done via the <B>ICommandFeedback</B> interface. Two private classes provide toolbar buttons (JNotePushButton) and the color choice controls (JNoteColorChoice). 
+
+<H4 STYLE="color:#333366"><A NAME="afcsamp_000000010c010600">The Tabviewer</A></H4><P>This is the class where JNotepad does most of its work. Each tab contains a JNoteUIEdit as the editing field. This edit control is linked to a FileControl object inside the tab viewer class. Disk files are linked to DiskFileControl objects, which is a subclass of FileControl. The tab viewer also creates a tab for the clipboard. The edit control on this tab is linked to a ClipboardControl object, which is also a descendant of FileControl. The tab viewer is split up into three classes which descend from one another. The uppermost parent is TabFileViewer. This class provides basic functionality. FeatureTabFileViewer extends TabFileViewer and adds support for plug in features and a tab context menu. JNoteTabFileViewer adds JNotepad specific functions, such as an About JNotepad dialog box and a properties dialog box. One can use any of these classes in one's own app, depending on how much functionality is needed. The tab file viewer supports both the IFileOperationTarget and the ITextOperationTarget interfaces and forwards all commands that come through this interface to either the FileControl object (which supports IFileOperationTarget) or the edit control (which supports ITextOperationTarget).
+
+<H4 STYLE="color:#333366"><A NAME="afcsamp_000000010c010700">The Edit Control</A></H4><P>The edit control JNoteUIEdit, which extends UIEdit and implements the ITextOperationTargetExt interface, handles the entry and display of text. It also supports a context menu (JNoteContextMenu). 
+
+<H4 STYLE="color:#333366"><A NAME="afcsamp_000000010c010800">Interfaces</A></H4><P>JNotePad. 
+
+<H4 STYLE="color:#333366"><A NAME="afcsamp_000000010c010900">Command Processing</A></H4><P>The JNoteCommandFeature (an extension of CommandFeature) handles command processing. All commands go here; all components in the system which generate commands have their command events intercepted via Java 1.1 listener interface. The JNoteCommandFeature has all command generating components register themselves with it. When the command is received, it is processed to determine what type of command it is, and the proper method in either the IFileOperationTarget interface or the ITextOperationTarget interface is called. JNoteCommandFeature sends all commands to the tab file viewer, which supports both the IFileOperationTarget and the ITextOperationTarget interfaces. The tab file viewer forwards these commands to either the current FileControl or the current JNoteUIEdit.
+
+<H4 STYLE="color:#333366"><A NAME="afcsamp_000000010c010a00">Command Feedback</A></H4><P>Components need some way to tell the system that a certain command is enabled or disabled so the user interface can update itself accordingly. This is done through the ICommandFeedback interface. CommandFeature implements this interface and handles all command state changes. When a command is enabled or disabled, it runs the enableCommand() method in the CommandFeature object. The CommandFeature then runs enableCommand() methods in all of the user interface componenets in the system. This lets the component update itself if it supports that command. There are similar methods for querying the state of a command and for setting and unsetting checks in check buttons. 
+
+
+<H4 STYLE="color:#333366"><A NAME="afcsamp_000000010c010b00">Helper Classes</A></H4><P>JNoteAppCommandFeature holds the application-wide ICommandFeature object; classes use this class to get the JNoteCommandFeature object they send commands to. JNoteAppCommandFeature also holds an application-wide ICommandFeedback feature for use in state updating. SettingsObject holds the settings for the entire program. These are user-definable options stored in a .ini file. 
+
+
+<P>
+</FONT>
+</TD>
+</TR>
+</TABLE>
+<CENTER>
+<P><TABLE WIDTH="95%"><TR><TD HEIGHT=1 BGCOLOR="RED"></TD></TR></TABLE>
+<TABLE WIDTH="100%"><TR>
+<TD ALIGN="left"><A HREF="#top"><IMG SRC="../../images/upnrm.gif" WIDTH="51" HEIGHT="38"  BORDER=0 ALT="Top"></A></TD>
+<TD ALIGN="right">
+<FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="1"></FONT></TD></TR></TABLE>
+</CENTER>
+</BODY></HTML>

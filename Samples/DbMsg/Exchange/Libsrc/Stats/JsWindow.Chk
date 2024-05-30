@@ -1,0 +1,366 @@
+// --jswindow.chk---------------------------------------------------------------
+//
+//  File containing parameter checking functions for jswindow.cpp.
+// 
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+// -----------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_CJSWindow_AdvanceToNow(a,b,c)        NOERROR
+#define CHK_CJSWindow_HrReset(a,b,c)             NOERROR
+#define CHK_CJSWindow_DataPoint(a,b,c,d)         NOERROR
+#define CHK_CJSWindow_HrGetValue(a,b,c,d)        NOERROR
+#define CHK_CJSWindowMin_DataPoint(a,b)          NOERROR
+#define CHK_CJSWindowMin_HrGetValue(a,b,c,d)     NOERROR
+#define CHK_CJSWindowMax_DataPoint(a,b)          NOERROR
+#define CHK_CJSWindowMax_HrGetValue(a,b,c,d)     NOERROR
+#define CHK_CJSWindowAverage_HrReset(a,b,c)      NOERROR
+#define CHK_CJSWindowAverage_DataPoint(a,b)      NOERROR
+#define CHK_CJSWindowAverage_HrGetValue(a,b,c,d) NOERROR
+#define CHK_CJSWindowTotal_HrReset(a,b,c)      NOERROR
+#define CHK_CJSWindowTotal_DataPoint(a,b)      NOERROR
+#define CHK_CJSWindowTotal_HrGetValue(a,b,c,d) NOERROR
+
+#else
+
+//$--CHK_CJSWindow_AdvanceToNow-------------------------------------------------
+//  Check the parameters for CJSWindow::AdvanceToNow().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_CJSWindow_AdvanceToNow(
+                                    // RETURNS: HRESULT
+    IN __int64 liNow,               // Current time.
+    OUT DWORD &dwFIFOOut,           // Data pushed out of the FIFO buffer
+	OUT BOOL &fAdvanced)            // returns TRUE if a jump happened
+{
+    HRESULT hr = NOERROR;
+
+    if (liNow == 0L)
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(&dwFIFOOut, sizeof(dwFIFOOut)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(&fAdvanced, sizeof(fAdvanced)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+    return(hr);
+}
+
+
+//$--CHK_CJSWindowTotal_HrReset-------------------------------------------------
+//  Check the parameters for CJSWindowTotal::HrReset().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_CJSWindowTotal_HrReset(
+                                   // RETURNS: HRESULT
+    IN __int64 liNow,              // The current time in arbitrary units.
+    IN __int64 liResolution,       // The resolution of the interval in arbitrary units.
+    IN DWORD dwWindowDuration)     // The interval duration expressed in multiples of
+                                   // resolution.
+{
+    HRESULT hr = NOERROR;
+
+    if (liNow == 0L)
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+    if (liResolution == 0L)
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+    return(hr);
+}
+
+
+//$--CHK_CJSWindowTotal_DataPoint-----------------------------------------------
+//  Check the parameters for CJSWindowTotal::DataPoint().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_CJSWindowTotal_DataPoint(
+                                    // RETURNS: HRESULT
+    IN __int64 liNow,               // Event time in arbitrary units.
+    IN DWORD dwValue)               // Number of events to add for this time.
+{
+    HRESULT hr = NOERROR;
+
+    if (liNow == 0L)
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+    return(hr);
+}
+
+
+//$--CHK_CJSWindowTotal_HrGetValue----------------------------------------------
+//  Check the parameters for CJSWindowTotal::HrGetValue().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_CJSWindowTotal_HrGetValue(
+                                        // RETURNS: HRESULT
+    IN __int64 liNow,                   // Current time expressed as FILETIME.
+    OUT DWORD &dwValue,                 // Receives window value.
+    OUT DWORD &dwFractionCompleteNum,   // numerator
+    OUT DWORD &dwFractionCompleteDen)   // denominator
+{
+    HRESULT hr = NOERROR;
+
+    if (liNow == 0L)
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(&dwValue, sizeof(dwValue)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(&dwFractionCompleteNum, sizeof(dwFractionCompleteNum)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(&dwFractionCompleteDen, sizeof(dwFractionCompleteDen)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+    return(hr);
+}
+
+
+//$--CHK_CJSWindowMin_DataPoint-------------------------------------------------
+//  Check the parameters for CJSWindowMin::DataPoint().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_CJSWindowMin_DataPoint(
+                                // RETURNS: HRESULT
+    IN __int64 liNow,           // Event time in arbirary units.
+    IN DWORD dwValue)           // Number of events to add for this time.
+{
+    HRESULT hr = NOERROR;
+
+    if (liNow == 0L)
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+    return(hr);
+}
+
+
+//$--CHK_CJSWindowMin_HrGetValue------------------------------------------------
+//  Check the parameters for CJSWindowMin::HrGetValue().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_CJSWindowMin_HrGetValue(
+                                        // RETURNS: HRESULT
+    IN __int64 liNow,                   // Current time expressed as FILETIME.
+    OUT DWORD &dwValue,                 // Receives window value.
+    OUT DWORD &dwFractionCompleteNum,   // numerator
+    OUT DWORD &dwFractionCompleteDen)   // denominator
+{
+    HRESULT hr = NOERROR;
+
+    if (liNow == 0L)
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(&dwValue, sizeof(dwValue)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(&dwFractionCompleteNum, sizeof(dwFractionCompleteNum)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(&dwFractionCompleteDen, sizeof(dwFractionCompleteDen)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+    return(hr);
+}
+
+
+//$--CHK_CJSWindowMax_DataPoint-------------------------------------------------
+//  Check the parameters for CJSWindowMax::DataPoint().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_CJSWindowMax_DataPoint(
+                                // RETURNS: HRESULT
+    IN __int64 liNow,           // Event time in arbirary units.
+    IN DWORD dwValue)           // Number of events to add for this time.
+{
+    HRESULT hr = NOERROR;
+
+    if (liNow == 0L)
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+    return(hr);
+}
+
+
+//$--CHK_CJSWindowMax_HrGetValue------------------------------------------------
+//  Check the parameters for CJSWindowMax::HrGetValue().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_CJSWindowMax_HrGetValue(
+                                       // RETURNS: HRESULT
+    IN __int64 liNow,                  // Current time expressed as FILETIME.
+    OUT DWORD &dwValue,                // Receives window value.
+    OUT DWORD &dwFractionCompleteNum,  // Numerator of fraction completed.
+    OUT DWORD &dwFractionCompleteDen)  // Denominator of fraction completed.
+{
+    HRESULT hr = NOERROR;
+
+    if (liNow == 0L)
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(&dwValue, sizeof(dwValue)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(&dwFractionCompleteNum, sizeof(dwFractionCompleteNum)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(&dwFractionCompleteDen, sizeof(dwFractionCompleteDen)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+    return(hr);
+}
+
+
+//$--CHK_CJSWindowAverage_HrReset-----------------------------------------------
+//  Check the parameters for CJSWindowAverage::HrReset().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_CJSWindowAverage_HrReset(
+                                   // RETURNS: HRESULT
+    IN __int64 liNow,              // The current time in arbitrary units.
+    IN __int64 liResolution,       // The resolution of the interval in arbitrary units.
+    IN DWORD dwWindowDuration)     // The interval duration expressed in multiples of
+                                   // resolution.
+{
+    HRESULT hr = NOERROR;
+
+    if (liNow == 0L)
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+    if (liResolution == 0L)
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+    return(hr);
+}
+
+
+//$--CHK_CJSWindowAverage_DataPoint---------------------------------------------
+//  Check the parameters for CJSWindowAverage::DataPoint().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_CJSWindowAverage_DataPoint(
+                                  // RETURNS: HRESULT
+    IN __int64 liNow,             // Event time in arbirary units.
+    IN DWORD dwValue)             // Number of events to add for this time.
+{
+    HRESULT hr = NOERROR;
+
+    if (liNow == 0L)
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+    return(hr);
+}
+
+
+//$--CHK_CJSWindowAverage_HrGetValue--------------------------------------------
+//  Check the parameters for CJSWindowAverage::HrGetValue().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_CJSWindowAverage_HrGetValue(
+                                        // RETURNS: HRESULT
+    IN __int64 liNow,                   // Current time expressed as FILETIME.
+    OUT DWORD &dwValue,                 // Receives window value.
+    OUT DWORD &dwFractionCompleteNum,   // numerator
+    OUT DWORD &dwFractionCompleteDen)   // denominator
+{
+    HRESULT hr = NOERROR;
+
+    if (liNow == 0L)
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(&dwValue, sizeof(dwValue)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(&dwFractionCompleteNum, sizeof(dwFractionCompleteNum)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(&dwFractionCompleteDen, sizeof(dwFractionCompleteDen)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+    return(hr);
+}
+
+#endif /* DEBUG */

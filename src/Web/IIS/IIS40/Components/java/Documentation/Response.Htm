@@ -1,0 +1,270 @@
+<html>
+
+<head>
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 3.0">
+<title>Response</title>
+<meta NAME="Version" CONTENT="8.0.3410">
+<meta NAME="Date" CONTENT="10/11/96">
+<meta NAME="Template" CONTENT="C:\Program Files\Office\Office\HTML.DOT">
+</head>
+
+<body TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<font FACE="Arial" SIZE="4"><b>
+
+<p><a NAME="_Toc397403940">Response</a></p>
+</b></font>
+
+<p>You can use the <b>Response </b>object to send output to the client.<font
+FACE="Courier New" SIZE="1"> 
+
+<dir>
+  </font><font FACE="Courier New" size="2">public class Response extends OutputStream<br>
+  {<br>
+<blockquote>
+    public void <a HREF="#addHeader">addHeader</a>(String name, String value);<br>
+    public Boolean <a HREF="#getBuffered">getBuffered</a>();<br>
+    public void <a HREF="#setBuffered">setBuffered</a>(Boolean fIsBuffered);<br>
+    public int <a HREF="#getExpires">getExpires</a>();<br>
+    public void <a HREF="#setExpires">setExpires</a>(int iExpirationMinutes);<br>
+    public Date <a HREF="#getExpiresAbsolute">getExpiresAbsolute</a>();<br>
+    public void <a HREF="#setExpiresAbsolute">setExpiresAbsolute</a>(Date dateExpire);<br>
+    public String <a HREF="#getCharSet">getCharSet</a>();<br>
+    public void <a HREF="#setCharSet">setCharSet</a>(String strCharSet);<br>
+    public String <a HREF="#getContentType">getContentType</a>();<br>
+    public void <a HREF="#setContentType">setContentType</a>(String strContentType);<br>
+    public String <a HREF="#getCacheControl">getCacheControl</a>();<br>
+    public void <a HREF="#setCacheControl">setCacheControl</a>(String strCacheControl);<br>
+    public String <a HREF="#getStatus">getStatus</a>();<br>
+    public void <a HREF="#setStatus">setStatus</a>(String strStatus);<br>
+    public void <a HREF="#appendToLog">appendToLog</a>(String s);<br>
+    public Boolean <a HREF="#isClientConnected">isClientConnected</a>();<br>
+    public void <a HREF="#end">end</a>();<br>
+    public void <a HREF="#clear">clear</a>();<br>
+    public void <a HREF="#write">write</a>(String str);<br>
+    public void <a HREF="#pics">pics</a>(String str);<br>
+    public void <a HREF="#redirect">redirect</a>(String str);<br>
+    // java.io.OutputStream Methods <br>
+    public void <a HREF="#write2">write</a>(int i) throws IOException,<br>
+    <blockquote>
+      <blockquote>
+        <blockquote>
+          <blockquote>
+            <blockquote>
+              <blockquote>
+                <blockquote>
+                  NullPointerException,<br>
+                  IndexOutOfBoundsException;<br>
+                </blockquote>
+              </blockquote>
+            </blockquote>
+          </blockquote>
+        </blockquote>
+      </blockquote>
+    </blockquote>
+    public void <a HREF="#write3">write</a>(byte[] b) throws IOException,<br>
+    <blockquote>
+      <blockquote>
+        <blockquote>
+          <blockquote>
+            <blockquote>
+              <blockquote>
+                <blockquote>
+                  NullPointerException,<br>
+                  IndexOutOfBoundsException;<br>
+                </blockquote>
+              </blockquote>
+            </blockquote>
+          </blockquote>
+        </blockquote>
+      </blockquote>
+    </blockquote>
+    public void <a HREF="#write4">write</a>(byte[] b, int off, int len) throws IOException,<br>
+    <blockquote>
+      <blockquote>
+        <blockquote>
+          <blockquote>
+            <blockquote>
+              <blockquote>
+                <blockquote>
+                  <blockquote>
+                    <blockquote>
+                      NullPointerException,<br>
+                      IndexOutOfBoundsException;<br>
+                    </blockquote>
+                  </blockquote>
+                </blockquote>
+              </blockquote>
+            </blockquote>
+          </blockquote>
+        </blockquote>
+      </blockquote>
+    </blockquote>
+    public void <a HREF="#close">close</a>() throws IOException;<br>
+    public void <a HREF="#flush">flush</a>() throws IOException<br>
+  </blockquote>
+  };<br>
+  </font><font FACE="Courier New" SIZE="1">&nbsp;<br>
+</dir>
+</font>
+
+<hr>
+<font FACE="Arial"><b>
+
+<p><em><font color="#0000A0">Response Methods</font></em></p>
+
+<p><a NAME="addHeader"></a>public void addHeader(String name, String value) </p>
+</b></font>
+
+<p>Sets the HTML header <i>name</i> to <i>value</i>. </p>
+<font FACE="Arial"><b>
+
+<p><a NAME="getBuffered"></a>public Boolean getBuffered()<br>
+<a NAME="setBuffered"></a>public void setBuffered(Boolean fIsBuffered);</p>
+</b></font>
+
+<p>Indicates whether page output is buffered.</p>
+<font FACE="Arial"><b>
+
+<p><a NAME="getExpires"></a>public int getExpires();<br>
+<a NAME="setExpires"></a>public void setExpires(int iExpirationMinutes);</p>
+</b></font>
+
+<p>Specifies the length of time before a page cached on a browser expires.</p>
+<font FACE="Arial"><b>
+
+<p><a NAME="getExpiresAbsolute"></a>public Date
+getExpiresAbsolute();<br>
+<a NAME="setExpiresAbsolute"></a>public void setExpiresAbsolute(Date dateExpire);</p>
+</b></font>
+
+<p>Specifies the date and time on which a page cached on a browser expires.</p>
+<font FACE="Arial"><b>
+
+<p><a NAME="getCharSet"></a>public String getCharSet()<br>
+<a NAME="setCharSet"></a>public void setCharSet(String strCharSet)</p>
+</b></font>
+
+<p>Appends the name of the character set to the content-type header.</p>
+<font FACE="Arial"><b>
+
+<p><a NAME="getContentType"></a>public String
+getContentType();<br>
+<a NAME="setContentType"></a>public void setContentType(String strContentType)</p>
+</b></font>
+
+<p>Specifies the HTTP content type for the response. </p>
+<font FACE="Arial"><b>
+
+<p><a NAME="getCacheControl"></a>public String
+getCacheControl()<br>
+<a NAME="setCacheControl"></a>public void setCacheControl(String strCacheControl)</p>
+</b></font>
+
+<p>Specifies the HTTP Cache Control header. You can set this to any legal HTTP Cache
+Control header value.&nbsp; By setting the value to TRUE, proxy servers will be able to
+cache output from ASP pages.</p>
+<font FACE="Arial"><b>
+
+<p><a NAME="getStatus"></a>public String getStatus()<br>
+<a NAME="setStatus"></a>public void setStatus(String strStatus)</p>
+</b></font>
+
+<p>The value of the status line returned by the server. </p>
+<font FACE="Arial"><b>
+
+<p><a NAME="appendToLog"></a>public void appendToLog(String s)</p>
+</b></font>
+
+<p>Adds a string to the end of the Web server log entry for this request.</p>
+<font FACE="Arial"><b>
+
+<p><a NAME="isClientConnected"></a>public Boolean isClientConnected()</p>
+</b></font>
+
+<p>Indicates whether the client has disconnected from the server.</p>
+<font FACE="Arial"><b>
+
+<p><a NAME="end"></a>public void end()</p>
+</b></font>
+
+<p>Stops processing the .asp file and returns the current result. </p>
+<font FACE="Arial"><b>
+
+<p><a NAME="clear"></a>public void clear()</p>
+</b></font>
+
+<p>Erases any buffered output. </p>
+<font FACE="Arial"><b>
+
+<p><a NAME="pics"></a>public void pics(String str)</p>
+</b></font>
+
+<p>Adds the value of a PICS label to the pics-label field of the response header.</p>
+<font FACE="Arial"><b>
+
+<p><a NAME="redirect"></a>public void redirect(String str)</p>
+</b></font>
+
+<p>Sends a redirect message to the browser, causing it to attempt to connect to a
+different URL. </p>
+<font FACE="Arial"><b>
+
+<p><a NAME="write"></a>public void write(String str)</p>
+</b></font>
+
+<p>Writes a variable to the current HTTP output as a string. Since the <b>String </b>object
+is UNICODE, it is first translated to ANSI prior to being sent.</p>
+<font FACE="Arial"><b>
+
+<p><font color="#0000A0"><em>java.io.OutputStream Methods</em></font></p>
+
+
+<p>public void <a NAME="write2">write</a>(int i) throws IOException, NullPointerException,
+IndexOutOfBoundsException;</p>
+</b></font><font FACE="Courier New" SIZE="1">
+
+<p></font>Writes a single byte to the HTTP output. The byte is taken from the
+low-order 8 bits of the argument <em>i</em>.<font FACE="Courier New" SIZE="1"></p>
+</font>
+
+<p>For more information, see java.io.OutputStream. </p>
+<font FACE="Arial"><b>
+
+<p>public void <a NAME="write3">write</a>(byte[ ] b) throws IOException,
+NullPointerException, IndexOutOfBoundsException</p>
+</b></font><font FACE="Courier New" SIZE="1">
+
+<p></font>Writes the bytes contained in the array <em>b</em>, as if each byte, from 0 to
+b.length-1, were written individually.<font FACE="Courier New" SIZE="1"></p>
+</font>
+
+<p>For more information, see java.io.OutputStream.</p>
+<font FACE="Arial"><b>
+
+<p>public void <a NAME="write4">write</a>(byte[ ] b, int off, int len) throws IOException,
+NullPointerException, IndexOutOfBoundsException</p>
+</b></font><font FACE="Courier New" SIZE="1">
+
+<p></font>Writes the bytes contained in the array <em>b</em>, as if each byte, from off to
+off+len-1, were written individually.<font FACE="Courier New" SIZE="1"></p>
+</font>
+
+<p>For more information, see java.io.OutputStream.</p>
+<font FACE="Arial"><b>
+
+<p>public void <a NAME="close">close</a>() throws IOException</p>
+
+<p></b></font>Closes the HTTP output stream.</p>
+
+<p>For more information, see java.io.OutputStream. <font FACE="Arial"><b></p>
+
+<p>public void <a NAME="flush">flush</a>() throws IOException</p>
+</b></font>
+
+<p>Causes any data written to the HTTP output stream that has been buffered to be actually
+sent to the client.</p>
+
+<p>For more information, see java.io.OutputStream.</p>
+</body>
+</html>

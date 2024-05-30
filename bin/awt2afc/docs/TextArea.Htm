@@ -1,0 +1,236 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>TextArea -> UIEdit</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">TextArea to UIEdit</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.TextArea should be transformed into instances of
+com.ms.ui.UIEdit.</p>
+
+<p align="left">TextArea extends <a href="TextComponent.htm"
+target="descriptions">TextComponent</a>: be sure to see its
+changes.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">AWT's TextArea class implements multi-line
+textual user input components. AFC's UIEdit is a generic edit box
+which can be either single-line or multi-line. To specify a
+preferred or minimum size for a UIEdit control, you must create a
+new class which extends UIEdit and overrides the <font size="2"
+face="Courier">getPreferredSize()</font> or <font size="2"
+face="Courier">getMinimumSize()</font> method.</p>
+
+<p align="left">UIEdit has some different defaults than TextArea:
+first, it does not add scroll bars automatically, and so if you
+would like scroll bars, a UIEdit object needs to be dropped into
+a UIScrollViewer. Also, while TextArea starts with a white
+background, UIEdit's is grey. So to mimic a TextArea exactly,
+your code would be like</p>
+
+<p align="left"><font face="Courier">UIEdit textBox = new
+UIEdit();<br>
+textBox.setBackground(FxColor.white);<br>
+add(new UIScrollViewer(textBox));</font></p>
+
+<p align="left">UIEdit extends UIDrawText, a class that provides
+many new options: you can set alignments, foreground and
+background colors, word wrapping, and many others. See the
+documentation for UIDrawText for many more options.</p>
+
+<p align="left">&nbsp;</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">This is the set of changes you need to make to
+port all TextArea methods to UIText methods. Any method not
+listed here or below does not need to be changed.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial"><strong>AWT Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">TextArea() or<br>
+        TextArea(String)</font></td>
+        <td nowrap><font size="2" face="Courier">UIEdit or<br>
+        UIEdit(String)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">insertText(String,
+        int)</font></td>
+        <td nowrap><font size="2" face="Courier">insert(String,
+        int)</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">minimumSize()</font></td>
+        <td><font size="2" face="Courier">getMinimumSize()</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">preferredSize()</font></td>
+        <td><font size="2" face="Courier">getPreferredSize()</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h3>Unsupported Methods</h3>
+
+<p>Some methods in java.awt.TextArea are not directly supported
+in com.ms.ui.UIText. Those methods and suggested changes are
+described here.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial">AWT Code<strong>/Suggested
+        AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">TextArea(int,
+        int)</font><p><font size="2" face="Courier"><strong>UIEdit(),
+        plus <br>
+        UIScrollViewer changes</strong></font></p>
+        </td>
+        <td><font size="2">in UIEdit, you cannot manipulate the
+        number of visible rows or columns: you can make changes
+        in UIScrollViewer to do that. See documentation.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">TextArea(String,
+        int, int)</font><p><font size="2" face="Courier"><strong>UIEdit(String),
+        plus<br>
+        UIScrollViewer changes</strong></font></p>
+        </td>
+        <td><font size="2">in UIEdit, you cannot manipulate the
+        number of visible rows or columns: you can make changes
+        in UIScrollViewer to do that. See documentation.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">TextArea(String, int,
+        int, int)</font><p><font size="2" face="Courier"><strong>UIEdit(String),
+        plus<br>
+        UIScrollViewer changes</strong></font></p>
+        </td>
+        <td><font size="2">in UIEdit, you cannot manipulate the
+        number of visible rows or columns: you can make changes
+        in UIScrollViewer to do that. See documentation.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getColumns()</font><p><font
+        size="2" face="Courier"><strong>(see UIScrollViewer)</strong></font></p>
+        </td>
+        <td><font size="2">UIEdit has no control over the visible
+        number of columns: you can make changes in UIScrollViewer
+        to do that.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getMinimumSize(int,
+        int)</font><p><font size="2" face="Courier"><strong>(no
+        suggestions)</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getPreferredSize(int,
+        int)</font><p><font size="2" face="Courier"><strong>(no
+        suggestions)</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getRows()</font><p><font
+        size="2" face="Courier"><strong>(see UIScrollViewer)</strong></font></p>
+        </td>
+        <td><font size="2">UIEdit has no control over the visible
+        number of rows: you can make changes in UIScrollViewer to
+        do that.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">getScrollbarVisibility()</font><p><font
+        size="2" face="Courier"><strong>(UIScrollViewer
+        object).getScrollPage()</strong></font></p>
+        </td>
+        <td><font size="2">See usage above and documentation.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">minimumSize(int, int)</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">paramString()</font><p><font
+        size="2" face="Courier"><strong>getName(), etc.</strong></font></p>
+        </td>
+        <td><font size="2">Use the getXXX methods to find the
+        exact information you need.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">preferredSize(int, int)</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">replaceRange(String,
+        int, int)</font><p><font size="2" face="Courier"><strong>(no
+        suggestions)</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">replaceText(String,
+        int, int)</font><p><font size="2" face="Courier"><strong>(no
+        suggestions)</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setColumns(int)</font><p><font
+        size="2" face="Courier"><strong>(see UIScrollViewer)</strong></font></p>
+        </td>
+        <td><font size="2">UIEdit has no control over the visible
+        number of columns: you can make changes in UIScrollViewer
+        to do that.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setRows(int)</font><p><font
+        size="2" face="Courier"><strong>(see UIScrollViewer)</strong></font></p>
+        </td>
+        <td><font size="2">UIEdit has no control over the visible
+        number of rows: you can make changes in UIScrollViewer to
+        do that.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">SCROLLBARS_BOTH<br>
+        SCROLLBARS_HORIZONTAL_ONLY<br>
+        SCROLLBARS_NONE<br>
+        SCROLLBARS_VERTICAL_ONLY</font><p><font size="2"
+        face="Courier"><strong>(see UIScrollViewer)</strong></font></p>
+        </td>
+        <td><font size="2">These kinds of settings need to be set
+        using the styles in UIScrollViewer.</font></td>
+    </tr>
+</table>
+</body>
+</html>

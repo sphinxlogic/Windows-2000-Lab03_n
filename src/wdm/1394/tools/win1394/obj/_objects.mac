@@ -1,0 +1,44 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\win1394.res \
+    $(_OBJ_DIR)\alpha\1394.obj \
+    $(_OBJ_DIR)\alpha\async.obj \
+    $(_OBJ_DIR)\alpha\debug.obj \
+    $(_OBJ_DIR)\alpha\isoch.obj \
+    $(_OBJ_DIR)\alpha\util.obj \
+    $(_OBJ_DIR)\alpha\win1394.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\win1394.res \
+    $(_OBJ_DIR)\axp64\1394.obj \
+    $(_OBJ_DIR)\axp64\async.obj \
+    $(_OBJ_DIR)\axp64\debug.obj \
+    $(_OBJ_DIR)\axp64\isoch.obj \
+    $(_OBJ_DIR)\axp64\util.obj \
+    $(_OBJ_DIR)\axp64\win1394.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\win1394.res \
+    $(_OBJ_DIR)\i386\1394.obj \
+    $(_OBJ_DIR)\i386\async.obj \
+    $(_OBJ_DIR)\i386\debug.obj \
+    $(_OBJ_DIR)\i386\isoch.obj \
+    $(_OBJ_DIR)\i386\util.obj \
+    $(_OBJ_DIR)\i386\win1394.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\win1394.res \
+    $(_OBJ_DIR)\ia64\1394.obj \
+    $(_OBJ_DIR)\ia64\async.obj \
+    $(_OBJ_DIR)\ia64\debug.obj \
+    $(_OBJ_DIR)\ia64\isoch.obj \
+    $(_OBJ_DIR)\ia64\util.obj \
+    $(_OBJ_DIR)\ia64\win1394.obj
+
+PASS0_IA64_OBJECTS=
+

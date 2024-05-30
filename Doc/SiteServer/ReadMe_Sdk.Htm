@@ -1,0 +1,169 @@
+<html>
+
+<head>
+<title>Site Server 3.0 SDK version 1.1 Readme</title>
+</head>
+
+<body BGCOLOR="#FFFFFF" TOPMARGIN="0" LEFTMARGIN="10" TEXT="#000000">
+<font FACE="Verdana, Arial, Helevetica">
+
+<p><img SRC="title_bg7.gif" width="1200" height="28"> </p>
+
+<p><font SIZE="+2" FACE="Verdana, Arial, Helevetica">Site Server 3.0 SDK version 1.1
+Readme</font> </p>
+
+<p>This readme contains important, late-breaking information about the Microsoft® Site
+Server SDK version 1.1. You can access updated versions of this SDK on the Web, a
+component of the <a HREF="http://www.microsoft.com/msdn/sdk/siteserver.htm">Microsoft
+Platform SDK</a>.</p>
+
+<h2>Known Issues</h2>
+
+<p>The following are known issues for this release: </p>
+
+<h3>General</h3>
+
+<p>Microsoft recommends that Java programmers use the latest Java SDK tools for accessing
+COM objects. </p>
+
+<p>You must use Microsoft® Internet Explorer 4.<em>x</em> in order to read the
+documentation.</p>
+
+<h3>Content Deployment</h3>
+
+<ul>
+  <li>Be careful when using the <strong>ReplicationEvent</strong> interface in Visual Basic to
+    access the event parameter passed to <strong>SiteServerEventSink_OnEvent</strong>(). If
+    your code accesses the <strong>ReplicationEvent.NumFiles</strong> property, it can cause
+    an access violation when the Content Deployment service, Crssrv.exe, shuts down. <br>
+  </li>
+  <li>The required Active project properties are the same as those required for Push projects,
+    with the following differences:</li>
+  <blockquote>
+    <table border="1" width="94%">
+      <tr>
+        <td width="40%"><strong>Name</strong></td>
+        <td width="60%"><strong>Description</strong></td>
+      </tr>
+      <tr>
+        <td width="40%">ReplicationMethod = &quot;active&quot;</td>
+        <td width="60%">Set this property to &quot;active&quot; for Active projects.</td>
+      </tr>
+      <tr>
+        <td width="40%">LocalDirectory = <em>CAB_File</em></td>
+        <td width="60%">This property is the (Unicode) name of the local CAB file. It cannot be
+        empty (&quot;&quot;).</td>
+      </tr>
+      <tr>
+        <td width="40%"><em>Flags = 0</em></td>
+        <td width="60%">&nbsp;</td>
+      </tr>
+    </table>
+  </blockquote>
+  <li>The required Metabase project properties are as follows (any other values are invalid):</li>
+  <blockquote>
+    <table border="1" width="94%">
+      <tr>
+        <td width="40%"><strong>Name</strong></td>
+        <td width="60%"><strong>Description</strong></td>
+      </tr>
+      <tr>
+        <td width="40%">ReplicationMethod = &quot;SendInet&quot;</td>
+        <td width="60%">Set this property to &quot;SendInet&quot; for Metabase projects.</td>
+      </tr>
+      <tr>
+        <td width="40%">LocalDirectory = <em>WebSiteName</em></td>
+        <td width="60%">This property is the name of the Web site to which the Metabase
+        information is replicated.</td>
+      </tr>
+      <tr>
+        <td width="40%">MetabaseReplication = Yes</td>
+        <td width="60%">Set this property to Yes for Metabase projects.</td>
+      </tr>
+      <tr>
+        <td width="40%">Flags = RF_FORCE_REPL OR<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RF_FASTMODE</td>
+        <td width="60%" valign="top">This property consists of bitmapped values that you can OR
+        together as needed.</td>
+      </tr>
+    </table>
+  </blockquote>
+  <li>The <em>Include</em> directory contains the following files that you can use when
+    programming Content Deployment administrative tasks in various programming languages:</li>
+  <blockquote>
+    <table border="1" width="94%">
+      <tr>
+        <td width="40%"><strong>Name</strong></td>
+        <td width="60%"><strong>Contents</strong></td>
+      </tr>
+      <tr>
+        <td width="40%"><em>Crsmsg.bas</em></td>
+        <td width="60%">Status code definitions for Visual Basic</td>
+      </tr>
+      <tr>
+        <td width="40%"><em>Crsmsg.h</em></td>
+        <td width="60%">Status code definitions for C/C++</td>
+      </tr>
+      <tr>
+        <td width="40%"><em>Crsmsg.inc</em></td>
+        <td width="60%">Status code definitions for VBScript</td>
+      </tr>
+      <tr>
+        <td width="40%"><em>Crstypes.bas</em></td>
+        <td width="60%" valign="top">Type information for Visual Basic</td>
+      </tr>
+      <tr>
+        <td width="40%"><em>Crstypes.h</em></td>
+        <td width="60%" valign="top">Type information for C/C++</td>
+      </tr>
+      <tr>
+        <td width="40%"><em>Crstypes.inc</em></td>
+        <td width="60%" valign="top">Type information for VBScript</td>
+      </tr>
+    </table>
+  </blockquote>
+</ul>
+
+<h3>Personalization and Membership</h3>
+
+<p>The following information should be used in addition to the sample.doc found in the
+\Samples\Siteserver\PM\Docs directory. This information applies to the samples within the
+\Samples\Siteserver\Pm directory. Specific file names are referenced below.</p>
+
+<blockquote>
+  <p>The sample.doc file makes reference to &quot;DN&quot; and &quot;CN&quot;. DN is the
+  Distinguished Name which looks like &quot;<em>o=Microsoft,ou=Admin,cn=Schema</em>&quot;.
+  CN is the Common Name and looks like &quot;<em>cn=Schema</em>&quot;. <br>
+  <br>
+  The &quot;<em>server:host</em>&quot; for the local physical machine is localhost:1002
+  unless you have changed the port number.<br>
+  <br>
+  <strong><em>SetAttribute.vbs</em></strong><br>
+  &nbsp;&nbsp;&nbsp; The file format used is specified within the vbs file itself.<br>
+  <strong><em>CancelUsers.vbs</em></strong><br>
+  &nbsp;&nbsp;&nbsp; The attribute to cancel users is LASTVISIT.<br>
+  <strong><em>ModifyAttribute.vbs</em></strong><br>
+  &nbsp;&nbsp;&nbsp; Only the DisplayName,Description, and Constraint can be changed.<br>
+  <strong><em>VerifPwd.vbs</em></strong><br>
+  &nbsp;&nbsp;&nbsp; This sample only works if Forms Authentication is used. Once the
+  name/password is copied from the NT user account to the MDM, any authenication model can
+  be used. On a default installation, you should not have to change the user name or
+  password in the file.<br>
+  <strong><em>Logoff.asp</em></strong><br>
+  &nbsp;&nbsp;&nbsp; This file should be used for Kiosk-type clients where there are many
+  users. This example removes the GUID from the cookie file.<br>
+  <em><strong>DumpACL.vbs</strong></em><br>
+  &nbsp;&nbsp;&nbsp; You must have anonymous access checked on your LDAP server for this to
+  work correctly.<br>
+  </p>
+</blockquote>
+
+<p>&nbsp;</p>
+
+<hr>
+
+<p ALIGN="CENTER"><a HREF="legalsdk.htm"><em><font FACE="Verdana, Arial" COLOR="#0000ff">©
+1997-1998 Microsoft Corporation. All rights reserved.</font></em></p>
+</a></font>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<html>
+
+<head>
+<meta name="GENERATOR" content="Microsoft FrontPage 3.0">
+<title>RequestDictionary</title>
+</head>
+
+<body>
+
+<body TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<font FACE="Arial" SIZE="4"><b>
+
+<p><a NAME="_Toc397403949">RequestDictionary</a></p>
+</b></font>
+
+<p>The class RequestDictionary is used to encapsulate the various collections exposed by
+the <strong>Request</strong> object.&nbsp; Since they represent information sent from the
+client to the server, they are read-only.</p>
+
+<blockquote>
+  <font FACE="Courier New" SIZE="1"><p></font><font face="Courier New"><small>public class
+  RequestDictionary extends java.util.Dictionary<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  implements aspcomp.Enumerator,</small><br>
+  <small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  aspcomp.Map<br>
+  {<br>
+  &nbsp;&nbsp;&nbsp; public int <a HREF="#getCount">getCount</a>();<br>
+  <br>
+  &nbsp;&nbsp;&nbsp; // java.util.Dictionary Methods<br>
+  <br>
+  &nbsp;&nbsp;&nbsp; public Object <a HREF="#get">get</a>(Object key) throws
+  AspComponentException;<br>
+  &nbsp;&nbsp;&nbsp; public Object <a HREF="#put">put</a>(Object key, Object value) throws
+  AspComponentException;<br>
+  &nbsp;&nbsp;&nbsp; public int <a HREF="#size">size</a>();<br>
+  &nbsp;&nbsp;&nbsp; public Boolean <a HREF="#isEmpty">isEmpty</a>();<br>
+  &nbsp;&nbsp;&nbsp; public Enumeration <a HREF="#keys">keys</a>();<br>
+  &nbsp;&nbsp;&nbsp; public Enumeration <a HREF="#elements">elements</a>();<br>
+  &nbsp;&nbsp;&nbsp; public Object <a HREF="#remove">remove</a>(Object key) throws
+  AspComponentException;<br>
+  <br>
+  &nbsp;&nbsp;&nbsp; // Map Methods<br>
+  <br>
+  &nbsp;&nbsp;&nbsp; public int <a HREF="#getType">getType</a>(String name);<br>
+  &nbsp;&nbsp;&nbsp; public Boolean <a HREF="#getBoolean">getBoolean</a>(String name) throws
+  ClassCastException;<br>
+  &nbsp;&nbsp;&nbsp; public byte <a HREF="#getByte">getByte</a>(String name) throws
+  ClassCastException;<br>
+  &nbsp;&nbsp;&nbsp; public short <a HREF="#getShort">getShort</a>(String name) throws
+  ClassCastException;<br>
+  &nbsp;&nbsp;&nbsp; public char <a HREF="#getChar">getChar</a>(String name) throws
+  ClassCastException;<br>
+  &nbsp;&nbsp;&nbsp; public int <a HREF="#getInt">getInt</a>(String name) throws
+  ClassCastException;<br>
+  &nbsp;&nbsp;&nbsp; public long <a HREF="#getLong">getLong</a>(String name) throws
+  ClassCastException;<br>
+  &nbsp;&nbsp;&nbsp; public float <a HREF="#getFloat">getFloat</a>(String name) throws
+  ClassCastException;<br>
+  &nbsp;&nbsp;&nbsp; public double <a HREF="#getDouble">getDouble</a>(String name) throws
+  ClassCastException;<br>
+  &nbsp;&nbsp;&nbsp; public String <a HREF="#getString">getString</a>(String name) throws
+  ClassCastException;<br>
+  &nbsp;&nbsp;&nbsp; public Date <a HREF="#getDate">getDate</a>(String name) throws
+  ClassCastException;<br>
+  &nbsp;&nbsp;&nbsp; public Object <a HREF="#getObject">getObject</a>(String name) throws
+  ClassCastException;<br>
+  &nbsp;&nbsp;&nbsp; public Variant <a HREF="#getVariant">getVariant</a>(String name) throws
+  ClassCastException;<br>
+  &nbsp;&nbsp;&nbsp; public void <a HREF="#setObject">setObject</a>(String name, Object o)
+  throws AspComponentException;<br>
+  &nbsp;&nbsp;&nbsp; public void <a HREF="#setBoolean">setBoolean</a>(String name, Boolean b)
+  throws AspComponentException;<br>
+  &nbsp;&nbsp;&nbsp; public void <a HREF="#setByte">setByte</a>(String name, byte b) throws
+  AspComponentException;<br>
+  &nbsp;&nbsp;&nbsp; public void <a HREF="#setShort">setShort</a>(String name, short v)
+  throws AspComponentException;<br>
+  &nbsp;&nbsp;&nbsp; public void <a HREF="#setInt">setInt</a>(String name, int v) throws
+  AspComponentException;<br>
+  &nbsp;&nbsp;&nbsp; public void <a HREF="#setFloat">setFloat</a>(String name, float v)
+  throws AspComponentException;<br>
+  &nbsp;&nbsp;&nbsp; public void <a HREF="#setDouble">setDouble</a>(String name, double v)
+  throws AspComponentException;<br>
+  &nbsp;&nbsp;&nbsp; public void <a HREF="#setString">setString</a>(String name, String v)
+  throws AspComponentException;<br>
+  &nbsp;&nbsp;&nbsp; public void <a HREF="#setDate">setDate</a>(String name, Date v) throws
+  AspComponentException;<br>
+  &nbsp;&nbsp;&nbsp; public void <a HREF="#setVariant">setVariant</a>(String name, Variant
+  var) throws AspComponentException;</small><br>
+  <br>
+  <small>&nbsp;&nbsp;&nbsp; // Enumeration methods<br>
+  </small><br>
+  <small>&nbsp;&nbsp;&nbsp; public Boolean <a HREF="#hasMoreElements">hasMoreElements</a>();<br>
+  &nbsp;&nbsp;&nbsp; public Object <a HREF="#nextElement">nextElement</a>() throws
+  NoSuchElementException;<br>
+  &nbsp;&nbsp;&nbsp; public void <a HREF="#reset">reset</a>();<br>
+  &nbsp;&nbsp;&nbsp; public Object <a HREF="#clone">clone</a>();<br>
+  }</small></font><font size="1"></p>
+  </font>
+</blockquote>
+
+<hr>
+
+<p><font face="Arial" size="3" color="#0000A0"><em><strong>RequestDictionary Members</strong></em></font><font
+face="Arial" size="3"></p>
+
+<p><strong>public int <a NAME="getCount"></a>getCount( );</strong></p>
+
+<p></font>Returns the number of items in the collection.</p>
+<font face="Arial" size="3"><b>
+
+<p><font color="#0000A0"><em>java.util.Dictionary Methods</em></font></p>
+</b></font>
+
+<p><font face="Arial" size="3"><b>public Object <a NAME="get"></a>get(Object key);</p>
+
+<p></b></font>Returns the Object for the specified key. If no Object exists for the
+specified key, null will be returned.</p>
+
+<p>Note that <em>key</em> must be of type <strong>String</strong>.</p>
+
+<p><font face="Arial" size="3"><b>public Object <a NAME="put"></a>put(Object key, Object
+value);</p>
+
+<p></b></font>Since RequestDictionary objects are read-only, this method is not valid, and
+will throw an AspComponentException if called.</p>
+
+<p><font face="Arial" size="3"><b>public int <a NAME="size"></a>size( );</p>
+
+<p></b></font>Returns the number of entries in the dictionary.</p>
+
+<p><font face="Arial" size="3"><b>public Boolean <a NAME="isEmpty"></a>isEmpty( );</p>
+
+<p></b></font>Returns true only if the dictionary contains no entries.</p>
+
+<p><font face="Arial" size="3"><b>public Enumeration <a NAME="keys"></a>keys( );</p>
+
+<p></b></font>Returns an Enumeration that will enumerate through all of the keys contained in the  
+ dictionary.</p>
+
+<p><font face="Arial" size="3"><b>public Enumeration <a NAME="elements"></a>elements( );</p>
+
+<p></b></font>Returns an Enumeration that will enumerate through all of the entries contained in the dictionary. </p>
+
+<p><font face="Arial" size="3"><b>public Object <a NAME="remove"></a>remove(Object key);</p>
+
+<p></b></font>Since RequestDictionary objects are read-only, this method is not valid, and
+will throw an AspComponentException if called.</p>
+
+<p><b><font face="Arial" size="3"><font color="#0000A0"><em>Map Methods</em></font></p>
+</font><font FACE="Arial">
+
+<p>int <a NAME="getType">getType</a>(String name)</p>
+
+<p></font></b>Returns the variant type of the object identified by <em>name.</em><font
+FACE="Arial"><b></p>
+
+<p></font>Note:</b> This method does not actually retrieve the object from the Map, but
+rather the value of the type field of the variant that holds the object.<font FACE="Arial"><b></p>
+
+<p>Object <a NAME="getObject">getObject</a>(String name) throws ClassCastException<br><br>
+Boolean <a NAME="getBoolean">getBoolean</a>(String name) throws ClassCastException<br><br>
+byte <a NAME="getByte">getByte</a>(String name) throws ClassCastException<br><br>
+short <a NAME="getShort">getShort</a>(String name) throws ClassCastException<br><br>
+char <a NAME="getChar">getChar</a>(String name) throws ClassCastException<br><br>
+int <a NAME="getInt">getInt</a>(String name) throws ClassCastException<br><br>
+long <a NAME="getLong">getLong</a>(String name) throws ClassCastException<br><br>
+float <a NAME="getFloat">getFloat</a>(String name) throws ClassCastException<br><br>
+double <a NAME="getDouble">getDouble</a>(String name) throws ClassCastException<br><br>
+String <a NAME="getString">getString</a>(String name) throws ClassCastException<br><br>
+java.util.Date <a NAME="getDate">getDate</a>(String name) throws ClassCastException<br><br>
+Variant <a NAME="getVariant">getVariant</a>(String name) throws ClassCastException</p>
+
+<p></b></font>Returns the object associated with <em>name</em> as the requested type. Since all ASP collections store objects as variants, they can hold objects of
+various types. The various get members allow you to retrieve the objects in the
+collection, converting them to the appropriate Java types. For built-in types, you
+should use methods like <em>getDouble</em>, or <em>getInt</em>. For the OLE Date
+type, use the <em>getDate</em>, which will convert it to a <em>java.util.Date</em>.<font
+FACE="Arial"><b></p>
+</b></font>
+
+<p>The <em>getVariant</em> method can be used to retrieve the object as the actual variant
+stored in the collection.</p>
+
+<p><b>Note:</b> You can only retrieve an object whose variant type matches the type that you
+attempting to retrieve it as. For example, if the actual variant is type int, you <strong>can
+not</strong> retrieve it using the getFloat method. If you attempt to obtain a given
+object using a method that does not match the actual type, a <em>ClassCastException</em>
+will be thrown.</p>
+
+<p><font FACE="Arial"><b>void <a NAME="setObject">setObject</a>(String name, Object o)
+throws AspComponentException<br><br>
+void <a NAME="setBoolean">setBoolean</a>(String name, Boolean b) throws
+AspComponentException<br><br>
+void <a NAME="setByte">setByte</a>(String name, byte b) throws AspComponentException<br><br>
+void <a NAME="setShort">setShort</a>(String name, short s) throws AspComponentException<br><br>
+void <a NAME="setInt">setInt</a>(String name, int i) throws AspComponentException<br><br>
+void <a NAME="setFloat">setFloat</a>(String name, float f) throws AspComponentException<br><br>
+void <a NAME="setDouble">setDouble</a>(String name, double d) throws AspComponentException<br><br>
+void <a NAME="setString">setString</a>(String name, String str) throws
+AspComponentException<br><br>
+void <a NAME="setDate">setDate</a>(String name, Date d) throws AspComponentException<br><br>
+void <a NAME="setVariant">setVariant</a>(String name, Variant var) throws
+AspComponentException</b></font></p>
+<font face="Arial" size="3"><b>
+
+<p></b></font>Since RequestDictionary objects are read-only, this method is not valid, and
+will throw an AspComponentException if called.</p>
+
+<p><font color="#0000A0" FACE="Arial"><b><em>Enumerator Methods</em></b></font></p>
+
+<p><font FACE="Arial"><b><a NAME="reset"></a>public void reset( )</b></font></p>
+
+<p>Resets the Enumerator to the start of the collection.</p>
+
+<p><font color="#0000A0" FACE="Arial"><b><em>java.util.Enumeration</em> <a NAME="reset"></a><em>Methods</em></b></font></p>
+<font FACE="Arial"><b>
+
+<p><a NAME="hasMoreElements"></a>public Boolean hasMoreElements( )</p>
+</b></font>
+
+<p>Returns <b>true</b> if there are any more items in the collection that can be obtained
+by calling nextElement( ).</p>
+<font FACE="Arial"><b>
+
+<p><a NAME="nextElement"></a>public Object nextElement( ) throws NoSuchElementException</p>
+</b></font>
+
+<p>Returns the next Object in the collection. You should typically call this following a
+call to hasMoreElements( ).</p>
+<b><font FACE="Arial">
+
+<p></font><font color="#0000A0" FACE="Arial"><em>java.lang.Cloneable</em> <em>Methods</em></font><font
+FACE="Arial"></p>
+</font></b>
+
+<p><font FACE="Arial"><b><a NAME="clone"></a>public Object clone( )</b></font></p>
+
+<p>Makes a copy of the Enumerator, with the current state of the Enumeration.</p>
+</body>
+</html>

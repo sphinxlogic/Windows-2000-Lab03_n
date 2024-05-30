@@ -1,0 +1,51 @@
+// -----------------------------------------------------------------------------
+// Property.chk
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+// -----------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_CProperty_GetProps(a,b,c)       NOERROR
+#define CHK_CPropertyRows_HrGetTblRows(a,b) NOERROR
+
+#else
+
+// $--CHK_CProperty_GetProps()--------------------------------------------------
+// -----------------------------------------------------------------------------
+__inline HRESULT CHK_CProperty_GetProps( 
+    IMAPIProp*      imapiProp,  // MAPI interface to access properties with.
+    LPSPropTagArray pta,        // Ptr to property tag array.
+    ULONG           ulFlags)    // Optional flags, default to zero.
+{
+    if( !TEST_READ_PTR( imapiProp, sizeof( IMAPIProp)))
+        RETURN( E_INVALIDARG);
+
+    // First make sure prop tag array pointer is good.
+    if( !TEST_READ_PTR( pta, sizeof( SPropTagArray)))
+        RETURN( E_INVALIDARG);
+
+    // Next make sure the whole structure is available.
+    if( !TEST_READ_PTR( pta, sizeof( ULONG) * (pta->cValues + 1)))
+        RETURN( E_INVALIDARG);
+
+    return( NOERROR);
+}
+
+// $--CHK_CPropertyRows_HrGetTblRows()--------------------------------------------
+// -----------------------------------------------------------------------------
+__inline HRESULT CHK_CPropertyRows_HrGetTblRows(
+    LPMAPITABLE lpTable,        // Ptr to a mapi table.
+    ULONG       cMaxNRows)      // Max.# of rows to return
+{
+    if( !TEST_READ_PTR( lpTable, sizeof( IMAPITable)))
+        RETURN( E_INVALIDARG);
+    
+    if( !cMaxNRows)
+        RETURN( E_INVALIDARG);
+
+    return( NOERROR);
+}
+
+// -----------------------------------------------------------------------------
+#endif /* DEBUG */

@@ -1,0 +1,32 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\atixbar.res \
+    $(_OBJ_DIR)\alpha\atixbar.obj \
+    $(_OBJ_DIR)\alpha\wdmxbar.obj \
+    $(_OBJ_DIR)\alpha\xbarprop.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\atixbar.res \
+    $(_OBJ_DIR)\axp64\atixbar.obj \
+    $(_OBJ_DIR)\axp64\wdmxbar.obj \
+    $(_OBJ_DIR)\axp64\xbarprop.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\atixbar.res \
+    $(_OBJ_DIR)\i386\atixbar.obj \
+    $(_OBJ_DIR)\i386\wdmxbar.obj \
+    $(_OBJ_DIR)\i386\xbarprop.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\atixbar.res \
+    $(_OBJ_DIR)\ia64\atixbar.obj \
+    $(_OBJ_DIR)\ia64\wdmxbar.obj \
+    $(_OBJ_DIR)\ia64\xbarprop.obj
+
+PASS0_IA64_OBJECTS=
+

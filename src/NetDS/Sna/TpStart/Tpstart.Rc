@@ -1,0 +1,14 @@
+#include <windows.h>
+
+#include <tpstart.h>
+
+TPSTART	ICON	tpstart.ico
+
+STRINGTABLE
+BEGIN
+
+IDS_WMCLOSE_CAPTION	"TPSTART Confirmation"
+IDS_WMCLOSE_TEXT	"TPSTART is required to automatically start Invokable APPC Transaction Programs running as Win32 applications.\n\nAre you sure you want to close TPSTART ?"
+
+END
+

@@ -1,0 +1,23 @@
+#---------------------------------------------------------------------------
+# Description:
+#   Make file to generate IPM_Out.Dll
+#
+# Copyright (C) Microsoft Corporation 1986 - 1998.  All Rights Reserved.
+#---------------------------------------------------------------------------
+
+USE_EXCHANGE=1
+crtdll=1
+dll=1
+
+Proj = IPM_Out
+
+!Include <BkOffice.Mak>
+
+DLLFLAGS = -entry:DllEntryPoint $(DLLFLAGS)
+
+all:    $(ObjDir)\$(Proj).Dll
+
+LibList = MsgEmit.Lib
+
+$(ObjDir)\$(Proj).Dll: $(@R).Obj $(@D)\ConvCls.Obj $(@D)\ConvRept.Obj \
+                       $(@D)\ConvTnef.Obj

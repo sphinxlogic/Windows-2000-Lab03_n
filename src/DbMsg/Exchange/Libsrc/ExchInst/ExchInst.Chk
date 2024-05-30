@@ -1,0 +1,2490 @@
+// --exchinst.chk---------------------------------------------------------------
+//
+// Parameter checking functions for exchinst.c.						   
+// 
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+// -----------------------------------------------------------------------------
+
+#include "edk.h"
+
+#ifndef DEBUG
+
+#define CHK_HrMultiSz(a)                       NOERROR
+#define CHK_HrCsvGetField(a,b,c,d,e)           NOERROR
+#define CHK_HrCsvGetRecord(a,b,c)              NOERROR
+#define CHK_HrEDKExportObject(a,b,c,d,e,f)     NOERROR
+#define CHK_HrEDKImportObject(a,b,c,d)         NOERROR
+#define CHK_HrDeleteObject(a,b,c,d)         NOERROR
+#define CHK_HrEDKObjectExists(a,b,c)           NOERROR
+#define CHK_HrEDKEnumAttrib(a,b,c,d,e)         NOERROR
+#define CHK_HrEDKEnumDNs(a,b,c,d,e)            NOERROR
+#define CHK_HrEnumOrganizations(a,b,c)      NOERROR
+#define CHK_HrEnumSites(a,b,c)              NOERROR
+#define CHK_HrEnumContainers(a,b,c,d)       NOERROR
+#define CHK_HrEnumSiteAdmins(a,b,c)         NOERROR
+#define CHK_HrEnumProductServices(a,b,c)    NOERROR
+#define CHK_HrInstallService(a,b,c,d,e,f,g,h,i,j,l) NOERROR
+#define CHK_HrGetRegistryString(a,b,c,d,e)  NOERROR
+#define CHK_HrGetServiceServerName(a,b)     NOERROR
+#define CHK_HrGetServiceSiteDN(a,b)         NOERROR
+#define CHK_HrGetServiceCommonName(a,b)     NOERROR
+#define CHK_HrGetServiceObjectGUID(a,b)     NOERROR
+#define CHK_HrGetServiceProductGUID(a,b)    NOERROR
+#define CHK_HrGetServiceDisplayName(a,b)    NOERROR
+#define CHK_HrGetServiceExecutableName(a,b) NOERROR
+#define CHK_HrGetServiceAccountName(a,b)    NOERROR
+#define CHK_HrRemoveService(a)              NOERROR
+#define CHK_HrGetRegistryValue(a,b,c,d,e)      NOERROR
+#define CHK_HrNameContained(a,b,c)             NOERROR
+#define CHK_HrEDKAddServiceToLinkage(a,b)      NOERROR
+#define CHK_HrInstallServicePerfMon(a,b,c,d,e,f)  NOERROR
+#define CHK_HrDeleteContainedKeysInternal(a,b) NOERROR
+#define CHK_HrDeleteContainedKeys(a)           NOERROR
+#define CHK_HrEDKRemoveRegistry(a)             NOERROR
+#define CHK_HrRemoveName(a,b,c)                NOERROR
+#define CHK_HrRemoveServicePerfMon(a,b,c)   NOERROR
+#define CHK_HrInstallGateway(a,b,c,d,e,f,g,h,i) NOERROR
+#define CHK_HrRemoveGateway(a,b,c)          NOERROR
+#define CHK_HrGatewayExists(a,b,c)          NOERROR
+#define CHK_HrInstallMailboxAgent(a,b,c,d,e,f,g) NOERROR
+#define CHK_HrRemoveMailboxAgent(a,b,c)     NOERROR
+#define CHK_HrMailboxAgentExists(a,b,c)     NOERROR
+#define CHK_HrInstallAddressType(a,b,c,d,e,f,g,h) NOERROR
+#define CHK_HrRemoveAddressType(a,b,c,d)    NOERROR
+#define CHK_HrAddressTypeExists(a,b,c,d)    NOERROR
+#define CHK_HrGetAddressTypeVersion(a,b,c,d,e,f) NOERROR
+#define CHK_HrInstallAddressTemplate(a,b,c,d,e,f,g,h,i,j,k,l,m) NOERROR
+#define CHK_HrRemoveAddressTemplate(a,b,c,d,e) NOERROR
+#define CHK_HrAddressTemplateExists(a,b,c,d,e) NOERROR
+#define CHK_HrInstallAdminExtension(a,b,c,d,e,f,g,h) NOERROR
+#define CHK_HrRemoveAdminExtension(a,b,c,d) NOERROR
+#define CHK_HrAdminExtensionExists(a,b,c,d) NOERROR
+#define CHK_HrGetAdminExtensionVersion(a,b,c,d,e,f) NOERROR
+#define CHK_HrInstallContainer(a,b,c,d,e)	NOERROR
+#define CHK_HrRemoveContainer(a,b,c)		NOERROR
+#define CHK_HrContainerExists(a,b,c)		NOERROR
+#define CHK_HrInstallAddressTemplateContainer(a,b,c,d)	NOERROR
+#define CHK_HrRemoveAddressTemplateContainer(a,b,c)		NOERROR
+#define CHK_HrAddressTemplateContainerExists(a,b,c)		NOERROR
+#define CHK_HrAddDelGatewayProxy(a,b,c,d)      NOERROR
+#define CHK_HrInstallGatewayProxy(a,b,c)    NOERROR
+#define CHK_HrRemoveGatewayProxy(a,b,c)     NOERROR
+#define CHK_HrInstallMessageConverter(a,b,c,d,e) NOERROR
+#define CHK_HrRemoveMessageConverter(a)     NOERROR
+#define CHK_HrSetGatewayBit(a,b,c)          NOERROR
+
+#else
+
+#define VALID_HKEY(_hKey) \
+      (((_hKey) == HKEY_CLASSES_ROOT) || \
+       ((_hKey) == HKEY_CURRENT_USER) || \
+       ((_hKey) == HKEY_LOCAL_MACHINE) || \
+       ((_hKey) == HKEY_USERS) || \
+       ((_hKey) == HKEY_PERFORMANCE_DATA) || \
+       (TEST_READ_PTR(&(_hKey), sizeof(HKEY))))
+
+//$--CHK_HrMultiSz--------------------------------------------------------------
+//  Check the parameters for CbMultiSz().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrMultiSz(
+    IN LPSTR lpszRegMultiSz)           // REG_MULTI_SZ string
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR_OR_NULL(lpszRegMultiSz))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrCsvGetField----------------------------------------------------------
+//  Check the parameters for fCsvGetField().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrCsvGetField(
+    IN  WORD wLen,              // maximum length of the field to extract
+    IN  WORD wFieldNum,         // field number we want from the record
+    IN  CHAR cFieldSeparator,   // character to use as a field separator
+    IN  CHAR *lpszRecord,       // record to extract the field from
+    OUT CHAR *lpszField)        // field we have extracted
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszRecord))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszField))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrCsvGetRecord---------------------------------------------------------
+//  Check the parameters for fCsvGetRecord().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrCsvGetRecord(
+    IN  WORD wBufferLen,            // length of the record buffer
+    IN  HANDLE hFile,               // file handle to read from
+    OUT CHAR *lpszBuffer)           // record we have retrieved
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszBuffer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrEDKExportObject------------------------------------------------------
+//  Check the parameters for HrEDKExportObject().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrEDKExportObject(
+    IN  LPSTR lpszServer,              // server name
+    IN  LPSTR lpszBasePoint,           // base point
+    IN  DWORD dwControlFlags,          // control flags
+    IN  LPSTR *rgpszClasses,           // classes
+    IN  LPSTR lpszObjectAttributes,    // list of attributes to export
+    OUT LPSTR lpszTempName)            // temporary file name
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszBasePoint))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_READ_PTR_OR_NULL(rgpszClasses, sizeof(LPSTR)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if((rgpszClasses != NULL) && (! TEST_STRINGA_PTR_OR_NULL(*rgpszClasses)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszObjectAttributes))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszTempName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrEDKImportObject------------------------------------------------------
+//  Check the parameters for HrEDKImportObject().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrEDKImportObject(
+    IN  LPSTR lpszServer,              // server name
+    IN  LPSTR lpszBasePoint,           // base point
+    IN  LPSTR lpszObjectAttributes,    // list of attributes to import
+    IN  LPSTR lpszAttributeValues)     // list of attributes values to import
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszBasePoint))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszObjectAttributes))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszAttributeValues))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrDeleteObject------------------------------------------------------
+//  Check the parameters for HrDeleteObject().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrDeleteObject(
+    IN LPSTR lpszServer,           // server name
+    IN LPSTR lpszBasepoint,        // base point
+    IN LPSTR lpszCommonName,       // common name
+    IN LPSTR lpszObjClass)         // object class
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszBasepoint))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszCommonName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszObjClass))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrEDKObjectExists------------------------------------------------------
+//  Check the parameters for HrEDKObjectExists().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrEDKObjectExists(
+    IN LPSTR lpszServer,           // server name
+    IN LPSTR lpszBasePoint,        // base point
+    IN LPSTR lpszCommonName)       // common name
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszBasePoint))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszCommonName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrEDKEnumAttrib--------------------------------------------------------
+//  Check the parameters for HrEDKEnumAttrib().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrEDKEnumAttrib(
+    IN  LPSTR lpszRootDN,               // distinguished name of DIT root
+    IN  LPSTR lpszServer,               // server name
+    IN  LPSTR *rgpszClasses,            // classes
+    IN  LPSTR lpszAttribName,           // attribute name
+    OUT LPSTR *lppszAttribValues)       // attribute values
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszRootDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_READ_PTR_OR_NULL(rgpszClasses, sizeof(LPSTR)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if((rgpszClasses != NULL) && (! TEST_STRINGA_PTR_OR_NULL(*rgpszClasses)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszAttribName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_WRITE_PTR(lppszAttribValues, sizeof(LPSTR)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrEDKEnumDNs-----------------------------------------------------------
+//  Check the parameters for HrEDKEnumDNs().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrEDKEnumDNs(
+    IN  LPSTR lpszRootDN,               // distinguished name of DIT root
+    IN  LPSTR lpszServer,               // server name
+    IN  DWORD  dwControlFlags,          // control flags
+    IN  LPSTR *rgpszClasses,            // classes
+    OUT LPSTR *lppszDNs)                // distinguished names
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszRootDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_READ_PTR_OR_NULL(rgpszClasses, sizeof(LPSTR)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if((rgpszClasses != NULL) && (! TEST_STRINGA_PTR_OR_NULL(*rgpszClasses)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_WRITE_PTR(lppszDNs, sizeof(LPSTR)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrEnumOrganizations-------------------------------------------------
+//  Check the parameters for HrEnumOrganizations().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrEnumOrganizations(
+    IN  LPSTR lpszRootDN,               // distinguished name of DIT root
+    IN  LPSTR lpszServer,               // server name
+    OUT LPSTR *lppszOrganizations)      // organizations
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszRootDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_WRITE_PTR(lppszOrganizations, sizeof(LPSTR)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrEnumSites---------------------------------------------------------
+//  Check the parameters for HrEnumSites().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrEnumSites(
+    IN  LPSTR lpszServer,               // server name
+    IN  LPSTR lpszOrganizationDN,       // distinguished name of organization
+    OUT LPSTR *lppszSites)              // sites
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszOrganizationDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_WRITE_PTR(lppszSites, sizeof(LPSTR)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrEnumContainers----------------------------------------------------
+//  Check the parameters for HrEnumContainers().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrEnumContainers(
+    IN  LPSTR lpszServer,               // server name
+    IN  LPSTR lpszSiteDN,               // distinguished name of site
+    IN  BOOL   fSubtree,                // sub-tree?
+    OUT LPSTR *lppszContainers)         // containers
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszSiteDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_WRITE_PTR(lppszContainers, sizeof(LPSTR)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrEnumSiteAdmins----------------------------------------------------
+//  Check the parameters for HrEnumSiteAdmins().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrEnumSiteAdmins(
+    IN  LPSTR lpszServer,               // server name
+    IN  LPSTR lpszSiteDN,               // distinguished name of site
+    OUT LPSTR *lppszAdmins)             // administrator accounts
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszSiteDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_WRITE_PTR(lppszAdmins, sizeof(LPSTR)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrEnumProductServices-----------------------------------------------
+//  Check the parameters for HrEnumProductServices().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrEnumProductServices(
+    IN  LPSTR lpszProductGuid,          // product GUID
+    OUT LPSTR *lppszServices,           // service names
+    OUT LPSTR *lppszDisplayNames)       // service display names
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszProductGuid))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_WRITE_PTR(lppszServices, sizeof(LPSTR)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_WRITE_PTR(lppszDisplayNames, sizeof(LPSTR)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrInstallService----------------------------------------------------
+//  Check the parameters for HrInstallService().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrInstallService(
+    IN LPSTR  lpszServer,              // server name
+    IN LPSTR  lpszSiteDN,              // distinguished name of site
+    IN LPSTR  lpszServiceDisplayName,  // service display name
+    IN LPSTR  lpszServiceName,         // service name
+    IN LPSTR  lpszCommonName,          // object relative distinguished name
+    IN LPSTR  lpszObjectGuid,          // object GUID
+    IN LPSTR  lpszProductGuid,         // product GUID
+    IN LPSTR  lpszExeName,             // executable name
+    IN LPCSTR lpszDependencies,        // dependencies
+    IN LPSTR  lpszAccount,             // account
+    IN LPSTR  lpszPassword)            // password
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszSiteDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszServiceDisplayName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszServiceName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszCommonName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszObjectGuid))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszProductGuid))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszExeName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszDependencies))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszAccount))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszPassword))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrGetRegistryString-------------------------------------------------
+//  Check the parameters for HrGetRegistryString().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrGetRegistryString(
+    IN  LPSTR  lpszServiceName,        // service name
+    IN  LPSTR  lpszServicePath,        // service path
+    IN  LPSTR  lpszValueName,          // registry value name
+    IN  DWORD   dwExpectedType,        // expected registry data type
+    OUT LPSTR  *lppszString)           // string
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServiceName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszServicePath))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszValueName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_WRITE_PTR(lppszString, sizeof(LPSTR)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrGetServiceServerName----------------------------------------------
+//  Check the parameters for HrGetServiceServerName().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrGetServiceServerName(
+    IN  LPSTR  lpszServiceName,        // service name
+    OUT LPSTR  *lppszServerName)       // server name
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServiceName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_WRITE_PTR(lppszServerName, sizeof(LPSTR)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrGetServiceSiteDN--------------------------------------------------
+//  Check the parameters for HrGetServiceSiteDN().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrGetServiceSiteDN(
+    IN  LPSTR  lpszServiceName,        // service name
+    OUT LPSTR  *lppszSiteDN)           // site distinguished name
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServiceName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_WRITE_PTR(lppszSiteDN, sizeof(LPSTR)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrGetServiceCommonName----------------------------------------------
+//  Check the parameters for HrGetServiceCommonName().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrGetServiceCommonName(
+    IN  LPSTR  lpszServiceName,        // service name
+    OUT LPSTR  *lppszCommonName)       // object relative distinguished name
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServiceName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_WRITE_PTR(lppszCommonName, sizeof(LPSTR)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrGetServiceObjectGUID----------------------------------------------
+//  Check the parameters for HrGetServiceObjectGUID().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrGetServiceObjectGUID(
+    IN  LPSTR  lpszServiceName,            // service name
+    OUT LPSTR  *lppszObjectGUID)           // object GUID
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServiceName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_WRITE_PTR(lppszObjectGUID, sizeof(LPSTR)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrGetServiceProductGUID---------------------------------------------
+//  Check the parameters for HrGetServiceProductGUID().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrGetServiceProductGUID(
+    IN  LPSTR  lpszServiceName,            // service name
+    OUT LPSTR  *lppszProductGUID)          // product GUID
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServiceName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_WRITE_PTR(lppszProductGUID, sizeof(LPSTR)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrGetServiceDisplayName---------------------------------------------
+//  Check the parameters for HrGetServiceDisplayName().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrGetServiceDisplayName(
+    IN  LPSTR  lpszServiceName,            // service name
+    OUT LPSTR  *lppszDisplayName)          // display name
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServiceName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_WRITE_PTR(lppszDisplayName, sizeof(LPSTR)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrGetServiceExecutableName------------------------------------------
+//  Check the parameters for HrGetServiceExecutableName().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrGetServiceExecutableName(
+    IN  LPSTR  lpszServiceName,            // service name
+    OUT LPSTR  *lppszExecutableName)       // executable name
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServiceName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_WRITE_PTR(lppszExecutableName, sizeof(LPSTR)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrGetServiceAccountName---------------------------------------------
+//  Check the parameters for HrGetServiceAccountName().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrGetServiceAccountName(
+    IN  LPSTR  lpszServiceName,        // service name
+    OUT LPSTR  *lppszAccountName)      // account name
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServiceName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_WRITE_PTR(lppszAccountName, sizeof(LPSTR)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrRemoveService-----------------------------------------------------
+//  Check the parameters for HrRemoveService().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrRemoveService(
+    IN LPCSTR lpszServiceName)         // service name
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServiceName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrGetRegistryValue-----------------------------------------------------
+//  Check the parameters for HrGetRegistryValue().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrGetRegistryValue(
+    IN  HKEY hk,                    // the key.
+    IN  LPSTR lpszValue,            // value name in key.
+    OUT DWORD * lpType,             // where to put type info.
+    OUT DWORD * lpcb,               // where to put byte count info.
+    OUT LPVOID * lppData)           // where to put the data.
+{
+    HRESULT hr = NOERROR;
+
+    if(! VALID_HKEY(hk))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszValue))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_WRITE_PTR(lpType, sizeof(DWORD)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_WRITE_PTR(lpcb, sizeof(DWORD)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_WRITE_PTR(lppData, sizeof(LPVOID)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrNameContained--------------------------------------------------------
+//  Checks the parameters for HrNameContained().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrNameContained(
+    IN LPSTR lpszName,         // name to find
+    IN LPSTR lpszList,         // list to search
+    IN DWORD cbListLen)        // max length to search
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszList))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrEDKAddServiceToLinkage-----------------------------------------------
+//  Check the parameters for HrEDKAddServiceToLinkage().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrEDKAddServiceToLinkage(
+    IN HKEY hkLinkage,                 // key containing export list.
+    IN LPSTR lpszServiceName)          // service name.
+{
+    HRESULT hr = NOERROR;
+
+    if(! VALID_HKEY(hkLinkage))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszServiceName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrInstallServicePerfMon---------------------------------------------
+//  Check the parameters for HrInstallServicePerfMon().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrInstallServicePerfMon(
+    IN LPSTR lpszServiceName,              // service name
+    IN LPSTR lpszClassName,                // class name
+    IN LPSTR lpszLibraryName,              // library name
+    IN LPSTR lpszLibraryOpenFunction,      // open function
+    IN LPSTR lpszLibraryCollectFunction,   // collect function
+    IN LPSTR lpszLibraryCloseFunction)     // close function
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServiceName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszClassName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszLibraryName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszLibraryOpenFunction))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszLibraryCollectFunction))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszLibraryCloseFunction))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrDeleteContainedKeysInternal------------------------------------------
+//  Check the parameters for HrDeleteContainedKeysInternal().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrDeleteContainedKeysInternal(
+    IN HKEY hKey,                               // registry key handle
+    IN LPWSTR lpszwName)                        // temporary storage
+{
+    HRESULT hr = NOERROR;
+
+    if(! VALID_HKEY(hKey))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGW_PTR(lpszwName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrDeleteContainedKeys--------------------------------------------------
+//  Check the parameters for HrDeleteContainedKeys().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrDeleteContainedKeys(
+    IN HKEY hKey)                           // registry key handle
+{
+    HRESULT hr = NOERROR;
+
+    if(! VALID_HKEY(hKey))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrEDKRemoveRegistry----------------------------------------------------
+//  Check the parameters for HrEDKRemoveRegistry().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrEDKRemoveRegistry(
+    IN LPCSTR lpszServiceName)         // service name
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServiceName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrRemoveName-----------------------------------------------------------
+//  Check the parameters for HrRemoveName().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrRemoveName(
+    IN HKEY hkLinkage,              // key containing export
+    IN LPSTR lpszServiceName,       // service name
+    OUT BOOL * pbEmpty)             // flag to indicate its empty.
+{
+    HRESULT hr = NOERROR;
+
+    if(! VALID_HKEY(hkLinkage))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszServiceName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_WRITE_PTR(pbEmpty, sizeof(BOOL)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrRemoveServicePerfMon----------------------------------------------
+//  Check the parameters for HrRemoveServicePerfmon().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrRemoveServicePerfMon(
+    IN LPSTR lpszServiceName,              // service name
+    IN  LPSTR lpszClassName,               // class name
+    OUT BOOL   *lpfUnloadCounters)         // unload counters?
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServiceName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszClassName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_WRITE_PTR(lpfUnloadCounters, sizeof(BOOL)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrInstallGateway----------------------------------------------------
+//  Check the parameters for HrInstallGateway().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrInstallGateway(
+    IN LPSTR lpszServer,           // server name
+    IN LPSTR lpszSiteDN,           // distinguished name of site
+    IN LPSTR lpszDisplayName,      // display name
+    IN LPSTR lpszCommonName,       // common name
+    IN LPSTR lpszExtensionName,    // admin extension name
+    IN LPSTR lpszExtensionData,    // extension data file
+    IN LPSTR lpszAddressType,      // address type handled by this gateway
+    IN LPSTR lpszAccountName,      // account name
+    IN BOOL   fCanPreserveDNs)     // can this gateway preserve DNs?
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszSiteDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszDisplayName) || (lstrlenA(lpszDisplayName) == 0))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszCommonName) || (lstrlenA(lpszCommonName) == 0))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR_OR_NULL(lpszExtensionName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR_OR_NULL(lpszExtensionData))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszAddressType))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszAccountName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrRemoveGateway-----------------------------------------------------
+//  Check the parameters for HrRemoveGateway().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrRemoveGateway(
+    IN LPSTR lpszServer,           // server name
+    IN LPSTR lpszSiteDN,           // distinguished name of site
+    IN LPSTR lpszCommonName)       // common name
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszSiteDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszCommonName) || (lstrlenA(lpszCommonName) == 0))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrGatewayExists-----------------------------------------------------
+//  Check the parameters for HrGatewayExists().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrGatewayExists(
+    IN LPSTR lpszServer,           // server name
+    IN LPSTR lpszSiteDN,           // distinguished name of site
+    IN LPSTR lpszCommonName)       // common name
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszSiteDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszCommonName) || (lstrlenA(lpszCommonName) == 0))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrInstallMailboxAgent-----------------------------------------------
+//  Check the parameters for HrInstallMailboxAgent().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrInstallMailboxAgent(
+    IN LPSTR lpszServer,               // server name
+    IN LPSTR lpszSiteDN,               // distinguished name of site
+    IN LPSTR lpszDisplayName,          // display name
+    IN LPSTR lpszRDN,                  // relative distinguished name
+    IN LPSTR lpszExtensionName,        // admin extension name
+    IN LPSTR lpszExtensionData,        // extension data file
+    IN LPSTR lpszAccountName)          // account name
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszSiteDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszDisplayName) || (lstrlenA(lpszDisplayName) == 0))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszRDN) || (lstrlenA(lpszRDN) == 0))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR_OR_NULL(lpszExtensionName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR_OR_NULL(lpszExtensionData))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszAccountName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrRemoveMailboxAgent------------------------------------------------
+//  Check the parameters for HrRemoveMailboxAgent().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrRemoveMailboxAgent(
+    IN LPSTR lpszServer,           // server name
+    IN LPSTR lpszSiteDN,           // distinguished name of site
+    IN LPSTR lpszRDN)              // relative distinguished name
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszSiteDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszRDN) || (lstrlenA(lpszRDN) == 0))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrMailboxAgentExists------------------------------------------------
+//  Check the parameters for HrMailboxAgentExists().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrMailboxAgentExists(
+    IN LPSTR lpszServer,           // server name
+    IN LPSTR lpszSiteDN,           // distinguished name of site
+    IN LPSTR lpszRDN)              // relative distinguished name
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszSiteDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszRDN) || (lstrlenA(lpszRDN) == 0))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrInstallAddressType------------------------------------------------
+//  Check the parameters for HrInstallAddressType().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrInstallAddressType(
+    IN LPSTR lpszServer,           // server name
+    IN LPSTR lpszSiteDN,           // distinguished name of site
+    IN LPSTR lpszDisplayName,      // display name
+    IN LPSTR lpszCommonName,       // common name
+    IN DWORD  dwFileVersionMS,      // high-order 32 bits of file version number
+    IN DWORD  dwFileVersionLS,      // low-order 32 bits of file version number
+    IN LPSTR lpszProxyGenDLL,      // proxy generator DLL file name
+    IN LPSTR lpszMachineType)      // machine type (e.g. "i386")
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszSiteDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszDisplayName) || (lstrlenA(lpszDisplayName) == 0))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszCommonName) || (lstrlenA(lpszCommonName) == 0))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszProxyGenDLL))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszMachineType))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrRemoveAddressType-------------------------------------------------
+//  Check the parameters for HrRemoveAddressType().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrRemoveAddressType(
+    IN LPSTR lpszServer,           // server name
+    IN LPSTR lpszSiteDN,           // distinguished name of site
+    IN LPSTR lpszCommonName,       // common name
+    IN LPSTR lpszMachineType)      // machine type (e.g. "i386")
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszSiteDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszCommonName) || (lstrlenA(lpszCommonName) == 0))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszMachineType))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrAddressTypeExists-------------------------------------------------
+//  Check the parameters for HrAddressTypeExists().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrAddressTypeExists(
+    IN LPSTR lpszServer,           // server name
+    IN LPSTR lpszSiteDN,           // distinguished name of site
+    IN LPSTR lpszCommonName,       // common name
+    IN LPSTR lpszMachineType)      // machine type (e.g. "i386")
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszSiteDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszCommonName) || (lstrlenA(lpszCommonName) == 0))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszMachineType))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrGetAddressTypeVersion---------------------------------------------
+//  Check the parameters for HrGetAddressTypeVersion().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrGetAddressTypeVersion(
+    IN LPSTR lpszServer,               // server name
+    IN LPSTR lpszSiteDN,               // distinguished name of site
+    IN LPSTR lpszCommonName,           // common name
+    IN LPSTR lpszMachineType,          // machine type (e.g. "i386")
+    OUT DWORD *lpdwFileVersionMS,       // high-order 32 bits of file version
+    OUT DWORD *lpdwFileVersionLS)       // low-order 32 bits of file version
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszSiteDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszCommonName) || (lstrlenA(lpszCommonName) == 0))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszMachineType))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_WRITE_PTR(lpdwFileVersionMS, sizeof(DWORD)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_WRITE_PTR(lpdwFileVersionMS, sizeof(DWORD)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrInstallAddressTemplate--------------------------------------------
+//  Check the parameters for HrInstallAddressTemplate().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrInstallAddressTemplate(
+    IN LPSTR lpszServer,            // server name
+    IN LPSTR lpszSiteDN,            // distinguished name of site
+    IN LPSTR lpszDisplayName,       // display name
+    IN LPSTR lpszCommonName,        // common name
+    IN LPSTR lpszAddressSyntax,     // address syntax generator file
+    IN LPSTR lpszAddressType,       // address type supported by this template
+    IN LPSTR lpszPerMessageDDT,     // per-message dialog file
+    IN LPSTR lpszPerRecipientDDT,   // per-recipient dialog file
+    IN LPSTR lpszAddressEntryDDT,   // address entry dialog file
+    IN LPSTR lpszLanguage,          // language supported by this template
+    IN LPSTR lpszHelpData16,        // help data for 16-bit clients
+    IN LPSTR lpszHelpData32,        // help data for 32-bit clients
+    IN LPSTR lpszHelpFile)          // client help file name
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszSiteDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszDisplayName) || (lstrlenA(lpszDisplayName) == 0))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszCommonName) || (lstrlenA(lpszCommonName) == 0))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszAddressSyntax))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszAddressType))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR_OR_NULL(lpszPerMessageDDT))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR_OR_NULL(lpszPerRecipientDDT))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszAddressEntryDDT))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszLanguage))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR_OR_NULL(lpszHelpData16))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR_OR_NULL(lpszHelpData32))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR_OR_NULL(lpszHelpFile))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrRemoveAddressTemplate---------------------------------------------
+//  Check the parameters for HrRemoveAddressTemplate().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrRemoveAddressTemplate(
+    IN LPSTR lpszServer,            // server name
+    IN LPSTR lpszSiteDN,            // distinguished name of site
+    IN LPSTR lpszCommonName,        // common name
+    IN LPSTR lpszAddressType,       // address type supported by this template
+    IN LPSTR lpszLanguage)          // language supported by this template
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszSiteDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszCommonName) || (lstrlenA(lpszCommonName) == 0))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszAddressType))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszLanguage))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrAddressTemplateExists---------------------------------------------
+//  Check the parameters for HrAddressTemplateExists().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrAddressTemplateExists(
+    IN LPSTR lpszServer,            // server name
+    IN LPSTR lpszSiteDN,            // distinguished name of site
+    IN LPSTR lpszCommonName,        // common name
+    IN LPSTR lpszAddressType,       // address type supported by this template
+    IN LPSTR lpszLanguage)          // language supported by this template
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszSiteDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszCommonName) || (lstrlenA(lpszCommonName) == 0))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszAddressType))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszLanguage))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrInstallAdminExtension---------------------------------------------
+//  Check the parameters for HrInstallAdminExtension().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrInstallAdminExtension(
+    IN LPSTR lpszServer,           // server name
+    IN LPSTR lpszSiteDN,           // distinguished name of site
+    IN LPSTR lpszDisplayName,      // display name
+    IN LPSTR lpszCommonName,       // common name
+    IN DWORD  dwFileVersionMS,      // high-order 32 bits of file version number
+    IN DWORD  dwFileVersionLS,      // low-order 32 bits of file version number
+    IN LPSTR lpszExtensionDLL,     // admin extension DLL file name
+    IN LPSTR lpszMachineType)      // machine type (e.g. "i386")
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszSiteDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszDisplayName) || (lstrlenA(lpszDisplayName) == 0))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszCommonName) || (lstrlenA(lpszCommonName) == 0))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszExtensionDLL))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszMachineType))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrRemoveAdminExtension----------------------------------------------
+//  Check the parameters for HrRemoveAdminExtension().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrRemoveAdminExtension(
+    IN LPSTR lpszServer,               // server name
+    IN LPSTR lpszSiteDN,               // distinguished name of site
+    IN LPSTR lpszCommonName,           // common name
+    IN LPSTR lpszMachineType)          // machine type (e.g. "i386")
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszSiteDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszCommonName) || (lstrlenA(lpszCommonName) == 0))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszMachineType))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrAdminExtensionExists----------------------------------------------
+//  Check the parameters for HrAdminExtensionExists().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrAdminExtensionExists(
+    IN LPSTR lpszServer,               // server name
+    IN LPSTR lpszSiteDN,               // distinguished name of site
+    IN LPSTR lpszCommonName,           // common name
+    IN LPSTR lpszMachineType)          // machine type (e.g. "i386")
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszSiteDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszCommonName) || (lstrlenA(lpszCommonName) == 0))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszMachineType))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrGetAdminExtensionVersion------------------------------------------
+//  Check the parameters for HrGetAdminExtensionVersion().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrGetAdminExtensionVersion(
+    IN LPSTR lpszServer,                   // server name
+    IN LPSTR lpszSiteDN,                   // distinguished name of site
+    IN LPSTR lpszCommonName,               // common name
+    IN LPSTR lpszMachineType,              // machine type (e.g. "i386")
+    OUT DWORD *lpdwFileVersionMS,           // high-order 32 bits of file version
+    OUT DWORD *lpdwFileVersionLS)           // low-order 32 bits of file version
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszSiteDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszCommonName) || (lstrlenA(lpszCommonName) == 0))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszMachineType))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_WRITE_PTR(lpdwFileVersionMS, sizeof(DWORD)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_WRITE_PTR(lpdwFileVersionMS, sizeof(DWORD)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrInstallContainer-----------------------------------------------------
+//  Check the parameters for HrInstallContainer().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrInstallContainer(     // RETURNS: return code
+    IN LPSTR lpszServer,            // server name
+    IN LPSTR lpszBasePoint,         // base point
+    IN LPSTR lpszCommonName,        // common name
+    IN LPSTR lpszDisplayName,       // display name
+    IN LPSTR lpszContainerInfo)     // container information
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszBasePoint))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszCommonName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszDisplayName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszContainerInfo) ||
+       (lstrlenA(lpszContainerInfo) == 0))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrRemoveContainer------------------------------------------------------
+//  Check the parameters for HrRemoveContainer().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrRemoveContainer(      // RETURNS: return code
+    IN LPSTR lpszServer,            // server name
+    IN LPSTR lpszBasePoint,         // base point
+    IN LPSTR lpszCommonName)        // common name
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszBasePoint))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszCommonName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrContainerExists------------------------------------------------------
+//  Check the parameters for HrContainerExists().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrContainerExists(      // RETURNS: return code
+    IN LPSTR lpszServer,            // server name
+    IN LPSTR lpszBasePoint,         // base point
+    IN LPSTR lpszCommonName)        // common name
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszBasePoint))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszCommonName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrInstallAddressTemplateContainer--------------------------------------
+//  Check the parameters for HrInstallAddressTemplateContainer().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrInstallAddressTemplateContainer(  // RETURNS: return code
+    IN LPSTR lpszServer,                    // server name
+    IN LPSTR lpszSiteDN,                    // site distinguished name
+    IN LPSTR lpszLanguage,                  // language supported by container
+    IN LPSTR lpszDisplayName)               // display name
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszSiteDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszLanguage))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszDisplayName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrRemoveAddressTemplateContainer---------------------------------------
+//  Check the parameters for HrRemoveAddressTemplateContainer().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrRemoveAddressTemplateContainer(   // RETURNS: return code
+    IN LPSTR lpszServer,                    // server name
+    IN LPSTR lpszSiteDN,                    // site distinguished name
+    IN LPSTR lpszLanguage)                  // language supported by container
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszSiteDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszLanguage))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrAddressTemplateContainerExists---------------------------------------
+//  Check the parameters for HrAddressTemplateContainerExists().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrAddressTemplateContainerExists(   // RETURNS: return code
+    IN LPSTR lpszServer,                    // server name
+    IN LPSTR lpszSiteDN,                    // site distinguished name
+    IN LPSTR lpszLanguage)                  // language supported by container
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszSiteDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszLanguage))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrAddDelGatewayProxy---------------------------------------------------
+//  Check the parameters for HrAddDelGatewayProxy().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrAddDelGatewayProxy(
+    IN  LPSTR lpszServer,              // server name
+    IN  LPSTR lpszSiteDN,              // site distinguished name
+    IN  LPSTR lpszOurProxyString,      // proxy string for our gateway
+    IN  BOOL   fAddProxy)               // If TRUE we will add proxy
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszSiteDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszOurProxyString) ||
+       (lstrlenA(lpszOurProxyString) == 0))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrInstallGatewayProxy-----------------------------------------------
+//  Check the parameters for HrInstallGatewayProxy().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrInstallGatewayProxy(
+    IN LPSTR lpszServer,            // server name
+    IN LPSTR lpszSiteDN,            // distinguished name of site
+    IN LPSTR lpszProxy)             // gateway proxy
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszSiteDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszProxy) ||
+       (lstrlenA(lpszProxy) == 0))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrRemoveGatewayProxy------------------------------------------------
+//  Check the parameters for HrRemoveGatewayProxy().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrRemoveGatewayProxy(
+    IN LPSTR lpszServer,            // server name
+    IN LPSTR lpszSiteDN,            // distinguished name of site
+    IN LPSTR lpszProxy)             // gateway proxy
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszSiteDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszProxy) ||
+       (lstrlenA(lpszProxy) == 0))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrInstallMessageConverter-------------------------------------------
+//  Check the parameters for HrInstallMessageConverter().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrInstallMessageConverter(
+    IN LPSTR lpszConverter,                // converter name
+    IN LPSTR lpszDllName,                  // name of conversion DLL
+    IN LPSTR lpszMessageClasses,           // message classes
+    IN LPSTR lpszOptions,                  // options string
+    IN LPSTR lpszPoint)                    // conversion point
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszConverter))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszDllName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszMessageClasses))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR_OR_NULL(lpszOptions))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszPoint))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrRemoveMessageConverter-------------------------------------------
+//  Check the parameters for HrRemoveMessageConverter().
+// ----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrRemoveMessageConverter(
+    IN LPCSTR lpszConverter)               // converter name
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszConverter))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrSetGatewayBit--------------------------------------------------------
+//  Check the parameters for HrSetGatewayBit().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrSetGatewayBit(
+    IN  LPSTR lpszServer,               // server name
+    IN  LPSTR lpszSiteDN,               // site distinguished name
+    IN  LPSTR lpszServerName)           // server name
+{
+    HRESULT hr                                   = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszSiteDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszServerName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+#endif /* DEBUG */

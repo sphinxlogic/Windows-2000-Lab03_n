@@ -1,0 +1,35 @@
+XML/XSL Viewer
+
+Files:
+Multiple.htm
+controls.htm
+results.htm
+summary.xsl
+sort-bidder-price.xsl
+sort-bidder-price-.xsl
+sort-bidder.xsl
+sort-bidder-.xsl
+sand-s.jpg
+raw-xml.xsl
+auction1.xml
+price-graph.xsl
+onio-s.jpg
+burl-s.jpg
+bids-table.xsl
+bids-table2.xsl
+auction3.xml
+auction2.xml
+swallows.jpg
+
+Description:
+This demo allows the user to surf through different XML documents and apply different XSL
+stylesheets to those documents.  Choose an XML document and a XSL stylesheet on the left and display
+the data on the right.
+
+This demo is a good example of using XSL to offer different views on XML.  Many times, the 
+web designer will want to display different data to different consumers.  Through XSL this can 
+be done without altering the original XML document or the HTML page used to load that document.
+
+
+Compatibility/Platform Compatibility:
+You must be running Microsoft Internet Explorer 5 or greater on Win32 or Unix platforms to view this demo.

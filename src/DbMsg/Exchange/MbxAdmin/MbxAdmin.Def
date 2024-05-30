@@ -1,0 +1,7 @@
+; mbxadmin.def : Declares the module parameters for the DLL.
+
+LIBRARY      MBXADMIN
+DESCRIPTION  'MBXADMIN.DLL Sample Mailbox extension.'
+
+EXPORTS    ; Explicit exports can go here
+    ADMIN_Initialize    @2

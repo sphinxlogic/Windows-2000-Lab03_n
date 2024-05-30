@@ -1,0 +1,16 @@
+# Win32 TPSTART module.
+
+!include <ntwin32.mak>
+
+all: tpstart.exe
+
+tpstart.res: tpstart.rc makefile.nt
+    $(rc) -DWIN32 -fo temp.res -r tpstart.rc
+    cvtres temp.res -o tpstart.res -$(CPU)
+    del temp.res
+
+tpstart.obj: tpstart.c tpstart.h snaver.h makefile.nt
+    $(cc) $(cdebug) $(cflags) $(cvars) tpstart.c
+
+tpstart.exe: tpstart.obj tpstart.res
+    $(link) $(linkdebug) $(guiflags) -out:tpstart.exe tpstart.obj tpstart.res $(guilibs)

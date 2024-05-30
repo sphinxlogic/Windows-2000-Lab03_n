@@ -1,0 +1,44 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\disk.res \
+    $(_OBJ_DIR)\alpha\data.obj \
+    $(_OBJ_DIR)\alpha\disk.obj \
+    $(_OBJ_DIR)\alpha\diskwmi.obj \
+    $(_OBJ_DIR)\alpha\enum.obj \
+    $(_OBJ_DIR)\alpha\geometry.obj \
+    $(_OBJ_DIR)\alpha\pnp.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\disk.res \
+    $(_OBJ_DIR)\axp64\data.obj \
+    $(_OBJ_DIR)\axp64\disk.obj \
+    $(_OBJ_DIR)\axp64\diskwmi.obj \
+    $(_OBJ_DIR)\axp64\enum.obj \
+    $(_OBJ_DIR)\axp64\geometry.obj \
+    $(_OBJ_DIR)\axp64\pnp.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\disk.res \
+    $(_OBJ_DIR)\i386\data.obj \
+    $(_OBJ_DIR)\i386\disk.obj \
+    $(_OBJ_DIR)\i386\diskwmi.obj \
+    $(_OBJ_DIR)\i386\enum.obj \
+    $(_OBJ_DIR)\i386\geometry.obj \
+    $(_OBJ_DIR)\i386\pnp.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\disk.res \
+    $(_OBJ_DIR)\ia64\data.obj \
+    $(_OBJ_DIR)\ia64\disk.obj \
+    $(_OBJ_DIR)\ia64\diskwmi.obj \
+    $(_OBJ_DIR)\ia64\enum.obj \
+    $(_OBJ_DIR)\ia64\geometry.obj \
+    $(_OBJ_DIR)\ia64\pnp.obj
+
+PASS0_IA64_OBJECTS=
+

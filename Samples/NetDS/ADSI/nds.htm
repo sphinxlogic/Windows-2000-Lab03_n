@@ -1,0 +1,175 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Active Directory Service Interfaces 2.5 - Communicating to NDS Servers</title>
+</head>
+
+<body topmargin="0" leftmargin="0">
+
+<table border="0" height="86" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="77%" valign="top" height="58"><img src="banner.gif"
+    alt="banner.gif (5982 bytes)" width="250" height="60"></td>
+    <td width="3%" height="58"></td>
+    <td width="21%" height="58" valign="bottom"><p align="right"><img src="mslogo.gif"
+    alt="mslogo.gif (666 bytes)" width="112" height="40"></td>
+  </tr>
+  <tr>
+    <td valign="top" align="left" height="28"><map name="FPMap0">
+      <area href="rtk.htm" shape="rect" coords="420, 1, 515, 18">
+      <area href="interopt.htm" shape="rect" coords="350, 1, 415, 19">
+      <area href="ad.htm" shape="rect" coords="233, 1, 345, 19">
+      <area href="winnt.htm" shape="rect" coords="165, 1, 223, 19">
+      <area href="dev.htm" shape="rect" coords="67, 1, 165, 19">
+      <area href="default.htm" coords="13, 1, 65, 20" shape="rect"></map><img rectangle="(233,1) (345, 19)  ad.htm" rectangle="(165,1) (223, 19)  winnt.htm" rectangle="(67,1) (165, 19)  dev.htm" rectangle="(13,1) (65, 20)  adsi.htm" src="router.gif" alt="router.gif (3874 bytes)" border="0" usemap="#FPMap0" width="536" height="26"></td>
+    <td width="3%" height="28"></td>
+    <td width="21%" height="28"></td>
+  </tr>
+</table>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0" height="40">
+  <tr>
+    <td width="2%" height="19"></td>
+    <td width="98%" height="19"><hr color="#0080C0">
+    </td>
+  </tr>
+  <tr>
+    <td width="2%" height="21"></td>
+    <td width="98%" height="21"><font face="Verdana" color="#0080C0"><strong><small>Communicating
+    to the Novell NDS Server</small></strong></font></td>
+  </tr>
+  <tr>
+    <td width="2%" height="21"></td>
+    <td width="98%" height="21" valign="top">&nbsp;<p><font face="Verdana" color="#0080C0"><strong><small>Requirements</small></strong></font><ul>
+      <li><font face="Verdana"><small>Install Novell NDS Server</small>.<br>
+        </font></li>
+      <li><font face="Verdana"><small>Install<small> </small>&quot;<a href="#gateway">Gateway and
+        Client Services for Netware</a>&quot;. </small><br>
+        </font></li>
+      <li><font face="Verdana"><small>Install ADSI 2.5 or higher &lt;<a
+        href="http://www.microsoft.com/adsi">http://www.microsoft.com/adsi</a>&gt;. Note
+        that you must
+        install ADSI <u>after</u> you install the Gateway and Client Service for Netware.</small></font></li>
+    </ul>
+    <p><a name="gateway"></a><font face="Verdana" color="#0080C0"><strong><small>Installing
+    Gateway and Client Services for Netware</small></strong></font></p>
+    <p><font face="Verdana" color="#0080C0"><small>For Windows NT® 4.0</small></font><ul>
+      <li><font face="Verdana" color="#000000"><small>Select <b> Start</b> | <b> Setting</b> |
+        <b> Control Panel</b></small></font></li>
+    </ul>
+    <ul>
+      <li><font face="Verdana" color="#000000"><small>Choose Network Applet, and double-click it to
+        open up the <b> Network Dialog</b>.</small></font></li>
+    </ul>
+    <ul>
+      <li><font face="Verdana" color="#000000"><small>Select the <b>Service</b>
+        tab.</small></font></li>
+    </ul>
+    <ul>
+      <li><small><font face="Verdana" color="#000000">Select <b> Gateway (and Client) Services for
+        Netware</b>.</font></small></li>
+    </ul>
+    <ul>
+      <li><font face="Verdana" color="#000000"><small>Install and reboot.</small></font></li>
+    </ul>
+    <p><font face="Verdana" color="#0080C0"><small>For Windows® 2000</small></font><ul>
+      <li><font face="Verdana" color="#000000"><small>Select <b> Start</b> | <b> Setting</b> |
+        <b> Network and Dial-up
+        Connection</b>.</small></font></li>
+    </ul>
+    <ul>
+      <li><font face="Verdana" color="#000000"><small>Select <b> Local Network</b>.
+        <b> Local Network</b> will
+        appear.</small></font></li>
+    </ul>
+    <ul>
+      <li><font face="Verdana" color="#000000"><small>Select <b> Client for Microsoft Network</b>.</small></font></li>
+    </ul>
+    <ul>
+      <li><font face="Verdana" color="#000000"><small>Click <b>Install</b>.</small></font></li>
+    </ul>
+    <ul>
+      <li><font face="Verdana"><small>Select <b> Client</b> icon, click <b> Add</b>.</small></font></li>
+    </ul>
+    <ul>
+      <li><font face="Verdana"><small>Select <b> Gateway (and Client) Services for Netware</b>.</small></font></li>
+    </ul>
+    <ul>
+      <li><small><font face="Verdana">Installation should be in progress.</font></small></li>
+    </ul>
+    <p><small><font face="Verdana">&nbsp;</font></small></p>
+    <p><strong><font face="Verdana" color="#0080C0"><small>Connecting to an NDS Server</small></font></strong></p>
+      <blockquote>
+    <p><font face="Verdana"><small>Dim dso<br>
+    Dim obj<br>
+    Dim usrName<br>
+    Dim password<br>
+    Dim serverName<br>
+    <br>
+    serverName = &quot;ntmarst2&quot;<br>
+    userName = &quot;supervisor.ntmarst2&quot;<br>
+    password = &quot;secretpwd&quot;<br>
+    <br>
+    '----Connecting----<br>
+    Set dso = GetObject(&quot;NDS:&quot;)<br>
+    Set cont = dso.OpenDSObject(&quot;NDS://&quot; &amp; serverName, userName, password, 0)</small></font></p>
+    <p><font face="Verdana"><small><br>
+    '----Enumeration----<br>
+    For Each obj In cont<br>
+    &nbsp;&nbsp; Debug.Print obj.Name &amp; &quot; (&quot; &amp; obj.Class &amp; &quot;)&quot;<br>
+    Next</small>
+    </font></p>
+      </blockquote>
+    <p><font face="Verdana" color="#0080C0"><strong><small>Attribute Retrieval and
+    Modification</small></strong></font></p>
+      <blockquote>
+        <p><small><font face="Verdana">Path = &quot;O=NTMARST2/CN=benny&quot;<br>
+    ADsPath = &quot;NDS://&quot; &amp; serverName &amp; &quot;/&quot; &amp; Path<br>
+    Set usr = dso.OpenDSObject(ADsPath, userName, password, 0)<br>
+    Debug.Print usr.Get(&quot;Surname&quot;)<br>
+    usr.Put &quot;SurName&quot;, &quot;Johnson&quot;<br>
+        usr.SetInfo</font></small></p>
+      </blockquote>
+    <p><font face="Verdana" color="#0080C0"><strong><small>Object Creation</small></strong></font></p>
+      <blockquote>
+    <p><small><font face="Verdana">Path = &quot;O=NTMARST2&quot;<br>
+    ADsPath = &quot;NDS://&quot; &amp; serverName &amp; &quot;/&quot; &amp; Path<br>
+    Set cont = dso.OpenDSObject(ADsPath, userName, password, 0)<br>
+    Set usr = cont.Create(&quot;user&quot;, &quot;alicew&quot;)<br>
+    usr.Put &quot;cn&quot;, &quot;Alice&quot;<br>
+    usr.Put &quot;Surname&quot;, &quot;Wonderland&quot;<br>
+    usr.SetInfo</font></small></p>
+      </blockquote>
+    <p><font face="Verdana" color="#0080C0"><strong><small>Searching</small></strong></font></p>
+      <p><font face="Verdana"><small>'----Searching----</small></font>
+      <blockquote>
+    <p><small><font face="Verdana">
+    ADsPath = &quot;NDS://&quot; &amp; serverName<br>
+    Set con = CreateObject(&quot;ADODB.Connection&quot;)<br>
+    con.Provider = &quot;ADsDSOObject&quot;<br>
+    con.Properties(&quot;User ID&quot;) = userName<br>
+    con.Properties(&quot;Password&quot;) = password<br>
+    con.Open &quot;ADSI&quot;<br>
+    <br>
+    <br>
+    Set com = CreateObject(&quot;ADODB.Command&quot;)<br>
+    Set com.ActiveConnection = con<br>
+    com.CommandText = &quot;SELECT ADsPath, 'Object Class' FROM '&quot; &amp; ADsPath &amp;
+    &quot;' WHERE Surname='Wonderland'&quot;<br>
+    Set rs = com.Execute<br>
+    <br>
+    <br>
+    While Not (rs.EOF)<br>
+    &nbsp;&nbsp; Debug.Print rs.Fields(&quot;ADsPath&quot;)<br>
+    &nbsp;&nbsp; rs.MoveNext<br>
+    Wend<br>
+    <small></small></font></small>
+      </blockquote>
+      <small><font face="Verdana"><small>source code \interopt\nds</small></font></small>
+    <p>&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

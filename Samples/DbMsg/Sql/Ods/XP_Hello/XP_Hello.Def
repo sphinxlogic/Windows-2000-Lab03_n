@@ -1,0 +1,8 @@
+LIBRARY XP_HELLO
+
+DESCRIPTION   'Sample SQL Server Extended Stored Procedure DLL'
+
+EXPORTS
+	xp_hello
+	__GetXpVersion
+	

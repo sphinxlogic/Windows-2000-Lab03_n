@@ -1,0 +1,32 @@
+// Copyright (c) 1997  Microsoft Corporation.  All rights reserved.
+
+[ uuid(D7F14980-649A-11d0-BFFC-00AA003CFDFC), version(1.0),
+  helpstring("Sample Custom Marshaling (Java->COM") ]
+library JavaLib
+{
+
+    importlib("stdole32.tlb");
+
+
+    typedef struct FIXED {
+        unsigned short fract;
+        short          value;
+    } FIXED;
+
+    typedef struct POINT {
+        long           x;
+        long           y;
+    } POINT;
+
+    typedef struct RECT {
+        long           left;
+        long           top;
+        long           right;
+        long           bottom;
+    } RECT;
+
+    // Need a typedef in order to have a name for .JNF file.
+    typedef struct MYCHAR {
+        char           dummy;
+    } MYCHAR;
+}

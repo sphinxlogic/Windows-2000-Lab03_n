@@ -1,0 +1,24 @@
+#---------------------------------------------------------------------------
+# Description:
+#   Make file to generate MbxServ.Exe
+#
+# Copyright (C) Microsoft Corporation 1986 - 1998.  All Rights Reserved.
+#---------------------------------------------------------------------------
+
+USE_EXCHANGE=1
+Use_MFC=1
+Use_MSCRT=1
+
+Proj = MBxServ
+
+!Include <BkOffice.Mak>
+
+CL = -GX $(CL)
+
+ObjList = $(ObjDir)\$(Proj).Res $(@R).Obj $(@D)\DAbout.Obj \
+          $(@D)\DChkMail.Obj $(@D)\MiscGDI.Obj $(@D)\ODItem.Obj \
+          $(@D)\ODList.Obj $(@D)\StdAfx.Obj
+
+all:      $(ObjDir)\$(Proj).Exe
+
+$(ObjDir)\$(Proj).Exe:  $(ObjList)

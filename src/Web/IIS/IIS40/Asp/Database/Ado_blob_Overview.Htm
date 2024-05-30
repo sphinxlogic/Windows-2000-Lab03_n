@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>ADO BLOB</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_ado_blob"></a>  ADO BLOB</h3>
+<p>
+Text isn't the only kind of information that can be stored in databases, so of course it's not the only kind of data that ASP and ADO can handle. Binary large objects, or BLOBs, representing anything from new chemical products to graphical images, can be retrieved and stored using many of the same methods and properties used to work with text-based data. </p>
+<p>
+This example accesses a database, pulls out a company logo, and sends it to the client browser. Before any database access or manipulation occurs, however, the script must tell the client browser what kind of content to expect, so the <b>ContentType</b> property of the <b>Response</b> object is set to image/gif. This indicates that the client browser should treat the incoming information as binary data to be displayed as an image, instead of an audio file or a plain text file, for example. </p>
+<p>
+<b>CreateObject</b> is used, just like any other database access using ADO, to create a <b>Connection</b> object, which is then used to open an ODBC connection with the SQL IISSDK database. A new <b>Recordset</b> object is instantiated and populated with the results of the SQL query execution.</p>
+<p>
+The contents of the Logo field, a binary image created in the GIF format, are copied to the <i>Pic</i> variable, using the <b>ActualSize</b> property to ascertain the true length of the image, and the <b>GetChunk</b> method to specify how much of the image to copy. The <b>Response.BinaryWrite</b> method is then invoked to write the binary image to the buffer. <b>Response.End</b> flushes the buffer and sends the HTTP headers, including the image/gif content-type specifier and the entire binary image, to the client browser. </p>
+<p>
+<b>Note</b>&nbsp;&nbsp;SQL Server must be installed, and configured properly, on the same machine on which IIS is running in order for this sample to work correctly. In addition, the IISSDK data source must also be configured properly.</p>
+</BODY>
+</HTML>

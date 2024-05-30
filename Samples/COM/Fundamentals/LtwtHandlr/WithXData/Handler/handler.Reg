@@ -1,0 +1,8 @@
+REGEDIT4
+
+[HKEY_CLASSES_ROOT\CLSID\{84D1E315-B47A-11d1-BC1E-0000F81F599C}] 
+@="Light Weight Handler Sample"
+[HKEY_CLASSES_ROOT\CLSID\{84D1E315-B47A-11d1-BC1E-0000F81F599C}\InprocHandler32]
+@="D:\\MSSDK\\Samples\\com\\fundamentals\\ltwthandlr\\bin\\WithXData\\ServerHandler.dll"
+"ThreadingModel"= "Both"
+

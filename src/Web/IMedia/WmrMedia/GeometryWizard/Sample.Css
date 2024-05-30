@@ -1,0 +1,31 @@
+body  {
+	margin-left : 0pt;
+	margin-top : 0pt;
+	font-size : 80%;
+	font-family : Verdana, Arial, Helvetica, MS Sans Serif;
+}
+
+
+table  {
+	font-size : 100%;
+	margin : 0pt;
+	padding: 2pt;
+}
+
+th  {
+	text-align : left;
+	background-color : #dddddd;
+	margin : 3pt;
+	vertical-align : bottom;
+}
+
+tr  {
+	vertical-align : top;
+}
+
+td  {
+	margin : 0pt;
+	padding: 5pt;
+	background-color : #DFDFDF;
+	vertical-align : top;
+}

@@ -1,0 +1,32 @@
+<HTML>
+<!-- 
+/**************************************************************************
+ *
+ * Copyright (c) 1999 Microsoft Corporation.  All rights reserved.
+ *
+ * This is prerelease software and is provided as is and Microsoft
+ * makes no warranties, either express or implied.  The entire risk of
+ * the use or the results of the use of this prerelease software
+ * remains with the user.
+ **************************************************************************/
+
+-->
+<HEAD>
+            <TITLE>WEB-IVR Demostration</TITLE>
+
+
+<script language="VBScript">
+Sub PhoneNumber_onchange()
+     External.ITBasicCallControl.BlindTransfer PhoneNumber.value
+End Sub
+</script>
+
+</HEAD>
+
+<BODY>
+
+    <H1 VoiceFile="waves\PleaseHold.wav"></H1>
+
+</BODY>
+
+</HTML>

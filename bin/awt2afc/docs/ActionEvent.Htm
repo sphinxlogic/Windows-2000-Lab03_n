@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>ActionEvent -> UIActionEvent</title>
+<base target="descriptions">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">ActionEvent to UIActionEvent</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.event.ActionEvent should be transformed into instances
+of com.ms.ui.event.UIActionEvent.</p>
+
+<p align="left">ActionEvent extends <a href="AWTEvent.htm"
+target="descriptions">AWTEvent</a>: be sure to see its changes.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">AFC provides an adapter class, UIActionAdapter,
+for this event. UI events are always associated with an
+IUIComponent: the method <font size="2" face="Courier">getActionItem()</font>
+will find this component.</p>
+
+<p align="left">&nbsp;</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">This is the set of changes you need to make to
+port all ActionEvent methods to UIActionEvent methods. Any method
+not listed here or below does not need to be changed.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial"><strong>AWT Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">ActionEvent(Object,
+        int, String)</font></td>
+        <td nowrap><font size="2" face="Courier">ActionEvent(Object,
+        int, IUIComponent, String)</font></td>
+        <td><font size="2">UIEvents are always associated with an
+        IUIComponent.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">ActionEvent(Object,
+        int, String, int)</font></td>
+        <td nowrap><font size="2" face="Courier">ActionEvent(Object,
+        int, IUIComponent, String, int)</font></td>
+        <td><font size="2">UIEvents are always associated with an
+        IUIComponent. UIActionEvents also have more modifiers
+        than ActionEvents: see the documentation for more
+        information.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">ActionEvent.ALT_MASK</font></td>
+        <td><font size="2" face="Courier">UIInputEvent.ALT_MASK</font></td>
+        <td><font size="2">The modifiers that are useful here
+        come from UIInputEvent.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">ActionEvent.CTRL_MASK</font></td>
+        <td><font size="2" face="Courier">UIInputEvent.CTRL_MASK</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">ActionEvent.META_MASK</font></td>
+        <td><font size="2" face="Courier">UIInputEvent.META_MASK</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">ActionEvent.SHIFT_MASK</font></td>
+        <td><font size="2" face="Courier">UIInputEvent.SHIFT_MASK</font></td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h3>Unsupported Constants</h3>
+
+<p>Some constants in java.awt.event.ActionEvent are not directly
+supported in com.ms.ui.event.UIActionEvent. Those constants are
+listed here.</p>
+
+<p><font size="2" face="Courier">ACTION_FIRST</font></p>
+
+<p><font size="2" face="Courier">ACTION_LAST</font></p>
+</body>
+</html>

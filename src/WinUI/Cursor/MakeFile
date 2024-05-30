@@ -1,0 +1,20 @@
+# Nmake macros for building Win32 & Win64 apps
+
+!include <Win32.Mak>
+
+all: Cursor.Exe
+
+# Update the resource if necessary
+
+Cursor.Res: Cursor.Rc Cursor.h BullsEye.Cur
+    $(rc) $(rcflags) $(rcvars) Cursor.Rc
+
+# Update the object file if necessary
+
+Cursor.Obj: Cursor.c Cursor.h
+    $(cc) $(cflags) $(cvars) $(cdebug) Cursor.c
+
+# Update the executable file if necessary, and if so, add the resource back in.
+
+Cursor.Exe: Cursor.Obj Cursor.Res Cursor.Def
+    $(link) $(linkdebug) $(guiflags) -out:Cursor.Exe Cursor.Obj Cursor.Res $(guilibs)

@@ -1,0 +1,172 @@
+<HTML>
+<HEAD>
+<TITLE>JNotepad Class Structure</TITLE>
+</HEAD>
+
+<BODY BGPROPERTIES="FIXED" BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="#0000FF" ALINK="#0000FF" TOPMARGIN=0 LEFTMARGIN=0>
+
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE="2">
+
+<A NAME="pagetop"></A>
+
+
+<!--margin-->
+<TD WIDTH=23><IMG SRC="/art/1pixel.gif" WIDTH=23 HEIGHT=1></TD>
+<!--margin ENDS-->
+
+
+
+<!--main title (fixed coloured cell type)-->
+<BR>
+<TABLE BORDER=0 WIDTH=100%>
+<TR><TD BGCOLOR=BLUE WIDTH=200><FONT FACE="HELVETICA, ARIAL" SIZE=4 COLOR=WHITE>
+&nbsp;
+AFC</FONT>
+</TD>
+</table>
+<!--main title ENDS-->
+
+<p>
+
+<TABLE BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<TR VALIGN=TOP>
+
+
+<!--main page sub-title-->
+<TD><FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=4>
+<B>JNotepad Class Structure</B></A>
+</FONT>
+
+<p>
+
+<!--main contents (NEW TABLE required in this scenario)-->
+<TABLE BORDER=0>
+<TR><TD ALIGN=LEFT VALIGN=TOP>
+
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=2>
+
+This document contains technical information about the class structure and
+layout of JNotepad. JNotepad was written to be very extensible and reusuable. Many classes in
+JNotepad can be easily taken out and used in your own applications. This 
+is one of the major benefits of object-oriented programming; if done correctly,
+most classes can be self-contained and used outside of JNotepad. Read this
+document if you're interested in how JNotepad was designed and written and
+how you can use JNotepad classes in your own program. <p>
+
+JNotepad contains extensive internal documentation in the JavaDoc format.
+To obtain this, use the <i>javadoc</I> tool to extract documentation from
+the JNotepad source code. <i>Javadoc</I> will create a set of nicely formatted
+web pages which will document every class, method, and interface. It will
+also construct a JNotepad class hierarchy, which is useful when trying to
+understand JNotepad.<p>
+
+The rest of this document contains a brief description of the JNotepad class structure.
+This will explain what classes do what, and how they communicate with
+each other. This is not intended to be a complete description of JNotepad, but simply to
+help you see where the major classes fit into the structure of the program and where to
+go for more specific information. The details of each class may be found in the 
+Javadoc files and the source code.<p>
+
+<h3>Startup</h3>
+The JNotePad class is the main starting point of the program. JNotePad
+creates a JNotePadFrame as the main frame window. All user interface 
+elements reside in this frame. JNotePadFrame creates all of the user 
+interface items inside of it and handles the exit command.<p>
+
+<h3>User interface</h3>
+JNotepad consists of three main user interface components; the menubar 
+(JNotepadMenubar), the toolbar (JNotepadToolbar), and the tab file viewer
+(JNoteTabFileViewer).
+
+<h3>The Menubar</h3>
+JNoteMenubar encapsulates the menu bar at the top of the screen. It loads
+itself from a resource file and puts all of its elements in a hashtable
+for easy lookup later. When users select commands from the menu, it
+sends them to the <a href="#CommandProcessing">JNoteCommandObject</a> for
+processing. It also accepts state change commands (i.e. enabling and
+disabling menu items) via the <a href="#CommandFeedback">ICommandFeedback</a>
+interface. 
+
+<h3>The Toolbar</h3>
+JNoteToolbar holds the toolbar. It reads from the INI file the buttons it
+should display and what command is associated with each one. The commands
+the user chooses are sent to the <a href="#CommandProcessing">JNoteCommandObject</a>
+for processing. State change commands (i.e. enabling and disabling buttons)
+is done via the <a href="#CommandFeedback">ICommandFeedback</a>
+interface. Two private classes provide toolbar buttons (JNotePushButton)
+and the color choice controls (JNoteColorChoice).
+
+<h3>The Tab Viewer</h3>
+This is the class where JNotepad does most of its work. Each tab contains
+a JNoteUIEdit as the editing field. This edit control is linked to a FileControl
+object inside the tab viewer class. Disk files are linked to DiskFileControl objects,
+which is a subclass of FileControl. The tab viewer also creates a tab for
+the clipboard. The edit control on this tab is linked to a ClipboardControl object,
+which is also a descendant of FileControl. The tab viewer is split up into
+three classes which descend from one another. The uppermost parent is TabFileViewer.
+This class provides basic functionality. FeatureTabFileViewer extends TabFileViewer
+and adds support for plug in features and a tab context menu. JNoteTabFileViewer adds
+JNotepad specific functions, such as an About JNotepad dialog box and a
+properties dialog box. One can use any of these classes in one's own app, depending on 
+how much functionality is needed. The tab file viewer supports both the
+IFileOperationTarget and the ITextOperationTarget interfaces and forwards
+all commands that come through this interface to either the FileControl object 
+(which supports IFileOperationTarget) or the edit control (which supports
+ITextOperationTarget). 
+
+<h3>The Edit Control</h3>
+The edit control JNoteUIEdit, which extends UIEdit and implements the
+ITextOperationTargetExt interface, handles the entry and display of text. 
+It also supports a context menu (JNoteContextMenu).
+
+<h3>Interfaces</h3>
+JNotePad 
+
+<an anchor="#CommandProcessing">
+<h3>Command Processing</h3>
+The JNoteCommandFeature (an extension of CommandFeature) handles command
+processing. All commands go here; all components in the system which
+generate commands have their command events intercepted via Java 1.1 listener
+interface. The JNoteCommandFeature has all command generating components
+register themselves with it. When the command is received, it is processed
+to determine what type of command it is, and the proper method in either
+the IFileOperationTarget interface or the ITextOperationTarget interface
+is called. JNoteCommandFeature sends all commands to the tab file viewer, which supports 
+both the IFileOperationTarget and the ITextOperationTarget interfaces. The tab file viewer 
+forwards these commands to either the current FileControl or the current JNoteUIEdit.
+
+<an anchor="#CommandFeedback">
+<h3>Command Feedback</h3>
+Components need some way to tell the system that a certain command is enabled
+or disabled so the user interface can update itself accordingly. This is done
+through the ICommandFeedback interface. CommandFeature implements this interface
+and handles all command state changes. When a command is enabled or disabled, it 
+runs the enableCommand() method in the CommandFeature object. The CommandFeature then
+runs enableCommand() methods in all of the user interface componenets in the system.
+This lets the component update itself if it supports that command. There are similar 
+methods for querying the state of a command and for setting and unsetting
+checks in check buttons.
+
+<h3>Helper Classes</h3>
+JNoteAppCommandFeature holds the application-wide ICommandFeature object; classes
+use this class to get the JNoteCommandFeature object they send commands to. 
+JNoteAppCommandFeature also holds an application-wide ICommandFeedback feature
+for use in state updating. SettingsObject holds the settings for the entire
+program. These are user-definable options stored in an INI file.
+
+
+<p>
+
+
+<!--rule-->
+<TABLE WIDTH=95%><TD HEIGHT=2 BGCOLOR=BLUE></TD></TABLE>
+<BR>
+
+<!--page top button-->
+<TABLE WIDTH=100%><TR><TD ALIGN=LEFT><A HREF="#pagetop"><IMG SRC="../../art/butt_up.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Top"></A></TD>
+
+<!--MS copyright-->
+<TD ALIGN=RIGHT><FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK"><A HREF="../../art/cpyright.htm">&#169; 1996 Microsoft Corporation. All rights reserved.</A></FONT></TD></TR></TABLE>
+</FONT>
+</BODY>
+</HTML>

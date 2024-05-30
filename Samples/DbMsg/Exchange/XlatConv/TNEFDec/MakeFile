@@ -1,0 +1,21 @@
+#---------------------------------------------------------------------------
+# Description:
+#
+#   Make file to generate TNEFDec.Dll
+#
+# Copyright (C) Microsoft Corporation 1986 - 1998. All Rights Reserved.
+#---------------------------------------------------------------------------
+
+USE_EXCHANGE=1
+dll=1
+crtdll=1
+
+Proj = TNEFDec
+
+cDefines=-DUNICODE -D_UNICODE
+
+!Include <BkOffice.Mak>
+
+all:  $(ObjDir)\$(Proj).Dll
+
+$(ObjDir)\$(Proj).Dll: $(@R).Obj

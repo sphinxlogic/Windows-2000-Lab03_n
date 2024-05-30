@@ -1,0 +1,64 @@
+<!--==Visual InterDev Generated - startspan==-->
+<!--METADATA TYPE="TypeLib" NAME="Scripting" UUID="{420B2830-E718-11CF-893D-00A0C9054228}" VERSION="1.0"-->
+<!--METADATA TYPE="TypeLib" NAME="ADO" UUID="{00000200-0000-0010-8000-00AA006D2EA4}" VERSION="2.0"-->
+<!--METADATA TYPE="TypeLib" NAME="CML" UUID="{3E0C98DC-9E9E-11D2-ABD6-0080C7665CC0}" VERSION="1.0"-->
+<!--==Visual InterDev Generated - endspan==-->
+
+
+
+<SCRIPT LANGUAGE=VBScript RUNAT=Server>
+Sub Application_OnStart
+	'==Visual InterDev Generated - startspan==
+	'-- Project Data Environment
+		'Set DE = Server.CreateObject("DERuntime.DERuntime")
+		'Application("DE") = DE.Load(Server.MapPath("Global.ASA"), "_private/DataEnvironment/DataEnvironment.asa")
+	'==Visual InterDev Generated - endspan==
+	
+	ReadApplicationSettings
+End Sub
+
+Sub Session_OnStart
+   Session("LastPage") = ""
+   Session("BorrowerID") = 0
+   Set Session("_TableList") = Nothing
+End Sub
+
+Sub Session_OnEnd
+   Dim dctTables, key, cmd
+   Set dctTables = Session("_TableList")
+   If Not dctTables Is Nothing Then
+      If dctTables.Count > 0 Then
+         Set cmd = Server.CreateObject("ADODB.Command")
+         cmd.ActiveConnection = Application("FmLib_ConnectionString")
+         On Error Resume Next
+         For Each key In dctTables.Keys
+            cmd.CommandText = "DROP TABLE " & key
+            cmd.Execute 
+         Next
+         Set cmd = Nothing
+      End If
+   End If
+End Sub
+
+Sub ReadApplicationSettings()
+   Dim rs,fld
+   Set rs = Server.CreateObject ("ADODB.Recordset")
+   rs.Open "Settings", Application("FmLib_ConnectionString"), adOpenForwardOnly, adLockReadOnly, adCmdTable
+   If Not rs.EOF Then
+      For Each fld In rs.Fields
+         If Not IsNull(fld.Value) Then
+            Select Case LCase(fld.Name)
+            '--- Special case for boolean values
+            Case "debug","approvalrequired","critiqueenabled":
+               Application(fld.Name) = CBool(fld.Value)
+            Case Else:
+               Application(fld.Name) = Trim(fld.Value)
+            End Select
+         End If
+      Next
+   End If
+   rs.Close
+   Set rs = Nothing
+End Sub
+
+</SCRIPT>

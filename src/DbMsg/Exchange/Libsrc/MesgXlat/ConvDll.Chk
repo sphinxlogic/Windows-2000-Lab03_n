@@ -1,0 +1,172 @@
+// --convdll.chk----------------------------------------------------------------
+// 
+//  Parameter checking for convdll.cpp
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+//
+// -----------------------------------------------------------------------------
+#ifndef DEBUG
+#define CHK_CEDKConvDll_CEDKConvDll(a,b)              NOERROR
+#define CHK_CEDKConvDll_HrEDKQueryCapability(a,b,c,d) NOERROR
+#define CHK_CEDKConvDll_HrEDKConvert(a,b,c,d,e)       NOERROR
+#else
+//$--CHK_CEDKConvDll_CEDKConvDll---------------------------------------------------
+//
+// DESCRIPTION: Parameter checking for CEDKConvDll::CEDKConvDll()
+//
+// INPUT:   pep --  CDllEntryPoint class instance
+//                  hEventSource    --  event source handle
+//
+// RETURNS: HRESULT --  NOERROR if successful,
+//                      E_INVALIDARG if bad input
+//
+//------------------------------------------------------------------------------
+static inline HRESULT CHK_CEDKConvDll_CEDKConvDll(  //  RETURNS:    HRESULT
+    IN CDllEntryPoint * pep,
+    IN HANDLE hEventSource)
+{
+    HRESULT hr  =   NOERROR;    // return code
+
+    if ( ! TEST_READ_PTR(pep, sizeof(CDllEntryPoint)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( (hEventSource == INVALID_HANDLE_VALUE) ||
+         (hEventSource == NULL) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return hr;
+
+}
+
+//$--CHK_CEDKConvDll_HrEDKQueryCapability-------------------------------------------------
+//
+//  DESCRIPTION: Parameter checking for CEDKConvDLL::HrEDKQueryCapability
+//
+//  INPUT:  pEnv    --  environment for conversion
+//          pszContentClass --  class to be converted
+//          pConent --  pointer to the content
+//
+//  OUTPUT: fAmCandidate    --  TRUE if can be converted, FALSE otherwise.
+//
+//  RETURNS:    HRESULT --  NOERROR if overall function call succeeds,
+//                          E_INVALIDARG if bad input
+//
+//------------------------------------------------------------------------------
+static inline HRESULT CHK_CEDKConvDll_HrEDKQueryCapability(  // RETURN - HRESULT
+    IN PEDKCNVENV pEnv,             // environment for conversion.
+    IN LPCWSTR pszContentClass,     // class to be converted.
+    IN PVOID pContent,              // pointer to the content.
+    OUT BOOL &fAmCandidate)         // result of the conversion.
+{
+    HRESULT hr  =   NOERROR;    // return code
+
+    if ( ! TEST_READ_PTR(pEnv, sizeof(EDKCNVENV)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( (pszContentClass == NULL) || IsBadStringPtrW(pszContentClass, INFINITE) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if (pContent == NULL)
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_WRITE_PTR(&fAmCandidate, sizeof(BOOL)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return hr;
+
+}
+
+//$--CHK_CEDKConvDll_HrEDKConvert----------------------------------------------------------
+//
+//  DESCRIPTION: Parameter checking for CEDKConvDll::HrEDKConvert()
+//
+//  INPUT:  pEnv    --  environment
+//          lpszContentClass    --  class of content to convert
+//          pContentIn  --  source
+//          pContentOut --  target of conversion
+//          
+//  OUTPUT: 
+//          crResult    --  result of conversion
+//
+//  RETURNS:    HRESULT --  NOERROR if overall call succeeds,
+//                          E_INVALIDARG if bad input.
+//
+//------------------------------------------------------------------------------
+static inline HRESULT CHK_CEDKConvDll_HrEDKConvert(  // RETURNS: HRESULT
+    IN PEDKCNVENV pEnv,             // environment
+    IN LPCWSTR lpszContentClass,    // class of content to convert.
+    IN PVOID pContentIn,            // source.
+    IN PVOID pContentOut,           // target of conversion
+    OUT EDKCNVRES & crResult)       // result of conversion
+{
+    HRESULT hr  =   NOERROR;    // return code
+
+    if ( ! TEST_READ_PTR(pEnv, sizeof(EDKCNVENV)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( (lpszContentClass == NULL) || IsBadStringPtrW(lpszContentClass, INFINITE) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if (pContentIn == NULL)
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if (pContentOut == NULL)
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_WRITE_PTR(&crResult, sizeof(EDKCNVRES)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return hr;
+
+}
+#endif

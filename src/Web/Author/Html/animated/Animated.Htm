@@ -1,0 +1,52 @@
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<HTML>
+<HEAD>
+<TITLE>Animated Buttons</TITLE>
+<META NAME="FILENAME" CONTENT="animated.HTM">
+<STYLE>
+  .bigChange {color:blue; font-weight:bolder; font-size:175%; letter-spacing:4px;  text-transform: uppercase; background:yellow}
+  .start {color:yellow; background:navy}
+</STYLE>
+<SCRIPT LANGUAGE=JAVASCRIPT>
+  function highlightButton(s) {
+    if ("INPUT"==event.srcElement.tagName)
+      event.srcElement.className=s
+  }
+</SCRIPT>
+</HEAD>
+<BODY TOPMARGIN=20 LEFTMARGIN=40 BGCOLOR="#FFFFFF" LINK="#000066" VLINK="#666666" TEXT="#000000">
+  
+<h2>Animated Buttons</h2>
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT>
+<P>
+<P>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+<hr>
+
+<FORM NAME=highlight onmouseover="highlightButton('start')" onmouseout="highlightButton('')">
+    <input type="button" value="Button 1">
+    <input type="button" onmousedown="this.style.fontStyle='italic'" onmouseup="this.style.fontStyle=''" value="Click me" onclick="this.value='You clicked the button!'">
+    <input type="button" value="Button 3">
+  </FORM>
+This page demonstrates how the style can be changed through interactions with the user. This technique makes the web-page more lively and interactive.</P>
+  <P>Dynamic HTML supports the CSS standard on the built in controls. When combined with the
+     object model, it allows the controls to change in appearance and size, as a result of interaction with
+     the user.
+  <P>The "Click me" button demonstrates that even buttons can resize to accommodate changed button content, causing the document to automatically
+     reflow around them.</p>
+  
+  <P>
+<P>
+<P>
+<P>
+<FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">
+&copy; <A HREF="/misc/cpyright.htm" TARGET="_top">1999 Microsoft Corporation. All rights reserved. Terms of use</A>.
+</FONT>
+
+<P>
+</HTML>
+

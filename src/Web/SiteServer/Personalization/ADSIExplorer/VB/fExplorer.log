@@ -1,0 +1,60 @@
+Line 15: Class ComctlLib.StatusBar of control sbStatus was not a loaded control class.
+Line 35: Class ComctlLib.ListView of control lvContainer was not a loaded control class.
+Line 72: Class ComCtl3.CoolBar of control cbToolbar was not a loaded control class.
+Line 94: Class ComctlLib.Toolbar of control tbToolbar was not a loaded control class.
+Line 134: Class ComctlLib.ImageList of control ilSmall was not a loaded control class.
+Line 176: Class ComctlLib.ImageList of control ilLarge was not a loaded control class.
+Line 22: The property name _ExtentX in sbStatus is invalid.
+Line 23: The property name _ExtentY in sbStatus is invalid.
+Line 24: The property name SimpleText in sbStatus is invalid.
+Line 25: The property name _Version in sbStatus is invalid.
+Line 33: The property name Panels in sbStatus is invalid.
+Line 41: The property name _ExtentX in lvContainer is invalid.
+Line 42: The property name _ExtentY in lvContainer is invalid.
+Line 43: The property name Arrange in lvContainer is invalid.
+Line 44: The property name LabelEdit in lvContainer is invalid.
+Line 45: The property name Sorted in lvContainer is invalid.
+Line 46: The property name LabelWrap in lvContainer is invalid.
+Line 47: The property name HideSelection in lvContainer is invalid.
+Line 49: The property name _Version in lvContainer is invalid.
+Line 50: The property name Icons in lvContainer is invalid.
+Line 51: The property name SmallIcons in lvContainer is invalid.
+Line 57: The property name NumItems in lvContainer is invalid.
+Line 63: The property name ColumnHeader(1) in lvContainer is invalid.
+Line 70: The property name ColumnHeader(2) in lvContainer is invalid.
+Line 79: The property name _ExtentX in cbToolbar is invalid.
+Line 80: The property name _ExtentY in cbToolbar is invalid.
+Line 81: The property name BandCount in cbToolbar is invalid.
+Line 82: The property name _CBWidth in cbToolbar is invalid.
+Line 83: The property name _CBHeight in cbToolbar is invalid.
+Line 84: The property name _Version in cbToolbar is invalid.
+Line 85: The property name Child1 in cbToolbar is invalid.
+Line 86: The property name MinHeight1 in cbToolbar is invalid.
+Line 87: The property name Width1 in cbToolbar is invalid.
+Line 88: The property name FixedBackground1 in cbToolbar is invalid.
+Line 89: The property name NewRow1 in cbToolbar is invalid.
+Line 90: The property name Child2 in cbToolbar is invalid.
+Line 91: The property name MinHeight2 in cbToolbar is invalid.
+Line 92: The property name Width2 in cbToolbar is invalid.
+Line 93: The property name NewRow2 in cbToolbar is invalid.
+Line 100: The property name _ExtentX in tbToolbar is invalid.
+Line 101: The property name _ExtentY in tbToolbar is invalid.
+Line 102: The property name ButtonWidth in tbToolbar is invalid.
+Line 103: The property name ButtonHeight in tbToolbar is invalid.
+Line 104: The property name ImageList in tbToolbar is invalid.
+Line 105: The property name _Version in tbToolbar is invalid.
+Line 114: The property name Buttons in tbToolbar is invalid.
+Line 137: The property name _ExtentX in ilSmall is invalid.
+Line 138: The property name _ExtentY in ilSmall is invalid.
+Line 140: The property name ImageWidth in ilSmall is invalid.
+Line 141: The property name ImageHeight in ilSmall is invalid.
+Line 142: The property name MaskColor in ilSmall is invalid.
+Line 143: The property name _Version in ilSmall is invalid.
+Line 174: The property name Images in ilSmall is invalid.
+Line 179: The property name _ExtentX in ilLarge is invalid.
+Line 180: The property name _ExtentY in ilLarge is invalid.
+Line 182: The property name ImageWidth in ilLarge is invalid.
+Line 183: The property name ImageHeight in ilLarge is invalid.
+Line 184: The property name MaskColor in ilLarge is invalid.
+Line 185: The property name _Version in ilLarge is invalid.
+Line 216: The property name Images in ilLarge is invalid.

@@ -1,0 +1,159 @@
+<html>
+
+<head>
+<title>Resource Dispensers</title>
+<link rel="stylesheet" href="../../styles.css" type="text/css">
+<style>
+A:link {color: Olive}
+A:visited {color: 336666}
+A:hover {background:Olive; color: White}
+</style>
+</head>
+
+<body>
+
+<h2>Resource Dispensers</h2>
+
+<hr>
+
+<h4>Overview</h4>
+
+<p>A resource dispenser manages nondurable shared state on behalf of the application
+components within a process. Resource dispensers are similar to resource managers, but
+without the guarantee of durability. COM+ provides two resource dispensers: 
+
+<ul>
+  <li>The ODBC resource dispenser </li>
+  <li>The Shared Property Manager </li>
+</ul>
+
+<p>The resource sample dispenser demonstrates how to build your own resource dispenser to
+use with COM+ or MTS. Note that the sample dispenser is not intended for a production
+environment, and should be used as a programming example. See the COM+ or MTS documentation in
+the \help section for more details. </p>
+
+<table border="0">
+  <tr>
+    <td><b>Sub-Directory</b>
+    </td>
+    <td><b>Description</b>
+    </td>
+  </tr>
+  <tr>
+    <td VALIGN="TOP"><a href="copyfilerm/">CopyFileRm</a></td>
+    <td>Resource manager sample</td>
+  </tr>
+  <tr>
+    <td VALIGN="TOP"><a href="cpyimage/">CpyImage</a></td>
+    <td>An MTS component that copies files and inserts rows into SQL Server</td>
+  </tr>
+  <tr>
+    <td VALIGN="TOP"><a href="FileRmClient/">FileRmClient</a></td>
+    <td>The base client for the CpyImage component</td>
+  </tr>
+  <tr>
+    <td VALIGN="TOP"><a href="../../Administration/MTSSpy/mtsusereventobj/">MtsUserEventObj</a>&nbsp; </td>
+    <td>A sample implementation of a User event object (this file is from the administration directory for those targeting MTS) </td>
+  </tr>
+ <tr>
+    <td VALIGN="TOP"><a href="../../Administration/Spy/mtsusereventobj/">MtsUserEventObj</a>&nbsp; </td>
+    <td>A sample implementation of a User event object (this file is from the administration directory for those targeting COM+)  </td>
+  </tr>
+  <tr>
+    <td VALIGN="TOP"><a href="Package/">Package</a></td>
+    <td>Package file for the CpyImage component</td>
+  </tr>
+  <tr>
+    <td VALIGN="TOP"><a href="PictureCtl/">PictureCtl</a></td>
+    <td>An OCX for CopyFileRm proxystub SDK proxy-stub DLLs</td>
+  </tr>
+  <tr>
+    <td VALIGN="TOP"><a href="rmworker/">RmWorker</a></td>
+    <td>A component of CopyFileRm which does the actual file operations and maintains the
+    state machine of the RM</td>
+  </tr>
+  <tr>
+    <td VALIGN="TOP"><a href="simplelog/">SimpleLog</a></td>
+    <td>A logging mechanism for the CopyFileRm sample</td>
+  </tr>
+  <tr>
+    <td VALIGN="TOP"><a href="txfiledisp/">TxFileDisp</a></td>
+    <td>A resource dispenser for the CopyFileRm sample</td>
+  </tr>
+</table>
+
+<h4>Build Notes</h4>
+
+<p>You must build and register the MtsSdkPs files first from:
+
+<ul>
+<li><a href="../../common/proxystub/">\mssdk\samples\com\Common\proxystub\</a> (for those targeting COM+)</li>
+<li><a href="../../administration/mtsspy/proxystub/">\mssdk\samples\com\administration\mtsspy\proxystub\</a> (for those targeting MTS)</li>
+</ul>
+
+Next you need to build the Inc files from:
+
+<ul>
+<li><a href="../../common/inc/">\mssdk\samples\com\Common\inc\</a> (for those targeting COM+)</li>
+<li><a href="../../administration/mtsspy/inc/">\mssdk\samples\administration\mtsspy\inc\</a> (for those targeting MTS)</li>
+</ul>
+
+This is done in order to generate the correct header files for the remainder of the sample files. After you build 
+and register the MtsSdkPs and Inc file, you can build and register the remaining sample files in 
+any order.</p>
+
+
+<p>The CopyFileRm sample provides atomic file manipulation. You can do MoveFile(),
+CopyFile(), and DeleteFile() transactionally. CopyFileRm fully supports MS DTC, so the
+sample program that uses it does a two-phase commit operation when copying a file and
+adding a row to SQL Server. <b></p>
+
+<p>Warning:</b> CopyFileRm is a sample and does not have a robust logging mechanism. It is
+not suitable for shipping code.</p>
+
+
+<p>To use the CopyFileRm sample:</p>
+  <p>Build the following Microsoft Visual C++ projects</p>
+
+
+<ul>
+  <li><a href="copyfilerm/">CopyFileRm</a></li>
+  <li><a href="cpyimage/">CpyImage </a></li>
+  <li><a href="FileRmClient/">FileRmClient</a></li>
+  <li><a href="../../Administration/MTSSpy/mtsusereventobj/">MtsUserEventObj</a> (Use this file if you are targeting MTS)</li>
+  <li><a href="../../Administration/Spy/mtsusereventobj/">MtsUserEventObj</a> (Use this file if you are targeting COM+)</li>
+  <li><a href="rmworker/">RmWorker</a></li>
+  <li><a href="simplelog/">SimpleLog</a></li>
+  <li><a href="txfiledisp/">TxFileDisp</a></li>
+</ul>
+
+  <p>Build the following Microsoft Visual Basic project</p>
+
+<ul>
+  <li><a href="PictureCtl/">PictureCtl</a></li>
+</ul>
+<p>Note that if you are unable to run the PictureCtl.OCX, you must download the Control
+Development Kit from <a href="http://www.microsoft.com">http://www.microsoft.com</a> in
+order to obtain the Visual Basic run-time environment.</p>
+
+<p>Create an empty package in COM+ Explorer and install
+  cpyimage in the package.&nbsp; Open the property sheet for cpyimage component and set
+  transaction attribute to &quot;transactin required&quot; on advanced tab.&nbsp; Make sure
+  ODBC DSN 'MTXSamples&quot; connecting to SQL Server database has been created and uses
+  &quot;sa&quot; login and null password.&nbsp; </p>
+  <p>Run the FileRmClient. Type the name of a graphic, or drag-and-drop a graphic from the
+  Windows NT Explorer. The graphic will be copied to the specified directory and the
+  transaction logged.</p>
+
+
+<h4>Remarks</h4>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<hr>
+
+<p>&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,19 @@
+#---------------------------------------------------------------------------
+# Description:
+#   Make file to generate DirSync.exe
+#
+# Copyright (C) Microsoft Corp. 1986-1998.  All Rights Reserved.
+#---------------------------------------------------------------------------
+
+USE_EXCHANGE=1
+console=1
+
+Proj = DirSync
+
+!include <BkOffice.Mak>
+
+ObjList = $(ObjDir)\DSynMsg.Res $(@D)\DSynComm.Obj $(@R).Obj
+
+all:  $(ObjDir)\$(Proj).Exe
+
+$(ObjDir)\$(Proj).Exe:  $(ObjList)

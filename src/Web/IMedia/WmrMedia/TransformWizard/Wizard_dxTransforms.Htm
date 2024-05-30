@@ -1,0 +1,982 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE>Interactive DirectX Transform Effect Demo</TITLE>
+<SCRIPT LANGUAGE="JSCRIPT">
+	  function window_load(){
+		  winLoad();
+	  }
+	  window.onload = window_load;
+</SCRIPT>
+<SCRIPT DEFER LANGUAGE="JSCRIPT">
+// Declare Globals
+var chromeBrowser = "false";
+var textObj;
+var rotateObj;
+var colorObj;
+var playRotate = "onclick";
+var playColor = "onmouseover";
+var stopRotate = "ondblclick";
+var stopColor = "onmouseout";
+
+function toggleNotes() {
+	if (notes.style.display == "none") {
+		notes.style.display = "";
+		noteTitle.innerText = "Hide information"
+	}
+	else {
+		notes.style.display = "none";
+		noteTitle.innerText = "Show more information."
+	}
+}
+</SCRIPT>
+
+<SCRIPT LANGUAGE="JScript">
+
+// Declare Globals
+
+var mediaBase = "";
+var geoBase = mediaBase + "";
+var imageBase = mediaBase + "";
+
+var swGeo;
+var swImg;
+var dxtText;
+
+function winLoad(){
+  m = DAControl.MeterLibrary;
+	if( m.VersionString != "5.01.15.1106" && m.VersionString != "6.00.03.0518" && m.VersionString != "5.01.17.0825" && m.VersionString != "5.01.15.0828")  {
+  		
+		swGeo = m.ModifiableBehavior(m.EmptyGeometry);
+  		swImg = m.ModifiableBehavior(m.EmptyImage);
+		DefaultSettings();
+  		DXTransformLoad.innerText = dxtText;
+  		DXTransform.innerText = "";
+  		DAControl.Image = swImg;              
+  		DAControl.Start();
+	}
+	else{
+		 window.top.location.replace("demo_downlevel.htm");
+	}
+}
+
+function DefaultSettings(){
+      dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+      'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+      'xf =new ActiveXObject("DXImageTransform.Microsoft.CrWheel")' + ";" + '\n' +
+      "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+      "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+      "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+      "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+      "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+      "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+      "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+      "swImg.SwitchTo(realImg)" + ";" + '\n';
+      eval(dxtText);
+
+}
+
+function dxtapply() {
+    if(selectDXT.value == "Explode")  {
+      SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n"; 
+      dxtText =  'rawGeo = m.ImportGeometry(geoBase + "sphere.x")' + ";" + '\n' +
+      'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n\n' +
+      "rawGeo = rawGeo.TextureImage(rawImg1.MapToUnitSquare())" + ";" + '\n\n' +
+
+      'xf =new ActiveXObject("DX3DTransform.Microsoft.Explode")' + ";" + '\n' +
+      "holdTime = m.DANumber(0).Duration(1)" + ";" + '\n' +
+      "forward = m.Interpolate(0, 1, 6)" + ";" + '\n' +
+      "back = m.Interpolate(1, 0, 6)" + ";" + '\n' + 
+      "evaluator = m.Sequence(holdTime, m.Sequence(forward, back)).RepeatForever()" + ";" + '\n\n' +
+      "result = m.ApplyDXTransform(xf, new Array(rawGeo), evaluator)" + ";" + '\n' +
+      "realGeo = result.OutputBvr" + ";" + '\n\n' +
+
+      "realTransScale = m.Scale3Uniform(0.012)" + ";" + '\n' +
+      "realTransRotY = m.Rotate3Degrees( m.YVector3 ,135)" + ";" + '\n' +
+      "realTransF = m.Compose3Array(new Array( realTransScale, realTransRotY))" + ";" + '\n\n' +
+      "realGeo = realGeo.Transform(realTransF)" + ";" + '\n\n' +
+      "swGeo.SwitchTo(realGeo)" + ";" + '\n\n' +
+      "camera = m.PerspectiveCamera(0.06, 0.033)"+ ";" + '\n' +
+      "light = m.UnionGeometry(m.AmbientLight, m.DirectionalLight.Transform(m.Rotate3Degrees(m.XVector3,-90)))"+ ";" + '\n' +
+      "lightAndGeo = m.UnionGeometry(swGeo, light)"+ ";" + '\n\n' +
+      "swImg.SwitchTo(lightAndGeo.render(camera))" + ";" + '\n';
+      eval(dxtText);
+    }
+	if(selectDXT.value == "Ripple3D")  {
+      SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n"; 
+      dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+      'rawImg2 = m.ImportImage(imageBase + "mndscp2.jpg")' + ";" + '\n\n' +
+
+      'xf =new ActiveXObject("DX3DTransform.Microsoft.Ripple")' + ";" + '\n' +
+      "holdTime = m.DANumber(0).Duration(2)" + ";" + '\n' +
+      "forward = m.Interpolate(0, 1, 5)" + ";" + '\n' +
+      "back = m.Interpolate(1, 0, 5)" + ";" + '\n' + 
+      "evaluator = m.Sequence(holdTime, m.Sequence(forward, back)).RepeatForever()" + ";" + '\n\n' +
+      "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+      "realGeo = result.OutputBvr" + ";" + '\n\n' +
+
+      "realTransScale = m.Scale3Uniform(0.025)" + ";" + '\n' +
+      "realTransRotY = m.Rotate3Degrees( m.YVector3 ,45)" + ";" + '\n' +
+      "realTransF = m.Compose3Array(new Array( realTransScale, realTransRotY))" + ";" + '\n\n' +
+      "realGeo = realGeo.Transform(realTransF)" + ";" + '\n\n' +
+      "swGeo.SwitchTo(realGeo)" + ";" + '\n\n' +
+      "camera = m.PerspectiveCamera(0.06, 0.033)"+ ";" + '\n' +
+      "light = m.UnionGeometry(m.AmbientLight, m.DirectionalLight.Transform(m.Rotate3Degrees(m.XVector3,-90)))"+ ";" + '\n' +
+      "lightAndGeo = m.UnionGeometry(swGeo, light)"+ ";" + '\n\n' +
+      "swImg.SwitchTo(lightAndGeo.render(camera))" + ";" + '\n';
+      eval(dxtText);
+    }
+	
+	if(selectDXT.value == "Shatter3D")  {
+      SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n"; 
+      dxtText =  'rawImg1 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n' +
+
+      'xf =new ActiveXObject("DX3DTransform.Microsoft.CrShatter")' + ";" + '\n' +
+      "holdTime = m.DANumber(0).Duration(1)" + ";" + '\n' +
+      "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+      "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+      "evaluator = m.Sequence(holdTime, m.Sequence(forward, back)).RepeatForever()" + ";" + '\n\n' +
+      "result = m.ApplyDXTransform(xf, new Array(rawImg1), evaluator)" + ";" + '\n' +
+      "realGeo = result.OutputBvr" + ";" + '\n\n' +
+
+      "realTransScale = m.Scale3Uniform(0.015)" + ";" + '\n' +
+      "realTransRotY = m.Rotate3Degrees( m.YVector3 ,45)" + ";" + '\n' +
+      "realTransF = m.Compose3Array(new Array( realTransScale, realTransRotY))" + ";" + '\n\n' +
+      "realGeo = realGeo.Transform(realTransF)" + ";" + '\n\n' +
+      "swGeo.SwitchTo(realGeo)" + ";" + '\n\n' +
+      "camera = m.PerspectiveCamera(0.06, 0.033)"+ ";" + '\n' +
+      "light = m.UnionGeometry(m.AmbientLight, m.DirectionalLight.Transform(m.Rotate3Degrees(m.XVector3,-90)))"+ ";" + '\n' +
+      "lightAndGeo = m.UnionGeometry(swGeo, light)"+ ";" + '\n\n' +
+      "swImg.SwitchTo(lightAndGeo.render(camera))" + ";" + '\n';
+      eval(dxtText);
+    }
+	if(selectDXT.value == "HeightField3D")  {
+ 	  SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n"; 
+      dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+
+      'xf =new ActiveXObject("DX3DTransform.Microsoft.HeightField")' + ";" + '\n' +
+	  "xf.Depth = 3.0" + ";" + '\n' +
+      "holdTime = m.DANumber(0).Duration(1)" + ";" + '\n' +
+      "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+      "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+      "evaluator = m.Sequence(holdTime, m.Sequence(forward, back)).RepeatForever()" + ";" + '\n\n' +
+      "result = m.ApplyDXTransform(xf, new Array(rawImg1), evaluator)" + ";" + '\n' +
+      "realGeo = result.OutputBvr" + ";" + '\n\n' +
+
+      "realTransScale = m.Scale3Uniform(0.025)" + ";" + '\n' +
+      "realTransRotY = m.Rotate3Degrees( m.YVector3 ,45)" + ";" + '\n' +
+      "realTransF = m.Compose3Array(new Array( realTransScale, realTransRotY))" + ";" + '\n\n' +
+      "realGeo = realGeo.Transform(realTransF)" + ";" + '\n\n' +
+      "swGeo.SwitchTo(realGeo)" + ";" + '\n\n' +
+      "camera = m.PerspectiveCamera(0.06, 0.033)"+ ";" + '\n' +
+      "light = m.UnionGeometry(m.AmbientLight, m.DirectionalLight.Transform(m.Rotate3Degrees(m.XVector3,-90)))"+ ";" + '\n' +
+      "lightAndGeo = m.UnionGeometry(swGeo, light)"+ ";" + '\n\n' +
+      "swImg.SwitchTo(lightAndGeo.render(camera))" + ";" + '\n';
+      eval(dxtText);
+    }
+    
+    if(selectDXT.value == "Wipe")  {
+      SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n"; 
+      dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+      'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+      'xf =new ActiveXObject("DXImageTransform.Microsoft.Wipe")' + ";" + '\n' +
+      "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+      "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+      "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+      "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+      "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+      "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+      "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+      "swImg.SwitchTo(realImg)" + ";" + '\n';
+      eval(dxtText);
+	}
+	if(selectDXT.value == "Wormhole")  {
+     SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n"; 
+     dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+     'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+     'xf =new ActiveXObject("DXImageTransform.Metacreations.Wormhole")' + ";" + '\n' +
+     "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+     "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+     "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+     "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+     "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+     "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+     "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+     "swImg.SwitchTo(realImg)" + ";" + '\n';
+     eval(dxtText);
+	 }
+   if(selectDXT.value == "BurnFilm")  {
+     SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n"; 
+     dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+     'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+     'xf =new ActiveXObject("DXImageTransform.Metacreations.BurnFilm.1")' + ";" + '\n' +
+     "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+     "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+     "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+     "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+     "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+     "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+     "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+     "swImg.SwitchTo(realImg)" + ";" + '\n';
+     eval(dxtText);
+	 }
+	 if(selectDXT.value == "CenterCurls")  {
+     SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n"; 
+     dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+     'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+     'xf =new ActiveXObject("DXImageTransform.Metacreations.CenterCurls.1")' + ";" + '\n' +
+     "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+     "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+     "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+     "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+     "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+     "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+     "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+     "swImg.SwitchTo(realImg)" + ";" + '\n';
+     eval(dxtText);
+	 }
+	 if(selectDXT.value == "ColorFade")  {
+     SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n"; 
+     dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+     'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+     'xf =new ActiveXObject("DXImageTransform.Metacreations.ColorFade.1")' + ";" + '\n' +
+     "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+     "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+     "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+     "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+     "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+     "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+     "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+     "swImg.SwitchTo(realImg)" + ";" + '\n';
+     eval(dxtText);
+	 }
+	 if(selectDXT.value == "Curls")  {
+     SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n"; 
+     dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+     'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+     'xf =new ActiveXObject("DXImageTransform.Metacreations.Curls.1")' + ";" + '\n' +
+     "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+     "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+     "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+     "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+     "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+     "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+     "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+     "swImg.SwitchTo(realImg)" + ";" + '\n';
+     eval(dxtText);
+	 }
+	 if(selectDXT.value == "Curtains")  {
+     SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n"; 
+     dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+     'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+     'xf =new ActiveXObject("DXImageTransform.Metacreations.Curtains.1")' + ";" + '\n' +
+     "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+     "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+     "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+     "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+     "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+     "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+     "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+     "swImg.SwitchTo(realImg)" + ";" + '\n';
+     eval(dxtText);
+	 }
+	 if(selectDXT.value == "FlowMotion")  {
+     SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n"; 
+     dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+     'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+     'xf =new ActiveXObject("DXImageTransform.Metacreations.FlowMotion.1")' + ";" + '\n' +
+     "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+     "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+     "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+     "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+     "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+     "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+     "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+     "swImg.SwitchTo(realImg)" + ";" + '\n';
+     eval(dxtText);
+	 }
+	if(selectDXT.value == "GlassBlock")  {
+     SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n"; 
+     dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+     'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+     'xf =new ActiveXObject("DXImageTransform.Metacreations.GlassBlock.1")' + ";" + '\n' +
+     "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+     "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+     "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+     "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+     "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+     "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+     "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+     "swImg.SwitchTo(realImg)" + ";" + '\n';
+     eval(dxtText);
+	 }
+	 
+	if(selectDXT.value == "Jaws")  {
+     SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n"; 
+     dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+     'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+     'xf =new ActiveXObject("DXImageTransform.Metacreations.Jaws.1")' + ";" + '\n' +
+     "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+     "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+     "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+     "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+     "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+     "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+     "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+     "swImg.SwitchTo(realImg)" + ";" + '\n';
+     eval(dxtText);
+	 }
+	 if(selectDXT.value == "Lens")  {
+     SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n"; 
+     dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+     'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+     'xf =new ActiveXObject("DXImageTransform.MetaCreations.Lens.1")' + ";" + '\n' +
+     "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+     "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+     "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+     "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+     "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+     "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+     "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+     "swImg.SwitchTo(realImg)" + ";" + '\n';
+     eval(dxtText);
+	 }
+	 if(selectDXT.value == "Liquid")  {
+     SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n"; 
+     dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+     'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+     'xf =new ActiveXObject("DXImageTransform.MetaCreations.Liquid.1")' + ";" + '\n' +
+     "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+     "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+     "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+     "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+     "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+     "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+     "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+     "swImg.SwitchTo(realImg)" + ";" + '\n';
+     eval(dxtText);
+	 }
+	 if(selectDXT.value == "PageCurl")  {
+     SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n"; 
+     dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+     'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+     'xf =new ActiveXObject("DXImageTransform.MetaCreations.PageCurl.1")' + ";" + '\n' +
+     "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+     "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+     "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+     "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+     "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+     "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+     "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+     "swImg.SwitchTo(realImg)" + ";" + '\n';
+     eval(dxtText);
+	 }
+	 if(selectDXT.value == "PeelABCD")  {
+     SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n"; 
+     dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+     'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+     'xf =new ActiveXObject("DXImageTransform.MetaCreations.PeelABCD.1")' + ";" + '\n' +
+     "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+     "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+     "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+     "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+     "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+     "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+     "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+     "swImg.SwitchTo(realImg)" + ";" + '\n';  
+     eval(dxtText);
+	 }
+	 
+	  if(selectDXT.value == "Ripple2D")  {
+     SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n"; 
+     dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+     'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+     'xf =new ActiveXObject("DXImageTransform.MetaCreations.Ripple.1")' + ";" + '\n' +
+     "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+     "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+     "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+     "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+     "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+     "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+     "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+     "swImg.SwitchTo(realImg)" + ";" + '\n';
+     eval(dxtText);
+	 }
+	 
+ 	 if(selectDXT.value == "RollDown")  {
+     SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n"; 
+     dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+     'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+     'xf =new ActiveXObject("DXImageTransform.MetaCreations.RollDown.1")' + ";" + '\n' +
+     "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+     "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+     "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+     "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+     "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+     "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+     "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+     "swImg.SwitchTo(realImg)" + ";" + '\n';
+     eval(dxtText);
+	 }
+	 if(selectDXT.value == "Threshold")  {
+     SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n"; 
+     dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+     'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+     'xf =new ActiveXObject("DXImageTransform.MetaCreations.Threshold.1")' + ";" + '\n' +
+     "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+     "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+     "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+     "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+     "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+     "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+     "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+     "swImg.SwitchTo(realImg)" + ";" + '\n';
+     eval(dxtText);
+	 }
+ 	if(selectDXT.value == "Twister")  {
+     SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n"; 
+     dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+     'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+     'xf =new ActiveXObject("DXImageTransform.MetaCreations.Twister.1")' + ";" + '\n' +
+     "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+     "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+     "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+     "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+     "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+     "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+     "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+     "swImg.SwitchTo(realImg)" + ";" + '\n';
+     eval(dxtText);
+	 }
+	 if(selectDXT.value == "Vacuum")  {
+     SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n"; 
+     dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+     'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+     'xf =new ActiveXObject("DXImageTransform.MetaCreations.Vacuum.1")' + ";" + '\n' +
+     "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+     "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+     "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+     "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+     "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+     "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+     "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+     "swImg.SwitchTo(realImg)" + ";" + '\n';
+     eval(dxtText);
+	 }
+	  if(selectDXT.value == "Water")  {
+     SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n"; 
+     dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+     'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+     'xf =new ActiveXObject("DXImageTransform.MetaCreations.Water.1")' + ";" + '\n' +
+     "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+     "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+     "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+     "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+     "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+     "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+     "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+     "swImg.SwitchTo(realImg)" + ";" + '\n';
+     eval(dxtText);
+	 }
+	   if(selectDXT.value == "White")  {
+     SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n"; 
+     dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+     'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+     'xf =new ActiveXObject("DXImageTransform.MetaCreations.FadeWhite.1")' + ";" + '\n' +
+     "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+     "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+     "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+     "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+     "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+     "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+     "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+     "swImg.SwitchTo(realImg)" + ";" + '\n';
+     eval(dxtText);
+	 }
+	    if(selectDXT.value == "LightWipe")  {
+     SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n"; 
+     dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+     'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+     'xf =new ActiveXObject("DXImageTransform.MetaCreations.LightWipe.1")' + ";" + '\n' +
+     "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+     "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+     "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+     "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+     "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+     "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+     "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+     "swImg.SwitchTo(realImg)" + ";" + '\n';
+     eval(dxtText);
+	 }
+    if(selectDXT.value == "RadialWipe")  {
+      SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n"; 
+      dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+      'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+      'xf =new ActiveXObject("DXImageTransform.Microsoft.CrRadialWipe")' + ";" + '\n' +
+      "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+      "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+      "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+      "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+      "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+      "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+      "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+      "swImg.SwitchTo(realImg)" + ";" + '\n';
+      eval(dxtText);
+	}
+	if(selectDXT.value == "Pixelate")  {
+      SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n";
+      dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+      'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+      'xf =new ActiveXObject("DXImageTransform.Microsoft.Pixelate.1")' + ";" + '\n' +
+      "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+      "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+      "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+      "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+      "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+      "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+      "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+      "swImg.SwitchTo(realImg)" + ";" + '\n';
+      eval(dxtText);
+	}
+	if(selectDXT.value == "Fade")  {
+      SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n";
+      dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+      'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+      'xf =new ActiveXObject("DXImageTransform.Microsoft.Fade.1")' + ";" + '\n' +
+      "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+      "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+      "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+      "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+      "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+      "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+      "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+      "swImg.SwitchTo(realImg)" + ";" + '\n';
+      eval(dxtText);
+	}
+	if(selectDXT.value == "Barn")  {
+      SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n";
+      dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+      'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+      'xf =new ActiveXObject("DXImageTransform.Microsoft.CrBarn")' + ";" + '\n' +
+      "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+      "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+      "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+      "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+      "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+      "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+      "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+      "swImg.SwitchTo(realImg)" + ";" + '\n';
+      eval(dxtText);
+	}
+	if(selectDXT.value == "Blinds")  {
+      SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n";
+      dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+      'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+      'xf =new ActiveXObject("DXImageTransform.Microsoft.CrBlinds")' + ";" + '\n' +
+      "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+      "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+      "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+      "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+      "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+      "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+      "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+      "swImg.SwitchTo(realImg)" + ";" + '\n';
+      eval(dxtText);
+	}
+	if(selectDXT.value == "Iris")  {
+      SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n";
+      dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+      'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+      'xf =new ActiveXObject("DXImageTransform.Microsoft.CrIris")' + ";" + '\n' +
+      "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+      "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+      "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+      "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+      "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+      "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+      "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+      "swImg.SwitchTo(realImg)" + ";" + '\n';
+      eval(dxtText);
+	}
+	if(selectDXT.value == "Inset")  {
+      SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n";
+      dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+      'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+      'xf =new ActiveXObject("DXImageTransform.Microsoft.CrInset")' + ";" + '\n' +
+      "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+      "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+      "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+      "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+      "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+      "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+      "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+      "swImg.SwitchTo(realImg)" + ";" + '\n';
+      eval(dxtText);
+	}
+	if(selectDXT.value == "Slide")  {
+      SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n";
+      dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+      'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+      'xf =new ActiveXObject("DXImageTransform.Microsoft.CrSlide")' + ";" + '\n' +
+      "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+      "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+      "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+      "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+      "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+      "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+      "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+      "swImg.SwitchTo(realImg)" + ";" + '\n';
+      eval(dxtText);
+	}
+	if(selectDXT.value == "Spiral")  {
+      SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n";
+      dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+      'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+      'xf =new ActiveXObject("DXImageTransform.Microsoft.CrSpiral")' + ";" + '\n' +
+      "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+      "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+      "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+      "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+      "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+      "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+      "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+      "swImg.SwitchTo(realImg)" + ";" + '\n';
+      eval(dxtText);
+	}
+	if(selectDXT.value == "Stretch")  {
+      SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n";
+      dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+      'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+      'xf =new ActiveXObject("DXImageTransform.Microsoft.CrStretch")' + ";" + '\n' +
+      "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+      "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+      "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+      "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+      "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+      "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+      "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+      "swImg.SwitchTo(realImg)" + ";" + '\n';
+      eval(dxtText);
+	}
+	if(selectDXT.value == "Wheel")  {
+      SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n";
+      dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+      'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+      'xf =new ActiveXObject("DXImageTransform.Microsoft.CrWheel")' + ";" + '\n' +
+      "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+      "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+      "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+      "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+      "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+      "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+      "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+      "swImg.SwitchTo(realImg)" + ";" + '\n';
+      eval(dxtText);
+	}
+	if(selectDXT.value == "ZigZag")  {
+      SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n";
+      dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+      'rawImg2 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+      'xf =new ActiveXObject("DXImageTransform.Microsoft.CrZigZag")' + ";" + '\n' +
+      "holdTime1 = m.DANumber(0).Duration(2)" + ";" + '\n' +
+      "holdTime2 = m.DANumber(1).Duration(2)" + ";" + '\n' +
+      "forward = m.Interpolate(0, 1, 3)" + ";" + '\n' +
+      "back = m.Interpolate(1, 0, 3)" + ";" + '\n' + 
+      "evaluator = m.Sequence(holdTime1, m.Sequence(forward, m.Sequence(holdTime2, back))).RepeatForever()" + ";" + '\n\n' +
+      "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), evaluator)" + ";" + '\n' +
+      "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+      "swImg.SwitchTo(realImg)" + ";" + '\n';
+      eval(dxtText);
+	}
+	if(selectDXT.value == "Compositor")  {
+      SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n";
+      dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n' +
+      'rawImg2 = m.ImportImage(imageBase + "mndscp2.jpg")' + ";" + '\n\n' +
+
+      'xf =new ActiveXObject("DXImageTransform.Microsoft.Compositor")' + ";" + '\n' +
+	  "xf.Function = 9" + ";" + '\n\n' +
+      "result = m.ApplyDXTransform(xf, new Array(rawImg1, rawImg2), null)" + ";" + '\n' +
+      "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+      "swImg.SwitchTo(realImg)" + ";" + '\n';
+      eval(dxtText);
+	}
+	if(selectDXT.value == "Blur")  {
+      SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n";
+      dxtText =  'rawImg1 = m.ImportImage(imageBase + "tigerstripe.jpg")' + ";" + '\n\n' +
+
+      'xf =new ActiveXObject("DXImageTransform.Microsoft.CrBlur")' + ";" + '\n' +
+	  "xf.PixelRadius  = 8" + ";" + '\n\n' +
+      "result = m.ApplyDXTransform(xf, new Array(rawImg1), null)" + ";" + '\n' +
+      "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+      "swImg.SwitchTo(realImg)" + ";" + '\n';
+      eval(dxtText);
+	}
+	if(selectDXT.value == "BasicImageXRay")  {
+      SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n";
+      dxtText =  'rawImg1 = m.ImportImage(imageBase + "mndscp2.jpg")' + ";" + '\n\n' +
+
+      'xf =new ActiveXObject("DXImageTransform.Microsoft.BasicImage")' + ";" + '\n' +
+	  "xf.XRay  = 1" + ";" + '\n\n' +
+      "result = m.ApplyDXTransform(xf, new Array(rawImg1), null)" + ";" + '\n' +
+      "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+      "swImg.SwitchTo(realImg)" + ";" + '\n';
+      eval(dxtText);
+	}
+	if(selectDXT.value == "BasicImageInvert")  {
+      SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n";
+      dxtText =  'rawImg1 = m.ImportImage(imageBase + "mndscp2.jpg")' + ";" + '\n\n' +
+
+      'xf =new ActiveXObject("DXImageTransform.Microsoft.BasicImage")' + ";" + '\n' +
+	  "xf.Invert  = 1" + ";" + '\n\n' +
+      "result = m.ApplyDXTransform(xf, new Array(rawImg1), null)" + ";" + '\n' +
+      "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+      "swImg.SwitchTo(realImg)" + ";" + '\n';
+      eval(dxtText);
+	}
+	if(selectDXT.value == "Emboss")  {
+      SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n";
+      dxtText =  'rawImg1 = m.ImportImage(imageBase + "mndscp2.jpg")' + ";" + '\n\n' +
+
+      'xf =new ActiveXObject("DXImageTransform.Microsoft.CrEmboss")' + ";" + '\n\n' +
+      "result = m.ApplyDXTransform(xf, new Array(rawImg1), null)" + ";" + '\n' +
+      "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+      "swImg.SwitchTo(realImg)" + ";" + '\n';
+      eval(dxtText);
+	}
+	if(selectDXT.value == "Engrave")  {
+      SwGeo.innerHTML = "swGeo = m.ModifiableBehavior(m.EmptyGeometry);\n";
+      dxtText =  'rawImg1 = m.ImportImage(imageBase + "metablob.jpg")' + ";" + '\n\n' +
+
+      'xf =new ActiveXObject("DXImageTransform.Microsoft.CrEngrave")' + ";" + '\n\n' +
+      "result = m.ApplyDXTransform(xf, new Array(rawImg1), null)" + ";" + '\n' +
+      "realImg = result.OutputBvr" + ";" + '\n\n' +
+
+      "swImg.SwitchTo(realImg)" + ";" + '\n';
+      eval(dxtText);
+	}
+	
+	if(selectDXT.value == "Default Settings")  {
+		DefaultSettings();
+	}
+
+  DXTransform.innerText = dxtText;
+  DXTransformLoad.innerText = "";
+
+}
+
+</SCRIPT>
+<LINK REL="stylesheet" HREF="sample.css">
+
+</HEAD>
+
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT><hr>
+
+<!-- <BODY TOPMARGIN="10" LEFTMARGIN="10" MARGINHEIGHT="10" MARGINWIDTH="10" BGCOLOR="#FFFFFF"> -->
+<BODY BGCOLOR="#FFFFFF">
+
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" Width="100%">
+  <TR>
+    <TD>
+		<TABLE BORDER="1" CELLPADDING="0" CELLSPACING="0" WIDTH="300">
+		<TR><TD ALIGN="LEFT" HEIGHT="300">
+			<OBJECT 
+				ID="DAControl"
+				STYLE="width:300;height:300; background-color: black;" 
+				CLASSID="CLSID:B6FFC24C-7E13-11D0-9B47-00C04FC2F51D">
+			</OBJECT>
+		
+		</TD></TR>
+		<TR><TD>Select a DXTransform:<BR>
+			<SELECT ID="selectDXT" STYLE="width:200" TITLE="Select the DX Transform to apply" onchange="dxtapply()">
+			<OPTION SELECTED VALUE="Default Settings">-- Default --</OPTION>
+			<OPTION VALUE="Barn">Barn (2-D)</OPTION>
+			<OPTION VALUE="BasicImageXRay">Basic Image (XRay) (2-D)</OPTION>
+			<OPTION VALUE="BasicImageInvert">Basic Image (Invert) (2-D)</OPTION>
+			<OPTION VALUE="Blinds">Blinds (2-D)</OPTION>
+			<OPTION VALUE="Blur">Blur (2-D)</OPTION>
+			<OPTION VALUE="Compositor">Compositor (2-D)</OPTION>
+			<OPTION VALUE="Emboss">Emboss (2-D)</OPTION>
+			<OPTION VALUE="Engrave">Engrave (2-D)</OPTION>
+			<OPTION VALUE="Fade">Fade (2-D)</OPTION>
+			<OPTION VALUE="Iris">Iris (2-D)</OPTION>
+			<OPTION VALUE="Inset">Inset (2-D)</OPTION>
+			<OPTION VALUE="Pixelate">Pixelate (2-D)</OPTION>
+			<OPTION VALUE="RadialWipe">Radial Wipe (2-D)</OPTION>
+			<OPTION VALUE="Slide">Slide (2-D)</OPTION>
+			<OPTION VALUE="Spiral">Spiral (2-D)</OPTION>
+			<OPTION VALUE="Stretch">Stretch (2-D)</OPTION>
+			<OPTION VALUE="Wheel">Wheel (2-D)</OPTION>
+			<OPTION VALUE="Wipe">Wipe (2-D)</OPTION>
+			<OPTION VALUE="ZigZag">ZigZag (2-D)</OPTION>
+			<OPTION VALUE="BurnFilm">BurnFilm (2-D)</OPTION>
+			<OPTION VALUE="CenterCurls">CenterCurls (2-D)</OPTION>
+			<OPTION VALUE="ColorFade">ColorFade (2-D)</OPTION>
+			<OPTION VALUE="Curls">Curls (2-D)</OPTION>
+			<OPTION VALUE="Curtains">Curtains (2-D)</OPTION>
+			<OPTION VALUE="FlowMotion">FlowMotion (2-D)</OPTION>
+			<OPTION VALUE="GlassBlock">GlassBlock (2-D)</OPTION>
+			<OPTION VALUE="Jaws">Jaws (2-D)</OPTION>
+			<OPTION VALUE="Lens">Lens (2-D)</OPTION>
+			<OPTION VALUE="Liquid">Liquid (2-D)</OPTION>
+			<OPTION VALUE="LightWipe">LightWipe (2-D)</OPTION>
+			<OPTION VALUE="PageCurl">PageCurl (2-D)</OPTION>
+			<OPTION VALUE="PeelABCD">PeelABCD (2-D)</OPTION>
+			<OPTION VALUE="Ripple2D">Ripple2D (2-D)</OPTION>
+			<OPTION VALUE="RollDown">RollDown (2-D)</OPTION>
+			<OPTION VALUE="Threshold">Threshold (2-D)</OPTION>
+			<OPTION VALUE="Twister">Twister (2-D)</OPTION>
+			<OPTION VALUE="Vacuum">Vacuum (2-D)</OPTION>
+			<OPTION VALUE="Water">Water (2-D)</OPTION>
+			<OPTION VALUE="White">White (2-D)</OPTION>
+			<OPTION VALUE="Wormhole">Wormhole (2-D)</OPTION>
+			<OPTION VALUE="Explode">Explode (3-D)</OPTION>
+			<OPTION VALUE="HeightField3D">HeightField (3-D)</OPTION>
+			<OPTION VALUE="Ripple3D">Ripple (3-D)</OPTION>
+			<OPTION VALUE="Shatter3D">Shatter (3-D)</OPTION>
+			</SELECT>
+		</TD>
+
+		</TR>
+	</TABLE>
+	</TD>
+	<TD>
+
+	<TABLE BORDERCOLOR="#000000" bgcolor="#FFFFFF" HEIGHT="100%">
+	<TR>
+	<TD STYLE="border-width:1; border-style:inset;">
+<CENTER>
+<H3><A NAME="DXT_Demo" IDX_CONCEPT="noindex; DirectX Transform Demo; Demo, DirectX Transform effects">DirectX Transform Effects</A></H3>
+</CENTER>
+Select different DirectX&reg; Transform effects, apply them to DirectAnimation&#153; objects, and see the result. If the effect is a 3-D transform, it is applied to a sphere. If the effect is a 2-D transform, it is applied to an image. 
+
+<DIV ID="DXWarningMsg" STYLE="display:none">
+<B>Note</B>: To use the 2-D transforms, you must have one of the following installed on your computer: 1) DirectX Media 6 with the optional DLLs, 2) Microsoft Internet Explorer 5, 3) the Microsoft Windows&reg; 98 OEM Service Release (OSR), or 4) Windows 2000. To use the 3-D transforms, you must have one of the following installed on your computer: 1) DirectX Media 6 and Microsoft Direct3D&reg; Retained Mode version 6.<I>x</I> (from DirectX foundation 6.<I>x</I>), 2) the Windows 98 OSR, or 3) Windows 2000. See the <A HREF="../../dxt/reference/effects/effects.htm" target="_top">DirectX Transform documentation</A> for a complete list of DirectX Transform effects and what additional software, if any, is required to use each.
+</DIV>
+<P>
+<SPAN ID="noteTitle" STYLE="text-decoration:underline;" onmouseover='this.style.cursor = "hand"' onclick="toggleNotes()">
+	Show more information.</SPAN>
+	<SPAN ID="notes" STYLE="display:none"><BR><BR>
+	DirectX&reg; Transform supplies many 2-D and 3-D effects that can be applied to DirectAnimation&#153; 2-D and 3-D objects. You access the effects through <code>new ActiveXObject("<I>type</I>.<I>creator</I>.<I>name</I>");</code>, where <I>type</I> is the type of transform, <I>creator</I> is the company that created it, and <I>name</I> is the name of the effect. If the effect is a 2-D transform the <I>type</I> is <code>DXImageTransform</code>, for example, <code>xf=new ActiveXObject("DXImageTransform.Microsoft.Compositor");</code>. If the effect is 3-D, the <I>type</I> is <code>DX3DTransform</code>, for example, <code>xf=new ActiveXObject("DX3DTransform.Microsoft.Explode");</code>&nbsp;
+	</SPAN>
+	</TD>
+	</TR>
+	<TR>
+	<TD bgcolor="#FFFFFF" VALIGN="top">
+		<!-- Display required object code -->
+		<SPAN STYLE="font-size:11; font:Courier-New">
+		&lt;HTML&gt;<BR>
+		&lt;HEAD&gt;<BR>
+		&lt;/HEAD&gt;<BR>
+		&lt;BODY&gt;<BR>
+
+		&lt;OBJECT ID="DAControl" STYLE="width:300;height:300; background-color:black"<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;CLASSID="CLSID:B6FFC24C-7E13-11D0-9B47-00C04FC2F51D"&gt;<BR>
+		&lt;/OBJECT&gt;<BR>
+          &lt;SCRIPT LANGUAGE="JScript"&gt;<BR>
+		  // Note: for this example place all media in the same folder as the new transform html page.<BR>
+		  // path to media folder, for this example a null string<BR>
+          mediaBase = "";<BR><BR>
+		  
+		  // path to media folder, for this example a null string<BR>
+          geoBase = mediaBase + "";<BR><BR>
+		  
+		  // path to image folder, for this example a null string<BR>
+          imageBase = mediaBase + "";<BR><BR>
+		  
+		  m = DAControl.MeterLibrary;<BR><BR>
+		  
+          <SPAN id="SwGeo"></SPAN><BR>
+          swImg = m.ModifiableBehavior(m.EmptyImage);<BR><BR>
+          <B></B><SPAN id="DXTransformLoad"></SPAN></B>
+          <SPAN id="DXTransform"></SPAN>
+          DAControl.Image = swImg;<BR>
+          DAControl.Start();<BR>
+          &lt;/SCRIPT&gt;<BR>
+		&lt;/BODY&gt;<BR>
+		&lt;/HTML&gt;<BR>
+		</SPAN>
+		</TD>
+		</TR>
+		</TABLE>
+		</TD>
+	</TR>
+</TABLE>
+</BODY>
+</HTML>

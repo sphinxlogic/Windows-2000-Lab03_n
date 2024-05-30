@@ -1,0 +1,41 @@
+[Version]
+Class=IEXPRESS
+CDFVersion=3
+[Options]
+PackagePurpose=InstallApp
+ShowInstallProgramWindow=0
+HideExtractAnimation=0
+UseLongFileName=0
+InsideCompressed=0
+CAB_FixedSize=0
+CAB_ResvCodeSigning=0
+RebootMode=I
+InstallPrompt=%InstallPrompt%
+DisplayLicense=%DisplayLicense%
+FinishMessage=%FinishMessage%
+TargetName=%TargetName%
+FriendlyName=%FriendlyName%
+AppLaunched=%AppLaunched%
+PostInstallCmd=%PostInstallCmd%
+AdminQuietInstCmd=%AdminQuietInstCmd%
+UserQuietInstCmd=%UserQuietInstCmd%
+SourceFiles=SourceFiles
+[Strings]
+InstallPrompt=Do you want to install service provider?
+DisplayLicense=
+FinishMessage=Installation complete!
+TargetName=D:\nt\private\ispu\calais\ssps\scardcom\examples\webssp.EXE
+FriendlyName=Example Web SSP Install
+AppLaunched=webssp.inf
+PostInstallCmd=<None>
+AdminQuietInstCmd=
+UserQuietInstCmd=
+FILE0="SCardCOM.Dll"
+FILE1="webssp.inf"
+[SourceFiles]
+SourceFiles0=D:\nt\private\ispu\calais\ssps\bin\obj\i386\
+SourceFiles1=D:\nt\private\ispu\calais\ssps\scardcom\examples\
+[SourceFiles0]
+%FILE0%=
+[SourceFiles1]
+%FILE1%=

@@ -1,0 +1,141 @@
+/* --------------------------------------------------------------------------
+
+IDL file for ACL
+
+Copyright (C) 1993-1999 Microsoft Corporation
+
+-------------------------------------------------------------------------- */
+// ACL.idl : IDL source for ACL.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (ACL.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	uuid(A0E483ED-F971-11D1-A956-00C04FB155E5),
+	version(1.0),
+	helpstring("Microsoft Exchange 5.5 ACL Type Library 1.0")
+]
+library MSExchangeACLLib
+{
+
+	// constant definitions for rights and roles consistent with Outlook 98
+	typedef enum ACLRIGHTS
+	{
+		RIGHTS_EDIT_OWN	           = 0x00000008,
+		RIGHTS_EDIT_ALL	           = 0x00000020,   
+		RIGHTS_DELETE_OWN          = 0x00000010,
+		RIGHTS_DELETE_ALL          = 0x00000040,  
+		RIGHTS_READ_ITEMS          = 0x00000001,
+		RIGHTS_CREATE_ITEMS	       = 0x00000002,
+		RIGHTS_CREATE_SUBFOLDERS   = 0x00000080,
+		RIGHTS_FOLDER_OWNER        = 0x00000100,   
+		RIGHTS_FOLDER_CONTACT      = 0x00000200,
+		RIGHTS_FOLDER_VISIBLE      = 0x00000400,
+		RIGHTS_NONE	               = 0x00000000,
+		ROLE_OWNER                 = 0x000005e3, 
+		ROLE_PUBLISH_EDITOR	       = 0x000004e3, 
+		ROLE_EDITOR	               = 0x00000463, 
+		ROLE_PUBLISH_AUTHOR	       = 0x0000049b, 
+		ROLE_AUTHOR	               = 0x0000041b, 
+		ROLE_NONEDITING_AUTHOR     = 0x00000413,
+		ROLE_REVIEWER              = 0x00000401, 
+		ROLE_CONTRIBUTOR           = 0x00000402, 
+		ROLE_NONE                  = 0x00000400
+	} ACLRIGHTS;
+	// boolean constant definitions used for VB IntelliSense 
+	typedef enum Boolean
+	{
+		True                       = -1,
+		False                      = 0
+	} Boolean;
+
+	[
+		object,
+		uuid(A0E483FC-F971-11D1-A956-00C04FB155E5),
+		dual,
+		helpstring("IACLObject Interface"),
+		pointer_default(unique)
+	]
+	interface IACLObject : IDispatch
+	{
+		[propput, id(2), helpstring("Binds the CDO 1.21 Folder object so that its ACL can be manipulated")] HRESULT CDOItem([in] LPDISPATCH newVal);
+		[propputref, id(2), helpstring("Binds a CDO 1.21 Folder object so that its ACL can be manipulated")] HRESULT CDOItem([in] LPDISPATCH newVal);
+		[id(3), helpstring("Updates the store with the current ACE entries in the ACEs collection.  Call only after binding a CDO folder object to the CDOItem property")] HRESULT Update();
+		[propget, id(1), helpstring("Returns the IACEs interface on the ACEs collection object.  Call only after binding a CDO folder object to the CDOItem property")] HRESULT ACEs([out, retval] LPDISPATCH *pVal);
+	};
+	[
+		object,
+		uuid(A0E48400-F971-11D1-A956-00C04FB155E5),
+		dual,
+		helpstring("IACE Interface"),
+		pointer_default(unique)
+	]
+	interface IACE : IDispatch
+	{
+		[propget, id(1), helpstring("Specifies whether the ReadItems right is set for the ACE")] HRESULT ReadItems([out, retval] Boolean *pVal);
+		[propput, id(1), helpstring("Sets the ReadItems right true or false for the ACE")] HRESULT ReadItems([in] Boolean newVal);
+		[propget, id(3), helpstring("Specifies whether the CreateItems right is set for the ACE")] HRESULT CreateItems([out, retval] Boolean *pVal);
+		[propput, id(3), helpstring("Sets the CreateItems right true or false for the ACE")] HRESULT CreateItems([in] Boolean newVal);
+		[propget, id(4), helpstring("Specifies whether the EditOwn right is set for the ACE")] HRESULT EditOwn([out, retval] Boolean *pVal);
+		[propput, id(4), helpstring("Sets the EditOwn right true or false for the ACE")] HRESULT EditOwn([in] Boolean newVal);
+		[propget, id(5), helpstring("Specifies whether the EditAll right is set for the ACE")] HRESULT EditAll([out, retval] Boolean *pVal);
+		[propput, id(5), helpstring("Sets the EditAll right to true or false for the ACE")] HRESULT EditAll([in] Boolean newVal);
+		[propget, id(6), helpstring("Specifies whether the DeleteAny right is set for the ACE")] HRESULT DeleteAll([out, retval] Boolean *pVal);
+		[propput, id(6), helpstring("Sets the DeleteAny right true or false for the ACE")] HRESULT DeleteAll([in] Boolean newVal);
+		[propget, id(7), helpstring("Specifies whether the CreateSubFolder right is set for the ACE")] HRESULT CreateSubFolders([out, retval] Boolean *pVal);
+		[propput, id(7), helpstring("Sets the CreateSubFolder right true or false for the ACE")] HRESULT CreateSubFolders([in] Boolean newVal);
+		[propget, id(8), helpstring("Specifies whether the FolderOwner right is set for the ACE")] HRESULT FolderOwner([out, retval] Boolean *pVal);
+		[propput, id(8), helpstring("Sets the FolderOwner right true or false for the ACE")] HRESULT FolderOwner([in] Boolean newVal);
+		[propget, id(9), helpstring("Specifies whether the FolderContact right is set for the ACE")] HRESULT FolderContact([out, retval] Boolean *pVal);
+		[propput, id(9), helpstring("Sets the FolderContact right true or false for the ACE")] HRESULT FolderContact([in] Boolean newVal);
+		[propget, id(10), helpstring("Specifies whether the FolderVisible right is set for the ACE")] HRESULT FolderVisible([out, retval] Boolean *pVal);
+		[propput, id(10), helpstring("Sets the FolderVisible right true or false for the ACE")] HRESULT FolderVisible([in] Boolean newVal);
+		[propget, id(13), helpstring("Specifies whether the DeleteOwn right is set for the ACE")] HRESULT DeleteOwn([out, retval] Boolean *pVal);
+		[propput, id(13), helpstring("Sets the DeleteOwn right true or false for the ACE")] HRESULT DeleteOwn([in] Boolean newVal);
+		[propget, id(15), helpstring("The member (CDO 1.21 member ID) that the ACE applies to")] HRESULT ID([out, retval] VARIANT *pVal);
+		[propput, id(15), helpstring("Sets the member (CDO 1.21 member ID) that the ACE applies to")] HRESULT ID([in] VARIANT newVal);
+		[propget, id(17), helpstring("The current role and rights for the member in bitmask form.  This is a full composite of the Role and all the current rights.  The bitmask is composed of values found in the ACLRIGHTS enum.")] HRESULT Rights([out, retval] ACLRIGHTS *pVal);
+		[propput, id(17), helpstring("Sets the current role and rights for the member in bitmask form")] HRESULT Rights([in] ACLRIGHTS newVal);
+	};
+	[
+		object,
+		uuid(A0E483FE-F971-11D1-A956-00C04FB155E5),
+		dual,
+		helpstring("IACEs COM Interface to an ACEs object. The ACEs object's IDispatch interface is returned at runtime by an ACLObject object's ACEs property.  Set to IACEs for vtable binding."),
+		pointer_default(unique)
+	]
+	interface IACEs : IDispatch
+	{
+		[id(1), helpstring("Adds the ACE object to the ACEs collection")] HRESULT Add([in] IACE* ACE);
+		[propget, id(2), helpstring("Returns the number of ACE objects in the collection")] HRESULT Count([out, retval] long *pVal);
+		[id(4), helpstring("Deletes the ACE object from the ACEs collection as specified by index")] HRESULT Delete([in] VARIANT Index);
+		[id(DISPID_VALUE), helpstring("Retrieves the ACE object from the ACEs collection specified by index")] HRESULT Item([in] VARIANT Index, [out, retval] LPVARIANT pItem);
+		[propget, id(DISPID_NEWENUM), helpstring("Returns an enumeration object for the collection"), restricted] HRESULT _NewEnum([out, retval] LPUNKNOWN *pVal);
+	};
+
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	interface IACEs;
+
+	[
+		uuid(A0E483FD-F971-11D1-A956-00C04FB155E5),
+		helpstring("Createable CoClass ACLObject")
+	]
+	coclass ACLObject
+	{
+		[default] interface IACLObject;
+	};	
+	[
+		uuid(A0E48401-F971-11D1-A956-00C04FB155E5),
+		helpstring("Createable CoClass ACE")
+	]
+	coclass ACE
+	{
+		[default] interface IACE;
+	};
+};

@@ -1,0 +1,22 @@
+XML Book Finder
+
+Files:
+bookFinder.htm
+bookStore.xml
+booksTable.xsl
+
+Description:
+This is a simple searching application written in JScript that uses XSL pattern-matching to retrieve requested
+nodes and XSL stylesheets to display those nodes.  In this case, the user can search a 
+bookstore's inventory by title or author.
+
+The select boxes in the demo above are generated dynamically from the data within the XML document.  
+Expand the XML containing the list of books and the choices will expand, as well.  
+
+More information on the XSL pattern-matching syntax can be found in the XML reference documentation on the workshop. 
+More information on the XML object model and, specifically, the selectNodes method can be found there, as well.
+
+
+
+Compatibility/Platform Compatibility:
+You must be running Microsoft Internet Explorer 5 or greater on Win32 or Unix platforms to view this demo.

@@ -1,0 +1,18 @@
+Note: These samples were codebased in advance of the RTM release of NetShow 3.0
+
+The Pre-RTM codebase is reflected in the <OBJECT> tag of all of these samples.  
+
+!!!!!!!!!!!!!!!
+If you are attempting to view these samples after the RTM release, you
+will want to change the codebase to the RTM code so that the correct version
+of the Media Player will be auto-sensed downloaded to the user's browser.
+!!!!!!!!!!!!!!!
+
+To do this, locate the following statement in the <EMBED> tag:
+codebase="http://www.microsoft.com/netshow/download/en/nsmp2inf.cab#Version=5,1,51,415"
+
+and replace it with:
+codebase="http://www.microsoft.com/ntserver/netshow/download/en/nsmp2inf.cab#Version=5,1,52,701"
+
+
+<END>

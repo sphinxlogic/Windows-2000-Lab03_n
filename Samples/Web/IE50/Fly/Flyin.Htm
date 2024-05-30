@@ -1,0 +1,43 @@
+<html>
+<head>
+<title>Fly-In DHTML Behavior Demo</title>
+
+<Style>
+  .fly{behavior:url(fly.htc);position:relative;}
+</style>
+</head>
+
+<body>
+<h2>Fly-In DHTML Behavior</h2>
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="top.close();return false">Close This Sample</A>
+</FONT>
+<br>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+<hr>
+
+<DIV class=fly delay=1000>
+This is some text<img src=ie.gif>
+<br>
+This is some more text
+</DIV>
+<img src=ie.gif class=fly delay=3000 from=right >
+<br>
+<DIV class=fly delay=3000>
+This is some text
+More text
+</DIV>
+<br>
+<DIV class=fly delay=5000>
+This is some text
+This is some more text
+</DIV>
+<br>
+<DIV class=fly delay=7000>
+This is some text
+This is some more text
+</DIV>
+
+</body>
+</HTML>
+

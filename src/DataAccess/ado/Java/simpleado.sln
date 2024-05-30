@@ -1,0 +1,13 @@
+Microsoft Visual Studio Solution File, Format Version 1.00
+Project("{66355F20-A65B-11D0-BFB5-00A0C91EBFA0}") = "simpleado", "simpleado.vjp", "{D366E9B1-AC10-11D2-A955-00C04F7F3657}"
+EndProject
+Global
+	GlobalSection(LocalDeployment) = postSolution
+		StartupProject = {D366E9B1-AC10-11D2-A955-00C04F7F3657}
+	EndGlobalSection
+	GlobalSection(BuildOrder) = postSolution
+		0 = {D366E9B1-AC10-11D2-A955-00C04F7F3657}
+	EndGlobalSection
+	GlobalSection(DeploymentRoot) = postSolution
+	EndGlobalSection
+EndGlobal

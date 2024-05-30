@@ -1,0 +1,29 @@
+// Copyright (c) 1997 Microsoft Corporation.  All rights reserved.
+
+[
+  uuid(F3588E20-F601-11cf-BC7E-00A0C913D202),
+  version(1.0),
+]
+library jNatComLib
+{
+	importlib("stdole32.tlb") ;
+
+	[
+	  uuid(F3588E21-F601-11cf-BC7E-00A0C913D202),
+	  odl
+	]
+	interface jINatCom : IUnknown
+	{
+		HRESULT ccwHelloWorld() ;
+		HRESULT HelloWorld() ;
+	}
+
+	[
+	  uuid(F3588E22-F601-11cf-BC7E-00A0C913D202)
+	]                                             
+	coclass jCNatCom
+	{   
+		interface jINatCom ;
+	}
+} ;
+

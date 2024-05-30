@@ -1,0 +1,71 @@
+<html>
+
+<head>
+<title>Security Tester</title>
+<link rel="stylesheet" href="../../../../styles.css" type="text/css">
+<style>
+A:link {color: Olive}
+A:visited {color: 336666}
+A:hover {background:Olive; color: White}
+</style>
+</head>
+
+<body>
+
+<h2>Security Tester</h2>
+
+<hr>
+
+<h4>Overview</h4>
+
+<p>VB application using Security Sample methods</p>
+
+<br>
+<h4>To Build:</h4>
+
+<p>- Ensure that the Security Sample's VC, VB, & VJ Dlls are all built</p>
+
+<p>- Open ServicesSecurityTester.vbp</p>
+
+<p>- Ensure all references are resolved</p>
+
+<p>- Make ServicesSecurityTester.exe</p>
+
+<br>
+<h4>To Configure:</h4>
+
+<p>- In COM Services Explorer create a new package named: Security Tester</p>
+
+<p>- Right Click on the New COM+ Application</p>
+
+<p>- In Properties- Security Tab- Authorization: Check the "Enforce access checks for this application" checkbox</p>
+
+<p>- Click "OK"</p>
+
+<p>- Under the Security Tester COM+ Application, create this Role: Administrator (Beware of Case Sensativity)</p>
+
+<p>- Add an intended User to Administrator role</p>
+
+<p>- Install the VC, VB, & VJ Security Sample Dlls</p>
+
+<p>- For Each Component: In Properties- Security Tab: Check the "Administrator" Checkbox</p>
+
+<br>
+<h4>To Run:</h4>
+
+<p>- Run ServicesSecurityTester.exe</p>
+
+<p>- Clicking the "Who is logged on?" buttons will bring up up a message box displaying the Answer</p>
+
+<p>- Clicking the "Are you an Administrator?" buttons will tell you if you are listed in the "Administrator" Role of the Services_Security package</p>
+
+<p>- Change Users in the Administrator Role or Security Options with the "Security Tester" Application to manipulate values returned by the security methods</p>
+
+<p>&nbsp;</p>
+
+<hr>
+
+<p>&nbsp;</p>
+</body>
+</html>
+

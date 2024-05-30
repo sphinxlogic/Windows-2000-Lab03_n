@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Keep-Alive with Worker Thread</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_keep_alive_with_worker_thread"></a>Keep-Alive with Worker Thread</h3>
+<p>
+This example demonstrates how to implement keep-alive processing by using multiple threads organized into a thread pool. Though this sample is a relatively straightforward implementation, it is helpful if you are at least somewhat familiar with the basics of thread management and communication in Microsoft&reg; Windows&reg;. For more information, see the relevant portions of the Windows and C++ documentation.</p>
+<p>
+The extension performs a series of initialization tasks when first loaded. A work queue is created, implemented as a simple linked list, each element of the array consisting of a pointer to the ECB associated with the requesting client browser's session, and a pointer to the next work queue entry. Threads will check this queue to determine if there is any work to be done. </p>
+<p>
+The extension initializes the thread pool and creates a semaphore, set initially to its nonsignaled state, that will be used to release threads from the thread pool. A critical section object is created and initialized as well. This will be used, along with the <b>EnterCriticalSection</b> and <b>LeaveCriticalSection</b> Windows functions, to maintain the integrity of the work queue. Last, but certainly not least, the Windows function <b>CreateThread</b> is invoked to populate the thread pool.</p>
+<p>
+At this point in the execution of this extension, several things begin to happen at once, and like most multi-threaded applications, things can get confusing in a hurry. The main IIS server thread that initially loaded the DLL, and called <b>DllMain</b> in the first place, now proceeds to call the standard extension entry-point functions. <b>GetExtensionVersion</b>, as usual, returns version and descriptive information. <b>HttpExtensionProc</b> is executed and attempts to add another job to the work queue. If the function <b>AddWorkQueueEntry</b> returns FALSE, indicating that the queue is full, then the extension informs the client browser that the server is too busy, and provides a button with which the user can re-access the page. If there is space in the queue, <b>ReleaseSemaphore</b> is called, incrementing the semaphore by 1, and <b>HttpExtensionProc</b> exits with the return code HSE_STATUS_PENDING. This return code tells the server that there is still work pending, and the extension will notify the server when all of it is complete.</p>
+<p>
+Meanwhile, immediately after each thread was created with <b>CreateThread</b>, each of them have been executing their individual <b>WorkerFunction</b> thread function. However, the thread accomplishes very little before it quickly arrives at the <b>WaitForSingleObject</b> function. There the thread will wait until the single object, the semaphore in this case, changes to a signaled state. Depending on the speed of your server and the number of threads created, all the threads in the thread pool may be waiting on the semaphore before the server even calls <b>HttpExtensionProc</b>. </p>
+<p>
+The <b>ReleaseSemaphore</b> function, called when a new job has been entered into the work queue, releases one thread from the thread pool. When the semaphore is incremented by one, one thread's <b>WaitForSingleObject</b> call immediately decrements the semaphore by one, and returns. The thread is now free to complete the <b>WorkerFunction</b> function. First, <b>GetWorkQueueEntry</b> is called to get the pointer to the ECB of the next connection to be processed. Extended processing is simulated with the <b>Sleep</b> function, and a message is sent identifying the thread and connection IDs. Once the task is completed, the thread goes back to <b>WaitForSingleObject</b>, waiting for its chance to do it all over again. </p>
+<p>
+Notice that the thread never exits under normal conditions, but built-in to the logic of <b>WorkerFunction</b> are provisions for two types of pathological cases that you would want to account for in your own applications. If <b>WaitForSingleObject</b> returns a value other than WAIT_OBJECT_0 (such as WAIT_FAILED), the function returns, which implicitly causes the thread to exit. The other case, in this sample, is if a worker thread is released by the semaphore, but finds no jobs in the work queue. Since only one thread should be released for each semaphore signal event, a thread finding no jobs would indicate a serious problem, possibly at the operating system level. The thread would be explicitly ended at that point with the <b>ExitThread</b> function. </p>
+<p>
+<b>Note</b>&nbsp;&nbsp;You might notice that this extension never really terminates the connection with the client browser. Even though HSE_STATUS_SUCCESS_AND_KEEP_CONN does not necessarily guarantee that the server will keep the connection open, there are possible performance issues here for your server if multiple client browsers were accessing this sample. In addition, this sample creates several system objects that are designed to remain in memory until the server is rebooted. For this reason, as well as to make the demonstration more clear, the number of queue entries and threads has been limited to 2 each. If you increase this number (in the threadpool.h file) too much, you can expect to see a persistent, potentially dramatic decrease in system performance until you restart your server.</p>
+<p>
+This sample is provided for educational purposes only. It has not been tested in a production environment, and Microsoft&reg; will not provide technical support for it. </p>
+</BODY>
+</HTML>

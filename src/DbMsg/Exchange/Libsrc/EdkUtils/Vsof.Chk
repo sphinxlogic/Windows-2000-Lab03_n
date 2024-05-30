@@ -1,0 +1,960 @@
+//--vsof.chk---------------------------------------------------------------------
+//
+// Parameter checking for vsof.c.
+//
+// Copyright 1986-1996.  Microsoft Corporation.  All Rights Reserved.
+//
+//-----------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_VSOF_SetFilePointer(a,b,c,d)			NOERROR
+#define CHK_VSOF_ReadFile(a,b,c,d,e)				NOERROR
+#define CHK_VSOF_WriteFile(a,b,c,d,e)				NOERROR
+#define CHK_VSOF_GetFileSize(a,b)					NOERROR
+#define CHK_VSOF_Revert(a)							NOERROR
+#define CHK_VSOF_LockRegion(a,b,c,d)				NOERROR
+#define CHK_VSOF_UnlockRegion(a,b,c,d)				NOERROR
+#define CHK_VSOF_QueryInterface(a,b,c)				NOERROR
+#define CHK_VSOF_AddRef(a)							NOERROR
+#define CHK_VSOF_Clone(a,b)							NOERROR
+#define CHK_VSOF_Release(a)							NOERROR
+#define CHK_VSOF_Read(a,b,c,d)						NOERROR
+#define CHK_VSOF_Write(a,b,c,d)						NOERROR
+#define CHK_VSOF_Seek(a,b,c,d)						NOERROR
+#define CHK_VSOF_SetSize(a,b)						NOERROR
+#define CHK_VSOF_CopyTo(a,b,c,d,e)					NOERROR
+#define CHK_VSOF_Commit(a,b)						NOERROR
+#define CHK_VSOF_Stat(a,b,c)						NOERROR
+#define CHK_ScGetVSOFFilename(a,b,c)				NOERROR
+#define CHK_HrOpenVirtualStreamOnFile(a,b,c,d,e,f)	NOERROR
+#define CHK_VSOF_SetClean(a)						NOERROR
+#define CHK_VSOF_IsDirty(a,b)						NOERROR
+
+#else
+
+// Utilities for parameter validation
+
+#define VSOF_ValidateParameters(pobj,eMethod)					\
+		( ( ( ! TEST_WRITE_PTR(pobj,sizeof(VSOF)) ) ||			\
+			((pobj)->lpVtbl != (VSOF_Vtbl FAR *)&VtblVSOF) ) ?	\
+		FALSE : TRUE )
+
+#define VSOF_ValidateUnknown(pobj, f)							\
+		( ( ( ! TEST_WRITE_PTR(pobj, sizeof(VSOF)) )			\
+		    || ( ! TEST_READ_PTR((pobj)->lpVtbl, sizeof(VSOF_Vtbl)) )	\
+			|| (pobj)->lpVtbl->f != VSOF_##f) ?					\
+			FALSE : TRUE )
+
+
+//$--CHK_VSOF_SetFilePointer-------------------------------------------------------
+//
+// DESCRIPTION:	performs seek
+//
+// INPUT:	vhFile	--	virtual file handle
+//			lDistanceToMove	--	distance to move
+//			lpDistanceToMoveHigh	-- pointer to 64-bit distance to move
+//			dwMoveMethod	--	origin
+//
+// RETURNS:	DWORD	-- new file position or error code
+//
+//-----------------------------------------------------------------------------
+static __inline HRESULT CHK_VSOF_SetFilePointer(		
+	IN VSOF_HANDLE vhFile,			// file handle
+    IN LONG lDistanceToMove,		// distance to move
+    IN PLONG lpDistanceToMoveHigh,	// pointer to 64 bit distance to move
+    IN DWORD dwMoveMethod			// origin
+    )
+{   
+	HRESULT	hr		=	NOERROR;
+	     
+    if ( (lpDistanceToMoveHigh != NULL) && 
+         ( ! TEST_READ_PTR(lpDistanceToMoveHigh, sizeof(LONG)) ) )
+	{
+		hr = HR_LOG(E_INVALIDARG);
+
+		goto cleanup;
+	}
+
+cleanup:
+
+	return hr;
+
+}
+
+//$--CHK_VSOF_ReadFile-------------------------------------------------------------
+//
+// DESCRIPTION:	Read from file/buffer
+//
+// INPUT:	vhFile	--	virtual file handle
+//			lpBuffer	--	output buffer
+//			nNumberOfBytesToRead	--	# bytes to read
+//			lpNumberOfBytesRead	--	# bytes read
+//			lpOverlapped
+//
+// RETURNS:	BOOL
+//
+//-----------------------------------------------------------------------------
+static __inline HRESULT CHK_VSOF_ReadFile(
+    IN VSOF_HANDLE vhFile,				// virtual file handle
+    IN LPVOID lpBuffer,					// output buffer
+    IN DWORD nNumberOfBytesToRead,		// # bytes to read
+    OUT LPDWORD lpNumberOfBytesRead,	// # bytes read
+    OUT LPOVERLAPPED lpOverlapped
+    )
+{	
+	HRESULT	hr	=	NOERROR;
+
+	if ( ! TEST_WRITE_PTR((BYTE *) lpBuffer, nNumberOfBytesToRead) )
+	{
+		hr = HR_LOG(E_INVALIDARG);
+
+		goto cleanup;
+	}
+
+	if ( ! TEST_WRITE_PTR(lpNumberOfBytesRead, sizeof(DWORD)) )
+	{
+		hr = HR_LOG(E_INVALIDARG);
+
+		goto cleanup;
+	}
+
+	if ( (lpOverlapped != NULL) &&
+	     ( ! TEST_WRITE_PTR(lpOverlapped, sizeof(OVERLAPPED)) ) )
+	{
+		hr = HR_LOG(E_INVALIDARG);
+
+		goto cleanup;
+	}
+
+cleanup:
+
+	return hr;
+
+}
+
+//$--CHK_VSOF_WriteFile------------------------------------------------------------
+//
+// DESCRIPTION:	Writes buffer to file.
+//
+// INPUT:	vhFile	--	file handle
+//			lpBuffer	--	input buffer
+//			nNumberOfBytesToWrite	--	# bytes to write
+//			lpNumberOfBytesWritten	--	# bytes written
+//			lpOverlapped	--	overlapped
+//
+// RETURNS:	BOOL	--	TRUE if successful
+//
+//-----------------------------------------------------------------------------
+static __inline HRESULT CHK_VSOF_WriteFile(
+    IN VSOF_HANDLE vhFile,				// file handle
+    IN LPCVOID lpBuffer,				// input buffer
+    IN DWORD nNumberOfBytesToWrite,		// # bytes to write
+    OUT LPDWORD lpNumberOfBytesWritten,	// # bytes written
+    OUT LPOVERLAPPED lpOverlapped		// overlapped
+    )
+{
+	HRESULT	hr			=	NOERROR;
+
+	if ( (nNumberOfBytesToWrite > 0) && 
+	     ( ! TEST_READ_PTR((BYTE *) lpBuffer, nNumberOfBytesToWrite) ) )
+	{
+		hr = HR_LOG(E_INVALIDARG);
+
+		goto cleanup;
+	}
+
+	if ( ! TEST_WRITE_PTR(lpNumberOfBytesWritten, sizeof(DWORD)) )
+	{
+		hr = HR_LOG(E_INVALIDARG);
+
+		goto cleanup;
+	}
+
+	if ( (lpOverlapped != NULL) &&
+	     ( ! TEST_WRITE_PTR(lpOverlapped, sizeof(OVERLAPPED)) ) )
+	{
+		hr = HR_LOG(E_INVALIDARG);
+
+		goto cleanup;
+	}
+
+cleanup:
+
+	return hr;
+
+}
+
+//$--VSOF_GetFileSize----------------------------------------------------------
+//
+// DESCRIPTION:	Gets the file's files
+//
+// INPUT:	vhFile	--	file handle
+//
+// OUTPUT:	lpFileSizeHigh	--	pointer to 64-bit file size
+//
+// RETURNS:	DWORD	--	file size
+//
+//-----------------------------------------------------------------------------
+static __inline HRESULT CHK_VSOF_GetFileSize(
+    IN VSOF_HANDLE vhFile,					// file handle
+    OUT LPDWORD lpFileSizeHigh				// high file size
+    )
+{
+	HRESULT	hr	=	NOERROR;
+
+	if ( (lpFileSizeHigh != NULL) && 
+	     ( ! TEST_WRITE_PTR(lpFileSizeHigh, sizeof(DWORD)) ) )
+	{
+		hr = HR_LOG(E_INVALIDARG);
+
+		goto cleanup;
+	}
+
+cleanup:
+
+	return hr;
+
+}
+
+// Special virtual stream interface extensions for performance...
+// There are certain situations where knowing if the stream has changed can be
+// used to make desicions that will improve performance.
+
+//$--CHK_VSOF_SetClean-------------------------------------------------------------
+//
+// DESCRIPTION:	Unsets stream dirty flag
+//
+// INPUT:	lpStream	--	stream pointer
+//
+// RETURNS:	HRESULT	--	NOERROF if successful,
+//						E_INVALIDARG if bad input.
+//
+//-----------------------------------------------------------------------------
+HRESULT CHK_VSOF_SetClean(
+	IN LPSTREAM lpStream)	// stream pointer
+{
+	HRESULT	hr	=	NOERROR;
+
+	if ( ! VSOF_ValidateParameters((LPVSOF) lpStream, IUnknown_QueryInterface) )
+	{
+		hr = HR_LOG(E_INVALIDARG);
+
+		goto cleanup;
+	}
+
+cleanup:
+
+	return hr;
+
+}
+
+//$--CHK_VSOF_IsDirty-------------------------------------------------------------
+//
+// DESCRIPTION:	Returns stream dirty flag
+//
+// INPUT:	lpStream	--	stream pointer
+//
+// RETURNS:	HRESULT		--	NOERROR if successful,
+//							E_INAVLIDARG if bad input
+//
+//-----------------------------------------------------------------------------
+HRESULT CHK_VSOF_IsDirty(	
+	IN LPSTREAM lpStream,		// stream pointer
+	OUT BOOL * pfDirty)			// dirty flag pointer
+{
+	HRESULT	hr		=	NOERROR;
+
+	if ( ! VSOF_ValidateParameters((LPVSOF) lpStream, IUnknown_QueryInterface) )
+	{
+		hr = HR_LOG(E_INVALIDARG);
+
+		goto cleanup;
+	}
+
+	if ( ! TEST_WRITE_PTR(pfDirty, sizeof(BOOL)) )
+	{
+		hr = HR_LOG(E_INVALIDARG);
+
+		goto cleanup;
+	}
+
+cleanup:
+
+	return hr;
+
+}
+
+/* Unimplemented methods. */
+
+//$--CHK_VSOF_Revert---------------------------------------------------------------
+//
+// DESCRIPTION:	Same as for IStream::Revert()
+//
+// INPUT:		Same as for IStream::Revert()
+//
+// RETURNS:		HRESULT	--	STG_E_INVALIDFUNCTION
+//
+//-----------------------------------------------------------------------------
+static __inline HRESULT CHK_VSOF_Revert(
+	IN LPVSOF lpVSOF)		// this
+{
+    HRESULT	hr	=	NOERROR;
+
+	if ( ! VSOF_ValidateParameters(lpVSOF, IStream_Revert) )
+	{
+		hr = HR_LOG(STG_E_INVALIDPARAMETER);
+
+		goto cleanup;
+	}
+
+cleanup:	
+	
+	return hr;
+
+}
+
+//$--CHK_VSOF_LockRegion---------------------------------------------------------------
+//
+// DESCRIPTION:	Same as for IStream::LockRegion()
+//
+// INPUT:		Same as for IStream::LockRegion()
+//
+// RETURNS:		HRESULT	--	STG_E_INVALIDFUNCTION
+//
+//-----------------------------------------------------------------------------
+static __inline HRESULT CHK_VSOF_LockRegion (
+	IN LPVSOF lpVSOF, 				// this
+	IN ULARGE_INTEGER uliOffset, 	// offset
+	IN ULARGE_INTEGER uliSize, 		// size
+	IN DWORD dwLockType)			// lock type
+{
+	HRESULT	hr	=	NOERROR;
+
+	if ( ! VSOF_ValidateParameters (lpVSOF, IStream_LockRegion) )
+	{
+		hr = HR_LOG(STG_E_INVALIDPARAMETER);
+
+		goto cleanup;
+	}
+	
+cleanup:
+
+	return hr;
+
+}
+
+//$--CHK_VSOF_UnlockRegion---------------------------------------------------------------
+//
+// DESCRIPTION:	Same as for IStream::UnlockRegion()
+//
+// INPUT:		Same as for IStream::UnlockRegion()
+//
+// RETURNS:		HRESULT	--	STG_E_INVALIDFUNCTION
+//
+//-----------------------------------------------------------------------------
+static __inline HRESULT CHK_VSOF_UnlockRegion (
+	IN LPVSOF lpVSOF, 				// this
+	IN ULARGE_INTEGER uliOffset, 	// offset
+	IN ULARGE_INTEGER uliSize, 		// length
+	IN DWORD dwLockType)			// lock type
+{
+    HRESULT	hr	=	NOERROR;
+
+	if ( ! VSOF_ValidateParameters(lpVSOF, IStream_UnlockRegion) )
+	{
+		hr = HR_LOG(STG_E_INVALIDPARAMETER);
+
+		goto cleanup;
+	}
+	
+cleanup:
+
+	return hr;
+
+}
+
+//$--CHK_VSOF_QueryInterface---------------------------------------------------------------
+//
+// DESCRIPTION:	Same as for IStream::QueryInterface()
+//
+// INPUT:		Same as for IStream::QueryInterface()
+//
+// RETURNS:		HRESULT	--	NOERROR	if VSOF object supports interface,
+//							E_NOINTERFACE if VSOF object doesn't support interface,
+//							E_INVALIDARG if bad input.
+//
+//-----------------------------------------------------------------------------
+static __inline HRESULT CHK_VSOF_QueryInterface(
+	IN LPVSOF lpVSOF, 				// this
+	IN REFIID riid, 				// interface identifier reference
+	OUT LPVOID FAR * lppvObj)		// interface object pointer
+{
+	HRESULT	hr	=	NOERROR;
+
+	if ( ! VSOF_ValidateParameters(lpVSOF, IUnknown_QueryInterface) )
+	{
+		hr = HR_LOG(E_INVALIDARG);
+
+		goto cleanup;
+	}
+
+	if ( ! TEST_WRITE_PTR(lppvObj, sizeof(LPVOID)) )
+	{
+		hr = HR_LOG(E_INVALIDARG);
+
+		goto cleanup;
+	}
+
+cleanup:
+
+	return hr;
+
+}
+
+
+//$--CHK_VSOF_AddRef---------------------------------------------------------------
+//
+// DESCRIPTION:	Same as for IStream::AddRef()
+//
+// INPUT:		this
+//
+// RETURNS:		ULONG	--	reference count
+//
+//-----------------------------------------------------------------------------
+static __inline HRESULT CHK_VSOF_AddRef(
+	IN LPVSOF lpVSOF)				// this
+{
+	HRESULT	hr	=	NOERROR;
+
+	if ( ! VSOF_ValidateUnknown(lpVSOF, AddRef) )
+	{
+		hr = HR_LOG(E_INVALIDARG);
+
+		goto cleanup;
+	}
+
+cleanup:
+	
+	return hr;
+
+}
+
+//$--CHK_VSOF_Clone---------------------------------------------------------------
+//
+// DESCRIPTION:	Same as for IStream::Clone()
+//
+// INPUT:		this,
+//		
+// OUTPUT:		virtual stream pointer
+//
+// RETURNS:		HRESULT	--	NOERROR if successful,
+//							E_INVALIDARG if bad input,
+//							E_ACCESSDENIED if no access,
+//							EDK_E_NOT_FOUND if file not found,
+//							E_FAIL otherwise
+//
+//-----------------------------------------------------------------------------
+static __inline HRESULT CHK_VSOF_Clone (
+	IN LPVSOF lpVSOF, 				// this
+	OUT LPSTREAM FAR *lppStm)		// virtual stream pointer
+{
+    HRESULT			hr 			=	NOERROR;
+
+	if ( ! VSOF_ValidateParameters (lpVSOF, IStream_Clone) )
+	{
+		hr = HR_LOG(STG_E_INVALIDPARAMETER);
+
+		goto cleanup;
+	}
+
+	if ( ! TEST_WRITE_PTR(lppStm, sizeof(LPSTREAM)) )
+	{
+		hr = HR_LOG(STG_E_INVALIDPARAMETER);
+		
+		goto cleanup;
+	}    
+    
+cleanup:
+
+	return hr;
+
+}
+
+//$--CHK_VSOF_Release---------------------------------------------------------------
+//
+// DESCRIPTION:	Same as for IStream::Release()
+//
+// INPUT:		this,
+//
+// RETURNS:		ULONG	--	new reference count.
+//
+//-----------------------------------------------------------------------------
+static __inline HRESULT CHK_VSOF_Release(
+	IN LPVSOF lpVSOF)					// this
+{
+	HRESULT	hr	=	NOERROR;
+
+	if ( ! VSOF_ValidateUnknown (lpVSOF, Release) )
+	{
+		hr = HR_LOG(E_INVALIDARG);
+
+		goto cleanup;
+	}
+
+cleanup:
+
+	return hr;
+
+}
+
+//$--CHK_VSOF_Read---------------------------------------------------------------
+//
+// DESCRIPTION:	Same as for IStream::Read()
+//
+// INPUT:		lpVSOF	--	this,
+//				lpvData	--	read buffer
+//				cbSize	--	size of read buffer
+//
+// OUTPUT:		lpcbRead	--	# bytes read
+//
+// RETURNS:		HRESULT	--	NOERROR if sucessful,
+//							STG_E_INVALIDPARAMETER if bad input,
+//							STG_E_READFAULT otherwise
+//
+//-----------------------------------------------------------------------------
+static __inline HRESULT CHK_VSOF_Read(
+	IN LPVSOF lpVSOF,			// this
+	IN VOID HUGEP * lpvData,	// buffer to read data into
+	IN ULONG cbSize,			// # bytes to read
+	OUT ULONG FAR * lpcbRead)	// # bytes read
+{
+	HRESULT hr 		= 	NOERROR;
+
+	if ( ! VSOF_ValidateParameters (lpVSOF, IStream_Read) )
+	{
+		hr = HR_LOG(STG_E_INVALIDPARAMETER);
+
+		goto cleanup;
+	}
+
+	if ( (cbSize > 0) && 
+	     ( ! TEST_WRITE_PTR((BYTE *) lpvData, cbSize) ) )
+	{
+		hr = HR_LOG(STG_E_INVALIDPARAMETER);
+		
+		goto cleanup;
+	}
+	
+	if ( (lpcbRead != NULL) && 
+	     ( ! TEST_WRITE_PTR(lpcbRead, sizeof(ULONG)) ) )
+	{
+		hr = HR_LOG(STG_E_INVALIDPARAMETER);
+		
+		goto cleanup;
+	}	
+
+cleanup:
+
+	return hr;
+
+}
+
+//$--CHK_VSOF_Write---------------------------------------------------------------
+//
+// DESCRIPTION:	Same as for IStream::Write()
+//
+// INPUT:		lpVSOF	--	this,
+//				lpvData	--	write buffer
+//				cbSize	--	size of write buffer
+//
+// OUTPUT:		lpcbWritten	--	# bytes written
+//
+// RETURNS:		HRESULT	--	NOERROR if sucessful,
+//							STG_E_INVALIDPARAMETER if bad input,
+//							STG_E_MEDIUMFULL otherwise
+//
+//-----------------------------------------------------------------------------
+static __inline HRESULT CHK_VSOF_Write (
+	IN LPVSOF lpVSOF,				// this
+	IN VOID HUGEP * lpvData,		// buffer to write data from
+	IN ULONG cbSize,				// size of buffer
+	OUT ULONG FAR * lpcbWritten)	// # bytes written
+{
+	HRESULT hr 			= 	NOERROR;
+
+	if ( ! VSOF_ValidateParameters (lpVSOF, IStream_Write) )
+	{
+		hr = HR_LOG(STG_E_INVALIDPARAMETER);
+
+		goto cleanup;
+	}
+
+	if ( (cbSize > 0) &&
+	     (! TEST_READ_PTR((BYTE *) lpvData, cbSize) ) )
+	{
+		hr = HR_LOG(STG_E_INVALIDPARAMETER);
+		
+		goto cleanup;
+	} 
+
+	if ( (lpcbWritten != NULL) &&
+	     ( ! TEST_WRITE_PTR(lpcbWritten, sizeof(ULONG)) ) )
+	{
+		hr = HR_LOG(STG_E_INVALIDPARAMETER);
+
+		goto cleanup;
+	}
+
+cleanup:
+
+	return hr;
+
+}
+
+//$--CHK_VSOF_Seek---------------------------------------------------------------
+//
+// DESCRIPTION:	Same as for IStream::Seek()
+//
+// INPUT:		lpVSOF	--	this,
+//				liMOve	--	offset
+//				dwMode	--	origin
+//				
+// OUTPUT:		lpliPos	--	new position
+//
+// RETURNS:		HRESULT	--	NOERROR if sucessful,
+//							STG_E_INVALIDPARAMETER if bad input,
+//							STG_E_SEEKERROR otherwise
+//
+//-----------------------------------------------------------------------------
+static __inline HRESULT CHK_VSOF_Seek(
+	IN LPVSOF lpVSOF,					// this
+	IN LARGE_INTEGER liMove,			// offset
+	IN DWORD dwMode,					// origin
+	OUT ULARGE_INTEGER FAR * lpliPos)	// new position
+{
+	HRESULT	hr		=	NOERROR;
+
+	if ( ! VSOF_ValidateParameters (lpVSOF, IStream_Seek) )
+	{
+		hr = HR_LOG(STG_E_INVALIDPARAMETER);
+
+		goto cleanup;
+	}
+
+	if ( (lpliPos != NULL) &&
+	     ( ! TEST_WRITE_PTR(lpliPos, sizeof(ULARGE_INTEGER)) ) )
+	{
+		hr = HR_LOG(STG_E_INVALIDPARAMETER);
+
+		goto cleanup;
+	}
+
+cleanup:
+
+	return hr;
+
+}
+
+//$--CHK_VSOF_SetSize---------------------------------------------------------------
+//
+// DESCRIPTION:	Same as for IStream::SetSize()
+//
+// INPUT:		lpVSOF	--	this,
+//				liSize	--	new size
+//
+// RETURNS:		HRESULT	--	NOERROR if sucessful,
+//							STG_E_INVALIDPARAMETER if bad input,
+//							STG_E_SEEKERROR otherwise
+//
+//-----------------------------------------------------------------------------
+static __inline HRESULT CHK_VSOF_SetSize (
+	IN LPVSOF lpVSOF, 				// this
+	IN ULARGE_INTEGER liSize)		// new size
+{
+	HRESULT	hr		=	NOERROR;
+
+	if ( ! VSOF_ValidateParameters (lpVSOF, IStream_SetSize) )
+	{
+		hr = HR_LOG(STG_E_INVALIDPARAMETER);
+
+		goto cleanup;
+	}
+
+cleanup:
+
+	return hr;
+
+}
+
+//$--CHK_VSOF_CopyTo---------------------------------------------------------------
+//
+// DESCRIPTION:	Same as for IStream::CopyTo()
+//
+// INPUT:		lpVSOF	--	this,
+//				lpStrmDest	--	destination stream pointer
+//				cbCopy	--	# bytes to copy
+//
+// OUTPUT:		lpcbRead	--	# bytes read from source stream
+//				lpcbWritten	--	# bytes written to destination stream
+//
+// RETURNS:		HRESULT	--	NOERROR if sucessful,
+//							STG_E_INVALIDPARAMETER if bad input,
+//							STG_E_MEDIUMFULL if disk full,
+//							STG_E_READFAULT otherwise
+//
+//-----------------------------------------------------------------------------
+static __inline HRESULT CHK_VSOF_CopyTo(
+	IN LPVSOF lpVSOF,						// this
+	IN LPSTREAM lpStrmDst,					// destination stream pointer
+	IN ULARGE_INTEGER cbCopy,				// # bytes to copy
+	OUT ULARGE_INTEGER FAR * lpcbRead,		// # bytes read
+	OUT ULARGE_INTEGER FAR * lpcbWritten)	// # bytes written
+{
+	HRESULT hr			=	NOERROR;
+
+	if ( ! VSOF_ValidateParameters (lpVSOF, IStream_CopyTo) )
+	{
+		hr = HR_LOG(STG_E_INVALIDPARAMETER);
+
+		goto cleanup;
+	}
+
+	if ( ! TEST_IUNKNOWN_PTR(lpStrmDst) )
+	{
+		hr = HR_LOG(STG_E_INVALIDPARAMETER);
+
+		goto cleanup;
+	}
+
+	if ( (lpcbRead != NULL) &&
+	     ( ! TEST_WRITE_PTR(lpcbRead, sizeof(ULARGE_INTEGER)) ) )
+	{
+		hr = HR_LOG(STG_E_INVALIDPARAMETER);
+
+		goto cleanup;
+	}
+
+	if ( (lpcbWritten != NULL) &&
+	     ( ! TEST_WRITE_PTR(lpcbWritten, sizeof(ULARGE_INTEGER)) ) )
+	{
+		hr = HR_LOG(STG_E_INVALIDPARAMETER);
+
+		goto cleanup;
+	}
+
+cleanup:
+
+	return hr;
+
+}
+
+//$--CHK_VSOF_Commit---------------------------------------------------------------
+//
+// DESCRIPTION:	Same as for IStream::Commit()
+//
+// INPUT:		lpVSOF	--	this,
+//				ulFlags	--	flags
+//
+// RETURNS:		HRESULT	--	NOERROR if sucessful,
+//							STG_E_INVALIDPARAMETER if bad input,
+//							STG_E_WRITEFAULT otherwise
+//
+//-----------------------------------------------------------------------------
+static __inline HRESULT CHK_VSOF_Commit(
+	IN LPVSOF lpVSOF, 			// this
+	IN ULONG ulFlags)			// flags
+{
+	HRESULT	hr	=	NOERROR;
+
+	if ( ! VSOF_ValidateParameters(lpVSOF, IStream_Commit) )
+	{
+		hr = HR_LOG(STG_E_INVALIDPARAMETER);
+
+		goto cleanup;
+	}
+
+cleanup:
+
+	return hr;
+
+}
+
+//$--CHK_VSOF_Stat---------------------------------------------------------------
+//
+// DESCRIPTION:	Same as for IStream::Stat()
+//
+// INPUT:		lpVSOF	--	this,
+//				lpStg	--	storage statistics pointer
+//				ulFlags	--	flags
+//
+// RETURNS:		HRESULT	--	NOERROR if sucessful,
+//							STG_E_INVALIDPARAMETER if bad input,
+//							STG_E_INVALIDHEADER otherwise
+//
+//-----------------------------------------------------------------------------
+static __inline HRESULT CHK_VSOF_Stat(
+	IN LPVSOF lpVSOF,			// this
+	IN STATSTG FAR * lpStg, 	// storage statistics pointer
+	IN DWORD dwFlags)			// flags
+{
+	HRESULT	hr		=	NOERROR;
+
+	if ( ! VSOF_ValidateParameters (lpVSOF, IStream_Stat) )
+	{
+		hr = HR_LOG(STG_E_INVALIDPARAMETER);
+
+		goto cleanup;
+	}
+
+	if ( ! TEST_WRITE_PTR(lpStg, sizeof(STATSTG)) )
+	{
+		hr = HR_LOG(STG_E_INVALIDPARAMETER);
+
+		goto cleanup;
+	}
+
+cleanup:
+
+	return hr;
+
+}
+
+//$--CHK_ScGetVSOFFilename---------------------------------------------------------------
+//
+// DESCRIPTION:	Get virtual stream on file file name
+//
+// INPUT:		lpszPath	--	file path
+//				lpszPrefix	--	file prefix
+//				lpszBuf	--	file name output buffer
+//
+// RETURNS:		HRESULT	--	NOERROR if sucessful,
+//							E_INVALIDARG if bad input,
+//							E_FAIL otherwise
+//
+//-----------------------------------------------------------------------------
+static __inline HRESULT CHK_ScGetVSOFFilename(
+	IN LPSTR lpszPath, 		// file path
+	IN LPSTR lpszPrefix, 		// file name prefix
+	IN LPSTR lpszBuf)			// file name output buffer
+{
+	HRESULT	hr					=	NOERROR;
+
+	if ( (lpszPrefix != NULL) &&
+	     ( ( ! TEST_STRINGA_PTR(lpszPrefix) ) || (lstrlenA(lpszPrefix) > 3) )	)
+	{
+		hr = HR_LOG(E_INVALIDARG);
+
+		goto cleanup;
+	}
+		 
+	if ( (lpszPath != NULL) &&
+		 ( ! TEST_STRINGA_PTR(lpszPath) ) )
+	{
+		hr = HR_LOG(E_INVALIDARG);
+
+		goto cleanup;
+	}
+
+	if ( ! TEST_WRITE_PTR(lpszBuf, (MAX_PATH * sizeof(CHAR))) )
+	{
+		hr = HR_LOG(E_INVALIDARG);
+
+		goto cleanup;
+	}
+
+cleanup:
+
+	return hr;
+
+}
+
+//$--CHK_HrOpenVirtualStreamOnFile---------------------------------------------------------------
+//
+// DESCRIPTION:	Open/create a vitual stream on the specified file.
+//
+// INPUT:		lpfnAlloc	--	memory allocation routine
+//				lpfnFree	--	memory deallocation routine
+//				ulFlags		--	stream flags
+//				lpszPath	--	fully pathed file name
+//				lpszPrefix	--	file prefix
+//
+// OUTPUT:		lppStream	--	virtual stream pointer
+//
+// RETURNS:		HRESULT	--	NOERROR if sucessful,
+//							E_INVALIDARG if bad input,
+//							E_ACCESSDENIED if no access,
+//							EDK_E_NOT_FOUND if file not found,
+//							E_FAIL otherwise
+//
+//-----------------------------------------------------------------------------
+static __inline HRESULT CHK_HrOpenVirtualStreamOnFile(
+	IN LPALLOCATEBUFFER lpfnAlloc,	// allocation routine
+	IN LPFREEBUFFER lpfnFree,		// deallocation routine
+	IN ULONG ulFlags,				// stream flags
+	IN LPSTR lpszFile,				// fully-pathed file name
+	IN LPSTR lpszPrefix,			// file prefix
+	OUT LPSTREAM FAR * lppStrm)		// virtual stream pointer
+{
+	HRESULT hr						=	NOERROR;
+
+	if ( ! TEST_FUNCTION_PTR(lpfnAlloc) )
+	{
+		hr = HR_LOG(E_INVALIDARG);
+
+		goto cleanup;
+	}
+
+	if ( ! TEST_FUNCTION_PTR(lpfnFree) )
+	{
+		hr = HR_LOG(E_INVALIDARG);
+
+		goto cleanup;
+	}
+
+	if ( (lpszFile != NULL) &&
+		 ( ! TEST_STRINGA_PTR(lpszFile) ) )
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		
+		goto cleanup;
+	}	
+
+	if ( (lpszPrefix != NULL) &&
+		 ( ! TEST_STRINGA_PTR(lpszPrefix) ) )
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		
+		goto cleanup;
+	}	
+
+	if ( ! TEST_WRITE_PTR(lppStrm, sizeof(LPSTREAM)) )
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		
+		goto cleanup;
+	}			
+	
+	if ( (lpszFile == NULL) && 
+	     ( ( ! (ulFlags & STGM_DELETEONRELEASE) ) || ( ! (ulFlags & STGM_CREATE) ) ) )
+	{
+		hr = HR_LOG(E_INVALIDARG);
+
+		goto cleanup;
+	}
+
+	if ( ( ! (ulFlags & STGM_READWRITE) ) && 
+	     (ulFlags & STGM_CREATE) )
+	{
+		hr = HR_LOG(E_INVALIDARG);
+
+		goto cleanup;
+	}
+
+cleanup:
+
+	return hr;
+
+}
+
+#endif /* DEBUG */

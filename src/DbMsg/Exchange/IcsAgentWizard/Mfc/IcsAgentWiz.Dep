@@ -1,0 +1,225 @@
+# Microsoft Developer Studio Generated Dependency File, included by ICSAgentWiz.mak
+
+.\Chooser.cpp : \
+	".\Chooser.h"\
+	".\CMAPILogon.h"\
+	".\Cstm1Dlg.h"\
+	".\Cstm2Dlg.h"\
+	".\ICSAgentWiz.h"\
+	".\ICSAgentWizAw.h"\
+	
+
+.\CMAPILogon.cpp : \
+	".\CMAPILogon.h"\
+	
+
+.\Cstm1Dlg.cpp : \
+	".\CMAPILogon.h"\
+	".\Cstm1Dlg.h"\
+	".\ICSAgentWiz.h"\
+	".\ICSAgentWizAw.h"\
+	
+
+.\Cstm2Dlg.cpp : \
+	".\Cstm2Dlg.h"\
+	".\ICSAgentWiz.h"\
+	".\ICSAgentWizAw.h"\
+	
+
+.\ICSAgentWiz.cpp : \
+	".\ICSAgentWiz.h"\
+	".\ICSAgentWizAw.h"\
+	
+
+!IF  "$(CFG)" == "ICSAgentWiz - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "ICSAgentWiz - Win32 Pseudo-Debug"
+
+!ENDIF 
+
+.\ICSAgentWiz.rc : \
+	".\res\ico00001.ico"\
+	".\res\ico00002.ico"\
+	".\res\ico00003.ico"\
+	".\res\icon1.ico"\
+	".\res\icon2.ico"\
+	".\res\icon3.ico"\
+	".\res\icon4.ico"\
+	".\res\icon5.ico"\
+	".\res\ICSAgentWiz.ico"\
+	".\Template\AfxCore_deu.rtf"\
+	".\Template\AfxCore_enu.rtf"\
+	".\Template\AfxCore_esp.rtf"\
+	".\Template\AfxCore_fra.rtf"\
+	".\Template\AfxCore_ita.rtf"\
+	".\Template\AfxDb_deu.rtf"\
+	".\Template\AfxDb_enu.rtf"\
+	".\Template\AfxDb_esp.rtf"\
+	".\Template\AfxDb_fra.rtf"\
+	".\Template\AfxDb_ita.rtf"\
+	".\Template\AfxDlg_deu.rtf"\
+	".\Template\AfxDlg_enu.rtf"\
+	".\Template\AfxDlg_esp.rtf"\
+	".\Template\AfxDlg_fra.rtf"\
+	".\Template\AfxDlg_ita.rtf"\
+	".\Template\AfxOleCl_deu.rtf"\
+	".\Template\AfxOleCl_enu.rtf"\
+	".\Template\AfxOleCl_esp.rtf"\
+	".\Template\AfxOleCl_fra.rtf"\
+	".\Template\AfxOleCl_ita.rtf"\
+	".\Template\AfxOleSv_deu.rtf"\
+	".\Template\AfxOleSv_enu.rtf"\
+	".\Template\AfxOleSv_esp.rtf"\
+	".\Template\AfxOleSv_fra.rtf"\
+	".\Template\AfxOleSv_ita.rtf"\
+	".\Template\AfxPrint_deu.rtf"\
+	".\Template\AfxPrint_enu.rtf"\
+	".\Template\AfxPrint_esp.rtf"\
+	".\Template\AfxPrint_fra.rtf"\
+	".\Template\AfxPrint_ita.rtf"\
+	".\Template\All.rc"\
+	".\Template\AppExit_deu.bmp"\
+	".\Template\AppExit_enu.bmp"\
+	".\Template\AppExit_esp.bmp"\
+	".\Template\AppExit_fra.bmp"\
+	".\Template\AppExit_ita.bmp"\
+	".\Template\Bullet.bmp"\
+	".\Template\ChildFrm.cpp"\
+	".\Template\ChildFrm.h"\
+	".\Template\CntrItem.cpp"\
+	".\Template\CntrItem.h"\
+	".\Template\Confirm.inf"\
+	".\Template\CurArw2.bmp"\
+	".\Template\CurArw4.bmp"\
+	".\Template\CurHelp.bmp"\
+	".\Template\Dialog.cpp"\
+	".\Template\Dialog.h"\
+	".\Template\DlgAll.rc"\
+	".\Template\DlgLoc_deu.rc"\
+	".\Template\DlgLoc_enu.rc"\
+	".\Template\DlgLoc_esp.rc"\
+	".\Template\DlgLoc_fra.rc"\
+	".\Template\DlgLoc_ita.rc"\
+	".\Template\DlgRes.h"\
+	".\Template\DlgRoot.clw"\
+	".\Template\dlgroot.cnt"\
+	".\Template\DlgRoot.cpp"\
+	".\Template\DlgRoot.h"\
+	".\Template\Doc.cpp"\
+	".\Template\Doc.h"\
+	".\Template\Doc_deu.ico"\
+	".\Template\Doc_enu.ico"\
+	".\Template\Doc_esp.ico"\
+	".\Template\Doc_fra.ico"\
+	".\Template\Doc_ita.ico"\
+	".\Template\EditCopy.bmp"\
+	".\Template\EditCut.bmp"\
+	".\Template\EditPast.bmp"\
+	".\Template\EditUndo.bmp"\
+	".\Template\ErrorCodes.h"\
+	".\Template\FileNew.bmp"\
+	".\Template\FileOpen.bmp"\
+	".\Template\FilePrnt.bmp"\
+	".\Template\FileSave.bmp"\
+	".\Template\Frame.cpp"\
+	".\Template\Frame.h"\
+	".\Template\HlpSbar_deu.bmp"\
+	".\Template\HlpSbar_enu.bmp"\
+	".\Template\HlpSbar_esp.bmp"\
+	".\Template\HlpSbar_fra.bmp"\
+	".\Template\HlpSbar_ita.bmp"\
+	".\Template\HlpTbar.bmp"\
+	".\Template\ICS.cpp"\
+	".\Template\ICS.h"\
+	".\Template\ICSAgent.cpp"\
+	".\Template\ICSAgent.h"\
+	".\Template\ICSDemoContentCollector.cpp"\
+	".\Template\ICSDemoContentCollector.h"\
+	".\Template\ICSDemoHierarchyCollector.cpp"\
+	".\Template\ICSDemoHierarchyCollector.h"\
+	".\Template\ICSSynchronizer.cpp"\
+	".\Template\ICSSynchronizer.h"\
+	".\Template\ICSTable.cpp"\
+	".\Template\ICSTable.h"\
+	".\Template\IpFrame.cpp"\
+	".\Template\IpFrame.h"\
+	".\Template\Loc_deu.rc"\
+	".\Template\Loc_enu.rc"\
+	".\Template\Loc_esp.rc"\
+	".\Template\Loc_fra.rc"\
+	".\Template\Loc_ita.rc"\
+	".\Template\makehelp.bat"\
+	".\Template\MAPIApp.cpp"\
+	".\Template\MAPIApp.h"\
+	".\Template\NewProj.inf"\
+	".\Template\ReadMe.txt"\
+	".\Template\RecFirst.bmp"\
+	".\Template\RecLast.bmp"\
+	".\Template\RecNext.bmp"\
+	".\Template\RecPrev.bmp"\
+	".\Template\RecSet.cpp"\
+	".\Template\RecSet.h"\
+	".\Template\Resource.h"\
+	".\Template\Root.clw"\
+	".\Template\Root.cpp"\
+	".\Template\Root.h"\
+	".\Template\Root.ico"\
+	".\Template\Root.odl"\
+	".\Template\Root.r"\
+	".\Template\Root.rc2"\
+	".\Template\Root.reg"\
+	".\Template\root_deu.cnt"\
+	".\Template\Root_deu.hpj"\
+	".\Template\root_enu.cnt"\
+	".\Template\Root_enu.hpj"\
+	".\Template\root_esp.cnt"\
+	".\Template\Root_esp.hpj"\
+	".\Template\root_fra.cnt"\
+	".\Template\Root_fra.hpj"\
+	".\Template\root_ita.cnt"\
+	".\Template\Root_ita.hpj"\
+	".\Template\ScMax.bmp"\
+	".\Template\ScMenu_deu.bmp"\
+	".\Template\ScMenu_enu.bmp"\
+	".\Template\ScMenu_esp.bmp"\
+	".\Template\ScMenu_fra.bmp"\
+	".\Template\ScMenu_ita.bmp"\
+	".\Template\ScMin.bmp"\
+	".\Template\SrvrItem.cpp"\
+	".\Template\SrvrItem.h"\
+	".\Template\StdAfx.cpp"\
+	".\Template\StdAfx.h"\
+	".\Template\tba__.bmp"\
+	".\Template\tba_i.bmp"\
+	".\Template\tbah_.bmp"\
+	".\Template\tbahi.bmp"\
+	".\Template\tbd__.bmp"\
+	".\Template\tbdh_.bmp"\
+	".\Template\tbr__.bmp"\
+	".\Template\tbr_i.bmp"\
+	".\Template\tbrh_.bmp"\
+	".\Template\tbrhi.bmp"\
+	".\Template\TraceBox.cpp"\
+	".\Template\TraceBox.h"\
+	".\Template\View.cpp"\
+	".\Template\View.h"\
+	
+
+.\ICSAgentWizAw.cpp : \
+	".\Chooser.h"\
+	".\ICSAgentWiz.h"\
+	".\ICSAgentWizAw.h"\
+	
+
+.\StdAfx.cpp : \
+	"..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	".\Debug.h"\
+	".\StdAfx.h"\
+	
+
+!IF  "$(CFG)" == "ICSAgentWiz - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "ICSAgentWiz - Win32 Pseudo-Debug"
+
+!ENDIF 
+

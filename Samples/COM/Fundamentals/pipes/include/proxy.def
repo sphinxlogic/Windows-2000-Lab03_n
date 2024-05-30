@@ -1,0 +1,10 @@
+LIBRARY         proxy.dll
+DESCRIPTION     Blah,blah,blah...
+
+EXPORTS
+                DllGetClassObject   @2 PRIVATE
+                DllCanUnloadNow     @3 PRIVATE
+                GetProxyDllInfo     @4 PRIVATE
+                DllRegisterServer   @5 PRIVATE
+                DllUnregisterServer @6 PRIVATE
+

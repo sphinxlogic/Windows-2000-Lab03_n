@@ -1,0 +1,39 @@
+// Util_EventViewer.idl : IDL source for Util_EventViewer.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (Util_EventViewer.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+	[
+		object,
+		uuid(69B4984A-312D-11D1-835C-00C04FB957D8),
+		dual,
+		helpstring("IEventViewer Interface"),
+		pointer_default(unique)
+	]
+	interface IEventViewer : IDispatch
+	{
+		[id(1), helpstring("method AddLog")] HRESULT AddLog([in] BSTR bstrSource, [in] BSTR bstrString, [in] long lEventType,[in] long lCategory, [in] long lEventID);
+	};
+[
+	uuid(69B4983D-312D-11D1-835C-00C04FB957D8),
+	version(1.0),
+	helpstring("Util_EventViewer 1.0 Type Library")
+]
+library UTIL_EVENTVIEWERLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(69B4984B-312D-11D1-835C-00C04FB957D8),
+		helpstring("EventViewer Class")
+	]
+	coclass EventViewer
+	{
+		[default] interface IEventViewer;
+	};
+};

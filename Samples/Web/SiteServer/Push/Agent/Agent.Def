@@ -1,0 +1,23 @@
+;****************************************************************************
+;** 
+;** Microsoft Site Server v3.00
+;** (C) Copyright 1997-1998 by Microsoft Corporation.  All rights reserved.
+;** 
+;** THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY 
+;** KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE 
+;** IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR 
+;** PURPOSE.
+;**
+;**
+;** EXPORTS
+;**     Regular COM server entry points.
+;**
+;** NOTES
+;**
+;****************************************************************************/
+
+EXPORTS
+    DllCanUnloadNow     @1 PRIVATE
+    DllGetClassObject   @2 PRIVATE
+    DllRegisterServer   @3 PRIVATE
+    DllUnregisterServer @4 PRIVATE

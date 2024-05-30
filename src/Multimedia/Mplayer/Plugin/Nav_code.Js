@@ -1,0 +1,56 @@
+<!--
+function controlType (setting)
+{
+    document.NSPlay.SetShowControls(setting);
+
+}   /* end controlType() */
+
+
+function displaySize (setting)
+{
+    document.NSPlay.SetDisplaySize(setting);
+    
+}   /* end displaySize() */
+
+
+function PlayClick ()
+{
+    document.NSPlay.Play();
+
+}   /* end PlayClick() */
+
+
+function StopClick ()
+{
+    document.NSPlay.Stop();
+    document.NSPlay.SetCurrentPosition(0);
+
+}   /* end StopClick() */
+
+
+function PauseClick ()
+{
+    document.NSPlay.Pause();
+
+}   /* end PauseClick() */
+
+
+function PlayPauseClick ()
+{
+    var state;
+    
+    state = document.NSPlay.GetPlayState();
+
+    if (state == 0) {
+        document.NSPlay.Play();
+        document.myform.PlayPause.value = "Pause";
+    } else if (state == 1) {
+        document.NSPlay.Play();
+        document.myform.PlayPause.value = "Pause";
+    } else if (state == 2) {
+        document.NSPlay.Pause();
+        document.myform.PlayPause.value = " Play";
+    }
+
+}   /* end PlayPauseClick() */
+//-->

@@ -1,0 +1,10 @@
+// --gwclean.rc---------------------------------------------------------------
+//
+// Project-level resource file for GWCLEAN.EXE
+//
+// Copyright (C) Microsoft Corporation 1986-1996.  All Rights Reserved
+//
+// ---------------------------------------------------------------------------
+
+#include "gwstrtbl.rc"		// resource strings
+#include "gwevents.rc"		// RC file for NT events created by the message compiler

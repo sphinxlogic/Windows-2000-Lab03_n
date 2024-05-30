@@ -1,0 +1,89 @@
+<html>
+
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+  <head>
+    <title>XML Data Source Applet</title>
+    <style>
+      td    {font-size:80%;}
+      xmp   {font-size:120%; background:yellow}
+    </style>
+  </head>
+  
+
+<BODY TOPMARGIN=0 LEFTMARGIN=40 BGCOLOR=#ffffff LINK="#000066" VLINK="#666666" TEXT="#000000">
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+
+<table align=right>
+<tr><td bgcolor=black><a href=Example4.htm>
+    <font color=white onmouseover="this.style.color='gold'" 
+        onmouseout="this.style.color='white'" ><b>Previous<b></font></a>
+    <td bgcolor=black><a href=Example6.htm>
+        <font color=white onmouseover="this.style.color='gold'" 
+        onmouseout="this.style.color='white'" ><b>Next<b></font></a>
+</table>
+
+<h2>XML Data Source Applet</h2>
+<h3>Example 5</h3>
+<P>
+This example shows that the XML can also be modified when the
+data us bound to text input fields. In this case the PRICE
+field is editable.  Make some changes and then click the Show XML
+Data button to see the changes. <i>The changes are saved when you
+tab to or click on the next field.</i>
+<p>
+<applet code=com.ms.xml.dso.XMLDSO.class width=100% height=25 id=xmldso mayscript=true>
+    <PARAM NAME="url" VALUE="books.xml">
+</applet>
+<table id=table border=2 width=100% datasrc=#xmldso cellpadding=5>
+<thead>
+	<th>Author
+	<th>Title
+	<th>Price
+	<th>Publisher
+</thead>
+<tr>
+  <td valign=top><div datafld=AUTHOR dataformatas=HTML></td>
+  <td valign=top><div datafld=TITLE dataformatas=HTML></td>
+  <td valign=top><input type=text datafld=PRICE dataformatas=HTML></td>
+  <td valign=top><div datafld=PUBLISHER dataformatas=HTML></td>
+</tr>
+</table>
+<P>
+<input type=button value="Show XML Data"
+    onclick='var xmldata = document.all.item("xmldata");
+            if (this.value == "Show XML Data") {
+                xmldata.innerText=xmldso.getXML();
+                this.value="Hide XML Data";
+            } else {
+                xmldata.innerText="";
+                this.value="Show XML Data";
+            }'>
+<xmp id=xmldata ></xmp>
+
+<P>
+<input type=button value="Show Schema" 
+    onclick='var schema = document.all.item("schema");
+            if (this.value == "Show Schema") {
+                schema.innerText=xmldso.getSchema();
+                this.value="Hide Schema";
+            } else {
+                schema.innerText="";
+                this.value="Show Schema";
+            }'>
+<xmp id=schema ></xmp>
+<P>
+<i>I will leave it as an exercise for the reader to figure out how
+to post the modified data back to the server that provided the
+original data in the first place :-)</i>
+<P>
+The <a href=XMLDSO.java>XML DSO Source Code</a> is in Java.
+<P>
+<BR>
+
+<FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">&#169; 1997 Microsoft Corporation. All rights reserved. <A HREF="../../art/cpyright.htm" target="_top">Legal Notices</a>.<P></FONT>
+
+
+  </body>
+</html>

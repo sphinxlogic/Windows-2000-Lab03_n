@@ -1,0 +1,26 @@
+HKCR
+{
+	DX3DTransform.Microsoft.Flip.1 = s 'Flip'
+	{
+		CLSID = s '{3A5EA1BA-3C28-11D1-9039-00C04FD9189D}'
+	}
+	DX3DTransform.Microsoft.Flip = s 'Flip'
+	{
+		CurVer = s 'DX3DTransform.Microsoft.Flip.1'
+		CLSID = s '{3A5EA1BA-3C28-11D1-9039-00C04FD9189D}'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {3A5EA1BA-3C28-11D1-9039-00C04FD9189D} = s 'Flip'
+		{
+			ProgID = s 'DX3DTransform.Microsoft.Flip.1'
+			VersionIndependentProgID = s 'DX3DTransform.Microsoft.Flip'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+                        ToolBoxBitmap32 = s '%MODULE%,235'
+		}
+	}
+}

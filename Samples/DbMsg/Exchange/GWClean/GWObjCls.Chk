@@ -1,0 +1,95 @@
+// --gwobjcls.chk--------------------------------------------------------------
+//
+// Parameter checking for gwobjcls.cpp.
+//
+// Copyright (C) Microsoft Corp. 1986-1996.   All rights reserved.
+//
+// ---------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_CGWClean_HrInitialize(a,b,c,d)      NOERROR
+#define CHK_CGWClean_HrCopyGWMessageProps(a,b)  NOERROR
+#define CHK_CGWClean_HrCopyGWAttachProps(a,b)   NOERROR
+#define CHK_CGWClean_HrCreateNewProps(a,b)      NOERROR
+
+#else
+
+//$--CHK_CGWClean_HrInitialize----------------------------------------------------------------
+//  Check parameters fo CGWClean_HrInitialize().
+// ---------------------------------------------------------------------------
+__inline static HRESULT CHK_CGWClean_HrInitialize(
+     IN LPSTR lpProfileName,    // gateway profile name
+     IN LPSTR lpPSTName,        // PST file name
+     IN LPSTR lpFolderName,     // gateway folder name
+     IN LPFILETIME lpDateTime)  // date/time before which to move messages
+{
+    HRESULT hr  =   NOERROR;
+    
+    if( !TEST_STRINGA_PTR(lpProfileName) ||
+        !TEST_STRINGA_PTR(lpPSTName) ||
+        !TEST_STRINGA_PTR(lpFolderName) ||
+        !TEST_READ_PTR(lpDateTime, sizeof(FILETIME)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+
+}
+
+//$--CHK_CGWClean_HrCopyGWMessageProps------------------------------------------------
+//  Check parameters for CGWClean_HrCopyGWMessageProps().
+// ---------------------------------------------------------------------------
+__inline static HRESULT CHK_CGWClean_HrCopyGWMessageProps(
+    IN LPENTRYLIST lpEidList,       // entry identifiers
+    IN LPENTRYLIST lpSearchKeyList) // search keys
+{
+    HRESULT hr  =   NOERROR;
+    
+    if( !TEST_READ_PTR(lpEidList, sizeof(ENTRYLIST)) ||
+        !TEST_READ_PTR(lpSearchKeyList, sizeof(ENTRYLIST)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);        
+    }   
+
+    return hr;
+}
+
+//$--CHK_CGWClean_HrCopyGWAttachProps-------------------------------------------------------
+//  Check parameters fo CGWClean_HrCopyGWAttachProps().
+// ---------------------------------------------------------------------------
+__inline static HRESULT CHK_CGWClean_HrCopyGWAttachProps(
+    IN LPMESSAGE lpParent,              // original parent message pointer
+    IN LPMESSAGE lpNewParent)           // new parent message pointer
+{
+    HRESULT hr  =   NOERROR;
+
+    if( !TEST_IUNKNOWN_PTR(lpParent) ||
+        !TEST_IUNKNOWN_PTR(lpNewParent) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+}
+
+//$--CHK_CGWClean_HrCreateNewProps----------------------------------------------------
+//  Check parameters fo CGWClean_HrCreateNewProps().
+// ----------------------------------------------------------------------------
+__inline static HRESULT CHK_CGWClean_HrCreateNewProps(
+    IN LPMESSAGE lpMessage,         // source message
+    IN LPMESSAGE lpNewMessage)      // destination message
+{
+    HRESULT hr  =   NOERROR;
+
+    if( !TEST_IUNKNOWN_PTR(lpMessage) ||
+        !TEST_IUNKNOWN_PTR(lpNewMessage) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+}
+
+#endif /* DEBUG */

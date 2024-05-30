@@ -1,0 +1,115 @@
+<html>
+
+<head>
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 3.0">
+<title>Cookie</title>
+<meta NAME="Version" CONTENT="8.0.3410">
+<meta NAME="Date" CONTENT="10/11/96">
+<meta NAME="Template" CONTENT="C:\Program Files\Office\Office\HTML.DOT">
+</head>
+
+<body TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<font FACE="Arial" SIZE="4"><b><a NAME="_Toc397403945">
+
+<p>Cookie </a></b></font></p>
+
+<p>The <strong>Cookie</strong> class encapsulates the attributes of a single <strong>Cookie</strong>
+that is retrieved from the <strong>CookieDictionary</strong> collection of the <strong>Request</strong>
+and <strong>Response</strong> objects. <strong>Cookie</strong> implements all of the
+functionality of both the standard ASP <strong>IReadCookie</strong> and <strong>IWriteCookie</strong>
+interfaces. 
+
+<dir>
+  <font FACE="Courier New" SIZE="1"></font><font FACE="Courier New" size="2">public class
+  Cookie<br>
+  {<br>
+  &nbsp;&nbsp;&nbsp; public Boolean <a HREF="#getHasKeys">getHasKeys</a>();<br>
+  &nbsp;&nbsp;&nbsp; public Enumerator <a HREF="#getKeys">getKeys</a>();<br>
+  &nbsp;&nbsp;&nbsp; public String <a HREF="#getItem">getItem</a>(String itemName);<br>
+  &nbsp;&nbsp;&nbsp; public String <a HREF="#getValue">getValue</a>();<br>
+  &nbsp;&nbsp;&nbsp; public void <a HREF="#setDomain">setDomain</a>(String domainName);<br>
+  &nbsp;&nbsp;&nbsp; public void <a HREF="#setExpires">setExpires</a>(Date d);<br>
+  &nbsp;&nbsp;&nbsp; public void <a HREF="#setItem">setItem</a>(String name, String
+  item);<br>
+  &nbsp;&nbsp;&nbsp; public void <a HREF="#setValue">setValue</a>(String value);<br>
+  &nbsp;&nbsp;&nbsp; public void <a HREF="#setPath">setPath</a>(String path);<br>
+  &nbsp;&nbsp;&nbsp; public void <a HREF="#setSecure">setSecure</a>(Boolean secure);<br>
+  }</font><font FACE="Courier New" SIZE="1"><br>
+</dir>
+</font>
+
+<hr>
+
+<p><font color="#0000A0" face="Arial"><b><em>Cookie Methods</em></b></font></p>
+
+<p><font FACE="Arial"><a NAME="getHasKeys"><b>public Boolean getHasKeys( )</b></font></p>
+
+<p>Returns <b>true</b> if the cookie contains keys.</p>
+<font FACE="Arial"><b>
+
+<p><a NAME="setKeys"></a><a NAME="getKeys"></a>public Enumerator getKeys( )</p>
+</b></font>
+
+<p>Returns an Enumerator that can be used to access the keys for the cookie.</p>
+<font FACE="Arial"><b>
+
+<p><a NAME="getItem"></a>public String getItem(String itemName)</p>
+</b></font>
+
+<p>Returns the value for the key ItemName. When getItem is called, the cookie is assumed to be a dictionary cookie and item is treated as the key. In order to get the
+cookie string (non-parsed) or the value for a non-dictionary cookie, see getValue().</p>
+<font FACE="Arial"><b>
+
+<p><a NAME="getValue"></a>public String getValue( )</p>
+</b></font>
+
+<p>Returns the value of the cookie. If cookie is a dictionary key (i.e., getHasKeys( )
+returns <b>true</b>), then the sequence of key/value pairs are URL-encoded and returned.</p>
+<font FACE="Arial"><b>
+
+<p><a NAME="setDomain"></a>public void setDomain(String domainName)</p>
+</b></font>
+
+<p>Sets the <b>Domain </b>attribute of the cookie to the specified value.</p>
+<font FACE="Arial"><b>
+
+<p><a NAME="setExpires"></a>public void setExpires(Date d)</p>
+</b></font>
+
+<p>Sets the <b>Expires</b> attribute of the cookie to the specified value. This date must
+be set in order for the cookie to be maintained after the session ends. If this attribute
+is not set to a date beyond the current date, the cookie will expire when the session
+ends.</p>
+<font FACE="Arial"><b>
+
+<p><a NAME="setItem"></a>public void setItem(String name, String item)</p>
+</b></font>
+
+<p>Treats the cookie as a dictionary cookie and <i>item</i> is the value for the
+cookie's <i>name</i>.</p>
+<font FACE="Arial"><b>
+
+<p><a NAME="setValue"></a>public void setValue(String value);</p>
+</b></font>
+
+<p>Treats the cookie as a simple cookie, and sets the cookie's value to <i>value.</p>
+</i><font FACE="Arial"><b>
+
+<p><a NAME="setPath"></a>public void setPath(String path)</p>
+</b></font>
+
+<p>Sets the path attribute of the cookie to <i>path</i>. You can use this method to
+specify that the cookie should be sent only to requests on a particular path. If this
+attribute is not set, the application path is used.</p>
+<font FACE="Arial"><b>
+
+<p><a NAME="setSecure"></a>public void setSecure(Boolean secure);</p>
+</b></font>
+
+<p>Sets the <b>Secure</b> attribute of the cookie to the specified value. You can use this
+method to specify that a cookie is secure. If you set this value to <b>true</b>, a Secure flag
+will be added to the Set-Cookie header sent to the client. The Secure flag instructs the
+client to use only secure means to access the server when sending back the cookie.</p>
+</body>
+</html>

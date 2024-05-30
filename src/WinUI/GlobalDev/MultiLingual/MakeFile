@@ -1,0 +1,152 @@
+# Makefile for the multilingual sample
+#
+# Nmake macros for building Win32 & Win64 apps
+!include <Win32.Mak>
+
+OBJDIR=.\obj 
+
+#Defaults to current directory, but also works with something like BINDIR=.\bin
+BINDIR=.
+
+RESDIR=$(BINDIR)\resources
+
+RES401=.\res401
+RES409=.\res409
+RES407=.\res407
+RES40D=.\res40d
+RES411=.\res411
+RES439=.\res439
+RES449=.\res449
+
+LINK_OBJS=\
+	$(OBJDIR)\multilingual.obj\
+	$(OBJDIR)\umhandlers.obj\
+	$(OBJDIR)\uapiinit.obj\
+	$(OBJDIR)\gentextout.obj\
+	$(OBJDIR)\updtlang.obj 
+
+all: $(BINDIR) $(OBJDIR) $(BINDIR)\multilingual.exe $(RESDIR) \
+	$(RESDIR)\res401.dll\
+	$(RESDIR)\res407.dll\
+	$(RESDIR)\res409.dll\
+	$(RESDIR)\res40d.dll\
+	$(RESDIR)\res411.dll\
+	$(RESDIR)\res439.dll\
+	$(RESDIR)\res449.dll\
+	$(BINDIR)\uniansi.dll
+
+# Create directories if necessary
+"$(BINDIR)" :
+	if not exist "$(BINDIR)" mkdir "$(BINDIR)"
+
+"$(RESDIR)" :
+	if not exist "$(RESDIR)" mkdir "$(RESDIR)"
+
+"$(OBJDIR)" :
+	if not exist "$(OBJDIR)" mkdir "$(OBJDIR)"
+
+# Compile the resource files if necessary
+
+# Saudi Arabic
+$(OBJDIR)\res401.res: $(RES401)\res401.rc .\resource.h  "$(OBJDIR)"
+    $(rc) $(rcflags) $(rcvars) /fo"$(OBJDIR)\res401.res" .\res401\res401.rc 
+
+$(OBJDIR)\res401.obj: $(RES401)\res401.cpp "$(OBJDIR)"
+    $(cc) $(cflags) $(cvars) $(cdebug) $(RES401)\res401.cpp /Fo"$(OBJDIR)\res401.obj" 
+
+# German
+$(OBJDIR)\res407.res: $(RES407)\res407.rc .\resource.h "$(OBJDIR)"
+    $(rc) $(rcflags) $(rcvars) /fo"$(OBJDIR)\res407.res" .\res407\res407.rc 
+
+$(OBJDIR)\res407.obj: $(RES407)\res407.cpp "$(OBJDIR)"
+    $(cc) $(cflags) $(cvars) $(cdebug) $(RES407)\res407.cpp /Fo"$(OBJDIR)\res407.obj" 
+
+# US English
+$(OBJDIR)\res409.res: $(RES409)\res409.rc .\resource.h "$(OBJDIR)"
+    $(rc) $(rcflags) $(rcvars) /fo"$(OBJDIR)\res409.res" .\res409\res409.rc 
+
+$(OBJDIR)\res409.obj: $(RES409)\res409.cpp
+    $(cc) $(cflags) $(cvars) $(cdebug) $(RES409)\res409.cpp /Fo"$(OBJDIR)\res409.obj" 
+
+# Hebrew
+$(OBJDIR)\res40d.res: $(RES40D)\res40d.rc .\resource.h "$(OBJDIR)"
+    $(rc) $(rcflags) $(rcvars) /fo"$(OBJDIR)\res40d.res" .\res40d\res40d.rc 
+
+$(OBJDIR)\res40d.obj: $(RES40D)\res40d.cpp "$(OBJDIR)"
+    $(cc) $(cflags) $(cvars) $(cdebug) $(RES40D)\res40d.cpp /Fo"$(OBJDIR)\res40d.obj" 
+
+# Japanese
+$(OBJDIR)\res411.res: $(RES411)\res411.rc .\resource.h "$(OBJDIR)"
+    $(rc) $(rcflags) $(rcvars) /fo"$(OBJDIR)\res411.res" .\res411\res411.rc 
+
+$(OBJDIR)\res411.obj: $(RES411)\res411.cpp "$(OBJDIR)"
+    $(cc) $(cflags) $(cvars) $(cdebug) $(RES411)\res411.cpp /Fo"$(OBJDIR)\res411.obj" 
+
+# Hindi
+$(OBJDIR)\res439.res: $(RES439)\res439.rc .\resource.h "$(OBJDIR)"
+    $(rc) $(rcflags) $(rcvars) /fo"$(OBJDIR)\res439.res" .\res439\res439.rc 
+
+$(OBJDIR)\res439.obj: $(RES439)\res439.cpp "$(OBJDIR)"
+    $(cc) $(cflags) $(cvars) $(cdebug) $(RES439)\res439.cpp /Fo"$(OBJDIR)\res439.obj" 
+
+# Tamil
+$(OBJDIR)\res449.res: $(RES449)\res449.rc .\resource.h "$(OBJDIR)"
+    $(rc) $(rcflags) $(rcvars) /fo"$(OBJDIR)\res449.res" .\res449\res449.rc 
+
+$(OBJDIR)\res449.obj: $(RES449)\res449.cpp "$(OBJDIR)"
+    $(cc) $(cflags) $(cvars) $(cdebug) $(RES449)\res449.cpp /Fo"$(OBJDIR)\res449.obj" 
+
+#Header dependencies
+multilingual.cpp: uapi.h umhandlers.h uniansi.h updtlang.h 
+uapiinit.cpp: uapi.h uniansi.h 
+umhandlers.cpp: gentextout.h uapi.h umhandlers.h uniansi.h updtlang.h 
+updtlang.cpp: uapi.h uniansi.h updtlang.h 
+uniansi.cpp: uapi.h uniansi.h 
+
+#Generic compiler command line
+.cpp{$(OBJDIR)}.obj::
+   $(cc) @<<
+   $(cflags) /Fo"$(OBJDIR)\\" $(cvars) $(cdebug)  $< 
+<<
+
+# Update modules if necessary
+
+#main exe
+$(BINDIR)\multilingual.exe: $(LINK_OBJS) 
+    $(link) $(linkdebug) $(guiflags) -out:"$(BINDIR)\multilingual.exe" $(guilibs) $(LINK_OBJS)
+
+#Unicode<-> ANSI conversion layer
+$(BINDIR)\uniansi.dll: $(OBJDIR)\uniansi.obj
+    $(link) $(linkdebug) $(guiflags) $(guilibs) /dll /out:"$(BINDIR)\uniansi.dll" /def:"uniansi.def" $(OBJDIR)\uniansi.obj 
+
+#Resource DLLs
+$(RESDIR)\res401.dll: $(OBJDIR)\res401.obj $(OBJDIR)\res401.res
+    $(link) /dll /out:"$(RESDIR)\res401.dll" $(OBJDIR)\res401.obj $(OBJDIR)\res401.res 
+
+$(RESDIR)\res407.dll: $(OBJDIR)\res407.obj $(OBJDIR)\res407.res
+    $(link) /dll /out:"$(RESDIR)\res407.dll" $(OBJDIR)\res407.obj $(OBJDIR)\res407.res 
+
+$(RESDIR)\res409.dll: $(OBJDIR)\res409.obj $(OBJDIR)\res409.res
+    $(link) /dll /out:"$(RESDIR)\res409.dll" $(OBJDIR)\res409.obj $(OBJDIR)\res409.res 
+
+$(RESDIR)\res40d.dll: $(OBJDIR)\res40d.obj $(OBJDIR)\res40d.res
+    $(link) /dll /out:"$(RESDIR)\res40d.dll" $(OBJDIR)\res40d.obj $(OBJDIR)\res40d.res 
+
+$(RESDIR)\res411.dll: $(OBJDIR)\res411.obj $(OBJDIR)\res411.res
+    $(link) /dll /out:"$(RESDIR)\res411.dll" $(OBJDIR)\res411.obj $(OBJDIR)\res411.res 
+
+$(RESDIR)\res439.dll: $(OBJDIR)\res439.obj $(OBJDIR)\res439.res
+    $(link) /dll /out:"$(RESDIR)\res439.dll" $(OBJDIR)\res439.obj $(OBJDIR)\res439.res 
+
+$(RESDIR)\res449.dll: $(OBJDIR)\res449.obj $(OBJDIR)\res449.res
+    $(link) /dll /out:"$(RESDIR)\res449.dll" $(OBJDIR)\res449.obj $(OBJDIR)\res449.res 
+
+
+CLEAN :
+	-@erase "$(OBJDIR)\*.obj"
+	-@erase "$(OBJDIR)\*.res"
+	-@erase "$(BINDIR)\*.exe"
+	-@erase "$(BINDIR)\uniansi.dll"
+	-@erase "$(BINDIR)\uniansi.lib"
+	-@erase "$(BINDIR)\uniansi.exp"
+	-@erase "$(RESDIR)\*.dll"

@@ -1,0 +1,42 @@
+/*++
+
+THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED
+TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+PARTICULAR PURPOSE.
+
+Copyright (C) 1998.  Microsoft Corporation.  All rights reserved.
+
+Module Name:
+
+    EnumProfiles.rc
+
+Abstract:
+    
+    Resources file for EnumProfiles
+
+--*/
+
+#include "winresrc.h"
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+#define VER_FILETYPE                VFT_APP
+#define VER_FILESUBTYPE             VFT2_UNKNOWN
+#define VER_FILEVERSION             1,0,0,0
+#define VER_FILEVERSION_STR         "1.0"
+#define VER_INTERNALNAME_STR        "EnumProfiles"
+#define VER_FILEDESCRIPTION_STR     "Color profile enumeration sample"
+
+#include <ntverp.h>
+#include <common.ver>
+

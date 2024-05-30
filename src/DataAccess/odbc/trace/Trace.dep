@@ -1,0 +1,27 @@
+# Microsoft Developer Studio Generated Dependency File, included by Trace.mak
+
+.\DOTRACE.C : \
+	"..\..\..\..\tools\vc98\include\basetsd.h"\
+	".\DLGDFTS.H"\
+	".\HEADERS.H"\
+	".\TRACE.H"\
+	".\TRACECON.H"\
+	
+
+.\GETTRACE.C : \
+	"..\..\..\..\tools\vc98\include\basetsd.h"\
+	".\HEADERS.H"\
+	".\TRACE.H"\
+	
+
+.\HEADERS.C : \
+	"..\..\..\..\tools\vc98\include\basetsd.h"\
+	".\HEADERS.H"\
+	".\TRACE.H"\
+	
+
+.\Init.c : \
+	"..\..\..\..\tools\vc98\include\basetsd.h"\
+	".\HEADERS.H"\
+	".\TRACE.H"\
+	

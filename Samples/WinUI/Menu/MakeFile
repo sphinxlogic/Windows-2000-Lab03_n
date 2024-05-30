@@ -1,0 +1,20 @@
+# Nmake macros for building Win32 & Win64 apps
+
+!include <Win32.Mak>
+
+all: Menu.Exe
+
+# Update the resource if necessary
+
+Menu.Res: Menu.Rc Menu.h Menu.Dlg checkon.Bmp checkoff.Bmp Menu.Ico
+    $(rc) $(rcflags) $(rcvars) Menu.Rc
+
+# Update the object file if necessary
+
+Menu.Obj: Menu.c Menu.h
+    $(cc) $(cflags) $(cvars) $(cdebug) Menu.c
+
+# Update the executable file if necessary, and if so, add the resource back in.
+
+Menu.Exe: Menu.Obj Menu.Res Menu.Def
+    $(link) $(linkdebug) $(guiflags) -out:Menu.Exe Menu.Obj Menu.Res $(guilibs)

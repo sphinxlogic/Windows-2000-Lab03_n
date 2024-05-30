@@ -1,0 +1,453 @@
+ 1394API
+
+ Timestamp is 656655ea (Tue Nov 28 16:04:42 2023)
+
+ Preferred load address is 00400000
+
+ Start         Length     Name                   Class
+ 0001:00000000 000000acH .idata$5                CODE
+ 0001:000000b0 000022adH .rdata                  CODE
+ 0001:00002360 000054e5H .text                   CODE
+ 0001:00007848 0000003cH .idata$2                CODE
+ 0001:00007884 00000014H .idata$3                CODE
+ 0001:00007898 000000acH .idata$4                CODE
+ 0001:00007944 0000030eH .idata$6                CODE
+ 0001:00007c60 00000517H .edata                  CODE
+ 0002:00000000 00000010H .data                   DATA
+ 0002:00000010 00000018H .bss                    DATA
+ 0003:00000000 00000058H .rsrc$01                DATA
+ 0003:00000060 00000340H .rsrc$02                DATA
+
+  Address         Publics by Value              Rva+Base     Lib:Object
+
+ 0001:00000000       __imp__OutputDebugStringA@4 00401000     kernel32:KERNEL32.dll
+ 0001:00000004       __imp__CloseHandle@4       00401004     kernel32:KERNEL32.dll
+ 0001:00000008       __imp__GetLastError@0      00401008     kernel32:KERNEL32.dll
+ 0001:0000000c       __imp__DeviceIoControl@32  0040100c     kernel32:KERNEL32.dll
+ 0001:00000010       __imp__LocalAlloc@8        00401010     kernel32:KERNEL32.dll
+ 0001:00000014       __imp__UnmapViewOfFile@4   00401014     kernel32:KERNEL32.dll
+ 0001:00000018       __imp__CreateProcessA@40   00401018     kernel32:KERNEL32.dll
+ 0001:0000001c       __imp__MapViewOfFile@20    0040101c     kernel32:KERNEL32.dll
+ 0001:00000020       __imp__CreateFileMappingA@24 00401020     kernel32:KERNEL32.dll
+ 0001:00000024       __imp__ExitProcess@4       00401024     kernel32:KERNEL32.dll
+ 0001:00000028       __imp__GetVersionExA@4     00401028     kernel32:KERNEL32.dll
+ 0001:0000002c       __imp__lstrcpyA@8          0040102c     kernel32:KERNEL32.dll
+ 0001:00000030       __imp__CreateThread@24     00401030     kernel32:KERNEL32.dll
+ 0001:00000034       __imp__WaitForSingleObject@8 00401034     kernel32:KERNEL32.dll
+ 0001:00000038       __imp__SetEvent@4          00401038     kernel32:KERNEL32.dll
+ 0001:0000003c       __imp__ExitThread@4        0040103c     kernel32:KERNEL32.dll
+ 0001:00000040       __imp__CancelIo@4          00401040     kernel32:KERNEL32.dll
+ 0001:00000044       __imp__GetOverlappedResult@16 00401044     kernel32:KERNEL32.dll
+ 0001:00000048       __imp__ResetEvent@4        00401048     kernel32:KERNEL32.dll
+ 0001:0000004c       __imp__CreateEventA@16     0040104c     kernel32:KERNEL32.dll
+ 0001:00000050       __imp__Sleep@4             00401050     kernel32:KERNEL32.dll
+ 0001:00000054       __imp__LocalFree@4         00401054     kernel32:KERNEL32.dll
+ 0001:00000058       __imp__CreateFileA@28      00401058     kernel32:KERNEL32.dll
+ 0001:0000005c       \177KERNEL32_NULL_THUNK_DATA 0040105c     kernel32:KERNEL32.dll
+ 0001:00000060       __imp__SetupDiGetClassDevsA@16 00401060     setupapi:SETUPAPI.dll
+ 0001:00000064       __imp__SetupDiGetDeviceInterfaceDetailA@24 00401064     setupapi:SETUPAPI.dll
+ 0001:00000068       __imp__SetupDiDestroyDeviceInfoList@4 00401068     setupapi:SETUPAPI.dll
+ 0001:0000006c       __imp__SetupDiEnumDeviceInterfaces@20 0040106c     setupapi:SETUPAPI.dll
+ 0001:00000070       \177SETUPAPI_NULL_THUNK_DATA 00401070     setupapi:SETUPAPI.dll
+ 0001:00000074       __imp__DispatchMessageA@4  00401074     user32:USER32.dll
+ 0001:00000078       __imp__TranslateMessage@4  00401078     user32:USER32.dll
+ 0001:0000007c       __imp__UnregisterDeviceNotification@4 0040107c     user32:USER32.dll
+ 0001:00000080       __imp__MoveWindow@24       00401080     user32:USER32.dll
+ 0001:00000084       __imp__DefWindowProcA@16   00401084     user32:USER32.dll
+ 0001:00000088       __imp__RegisterClassExA@4  00401088     user32:USER32.dll
+ 0001:0000008c       __imp__wvsprintfA@12       0040108c     user32:USER32.dll
+ 0001:00000090       __imp__GetWindowTextLengthA@4 00401090     user32:USER32.dll
+ 0001:00000094       __imp__PostQuitMessage@4   00401094     user32:USER32.dll
+ 0001:00000098       __imp__CreateWindowExA@48  00401098     user32:USER32.dll
+ 0001:0000009c       __imp__GetMessageA@16      0040109c     user32:USER32.dll
+ 0001:000000a0       __imp__SendMessageA@16     004010a0     user32:USER32.dll
+ 0001:000000a4       __imp__RegisterDeviceNotificationA@12 004010a4     user32:USER32.dll
+ 0001:000000a8       \177USER32_NULL_THUNK_DATA 004010a8     user32:USER32.dll
+ 0001:00000104       ??_C@_0CE@GHGC@Exit?5GetLocalHostInformation?5?$DN?5?$CF@ 00401104     1394api.obj
+ 0001:00000128       ??_C@_0P@KMHH@Error?5?$DN?50x?$CFx?$AN?6?$AA@ 00401128     1394api.obj
+ 0001:00000138       ??_C@_0BH@EKOF@Unknown?5Data?5Buffer?4?$AN?6?$AA@ 00401138     1394api.obj
+ 0001:00000150       ??_C@_0BO@HBOP@SelfId?$FL?$CFd?$FN?4SID_PortF?5?$DN?50x?$CFx?$AN?6?$AA@ 00401150     1394api.obj
+ 0001:00000170       ??_C@_0BO@POCN@SelfId?$FL?$CFd?$FN?4SID_PortG?5?$DN?50x?$CFx?$AN?6?$AA@ 00401170     1394api.obj
+ 0001:00000190       ??_C@_0BO@CPHA@SelfId?$FL?$CFd?$FN?4SID_PortH?5?$DN?50x?$CFx?$AN?6?$AA@ 00401190     1394api.obj
+ 0001:000001b0       ??_C@_0CC@COPB@SelfId?$FL?$CFd?$FN?4SID_Reserved3?5?$DN?50x?$CFx?$AN@ 004011b0     1394api.obj
+ 0001:000001d4       ??_C@_0BO@EOOG@SelfId?$FL?$CFd?$FN?4SID_PortB?5?$DN?50x?$CFx?$AN?6?$AA@ 004011d4     1394api.obj
+ 0001:000001f4       ??_C@_0BO@MBCE@SelfId?$FL?$CFd?$FN?4SID_PortC?5?$DN?50x?$CFx?$AN?6?$AA@ 004011f4     1394api.obj
+ 0001:00000214       ??_C@_0BO@GOGL@SelfId?$FL?$CFd?$FN?4SID_PortD?5?$DN?50x?$CFx?$AN?6?$AA@ 00401214     1394api.obj
+ 0001:00000234       ??_C@_0BO@OBKJ@SelfId?$FL?$CFd?$FN?4SID_PortE?5?$DN?50x?$CFx?$AN?6?$AA@ 00401234     1394api.obj
+ 0001:00000254       ??_C@_0BM@KDL@SelfId?$FL?$CFd?$FN?4SID_One?5?$DN?50x?$CFx?$AN?6?$AA@ 00401254     1394api.obj
+ 0001:00000270       ??_C@_0CB@NJPG@SelfId?$FL?$CFd?$FN?4SID_Sequence?5?$DN?50x?$CFx?$AN?6@ 00401270     1394api.obj
+ 0001:00000294       ??_C@_0CC@KBDD@SelfId?$FL?$CFd?$FN?4SID_Reserved2?5?$DN?50x?$CFx?$AN@ 00401294     1394api.obj
+ 0001:000002b8       ??_C@_0BO@NOKA@SelfId?$FL?$CFd?$FN?4SID_PortA?5?$DN?50x?$CFx?$AN?6?$AA@ 004012b8     1394api.obj
+ 0001:000002d8       ??_C@_0BO@CKFP@SelfId?$FL?$CFd?$FN?4SID_Port1?5?$DN?50x?$CFx?$AN?6?$AA@ 004012d8     1394api.obj
+ 0001:000002f8       ??_C@_0BO@LKBJ@SelfId?$FL?$CFd?$FN?4SID_Port2?5?$DN?50x?$CFx?$AN?6?$AA@ 004012f8     1394api.obj
+ 0001:00000318       ??_C@_0BO@DFNL@SelfId?$FL?$CFd?$FN?4SID_Port3?5?$DN?50x?$CFx?$AN?6?$AA@ 00401318     1394api.obj
+ 0001:00000338       ??_C@_0CG@HEEL@SelfId?$FL?$CFd?$FN?4SID_Initiated_Rst?5?$DN?50@ 00401338     1394api.obj
+ 0001:00000360       ??_C@_0CF@GMFP@SelfId?$FL?$CFd?$FN?4SID_More_Packets?5?$DN?50x@ 00401360     1394api.obj
+ 0001:00000388       ??_C@_0BO@MACP@SelfId?$FL?$CFd?$FN?4SID_Speed?5?$DN?50x?$CFx?$AN?6?$AA@ 00401388     1394api.obj
+ 0001:000003a8       ??_C@_0BO@DMPH@SelfId?$FL?$CFd?$FN?4SID_Delay?5?$DN?50x?$CFx?$AN?6?$AA@ 004013a8     1394api.obj
+ 0001:000003c8       ??_C@_0CC@HAHM@SelfId?$FL?$CFd?$FN?4SID_Contender?5?$DN?50x?$CFx?$AN@ 004013c8     1394api.obj
+ 0001:000003ec       ??_C@_0CE@CNGG@SelfId?$FL?$CFd?$FN?4SID_Power_Class?5?$DN?50x?$CF@ 004013ec     1394api.obj
+ 0001:00000410       ??_C@_0BN@OJCG@SelfId?$FL?$CFd?$FN?4SID_Zero?5?$DN?50x?$CFx?$AN?6?$AA@ 00401410     1394api.obj
+ 0001:00000430       ??_C@_0CE@DOLA@SelfId?$FL?$CFd?$FN?4SID_Link_Active?5?$DN?50x?$CF@ 00401430     1394api.obj
+ 0001:00000454       ??_C@_0CC@MLI@SelfId?$FL?$CFd?$FN?4SID_Gap_Count?5?$DN?50x?$CFx?$AN@ 00401454     1394api.obj
+ 0001:00000478       ??_C@_0CC@FMPC@SelfId?$FL?$CFd?$FN?4SID_Packet_ID?5?$DN?50x?$CFx?$AN@ 00401478     1394api.obj
+ 0001:0000049c       ??_C@_0CA@GOFN@SelfId?$FL?$CFd?$FN?4SID_Phys_ID?5?$DN?50x?$CFx?$AN?6?$AA@ 0040149c     1394api.obj
+ 0001:000004bc       ??_C@_0CH@CJKG@TopologyMap?4TOP_Self_ID_Count?5?$DN?5@ 004014bc     1394api.obj
+ 0001:000004e4       ??_C@_0CE@CGNE@TopologyMap?4TOP_Node_Count?5?$DN?50x?$CF@ 004014e4     1394api.obj
+ 0001:00000508       ??_C@_0CE@DJKA@TopologyMap?4TOP_Generation?5?$DN?50x?$CF@ 00401508     1394api.obj
+ 0001:0000052c       ??_C@_0BN@GCOG@TopologyMap?4TOP_CRC?5?$DN?50x?$CFx?$AN?6?$AA@ 0040152c     1394api.obj
+ 0001:0000054c       ??_C@_0CA@OIOL@TopologyMap?4TOP_Length?5?$DN?50x?$CFx?$AN?6?$AA@ 0040154c     1394api.obj
+ 0001:0000056c       ??_C@_0CB@MPOA@SpeedMap?4SPD_Generation?5?$DN?50x?$CFx?$AN?6@ 0040156c     1394api.obj
+ 0001:00000590       ??_C@_0BK@FEIE@SpeedMap?4SPD_CRC?5?$DN?50x?$CFx?$AN?6?$AA@ 00401590     1394api.obj
+ 0001:000005ac       ??_C@_0BN@BCPO@SpeedMap?4SPD_Length?5?$DN?50x?$CFx?$AN?6?$AA@ 004015ac     1394api.obj
+ 0001:000005cc       ??_C@_0BH@LGCM@CsrDataBuffer?5?$DN?50x?$CFx?$AN?6?$AA@ 004015cc     1394api.obj
+ 0001:000005e4       ??_C@_0BH@BALN@CsrDataLength?5?$DN?50x?$CFx?$AN?6?$AA@ 004015e4     1394api.obj
+ 0001:000005fc       ??_C@_0BI@LCHA@CsrBaseAddress?5?$DN?50x?$CFx?$AN?6?$AA@ 004015fc     1394api.obj
+ 0001:00000614       ??_C@_0BJ@EJEG@ConfigRomLength?5?$DN?50x?$CFx?$AN?6?$AA@ 00401614     1394api.obj
+ 0001:00000630       ??_C@_0BD@OELG@ConfigRom?5?$DN?50x?$CFx?$AN?6?$AA@ 00401630     1394api.obj
+ 0001:00000644       ??_C@_0BB@NHDP@Context?5?$DN?50x?$CFx?$AN?6?$AA@ 00401644     1394api.obj
+ 0001:00000658       ??_C@_0CA@LJDN@PhysAddrMappingRoutine?5?$DN?50x?$CFx?$AN?6?$AA@ 00401658     1394api.obj
+ 0001:00000678       ??_C@_0BB@IABO@Voltage?5?$DN?50x?$CFx?$AN?6?$AA@ 00401678     1394api.obj
+ 0001:0000068c       ??_C@_0BL@GEIE@deciWattsSupplied?5?$DN?50x?$CFx?$AN?6?$AA@ 0040168c     1394api.obj
+ 0001:000006a8       ??_C@_0BO@BCMH@MaxAsyncWriteRequest?5?$DN?50x?$CFx?$AN?6?$AA@ 004016a8     1394api.obj
+ 0001:000006c8       ??_C@_0BN@IIFL@MaxAsyncReadRequest?5?$DN?50x?$CFx?$AN?6?$AA@ 004016c8     1394api.obj
+ 0001:000006e8       ??_C@_0BK@EGDJ@HostCapabilities?5?$DN?50x?$CFx?$AN?6?$AA@ 004016e8     1394api.obj
+ 0001:00000704       ??_C@_0BL@OLCD@UniqueId?4HighPart?5?$DN?50x?$CFx?$AN?6?$AA@ 00401704     1394api.obj
+ 0001:00000720       ??_C@_0BK@EHFB@UniqueId?4LowPart?5?$DN?50x?$CFx?$AN?6?$AA@ 00401720     1394api.obj
+ 0001:0000073c       ??_C@_0BG@PEAO@ulBufferSize?5?$DN?50x?$CFx?$AN?6?$AA@ 0040173c     1394api.obj
+ 0001:00000754       ??_C@_0BA@FMNP@nLevel?5?$DN?50x?$CFx?$AN?6?$AA@ 00401754     1394api.obj
+ 0001:00000764       ??_C@_0CA@IGBJ@Enter?5GetLocalHostInformation?$AN?6?$AA@ 00401764     1394api.obj
+ 0001:00000784       ??_C@_0CL@GMPK@Exit?5Get1394AddressFromDeviceObj@ 00401784     1394api.obj
+ 0001:000007b0       ??_C@_0BI@MCMF@NA_Node_Number?5?$DN?50x?$CFx?$AN?6?$AA@ 004017b0     1394api.obj
+ 0001:000007c8       ??_C@_0BH@CMJD@NA_Bus_Number?5?$DN?50x?$CFx?$AN?6?$AA@ 004017c8     1394api.obj
+ 0001:000007e0       ??_C@_0BC@CAHN@fulFlags?5?$DN?50x?$CFx?$AN?6?$AA@ 004017e0     1394api.obj
+ 0001:000007f4       ??_C@_0CH@FDAG@Enter?5Get1394AddressFromDeviceOb@ 004017f4     1394api.obj
+ 0001:0000081c       ??_C@_0BE@FMAB@Exit?5Control?5?$DN?5?$CFd?$AN?6?$AA@ 0040181c     1394api.obj
+ 0001:00000830       ??_C@_0BA@CDFB@Enter?5Control?$AN?6?$AA@ 00401830     1394api.obj
+ 0001:00000840       ??_C@_0CB@PBFH@Exit?5GetMaxSpeedBetweenDevices?$AN?6@ 00401840     1394api.obj
+ 0001:00000864       ??_C@_0BC@ONKH@fulSpeed?5?$DN?50x?$CFx?$AN?6?$AA@ 00401864     1394api.obj
+ 0001:00000878       ??_C@_0CH@HFKC@hDestinationDeviceObjects?$FL?$CFd?$FN?5?$DN?5@ 00401878     1394api.obj
+ 0001:000008a0       ??_C@_0CA@JDPH@ulNumberOfDestinations?5?$DN?50x?$CFx?$AN?6?$AA@ 004018a0     1394api.obj
+ 0001:000008c0       ??_C@_0CC@DFAM@Enter?5GetMaxSpeedBetweenDevices?$AN@ 004018c0     1394api.obj
+ 0001:000008e4       ??_C@_0CE@GLCB@Exit?5SetDeviceXmitProperties?5?$DN?5?$CF@ 004018e4     1394api.obj
+ 0001:00000908       ??_C@_0BF@CLBF@fulPriority?5?$DN?50x?$CFx?$AN?6?$AA@ 00401908     1394api.obj
+ 0001:00000920       ??_C@_0CA@CCMP@Enter?5SetDeviceXmitProperties?$AN?6?$AA@ 00401920     1394api.obj
+ 0001:00000940       ??_C@_0CI@KOMI@Exit?5GetConfigurationInformation@ 00401940     1394api.obj
+ 0001:00000968       ??_C@_0CE@IJHN@Enter?5GetConfigurationInformatio@ 00401968     1394api.obj
+ 0001:0000098c       ??_C@_0BF@BAHK@Exit?5BusReset?5?$DN?5?$CFd?$AN?6?$AA@ 0040198c     1394api.obj
+ 0001:000009a4       ??_C@_0BB@KNEN@Enter?5BusReset?$AN?6?$AA@ 004019a4     1394api.obj
+ 0001:000009b8       ??_C@_0BP@PAFH@Exit?5GetGenerationCount?5?$DN?5?$CFd?$AN?6?$AA@ 004019b8     1394api.obj
+ 0001:000009d8       ??_C@_0N@GFIB@Error?5?$DN?5?$CFd?$AN?6?$AA@ 004019d8     1394api.obj
+ 0001:000009e8       ??_C@_0BJ@OIMM@GenerationCount?5?$DN?50x?$CFx?$AN?6?$AA@ 004019e8     1394api.obj
+ 0001:00000a04       ??_C@_0BL@DAIH@Enter?5GetGenerationCount?$AN?6?$AA@ 00401a04     1394api.obj
+ 0001:00000a20       ??_C@_0CH@PEAB@Exit?5SendPhyConfigurationPacket?5@ 00401a20     1394api.obj
+ 0001:00000a48       ??_C@_0BF@JNPO@PCP_Inverse?5?$DN?50x?$CFx?$AN?6?$AA@ 00401a48     1394api.obj
+ 0001:00000a60       ??_C@_0BH@GDEB@PCP_Reserved2?5?$DN?50x?$CFx?$AN?6?$AA@ 00401a60     1394api.obj
+ 0001:00000a78       ??_C@_0BH@PDAH@PCP_Reserved1?5?$DN?50x?$CFx?$AN?6?$AA@ 00401a78     1394api.obj
+ 0001:00000a90       ??_C@_0BI@DBLE@PCP_Force_Root?5?$DN?50x?$CFx?$AN?6?$AA@ 00401a90     1394api.obj
+ 0001:00000aa8       ??_C@_0BL@JFOC@PCP_Set_Gap_Count?5?$DN?50x?$CFx?$AN?6?$AA@ 00401aa8     1394api.obj
+ 0001:00000ac4       ??_C@_0BH@MOMK@PCP_Gap_Count?5?$DN?50x?$CFx?$AN?6?$AA@ 00401ac4     1394api.obj
+ 0001:00000adc       ??_C@_0BH@JOIA@PCP_Packet_ID?5?$DN?50x?$CFx?$AN?6?$AA@ 00401adc     1394api.obj
+ 0001:00000af4       ??_C@_0BF@LEOG@PCP_Phys_ID?5?$DN?50x?$CFx?$AN?6?$AA@ 00401af4     1394api.obj
+ 0001:00000b0c       ??_C@_0CD@IJNE@Enter?5SendPhyConfigurationPacket@ 00401b0c     1394api.obj
+ 0001:00000b30       ??_C@_0CB@FOK@Exit?5BusResetNotification?5?$DN?5?$CFd?$AN?6@ 00401b30     1394api.obj
+ 0001:00000b54       ??_C@_0BN@EBPO@Enter?5BusResetNotification?$AN?6?$AA@ 00401b54     1394api.obj
+ 0001:00000b74       ??_C@_0CE@CDMC@Exit?5SetLocalHostInformation?5?$DN?5?$CF@ 00401b74     1394api.obj
+ 0001:00000b98       ??_C@_0BK@EKMA@SetLocalHostInfo?5?$DN?50x?$CFx?$AN?6?$AA@ 00401b98     1394api.obj
+ 0001:00000bb4       ??_C@_0BD@HECI@hCromData?5?$DN?50x?$CFx?$AN?6?$AA@ 00401bb4     1394api.obj
+ 0001:00000bc8       ??_C@_0BG@FOPD@Buffer?$FL0x?$CFx?$FN?5?$DN?50x?$CFx?$AN?6?$AA@ 00401bc8     1394api.obj
+ 0001:00000be0       ??_C@_0BB@BBOF@nLength?5?$DN?50x?$CFx?$AN?6?$AA@ 00401be0     1394api.obj
+ 0001:00000bf4       ??_C@_0BM@KLFF@GapCountLowerBound?5?$DN?50x?$CFx?$AN?6?$AA@ 00401bf4     1394api.obj
+ 0001:00000c10       ??_C@_0CA@BFHM@Enter?5SetLocalHostInformation?$AN?6?$AA@ 00401c10     1394api.obj
+ 0001:00000c30       _GUID_1394DIAG             00401c30     1394main.obj
+ 0001:00000c40       ??_C@_0BJ@HFAB@nAttachedProcess?5?$DN?50x?$CFx?6?$AA@ 00401c40     1394main.obj
+ 0001:00000c5c       ??_C@_0BO@BOFG@DLLMain?3?5DLL_PROCESS_DETACH?$AN?6?$AA@ 00401c5c     1394main.obj
+ 0001:00000c7c       ??_C@_0BO@BJKL@CreateProcess?5failed?5?$DN?50x?$CFx?$AN?6?$AA@ 00401c7c     1394main.obj
+ 0001:00000c9c       ??_C@_0CA@KCBL@RUNDLL32?51394API?4DLL?0DLL_Thread?$AA@ 00401c9c     1394main.obj
+ 0001:00000cbc       ??_C@_0BG@HPKB@Creating?5process?4?4?4?$AN?6?$AA@ 00401cbc     1394main.obj
+ 0001:00000cd4       ??_C@_0BE@EMNH@SharedData?5?$DN?50x?$CFx?$AN?6?$AA@ 00401cd4     1394main.obj
+ 0001:00000ce8       ??_C@_0CC@NEG@Error?5mapping?5SharedData?5?$DN?50x?$CFx?$AN@ 00401ce8     1394main.obj
+ 0001:00000d0c       ??_C@_0CC@DIJI@CreateFileMapping?5failed?5?$DN?50x?$CFx?$AN@ 00401d0c     1394main.obj
+ 0001:00000d30       ??_C@_0BF@OLEN@1394APISharedDataMap?$AA@ 00401d30     1394main.obj
+ 0001:00000d48       ??_C@_0BO@LBAN@DLLMain?3?5DLL_PROCESS_ATTACH?$AN?6?$AA@ 00401d48     1394main.obj
+ 0001:00000d68       ??_C@_0BN@GCIF@DLLMain?3?5DLL_THREAD_ATTACH?$AN?6?$AA@ 00401d68     1394main.obj
+ 0001:00000d88       ??_C@_0BN@MNNO@DLLMain?3?5DLL_THREAD_DETACH?$AN?6?$AA@ 00401d88     1394main.obj
+ 0001:00000da8       ??_C@_0BD@GPOG@hInstance?5?$DN?50x?$CFx?$AN?6?$AA@ 00401da8     1394main.obj
+ 0001:00000dbc       ??_C@_04OJPN@edit?$AA@     00401dbc     1394main.obj
+ 0001:00000dc4       ??_C@_0BJ@BFLA@DLL_WndProc?3?5WM_CREATE?$AN?6?$AA@ 00401dc4     1394main.obj
+ 0001:00000de0       ??_C@_0BK@NHK@DLL_WndProc?3?5WM_DESTROY?$AN?6?$AA@ 00401de0     1394main.obj
+ 0001:00000dfc       ??_C@_0CE@OCGN@DLL_WndProc?3?5DBT_DEVNODES_CHANGE@ 00401dfc     1394main.obj
+ 0001:00000e20       ??_C@_0CL@CPIG@DLL_WndProc?3?5devHdr?4dbch_devicet@ 00401e20     1394main.obj
+ 0001:00000e4c       ??_C@_0CB@GECJ@DLL_WndProc?3?5DBT_DEVICEARRIVAL?$AN?6@ 00401e4c     1394main.obj
+ 0001:00000e70       ??_C@_0CI@MEGB@DLL_WndProc?3?5DBT_DEVICEREMOVECOM@ 00401e70     1394main.obj
+ 0001:00000e98       ??_C@_0BP@KOEE@DLL_WndProc?3?5WM_DEVICECHANGE?$AN?6?$AA@ 00401e98     1394main.obj
+ 0001:00000eb8       ??_C@_0CC@GCBH@DLL_WndProc?3?5WM_REGISTER_CLIENT?$AN@ 00401eb8     1394main.obj
+ 0001:00000edc       ??_C@_0CE@OMCA@DLL_WndProc?3?5WM_DEREGISTER_CLIEN@ 00401edc     1394main.obj
+ 0001:00000f00       ??_C@_0BB@IGPC@Exit?5DLLThread?$AN?6?$AA@ 00401f00     1394main.obj
+ 0001:00000f14       ??_C@_0CL@IFKH@RegisterDeviceNotification?5Faile@ 00401f14     1394main.obj
+ 0001:00000f40       ??_C@_0CC@IPCI@Failed?5to?5create?5windows?5?$DN?50x?$CFx?$AN@ 00401f40     1394main.obj
+ 0001:00000f64       ??_C@_0BO@JBHK@RegisterClassEx?5Failed?5?$DN?5?$CFd?$AN?6?$AA@ 00401f64     1394main.obj
+ 0001:00000f84       ??_C@_07PCKC@AppMenu?$AA@  00401f84     1394main.obj
+ 0001:00000f8c       ??_C@_0CB@MOEE@SharedData?9?$DOg_hInstance?5?$DN?50x?$CFx?$AN?6@ 00401f8c     1394main.obj
+ 0001:00000fb0       ??_C@_0BC@IFAD@Enter?5DLLThread?$AN?6?$AA@ 00401fb0     1394main.obj
+ 0001:00000fc4       ??_C@_0M@PFMP@1394API?5DLL?$AA@ 00401fc4     1394main.obj
+ 0001:00000fd0       ??_C@_0O@KHBI@DLL_1394Class?$AA@ 00401fd0     1394main.obj
+ 0001:00000fe0       ??_C@_0BG@HOA@CheckVersion?5?$DN?50x?$CFx?$AN?6?$AA@ 00401fe0     1394main.obj
+ 0001:00000ff8       ??_C@_0BE@EDLK@dwPlatformId?5?$DN?5?$CFd?$AN?6?$AA@ 00401ff8     1394main.obj
+ 0001:0000100c       ??_C@_0P@FIFK@CheckVersion?$AN?6?$AA@ 0040200c     1394main.obj
+ 0001:0000101c       ??_C@_0BN@KDEI@Exit?5InternalGetDeviceList?$AN?6?$AA@ 0040201c     1394main.obj
+ 0001:0000103c       ??_C@_0CA@PAAG@DeviceData?9?$DOnumDevices?5?$DN?50x?$CFx?$AN?6?$AA@ 0040203c     1394main.obj
+ 0001:0000105c       ??_C@_0CM@OOKN@SetupDiEnumDeviceInterfaces?5fail@ 0040205c     1394main.obj
+ 0001:00001088       ??_C@_0DJ@GIBG@SetupDiGetDeviceInterfaceDetail?5@ 00402088     1394main.obj
+ 0001:000010c4       ??_C@_0CD@OCPL@DeviceInterfaceDetailData?5?$DN?50x?$CFx@ 004020c4     1394main.obj
+ 0001:000010e8       ??_C@_0DH@KNFL@SetupDiGetDeviceInterfaceDetail?5@ 004020e8     1394main.obj
+ 0001:00001120       ??_C@_0CE@GDND@SetupDiGetClassDevs?5failed?5?$DN?50x?$CF@ 00402120     1394main.obj
+ 0001:00001144       ??_C@_0BO@INNG@Enter?5InternalGetDeviceList?$AN?6?$AA@ 00402144     1394main.obj
+ 0001:00001164       ??_C@_0BO@MENO@Exit?5InternalRegisterClient?$AN?6?$AA@ 00402164     1394main.obj
+ 0001:00001184       ??_C@_0O@PHGF@hWnd?5?$DN?50x?$CFx?$AN?6?$AA@ 00402184     1394main.obj
+ 0001:00001194       ??_C@_0BP@NBPA@Enter?5InternalRegisterClient?$AN?6?$AA@ 00402194     1394main.obj
+ 0001:000011b4       ??_C@_0CA@FNIG@Exit?5InternalDeRegisterClient?$AN?6?$AA@ 004021b4     1394main.obj
+ 0001:000011d4       ??_C@_0BG@LFFA@Current?5hWnd?5?$DN?50x?$CFx?$AN?6?$AA@ 004021d4     1394main.obj
+ 0001:000011ec       ??_C@_0BH@BIIM@Removing?5hWnd?5?$DN?50x?$CFx?$AN?6?$AA@ 004021ec     1394main.obj
+ 0001:00001204       ??_C@_0CB@GEF@Enter?5InternalDeRegisterClient?$AN?6@ 00402204     1394main.obj
+ 0001:00001228       ??_C@_0BF@OHN@Exit?5NotifyClients?$AN?6?$AA@ 00402228     1394main.obj
+ 0001:00001240       ??_C@_0BH@JNCI@NOTIFY_DEVICE_CHANGE?$AN?6?$AA@ 00402240     1394main.obj
+ 0001:00001258       ??_C@_0BD@HMEP@NOTIFY_BUS_RESET?$AN?6?$AA@ 00402258     1394main.obj
+ 0001:0000126c       ??_C@_0BG@KDLD@Enter?5NotifyClients?$AN?6?$AA@ 0040226c     1394main.obj
+ 0001:00001284       ??_C@_0BL@HFIM@Exit?5StartBusResetThread?$AN?6?$AA@ 00402284     1394main.obj
+ 0001:000012a0       ??_C@_0BN@NAND@Creating?5BusResetThread?4?4?4?$AN?6?$AA@ 004022a0     1394main.obj
+ 0001:000012c0       ??_C@_0BO@BACD@BusResetThreadParams?5?$DN?50x?$CFx?$AN?6?$AA@ 004022c0     1394main.obj
+ 0001:000012e0       ??_C@_0CC@LAGK@bus?5reset?5thread?5already?5exists?$AN@ 004022e0     1394main.obj
+ 0001:00001304       ??_C@_0BM@EOME@Enter?5StartBusResetThread?$AN?6?$AA@ 00402304     1394main.obj
+ 0001:00001320       ??_C@_0BK@IIGI@Exit?5StopBusResetThread?$AN?6?$AA@ 00402320     1394main.obj
+ 0001:0000133c       ??_C@_0BH@PPKK@no?5thread?5to?5stop?4?4?4?$AN?6?$AA@ 0040233c     1394main.obj
+ 0001:00001354       ??_C@_0BL@MANK@Enter?5StopBusResetThread?$AN?6?$AA@ 00402354     1394main.obj
+ 0001:00001370       ??_C@_0BG@OONP@Exit?5BusResetThread?$AN?6?$AA@ 00402370     1394main.obj
+ 0001:00001388       ??_C@_0CN@DGFI@BusThreadProc?3?5IOCTL?5didn?8t?5retu@ 00402388     1394main.obj
+ 0001:000013b8       ??_C@_0CG@JKBJ@BusThreadProc?3?5Cancelling?5thread@ 004023b8     1394main.obj
+ 0001:000013e0       ??_C@_0BO@JADP@BusThreadProc?3?5dwRet?5?$DN?50x?$CFx?$AN?6?$AA@ 004023e0     1394main.obj
+ 0001:00001400       ??_C@_0BO@FNMI@BusThreadProc?3?5BUS?5RESET?$CB?$CB?$CB?$AN?6?$AA@ 00402400     1394main.obj
+ 0001:00001420       ??_C@_0CN@GIEF@BusThreadProc?3?5DeviceIoControl?3?5@ 00402420     1394main.obj
+ 0001:00001450       ??_C@_0BH@KEHC@Enter?5BusResetThread?$AN?6?$AA@ 00402450     1394main.obj
+ 0001:00001468       ??_C@_0BG@IHGH@Exit?5DiagnosticMode?$AN?6?$AA@ 00402468     1394main.obj
+ 0001:00001480       ??_C@_0CB@CHCC@Diagnostic?5Mode?5disabled?5on?5?$CFs?$AN?6@ 00402480     1394main.obj
+ 0001:000014a4       ??_C@_0CA@BJKF@Diagnostic?5Mode?5enabled?5on?5?$CFs?$AN?6?$AA@ 004024a4     1394main.obj
+ 0001:000014c4       ??_C@_0N@FMLA@?2?2?4?21394BUS?5?$AA@ 004024c4     1394main.obj
+ 0001:000014d4       ??_C@_0BH@MNMK@Enter?5DiagnosticMode?$AN?6?$AA@ 004024d4     1394main.obj
+ 0001:000014ec       ??_C@_0BG@MNAA@Exit?5RegisterClient?$AN?6?$AA@ 004024ec     1394main.obj
+ 0001:00001504       ??_C@_0CA@GKK@SharedData?9?$DOg_hWndEdit?5?$DN?50x?$CFx?$AN?6?$AA@ 00402504     1394main.obj
+ 0001:00001524       ??_C@_0BH@IHKN@Enter?5RegisterClient?$AN?6?$AA@ 00402524     1394main.obj
+ 0001:0000153c       ??_C@_0BI@EBDK@Exit?5DeRegisterClient?$AN?6?$AA@ 0040253c     1394main.obj
+ 0001:00001554       ??_C@_0BJ@JEJO@Enter?5DeRegisterClient?$AN?6?$AA@ 00402554     1394main.obj
+ 0001:00001570       ??_C@_0BF@HNGM@Exit?5GetDeviceList?$AN?6?$AA@ 00402570     1394main.obj
+ 0001:00001588       ??_C@_0BG@NAKC@Enter?5GetDeviceList?$AN?6?$AA@ 00402588     1394main.obj
+ 0001:000015a0       ??_C@_0BG@FPCI@Exit?5GetDiagVersion?$AN?6?$AA@ 004025a0     1394main.obj
+ 0001:000015b8       ??_C@_0BH@BFIF@Enter?5GetDiagVersion?$AN?6?$AA@ 004025b8     1394main.obj
+ 0001:000015d0       ??_C@_0CB@CCBK@Exit?5AllocateAddressRange?5?$DN?5?$CFd?$AN?6@ 004025d0     asyncapi.obj
+ 0001:000015f4       ??_C@_0BH@GFD@hAddressRange?5?$DN?50x?$CFx?$AN?6?$AA@ 004025f4     asyncapi.obj
+ 0001:0000160c       ??_C@_0CE@EJHH@Required1394Offset?4Off_low?5?$DN?50x?$CF@ 0040260c     asyncapi.obj
+ 0001:00001630       ??_C@_0CF@BBJP@Required1394Offset?4Off_High?5?$DN?50x@ 00402630     asyncapi.obj
+ 0001:00001658       ??_C@_0CA@NDNO@fulNotificationOptions?5?$DN?50x?$CFx?$AN?6?$AA@ 00402658     asyncapi.obj
+ 0001:00001678       ??_C@_0BH@FGIP@fulAccessType?5?$DN?50x?$CFx?$AN?6?$AA@ 00402678     asyncapi.obj
+ 0001:00001690       ??_C@_0BI@JLGP@MaxSegmentSize?5?$DN?50x?$CFx?$AN?6?$AA@ 00402690     asyncapi.obj
+ 0001:000016a8       ??_C@_0BK@CBCM@fulAllocateFlags?5?$DN?50x?$CFx?$AN?6?$AA@ 004026a8     asyncapi.obj
+ 0001:000016c4       ??_C@_0BN@FONE@Enter?5AllocateAddressRange?$AN?6?$AA@ 004026c4     asyncapi.obj
+ 0001:000016e4       ??_C@_0BN@KBKN@Exit?5FreeAddressRange?5?$DN?5?$CFd?$AN?6?$AA@ 004026e4     asyncapi.obj
+ 0001:00001704       ??_C@_0BJ@NJGJ@Enter?5FreeAddressRange?$AN?6?$AA@ 00402704     asyncapi.obj
+ 0001:00001720       ??_C@_0BL@GAIN@Exit?5SetAddressData?5?$DN?5?$CFd?$AN?6?$AA@ 00402720     asyncapi.obj
+ 0001:0000173c       ??_C@_0BC@CKA@ulOffset?5?$DN?50x?$CFx?$AN?6?$AA@ 0040273c     asyncapi.obj
+ 0001:00001750       ??_C@_0BH@CNCP@Enter?5SetAddressData?$AN?6?$AA@ 00402750     asyncapi.obj
+ 0001:00001768       ??_C@_0BG@BPJG@Exit?5AsyncRead?5?$DN?5?$CFd?$AN?6?$AA@ 00402768     asyncapi.obj
+ 0001:00001780       ??_C@_0BH@PIAI@Quadlet?$FL0x?$CFx?$FN?5?$DN?50x?$CFx?$AN?6?$AA@ 00402780     asyncapi.obj
+ 0001:00001798       ??_C@_0BG@HBGC@ulGeneration?5?$DN?50x?$CFx?$AN?6?$AA@ 00402798     asyncapi.obj
+ 0001:000017b0       ??_C@_0BE@KFGJ@nBlockSize?5?$DN?50x?$CFx?$AN?6?$AA@ 004027b0     asyncapi.obj
+ 0001:000017c4       ??_C@_0BO@PAGB@nNumberOfBytesToRead?5?$DN?50x?$CFx?$AN?6?$AA@ 004027c4     asyncapi.obj
+ 0001:000017e4       ??_C@_0DK@JLBL@DestinationAddress?4IA_Destinatio@ 004027e4     asyncapi.obj
+ 0001:00001820       ??_C@_0DL@LNPA@DestinationAddress?4IA_Destinatio@ 00402820     asyncapi.obj
+ 0001:0000185c       ??_C@_0DN@ILOJ@DestinationAddress?4IA_Destinatio@ 0040285c     asyncapi.obj
+ 0001:0000189c       ??_C@_0DM@HC@DestinationAddress?4IA_Destinatio@ 0040289c     asyncapi.obj
+ 0001:000018d8       ??_C@_0BA@PGCH@bRawMode?5?$DN?5?$CFd?$AN?6?$AA@ 004028d8     asyncapi.obj
+ 0001:000018e8       ??_C@_0BC@FDGJ@Enter?5AsyncRead?$AN?6?$AA@ 004028e8     asyncapi.obj
+ 0001:000018fc       ??_C@_0BH@FNMC@Exit?5AsyncWrite?5?$DN?5?$CFd?$AN?6?$AA@ 004028fc     asyncapi.obj
+ 0001:00001914       ??_C@_0BP@OHBF@nNumberOfBytesToWrite?5?$DN?50x?$CFx?$AN?6?$AA@ 00402914     asyncapi.obj
+ 0001:00001934       ??_C@_0BD@MBPA@Enter?5AsyncWrite?$AN?6?$AA@ 00402934     asyncapi.obj
+ 0001:00001948       ??_C@_0BG@MAIP@Exit?5AsyncLock?5?$DN?5?$CFd?$AN?6?$AA@ 00402948     asyncapi.obj
+ 0001:00001960       ??_C@_0BD@FDEN@Buffer?$FL1?$FN?5?$DN?50x?$CFx?$AN?6?$AA@ 00402960     asyncapi.obj
+ 0001:00001974       ??_C@_0BD@LJMC@Buffer?$FL0?$FN?5?$DN?50x?$CFx?$AN?6?$AA@ 00402974     asyncapi.obj
+ 0001:00001988       ??_C@_0BH@PHEG@DataValues?$FL1?$FN?5?$DN?50x?$CFx?$AN?6?$AA@ 00402988     asyncapi.obj
+ 0001:000019a0       ??_C@_0BH@BNMJ@DataValues?$FL0?$FN?5?$DN?50x?$CFx?$AN?6?$AA@ 004029a0     asyncapi.obj
+ 0001:000019b8       ??_C@_0BG@LOHG@Arguments?$FL1?$FN?5?$DN?50x?$CFx?$AN?6?$AA@ 004029b8     asyncapi.obj
+ 0001:000019d0       ??_C@_0BG@FEPJ@Arguments?$FL0?$FN?5?$DN?50x?$CFx?$AN?6?$AA@ 004029d0     asyncapi.obj
+ 0001:000019e8       ??_C@_0BM@JMHI@fulTransactionType?5?$DN?50x?$CFx?$AN?6?$AA@ 004029e8     asyncapi.obj
+ 0001:00001a04       ??_C@_0BM@PBHH@nNumberOfDataBytes?5?$DN?50x?$CFx?$AN?6?$AA@ 00402a04     asyncapi.obj
+ 0001:00001a20       ??_C@_0BL@ONFC@nNumberOfArgBytes?5?$DN?50x?$CFx?$AN?6?$AA@ 00402a20     asyncapi.obj
+ 0001:00001a3c       ??_C@_0BC@PMLK@Enter?5AsyncLock?$AN?6?$AA@ 00402a3c     asyncapi.obj
+ 0001:00001a50       ??_C@_0BI@BCGL@Exit?5AsyncStream?5?$DN?5?$CFd?$AN?6?$AA@ 00402a50     asyncapi.obj
+ 0001:00001a68       ??_C@_0BA@COHF@nSpeed?5?$DN?50x?$CFx?$AN?6?$AA@ 00402a68     asyncapi.obj
+ 0001:00001a78       ??_C@_0BB@GEHJ@ulSynch?5?$DN?50x?$CFx?$AN?6?$AA@ 00402a78     asyncapi.obj
+ 0001:00001a8c       ??_C@_0BC@DEOE@nChannel?5?$DN?50x?$CFx?$AN?6?$AA@ 00402a8c     asyncapi.obj
+ 0001:00001aa0       ??_C@_0P@GPAO@ulTag?5?$DN?50x?$CFx?$AN?6?$AA@ 00402aa0     asyncapi.obj
+ 0001:00001ab0       ??_C@_0CA@NFGP@nNumberOfBytesToStream?5?$DN?50x?$CFx?$AN?6?$AA@ 00402ab0     asyncapi.obj
+ 0001:00001ad0       ??_C@_0BE@CLGB@Enter?5AsyncStream?$AN?6?$AA@ 00402ad0     asyncapi.obj
+ 0001:00001ae4       ??_C@_0BB@OFPP@bFailed?5?$DN?50x?$CFx?$AN?6?$AA@ 00402ae4     asyncapi.obj
+ 0001:00001af8       ??_C@_0BC@MFPP@ulResult?5?$DN?50x?$CFx?$AN?6?$AA@ 00402af8     asyncapi.obj
+ 0001:00001b0c       ??_C@_0BN@PGAF@Read?5?9?5Invalid?5Generation?$CB?$AN?6?$AA@ 00402b0c     asyncapi.obj
+ 0001:00001b2c       ??_C@_0BE@GDEA@pAsyncRead?5?$DN?50x?$CFx?$AN?6?$AA@ 00402b2c     asyncapi.obj
+ 0001:00001b40       ??_C@_0O@CHEB@Read?5Failed?$AN?6?$AA@ 00402b40     asyncapi.obj
+ 0001:00001b50       ??_C@_0BO@OPJO@Write?5?9?5Invalid?5Generation?$CB?$AN?6?$AA@ 00402b50     asyncapi.obj
+ 0001:00001b70       ??_C@_0BF@LKIG@pAsyncWrite?5?$DN?50x?$CFx?$AN?6?$AA@ 00402b70     asyncapi.obj
+ 0001:00001b88       ??_C@_0P@MFHH@Write?5Failed?$AN?6?$AA@ 00402b88     asyncapi.obj
+ 0001:00001b98       ??_C@_0BC@NKDO@nBlockSize?5?$DN?5?$CFd?$AN?6?$AA@ 00402b98     asyncapi.obj
+ 0001:00001bac       ??_C@_0CB@IBEH@Exit?5AsyncStreamLoopbackThread?$AN?6@ 00402bac     asyncapi.obj
+ 0001:00001bd0       ??_C@_0BO@NECF@DeviceIoControl?3?5dwRet?5?$DN?5?$CFd?$AN?6?$AA@ 00402bd0     asyncapi.obj
+ 0001:00001bf0       ??_C@_0CC@EFBM@Enter?5AsyncStreamLoopbackThread?$AN@ 00402bf0     asyncapi.obj
+ 0001:00001c14       ??_C@_09LDBB@1394API?3?5?$AA@ 00402c14     debug.obj
+ 0001:00001c20       ??_C@_0CD@HPEJ@Exit?5IsochAllocateBandwidth?5?$DN?5?$CFd@ 00402c20     isochapi.obj
+ 0001:00001c44       ??_C@_0BI@DPBK@Speed?5Selected?5?$DN?50x?$CFx?$AN?6?$AA@ 00402c44     isochapi.obj
+ 0001:00001c5c       ??_C@_0CA@KFJE@BytesPerFrameAvailable?5?$DN?50x?$CFx?$AN?6?$AA@ 00402c5c     isochapi.obj
+ 0001:00001c7c       ??_C@_0BE@IMIC@hBandwidth?5?$DN?50x?$CFx?$AN?6?$AA@ 00402c7c     isochapi.obj
+ 0001:00001c90       ??_C@_0CE@IODJ@nMaxBytesPerFrameRequested?5?$DN?50x?$CF@ 00402c90     isochapi.obj
+ 0001:00001cb4       ??_C@_0BP@GPID@Enter?5IsochAllocateBandwidth?$AN?6?$AA@ 00402cb4     isochapi.obj
+ 0001:00001cd4       ??_C@_0CB@PAKG@Exit?5IsochAllocateChannel?5?$DN?5?$CFd?$AN?6@ 00402cd4     isochapi.obj
+ 0001:00001cf8       ??_C@_0CE@GIMK@ChannelsAvailable?4HighPart?5?$DN?50x?$CF@ 00402cf8     isochapi.obj
+ 0001:00001d1c       ??_C@_0CD@KOAH@ChannelsAvailable?4LowPart?5?$DN?50x?$CFx@ 00402d1c     isochapi.obj
+ 0001:00001d40       ??_C@_0BB@CBGG@Channel?5?$DN?50x?$CFx?$AN?6?$AA@ 00402d40     isochapi.obj
+ 0001:00001d54       ??_C@_0BL@PIPN@nRequestedChannel?5?$DN?50x?$CFx?$AN?6?$AA@ 00402d54     isochapi.obj
+ 0001:00001d70       ??_C@_0BN@MICA@Enter?5IsochAllocateChannel?$AN?6?$AA@ 00402d70     isochapi.obj
+ 0001:00001d90       ??_C@_0CD@HNBO@Exit?5IsochAllocateResources?5?$DN?5?$CFd@ 00402d90     isochapi.obj
+ 0001:00001db4       ??_C@_0BD@EOJF@hResource?5?$DN?50x?$CFx?$AN?6?$AA@ 00402db4     isochapi.obj
+ 0001:00001dc8       ??_C@_0BK@IAIA@nQuadletsToStrip?5?$DN?50x?$CFx?$AN?6?$AA@ 00402dc8     isochapi.obj
+ 0001:00001de4       ??_C@_0BI@JKJJ@nMaxBufferSize?5?$DN?50x?$CFx?$AN?6?$AA@ 00402de4     isochapi.obj
+ 0001:00001dfc       ??_C@_0BK@DPBL@nNumberOfBuffers?5?$DN?50x?$CFx?$AN?6?$AA@ 00402dfc     isochapi.obj
+ 0001:00001e18       ??_C@_0BL@CMOM@nMaxBytesPerFrame?5?$DN?50x?$CFx?$AN?6?$AA@ 00402e18     isochapi.obj
+ 0001:00001e34       ??_C@_0BP@NPHP@Enter?5IsochAllocateResources?$AN?6?$AA@ 00402e34     isochapi.obj
+ 0001:00001e54       ??_C@_0BK@GHHF@Exit?5IsochAttachBuffers?$AN?6?$AA@ 00402e54     isochapi.obj
+ 0001:00001e70       ??_C@_0BK@BKAN@pIsochDescriptor?5?$DN?50x?$CFx?$AN?6?$AA@ 00402e70     isochapi.obj
+ 0001:00001e8c       ??_C@_0DN@ODAF@IsochAttachBuffers?3?5GetOverlappe@ 00402e8c     isochapi.obj
+ 0001:00001ecc       ??_C@_0CB@CMCC@IsochAttachBuffers?5Failed?5?$DN?5?$CFd?$AN?6@ 00402ecc     isochapi.obj
+ 0001:00001ef0       ??_C@_0BB@GGKP@bAutoFill?5?$DN?5?$CFd?$AN?6?$AA@ 00402ef0     isochapi.obj
+ 0001:00001f04       ??_C@_0BC@MDCC@bAutoAlloc?5?$DN?5?$CFd?$AN?6?$AA@ 00402f04     isochapi.obj
+ 0001:00001f18       ??_C@_0BF@PHIJ@bAutoDetach?5?$DN?50x?$CFx?$AN?6?$AA@ 00402f18     isochapi.obj
+ 0001:00001f30       ??_C@_0BG@IGKC@bUseCallback?5?$DN?50x?$CFx?$AN?6?$AA@ 00402f30     isochapi.obj
+ 0001:00001f48       ??_C@_0CC@NGGP@StartTime?4CL_SecondCount?5?$DN?50x?$CFx?$AN@ 00402f48     isochapi.obj
+ 0001:00001f6c       ??_C@_0CB@MFKF@StartTime?4CL_CycleCount?5?$DN?50x?$CFx?$AN?6@ 00402f6c     isochapi.obj
+ 0001:00001f90       ??_C@_0CC@IAFL@StartTime?4CL_CycleOffset?5?$DN?50x?$CFx?$AN@ 00402f90     isochapi.obj
+ 0001:00001fb4       ??_C@_0BC@LIJC@ulLength?5?$DN?50x?$CFx?$AN?6?$AA@ 00402fb4     isochapi.obj
+ 0001:00001fc8       ??_C@_0BO@JOFI@nNumberOfDescriptors?5?$DN?50x?$CFx?$AN?6?$AA@ 00402fc8     isochapi.obj
+ 0001:00001fe8       ??_C@_0BL@CPMH@Enter?5IsochAttachBuffers?$AN?6?$AA@ 00402fe8     isochapi.obj
+ 0001:00002004       ??_C@_0BP@OKLJ@Exit?5IsochDetachBuffers?5?$DN?5?$CFd?$AN?6?$AA@ 00403004     isochapi.obj
+ 0001:00002024       ??_C@_0BL@ECKB@Enter?5IsochDetachBuffers?$AN?6?$AA@ 00403024     isochapi.obj
+ 0001:00002040       ??_C@_0BP@IHCJ@Exit?5IsochFreeBandwidth?5?$DN?5?$CFd?$AN?6?$AA@ 00403040     isochapi.obj
+ 0001:00002060       ??_C@_0BL@DLNP@Enter?5IsochFreeBandwidth?$AN?6?$AA@ 00403060     isochapi.obj
+ 0001:0000207c       ??_C@_0BN@MGEG@Exit?5IsochFreeChannel?5?$DN?5?$CFd?$AN?6?$AA@ 0040307c     isochapi.obj
+ 0001:0000209c       ??_C@_0BJ@HCDO@Enter?5IsochFreeChannel?$AN?6?$AA@ 0040309c     isochapi.obj
+ 0001:000020b8       ??_C@_0BP@IFHO@Exit?5IsochFreeResources?5?$DN?5?$CFd?$AN?6?$AA@ 004030b8     isochapi.obj
+ 0001:000020d8       ??_C@_0BL@ILCD@Enter?5IsochFreeResources?$AN?6?$AA@ 004030d8     isochapi.obj
+ 0001:000020f4       ??_C@_0BI@FCAC@Exit?5IsochListen?5?$DN?5?$CFd?$AN?6?$AA@ 004030f4     isochapi.obj
+ 0001:0000210c       ??_C@_0BE@ILFB@Enter?5IsochListen?$AN?6?$AA@ 0040310c     isochapi.obj
+ 0001:00002120       ??_C@_0CH@EKH@Exit?5IsochQueryCurrentCycleTime?5@ 00403120     isochapi.obj
+ 0001:00002148       ??_C@_0CC@BDNN@CycleTime?4CL_SecondCount?5?$DN?50x?$CFx?$AN@ 00403148     isochapi.obj
+ 0001:0000216c       ??_C@_0CB@HHMC@CycleTime?4CL_CycleCount?5?$DN?50x?$CFx?$AN?6@ 0040316c     isochapi.obj
+ 0001:00002190       ??_C@_0CC@EFOJ@CycleTime?4CL_CycleOffset?5?$DN?50x?$CFx?$AN@ 00403190     isochapi.obj
+ 0001:000021b4       ??_C@_0CD@IIKN@Enter?5IsochQueryCurrentCycleTime@ 004031b4     isochapi.obj
+ 0001:000021d8       ??_C@_0CA@KPBN@Exit?5IsochQueryResources?5?$DN?5?$CFd?$AN?6?$AA@ 004031d8     isochapi.obj
+ 0001:000021f8       ??_C@_0BM@BGAF@Enter?5IsochQueryResources?$AN?6?$AA@ 004031f8     isochapi.obj
+ 0001:00002214       ??_C@_0CF@JMMI@Exit?5IsochSetChannelBandwidth?5?$DN?5@ 00403214     isochapi.obj
+ 0001:0000223c       ??_C@_0CB@CNLN@Enter?5IsochSetChannelBandwidth?$AN?6@ 0040323c     isochapi.obj
+ 0001:00002260       ??_C@_0BG@DHGH@Exit?5IsochStop?5?$DN?5?$CFd?$AN?6?$AA@ 00403260     isochapi.obj
+ 0001:00002278       ??_C@_0BC@CLEK@Enter?5IsochStop?$AN?6?$AA@ 00403278     isochapi.obj
+ 0001:0000228c       ??_C@_0BG@LDBB@Exit?5IsochTalk?5?$DN?5?$CFd?$AN?6?$AA@ 0040328c     isochapi.obj
+ 0001:000022a4       ??_C@_0BC@MJNN@Enter?5IsochTalk?$AN?6?$AA@ 004032a4     isochapi.obj
+ 0001:000022b8       ??_C@_0BJ@OOIN@Exit?5IsochAttachThread?$AN?6?$AA@ 004032b8     isochapi.obj
+ 0001:000022d4       ??_C@_0BE@PHGG@ulCurrData?5?$DN?50x?$CFx?$AN?6?$AA@ 004032d4     isochapi.obj
+ 0001:000022e8       ??_C@_0L@BHJD@n?5?$DN?50x?$CFx?$AN?6?$AA@ 004032e8     isochapi.obj
+ 0001:000022f4       ??_C@_0BB@PNPD@Failed?$CB?5?$DN?50x?$CFx?$AN?6?$AA@ 004032f4     isochapi.obj
+ 0001:00002308       ??_C@_0CA@CBFB@IsochAttachBuffers?5Pending?4?4?4?$AN?6?$AA@ 00403308     isochapi.obj
+ 0001:00002328       ??_C@_0BK@FMFI@Enter?5IsochAttachThread?$AN?6?$AA@ 00403328     isochapi.obj
+ 0001:00002344       ??_C@_0BJ@PMAM@Failed?5to?5open?5device?$CB?$AN?6?$AA@ 00403344     util.obj
+ 0001:00002360       _GetLocalHostInformation@16 00403360 f   1394api.obj
+ 0001:00002bf2       _Get1394AddressFromDeviceObject@12 00403bf2 f   1394api.obj
+ 0001:00002d0e       _Control@8                 00403d0e f   1394api.obj
+ 0001:00002dcd       _GetMaxSpeedBetweenDevices@12 00403dcd f   1394api.obj
+ 0001:00002f0f       _SetDeviceXmitProperties@12 00403f0f f   1394api.obj
+ 0001:00003000       _GetConfigurationInformation@8 00404000 f   1394api.obj
+ 0001:000030bf       _BusReset@12               004040bf f   1394api.obj
+ 0001:00003192       _GetGenerationCount@12     00404192 f   1394api.obj
+ 0001:00003269       _SendPhyConfigurationPacket@12 00404269 f   1394api.obj
+ 0001:00003424       _BusResetNotification@12   00404424 f   1394api.obj
+ 0001:000034f7       _SetLocalHostInformation@12 004044f7 f   1394api.obj
+ 0001:000036f5       _DLLMain@12                004046f5 f   1394main.obj
+ 0001:00003906       _DLL_WndProc@16            00404906 f   1394main.obj
+ 0001:00003b9b       _DLL_Thread@4              00404b9b f   1394main.obj
+ 0001:00003d98       _InternalGetWinVersion@4   00404d98 f   1394main.obj
+ 0001:00003e39       _InternalGetDeviceList@4   00404e39 f   1394main.obj
+ 0001:0000402a       _InternalRegisterClient@4  0040502a f   1394main.obj
+ 0001:000040ab       _InternalDeRegisterClient@4 004050ab f   1394main.obj
+ 0001:00004153       _NotifyClients@8           00405153 f   1394main.obj
+ 0001:00004205       _StartBusResetThread@4     00405205 f   1394main.obj
+ 0001:000042e2       _StopBusResetThread@4      004052e2 f   1394main.obj
+ 0001:00004369       _BusResetThread@4          00405369 f   1394main.obj
+ 0001:000044bf       _DiagnosticMode@16         004054bf f   1394main.obj
+ 0001:0000465c       _RegisterClient@4          0040565c f   1394main.obj
+ 0001:000046fa       _DeRegisterClient@4        004056fa f   1394main.obj
+ 0001:00004756       _GetDeviceList@4           00405756 f   1394main.obj
+ 0001:000047c3       _GetDiagVersion@16         004057c3 f   1394main.obj
+ 0001:00004886       _AllocateAddressRange@16   00405886 f   asyncapi.obj
+ 0001:00004ad3       _FreeAddressRange@12       00405ad3 f   asyncapi.obj
+ 0001:00004ba6       _SetAddressData@12         00405ba6 f   asyncapi.obj
+ 0001:00004cb6       _AsyncRead@16              00405cb6 f   asyncapi.obj
+ 0001:00004f22       _AsyncWrite@16             00405f22 f   asyncapi.obj
+ 0001:000051ae       _AsyncLock@12              004061ae f   asyncapi.obj
+ 0001:00005436       _AsyncStream@16            00406436 f   asyncapi.obj
+ 0001:00005647       _AsyncStartLoopback@12     00406647 f   asyncapi.obj
+ 0001:00005679       _IsochStopLoopback@4       00406679 f   asyncapi.obj
+ 0001:00005679       _AsyncStreamStopLoopback@4 00406679 f   asyncapi.obj
+ 0001:00005679       _AsyncStopLoopback@4       00406679 f   asyncapi.obj
+ 0001:0000568d       _AsyncLoopbackThread@4     0040668d f   asyncapi.obj
+ 0001:00005b0d       _AsyncStreamStartLoopback@12 00406b0d f   asyncapi.obj
+ 0001:00005b3f       _AsyncStreamLoopbackThread@4 00406b3f f   asyncapi.obj
+ 0001:00005ccb       _DbgPrt                    00406ccb f   debug.obj
+ 0001:00005d30       _IsochAllocateBandwidth@12 00406d30 f   isochapi.obj
+ 0001:00005e69       _IsochAllocateChannel@12   00406e69 f   isochapi.obj
+ 0001:00005f88       _IsochAllocateResources@12 00406f88 f   isochapi.obj
+ 0001:0000611e       _IsochAttachBuffers@20     0040711e f   isochapi.obj
+ 0001:000064f6       _IsochDetachBuffers@12     004074f6 f   isochapi.obj
+ 0001:00006601       _IsochFreeBandwidth@12     00407601 f   isochapi.obj
+ 0001:000066d4       _IsochFreeChannel@12       004076d4 f   isochapi.obj
+ 0001:000067a7       _IsochFreeResources@12     004077a7 f   isochapi.obj
+ 0001:0000687a       _IsochListen@12            0040787a f   isochapi.obj
+ 0001:000069cc       _IsochQueryCurrentCycleTime@12 004079cc f   isochapi.obj
+ 0001:00006ae1       _IsochQueryResources@12    00407ae1 f   isochapi.obj
+ 0001:00006c00       _IsochSetChannelBandwidth@12 00407c00 f   isochapi.obj
+ 0001:00006cf1       _IsochStop@12              00407cf1 f   isochapi.obj
+ 0001:00006de2       _IsochTalk@12              00407de2 f   isochapi.obj
+ 0001:00006f34       _IsochStartLoopback@12     00407f34 f   isochapi.obj
+ 0001:00006f6a       _IsochAttachThread@4       00407f6a f   isochapi.obj
+ 0001:000074af       _OpenDevice@12             004084af f   util.obj
+ 0001:000074fc       _WriteTextToEditControl@8  004084fc f   util.obj
+ 0001:0000752f       _InsertTailList@8          0040852f f   util.obj
+ 0001:0000754b       _RemoveEntryList@8         0040854b f   util.obj
+ 0001:00007570       _strncpy                   00408570 f   libc:strncpy.obj
+ 0001:00007670       __itoa                     00408670 f   libc:xtoa.obj
+ 0001:00007720       _srand                     00408720 f   libc:rand.obj
+ 0001:00007730       _rand                      00408730 f   libc:rand.obj
+ 0001:00007760       __aulldiv                  00408760 f   libc:ulldiv.obj
+ 0001:000077d0       __aullrem                  004087d0 f   libc:ullrem.obj
+ 0001:00007848       __IMPORT_DESCRIPTOR_KERNEL32 00408848     kernel32:KERNEL32.dll
+ 0001:0000785c       __IMPORT_DESCRIPTOR_USER32 0040885c     user32:USER32.dll
+ 0001:00007870       __IMPORT_DESCRIPTOR_SETUPAPI 00408870     setupapi:SETUPAPI.dll
+ 0001:00007884       __NULL_IMPORT_DESCRIPTOR   00408884     kernel32:KERNEL32.dll
+ 0002:00000014       _TraceLevel                0040a014     debug.obj
+ 0002:00000018       _hData                     0040a018     <common>
+ 0002:0000001c       _ClientList                0040a01c     <common>
+ 0002:00000020       _BusResetThreadParams      0040a020     <common>
+ 0002:00000024       _SharedData                0040a024     <common>
+
+ entry point at        0001:000036f5
+
+ Static symbols
+
+ 0001:000076b0       _xtoa                      004086b0 f   libc:xtoa.obj
+
+ 40 bytes saved through ICF
+

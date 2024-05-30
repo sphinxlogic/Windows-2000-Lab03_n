@@ -1,0 +1,16 @@
+import "unknwn.idl";
+
+
+[object, uuid(73A30D73-C27E-11d0-B72A-00AA00C006CF), pointer_default(unique)]
+interface IServer : IUnknown 
+{
+	HRESULT AccessFile(LPCWSTR szFileName);
+ 	HRESULT SetCallBackInterface(IUnknown *p);
+ 	HRESULT ImpersonateAndCallback();
+}
+
+[object, uuid(73A30D74-C27E-11d0-B72A-00AA00C006CF), pointer_default(unique)]
+interface ICallBack : IUnknown 
+{
+	HRESULT AccessFile(LPCWSTR szFileName);
+}

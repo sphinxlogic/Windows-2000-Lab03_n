@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Functions and Procedures</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_functions_and_procedures"></a>  Functions and Procedures</h3>
+<p>
+Functions and procedures provide you with a convenient way to avoid having to rewrite the same block of code every time you want to perform a particular task. Both VBScript and JScript allow you to call a function or procedure from any point in a script. This sample demonstrates how you can create and use these tools with ASP. </p>
+<p>
+If you don't have any functions in your ASP page, the ASP engine simply processes your entire file, start to finish, each time it is requested by a client browser. Functions and procedures, however, are executed only when called, not in-line with the rest of the code. </p>
+<p>
+You can denote functions and procedures in VBScript or JScript using the <b>Function</b> statement. In addition, VBScript makes a distinction between a function that returns a value and functions that do not; the latter type are denoted with the <b>Sub</b> statement, indicating that it is a subroutine. </p>
+<p>
+This sample defines one function, <b>PrintOutMsg</b>, that takes as parameters a message, and a number that specifies how many times the message is to be written to the client browser with the <b>Response.Write</b> method. The function, for the purposes of this sample, simply returns the number of times the message was printed back to the client browser. </p>
+<p>
+It is also very important to note the RUNAT attribute of the &lt;SCRIPT&gt; tag. If this attribute is not included, ASP will assume that it is client-side scripting, and will pass the code back to the browser for processing. ASP would then not recognize <b>PrintOutMsg</b>, and would return an error and abort. </p>
+</BODY>
+</HTML>

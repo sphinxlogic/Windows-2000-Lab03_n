@@ -1,0 +1,23 @@
+HKCR
+{
+    DXPropPage.Microsoft.ExplodeProp.1 = s 'ExplodeProp'
+    {
+	CLSID = s '{C53059E1-E6E3-11d1-BA12-00C04FB6BD36}'
+    }
+    DXPropPage.Microsoft.ExplodeProp = s 'ExplodeProp'
+    {
+	CurVer = s 'DXPropPage.Microsoft.ExplodeProp.1'
+	CLSID = s '{C53059E1-E6E3-11d1-BA12-00C04FB6BD36}'
+    }
+    NoRemove CLSID
+    {
+	ForceRemove {C53059E1-E6E3-11d1-BA12-00C04FB6BD36} = s 'ExplodeProp'
+	{
+	    ForceRemove 'Programmable'
+	    InprocServer32 = s '%MODULE%'
+	    {
+		val ThreadingModel = s 'Apartment'
+	    }
+	}
+    }
+}

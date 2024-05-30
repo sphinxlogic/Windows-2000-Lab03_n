@@ -1,0 +1,73 @@
+//--------------------------------------------------------------------------
+// (C) Copyright 1999 Microsoft Corporation.  All Rights Reserved.
+//
+// THIS CODE AND INFORMATION IS PROVIDED "AS-IS" WITHOUT WARRANTY OF
+// ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+// THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+// PARTICULAR PURPOSE.
+//
+// -- THIS CODE IS NOT SUPPORTED BY MICROSOFT ---
+//
+//         Microsoft Developer Support
+//
+// WBCustomizer.idl : IDL source for WBCustomizer.dll
+//--------------------------------------------------------------------------
+// This file will be processed by the MIDL tool to
+// produce the type library (WBCustomizer.tlb) and marshalling code.
+//--------------------------------------------------------------------------
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	uuid(D31843C3-C275-11D1-ABEE-602546C11E08),
+	version(1.0),
+	helpstring("Microsoft WebBrowser Customizer Sample Object")
+]
+library WBCustomizerLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		object,
+		uuid(D31843D0-C275-11D1-ABEE-602546C11E08),
+		dual,
+		helpstring("IWBCustomizer Interface"),
+		pointer_default(unique)
+	]
+	interface IWBCustomizer : IDispatch
+	{
+		[id(1), propget, helpstring("Gets WebBrowser Pointer")]
+			HRESULT WebBrowser([out, retval] LPDISPATCH* ppWebBrowser);
+
+		[id(1), propputref, helpstring("Sets WebBrowser Pointer")]
+			HRESULT WebBrowser([in] LPDISPATCH pWebBrowser);
+
+		[id(2), propget, helpstring("Gets EnableContextMenus property")]
+			HRESULT EnableContextMenus([out, retval] VARIANT_BOOL* pvbEnableCtxMenus);
+
+		[id(2), propput, helpstring("Sets EnableContextMenus property")]
+			HRESULT EnableContextMenus([in] VARIANT_BOOL vbEnableCtxMenus);
+
+		[id(3), propget, helpstring("Gets EnableAllAccelerators property")]
+			HRESULT EnableAllAccelerators([out, retval] VARIANT_BOOL* pvbEnableAllAccels);
+
+		[id(3), propput, helpstring("Sets EnableAllAccelerators property")]
+			HRESULT EnableAllAccelerators([in] VARIANT_BOOL vbEnableAllAccels);
+
+		[id(4), helpstring("method EnableAccelerator - Turns an accelerator on or off")]
+			HRESULT EnableAccelerator([in] short nKeyCode,
+                                   [in, optional, defaultvalue(0)] short nVirtExtKey,
+                                   [in, optional, defaultvalue((VARIANT_BOOL)0xffff)] VARIANT_BOOL bState);
+	};
+
+	[
+		uuid(D31843D1-C275-11D1-ABEE-602546C11E08),
+		helpstring("WBCustomizer Class")
+	]
+	coclass WBCustomizer
+	{
+		[default] interface IWBCustomizer;
+	};
+};

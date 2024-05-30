@@ -1,0 +1,7 @@
+; LOGPARSE.def : declares the module parameters for the DLL.
+
+LIBRARY	     "LOGPARSE"
+
+EXPORTS
+	HttpExtensionProc
+	GetExtensionVersion

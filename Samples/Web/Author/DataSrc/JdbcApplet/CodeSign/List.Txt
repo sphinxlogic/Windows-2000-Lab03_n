@@ -1,0 +1,1 @@
+jdc.cab,JDBC Data Source Applet,http://www.microsoft.com/gallery/files/datasrc

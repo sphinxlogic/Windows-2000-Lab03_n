@@ -1,0 +1,21 @@
+#----------------------------------------------------------------------------
+# Description:
+#   Makefile for EDKUtils.Lib
+#
+# Copyright (C) Microsoft Corporation 1986 - 1998.  All Rights Reserved.
+#----------------------------------------------------------------------------
+
+USE_EXCHANGE=1
+console=1
+
+Proj = EdkUtils
+
+ObjList = $(@R).Obj $(@D)\Utl_Cli.Obj $(@D)\Utl_Reg.Obj $(@D)\Utl_DN.Obj \
+          $(@D)\EdkRtf.Obj $(@D)\Utl_Pas.Obj $(@D)\Utl_Str.Obj $(@D)\EDKUtCpp.Obj \
+          $(@D)\VsoF.Obj $(@D)\VsoP.Obj $(@D)\Utl_Rpc.Obj
+
+!include <BkOffice.Mak>
+
+all:    $(ObjDir)\$(Proj).Lib
+
+$(ObjDir)\$(Proj).Lib: $(ObjList)

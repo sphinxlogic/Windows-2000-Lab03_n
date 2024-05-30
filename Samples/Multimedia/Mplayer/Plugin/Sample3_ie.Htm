@@ -1,0 +1,134 @@
+<HTML>
+<HEAD>
+<TITLE>NetShow SDK Sample 3 - Microsoft Internet Explorer specific intermediate scripting sample</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+
+<!-- BEGIN GENERIC ALL BROWSER FRIENDLY HTML FOR NETSHOW V3 -->
+<OBJECT ID="NSPlay" width=320 height=240 classid="CLSID:22D6F312-B0F6-11D0-94AB-0080C74C7E95"
+        codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=5,1,52,701"
+        standby="Loading Microsoft Media Player components..." type="application/x-oleobject">
+        <PARAM name="FileName" value="demo.asf">
+        <EMBED type="application/x-mplayer2"
+               pluginspage="http://www.microsoft.com/Windows/Downloads/Contents/Products/MediaPlayer/"
+               filename="demo.asf"
+               name="NSPlay"
+               width=320
+               height=240
+        ></EMBED>
+</OBJECT>
+<BR>
+<A href="demo.asf">Start the NetShow presentation in the stand-alone player.</A>
+<!-- END GENERIC ALL BROWSER FRIENDLY HTML FOR NETSHOW V3 RTM -->
+
+<H4><FONT FACE="VERDANA">Use Buttons to Change NetShow Control Parameters.<br>To begin, click 'Play'.</H4></FONT>
+<HR>
+<FONT FACE="VERDANA" SIZE=2>
+
+<FORM name="myform">
+    <P>
+	    <input type=button value="No Controls"  name="NoControls" OnClick="ToggleControls(false)"></td>
+	    <input type=button value="All Controls" name="Full" Onclick="ToggleControls(true)"></td>
+	    <BR>
+	    <input type=button value="   Small   " name="Small" OnClick="displaySize(1)"  ></TD>
+	    <input type=button value="   Large   " name="Large" Onclick="displaySize(2)"  ></TD>
+	    <input type=button value="  Normal   " name="Normal" Onclick="displaySize(0)" ></TD>
+	    <BR>
+	    <input type=button value="   Play    " name="Play" Onclick="PlayClick()"      ></TD>
+	    <input type=button value="   Pause   " name="Pause" Onclick="PauseClick()"    ></TD>
+	    <input type=button value="   Stop    " name="Stop" Onclick="StopClick()"      ></p></TD>
+
+	    button to toggle between play and pause:
+	    <input type="button" value="   Pause   " name="PlayPause" Onclick="PlayPauseClick()">
+    <P>
+</FORM>
+
+<HR>
+<FONT FACE="VERDANA" SIZE=1><I>Browser Requirements: Internet Explorer 4.x</I></FONT>
+<HR>
+</P>
+</BODY>
+
+<SCRIPT language=javascript for=NSPlay event="ReadyStateChange(ReadyState)">
+<!--
+//mpReadyStateUninitialized  0  The FileName property has not been initialized.  
+//mpReadyStateLoading        1  The player control is asynchronously loading a file.  
+//mpReadyStateInteractive    3  The player control loaded a file, and downloaded enough data to play the file, but has not yet received all data.  
+//mpReadyStateComplete       4  All data has been downloaded.  
+
+    if ((ReadyState == 3) || (ReadyState == 4))
+        alert("ReadyState=" + ReadyState);
+//-->
+</SCRIPT>
+
+<SCRIPT language=javascript for=NSPlay event="ScriptCommand(scType, Param)">
+<!--
+    alert("ScriptCommand: " + scType + ", " + Param);
+//-->
+</SCRIPT>
+
+<SCRIPT language=javascript for=NSPlay event="PlayStateChange(OldPlayState, PlayState)">
+<!--
+    alert("PlayStateChange: " + OldPlayState + ", " + PlayState);
+//-->
+</SCRIPT>
+
+<SCRIPT language=javascript>
+<!--
+function ToggleControls (setting)
+{
+    document.NSPlay.ShowControls = setting;
+
+}   /* end controlType() */
+
+
+function displaySize (setting)
+{
+    document.NSPlay.DisplaySize = setting;
+
+}   /* end displaySize() */
+
+
+function PlayClick ()
+{
+    document.NSPlay.Play();
+
+}   /* end PlayClick() */
+
+
+function StopClick ()
+{
+    document.NSPlay.Stop();
+    document.NSPlay.CurrentPosition = 0;
+
+}   /* end StopClick() */
+
+
+function PauseClick ()
+{
+    document.NSPlay.Pause();
+
+}   /* end PauseClick() */
+
+
+function PlayPauseClick ()
+{
+    var state;
+    
+    state = document.NSPlay.PlayState;
+
+    if (state == 0) {
+        document.NSPlay.Play();
+        document.myform.PlayPause.value = "Pause";
+    } else if (state == 1) {
+        document.NSPlay.Play();
+        document.myform.PlayPause.value = "Pause";
+    } else if (state == 2) {
+        document.NSPlay.Pause();
+        document.myform.PlayPause.value = " Play";
+    }
+
+}   /* end PlayPauseClick() */
+//-->
+</SCRIPT>
+</HTML>

@@ -1,0 +1,114 @@
+'<!--ACL Sample Application-->
+'<!--Global.asa : App & Session Start & End Routines -->
+'<!--Copyright (c) Microsoft Corporation 1993-1998. All rights reserved.-->
+'
+' Global.asa contains Application/Session start/end routines.
+' Includes handling of impersonation.
+'
+' Note that global.asa does not include constants.inc.  Any changes to constants must also
+' be made here.
+'
+
+<SCRIPT LANGUAGE=VBScript RUNAT=Server> 
+Sub Application_OnStart
+    Const gstrAPP_RENDER_APPLICATION = "appRenderApplication"
+    Const strAPP_B_START = "bStart"
+
+    On Error Resume Next
+    '
+    ' Get the rendering app object
+    '
+    If Not CBool(Application(strAPP_B_START)) Then
+        Set Application(gstrAPP_RENDER_APPLICATION) = Server.CreateObject("AMHTML.Application")
+
+        Application(strAPP_B_START) = True
+    End If
+    
+End Sub 
+</SCRIPT> 
+
+<SCRIPT LANGUAGE=VBScript RUNAT=Server> 
+Sub Application_OnEnd
+    Const gstrAPP_RENDER_APPLICATION = "appRenderApplication"
+
+    Dim objRenderApp
+    Dim hImp
+    '
+    ' Release the rendering app object
+    '
+    set objRenderApp = Application(gstrAPP_RENDER_APPLICATION)
+    hImp = objRenderApp.ImpID
+
+    objRenderApp.Impersonate(0)
+    
+    Set Application(gstrAPP_RENDER_APPLICATION) = Nothing
+
+    objRenderApp.Impersonate(hImp)
+
+    Set objRenderApp = Nothing
+End Sub
+</SCRIPT> 
+
+<SCRIPT LANGUAGE=VBScript RUNAT=Server> 
+Sub Session_OnStart
+    Const gstrSESS_ACL = "sessACL"
+    Const gstrSESS_B_SUPPORTS_IE4_DHTML = "sessBSupportsIE4DHTML"
+
+    Set Session(gstrSESS_ACL) = Nothing
+    Session(gstrSESS_B_SUPPORTS_IE4_DHTML) = Empty
+End Sub
+</SCRIPT> 
+
+<SCRIPT LANGUAGE=VBScript RUNAT=Server> 
+Sub Session_OnEnd
+    Const gstrAPP_RENDER_APPLICATION = "appRenderApplication"
+    Const gstrSESS_CDO_SESSION = "sessCDOSession"
+    Const gstrSESS_HANDLE_IMPERSONATE = "sessHImp"
+    Const gstrSESS_ACL = "sessACL"
+
+    Dim cdoSess
+    Dim objRenderApp
+    Dim hImp
+    Dim fImp
+
+    On Error Resume Next
+    '
+    ' NT impersonation
+    '
+    Set objRenderApp = Application(gstrAPP_RENDER_APPLICATION)
+
+    hImp = Session(gstrSESS_HANDLE_IMPERSONATE)
+
+    fImp = 1
+    If Not IsEmpty(hImp) Then
+        fImp = objRenderApp.Impersonate(hImp)
+    End If
+
+    If fImp = 1 Then
+        '
+        ' Release ACL object
+        '
+        If Not Session(gstrSESS_ACL) Is Nothing Then
+            Set Session(gstrSESS_ACL) = Nothing
+        End If
+        '
+        ' Logoff 
+        '
+        Set cdoSess = Session(gstrSESS_CDO_SESSION)
+
+        If Not cdoSess Is Nothing Then
+            Set Session(gstrSESS_CDO_SESSION) = Nothing
+
+            cdoSess.Logoff
+            Set cdoSess = Nothing
+        End If
+
+        If Not IsEmpty(hImp) Then
+            Session(gstrSESS_HANDLE_IMPERSONATE) = Empty
+            objRenderApp.CloseSysHandle(hImp)
+        End If
+    End If
+
+    Set objRenderApp = Nothing
+End Sub
+</SCRIPT> 

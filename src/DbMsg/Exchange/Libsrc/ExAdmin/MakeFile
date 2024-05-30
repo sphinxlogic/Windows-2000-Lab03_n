@@ -1,0 +1,19 @@
+#---------------------------------------------------------------------------
+# Description:
+#   Make file to generate ExAdmin.Lib
+#
+# Copyright (C) Microsoft Corporation 1986 - 1998.  All Rights Reserved.
+#---------------------------------------------------------------------------
+
+Proj = ExAdmin
+
+USE_EXCHANGE=1
+Use_MFC = 1
+
+ObjList = $(@R).Obj $(@D)\StrtPage.Obj $(@D)\ShowPage.Obj
+
+!Include <BkOffice.Mak>
+
+all: $(ObjDir)\$(Proj).Lib
+
+$(ObjDir)\$(Proj).Lib: $(ObjList)

@@ -1,0 +1,151 @@
+<HTML>
+<HEAD>
+<TITLE>JDBC Sample</TITLE>
+</HEAD>
+
+<BODY BGPROPERTIES="FIXED" BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="#0000FF" ALINK="#0000FF" TOPMARGIN=0 LEFTMARGIN=0>
+
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE="2">
+
+<A NAME="pagetop"></A>
+
+<!--margin-->
+<TD WIDTH=23><IMG SRC="../art/1pixel.gif" WIDTH=23 HEIGHT=1></TD>
+<!--margin ENDS-->
+
+<!--main title (fixed coloured cell type)-->
+<BR>
+<TABLE BORDER=0 WIDTH=100%>
+<TR><TD BGCOLOR=BLUE WIDTH=200><FONT FACE="HELVETICA, ARIAL" SIZE=4 COLOR=WHITE>
+&nbsp;
+Applications</FONT>
+</TD>
+<!--main title ENDS-->
+
+<!--main page navigation-->
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP></TD>
+
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP><FONT FACE="ARIAL,HELVETICA" SIZE=1 COLOR=BLACK>
+<A HREF="../cab/extract/sample.html" ><IMG SRC="../art/butt_pre.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Previous"></A><BR><B>
+Previous</B></FONT></TD>
+
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP><FONT FACE="ARIAL,HELVETICA" SIZE=1 COLOR=BLACK>
+<A HREF="../art/start.htm" ><IMG SRC="../art/butt_.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Welcome"></A><BR><B>
+Welcome</B></FONT></TD>
+
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP><FONT FACE="ARIAL,HELVETICA" SIZE=1 COLOR=BLACK>
+<A HREF="../security/default.htm" ><IMG SRC="../art/butt_nex.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Next"></A><BR><B>
+Next</B></FONT></TD>
+</TABLE>
+<!--main page navigation ENDS-->
+
+
+<!--this odd little break must accompany .gif filled cell title-->
+<BR>
+
+
+<TABLE BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<TR VALIGN=TOP>
+
+
+<!--main page sub-title-->
+<TD><FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=4>
+<B>JDBC Sample</B></A>
+</FONT><BR>
+
+<!--main contents (NEW TABLE required in this scenario)-->
+<TABLE BORDER=0>
+<TR><TD ALIGN=LEFT VALIGN=TOP>
+<BR>
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=4><A NAME="requirements"><A NAME="installation"></A></A>Requirements
+</FONT><FONT FACE="Verdana" SIZE=2><P>
+This release contains the Microsoft JDBC-ODBC bridge.  The relevant classes are part of the package:
+com.ms.jdbc.odbc.
+</P>
+<P>
+If you have been using the classes provided by the older package com.ms.sql.CDriver, please change the package 
+name in the source to com.ms.jdbc.odbc.JdbcOdbcDriver.
+</P>
+<P>
+The <B>SimpleSelect.java</B> sample is used in conjunction with the Microsoft JDBC-ODBC bridge.  
+</P>
+<P>In order to use the Microsoft JDBC-ODBC bridge and run the sample you need to have installed the following:</P>
+<OL TYPE="a">
+
+<LI>ODBC 3.0 or later</LI>
+<LI>At least 1 ODBC driver for the type of data you need. For example, if you want to get to SQL Server data, you must have the appropriate ODBC SQL Server driver installed.</LI></OL>
+</FONT>
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=592>
+<TR><TD VALIGN="MIDDLE" BGCOLOR="#ffffff" HEIGHT=1>
+<P></TD>
+</TR>
+</TABLE>
+
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=4><A NAME="running"></A>Running the JDBC sample
+</FONT><FONT FACE="Verdana" SIZE=2><P>The following steps will help you make the correct modifications to run the sample.</P>
+<P>In order to run this sample you need the following:</P>
+<OL TYPE="a">
+
+<LI>Define a valid ODBC data source by using the ODBC driver manager. Please follow the instructions in the ODBC help file to do this.</LI>
+
+<LI>Modify the following lines in <B>SimpleSelect.java</B> to have correct values for the variables:</LI>
+<DIR>
+<DIR>
+
+<I><P>String url = "JDBC:ODBC:my_dsn;";</P><DIR>
+<DIR>
+
+<P>my_dsn</I> to the Name of the data source.</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+
+<LI>&#9;<I>String query = "SELECT * FROM authors"; </LI><DIR>
+<DIR>
+<DIR>
+<DIR>
+
+</I><P>"<I>authors</I>" should be changed to the name of an existing table.</P></DIR>
+</DIR></DIR></DIR>
+
+<LI>&#9;<I>Connection con = DriverManager.getConnection (url, "my_user", "my_passwd");</LI><DIR>
+<DIR><DIR><DIR>
+
+</I><P>"<I>my_user</I>" and "<I>my_passwd</I>" need to be changed to the appropriate username and password.</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+</OL>
+
+<P>Example:</P>
+<P>If you have Microsoft Access installed and want to use the Northwind sample database to test this sample, you need to do the following:</P>
+<OL TYPE="a">
+
+<LI>create an ODBC datasource and type <B>Northwind</B> for the data source name.</LI>
+<LI>Modify the 3 lines as follows:</LI>
+
+<P>&#9;String url = "JDBC:ODBC:Northwind;"; // for <B>SimpleSelect.java</B></P>
+<P>&#9;String query = "SELECT * FROM Customers";</P>
+<P>&#9;Connection con = DriverManager.getConnection (url, "", "");</P>
+<LI>Compile and run the sample.</LI></OL></FONT>
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=592>
+<TR><TD VALIGN="MIDDLE" BGCOLOR="#ffffff" HEIGHT=1>
+<P></TD>
+</TR>
+</TABLE>
+
+<BR>
+
+<!--rule-->
+<TABLE WIDTH=95%><TD HEIGHT=2 BGCOLOR=BLUE></TD></TABLE>
+<BR>
+
+<!--page top button-->
+<TABLE WIDTH=100%><TR><TD ALIGN=LEFT><A HREF="#pagetop"><IMG SRC="../art/butt_up.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Top"></A></TD>
+
+<!--MS copyright-->
+<TD ALIGN=RIGHT><FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK"><A HREF="../art/cpyright.htm" >&#169; 1996-1997 Microsoft Corporation. All rights reserved.</A></FONT></TD></TR></TABLE>
+</FONT>
+</BODY>
+</HTML>

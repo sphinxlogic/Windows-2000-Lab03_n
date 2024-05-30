@@ -1,0 +1,40 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\serenum.res \
+    $(_OBJ_DIR)\alpha\pnp.obj \
+    $(_OBJ_DIR)\alpha\enum.obj \
+    $(_OBJ_DIR)\alpha\serenum.obj \
+    $(_OBJ_DIR)\alpha\string.obj \
+    $(_OBJ_DIR)\alpha\power.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\serenum.res \
+    $(_OBJ_DIR)\axp64\pnp.obj \
+    $(_OBJ_DIR)\axp64\enum.obj \
+    $(_OBJ_DIR)\axp64\serenum.obj \
+    $(_OBJ_DIR)\axp64\string.obj \
+    $(_OBJ_DIR)\axp64\power.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\serenum.res \
+    $(_OBJ_DIR)\i386\pnp.obj \
+    $(_OBJ_DIR)\i386\enum.obj \
+    $(_OBJ_DIR)\i386\serenum.obj \
+    $(_OBJ_DIR)\i386\string.obj \
+    $(_OBJ_DIR)\i386\power.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\serenum.res \
+    $(_OBJ_DIR)\ia64\pnp.obj \
+    $(_OBJ_DIR)\ia64\enum.obj \
+    $(_OBJ_DIR)\ia64\serenum.obj \
+    $(_OBJ_DIR)\ia64\string.obj \
+    $(_OBJ_DIR)\ia64\power.obj
+
+PASS0_IA64_OBJECTS=
+

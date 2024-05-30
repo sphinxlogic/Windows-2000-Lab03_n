@@ -1,0 +1,126 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "1 TYPELIB ""DXTMsft.tlb""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+#include <windows.h>
+#include "..\..\..\src\dt2verp.h"
+
+#define VER_FILETYPE                VFT_DLL
+#define VER_FILESUBTYPE             VFT2_UNKNOWN
+#define VER_FILEDESCRIPTION_STR     "DXTMsft Module"
+#define VER_INTERNALNAME_STR        "DXTMsft"
+
+#include "..\..\..\src\common.ver"
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// REGISTRY
+//
+
+IDR_EXPLODE             REGISTRY DISCARDABLE    "Explode.rgs"
+IDR_RUFFLE              REGISTRY DISCARDABLE    "ruffle.rgs"
+IDR_RIPPLE              REGISTRY DISCARDABLE    "Ripple.rgs"
+IDR_DISSOLVE            REGISTRY DISCARDABLE    "dissolve.rgs"
+IDR_FLIP                REGISTRY DISCARDABLE    "flip.rgs"
+IDR_HEIGHTFIELD         REGISTRY DISCARDABLE    "htfield.rgs"
+IDR_DXBUFFERCACHE       REGISTRY DISCARDABLE    "ObjCache.rgs"
+IDR_DXLUTBUILDER        REGISTRY DISCARDABLE    "ColorAdj.rgs"
+IDR_DXTCOMPOSITE        REGISTRY DISCARDABLE    "composit.rgs"
+IDR_DXTRESAMPLER        REGISTRY DISCARDABLE    "resampl.rgs"
+IDR_DXTDLABEL           REGISTRY DISCARDABLE    "labeldsp.rgs"
+IDR_DXTWIPE             REGISTRY DISCARDABLE    "dxtwipe.rgs"
+IDR_DXTCONVOLUTION      REGISTRY DISCARDABLE    "convolve.rgs"
+IDR_CRBLUR              REGISTRY DISCARDABLE    "CrBlur.rgs"
+IDR_CREMBOSS            REGISTRY DISCARDABLE    "CrEmboss.rgs"
+IDR_CRENGRAVE           REGISTRY DISCARDABLE    "CrEngrav.rgs"
+IDR_FADE                REGISTRY DISCARDABLE    "Fade.rgs"
+IDR_IMAGE               REGISTRY DISCARDABLE    "Image.rgs"
+IDR_PIXELATE            REGISTRY DISCARDABLE    "Pixelate.rgs"
+IDR_GRADDSP             REGISTRY DISCARDABLE    "GradDsp.rgs"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP1             BITMAP  DISCARDABLE     "dxt.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PROJNAME            "DXTMsft"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+1 TYPELIB "DXTMsft.tlb"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,23 @@
+HKCR
+{
+	Db_OnlineEvents.UsersOnline.1 = s 'UsersOnline Class'
+	{
+		CLSID = s '{273392CA-F64C-11D1-9734-00805F31E0AF}'
+	}
+	Db_OnlineEvents.UsersOnline = s 'UsersOnline Class'
+	{
+		CLSID = s '{273392CA-F64C-11D1-9734-00805F31E0AF}'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {273392CA-F64C-11D1-9734-00805F31E0AF} = s 'UsersOnline Class'
+		{
+			ProgID = s 'Db_OnlineEvents.UsersOnline.1'
+			VersionIndependentProgID = s 'Db_OnlineEvents.UsersOnline'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'both'
+			}
+		}
+	}
+}

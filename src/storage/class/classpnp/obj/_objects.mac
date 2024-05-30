@@ -1,0 +1,48 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\class.res \
+    $(_OBJ_DIR)\alpha\autorun.obj \
+    $(_OBJ_DIR)\alpha\class.obj \
+    $(_OBJ_DIR)\alpha\classwmi.obj \
+    $(_OBJ_DIR)\alpha\create.obj \
+    $(_OBJ_DIR)\alpha\dictlib.obj \
+    $(_OBJ_DIR)\alpha\lock.obj \
+    $(_OBJ_DIR)\alpha\power.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\class.res \
+    $(_OBJ_DIR)\axp64\autorun.obj \
+    $(_OBJ_DIR)\axp64\class.obj \
+    $(_OBJ_DIR)\axp64\classwmi.obj \
+    $(_OBJ_DIR)\axp64\create.obj \
+    $(_OBJ_DIR)\axp64\dictlib.obj \
+    $(_OBJ_DIR)\axp64\lock.obj \
+    $(_OBJ_DIR)\axp64\power.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\class.res \
+    $(_OBJ_DIR)\i386\autorun.obj \
+    $(_OBJ_DIR)\i386\class.obj \
+    $(_OBJ_DIR)\i386\classwmi.obj \
+    $(_OBJ_DIR)\i386\create.obj \
+    $(_OBJ_DIR)\i386\dictlib.obj \
+    $(_OBJ_DIR)\i386\lock.obj \
+    $(_OBJ_DIR)\i386\power.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\class.res \
+    $(_OBJ_DIR)\ia64\autorun.obj \
+    $(_OBJ_DIR)\ia64\class.obj \
+    $(_OBJ_DIR)\ia64\classwmi.obj \
+    $(_OBJ_DIR)\ia64\create.obj \
+    $(_OBJ_DIR)\ia64\dictlib.obj \
+    $(_OBJ_DIR)\ia64\lock.obj \
+    $(_OBJ_DIR)\ia64\power.obj
+
+PASS0_IA64_OBJECTS=
+

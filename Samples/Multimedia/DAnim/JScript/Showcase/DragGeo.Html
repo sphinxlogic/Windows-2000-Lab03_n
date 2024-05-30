@@ -1,0 +1,116 @@
+<HTML> 
+<HEAD>
+<TITLE>DirectAnimation SDK, JScript sample</TITLE>
+<SCRIPT LANGUAGE="JScript">
+<!--
+if (window.top.frames.length!=0 && window.top.frames[0].ShowNoButtons!=null)
+    window.top.frames[0].ShowNoButtons();
+//-->
+</SCRIPT>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+//<!--
+var g_isIE = false, g_isNav = false, g_iMaj = 0, g_sPlat = "";
+// -->
+</SCRIPT>
+<SCRIPT SRC="../ver.js"></SCRIPT><BR>
+<SCRIPT LANGUAGE="JavaScript">if((g_isIE == true) && (g_iMaj < 4)) window.location.href = '../../../../../help/da/demo/demo_downlevel.htm'</SCRIPT>
+</HEAD>	 
+
+<BODY BGCOLOR=WHITE LINK="#0033CC" TOPMARGIN=15 LEFTMARGIN=20>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=2>
+<CENTER>
+<H1>Draggable Geometry
+</H1>
+</CENTER>
+<OBJECT ID="DAControl"
+  WIDTH=300
+  HEIGHT=300    
+  ALIGN=LEFT 
+  CLASSID="CLSID:B6FFC24C-7E13-11D0-9B47-00C04FC2F51D">
+</OBJECT>
+<SCRIPT language="JScript">  
+<!--
+   m = DAControl.MeterLibrary;
+if( m.VersionString != "5.01.15.1106" && m.VersionString != "6.00.03.0518" && m.VersionString != "5.01.17.0825" && m.VersionString != "5.01.15.0828")  {
+
+   // constants
+   cm = 0.01;      // a conversion factor from centimeters to meters
+   dim = 3*cm;     // all coordinates are specified in meters
+   pi = Math.PI;     // for specifying angles in radian.
+  
+   // Draggable Image Component
+   var mouseX, mouseY;
+   DAControl.AddBehaviorToRun
+	(m.MousePosition.X.AnimateProperty("mouseX", "JScript", false, .1));
+   DAControl.AddBehaviorToRun
+	(m.MousePosition.Y.AnimateProperty("mouseY", "JScript", false, .1)); 
+
+   // Import the needed media files
+   mediaBase = "..\\..\\..\\media\\";
+   imgBase = mediaBase + "image\\";
+   geoBase = mediaBase + "geometry\\";
+
+   // Import raw geometry and change its color to Green
+   geoRaw = m.ImportGeometry(geoBase + "cube.x");
+   clr = m.ColorHslAnim(m.Div(m.LocalTime,m.DANumber(8)), m.DANumber(1), m.DANumber(0.5));
+   geoRaw = geoRaw.DiffuseColor(clr);
+
+   // Import image
+   img = m.ImportImage(imgBase + "DXMLogo.JPG");
+   imgMapped = img.MapToUnitSquare();
+
+   // Create a new geometry - when mouse pressed it becomes a textured geo,
+   // otherwise it has the original color (see above)
+   geo = new ActiveXObject("DirectAnimation.DAGeometry");
+   geo.Init(m.Until(geoRaw, m.LeftButtonDown,
+		m.Until(geoRaw.TextureImage(imgMapped).BlendTextureDiffuse(m.DATrue),
+		m.LeftButtonUp, geo)));
+
+   // construct a Geometry that spins around the Z and X axis.
+   geoTexRot = geo.Transform(
+	m.Compose3(
+		m.Compose3(
+			m.Rotate3Rate(m.YVector3, pi/8),
+			m.Rotate3Rate(m.XVector3, pi/6)),
+		 m.Scale3Uniform(0.015))); //0.005 for "cow.x"
+
+    // Make it pickable
+   geoPick = geoTexRot.Pickable();
+
+   GrabEvent = m.AndEvent(geoPick.PickEvent, m.LeftButtonDown);
+   ReleaseEvent = m.AndEvent(geoPick.PickEvent, m.LeftButtonUp);
+
+   initPos = m.Point2(0,0);
+
+
+  function grab_proc()  {
+   GrabPos = m.UntilNotifyScript(m.Point2(mouseX, mouseY), GrabEvent, "release_proc");
+   return GrabPos;
+  }
+
+  function release_proc()  {
+   ReleasePos = m.UntilNotifyScript(m.MousePosition, ReleaseEvent, "grab_proc");
+   return ReleasePos;
+  }
+
+
+   Position = m.UntilNotifyScript(initPos, GrabEvent, "release_proc");
+
+   camera = m.PerspectiveCamera(dim*5, dim + 0.1*cm);
+   geoModel = m.UnionGeometry(geoPick.Geometry, m.DirectionalLight);
+   imgGeo = geoModel.Render(camera);
+
+   realblock = imgGeo.Transform(m.Translate2Point(Position));
+   DAControl.Image = m.Overlay(realblock, m.SolidColorImage(m.Blue)); 
+   DAControl.Start();
+
+ }
+ else
+    window.top.location.href = "../../../../../help/da/demo/demo_downlevel.htm"
+
+//-->
+
+</SCRIPT>
+</FONT>
+</BODY>
+</HTML>

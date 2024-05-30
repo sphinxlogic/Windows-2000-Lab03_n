@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>Canvas -> UICanvas</title>
+<base target="descriptions">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">Canvas to UICanvas</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.Canvas should be transformed into instances of
+com.ms.ui.UICanvas. </p>
+
+<p align="left">Canvas extends <a href="Component.htm"
+target="descriptions">Component</a>: be sure to see its changes.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">UICanvas provides no real advantage over Canvas:
+the advantages come from UIStateComponent (which UICanvas
+extends) and UIComponent (which UIStateComponent extends). Like
+other UIComponents, you can set IDs to UICanvas items and place
+them in combo boxes, buttons, etc.</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">The only change necessary is to change all
+instances of </p>
+
+<p align="left"><font face="Courier">Canvas()</font></p>
+
+<p align="left">to </p>
+
+<p align="left"><font face="Courier">UICanvas().</font></p>
+
+<p>&nbsp;</p>
+</body>
+</html>

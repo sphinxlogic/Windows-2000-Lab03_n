@@ -1,0 +1,77 @@
+//+-------------------------------------------------------------------------
+//
+//  Microsoft Windows
+//
+//  Copyright (C) Microsoft Corporation, 1999 - 1999
+//
+//  File:       certenc.rc
+//
+//--------------------------------------------------------------------------
+
+#include <windows.h>
+#include <ntverp.h>
+#include "resource.h"
+
+#define VER_FILETYPE                VFT_APP
+#define VER_FILESUBTYPE             VFT2_UNKNOWN
+#define VER_FILEDESCRIPTION_STR     "Certificate Server Encoding"
+
+#define VER_INTERNALNAME_STR        "CertEnc"
+#define VER_ORIGINALFILENAME_STR    VER_INTERNALNAME_STR
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""winnt.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "1 TYPELIB ""certenc.tlb""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CERTENCODEDATEARRAY_DESC	"Encode Date Array Class"
+    IDS_CERTENCODELONGARRAY_DESC	"Encode Long Array Class"
+    IDS_CERTENCODEALTNAME_DESC		"Encode Alternate Name Class"
+    IDS_CERTENCODESTRINGARRAY_DESC	"Encode String Array Class"
+    IDS_CERTENCODEBITSTRING_DESC	"Encode Bit String Class"
+    IDS_CERTENCODECRLDIST_DESC		"Encode CRL Distribution Points Class"
+
+
+END
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+1 TYPELIB "certenc.tlb"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
+#include <common.ver>

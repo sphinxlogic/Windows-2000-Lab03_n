@@ -1,0 +1,12 @@
+; sampprov.def : Declares the module parameters for the DLL.
+
+LIBRARY      "SampProv"
+DESCRIPTION  'SampProv Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here
+DllCanUnloadNow      @1
+DllGetClassObject    @2
+DllMain              @3
+DllRegisterServer    @4
+DllUnregisterServer  @5

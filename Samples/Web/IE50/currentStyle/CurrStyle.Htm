@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>currentStyle Demo</title>
+<style>
+div {border-style: solid; border-color:blue}
+</style>
+</head>
+<body>
+<h2>currentStyle</h2>
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false"Language="Javascript">Close This Sample</A>
+</FONT>
+<br>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+<hr>
+
+<h3 style="font-family: verdana">Click anywhere to get a listing of style/currentStyle</h3>
+<br>
+<DIV id=aDiv style="position: relative; left: 50px; background: yellow; width: 50%; height: 50px;">
+A Div
+</div>
+<br>
+
+<table border=1 style="font-style: bold">
+  <tr style="background: green">
+    <td style="background: blue; color: white;">Table Cell
+    <td>Table Cell
+  </tr>
+  <tr style="background: yellow; font-family: verdana">
+    <td>Table Cell</td>
+    <td style="cursor: hand">Table Cell</td>
+  </tr>
+</table>
+<br>
+<br>
+<script>
+function doIterate() {
+  var ts, anElement;
+  anElement = window.event.srcElement;
+  ts = "<table border=1 style='font-size: 10; font-family: verdana'>";
+  ts += "<tr style='font-style: bold; color: white; background-color: blue;'><td>"+anElement.tagName+" "+anElement.id+"</td></tr>";
+  ts += "<tr style='font-style: bold; color: white; background-color: blue;'><td>Variable</td><td>Style Value</td><td>Current Style Value</td></tr>";
+  for (varX in anElement.currentStyle) {
+     varCell = "<td>"+varX+"&nbsp</td>";
+     styleCell = "<td>"+anElement.style.getAttribute(varX)+"&nbsp</td>";
+     cstyleCell = "<td>"+eval("anElement.currentStyle."+varX)+"&nbsp</td>";
+     row = "<tr>"+varCell+styleCell+cstyleCell+"</tr>";
+     ts += row;
+  }
+
+  ts += "</table>";
+  targetArea.innerHTML = ts;
+}
+document.onclick = doIterate;
+</script>
+<span id=targetArea>
+</span>
+</body>
+</html>

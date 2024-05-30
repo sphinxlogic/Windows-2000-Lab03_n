@@ -1,0 +1,104 @@
+<HTML> 
+<HEAD>
+<TITLE>DirectAnimation SDK, JScript sample</TITLE>
+<SCRIPT LANGUAGE="JScript">
+<!--
+if (window.top.frames.length!=0 && window.top.frames[0].ShowNoButtons!=null)
+    window.top.frames[0].ShowNoButtons();
+//-->
+</SCRIPT>
+</HEAD>
+
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT><hr>	 
+
+<BODY BGCOLOR=WHITE TOPMARGIN=15 LEFTMARGIN=20>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=2> 
+<CENTER>
+<H1>Mirrors</H1>
+      
+
+          
+<OBJECT ID="DAControl"
+  STYLE="position:relative; width:600;height:500" 
+  CLASSID="CLSID:69AD90EF-1C20-11d1-8801-00C04FC29D46">
+</OBJECT>
+
+<SCRIPT LANGUAGE="JScript">
+<!--
+  m = DAControl.MeterLibrary;
+
+  camera = m.PerspectiveCamera(1, 0.1);
+  light1 = m.PointLight.Transform(m.Translate3(0.08,0,0.08));
+  light2 = m.PointLight.Transform(m.Translate3(-0.06,0,0.1));
+  light3 = m.AmbientLight.DiffuseColor(m.ColorRgb(0.3,0.3,0.3));
+
+  lights =  m.UnionGeometryArray( new Array(light1, light2));
+
+  cubeGeo = m.ImportGeometry("cube.x").DiffuseColor(m.Teal).Transform(m.Scale3Uniform(0.01));
+
+  turntable = m.ImportGeometry("cylinder_top.x").DiffuseColor(m.Gray).
+    Transform(m.Scale3Uniform(0.08)).Transform(m.Translate3(-0.03,-0.12,0));
+
+  background = m.ImportGeometry("panel2.x").DiffuseColor(m.Green).
+    Transform(m.Rotate3Degrees(m.ZVector3,180)).Transform(m.Scale3Uniform(0.04));
+
+
+  background1 = background.Transform(m.Rotate3Degrees(m.YVector3, 90)).
+    Transform(m.Translate3(-0.04,0,0.04));
+  background2 = background;
+
+  line1 = cubeGeo.Transform(m.Rotate3RateDegrees(m.YVector3,20)).
+    Transform(m.Translate3(0.01,-0.03,0.05));
+
+  geoForMirror = m.UnionGeometryArray( new Array(line1, turntable)).Transform(m.Translate3(0.02,0,0));
+  geoForMirror = geoForMirror.Transform(m.Rotate3Degrees(m.YVector3, 180));
+
+  //Construct the image for the right mirror.
+  imageForMirror2 = m.UnionGeometry(geoForMirror,lights).Render(camera.Transform(m.Rotate3Degrees(m.YVector3,-60))); 
+
+  imageForMirror2 = imageForMirror2.Transform(m.Scale2(1,0.03125));
+  imageForMirror2 = m.Overlay(imageForMirror2,m.SolidColorImage(m.Gray)).
+    Crop(m.Point2(-0.075,-0.0015),m.Point2(0.075,-0.0005));
+  imageForMirror2 = imageForMirror2.MapToUnitSquare();
+  imageForMirror2 = imageForMirror2.Transform(m.Translate2(0, -0.16));
+  imageForMirror2 = imageForMirror2.Transform(m.Scale2(2, 0.35));
+
+  background2 = background2.Texture(m.Overlay(imageForMirror2,m.SolidColorImage(m.Gray)));
+
+  //Construct the image for the left mirror.
+  imageForMirror1 = m.UnionGeometry(geoForMirror , lights).Render(
+  camera.Transform(m.Rotate3Degrees(m.YVector3,60)));
+  imageForMirror1 = imageForMirror1.Transform(m.Scale2(1,0.03125));
+  imageForMirror1 = m.Overlay(imageForMirror1,m.SolidColorImage(m.Red)).
+    Crop(m.Point2(-0.075,-0.0015),m.Point2(0.075,-0.0005));
+  imageForMirror1 = imageForMirror1.MapToUnitSquare();
+  imageForMirror1 = imageForMirror1.Transform(m.Translate2(-0.4, -0.16));
+  imageForMirror1 = imageForMirror1.Transform(m.Scale2(2,0.35));
+  background1 = background1.Texture(m.Overlay(imageForMirror1,m.SolidColorImage(m.Red)));
+
+  //Put it all together.
+  stage =  m.UnionGeometryArray( new Array(line1, background1, background2, turntable)).
+    Transform(m.Translate3(0.03,0,0)).Transform(m.Rotate3Degrees(m.YVector3, -45)).
+      Transform(m.Rotate3Degrees(m.XVector3, 10));
+
+  finalImg = m.UnionGeometry(stage , lights).Render(camera);
+
+  DAControl.Image = m.Overlay(finalImg , m.SolidColorImage(m.Black));     
+
+  DAControl.Start();
+
+//-->
+</SCRIPT>
+
+
+</CENTER>
+</FONT>
+<P>
+<P>
+<FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">
+&copy; <A HREF="/misc/cpyright.htm" TARGET="_top">1999 Microsoft Corporation. All rights reserved. Terms of use</A>.
+</FONT>
+</BODY>
+</HTML>

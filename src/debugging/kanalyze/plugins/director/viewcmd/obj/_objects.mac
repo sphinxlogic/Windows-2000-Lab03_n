@@ -1,0 +1,22 @@
+ALPHA_OBJECTS=
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS=
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\viewcmd.res \
+    $(_OBJ_DIR)\i386\viewcmd.obj \
+    $(_OBJ_DIR)\i386\vcmddll.obj \
+    $(_OBJ_DIR)\i386\util.obj
+
+PASS0_386_OBJECTS= \
+    $(PASS0_HEADERDIR)\msg.h \
+    $(MC_SOURCEDIR)\msg.rc
+
+IA64_OBJECTS=
+
+PASS0_IA64_OBJECTS=
+

@@ -1,0 +1,12 @@
+[OPTIONS]
+COPYRIGHT=Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+TITLE=Help for Sample Gateway Options
+COMPRESS=True
+WARNING=3
+
+[FILES]
+sgwadmin.rtf
+
+[WINDOWS]
+main = "Help for Sample Gateway Options",,,, (192,192,192)
+

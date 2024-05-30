@@ -1,0 +1,26 @@
+HKCR
+{
+	HBSubscriber.HBSubscriber.1 = s 'HBSubImpl Class'
+	{
+		CLSID = s '{A04D2D0E-0188-11D3-8403-0000F8751B94}'
+	}
+	HBSubscriber.HBSubscriber = s 'HBSubImpl Class'
+	{
+		CLSID = s '{A04D2D0E-0188-11D3-8403-0000F8751B94}'
+		CurVer = s 'HBSubscriber.HBSubscriber.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {A04D2D0E-0188-11D3-8403-0000F8751B94} = s 'HBSubscriber Class'
+		{
+			ProgID = s 'HBSubscriber.HBSubscriber.1'
+			VersionIndependentProgID = s 'HBSubscriber.HBSubscriber'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+			'TypeLib' = s '{05662CE2-0024-11D3-8403-0000F8751B94}'
+		}
+	}
+}

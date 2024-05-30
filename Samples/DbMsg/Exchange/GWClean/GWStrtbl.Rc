@@ -1,0 +1,48 @@
+// --gwclean.rc---------------------------------------------------------------
+//
+// Contains resource strings for GWCLEAN utility.
+//
+// Copyright (C) Microsoft Corporation 1986-1996,  All Rights Reserved
+//
+// ---------------------------------------------------------------------------
+
+#include <windows.h>
+#include "gwstring.h"
+
+// Strings used by gwclean.
+
+// U.S. English table
+STRINGTABLE
+BEGIN
+    IDS_USAGEFOLDER,"   /FOLDER=     Name of gateway folder from which to move messages.\n"
+    IDS_PARAMERR,   "ERROR: Invalid command line.  Enter GWCLEAN /? for help.\n"
+    IDS_USAGE,      "USAGE: GWCLEAN ProfileName [/DAYS= /FILE= /FOLDER= /HELP]\n"
+    IDS_BLANK,      "\012"
+    IDS_USAGEPST,   "   /FILE=       Name of file to which the messages are to be moved.\n"
+    IDS_USAGEDAYS,  "   /DAYS=       Count of days before which all messages are moved.\n"
+    IDS_USAGEPROF,  "   ProfileName  Name of the gateway profile to move messages from.\n"
+    IDS_USAGEHELP,  "   /HELP        Displays detailed help screen.\n"
+    IDS_HELPDESCR,  "Utility to move messages from gateway folder to a PST file.\n"
+    IDS_HELPDAYS1,  "   /DAYS=Num    Where 0 <= Num <= 9999. A count of days before which all\n"
+    IDS_HELPDAYS2,  "                specified folder messages are moved.  A value of 0 will move\n"
+    IDS_HELPDAYS3,  "                all messages sent on or before today.  A value of 1 will\n"
+    IDS_HELPDAYS4,  "                move all messages before yesterday.\n"
+    IDS_HELPDAYS5,  "                Defaults to 1 (yesterday).\n"
+	IDS_STARTMOVE,	"Moving messages sent prior to %s\012 from gateway %s to %s.\n"
+    IDS_OVERWRITEFILE, "WARNING: Do you want to overwrite file %s? [Y/N]\n"
+    IDS_USERCANCEL, "No output file created.\n"
+    IDS_HELPHELP,   "   /HELP        Displays this screen.\n"
+	IDS_NOPROFILE,  "ERROR: Missing required gateway profile name.\012Enter GWCLEAN /? for help.\n"
+    IDS_NOFILE,     "ERROR: Bad /FILE=FileName parameter.\012Enter GWCLEAN /? for help.\n"
+    IDS_BADDAYS,    "ERROR: Bad /DAYS=NumDays parameter.\012Enter GWCLEAN /? for help.\n"
+    IDS_NOFOLDER,   "ERROR: Bad /FOLDER=FolderName parameter.\012Enter GWCLEAN /? for help.\n"
+    IDS_HELPPST,    "                Defaults to GWCLEAN.PST\n"
+    IDS_HELPFOLDER, "                Defaults to MTS-OUT.\n"
+	IDS_EVENT_LOG,	"ERROR:	Can't open event log; error code = 0x%lx.\n"
+	IDS_1ERROR,		"ERROR:  1 error written to the event log.\n"
+	IDS_1WARNING,	"WARNING: 1 warning written to the event log.\n"
+	IDS_ERRORS,		"ERROR:  %n errors written to the event log.\n"
+	IDS_WARNINGS,	"WARNING: %n warnings written to the event log.\n"
+	IDS_OUTPUTERR,	"ERROR: Could not create output file %s.\n"
+	IDS_SUCCESS,	"\n%ld messages moved.\n"
+END

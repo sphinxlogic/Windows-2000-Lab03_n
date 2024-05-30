@@ -1,0 +1,33 @@
+HKCR
+{
+	percyctl.percyctl.1 = s 'percyctl Class'
+	{
+		CLSID = s '{F1D8212E-059E-11D1-AF9A-00A0C909FE5F}'
+	}
+	percyctl.percyctl = s 'percyctl Class'
+	{
+		CurVer = s 'percyctl.percyctl.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {F1D8212E-059E-11D1-AF9A-00A0C909FE5F} = s 'percyctl Class'
+		{
+			ProgID = s 'percyctl.percyctl.1'
+			VersionIndependentProgID = s 'percyctl.percyctl'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			ForceRemove 'Control'
+			ForceRemove 'Programmable'
+			ForceRemove 'ToolboxBitmap32' = s '%MODULE%, 1'
+			'MiscStatus' = s '0'
+			{
+			    '1' = s '131473'
+			}
+			'TypeLib' = s '{4912B211-05B0-11D1-AF9A-00A0C909FE5F}'
+			'Version' = s '1.0'
+		}
+	}
+}

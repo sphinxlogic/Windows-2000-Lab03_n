@@ -1,0 +1,71 @@
+// --UTL_CLI.chk------------------------------------------------------------------
+//
+// Parameter checking for utl_cli.cpp.
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+//
+// -----------------------------------------------------------------------------
+#ifndef DEBUG
+
+#define CHK__HrFindArrayValue(a,b,c,d)                NOERROR
+#define CHK__HrExpandCommandLineArgument(a,b,c,d,e,f) NOERROR
+
+#else
+
+//$--_HrFindArrayValue--------------------------------------------------------
+// Check the parameters of _HrFindArrayValue().
+// -----------------------------------------------------------------------------
+static _inline HRESULT CHK__HrFindArrayValue(
+    IN  LPSTR  pszValue,    // Ptr to string value to find.
+    IN  LPSTR* rgpszArray,  // Array of strings containing known values.
+    IN  ULONG  nArraySize,  // Number of known values.
+    OUT ULONG* pnIndex)     // Ptr to index of known value, ~0 if no match found.
+{
+    if( !nArraySize)
+        RETURN( E_INVALIDARG);
+
+    if( !TEST_STRINGA_PTR( pszValue))
+        RETURN( E_INVALIDARG);
+    
+    if( !TEST_READ_PTR( rgpszArray, sizeof(LPSTR) * nArraySize))
+        RETURN( E_INVALIDARG);
+
+    if( !TEST_WRITE_PTR_OR_NULL( pnIndex, sizeof(ULONG)))
+        RETURN( E_INVALIDARG);
+
+    return( NOERROR);
+}
+
+//$--CHK__HrExpandCommandLineArgument-----------------------------------------
+//  Check the parameters of _HrExpandCommandLineArgument().
+// -----------------------------------------------------------------------------
+static _inline HRESULT CHK__HrExpandCommandLineArgument(
+    IN  LPSTR  pszArg,          // flag user entered
+    IN  LPSTR* rgpszArgArray,   // array of known flag names (w/o leading dashes)
+    IN  ULONG  nArraySize,      // number of known flags
+    OUT ULONG* pnFlagIndex,     // ptr to index of known flag, -1 if no match found.
+	OUT LPSTR* ppszFlagName,	// pointer to known flag name
+    OUT LPSTR* ppszArgData)     // ptr to user data for flag
+{
+    if( !nArraySize)
+        RETURN( E_INVALIDARG);
+
+    if( !TEST_STRINGA_PTR( pszArg))
+        RETURN( E_INVALIDARG);
+    
+    if( !TEST_READ_PTR( rgpszArgArray, sizeof(LPSTR) * nArraySize))
+        RETURN( E_INVALIDARG);
+
+    if( !TEST_WRITE_PTR_OR_NULL( pnFlagIndex, sizeof(ULONG)))
+        RETURN( E_INVALIDARG);
+
+    if( !TEST_WRITE_PTR_OR_NULL( ppszFlagName, sizeof(LPSTR)))
+        RETURN( E_INVALIDARG);
+
+    if( !TEST_WRITE_PTR( ppszArgData, sizeof(LPSTR)))
+        RETURN( E_INVALIDARG);
+
+    return( NOERROR);
+}
+
+#endif /* DEBUG */

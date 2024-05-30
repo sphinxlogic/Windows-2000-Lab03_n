@@ -1,0 +1,8 @@
+LIBRARY         SieveDemo
+DESCRIPTION     'Native DLL for SieveDemo'
+
+EXPORTS
+Sieve_CountPrimes
+RNIGetCompatibleVersion
+
+

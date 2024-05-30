@@ -1,0 +1,61 @@
+// --InstForm.chk---------------------------------------------------------------
+// 
+// Parameter checking for InstForm.cpp.
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+// -----------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_HrOpenMsgStoreFolderByName(a,b,c,d)  NOERROR
+#define CHK_HrOpenFormContainer(a,b,c,d,e,f,g)   NOERROR
+
+#else
+
+// -----------------------------------------------------------------------------
+
+__inline static HRESULT CHK_HrOpenMsgStoreFolderByName(
+	IN	LPMAPISESSION	lpMAPISession,
+	IN	LPSTR			lpszMsgStore,
+	IN	LPSTR			lpszFolder,
+	OUT	LPMAPIFOLDER	*lppFolder)
+{
+	if( !TEST_IUNKNOWN_PTR( lpMAPISession) ||
+        !TEST_STRINGA_PTR_OR_NULL( lpszMsgStore) ||
+        !TEST_STRINGA_PTR( lpszFolder) ||
+        !TEST_WRITE_PTR( lppFolder, sizeof(LPMAPIFOLDER)) )
+    {
+		return( E_INVALIDARG);
+    }
+
+	return( NOERROR);
+}
+		
+// -----------------------------------------------------------------------------
+
+__inline static HRESULT CHK_HrOpenFormContainer(
+	IN	HFRMREG		hFrmReg,
+	IN	LPSTR		lpszProfile,
+	IN	LPSTR		lpszPassword,
+	IN	LPSTR		lpszMsgStore,
+	IN	LPSTR		lpszFolder,
+	OUT	LPMAPISESSION		*lppMAPISession,
+	OUT	LPMAPIFORMCONTAINER	*lppFormContainer)
+{
+    if( !(hFrmReg >= HFRMREG_DEFAULT && hFrmReg <= HFRMREG_ENTERPRISE) ||
+	    !TEST_STRINGA_PTR_OR_NULL( lpszProfile) ||
+        !TEST_STRINGA_PTR_OR_NULL( lpszPassword) ||
+        !TEST_STRINGA_PTR_OR_NULL( lpszMsgStore) ||
+        !TEST_STRINGA_PTR_OR_NULL( lpszFolder) ||
+        !TEST_WRITE_PTR_OR_NULL( lppMAPISession, sizeof(LPMAPISESSION)) ||
+	    !TEST_WRITE_PTR( lppFormContainer, sizeof(LPMAPIFORMCONTAINER)) )
+    {
+        return( E_INVALIDARG);
+    }
+
+	return( NOERROR);
+}
+
+// -----------------------------------------------------------------------------
+
+#endif  /* DEBUG */

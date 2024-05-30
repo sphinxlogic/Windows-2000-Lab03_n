@@ -1,0 +1,88 @@
+<HTML> 
+<HEAD>
+<TITLE>Exploding Sailboat, Direct Animation Sample</TITLE>
+</HEAD>  
+
+<BODY BGCOLOR=WHITE TOPMARGIN=15 LEFTMARGIN=20>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=2> 
+<CENTER>
+<H1>Exploding Sailboat</H1>
+
+<OBJECT ID="DAControl"
+  STYLE="position:relative; left:50; top:0;width:600;height:400" 
+  CLASSID="CLSID:69AD90EF-1C20-11d1-8801-00C04FC29D46">
+</OBJECT>
+
+</CENTER>
+
+<SCRIPT LANGUAGE="JScript">
+<!--
+  m = DAControl.MeterLibrary;
+
+  function simpleApply(progid, inputVal, evaluator) {
+      xf = new ActiveXObject(progid);
+      inputs = new Array(1);
+      inputs[0] = inputVal;
+      result = m.ApplyDXTransform(xf, inputs, evaluator);
+      return result.OutputBvr;
+  }
+
+  dim = 0.03;  // in meters
+
+  boat = m.ImportGeometry("../../media/geometry/sailboat.x");
+
+  // Construct a number that holds at 0 for three seconds, moves to 1
+  // over three seconds, then comes back to 0 over three seconds, then
+  // repeats.
+  holdTime = m.DANumber(0).Duration(3);
+  forward = m.Interpolate(0, 1, 3);
+  back = m.Interpolate(1, 0, 3);
+  evaluator =
+    m.Sequence(holdTime, m.Sequence(forward, back)).RepeatForever();
+
+  xformedGeo = simpleApply("DX3DTransform.Microsoft.Explode", boat, evaluator);
+
+  texture = m.ImportImage("../../media/image/crayons.gif");
+  texture = texture.MapToUnitSquare();
+  xformedGeo = xformedGeo.Texture(texture);
+
+  // Place nicely in the window.                  
+  xformedGeo = xformedGeo.Transform(m.Compose3Array(new Array(
+                                    m.Translate3(0, -dim, 0),
+                                    m.Scale3Uniform(dim/4),
+                                    m.Rotate3RateDegrees(m.YVector3, 35))));
+
+  // a point light
+  light = m.PointLight.Transform(m.Translate3(dim/2, dim/4, 1.5*dim));
+
+  // a perspective camera
+  camera = m.PerspectiveCamera(2*dim, 1.8*dim);
+
+  // render the cube with the light and camera
+  finalImg = m.UnionGeometry(xformedGeo, light).Render(camera);
+
+  fpsImg = m.StringImageAnim(m.ViewFrameRate.ToString(1),
+                             m.DefaultFont.Color(m.Red));
+  fpsImg = fpsImg.Transform(m.Scale2Uniform(2))
+                 .Transform(m.Translate2(0, -0.045));
+
+  fpsImg = m.Cond(m.LeftButtonState, fpsImg, m.EmptyImage);
+
+  finalImg = m.Overlay(fpsImg, finalImg);
+                             
+  // Use Trident timers for speed.
+  DAControl.TimerSource = 1;
+
+  col = m.ColorHslAnim(m.Div(m.LocalTime, m.DANumber(20)), m.DANumber(0.2), m.DANumber(0.9));  
+  DAControl.Image = m.Overlay(finalImg, m.SolidColorImage(col));
+
+  // start the animation       
+  DAControl.Start();
+
+//-->
+</SCRIPT>
+<P>
+
+</FONT>
+</BODY>
+</HTML>

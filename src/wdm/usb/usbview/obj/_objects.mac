@@ -1,0 +1,44 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\usbview.res \
+    $(_OBJ_DIR)\alpha\usbview.obj \
+    $(_OBJ_DIR)\alpha\display.obj \
+    $(_OBJ_DIR)\alpha\enum.obj \
+    $(_OBJ_DIR)\alpha\debug.obj \
+    $(_OBJ_DIR)\alpha\devnode.obj \
+    $(_OBJ_DIR)\alpha\dispaud.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\usbview.res \
+    $(_OBJ_DIR)\axp64\usbview.obj \
+    $(_OBJ_DIR)\axp64\display.obj \
+    $(_OBJ_DIR)\axp64\enum.obj \
+    $(_OBJ_DIR)\axp64\debug.obj \
+    $(_OBJ_DIR)\axp64\devnode.obj \
+    $(_OBJ_DIR)\axp64\dispaud.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\usbview.res \
+    $(_OBJ_DIR)\i386\usbview.obj \
+    $(_OBJ_DIR)\i386\display.obj \
+    $(_OBJ_DIR)\i386\enum.obj \
+    $(_OBJ_DIR)\i386\debug.obj \
+    $(_OBJ_DIR)\i386\devnode.obj \
+    $(_OBJ_DIR)\i386\dispaud.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\usbview.res \
+    $(_OBJ_DIR)\ia64\usbview.obj \
+    $(_OBJ_DIR)\ia64\display.obj \
+    $(_OBJ_DIR)\ia64\enum.obj \
+    $(_OBJ_DIR)\ia64\debug.obj \
+    $(_OBJ_DIR)\ia64\devnode.obj \
+    $(_OBJ_DIR)\ia64\dispaud.obj
+
+PASS0_IA64_OBJECTS=
+

@@ -1,0 +1,105 @@
+Option Explicit
+Const LAYOUTFLAG_VERTICAL_ONLY = 65
+Const LAYOUTFLAG_VERTICAL_AND_HORIZONTAL = 68
+
+On Error Resume Next
+Const olMailItem = 0
+Const olSave = 0
+
+Function Item_Open()
+   Dim MyPage
+  
+   'Choose the default option of radio button to load image
+   Set MyPage = Item.GetInspector.ModifiedFormPages("Message")
+   Select Case Item.UserProperties("Media").Value 
+   Case "Book"
+	set MyPage.imgMedia.Picture = MyPage.ImageList1.ListImages("Book").Picture
+   Case "Audio/Video"
+	set MyPage.imgMedia.Picture = MyPage.ImageList1.ListImages("AV").Picture
+   Case "Periodicals"
+	set MyPage.imgMedia.Picture = MyPage.ImageList1.ListImages("Prd").Picture
+   Case "Software"
+	set MyPage.imgMedia.Picture = MyPage.ImageList1.ListImages("Soft").Picture
+   End Select
+
+   'To Resize the Message Control Vertically
+   MyPage.frmMessage.LayoutFlags=LAYOUTFLAG_VERTICAL_AND_HORIZONTAL
+   MyPage.frmMessage.txtMessage.LayoutFlags=LAYOUTFLAG_VERTICAL_AND_HORIZONTAL 
+
+   If Item.UserProperties("ActionPerformed") <> "" Then
+      MyPage.lblAction.Caption = Item.UserProperties("ActionPerformed")
+      MyPage.lblAction.Visible = True
+      MyPage.cmdReject.Enabled = False
+      MyPage.cmdApprove.Enabled = False
+   End If
+End Function
+
+Sub  cmdApprove_Click()
+   Dim MyNameSpace,MyItem,ReviewFolder
+
+   On error resume next
+  
+   Set MyNameSpace = Application.GetNameSpace("MAPI")
+   Set ReviewFolder = MyNameSpace.GetFolderFromID(UserProperties("FolderID"))
+   Set MyItem = ReviewFolder.Items.Add("IPM.Post.EnhancedLitCrit")
+
+   CopyProperties MyItem
+         
+   MyItem.UserProperties("isApproved").value = 1
+   MyItem.Post
+
+   ' Close the current item
+   Item.UserProperties("ActionPerformed") = "You approved this critique on " & CStr(Date)
+   Item.Close(olSave) ' save for Read flag
+End Sub
+
+Sub cmdReject_Click()
+   Dim MyNameSpace,MyItem,MyMailItem,MyMailAttachment,ReviewFolder
+
+   On error resume next
+
+   Set MyNameSpace = Application.GetNameSpace("MAPI")
+   Set ReviewFolder = MyNameSpace.GetFolderFromID(UserProperties("FolderID"))
+   Set MyItem = ReviewFolder.Items.Add("IPM.Post.EnhancedLitCrit")
+   CopyProperties MyItem
+
+   MyItem.UserProperties("isApproved").value = 0 
+
+   Set MyMailItem = Application.CreateItem(olMailItem)
+   Set MyMailAttachment = MyMailItem.Attachments
+         
+   MyMailItem.To = Item.UserProperties("OldUserName").Value
+   MyMailItem.Subject = "Critique Rejected"
+   MyMailItem.Body = "<NOTE TO REVIEWER -- ENTER REJECTION COMMENTS HERE.>" & vbCrLf & vbCrLf & _
+                     "Your critique has been rejected, please resubmit it if you wish." & vbCrLf
+   MyMailAttachment.Add MyItem.Copy
+
+   ' Display for approver to add comments before sending
+   MyMailItem.Display
+
+   ' Still have to notify the public folder that this critique was rejected          
+   MyItem.Post
+
+   ' Close current item
+   Item.UserProperties("ActionPerformed") = "You rejected this critique on " & CStr(Date)
+   Item.Close(olSave) ' save for Read flag
+End Sub
+
+Sub CopyProperties(MyItem)
+   MyItem.UserProperties("ApprovalRequired").Value = Item.UserProperties("ApprovalRequired").Value
+   MyItem.UserProperties("ApproverEmail").Value = Item.UserProperties("ApproverEmail").Value
+   MyItem.UserProperties("AuthName").Value = Item.UserProperties("AuthName").Value
+   MyItem.UserProperties("bibNo").Value = Item.UserProperties("bibNo").Value
+   MyItem.UserProperties("Clarity Rating").Value = Item.UserProperties("Clarity Rating").Value
+   MyItem.UserProperties("CritiqueNo").Value = Item.UserProperties("CritiqueNo").Value
+   MyItem.UserProperties("CritiqueText").Value = Item.UserProperties("CritiqueText").Value
+   MyItem.UserProperties("Item Title").Value = Item.UserProperties("Item Title").Value
+   MyItem.UserProperties("Job Relevance").Value = Item.UserProperties("Job Relevance").Value
+   MyItem.UserProperties("LongAuthor").Value = Item.UserProperties("LongAuthor").Value
+   MyItem.UserProperties("LongMedia").Value = Item.UserProperties("LongMedia").value
+   MyItem.UserProperties("Media").Value = Item.UserProperties("Media").Value
+   MyItem.UserProperties("Overall Rating").Value = Item.UserProperties("Overall Rating").Value
+   MyItem.UserProperties("OldUserName").Value = Item.UserProperties("OldUserName").Value
+   MyItem.UserProperties("Tech Level").Value = Item.UserProperties("Tech Level").Value
+End Sub    
+    

@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Web Server Creator</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h2><a name="_web_server_creator"></a>Web Server Creator</h2>
+<p>
+Server creation, deletion, stopping, starting, configuring: these are all tasks that can keep you very busy, especially if you are an administrator of a large Internet or intranet Web site. This sample tool demonstrates how it is possible, even easy, for you to automate a large number of those tasks. </p>
+<p>
+This script provides a simple interface through which you can create a new Web server. There are several steps required to accomplish this, starting with invoking <b>GetObject</b> on the IIS://LocalHost/W3SVC node. The <b>IIsWebService</b> object's ADSI method <b>Create</b> is used to create a new <b>IIsWebServer</b> object. The server object is then configured, and the new information written back to the metabase with the <b>SetInfo</b> method.</p>
+<p>
+At this point in the script, the server is only half-way to becoming a full-fledged Web site. It now has a node in the metabase, but it is not running, nor does it have a root directory in which to store anything. To finish creating the web site, the tool creates an instance of the <b>IIsWebVirtualDir</b> ADSI object, then configures that object to be the new root directory for the new server. <b>SetInfo</b> is once again called to save the information to the metabase, and finally, if all has gone well up to this point, the server object's <b>Start</b> method is invoked. </p>
+<p>
+Note that almost every major statement group has its own set of error-code checking. This is important when creating any tool in general, but especially tools that use the IIS metabase. </p>
+<p>
+This sample is provided for educational purposes only. It has not been tested in a production environment, and Microsoft&reg; will not provide technical support for it.  </p>
+
+</BODY>
+</HTML>

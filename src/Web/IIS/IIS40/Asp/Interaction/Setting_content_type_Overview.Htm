@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Setting Content Type</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_setting_content_type"></a>  Setting Content Type</h3>
+<p>
+This is an example of a script that uses the <b>Response.ContentType</b> property to explicitly declare to the client browser the content-type of the response. Most simple HTML pages, as well as this sample, are assumed to be of the text/html content type. Sometimes, however, you will need to override this and force the browser to treat the file as a different type. </p>
+<p>
+For instance, it is possible to set the <b>Response.ContentType</b> property with the value text/plain, so that your ASP script is treated as a plain text file. Theoretically, no processing would then be done by your browser, and the entire file (minus server-side scripting) would be sent to you, HTML tags and all. It is important to note, however, that some browsers, including Internet Explorer 3.0, will automatically assume the content-type to be text/html of any file that contains an &lt;HTML&gt;, &lt;HEAD&gt;, or &lt;BODY&gt; tag, no matter what the content-type you explicitly set with <b>Response.ContentType</b>. </p>
+</BODY>
+</HTML>

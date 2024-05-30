@@ -1,0 +1,44 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\wmarkui.res \
+    $(_OBJ_DIR)\alpha\intrface.obj \
+    $(_OBJ_DIR)\alpha\dllentry.obj \
+    $(_OBJ_DIR)\alpha\fdebug.obj \
+    $(_OBJ_DIR)\alpha\fdevmode.obj \
+    $(_OBJ_DIR)\alpha\globals.obj \
+    $(_OBJ_DIR)\alpha\wmarkui.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\wmarkui.res \
+    $(_OBJ_DIR)\axp64\intrface.obj \
+    $(_OBJ_DIR)\axp64\dllentry.obj \
+    $(_OBJ_DIR)\axp64\fdebug.obj \
+    $(_OBJ_DIR)\axp64\fdevmode.obj \
+    $(_OBJ_DIR)\axp64\globals.obj \
+    $(_OBJ_DIR)\axp64\wmarkui.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\wmarkui.res \
+    $(_OBJ_DIR)\i386\intrface.obj \
+    $(_OBJ_DIR)\i386\dllentry.obj \
+    $(_OBJ_DIR)\i386\fdebug.obj \
+    $(_OBJ_DIR)\i386\fdevmode.obj \
+    $(_OBJ_DIR)\i386\globals.obj \
+    $(_OBJ_DIR)\i386\wmarkui.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\wmarkui.res \
+    $(_OBJ_DIR)\ia64\intrface.obj \
+    $(_OBJ_DIR)\ia64\dllentry.obj \
+    $(_OBJ_DIR)\ia64\fdebug.obj \
+    $(_OBJ_DIR)\ia64\fdevmode.obj \
+    $(_OBJ_DIR)\ia64\globals.obj \
+    $(_OBJ_DIR)\ia64\wmarkui.obj
+
+PASS0_IA64_OBJECTS=
+

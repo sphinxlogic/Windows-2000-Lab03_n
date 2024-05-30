@@ -1,0 +1,36 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\atitunep.res \
+    $(_OBJ_DIR)\alpha\atitunep.obj \
+    $(_OBJ_DIR)\alpha\tuneprop.obj \
+    $(_OBJ_DIR)\alpha\tunerhdw.obj \
+    $(_OBJ_DIR)\alpha\wdmtuner.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\atitunep.res \
+    $(_OBJ_DIR)\axp64\atitunep.obj \
+    $(_OBJ_DIR)\axp64\tuneprop.obj \
+    $(_OBJ_DIR)\axp64\tunerhdw.obj \
+    $(_OBJ_DIR)\axp64\wdmtuner.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\atitunep.res \
+    $(_OBJ_DIR)\i386\atitunep.obj \
+    $(_OBJ_DIR)\i386\tuneprop.obj \
+    $(_OBJ_DIR)\i386\tunerhdw.obj \
+    $(_OBJ_DIR)\i386\wdmtuner.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\atitunep.res \
+    $(_OBJ_DIR)\ia64\atitunep.obj \
+    $(_OBJ_DIR)\ia64\tuneprop.obj \
+    $(_OBJ_DIR)\ia64\tunerhdw.obj \
+    $(_OBJ_DIR)\ia64\wdmtuner.obj
+
+PASS0_IA64_OBJECTS=
+

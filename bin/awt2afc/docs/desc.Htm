@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>Sample Description Page</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">AWTClass to AFCClass</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.XXXX should be transformed into instances of
+com.ms.XXXXX. &lt;should have links to these, if we can sync that
+up&gt;</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">AWT only allows blah: we allow blah.</p>
+
+<p align="left">&nbsp;</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">This is the set of changes you need to make to
+port all XXXX methods to XXXX methods. Any method not listed here
+or below does not need to be changed.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial"><strong>AWT Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">Checkbox(String,
+        boolean)</font></td>
+        <td><font size="2" face="Courier">UICheckButton(String);<br>
+        (UICheckButton).setChecked(boolean)</font></td>
+        <td><font size="2">Better to use UIComponents<br>
+        (see above)</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getLabel()</font></td>
+        <td><font size="2" face="Courier">getName()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h3>Unsupported Methods</h3>
+
+<p>Some methods in java.awt.XXXXX are not directly supported in
+com.ms.XXXXX. Those methods and suggested changes are described
+here.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial">AWT Code<strong>/Suggested
+        AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">Checkbox(String,
+        boolean, CheckboxGroup)</font><p><font size="2"
+        face="Courier"><strong>UICheckButton(String);<br>
+        (UICheckButton).setChecked(boolean)</strong></font></p>
+        </td>
+        <td><font size="2">AFC does not have a CheckboxGroup: see
+        that page<br>
+        for more information.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2"><br>
+        </font><font size="2" face="Courier">Checkbox(String,
+        CheckboxGroup, boolean)</font><p><font size="2"
+        face="Courier"><strong>UICheckButton(String);<br>
+        (UICheckButton).setChecked(boolean)</strong></font></p>
+        </td>
+        <td><font size="2">AFC does not have a CheckboxGroup: see
+        that page<br>
+        for more information.</font></td>
+    </tr>
+</table>
+</body>
+</html>

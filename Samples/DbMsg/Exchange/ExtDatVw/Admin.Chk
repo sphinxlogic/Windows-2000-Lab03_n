@@ -1,0 +1,54 @@
+#ifndef DEBUG
+
+#define CHK_bInitSheet(a,b,c,d,e)   NOERROR
+#define CHK_ADMIN_Initialize(a,b,c) NOERROR
+
+#else
+
+// -----------------------------------------------------------------------------
+
+__inline HRESULT CHK_bInitSheet(
+    IN  ADMIN_ObjectInfo* poi,              // Server name & other DNs.
+    IN  ULONG             fFlags,                       
+    OUT ADMIN_SheetInfo** ppSheetInfo,      // Property sheet description array
+    OUT UINT*             pcsi,             // Number of property sheets
+    OUT VOID**            ppvNotUsed) // Local data (NOT USED)
+{
+    if( !TEST_READ_PTR( poi, sizeof( ADMIN_ObjectInfo)))
+        RETURN( E_INVALIDARG);
+
+    if( !TEST_WRITE_PTR( ppSheetInfo, sizeof( VOID *)))
+        RETURN( E_INVALIDARG);
+
+    if( !TEST_WRITE_PTR( pcsi, sizeof( UINT)))
+        RETURN( E_INVALIDARG);
+    
+    if( !TEST_WRITE_PTR( ppvNotUsed, sizeof( VOID *)))
+        RETURN( E_INVALIDARG);
+
+    return( NOERROR);
+}
+
+// -----------------------------------------------------------------------------
+
+__inline HRESULT CHK_ADMIN_Initialize(
+    IN  ADMIN_AdministratorConnections* pAdminConnections,  // Global Administrator Connections
+    IN  ADMIN_AdministratorFunction*    pAdminFunctions,    // Global admin function
+    OUT ADMIN_ExtensionFunction**       ppExtensionFunction)// Global Extension function
+{
+    if( !TEST_READ_PTR( pAdminConnections, sizeof( ADMIN_AdministratorConnections)))
+        RETURN( E_INVALIDARG);
+
+    if( !TEST_READ_PTR( pAdminFunctions, sizeof( ADMIN_AdministratorFunction)))
+        RETURN( E_INVALIDARG);
+
+    if( !TEST_WRITE_PTR( ppExtensionFunction, sizeof( VOID *)))
+        RETURN( E_INVALIDARG);
+
+    if( !TEST_FUNCTION_PTR( (FARPROC) pAdminFunctions->pfnGetObjectData))
+        RETURN( E_INVALIDARG);
+
+    return( NOERROR);
+}
+
+#endif /* DEBUG */

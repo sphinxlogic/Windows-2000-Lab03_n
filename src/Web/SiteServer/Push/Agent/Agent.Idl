@@ -1,0 +1,54 @@
+/****************************************************************************
+ ** 
+ ** Microsoft Site Server v3.00
+ ** (C) Copyright 1997-1998 by Microsoft Corporation.  All rights reserved.
+ ** 
+ ** THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY 
+ ** KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE 
+ ** IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR 
+ ** PURPOSE.
+ **
+ **
+ ** CONTENTS
+ **     IAgentPropPageProvider
+ **     AGENTLib
+ **
+ ** NOTES
+ **		This file defines interfaces for ATL objects.
+ **
+ ****************************************************************************/
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+    object,
+    uuid(1E29E4B7-83B2-11D1-9C43-0000F8756757),
+    dual,
+    helpstring("IAgentPropPageProvider Interface"),
+    pointer_default(unique)
+]
+interface IAgentPropPageProvider : IDispatch
+{
+};
+
+
+[
+    uuid(1E29E4AA-83B2-11D1-9C43-0000F8756757),
+    version(1.0),
+    helpstring("Site Server 3.0 Sample Agent 1.0 Type Library")
+]
+library AGENTLib
+{
+    importlib("stdole32.tlb");
+    importlib("stdole2.tlb");
+
+    [
+        uuid(1E29E4B8-83B2-11D1-9C43-0000F8756757),
+        helpstring("AgentPropPageProvider Class")
+    ]
+    coclass AgentPropPageProvider
+    {
+        [default] interface IAgentPropPageProvider;
+    };
+};

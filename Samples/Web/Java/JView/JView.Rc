@@ -1,0 +1,153 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include <winnt.h>
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE
+BEGIN
+    "#include <winnt.h>\r\n"
+END
+
+3 TEXTINCLUDE DISCARDABLE
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#ifndef _MAC
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+1 VERSIONINFO
+ FILEVERSION 4,79,0,1202
+ PRODUCTVERSION 4,79,0,1202
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0xbL
+#else
+ FILEFLAGS 0xaL
+#endif
+ FILEOS 0x10001L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904E4"
+        BEGIN
+            VALUE "CompanyName", "Microsoft Corporation\0"
+            VALUE "FileDescription", "Microsoft® Visual J++ Command-line Interpreter\0"
+            VALUE "FileVersion", "4.70.1202\0"
+            VALUE "InternalName", "JView\0"
+            VALUE "LegalCopyright", "Copyright © Microsoft Corp. 1996\0"
+            VALUE "OriginalFilename", "JVIEW.EXE\0"
+            VALUE "ProductName", "Microsoft®  Plus!  for  Windows®  95\0"
+            VALUE "ProductVersion", "4.70.1202\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+#endif    // !_MAC
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_OUTOFMEMORY         "Out of memory"
+    IDS_SCODE               "SCODE 0x%lx: Error message unavailable."
+    IDS_ERROR               "\nERROR: "
+    IDS_COULDNOTINITOLE     "Could not initialize Ole"
+    IDS_JAVAVM              "Could not locate Java Virtual Machine"
+    IDS_CLASSLOADER         "Could not obtain Java class loader"
+    IDS_NOPATHGIVEN         "No path given for %s switch"
+    IDS_INVALIDSWITCH       "Invalid command line switch: %s"
+    IDS_INVALIDPARAMETER    "Invalid parameter assignment: %s"
+    IDS_NOCLASSGIVEN        "No class file given"
+    IDS_UNKNOWNERROR        "Unknown error!"
+    IDS_EXECUTINGCLASS      "Could not execute %s"
+    IDS_PRESSANYKEY         "\nPress any key to continue..."
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_MEMBERNOTFOUND      "Member not found.\r\n"
+    IDS_NOMAIN              "\t%s must have a method of the following form to be run using JView:\n\n\t\tpublic static void main(String args[])\n\n\tIf %s is an applet, you must run it using a browser."
+    IDS_NOJAVATHREAD        "Couldn't create thread."
+    IDS_PROPSNOTSUPPORTED   "The current version of the Java VM does not support custom system properties."
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_USAGE1              "\nUsage: JView [options] <classname> [arguments]\n\n"
+    IDS_USAGE2              "Options:\n"
+    IDS_USAGE3              "    /?                 displays usage text\n"
+    IDS_USAGE4              "    /cp <classpath>    set class path\n"
+    IDS_USAGE5              "    /cp:p <path>       prepend path to class path\n"
+    IDS_USAGE6              "    /cp:a <path>       append path to class path\n"
+    IDS_USAGE7              "    /p                 pauses before terminating if an error occurs\n"
+    IDS_USAGE8				"    /v                 verify all classes\n"
+    IDS_USAGE9              "    /d:<name>=<value>  define system property\n\n"
+    IDS_USAGE10             "Classname:\n"
+    IDS_USAGE11             "    .CLASS file to be executed.\n\n"
+    IDS_USAGE12             "Arguments:\n"
+    IDS_USAGE13             "    command-line arguments to be passed on to the class file\n"
+    IDS_USAGELAST           "~"
+    IDS_BANNER1             "Microsoft (R) Command-line Loader for Java (tm) Version %1u.%02u.%04u\n"
+    IDS_BANNER2             "Copyright (C) Microsoft Corp 1996-1997. All rights reserved.\n"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

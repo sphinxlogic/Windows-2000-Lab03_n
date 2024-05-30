@@ -1,0 +1,25 @@
+HKCR
+{
+	MSExchange.SubCondition.1 = s 'SubCondition Class'
+	{
+		CLSID = s '{D61B2A9A-07A1-11D2-BC0D-00C04F8C92F7}'
+	}
+	MSExchange.SubCondition = s 'SubCondition Class'
+	{
+		CLSID = s '{D61B2A9A-07A1-11D2-BC0D-00C04F8C92F7}'
+		CurVer = s 'MSExchange.SubCondition.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {D61B2A9A-07A1-11D2-BC0D-00C04F8C92F7} = s 'SubCondition Class'
+		{
+			ProgID = s 'MSExchange.SubCondition.1'
+			VersionIndependentProgID = s 'MSExchange.SubCondition'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+		}
+	}
+}

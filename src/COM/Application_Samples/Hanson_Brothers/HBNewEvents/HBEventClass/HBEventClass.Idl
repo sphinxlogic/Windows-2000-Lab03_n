@@ -1,0 +1,29 @@
+// HBEventClass.idl : IDL source for HBEventClass.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (HBEventClass.tlb) and marshalling code.
+
+import "..\include\hb.idl";
+
+
+[
+	uuid(F9D703F2-017F-11D3-8403-0000F8751B94),
+	version(1.0),
+	helpstring("HBEventClass 1.0 Type Library")
+]
+library HBEVENTCLASSLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(1B62DA42-0180-11D3-8403-0000F8751B94),
+		helpstring("HBEvent Class")
+	]
+	coclass HBEventClass
+	{
+		interface IHB;
+		interface INewsService;
+	};
+};

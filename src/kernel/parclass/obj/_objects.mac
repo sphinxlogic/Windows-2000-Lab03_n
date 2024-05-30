@@ -1,0 +1,180 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\parclass.res \
+    $(_OBJ_DIR)\alpha\becp.obj \
+    $(_OBJ_DIR)\alpha\byte.obj \
+    $(_OBJ_DIR)\alpha\debug.obj \
+    $(_OBJ_DIR)\alpha\devobj.obj \
+    $(_OBJ_DIR)\alpha\ecp.obj \
+    $(_OBJ_DIR)\alpha\epp.obj \
+    $(_OBJ_DIR)\alpha\errlog.obj \
+    $(_OBJ_DIR)\alpha\exports.obj \
+    $(_OBJ_DIR)\alpha\hwecp.obj \
+    $(_OBJ_DIR)\alpha\hwepp.obj \
+    $(_OBJ_DIR)\alpha\ieee1284.obj \
+    $(_OBJ_DIR)\alpha\initunld.obj \
+    $(_OBJ_DIR)\alpha\ioctl.obj \
+    $(_OBJ_DIR)\alpha\nibble.obj \
+    $(_OBJ_DIR)\alpha\openclos.obj \
+    $(_OBJ_DIR)\alpha\p12843dl.obj \
+    $(_OBJ_DIR)\alpha\par12843.obj \
+    $(_OBJ_DIR)\alpha\parclass.obj \
+    $(_OBJ_DIR)\alpha\parharns.obj \
+    $(_OBJ_DIR)\alpha\parloop.obj \
+    $(_OBJ_DIR)\alpha\parstl.obj \
+    $(_OBJ_DIR)\alpha\pnp.obj \
+    $(_OBJ_DIR)\alpha\pnpfdo.obj \
+    $(_OBJ_DIR)\alpha\pnppdo.obj \
+    $(_OBJ_DIR)\alpha\port.obj \
+    $(_OBJ_DIR)\alpha\power.obj \
+    $(_OBJ_DIR)\alpha\ppa3x.obj \
+    $(_OBJ_DIR)\alpha\queue.obj \
+    $(_OBJ_DIR)\alpha\readwrit.obj \
+    $(_OBJ_DIR)\alpha\rescan.obj \
+    $(_OBJ_DIR)\alpha\spp.obj \
+    $(_OBJ_DIR)\alpha\sppieee.obj \
+    $(_OBJ_DIR)\alpha\swecp.obj \
+    $(_OBJ_DIR)\alpha\swepp.obj \
+    $(_OBJ_DIR)\alpha\test.obj \
+    $(_OBJ_DIR)\alpha\thread.obj \
+    $(_OBJ_DIR)\alpha\util.obj \
+    $(_OBJ_DIR)\alpha\wmipdo.obj
+
+PASS0_ALPHA_OBJECTS= \
+    $(PASS0_HEADERDIR)\parlog.h \
+    $(MC_SOURCEDIR)\parlog.rc
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\parclass.res \
+    $(_OBJ_DIR)\axp64\becp.obj \
+    $(_OBJ_DIR)\axp64\byte.obj \
+    $(_OBJ_DIR)\axp64\debug.obj \
+    $(_OBJ_DIR)\axp64\devobj.obj \
+    $(_OBJ_DIR)\axp64\ecp.obj \
+    $(_OBJ_DIR)\axp64\epp.obj \
+    $(_OBJ_DIR)\axp64\errlog.obj \
+    $(_OBJ_DIR)\axp64\exports.obj \
+    $(_OBJ_DIR)\axp64\hwecp.obj \
+    $(_OBJ_DIR)\axp64\hwepp.obj \
+    $(_OBJ_DIR)\axp64\ieee1284.obj \
+    $(_OBJ_DIR)\axp64\initunld.obj \
+    $(_OBJ_DIR)\axp64\ioctl.obj \
+    $(_OBJ_DIR)\axp64\nibble.obj \
+    $(_OBJ_DIR)\axp64\openclos.obj \
+    $(_OBJ_DIR)\axp64\p12843dl.obj \
+    $(_OBJ_DIR)\axp64\par12843.obj \
+    $(_OBJ_DIR)\axp64\parclass.obj \
+    $(_OBJ_DIR)\axp64\parharns.obj \
+    $(_OBJ_DIR)\axp64\parloop.obj \
+    $(_OBJ_DIR)\axp64\parstl.obj \
+    $(_OBJ_DIR)\axp64\pnp.obj \
+    $(_OBJ_DIR)\axp64\pnpfdo.obj \
+    $(_OBJ_DIR)\axp64\pnppdo.obj \
+    $(_OBJ_DIR)\axp64\port.obj \
+    $(_OBJ_DIR)\axp64\power.obj \
+    $(_OBJ_DIR)\axp64\ppa3x.obj \
+    $(_OBJ_DIR)\axp64\queue.obj \
+    $(_OBJ_DIR)\axp64\readwrit.obj \
+    $(_OBJ_DIR)\axp64\rescan.obj \
+    $(_OBJ_DIR)\axp64\spp.obj \
+    $(_OBJ_DIR)\axp64\sppieee.obj \
+    $(_OBJ_DIR)\axp64\swecp.obj \
+    $(_OBJ_DIR)\axp64\swepp.obj \
+    $(_OBJ_DIR)\axp64\test.obj \
+    $(_OBJ_DIR)\axp64\thread.obj \
+    $(_OBJ_DIR)\axp64\util.obj \
+    $(_OBJ_DIR)\axp64\wmipdo.obj
+
+PASS0_AXP64_OBJECTS= \
+    $(PASS0_HEADERDIR)\parlog.h \
+    $(MC_SOURCEDIR)\parlog.rc
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\parclass.res \
+    $(_OBJ_DIR)\i386\becp.obj \
+    $(_OBJ_DIR)\i386\byte.obj \
+    $(_OBJ_DIR)\i386\debug.obj \
+    $(_OBJ_DIR)\i386\devobj.obj \
+    $(_OBJ_DIR)\i386\ecp.obj \
+    $(_OBJ_DIR)\i386\epp.obj \
+    $(_OBJ_DIR)\i386\errlog.obj \
+    $(_OBJ_DIR)\i386\exports.obj \
+    $(_OBJ_DIR)\i386\hwecp.obj \
+    $(_OBJ_DIR)\i386\hwepp.obj \
+    $(_OBJ_DIR)\i386\ieee1284.obj \
+    $(_OBJ_DIR)\i386\initunld.obj \
+    $(_OBJ_DIR)\i386\ioctl.obj \
+    $(_OBJ_DIR)\i386\nibble.obj \
+    $(_OBJ_DIR)\i386\openclos.obj \
+    $(_OBJ_DIR)\i386\p12843dl.obj \
+    $(_OBJ_DIR)\i386\par12843.obj \
+    $(_OBJ_DIR)\i386\parclass.obj \
+    $(_OBJ_DIR)\i386\parharns.obj \
+    $(_OBJ_DIR)\i386\parloop.obj \
+    $(_OBJ_DIR)\i386\parstl.obj \
+    $(_OBJ_DIR)\i386\pnp.obj \
+    $(_OBJ_DIR)\i386\pnpfdo.obj \
+    $(_OBJ_DIR)\i386\pnppdo.obj \
+    $(_OBJ_DIR)\i386\port.obj \
+    $(_OBJ_DIR)\i386\power.obj \
+    $(_OBJ_DIR)\i386\ppa3x.obj \
+    $(_OBJ_DIR)\i386\queue.obj \
+    $(_OBJ_DIR)\i386\readwrit.obj \
+    $(_OBJ_DIR)\i386\rescan.obj \
+    $(_OBJ_DIR)\i386\spp.obj \
+    $(_OBJ_DIR)\i386\sppieee.obj \
+    $(_OBJ_DIR)\i386\swecp.obj \
+    $(_OBJ_DIR)\i386\swepp.obj \
+    $(_OBJ_DIR)\i386\test.obj \
+    $(_OBJ_DIR)\i386\thread.obj \
+    $(_OBJ_DIR)\i386\util.obj \
+    $(_OBJ_DIR)\i386\wmipdo.obj
+
+PASS0_386_OBJECTS= \
+    $(PASS0_HEADERDIR)\parlog.h \
+    $(MC_SOURCEDIR)\parlog.rc
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\parclass.res \
+    $(_OBJ_DIR)\ia64\becp.obj \
+    $(_OBJ_DIR)\ia64\byte.obj \
+    $(_OBJ_DIR)\ia64\debug.obj \
+    $(_OBJ_DIR)\ia64\devobj.obj \
+    $(_OBJ_DIR)\ia64\ecp.obj \
+    $(_OBJ_DIR)\ia64\epp.obj \
+    $(_OBJ_DIR)\ia64\errlog.obj \
+    $(_OBJ_DIR)\ia64\exports.obj \
+    $(_OBJ_DIR)\ia64\hwecp.obj \
+    $(_OBJ_DIR)\ia64\hwepp.obj \
+    $(_OBJ_DIR)\ia64\ieee1284.obj \
+    $(_OBJ_DIR)\ia64\initunld.obj \
+    $(_OBJ_DIR)\ia64\ioctl.obj \
+    $(_OBJ_DIR)\ia64\nibble.obj \
+    $(_OBJ_DIR)\ia64\openclos.obj \
+    $(_OBJ_DIR)\ia64\p12843dl.obj \
+    $(_OBJ_DIR)\ia64\par12843.obj \
+    $(_OBJ_DIR)\ia64\parclass.obj \
+    $(_OBJ_DIR)\ia64\parharns.obj \
+    $(_OBJ_DIR)\ia64\parloop.obj \
+    $(_OBJ_DIR)\ia64\parstl.obj \
+    $(_OBJ_DIR)\ia64\pnp.obj \
+    $(_OBJ_DIR)\ia64\pnpfdo.obj \
+    $(_OBJ_DIR)\ia64\pnppdo.obj \
+    $(_OBJ_DIR)\ia64\port.obj \
+    $(_OBJ_DIR)\ia64\power.obj \
+    $(_OBJ_DIR)\ia64\ppa3x.obj \
+    $(_OBJ_DIR)\ia64\queue.obj \
+    $(_OBJ_DIR)\ia64\readwrit.obj \
+    $(_OBJ_DIR)\ia64\rescan.obj \
+    $(_OBJ_DIR)\ia64\spp.obj \
+    $(_OBJ_DIR)\ia64\sppieee.obj \
+    $(_OBJ_DIR)\ia64\swecp.obj \
+    $(_OBJ_DIR)\ia64\swepp.obj \
+    $(_OBJ_DIR)\ia64\test.obj \
+    $(_OBJ_DIR)\ia64\thread.obj \
+    $(_OBJ_DIR)\ia64\util.obj \
+    $(_OBJ_DIR)\ia64\wmipdo.obj
+
+PASS0_IA64_OBJECTS= \
+    $(PASS0_HEADERDIR)\parlog.h \
+    $(MC_SOURCEDIR)\parlog.rc
+

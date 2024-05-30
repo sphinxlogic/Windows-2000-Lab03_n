@@ -1,0 +1,51 @@
+#----------------------------------------------------------------------------
+#
+# Description:
+#   Make File to assemble the libraries for the Exchange Server Development Kit
+#
+#   Copyright (C) Microsoft Corp. 1986-1998.  All Rights Reserved.
+#
+#----------------------------------------------------------------------------
+
+USE_ExchANGE = 1
+
+Proj = ExchSDK
+
+!include <BkOffice.Mak>
+
+LibList=\
+        ..\EXAdmin\$(ObjDir)\EXAdmin.Lib \
+        ..\AddrLkup\$(ObjDir)\AddrLkup.Lib \
+        ..\EDKCfg\$(ObjDir)\EDKCfg.Lib \
+        ..\EDKDebug\$(ObjDir)\EDKDebug.Lib \
+        ..\EDKEvent\$(ObjDir)\EDKEvent.Lib \
+        ..\EDKGUID\$(ObjDir)\EDKGUID.Lib \
+        ..\EDKMAPI\$(ObjDir)\EDKMAPI.Lib \
+        ..\EDKMsg\$(ObjDir)\EDKMsg.Lib \
+        ..\EDKTrack\$(ObjDir)\EDKTrack.Lib \
+        ..\EDKUtils\$(ObjDir)\EDKUtils.Lib \
+        ..\ExchInst\$(ObjDir)\ExchInst.Lib \
+        ..\GWMain\$(ObjDir)\GWMain.Lib \
+        ..\GWReport\$(ObjDir)\GWReport.Lib \
+        ..\MBLogon\$(ObjDir)\MBLogon.Lib \
+        ..\MesgXlat\$(ObjDir)\MesgXlat.Lib \
+        ..\Monitor\$(ObjDir)\Monitor.Lib \
+        ..\NewPst\$(ObjDir)\NewPst.Lib \
+        ..\Stats\$(ObjDir)\Stats.Lib \
+        ..\WinWrap\$(ObjDir)\WinWrap.Lib \
+        ..\GWPerf\$(ObjDir)\GWPerf.Lib
+
+NBLibList = \
+        DAPI.Lib     \
+        RtfLIB32.Lib \
+        SADAPI.Lib   \
+        DMAPIW32.Lib
+
+
+all: $(ObjDir)\ExchSDK$(DbgLibFlag).Lib
+
+$(ObjDir)\ExchSDK$(DbgLibFlag).Lib:  $(LibList)
+    $(MkDest)
+    $(LIBU) $(LIBFLAGS) $(LibList) $(NBLibList) $(LogCmd)
+    set copycmd=/y
+    XCopy "$@" "$(LibDir)" $(LogCmd)

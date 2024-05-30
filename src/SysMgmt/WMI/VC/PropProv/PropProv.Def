@@ -1,0 +1,9 @@
+LIBRARY         PROPPROV
+DESCRIPTION     'Sample WMI Dynamic Property Provider (c)1998 Microsoft Corp.'
+
+EXPORTS
+                DllGetClassObject       @2  PRIVATE
+                DllCanUnloadNow         @3  PRIVATE
+                DllRegisterServer       @4  PRIVATE
+                DllUnregisterServer     @5  PRIVATE
+

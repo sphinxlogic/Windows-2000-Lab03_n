@@ -1,0 +1,25 @@
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<HTML>
+<HEAD>
+<TITLE>The FRAME Tag</TITLE>
+<META NAME="FILENAME" CONTENT="frame.HTM">
+
+
+
+<object id="StockList" classid="clsid:333C7BC4-460F-11D0-BC04-0080C7055A83"
+	width=0 height=0">
+  <param name="TextQualifier" value="&quot;">
+  <param name="FieldDelim" value=",">
+  <param name="UseHeader" value="True">
+  <param name="DataURL" value="quotes.txt">
+</object>
+
+</head>
+
+<frameset cols=250,*>
+  <frame src="frame2.htm">
+  <frame datasrc="#StockList" datafld="url" name="right">
+</frameset>
+</html>

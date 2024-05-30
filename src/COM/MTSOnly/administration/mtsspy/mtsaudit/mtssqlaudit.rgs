@@ -1,0 +1,23 @@
+HKCR
+{
+	Mts.SqlAudit.1 = s 'MtsSqlAudit Class'
+	{
+		CLSID = s '{AFCF0623-1429-11D1-B1B8-00AA00BA3258}'
+	}
+	Mts.SqlAudit = s 'MtsSqlAudit Class'
+	{
+		CurVer = s 'Mts.SqlAudit.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {AFCF0623-1429-11D1-B1B8-00AA00BA3258} = s 'MtsSqlAudit Class'
+		{
+			ProgID = s 'Mts.SqlAudit.1'
+			VersionIndependentProgID = s 'Mts.SqlAudit'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+		}
+	}
+}

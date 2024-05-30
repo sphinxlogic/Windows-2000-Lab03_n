@@ -1,0 +1,294 @@
+// --edkcfg.chk----------------------------------------------------------------
+//
+//  File containing parameter checking functions for edkcfg.c.
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+// -----------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_HrCfgPackDataA(a,b,c,d,e)       NOERROR
+#define CHK_HrCfgPackDataW(a,b,c,d,e)       NOERROR
+#define CHK_HrCfgUnpackDataA(a,b,c,d,e)     NOERROR
+#define CHK_HrCfgUnpackDataW(a,b,c,d,e)     NOERROR
+#define CHK_HrOpenSiteContainer(a,b)                 NOERROR
+#define CHK_HrOpenSiteContainerAddressing(a,b)       NOERROR
+#define CHK_HrOpenSessionObject(a,b)        NOERROR
+#define CHK_HrCfgPropertyTagFromNameId(a,b,c)  NOERROR
+
+#else
+
+//$--CHK_HrCfgPackDataA---------------------------------------------------------
+//  Check the parameters for HrCfgPackDataA().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrCfgPackDataA(
+											// RETURN: HRESULT
+	IN	LPSTR			lpszOwnerTag,		// name of configuration (or NULL)
+	IN	ULONG			cProps,				// number of MAPI properties
+	IN	LPSPropValue	lpProps,			// MAPI properties for this config.
+	OUT	ULONG *			lpcbConfigData,		// size of resulting binary struct.
+	OUT	LPBYTE *		lppbConfigData)		// resulting binary structure
+{
+	HRESULT		hr			= NOERROR;
+
+	if (!TEST_STRINGA_PTR_OR_NULL(lpszOwnerTag))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (cProps && !TEST_READ_PTR(lpProps, cProps * sizeof(SPropValue)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(lpcbConfigData, sizeof(*lpcbConfigData)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(lppbConfigData, sizeof(*lppbConfigData)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+
+//$--CHK_HrCfgPackDataW---------------------------------------------------------
+//  Check the parameters for HrCfgPackDataW().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrCfgPackDataW(
+											// RETURN: HRESULT
+	IN	LPWSTR			lpwszOwnerTag,	    // name of configuration (or NULL)
+	IN	ULONG			cProps,				// number of MAPI properties
+	IN	LPSPropValue	lpProps,			// MAPI properties for this config.
+	OUT	ULONG *			lpcbConfigData,		// size of resulting binary struct.
+	OUT	LPBYTE *		lppbConfigData)		// resulting binary structure
+{
+	HRESULT		hr			= NOERROR;
+
+	if (!TEST_STRINGW_PTR_OR_NULL(lpwszOwnerTag))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (cProps && !TEST_READ_PTR(lpProps, cProps * sizeof(SPropValue)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(lpcbConfigData, sizeof(*lpcbConfigData)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(lppbConfigData, sizeof(*lppbConfigData)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+
+//$--CHK_HrCfgUnpackDataA-------------------------------------------------------
+//  Check the parameters for HrCfgUnpackDataA().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrCfgUnpackDataA(
+											// RETURNS: HRESULT
+	IN	ULONG			cbConfigData,		// size of of binary structure
+	IN	LPBYTE			lpbConfigData,		// pointer to binary structure
+	OUT	LPSTR *		    lppszOwnerTag,	    // name of configuration (or NULL)
+	OUT	ULONG *			lpcProps,			// number of MAPI properties
+	OUT	LPSPropValue *	lppProps)			// MAPI properties for this config.
+{
+	HRESULT		hr			= NOERROR;
+
+	if (!TEST_READ_PTR(lpbConfigData, cbConfigData))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR_OR_NULL(lppszOwnerTag, sizeof(*lppszOwnerTag)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(lpcProps, sizeof(*lpcProps)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(lppProps, sizeof(*lppProps)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+//$--CHK_HrCfgUnpackDataW-------------------------------------------------------
+//  Check the parameters for HrCfgUnpackDataW().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrCfgUnpackDataW(
+											// RETURNS: HRESULT
+	IN	ULONG			cbConfigData,		// size of of binary structure
+	IN	LPBYTE			lpbConfigData,		// pointer to binary structure
+	OUT	LPWSTR *		lppwszOwnerTag,	    // name of configuration (or NULL)
+	OUT	ULONG *			lpcProps,			// number of MAPI properties
+	OUT	LPSPropValue *	lppProps)			// MAPI properties for this config.
+{
+	HRESULT		hr			= NOERROR;
+
+	if (!TEST_READ_PTR(lpbConfigData, cbConfigData))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR_OR_NULL(lppwszOwnerTag, sizeof(*lppwszOwnerTag)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(lpcProps, sizeof(*lpcProps)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(lppProps, sizeof(*lppProps)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+
+//$--CHK_HrOpenSiteContainer-------------------------------------------------------------
+//  Check the parameters for HrOpenSiteContainer().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrOpenSiteContainer(		// RETURNS: HRESULT
+	IN	LPMAPISESSION	lpSession,			// MAPI session
+	OUT	LPMAPIPROP *	lppSite)			// current site
+{
+	HRESULT		hr			= NOERROR;
+
+	if (!TEST_IUNKNOWN_PTR(lpSession))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(lppSite, sizeof(*lppSite)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+
+//$--CHK_HrOpenSiteContainerAddressing---------------------------------------------------
+//  Check the parameters for HrOpenSiteContainerAddressing().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrOpenSiteContainerAddressing(// RETURNS: HRESULT
+	IN	LPMAPISESSION	lpSession,			// MAPI session
+	OUT	LPMAPIPROP *	lppSiteAddressing)  // current site addressing
+{
+	HRESULT		hr			= NOERROR;
+
+	if (!TEST_IUNKNOWN_PTR(lpSession))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(lppSiteAddressing, sizeof(*lppSiteAddressing)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+
+//$--CHK_HrOpenSessionObject----------------------------------------------------
+//  Check the parameters for HrOpenSessionObject().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrOpenSessionObject(
+											// RETURNS: HRESULT
+	IN	LPMAPISESSION	lpSession,			// MAPI session
+	OUT	LPMAPIPROP *	lppCurrentObject)	// current object
+{
+	HRESULT		hr			= NOERROR;
+
+	if (!TEST_IUNKNOWN_PTR(lpSession))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(lppCurrentObject, sizeof(*lppCurrentObject)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+
+//$--CHK_HrCfgPropertyTagFromNameId------------------------------------------------
+//  Check the parameters for CHK_HrCfgPropertyTagFromNameId().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrCfgPropertyTagFromNameId(
+											// RETURNS: HRESULT
+	IN	LPMAPIPROP		lpMAPIProp,			// IMAPIProp interface
+    IN  LONG            lNameID,            // Name ID
+	OUT	ULONG *			lpulPropTag)		// property tag for USN-Changed
+{
+	HRESULT		hr			= NOERROR;
+
+	if (!TEST_IUNKNOWN_PTR(lpMAPIProp))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(lpulPropTag, sizeof(*lpulPropTag)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+#endif /* DEBUG */

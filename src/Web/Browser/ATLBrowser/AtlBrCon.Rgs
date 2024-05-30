@@ -1,0 +1,22 @@
+HKCR
+{
+	AtlBrCon.AtlBrCon.1 = s 'AtlBrCon Class'
+	{
+		CLSID = s '{0818D430-6247-11D1-ABEE-00D049C10000}'
+	}
+	AtlBrCon.AtlBrCon = s 'AtlBrCon Class'
+	{
+		CurVer = s 'AtlBrCon.AtlBrCon.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {0818D430-6247-11D1-ABEE-00D049C10000} = s 'AtlBrCon Class'
+		{
+			ProgID = s 'AtlBrCon.AtlBrCon.1'
+			VersionIndependentProgID = s 'AtlBrCon.AtlBrCon'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			val AppID = s '{0818D423-6247-11D1-ABEE-00D049C10000}'
+		}
+	}
+}

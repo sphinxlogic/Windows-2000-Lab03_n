@@ -1,0 +1,129 @@
+<HTML> 
+<HEAD>
+<TITLE>DirectAnimation SDK, JScript sample</TITLE>
+<SCRIPT LANGUAGE="JScript">
+<!--
+if (window.top.frames.length!=0 && window.top.frames[0].ShowNoButtons!=null)
+    window.top.frames[0].ShowNoButtons();
+//-->
+</SCRIPT>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+//<!--
+var g_isIE = false, g_isNav = false, g_iMaj = 0, g_sPlat = "";
+// -->
+</SCRIPT>
+<SCRIPT SRC="../ver.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript">if((g_isIE == true) && (g_iMaj < 4)) window.location.href = '../../../../../help/da/demo/demo_downlevel.htm'</SCRIPT>
+</HEAD>	 
+
+<BODY BGCOLOR=WHITE TOPMARGIN=15 LEFTMARGIN=20>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=2> 
+<CENTER>
+<H1>Shadows</H1>
+</CENTER>
+<BR>
+
+<CENTER>
+<TABLE>
+<TR>
+<TD>
+<input type=button value="Model Clip Off" name="ModClipButton">
+<input type=button value="Alpha Shadow Off" name="AlphaShadowButton">
+</TD>
+</TR>
+<TR>
+
+<TD>      
+<OBJECT ID="DAControl"
+  STYLE="left:100; top:100;width:300;height:300" 
+  CLASSID="CLSID:B6FFC24C-7E13-11D0-9B47-00C04FC2F51D">
+</OBJECT>
+</TD>
+</TR><BR>
+</TABLE>
+</CENTER>
+
+<SCRIPT LANGUAGE="JScript">
+<!--
+  m = DAControl.MeterLibrary;
+if( m.VersionString != "5.01.15.1106" && m.VersionString != "6.00.03.0518" && m.VersionString != "5.01.17.0825" && m.VersionString != "5.01.15.0828")  {
+
+  dim = 0.03;
+
+
+  camera = m.PerspectiveCamera(2*dim, 1.1*dim);
+
+  mediaBase = "../../../Media/";
+  geoBase = mediaBase + "geometry/";
+  rawCube = m.ImportGeometry(geoBase + "cube.x");
+  
+  light = m.DirectionalLight.Transform(m.Rotate3Degrees(m.XVector3,-90));
+
+  cubeGeo = rawCube.DiffuseColor(m.Red).Transform(
+    m.Compose3Array(new Array( m.Scale3Uniform(dim/5), 
+      m.Rotate3RateDegrees(m.XVector3, 31), m.Rotate3RateDegrees(m.YVector3, 16))));
+
+  cubeBounce = m.ModifiableBehavior(m.Translate3Anim(m.DANumber(0),
+    m.Mul(m.DANumber(0.3 * dim),m.Sin(m.LocalTime)),m.DANumber(0)));
+
+  cubeGeo = cubeGeo.Transform(cubeBounce);
+
+  clippedGeo = m.ModifiableBehavior(cubeGeo);
+
+  lightAndGeo = m.UnionGeometryArray(new Array(light,clippedGeo));
+
+  // Give it a shadow.
+  shadowGeo = lightAndGeo.Shadow(lightAndGeo,m.Point3(0, -dim*0.7, 0),m.Vector3(0,1,0));
+
+  shadowAlphaGeo = m.ModifiableBehavior(shadowGeo);
+
+  finalGeo = m.UnionGeometryArray(new Array(lightAndGeo,shadowAlphaGeo));
+
+  finalImg = finalGeo.Render(camera);
+
+  DAControl.Image = m.Overlay(finalImg,m.SolidColorImage(m.Blue));
+
+  DAControl.Start();
+
+
+ 
+  function ModClipButton.onclick()  {
+    if(ModClipButton.value == "Model Clip Off")  {
+      clippedGeo.SwitchTo(cubeGeo.ModelClip(m.Point3(0, -dim*0.5, 0),m.Vector3(0,1,0)));
+      cubeBounce.SwitchTo(m.Translate3Anim(m.DANumber(0),
+	    m.Mul(m.DANumber(0.8 * dim),m.Sin(m.LocalTime)),m.DANumber(0)));
+      ModClipButton.value = "Model Clip On";
+    }
+	else  {
+      clippedGeo.SwitchTo(cubeGeo);
+      ModClipButton.value = "Model Clip Off";
+      cubeBounce.SwitchTo(m.Translate3Anim(m.DANumber(0),
+	    m.Mul(m.DANumber(0.3 * dim),m.Sin(m.LocalTime)),m.DANumber(0)));
+    }
+  }
+
+  function AlphaShadowButton.onclick()  {
+    if(AlphaShadowButton.value == "Alpha Shadow Off")  {
+	  alphaGeo = shadowGeo.ExtendedAttrib ("AlphaShadows", true);
+      alphaGeo = alphaGeo.EmissiveColor(m.Green);
+      shadowAlphaGeo.SwitchTo(alphaGeo);
+      AlphaShadowButton.value = "Alpha Shadow On";
+    }
+	else  {
+      shadowAlphaGeo.SwitchTo(shadowGeo);
+      AlphaShadowButton.value = "Alpha Shadow Off";
+    }
+  }
+} 
+else
+    window.top.location.href = "../../../../../help/da/demo/demo_downlevel.htm"
+ 
+//-->
+</SCRIPT>
+<P>
+This sample illustrates the application of shadows to geometries.  Click on the
+applicable buttons to apply model cliping and/or true alpha shadows.
+</FONT>
+</BODY>
+</HTML>
+

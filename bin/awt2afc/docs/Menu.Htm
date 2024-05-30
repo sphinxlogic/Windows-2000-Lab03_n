@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>Menu -> UIMenuList</title>
+<base target="descriptions">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">Menu to UIMenuList</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.menu should be transformed into instances of
+com.ms.ui.UIMenuList.</p>
+
+<p align="left">Menu extends <a href="MenuItem.htm"
+target="descriptions">MenuItem</a>: be sure to see its changes.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">A UIMenuList is a list of items to be displayed
+in a menu. The power of this is that you can build menus with all
+kinds of UIComponents, instead of being limited to Strings like
+in AWT. Anything that extends from UIComponent or implements the
+IUIComponent interface can be put in a UIMenuList.</p>
+
+<p align="left">UIMenuLists can implement two new styles from
+UIVerticalFlowLayout (the layout manager for UIMenuLists),
+MULTICOLUMN (to put the items into multiple columns) and FILL
+(which extends the clickable area of an item to the width of the
+menu column). So these are declared like</p>
+
+<p align="left"><font face="Courier">UIMenuList myMenuList = new
+UIMenuList(UIVerticalFlowLayout.FILL);</font></p>
+
+<p align="left">Typically, you will build a UIMenuList and then
+create a UIMenuButton with it, like</p>
+
+<p align="left"><font face="Courier">new UIMenuButton(String, /*
+flag */, myMenuList);</font></p>
+
+<p align="left">You can also use UIMenuItems (though those are
+better for submenus). Alternatively, you can build a
+context-sensitive menu by associating a UIMenuList with a
+UIComponent, like</p>
+
+<p align="left"><font face="Courier New">new
+UIContextMenu(myComponent, myMenuList);</font></p>
+
+<p align="left">You can also add a UIMenuItem to a UIMenuList to
+make a submenu. If you add a UILine to a UIMenuList, you will add
+a separator. More details on UIMenuButton and UIContextMenu can
+be found in their documentation.</p>
+
+<p align="left">AFC does not support tear-off menus.</p>
+
+<p align="left">&nbsp;</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">This is the set of changes you need to make to
+port all Menu methods to UIMenuList methods. Any method not
+listed here or below does not need to be changed.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial"><strong>AWT Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">Menu() </font></td>
+        <td nowrap><font size="2" face="Courier">UIMenuList() or<br>
+        UIMenuList(int)</font></td>
+        <td><font size="2">The int specifies a style (see above).</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">addSeparator()</font></td>
+        <td nowrap><font size="2" face="Courier">add( new
+        UILine())</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">countItems()</font></td>
+        <td><font size="2" face="Courier">getComponentCount()</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getItemCount()</font></td>
+        <td><font size="2" face="Courier">getComponentCount()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">insert(String, int)</font></td>
+        <td><font size="2" face="Courier">get(String, int)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">insertSeparator(int)</font></td>
+        <td><font size="2" face="Courier">add( new UILine(), int)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">isTearOff()</font></td>
+        <td><font size="2" face="Courier">false</font></td>
+        <td><font size="2">AFC doesn't support tear-off menus.</font></td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h3>Unsupported Methods</h3>
+
+<p>Some methods in java.awt.Menu are not directly supported in
+com.ms.ui.UIMenuList. Those methods and suggested changes are
+described here.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial">AWT Code<strong>/Suggested
+        AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">Menu(String)</font><p><font
+        size="2" face="Courier"><strong>UIMenuList()</strong></font></p>
+        </td>
+        <td><font size="2">The label of the menu has to be
+        assigned to the UIMenuButton, UIMenuItem, or
+        UIContextMenu associated with this list.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">Menu(String,
+        boolean)</font><p><font size="2" face="Courier"><strong>UIMenuList()</strong></font></p>
+        </td>
+        <td><font size="2">The label of the menu has to be
+        assigned to the UIMenuButton, UIMenuItem, or
+        UIContextMenu associated with this list. AFC does not
+        support tear-off menus.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">add(MenuItem)</font><p><font
+        size="2" face="Courier"><strong>add(UIComponent) or<br>
+        add(String)</strong></font></p>
+        </td>
+        <td><font size="2">AFC does not support </font><a
+        href="MenuItem.htm" target="descriptions"><font size="2">MenuItem</font></a><font
+        size="2">: add UIComponents or Strings instead.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getItem(int)</font><p><font
+        size="2" face="Courier"><strong>getComponent(int)</strong></font></p>
+        </td>
+        <td><font size="2">getComponent returns a UIComponent and
+        getItem returns a String.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">insert(MenuItem,
+        int)</font><p><font size="2" face="Courier"><strong>add(UIComponent,
+        int) or<br>
+        add(String, int)</strong></font></p>
+        </td>
+        <td><font size="2">AFC does not support MenuItem: add
+        UIComponents or Strings instead.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">paramString()</font><p><font
+        size="2" face="Courier"><strong>getName(), etc.</strong></font></p>
+        </td>
+        <td><font size="2">Call getName or one of the other
+        getXXX functions to get the information you need.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">remove(MenuComponent)</font><p><font
+        size="2" face="Courier"><strong>remove(UIComponent) or<br>
+        remove(int)</strong></font></p>
+        </td>
+        <td><font size="2">AFC does not support </font><a
+        href="MenuComponent.htm" target="descriptions"><font
+        size="2">MenuComponent</font></a><font size="2">: remove
+        UIComponents or Strings instead.</font></td>
+    </tr>
+</table>
+</body>
+</html>

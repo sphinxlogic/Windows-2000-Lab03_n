@@ -1,0 +1,52 @@
+#include "windows.h"
+#include "inetall.h"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_INETALL_DIALOG DIALOGEX 80, 80, 296, 222
+STYLE WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | 
+    WS_THICKFRAME
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "Wininet Universal Client"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Close",IDCANCEL,79,169,46,19
+    GROUPBOX        "URL",IDC_STATIC,15,16,112,49
+    CONTROL         "http://",IDC_HTTP,"Button",BS_AUTORADIOBUTTON,19,28,45,
+                    10
+    CONTROL         "ftp://",IDC_FTP,"Button",BS_AUTORADIOBUTTON,20,51,30,9
+    CONTROL         "file://",IDC_FILE,"Button",BS_AUTORADIOBUTTON,19,39,33,
+                    12
+    EDITTEXT        IDC_URL,64,31,57,13,ES_AUTOHSCROLL
+    GROUPBOX        "Basic Authentication",IDC_STATIC,131,16,125,50
+    LTEXT           "User Name:",IDC_STATIC,139,31,44,10
+    LTEXT           "Password:",IDC_STATIC,139,47,46,13
+    EDITTEXT        IDC_USERNAME,191,29,50,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PASSWORD,191,46,50,13,ES_PASSWORD | ES_AUTOHSCROLL
+    EDITTEXT        IDC_HTML,15,92,108,64,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL | WS_HSCROLL
+    DEFPUSHBUTTON   "Get Data",IDC_GETDATA,18,169,50,19
+    CONTROL         "Tree1",IDC_TREE1,"SysTreeView32",TVS_HASBUTTONS | 
+                    TVS_HASLINES | TVS_SHOWSELALWAYS | WS_BORDER | 
+                    WS_TABSTOP,138,73,117,83
+    CONTROL         "CERN Proxy",IDC_CERN,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,63,52,52,8
+    LTEXT           "Double click file items in tree control to download directory or file. The file is by default copied to c:\\deleteme.",
+                    IDC_STATIC,136,164,133,32
+    LTEXT           "HTML listing:",IDC_STATIC,16,82,46,8
+    LTEXT           "ftp or file directory:",IDC_STATIC,78,71,58,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BMDIR               BITMAP  DISCARDABLE     "Bmdir.bmp"
+IDB_BMERR               BITMAP  DISCARDABLE     "Bmerror.bmp"
+IDB_BMFILE              BITMAP  DISCARDABLE     "Bmfile.bmp"
+

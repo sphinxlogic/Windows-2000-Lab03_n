@@ -1,0 +1,24 @@
+HKCR
+{
+	MultiFile.MultiFile.1 = s 'MultiF Class'
+	{
+		CLSID = s '{E864AD8F-D0C2-11D1-B30B-249710C1AA07}'
+	}
+	MultiFile.MultiFile = s 'MultiF Class'
+	{
+		CurVer = s 'MultiFile.MultiFile.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {E864AD8F-D0C2-11D1-B30B-249710C1AA07} = s 'MultiF Class'
+		{
+			ProgID = s 'MultiFile.MultiFile.1'
+			VersionIndependentProgID = s 'MultiFile.MultiFile'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+		}
+	}
+}

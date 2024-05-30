@@ -1,0 +1,23 @@
+HKCR
+{
+	Db_OnlineEvents.hatStuff.1 = s 'hatStuff Class'
+	{
+		CLSID = s '{273392CD-F64C-11D1-9734-00805F31E0AF}'
+	}
+	Db_OnlineEvents.hatStuff = s 'hatStuff Class'
+	{
+		CLSID = s '{273392CD-F64C-11D1-9734-00805F31E0AF}'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {273392CD-F64C-11D1-9734-00805F31E0AF} = s 'hatStuff Class'
+		{
+			ProgID = s 'Db_OnlineEvents.hatStuff.1'
+			VersionIndependentProgID = s 'Db_OnlineEvents.hatStuff'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'both'
+			}
+		}
+	}
+}

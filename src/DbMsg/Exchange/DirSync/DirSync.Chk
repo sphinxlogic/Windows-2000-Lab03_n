@@ -1,0 +1,182 @@
+// --dirsync.chk----------------------------------------------------------------
+//
+//  File containing parameter checking functions for dirsync.c.
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+// -----------------------------------------------------------------------------
+
+#ifndef DEBUG 
+ 
+#define CHK_fExportCallback(a,b,c)                NOERROR
+#define CHK_HrProcessExportHeader(a)              NOERROR
+#define CHK_HrProcessExportEntry(a)               NOERROR
+#define CHK_fFindAttributeInList(a,b,c)           NOERROR
+#define CHK_CleanupAttributeList(a)               NOERROR
+#define CHK_HrReadWriteRegistryVariables(a,b,c,d) NOERROR
+
+#else
+
+//$--CHK_fExportCallback--------------------------------------------------------
+//  Check the parameters for fExportCallback().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_fExportCallback(
+    IN EXP_TYPE ExportDataType,             // tells whether header or data
+    IN LPVOID lpvAppDefined,                // the user's context
+    IN PDAPI_ENTRY pBimportEntry)           // array of attribute data
+{
+    HRESULT             hr                  = NOERROR;
+
+    if (ExportDataType != EXPORT_HEADER && ExportDataType != EXPORT_ENTRY)
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if (!TEST_READ_PTR(pBimportEntry, sizeof(*pBimportEntry)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+    return(hr);
+}
+
+
+
+//$--CHK_HrProcessExportHeader--------------------------------------------------
+//  Check the parameters for HrProcessExportHeader().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrProcessExportHeader(
+    IN PDAPI_ENTRY pEntry)                  // record to export
+{
+    HRESULT             hr                  = NOERROR;
+
+    if (!TEST_READ_PTR(pEntry, sizeof(*pEntry)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+    return(hr);
+}
+
+
+
+//$--CHK_HrProcessExportEntry---------------------------------------------------
+//  Check the parameters for HrProcessExportEntry().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrProcessExportEntry(
+    IN PDAPI_ENTRY pEntry)                  // record to export
+{
+    HRESULT             hr                  = NOERROR;
+
+    if (!TEST_READ_PTR(pEntry, sizeof(*pEntry)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+    return(hr);
+}
+
+
+
+//$--CHK_fFindAttributeInList--------------------------------------------------
+//  Check the parameters for HrFindAttributeInList().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_fFindAttributeInList(
+    IN LPSTR pszAttributeName,             // name of attribute to search for
+    IN LPSTR pszAttributeList,             // list of attributes
+    OUT LPSTR * ppszMatch)                 // address of match found
+{
+    HRESULT             hr                  = NOERROR;
+
+    if (!TEST_STRINGA_PTR(pszAttributeName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if (!TEST_STRINGA_PTR(pszAttributeList))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if (!TEST_WRITE_PTR_OR_NULL(ppszMatch, sizeof(*ppszMatch)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+    return(hr);
+}
+
+
+
+//$--CHK_CleanupAttributeList---------------------------------------------------
+//  Check the parameters for CleanupAttributeList().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_CleanupAttributeList(
+    IN OUT LPSTR pszAttributeList)         // attribute list to be cleaned up
+{
+    HRESULT             hr                  = NOERROR;
+
+    if (!TEST_STRINGA_PTR(pszAttributeList))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+    return(hr);
+}
+
+
+
+//$--CHK_HrReadWriteRegistryVariables-------------------------------------------
+//  Check the parameters for HrReadRegistryVariables() or 
+//  HrWriteRegistryVariables().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrReadWriteRegistryVariables(
+    IN      HANDLE          hRegistryKey,   // handle of reg key to read from
+    IN      LPSTR           pszRegistryKey, // name of registry key to read from
+    IN      DWORD           cVariables,     // number of values to read
+    IN OUT  LPREG_VARIABLE  rgrvVariables)  // array of structures that map 
+                                            // values to variables
+{
+    HRESULT             hr                  = NOERROR;
+
+    if ((!hRegistryKey) || (hRegistryKey == INVALID_HANDLE_VALUE))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if (!TEST_STRINGA_PTR(pszRegistryKey))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if (!cVariables)
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if (!TEST_WRITE_PTR(rgrvVariables, cVariables * sizeof(*rgrvVariables)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+    return(hr);
+}
+
+#endif /* DEBUG */

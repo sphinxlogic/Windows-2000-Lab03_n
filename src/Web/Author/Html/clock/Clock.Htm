@@ -1,0 +1,84 @@
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<HTML>
+<HEAD>
+<TITLE>HTML Clock</TITLE>
+<META NAME="FILENAME" CONTENT="clock.HTM">
+</HEAD>
+<BODY TOPMARGIN=20 LEFTMARGIN=40 BGCOLOR="#FFFFFF" LINK="#000066" VLINK="#666666" TEXT="#000000">
+
+<H2>HTML Clock</H2>
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT>
+<P>
+<P>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+<hr>
+<div id=Clock align=center style="font-family: Verdana; font-size: 40; color:#0000FF">&nbsp;</div>
+
+<script>
+function tick() {
+  var hours, minutes, seconds, ap;
+  var intHours, intMinutes, intSeconds;
+  var today;
+
+  today = new Date();
+
+  intHours = today.getHours();
+  intMinutes = today.getMinutes();
+  intSeconds = today.getSeconds();
+
+  if (intHours == 0) {
+     hours = "12:";
+     ap = "Midnight";
+  } else if (intHours < 12) { 
+     hours = intHours+":";
+     ap = "A.M.";
+  } else if (intHours == 12) {
+     hours = "12:";
+     ap = "Noon";
+  } else {
+     intHours = intHours - 12
+     hours = intHours + ":";
+     ap = "P.M.";
+  }
+
+  if (intMinutes < 10) {
+     minutes = "0"+intMinutes+":";
+  } else {
+     minutes = intMinutes+":";
+  }
+
+  if (intSeconds < 10) {
+     seconds = "0"+intSeconds+" ";
+  } else {
+     seconds = intSeconds+" ";
+  } 
+
+  timeString = hours+minutes+seconds+ap;
+
+  Clock.innerHTML = timeString;
+
+  window.setTimeout("tick();", 100);
+}
+
+window.onload = tick;
+
+</script>
+
+<p>This example displays the current time immediately, without 
+server interaction. This sample requires neither animated nor 
+downloaded images. The document automatically re-flows based on 
+content changes. Authors can implement this clock easily and 
+quickly with just a few lines of code.<P>
+
+<P>
+<P>
+<P>
+<FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">
+&copy; <A HREF="/misc/cpyright.htm" TARGET="_top">1999 Microsoft Corporation. All rights reserved. Terms of use</A>.
+</FONT>
+</body>
+</html>

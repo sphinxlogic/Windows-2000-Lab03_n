@@ -1,0 +1,86 @@
+// --convdllc.chk--------------------------------------------------------------
+//
+// Parameter checking for convdllc.cpp
+//
+// Copyright (C) Microsoft Corp, 1986-1996.  All rights reserved.
+//
+// ----------------------------------------------------------------------------
+
+#ifndef DEBUG
+#define CHK_CDllCache_HrAdd(a) NOERROR
+#define CHK_CDllCache_HrFind(a,b) NOERROR
+#else
+
+//$--CHK_CDllCache_HrAdd----------------------------------------------------------
+//
+// DESCRIPTION: Parameter checking for CDllCache::HrAdd()
+//
+// INPUT:       lpwszDllName  --  DLL name
+//
+// RETURNS:     HRESULT --  NOERROR if successful,
+//                          E_INVALIDARG if bad input
+//
+// ----------------------------------------------------------------------------
+static inline HRESULT CHK_CDllCache_HrAdd(
+        IN LPWSTR lpwszDllName)     // DLL to add
+{
+    HRESULT         hr          =   NOERROR;
+
+    if ( ! TEST_STRINGW_PTR(lpwszDllName) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( lstrlenW(lpwszDllName) > MAX_PATH )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return hr;
+
+}
+
+//$--CHK_CDllCache_HrFind------------------------------------------------
+//
+// DESCRIPTION: Parameter checking for CDllCache::HrFind().
+//
+// INPUT:       lpwszDllName  --  DLL name
+//
+// OUTPUT:      phInst  --  instance handle pointer
+//
+// RETURNS:     HRESULT --  NOERROR if successful,
+//                          E_INVALIDARG if bad input
+//
+// ----------------------------------------------------------------------------
+static inline HRESULT CHK_CDllCache_HrFind(
+        IN LPWSTR lpwszDllName,     // DLL to find
+        OUT HINSTANCE * phInst)     // DLL instance handle pointer
+{
+    HRESULT         hr          =   NOERROR;
+
+    if ( ! TEST_STRINGW_PTR(lpwszDllName) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_WRITE_PTR(phInst, sizeof(HINSTANCE)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return hr;
+
+}
+#endif

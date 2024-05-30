@@ -1,0 +1,34 @@
+// HB.idl	
+
+import "oaidl.idl";
+import "ocidl.idl";
+import "eventsys.idl";
+
+// IHB interface
+[
+	uuid(933220A8-0187-11D3-8403-0000F8751B94),
+	helpstring("IHB Interface"),
+	oleautomation,
+	pointer_default(unique)
+]
+interface IHB : IDispatch
+{
+	[helpstring ("method NewEvent")] HRESULT NewEvent (BSTR szNewsEvent);
+}
+
+
+// INewsService interface
+[
+	uuid(C536C1F4-0177-11D3-8403-0000F8751B94),
+	helpstring("INewsService Interface"),
+	oleautomation,
+	pointer_default(unique)
+]
+interface INewsService : IUnknown
+{
+	[helpstring("method NewsHeadline")] HRESULT NewsHeadline(BSTR szNewsHeadline);
+	[helpstring("method HotNews")] HRESULT HotNews(BSTR szHotNews);
+
+}
+
+

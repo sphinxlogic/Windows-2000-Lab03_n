@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>FontMetrics -> FxFontMetrics</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">FontMetrics to FxFontMetrics</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.FontMetrics should be transformed into instances of
+com.ms.fx.FxFontMetrics.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">FxFontMetrics extends from FontMetrics, so
+everything you could do before can still be done. However,
+FxFontMetrics provides new functionality and some advantages.
+First, you can instantiate FxFontMetrics by looking at the
+Graphics object using the font, by instantiating it as</p>
+
+<p align="left"><font size="3" face="Courier">new
+FxFontMetrics(Font, Graphics)</font></p>
+
+<p align="left">instead of just </p>
+
+<p align="left"><font size="3" face="Courier">new
+FxFontMetrics(Font)</font></p>
+
+<p align="left">In addition, FxFontMetrics provides additional
+functions, like<font size="2"> </font><font size="2"
+face="Courier">canDrawOutline(), </font>which returns whether the
+font can be drawn in outline mode, and <font size="2"
+face="Courier">getAveCharWidth()</font>, which returns the
+average character width for the current font. The documentation
+provides more features.</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">FxFontMetrics extends FontMetrics, so no changes
+need to be made to create AFC applications. It is recommended,
+though, that you change FontMetrics instances to FxFontMetrics
+instances, and note that if you wish to get the metrics of the
+font based on a graphics object, you will have to use the new
+constructor described above.</p>
+</body>
+</html>

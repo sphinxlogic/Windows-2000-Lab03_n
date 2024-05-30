@@ -1,0 +1,32 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\pciide.res \
+    $(_OBJ_DIR)\alpha\init.obj
+
+PASS0_ALPHA_OBJECTS= \
+    $(PASS0_HEADERDIR)\msg.h \
+    $(MC_SOURCEDIR)\msg.rc
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\pciide.res \
+    $(_OBJ_DIR)\axp64\init.obj
+
+PASS0_AXP64_OBJECTS= \
+    $(PASS0_HEADERDIR)\msg.h \
+    $(MC_SOURCEDIR)\msg.rc
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\pciide.res \
+    $(_OBJ_DIR)\i386\init.obj
+
+PASS0_386_OBJECTS= \
+    $(PASS0_HEADERDIR)\msg.h \
+    $(MC_SOURCEDIR)\msg.rc
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\pciide.res \
+    $(_OBJ_DIR)\ia64\init.obj
+
+PASS0_IA64_OBJECTS= \
+    $(PASS0_HEADERDIR)\msg.h \
+    $(MC_SOURCEDIR)\msg.rc
+

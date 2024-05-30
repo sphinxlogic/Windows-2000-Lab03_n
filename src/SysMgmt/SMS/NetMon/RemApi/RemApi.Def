@@ -1,0 +1,14 @@
+LIBRARY         REMAPI
+
+DESCRIPTION     "Bloodhound Remote API Parser DLL.
+
+VERSION         1.0
+
+EXPORTS
+                RemAPIFormatProperties
+
+                RemAPIRegister
+                RemAPIDeregister
+                RemAPIRecognizeFrame
+                RemAPIAttachProperties
+

@@ -1,0 +1,80 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\i8042prt.res \
+    $(_OBJ_DIR)\alpha\i8042cmn.obj \
+    $(_OBJ_DIR)\alpha\i8042dep.obj \
+    $(_OBJ_DIR)\alpha\i8042str.obj \
+    $(_OBJ_DIR)\alpha\kbdcmn.obj \
+    $(_OBJ_DIR)\alpha\kbddep.obj \
+    $(_OBJ_DIR)\alpha\kbdpnp.obj \
+    $(_OBJ_DIR)\alpha\moucmn.obj \
+    $(_OBJ_DIR)\alpha\moudep.obj \
+    $(_OBJ_DIR)\alpha\moupnp.obj \
+    $(_OBJ_DIR)\alpha\pnp.obj \
+    $(_OBJ_DIR)\alpha\sysbtn.obj \
+    $(_OBJ_DIR)\alpha\wmi.obj \
+    $(_OBJ_DIR)\alpha\hook.obj
+
+PASS0_ALPHA_OBJECTS= \
+    $(PASS0_HEADERDIR)\i8042log.h \
+    $(MC_SOURCEDIR)\i8042log.rc
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\i8042prt.res \
+    $(_OBJ_DIR)\axp64\i8042cmn.obj \
+    $(_OBJ_DIR)\axp64\i8042dep.obj \
+    $(_OBJ_DIR)\axp64\i8042str.obj \
+    $(_OBJ_DIR)\axp64\kbdcmn.obj \
+    $(_OBJ_DIR)\axp64\kbddep.obj \
+    $(_OBJ_DIR)\axp64\kbdpnp.obj \
+    $(_OBJ_DIR)\axp64\moucmn.obj \
+    $(_OBJ_DIR)\axp64\moudep.obj \
+    $(_OBJ_DIR)\axp64\moupnp.obj \
+    $(_OBJ_DIR)\axp64\pnp.obj \
+    $(_OBJ_DIR)\axp64\sysbtn.obj \
+    $(_OBJ_DIR)\axp64\wmi.obj \
+    $(_OBJ_DIR)\axp64\hook.obj
+
+PASS0_AXP64_OBJECTS= \
+    $(PASS0_HEADERDIR)\i8042log.h \
+    $(MC_SOURCEDIR)\i8042log.rc
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\i8042prt.res \
+    $(_OBJ_DIR)\i386\i8042cmn.obj \
+    $(_OBJ_DIR)\i386\i8042dep.obj \
+    $(_OBJ_DIR)\i386\i8042str.obj \
+    $(_OBJ_DIR)\i386\kbdcmn.obj \
+    $(_OBJ_DIR)\i386\kbddep.obj \
+    $(_OBJ_DIR)\i386\kbdpnp.obj \
+    $(_OBJ_DIR)\i386\moucmn.obj \
+    $(_OBJ_DIR)\i386\moudep.obj \
+    $(_OBJ_DIR)\i386\moupnp.obj \
+    $(_OBJ_DIR)\i386\pnp.obj \
+    $(_OBJ_DIR)\i386\sysbtn.obj \
+    $(_OBJ_DIR)\i386\wmi.obj \
+    $(_OBJ_DIR)\i386\hook.obj
+
+PASS0_386_OBJECTS= \
+    $(PASS0_HEADERDIR)\i8042log.h \
+    $(MC_SOURCEDIR)\i8042log.rc
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\i8042prt.res \
+    $(_OBJ_DIR)\ia64\i8042cmn.obj \
+    $(_OBJ_DIR)\ia64\i8042dep.obj \
+    $(_OBJ_DIR)\ia64\i8042str.obj \
+    $(_OBJ_DIR)\ia64\kbdcmn.obj \
+    $(_OBJ_DIR)\ia64\kbddep.obj \
+    $(_OBJ_DIR)\ia64\kbdpnp.obj \
+    $(_OBJ_DIR)\ia64\moucmn.obj \
+    $(_OBJ_DIR)\ia64\moudep.obj \
+    $(_OBJ_DIR)\ia64\moupnp.obj \
+    $(_OBJ_DIR)\ia64\pnp.obj \
+    $(_OBJ_DIR)\ia64\sysbtn.obj \
+    $(_OBJ_DIR)\ia64\wmi.obj \
+    $(_OBJ_DIR)\ia64\hook.obj
+
+PASS0_IA64_OBJECTS= \
+    $(PASS0_HEADERDIR)\i8042log.h \
+    $(MC_SOURCEDIR)\i8042log.rc
+

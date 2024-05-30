@@ -1,0 +1,213 @@
+<HTML>
+<HEAD>
+<TITLE>AFC Detect Sample</TITLE>
+</HEAD>
+
+<BODY BGPROPERTIES="FIXED" BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="#0000FF" ALINK="#0000FF" TOPMARGIN=0 LEFTMARGIN=0>
+
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE="2">
+
+<A NAME="pagetop"></A>
+
+
+<!--margin-->
+<TD WIDTH=23><IMG SRC="/art/1pixel.gif" WIDTH=23 HEIGHT=1></TD>
+<!--margin ENDS-->
+
+
+
+<!--main title (fixed coloured cell type)-->
+<BR>
+<TABLE BORDER=0 WIDTH=100%>
+<TR><TD BGCOLOR=BLUE WIDTH=200><FONT FACE="HELVETICA, ARIAL" SIZE=4 COLOR=WHITE>
+&nbsp;
+AFC</FONT>
+</TD>
+<!--main title ENDS-->
+
+
+
+<!--main title (fixed textured cell type)>
+<BR>
+<TABLE BORDER=0 WIDTH=100%>
+<TR><TD BACKGROUND="../../art/Stex_4.gif" WIDTH=200>
+<FONT FACE="HELVETICA, ARIAL" SIZE=4 COLOR=WHITE>&nbsp;
+Sample One</FONT>
+</TD>
+<main title ENDS-->
+
+
+<!--main page navigation-->
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP></TD>
+
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP><FONT FACE="ARIAL,HELVETICA" SIZE=1 COLOR=BLACK>
+<A HREF="../bandbox/sample.html"><IMG SRC="../../art/butt_pre.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Previous"></A><BR><B>
+Previous</B></FONT></TD>
+
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP><FONT FACE="ARIAL,HELVETICA" SIZE=1 COLOR=BLACK>
+<A HREF="../../art/start.htm"><IMG SRC="../../art/butt_.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Welcome"></A><BR><B>
+Welcome</B></FONT></TD>
+
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP><FONT FACE="ARIAL,HELVETICA" SIZE=1 COLOR=BLACK>
+<A HREF="../JDocView/sample.html"><IMG SRC="../../art/butt_nex.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Next"></A><BR><B>
+Next</B></FONT></TD>
+</TABLE>
+<!--main page navigation ENDS-->
+
+
+<!--this odd little break must accompany .gif filled cell title-->
+<BR>
+
+
+<TABLE BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<TR VALIGN=TOP>
+
+
+<!--main page sub-title-->
+<TD><FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=4>
+<B>Using the AFC Detect applet</B></A>
+</FONT><BR>
+
+<!--main contents (NEW TABLE required in this scenario)-->
+<TABLE BORDER=0>
+<TR><TD ALIGN=LEFT VALIGN=TOP>
+
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=2>
+<P>Using the AFC Detect applet in your own scripts and web pages is easy.<p>
+
+<p>First, include some JavaScript that asks the applet to check if AFC
+is installed. Use a script similar to:</p>
+<XMP>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+    function detectAFC()
+    {	   
+	    if (document.AFCDetect.doesSupportAFC() == 0)
+		{
+			alert("You don't have AFC installed on your machine.");
+			return 0
+		}
+	    else
+		{
+			alert("AFC is installed on your computer.");
+			return 1
+		}
+    }
+
+    document.writeln("<applet code=AFCDetect.class name=AFCDetect width=0 height=0></applet>");
+
+//-->
+</SCRIPT>
+</XMP>
+The script first loads the applet by writing the applet tag to the document. Once this
+is loaded, you can call the detectAFC() function to detect AFC. This calls the doesSupportAFC()
+function in the AFC Detect applet. Based on what that function returns, you can determine
+whether AFC is on the machine or not. You may want to customize this script, perhaps by sending the user to a different
+page if AFC is not installed.
+
+<p>Now you need some way to run this script. If you would like it to be run
+as soon as someone loads the page, put the following tag in the top of
+your HTML file:
+<xmp>
+<body onLoad="detectAFC()">
+</xmp>
+This runs the JavaScript detectAFC() function as soon as the page is loaded.
+</p>
+
+<p>The AFC Detect applet works by trying to dynamically load an AFC class (UIComponent) and
+trapping any exceptions that are thrown. If a ClassNotFoundException is caught,
+AFC is not installed, and the function returns the appropriate value. If the class
+could be loaded, AFC is installed. </p>
+
+<h2>Advanced AFC Detection - Obtaining the current AFC Version</h2>
+
+AFC Detect also supports obtaining the current version of AFC and comparing to a given
+version number. The AFC Detect applet supports the following functions:
+<ul>
+<li>public String getAFCVersionString()
+<li>public int getAFCMajorVersion()
+<li>public int getAFCMinorVersion()
+</ul>
+
+You can call them from JavaScript with a line similar to:
+<xmp>
+	iMajorVersionNumber = document.AFCDetect.getAFCMajorVersion()
+</xmp>
+
+getAFCVersionString() returns the dot-separated major and minor version number. 
+The other functions simply return the integer corresponding to that field. See the source
+for AFCDetectInfo.htm for more details. <p>
+
+	
+<!--rule-->
+<TABLE WIDTH=95%><TD HEIGHT=1 BGCOLOR=BLUE></TD></TABLE>
+
+
+
+<!--rule tex back type>
+<TABLE WIDTH=95%><TD HEIGHT=1 BACKGROUND="../../art/Stex_4.gif" BGCOLOR="WHITE"></TD></TABLE>
+<BR-->
+
+
+<TR><TD>
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=4>
+<B></A></B></FONT><BR>
+
+<!-- AFC detect applet. Won't display -->
+<applet 
+	code=AFCDetect.class 
+	name=AFCDetect 
+	width=0 
+	height=0>
+</applet>
+
+<FONT FACE="HELVETICA, ARIAL" SIZE=2>
+<B></B>
+
+<!--remarks 1-->
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=2>
+<B><I>Remarks:</I></B>
+<BR>
+<I>This sample created with Microsoft AFC.</I>
+
+<BR>
+
+<!--rule-->
+<TABLE WIDTH=95%><TD HEIGHT=2 BGCOLOR=BLUE></TD></TABLE>
+<BR>
+
+<!--page top button-->
+<TABLE WIDTH=100%><TR><TD ALIGN=LEFT><A HREF="#pagetop"><IMG SRC="../../art/butt_up.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Top"></A></TD>
+
+<!--MS copyright-->
+<TD ALIGN=RIGHT><FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK"><A HREF="../../art/cpyright.htm">&#169; 1996 Microsoft Corporation. All rights reserved.</A></FONT></TD></TR></TABLE>
+</FONT>
+
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+    function detectAFC()
+    {	   
+	    if (document.AFCDetect.doesSupportAFC() == 0)
+		{
+			alert("You don't have AFC installed on your machine.");
+			return 0
+		}
+	    else
+		{
+			alert("AFC is installed on your computer.");
+			return 1
+		}
+    }
+
+    //document.writeln("<applet code=AFCDetect.class name=AFCDetect width=0 height=0></applet>");
+
+//-->
+</SCRIPT>
+
+
+
+</BODY>
+</HTML>

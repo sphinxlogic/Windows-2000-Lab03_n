@@ -1,0 +1,53 @@
+// -----------------------------------------------------------------------------
+// prpLstCb.chk
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+// -----------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_CPropsComboBox_HrInitialize(a)      NOERROR
+#define CHK_CPropsListComboBox_HrFillBox(a)     NOERROR
+#define CHK_CPropsListComboBox_AddString(a)     NOERROR
+
+#else
+
+// $--CHK_CPropsComboBox_HrInitialize()-----------------------------------------
+// -----------------------------------------------------------------------------
+
+__inline HRESULT CHK_CPropsComboBox_HrInitialize(
+    LPMDB   pMDB)   // Ptr to MDB that contain gateway folders.
+{
+    if( !TEST_READ_PTR( pMDB, sizeof( IMsgStore)))
+        RETURN( E_INVALIDARG);
+
+    return( NOERROR);
+}
+
+// $--CHK_CPropsListComboBox_HrFillBox()----------------------------------------
+// -----------------------------------------------------------------------------
+
+__inline HRESULT CHK_CPropsListComboBox_HrFillBox( 
+    LPMAPITABLE     pTable)
+{
+    if( !TEST_READ_PTR( pTable, sizeof( IMAPITable)))
+        RETURN( E_INVALIDARG);
+    
+    return( NOERROR);
+}
+
+// $--CHK_CPropsListComboBox_AddString()----------------------------------------
+// -----------------------------------------------------------------------------
+
+__inline HRESULT CHK_CPropsListComboBox_AddString(
+    LPCSTR lpszItem)         // Ptr to string to add to list.
+{
+    if( !TEST_STRINGA_PTR( lpszItem))
+        RETURN( E_INVALIDARG);
+
+    return( NOERROR);
+}
+
+// -----------------------------------------------------------------------------
+
+#endif /* DEBUG */

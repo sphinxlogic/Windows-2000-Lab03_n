@@ -1,0 +1,1434 @@
+/************************************************************************
+*                                                                       *
+*   mswteCom.h -- IDL source for mswteCom.dll.                          *
+*                                                                       *
+*   This file will be processed by the MIDL tool to                     *
+*   produce the type library (mswteCom.tlb) and marshalling code.       *
+*                                                                       *
+*   Copyright (c) 1991-1999, Microsoft Corp. All rights reserved.       *
+*                                                                       *
+*   This is prerelease software and is provided as is and Microsoft     *
+*   makes no warranties, either express or implied. The entire risk of  *
+*   the use or the results of the use of this prerelease software       *
+*   remains with the user.                                              *
+*                                                                       *
+************************************************************************/
+
+
+import "oaidl.idl";
+import "ocidl.idl";
+import "tapi3if.idl";
+import "mswteImports.idl";
+
+interface IWebTEServer;
+interface IWebTEServers;
+interface IWebTEAddresses;
+interface IWebTEAddress;
+interface IWebTELineStatus;
+interface IWebTEArrays;
+interface IWebTEArray;
+interface IWebTEVendorDataSets;
+interface IWebTEVendorDataSet;
+interface IWebTEHtmlPropertyPages;
+interface IWebTEHtmlPropertyPage;
+interface IWebTEParametersSets;
+interface IWebTEParametersSet;
+interface IWebTELog;
+interface IWebTEApplications;
+interface IWebTEApplication;
+
+#ifndef VARIANT_FALSE
+    #define VARIANT_FALSE ((VARIANT_BOOL)0)
+#endif
+
+    [
+        object,
+        uuid(B83E8310-336C-11D3-8657-0090272F9EEB),
+        dual,
+        helpstring("IWebTE Interface"),
+        pointer_default(unique)
+    ]
+    interface IWebTE : IDispatch
+    {
+        [propget, id(1), helpstring("property Arrays")]
+         HRESULT Arrays([out, retval] IWebTEArrays **pVal);
+
+        [id(2), helpstring("method Save")]
+         HRESULT Save([in, defaultvalue(VARIANT_FALSE)] VARIANT_BOOL SaveOnlyIfCurrent);
+
+        [id(3), helpstring("method Refresh")]
+         HRESULT Refresh();
+
+        [propget, id(4), helpstring("property VendorDataSets")]
+         HRESULT VendorDataSets([out, retval] IWebTEVendorDataSets **pVal);
+    };
+    
+    [
+        object,
+        uuid(B83E8311-336C-11D3-8657-0090272F9EEB),
+        dual,
+        helpstring("IWebTEArrays Interface"),
+        pointer_default(unique)
+    ]
+    interface IWebTEArrays : IDispatch
+    {
+        [id(1), helpstring("method Save")]
+         HRESULT Save([in, defaultvalue(VARIANT_FALSE)] VARIANT_BOOL SaveOnlyIfCurrent);
+
+        [id(2), helpstring("method Refresh")]
+         HRESULT Refresh();
+
+        [propget, id(3), helpstring("property Count")]
+         HRESULT Count([out, retval] long *pVal);
+
+        [id(DISPID_VALUE), helpstring("method Item")]
+         HRESULT Item(VARIANT v, [out, retval] IWebTEArray **pItem);
+
+        [propget, id(DISPID_NEWENUM), helpstring("property _NewEnum")]
+         HRESULT _NewEnum([out, retval] IUnknown **pVal);
+
+        [id(4), helpstring("method CurrentArray")]
+         HRESULT GetContainingArray([out, retval] IWebTEArray **pItem);
+
+        [propget, id(5), helpstring("property VendorDataSets")]
+         HRESULT VendorDataSets([out, retval] IWebTEVendorDataSets **pVal);
+
+        [id(6), helpstring("method Remove")]
+         HRESULT Remove(VARIANT v);
+    };
+
+    [
+        object,
+        uuid(B83E8312-336C-11D3-8657-0090272F9EEB),
+        dual,
+        helpstring("IWebTEArray Interface"),
+        pointer_default(unique)
+    ]
+    interface IWebTEArray : IDispatch
+    {
+        [propget, id(DISPID_VALUE), helpstring("property Name")]
+         HRESULT Name([out, retval] BSTR *pVal);
+        [propput, id(DISPID_VALUE), helpstring("property Name")]
+         HRESULT Name([in] BSTR newVal);
+
+        [propget, id(1), helpstring("property Description")]
+         HRESULT Description([out, retval] BSTR *pVal);
+        [propput, id(1), helpstring("property Description")]
+         HRESULT Description([in] BSTR newVal);
+
+        [propget, id(2), helpstring("property Servers")]
+         HRESULT Servers([out, retval] IWebTEServers **pVal);
+
+        [propget, id(9), helpstring("property Applications")]
+         HRESULT Applications([out, retval] IWebTEApplications **pVal);
+
+        [propget, id(12), helpstring("property Log")]
+         HRESULT Log([out, retval] IWebTELog **pVal);
+
+        [propget, id(13), helpstring("property VendorDataSets")]
+         HRESULT VendorDataSets([out, retval] IWebTEVendorDataSets **pVal);
+
+        [id(15), helpstring("method Save")]
+         HRESULT Save([in, defaultvalue(VARIANT_FALSE)] VARIANT_BOOL SaveOnlyIfCurrent);
+
+        [id(16), helpstring("method Refresh")]
+         HRESULT Refresh();
+
+    };
+
+    [
+        object,
+        uuid(B83E8313-336C-11D3-8657-0090272F9EEB),
+        dual,
+        helpstring("IWebTEServers Interface"),
+        pointer_default(unique)
+    ]
+    interface IWebTEServers : IDispatch
+    {
+        [propget, id(1), helpstring("property Count")]
+         HRESULT Count([out, retval] long *pVal);
+
+        [id(2), helpstring("method Save")]
+         HRESULT Save([in, defaultvalue(VARIANT_FALSE)] VARIANT_BOOL SaveOnlyIfCurrent);
+
+        [id(3), helpstring("method Refresh")]
+         HRESULT Refresh();
+
+        [id(DISPID_VALUE), helpstring("method Item")]
+         HRESULT Item(VARIANT v, [out, retval] IWebTEServer **pItem);
+
+        [propget, id(DISPID_NEWENUM), helpstring("property _NewEnum")]
+         HRESULT _NewEnum([out, retval] IUnknown **pVal);
+
+        [propget, id(4), helpstring("property VendorDataSets")]
+         HRESULT VendorDataSets([out, retval] IWebTEVendorDataSets **pVal);
+    };
+
+    [
+        object,
+        uuid(B83E8314-336C-11D3-8657-0090272F9EEB),
+        dual,
+        helpstring("IWebTEServer Interface"),
+        pointer_default(unique)
+    ]
+    interface IWebTEServer : IDispatch
+    {
+        [propget, id(DISPID_VALUE), helpstring("property Name")]
+         HRESULT Name([out, retval] BSTR *pVal);
+
+        [propget, id(2), helpstring("property ProductVersion")]
+         HRESULT ProductVersion([out, retval] BSTR *pVal);
+
+        [propget, id(3), helpstring("property ProductId")]
+         HRESULT ProductId([out, retval] BSTR *pVal);
+
+        [propget, id(4), helpstring("property Description")]
+         HRESULT Description([out, retval] BSTR *pVal);
+        [propput, id(4), helpstring("property Description")]
+         HRESULT Description([in] BSTR newVal);
+
+        [propget, id(7), helpstring("property Addresses")]
+         HRESULT Addresses([out, retval] IWebTEAddresses **pVal);
+
+        [id(8), helpstring("method Save")]
+         HRESULT Save([in, defaultvalue(VARIANT_FALSE)] VARIANT_BOOL SaveOnlyIfCurrent);
+
+        [id(9), helpstring("method Refresh")]
+         HRESULT Refresh();
+
+        [propget, id(10), helpstring("property VendorDataSets")]
+         HRESULT VendorDataSets([out, retval] IWebTEVendorDataSets **pVal);
+
+    };
+
+    [
+        object,
+        uuid(B83E8315-336C-11D3-8657-0090272F9EEB),
+        dual,
+        helpstring("IWebTEAddresses Interface"),
+        pointer_default(unique)
+    ]
+    interface IWebTEAddresses : IDispatch
+    {
+        [propget, id(1), helpstring("property Count")]
+         HRESULT Count([out, retval] long *pVal);
+
+        [id(2), helpstring("method Save")]
+         HRESULT Save([in, defaultvalue(VARIANT_FALSE)] VARIANT_BOOL SaveOnlyIfCurrent);
+
+        [id(3), helpstring("method Refresh")]
+         HRESULT Refresh();
+
+        [id(4), helpstring("method RefreshStatus")]
+         HRESULT RefreshStatus();
+
+        [id(DISPID_VALUE), helpstring("method Item")]
+         HRESULT Item(VARIANT v, [out, retval] IWebTEAddress **pItem);
+
+        [propget, id(DISPID_NEWENUM), helpstring("property _NewEnum")]
+         HRESULT _NewEnum([out, retval] IUnknown **pVal);
+
+        [propget, id(5), helpstring("property VendorDataSets")]
+         HRESULT VendorDataSets([out, retval] IWebTEVendorDataSets **pVal);
+    };
+
+    [
+        object,
+        uuid(B83E8316-336C-11D3-8657-0090272F9EEB),
+        dual,
+        helpstring("IWebTEAddress Interface"),
+        pointer_default(unique)
+    ]
+    interface IWebTEAddress : IDispatch
+    {
+        [propget, id(1), helpstring("property Name")]
+         HRESULT Name([out, retval] BSTR *pVal);
+
+        [propget, id(2), helpstring("property SupportsCalledID")]
+         HRESULT SupportsCalledID([out, retval] VARIANT_BOOL *pVal);
+
+        [propget, id(3), helpstring("property DialableAddress")]
+         HRESULT DialableAddress([out, retval] BSTR *pVal);
+
+        [propput, id(4), helpstring("property AssignedApplication")]
+         HRESULT AssignedApplication([in] BSTR newVal);
+        [propget, id(4), helpstring("property AssignedApplication")]
+         HRESULT AssignedApplication([out, retval] BSTR *pVal);
+
+        [propget, id(5), helpstring("property Status")]
+         HRESULT Status([out, retval] IWebTELineStatus **pVal);
+
+        [propget, id(6), helpstring("property Description")] HRESULT Description([out, retval] BSTR *pVal);
+        [propput, id(6), helpstring("property Description")] HRESULT Description([in] BSTR newVal);
+        
+        [propget, id(21), helpstring("property VendorDataSets")]
+         HRESULT VendorDataSets([out, retval] IWebTEVendorDataSets **pVal);
+
+        [id(22), helpstring("method Save")]
+         HRESULT Save([in, defaultvalue(VARIANT_FALSE)] VARIANT_BOOL SaveOnlyIfCurrent);
+
+        [id(23), helpstring("method Refresh")]
+         HRESULT Refresh();
+    };
+
+    [
+        object,
+        uuid(B83E8317-336C-11D3-8657-0090272F9EEB),
+        dual,
+        helpstring("WebTELineStatus Interface"),
+        pointer_default(unique)
+    ]
+    interface IWebTELineStatus : IDispatch
+    {
+        [propget, id(1), helpstring("property Status")]
+         HRESULT Status([out, retval] LineStatusType *pVal);
+
+        [propget, id(2), helpstring("property Duration")]
+         HRESULT Duration([out, retval] LONG *pVal);
+
+        [propget, id(4), helpstring("property Application")]
+         HRESULT Application([out, retval] BSTR *pVal);
+
+        [propget, id(14), helpstring("property CallerId")]
+         HRESULT CallerId([out, retval] BSTR *pVal);
+
+        [propget, id(15), helpstring("property CalledId")]
+         HRESULT CalledId([out, retval] BSTR *pVal);
+
+        [id(20), helpstring("method Refresh")]
+         HRESULT Refresh();
+    };
+
+    [
+            object,
+            uuid(B83E8318-336C-11D3-8657-0090272F9EEB),
+            dual,
+            helpstring("IWebTEVendorDataSets Interface"),
+            pointer_default(unique)
+    ]
+    interface IWebTEVendorDataSets : IDispatch
+    {
+        [id(DISPID_VALUE), helpstring("method Item")]
+        HRESULT Item(VARIANT v, [out, retval] IWebTEVendorDataSet **pItem);
+
+        [propget, id(DISPID_NEWENUM), helpstring("property _NewEnum")]
+        HRESULT _NewEnum([out, retval] IUnknown **pVal);
+        
+        [propget, id(1), helpstring("property Count")]
+        HRESULT Count([out, retval] long *pVal);
+
+        [id(2), helpstring("method Save")]
+        HRESULT Save([in, defaultvalue(VARIANT_FALSE)] VARIANT_BOOL SaveOnlyIfCurrent);
+        
+        [id(3), helpstring("method Refresh")]
+        HRESULT Refresh();
+        
+        [id(5), helpstring("method Add")]
+        HRESULT Add([in] BSTR Id, [out,retval] IWebTEVendorDataSet **ppNewSet);
+        
+        [id(6), helpstring("method Remove")]
+        HRESULT  Remove(VARIANT v);
+    };
+
+    [
+            object,
+            uuid(B83E8319-336C-11D3-8657-0090272F9EEB),
+            dual,
+            helpstring("IWebTEVendorDataSet Interface"),
+            pointer_default(unique)
+    ]
+    interface IWebTEVendorDataSet : IDispatch
+    {
+        [propget, id(1), helpstring("property PropertyPages")]
+        HRESULT PropertyPages([out, retval] IWebTEHtmlPropertyPages **ppPages);
+        
+        [propget, id(2), helpstring("property ParametersSets")]
+        HRESULT ParametersSets([out, retval] IWebTEParametersSets **ppSets);
+        
+        
+        
+        [propget, id(3), helpstring("property Id")]
+        HRESULT Id([out, retval] BSTR *pVal);
+        [propput, id(3), helpstring("property Id")]
+        HRESULT Id([in] BSTR newVal);
+        
+        
+        [id(4), helpstring("method Save")]
+        HRESULT Save([in, defaultvalue(VARIANT_FALSE)] VARIANT_BOOL SaveOnlyIfCurrent);
+        
+        [id(5), helpstring("method Refresh")]
+        HRESULT Refresh();
+    };
+
+    [
+        object,
+        uuid(B83E831A-336C-11D3-8657-0090272F9EEB),
+        dual,
+        helpstring("IWebTEHtmlPropertyPages Interface"),
+        pointer_default(unique)
+    ]
+    interface IWebTEHtmlPropertyPages : IDispatch
+    {
+        [id(DISPID_VALUE), helpstring("method Item")]
+        HRESULT Item(VARIANT v, [out, retval] IWebTEHtmlPropertyPage **pItem);
+        
+        [propget, id(DISPID_NEWENUM), helpstring("property _NewEnum")]
+        HRESULT _NewEnum([out, retval] IUnknown **pVal);
+        
+        [propget, id(1), helpstring("property Count")]
+        HRESULT Count([out, retval] long *pVal);
+        
+        [id(2), helpstring("method Save")]
+        HRESULT Save([in, defaultvalue(VARIANT_FALSE)] VARIANT_BOOL SaveOnlyIfCurrent);
+        
+        [id(3), helpstring("method Refresh")]
+        HRESULT Refresh();
+        
+        [id(4), helpstring("method Add")]
+        HRESULT Add(BSTR Caption, BSTR RelativePath,
+          [out, retval] IWebTEHtmlPropertyPage **ppVal);
+        
+        [id(5), helpstring("method Remove")]
+        HRESULT  Remove(VARIANT v);
+    }
+
+    [
+        object,
+        uuid(B83E831B-336C-11D3-8657-0090272F9EEB),
+        dual,
+        helpstring("IWebTEHtmlPropertyPage Interface"),
+        pointer_default(unique)
+    ]
+    interface IWebTEHtmlPropertyPage : IDispatch
+    {
+        [propget, id(1), helpstring("property RelativePath")]
+        HRESULT RelativePath([out, retval] BSTR *pVal);
+        [propput, id(1), helpstring("property RelativePath")]
+        HRESULT RelativePath([in] BSTR newVal);
+        
+        [propget, id(DISPID_VALUE), helpstring("property Caption")]
+        HRESULT Caption([out, retval] BSTR *pVal);
+        [propput, id(DISPID_VALUE), helpstring("property Caption")]
+        HRESULT Caption([in] BSTR newVal);
+        
+        [propget, id(3), helpstring("property HtmHelpPath")]
+        HRESULT HtmHelpPath([out, retval] BSTR *pVal);
+        [propput, id(3), helpstring("property HtmHelpPath")]
+        HRESULT HtmHelpPath([in] BSTR newVal);
+        
+        [propget, id(4), helpstring("property HtmHelpEntry")]
+        HRESULT HtmHelpEntry([out, retval] BSTR *pVal);
+        [propput, id(4), helpstring("property HtmHelpEntry")]
+        HRESULT HtmHelpEntry([in] BSTR newVal);
+        
+        [id(5), helpstring("method Save")]
+        HRESULT Save([in, defaultvalue(VARIANT_FALSE)] VARIANT_BOOL SaveOnlyIfCurrent);
+        
+        [id(6), helpstring("method Refresh")]
+        HRESULT Refresh();
+    }
+
+    [
+            object,
+            uuid(B83E831C-336C-11D3-8657-0090272F9EEB),
+            dual,
+            helpstring("IWebTEParametersSets Interface"),
+            pointer_default(unique)
+    ]
+    interface IWebTEParametersSets : IDispatch
+    {
+        [id(DISPID_VALUE), helpstring("method Item")]
+        HRESULT Item(VARIANT v, [out, retval] IWebTEParametersSet **pItem);
+        
+        [propget, id(DISPID_NEWENUM), helpstring("property _NewEnum")]
+        HRESULT _NewEnum([out, retval] IUnknown **pVal);
+        
+        [propget, id(1), helpstring("property Count")]
+        HRESULT Count([out, retval] long *pVal);
+        
+        [id(2), helpstring("method Save")]
+        HRESULT Save([in, defaultvalue(VARIANT_FALSE)] VARIANT_BOOL SaveOnlyIfCurrent);
+        
+        [id(3), helpstring("method Refresh")]
+        HRESULT Refresh();
+        
+        [id(5), helpstring("method Add")]
+        HRESULT Add([in] BSTR Id, [out,retval] IWebTEParametersSet **ppNewSet);
+        
+        [id(6), helpstring("method Remove")]
+        HRESULT  Remove(VARIANT v);
+    };
+
+    [
+        object,
+        uuid(B83E831D-336C-11D3-8657-0090272F9EEB),
+        dual,
+        helpstring("IWebTEParametersSet Interface"),
+        pointer_default(unique)
+    ]
+    interface IWebTEParametersSet : IDispatch
+    {
+        [propget, id(DISPID_VALUE), helpstring("property Value")]
+        HRESULT Value([in] BSTR Name, [out, retval] VARIANT *pVal);
+        [propput, id(DISPID_VALUE), helpstring("property Value")]
+        HRESULT Value([in] BSTR Name, [in] VARIANT newVal);
+        
+        [propget, id(1), helpstring("property Name")]
+        HRESULT Name([out, retval] BSTR *pName);
+        [propput, id(1), helpstring("property Name")]
+        HRESULT Name([in] BSTR Name);
+        
+        [helpstring("method RemoveValue")]
+        HRESULT RemoveValue([in] BSTR Name);
+        
+        [helpstring("method Save")]
+        HRESULT Save([in, defaultvalue(VARIANT_FALSE)] VARIANT_BOOL SaveOnlyIfCurrent);
+        
+        [helpstring("method Refresh")]
+        HRESULT Refresh();
+        
+        [helpstring("method WaitForChanges - for C/C++ only (do not work with DCOM)"), hidden]
+        HRESULT WaitForChanges([in] DWORD/*HANDLE*/ hEvent);
+        
+        
+        [propget, id(2), helpstring("property AllNames")]
+        HRESULT AllNames([out, retval] VARIANT *pItem);
+    };
+
+
+
+    [
+            object,
+            uuid(B83E831F-336C-11D3-8657-0090272F9EEB),
+            dual,
+            helpstring("IWebTELog Interface"),
+            pointer_default(unique)
+    ]
+    interface IWebTELog : IDispatch
+    {
+        [id(1), helpstring("method Save")] HRESULT Save([in, defaultvalue(VARIANT_FALSE)] VARIANT_BOOL SaveOnlyIfCurrent);
+        
+        [id(2), helpstring("method Refresh")] HRESULT Refresh();
+        
+        [propget, id(10), helpstring("property LogType")]
+        HRESULT LogType([out, retval] LogType *pVal);
+        [propput, id(10), helpstring("property LogType")]
+        HRESULT LogType([in] LogType newVal);
+        
+        [propget, id(11), helpstring("property LogFilePeriod")]
+        HRESULT LogFilePeriod([out, retval] LogPeriodType *pVal);
+        [propput, id(11), helpstring("property LogFilePeriod")]
+        HRESULT LogFilePeriod([in] LogPeriodType newVal);
+        
+        [propget, id(12), helpstring("property LogFileTruncateSize")]
+        HRESULT LogFileTruncateSize([out, retval] int *pVal);
+        [propput, id(12), helpstring("property LogFileTruncateSize")]
+        HRESULT LogFileTruncateSize([in] int newVal);
+        
+        [propget, id(13), helpstring("property LogFieldSelection")]
+        HRESULT LogFieldSelection([out, retval] int *pVal);
+        [propput, id(13), helpstring("property LogFieldSelection")]
+        HRESULT LogFieldSelection([in] int newVal);
+        
+        [propget, id(14), helpstring("property LogFilesCompress")]
+        HRESULT LogFilesCompress([out, retval] VARIANT_BOOL *pVal);
+        [propput, id(14), helpstring("property LogFilesCompress")]
+        HRESULT LogFilesCompress([in] VARIANT_BOOL newVal);
+        
+        [propget, id(15), helpstring("property LogFileKeepOld")]
+        HRESULT LogFileKeepOld([out, retval] VARIANT_BOOL *pVal);
+        [propput, id(15), helpstring("property LogFileKeepOld")]
+        HRESULT LogFileKeepOld([in] VARIANT_BOOL newVal);
+        
+        [propget, id(16), helpstring("property LogFileStopIfFull")]
+        HRESULT LogFileStopIfFull([out, retval] VARIANT_BOOL *pVal);
+        [propput, id(16), helpstring("property LogFileStopIfFull")]
+        HRESULT LogFileStopIfFull([in] VARIANT_BOOL newVal);
+        
+        [propget, id(17), helpstring("property LogFileDirectory")]
+        HRESULT LogFileDirectory([out, retval] BSTR *pVal);
+        [propput, id(17), helpstring("property LogFileDirectory")]
+        HRESULT LogFileDirectory([in] BSTR newVal);
+        
+        [propget, id(18), helpstring("property LogSqlDataSource")]
+        HRESULT LogSqlDataSource([out, retval] BSTR *pVal);
+        [propput, id(18), helpstring("property LogSqlDataSource")]
+        HRESULT LogSqlDataSource([in] BSTR newVal);
+        
+        [propget, id(19), helpstring("property LogSqlTableName")]
+        HRESULT LogSqlTableName([out, retval] BSTR *pVal);
+        [propput, id(19), helpstring("property LogSqlTableName")]
+        HRESULT LogSqlTableName([in] BSTR newVal);
+        
+        [propget, id(20), helpstring("property LogFileDirectoryType")]
+        HRESULT LogFileDirectoryType([out, retval] LogFileDirectoryType *pVal);
+        [propput, id(20), helpstring("property LogFileDirectoryType")]
+        HRESULT LogFileDirectoryType([in] LogFileDirectoryType newVal);
+    };
+
+    [
+        object,
+        uuid(B83E8321-336C-11D3-8657-0090272F9EEB),
+        dual,
+        helpstring("IWebTEApplications Interface"),
+        pointer_default(unique)
+    ]
+    interface IWebTEApplications : IDispatch
+    {
+        [propget, id(1), helpstring("property Count")]
+        HRESULT Count([out, retval] long *retval);
+        
+        [propget, id(14), helpstring("property VendorDataSets")]
+        HRESULT VendorDataSets([out, retval] IWebTEVendorDataSets **pVal);
+        
+        [id(DISPID_VALUE), helpstring("Item")]
+        HRESULT Item([in] VARIANT Index, [out, retval] IWebTEApplication **retval);
+        
+        [propget, restricted, id(DISPID_NEWENUM), helpstring("property _NewEnum")]
+        HRESULT _NewEnum([out, retval] LPUNKNOWN *retval);
+        
+        [id(10), helpstring("method Add")]
+        HRESULT Add([in] BSTR Name, [in] BSTR HomePage,
+        [out, retval] IWebTEApplication **ppVal);
+        
+        [id(11), helpstring("method Remove")]
+        HRESULT Remove([in] VARIANT v);
+        
+        [id(12), helpstring("method Refresh")]
+        HRESULT Refresh();
+        
+        [id(13), helpstring("method Save")]
+        HRESULT Save([in, defaultvalue(VARIANT_FALSE)] VARIANT_BOOL SaveOnlyIfCurrent);
+    };
+
+
+    [
+        object,
+        uuid(B83E8322-336C-11D3-8657-0090272F9EEB),
+        dual,
+        helpstring("IWebTEApplication Interface"),
+        pointer_default(unique)
+    ]
+    interface IWebTEApplication : IDispatch
+    {
+        [id(1), helpstring("method Refresh")]
+        HRESULT Refresh();
+        
+        [id(2), helpstring("method Save")]
+        HRESULT Save([in, defaultvalue(VARIANT_FALSE)] VARIANT_BOOL SaveOnlyIfCurrent);
+        
+        [propget, id(9), helpstring("property VendorDataSets")]
+        HRESULT VendorDataSets([out, retval] IWebTEVendorDataSets **pVal);
+        
+        [propget, id(10), helpstring("property Name")]
+        HRESULT Name([out, retval] BSTR *pVal);
+        [propput, id(10), helpstring("property Name")]
+        HRESULT Name([in] BSTR newVal);
+        
+        [propget, id(11), helpstring("property Description")]
+        HRESULT Description([out, retval] BSTR *pVal);
+        [propput, id(11), helpstring("property Description")]
+        HRESULT Description([in] BSTR newVal);
+        
+        [propget, id(12), helpstring("property HomePage")]
+        HRESULT HomePage([out, retval] BSTR *pVal);
+        [propput, id(12), helpstring("property HomePage")]
+        HRESULT HomePage([in] BSTR newVal);
+        
+        [propget, id(14), helpstring("property InputTerminator")]
+        HRESULT InputTerminator([out, retval] BSTR *pVal);
+        [propput, id(14), helpstring("property InputTerminator")]
+        HRESULT InputTerminator([in] BSTR newVal);
+        
+        [propget, id(15), helpstring("property BackKey")]
+        HRESULT BackKey([out, retval] BSTR *pVal);
+        [propput, id(15), helpstring("property BackKey")]
+        HRESULT BackKey([in] BSTR newVal);
+        
+        [propget, id(16), helpstring("property HomeKey")]
+        HRESULT HomeKey([out, retval] BSTR *pVal);
+        [propput, id(16), helpstring("property HomeKey")]
+        HRESULT HomeKey([in] BSTR newVal);
+        
+        [propget, id(17), helpstring("property OperatorKey")]
+        HRESULT OperatorKey([out, retval] BSTR *pVal);
+        [propput, id(17), helpstring("property OperatorKey")]
+        HRESULT OperatorKey([in] BSTR newVal);
+        
+        [propget, id(18), helpstring("property OperatorExtension")]
+        HRESULT OperatorExtension([out, retval] BSTR *pVal);
+        [propput, id(18), helpstring("property OperatorExtension")]
+        HRESULT OperatorExtension([in] BSTR newVal);
+        
+        [propget, id(19), helpstring("property PressButtonKey")]
+        HRESULT PressButtonKey([out, retval] BSTR *pVal);
+        [propput, id(19), helpstring("property PressButtonKey")]
+        HRESULT PressButtonKey([in] BSTR newVal);
+        
+        [propget, id(20), helpstring("property SkipButtonKey")]
+        HRESULT SkipButtonKey([out, retval] BSTR *pVal);
+        [propput, id(20), helpstring("property SkipButtonKey")]
+        HRESULT SkipButtonKey([in] BSTR newVal);
+        
+        [propget, id(21), helpstring("property SetCheckBoxKey")]
+        HRESULT SetCheckBoxKey([out, retval] BSTR *pVal);
+        [propput, id(21), helpstring("property SetCheckBoxKey")]
+        HRESULT SetCheckBoxKey([in] BSTR newVal);
+        
+        [propget, id(22), helpstring("property ClearCheckBoxKey")]
+        HRESULT ClearCheckBoxKey([out, retval] BSTR *pVal);
+        [propput, id(22), helpstring("property ClearCheckBoxKey")]
+        HRESULT ClearCheckBoxKey([in] BSTR newVal);
+        
+		//      (SELECT MULTIPLE).
+        [propget, id(23), helpstring("property IgnoreNavigationKeysTillTermination")]
+        HRESULT IgnoreNavigationKeysTillTermination([out, retval] VARIANT_BOOL *pVal);
+        [propput, id(23), helpstring("property IgnoreNavigationKeysTillTermination")]
+        HRESULT IgnoreNavigationKeysTillTermination([in] VARIANT_BOOL newVal);
+        
+        [propget, id(24), helpstring("property DetectABCD")]
+        HRESULT DetectABCD([out, retval] VARIANT_BOOL *pVal);
+        [propput, id(24), helpstring("property DetectABCD")]
+        HRESULT DetectABCD([in] VARIANT_BOOL newVal);
+        
+        [propget, id(25), helpstring("property MaxRecordTime")]
+        HRESULT MaxRecordTime([out, retval] int *pVal);
+        [propput, id(25), helpstring("property MaxRecordTime")]
+        HRESULT MaxRecordTime([in] int newVal);
+        
+        [propget, id(26), helpstring("property RecordStopSilenceTime")]
+        HRESULT RecordStopSilenceTime([out, retval] int *pVal);
+        [propput, id(26), helpstring("property RecordStopSilenceTime")]
+        HRESULT RecordStopSilenceTime([in] int newVal);
+        
+        [propget, id(27), helpstring("property InvalidKeyAnnouncement")]
+        HRESULT InvalidKeyAnnouncement([out, retval] BSTR *pVal);
+        [propput, id(27), helpstring("property InvalidKeyAnnouncement")]
+        HRESULT InvalidKeyAnnouncement([in] BSTR newVal);
+        
+        [propget, id(28), helpstring("property TimeoutAnnouncement")]
+        HRESULT TimeoutAnnouncement([out, retval] BSTR *pVal);
+        [propput, id(28), helpstring("property TimeoutAnnouncement")]
+        HRESULT TimeoutAnnouncement([in] BSTR newVal);
+        
+        [propget, id(29), helpstring("property MaxRetries")]
+        HRESULT MaxRetries([out, retval] int *pVal);
+        [propput, id(29), helpstring("property MaxRetries")]
+        HRESULT MaxRetries([in] int newVal);
+        
+        [propget, id(30), helpstring("property FirstTimeoutInterval")]
+        HRESULT FirstTimeoutInterval([out, retval] int *pVal);
+        [propput, id(30), helpstring("property FirstTimeoutInterval")]
+        HRESULT FirstTimeoutInterval([in] int newVal);
+        
+        [propget, id(31), helpstring("property InterTimeoutInterval")]
+        HRESULT InterTimeoutInterval([out, retval] int *pVal);
+        [propput, id(31), helpstring("property InterTimeoutInterval")]
+        HRESULT InterTimeoutInterval([in] int newVal);
+        
+        [propget, id(32), helpstring("property RecurringErrorPage")]
+        HRESULT RecurringErrorPage([out, retval] BSTR *pVal);
+        [propput, id(32), helpstring("property RecurringErrorPage")]
+        HRESULT RecurringErrorPage([in] BSTR newVal);
+        
+        [propget, id(33), helpstring("property RenderTTS")]
+        HRESULT RenderTTS([out, retval] VARIANT_BOOL *pVal);
+        [propput, id(33), helpstring("property RenderTTS")]
+        HRESULT RenderTTS([in] VARIANT_BOOL newVal);
+        
+        [propget, id(34), helpstring("property TTSParameters")]
+        HRESULT TTSParameters([out, retval] BSTR *pVal);
+        [propput, id(34), helpstring("property TTSParameters")]
+        HRESULT TTSParameters([in] BSTR newVal);
+        
+        [propget, id(35), helpstring("property SRParameters")]
+        HRESULT SRParameters([out, retval] BSTR *pVal);
+        [propput, id(35), helpstring("property SRParameters")]
+        HRESULT SRParameters([in] BSTR newVal);
+        
+        [propget, id(36), helpstring("property LogEventSelection")]
+        HRESULT LogEventSelection([out, retval] int *pVal);
+        [propput, id(36), helpstring("property LogEventSelection")]
+        HRESULT LogEventSelection([in] int newVal);
+        
+        [propget, id(37), helpstring("property DelayedAnswering")]
+        HRESULT DelayedAnswering([out, retval] VARIANT_BOOL *pVal);
+        [propput, id(37), helpstring("property DelayedAnswering")]
+        HRESULT DelayedAnswering([in] VARIANT_BOOL newVal);
+        
+        [propget, id(38), helpstring("property FinalPage")]
+        HRESULT FinalPage([out, retval] BSTR *pVal);
+        [propput, id(38), helpstring("property FinalPage")]
+        HRESULT FinalPage([in] BSTR newVal);
+        
+        [propget, id(39), helpstring("property RenderTablesAsTabularData")]
+        HRESULT RenderTablesAsTabularData([out, retval] VARIANT_BOOL *pVal);
+        [propput, id(39), helpstring("property RenderTablesAsTabularData")]
+        HRESULT RenderTablesAsTabularData([in] VARIANT_BOOL newVal);
+        
+        [propget, id(40), helpstring("property InitialAutoNumber")]
+        HRESULT InitialAutoNumber([out, retval] BSTR *pVal);
+        [propput, id(40), helpstring("property InitialAutoNumber")]
+        HRESULT InitialAutoNumber([in] BSTR newVal);
+        
+        [propget, id(41), helpstring("property ShutdownTime")]
+        HRESULT ShutdownTime([out, retval] int *pVal);
+        [propput, id(41), helpstring("property ShutdownTime")]
+        HRESULT ShutdownTime([in] int newVal);
+        
+        [propget, id(42), helpstring("property ShutdownAnnouncement")]
+        HRESULT ShutdownAnnouncement([out, retval] BSTR *pVal);
+        [propput, id(42), helpstring("property ShutdownAnnouncement")]
+        HRESULT ShutdownAnnouncement([in] BSTR newVal);
+        
+        [propget, id(43), helpstring("property SRThreshold")]
+        HRESULT SRThreshold([out, retval] int *pVal);
+        [propput, id(43), helpstring("property SRThreshold")]
+        HRESULT SRThreshold([in] int newVal);
+        
+        [propget, id(44), helpstring("property UseSR")]
+        HRESULT UseSR([out, retval] VARIANT_BOOL *pVal);
+        [propput, id(44), helpstring("property UseSR")]
+        HRESULT UseSR([in] VARIANT_BOOL newVal);
+        
+        [propget, id(45), helpstring("property ConfirmBefore")]
+        HRESULT ConfirmBefore([out, retval] BSTR *pVal);
+        [propput, id(45), helpstring("property ConfirmBefore")]
+        HRESULT ConfirmBefore([in] BSTR newVal);
+        
+        [propget, id(46), helpstring("property ConfirmAfter")]
+        HRESULT ConfirmAfter([out, retval] BSTR *pVal);
+        [propput, id(46), helpstring("property ConfirmAfter")]
+        HRESULT ConfirmAfter([in] BSTR newVal);
+        
+        [propget, id(47), helpstring("property OfferItems")]
+        HRESULT OfferItems([out, retval] VARIANT_BOOL *pVal);
+        [propput, id(47), helpstring("property OfferItems")]
+        HRESULT OfferItems([in] VARIANT_BOOL newVal);
+        
+        [propget, id(48), helpstring("property PressButtonPhrases")]
+        HRESULT PressButtonPhrases([out, retval] BSTR *pVal);
+        [propput, id(48), helpstring("property PressButtonPhrases")]
+        HRESULT PressButtonPhrases([in] BSTR newVal);
+        
+        [propget, id(49), helpstring("property SkipButtonPhrases")]
+        HRESULT SkipButtonPhrases([out, retval] BSTR *pVal);
+        [propput, id(49), helpstring("property SkipButtonPhrases")]
+        HRESULT SkipButtonPhrases([in] BSTR newVal);
+        
+        [propget, id(50), helpstring("property SetCheckBoxPhrases")]
+        HRESULT SetCheckBoxPhrases([out, retval] BSTR *pVal);
+        [propput, id(50), helpstring("property SetCheckBoxPhrases")]
+        HRESULT SetCheckBoxPhrases([in] BSTR newVal);
+        
+        [propget, id(51), helpstring("property ClearCheckBoxPhrases")]
+        HRESULT ClearCheckBoxPhrases([out, retval] BSTR *pVal);
+        [propput, id(51), helpstring("property ClearCheckBoxPhrases")]
+        HRESULT ClearCheckBoxPhrases([in] BSTR newVal);
+        
+        [propget, id(52), helpstring("property NavigationAnnouncement")]
+        HRESULT NavigationAnnouncement([out, retval] BSTR *pVal);
+        [propput, id(52), helpstring("property NavigationAnnouncement")]
+        HRESULT NavigationAnnouncement([in] BSTR newVal);
+        
+        [propget, id(53), helpstring("property RepeatMenuAnnouncement")]
+        HRESULT RepeatMenuAnnouncement([out, retval] BSTR *pVal);
+        [propput, id(53), helpstring("property RepeatMenuAnnouncement")]
+        HRESULT RepeatMenuAnnouncement([in] BSTR newVal);
+        
+        [propget, id(54), helpstring("property RepeatMenuKey")]
+        HRESULT RepeatMenuKey([out, retval] BSTR *pVal);
+        [propput, id(54), helpstring("property RepeatMenuKey")]
+        HRESULT RepeatMenuKey([in] BSTR newVal);
+        
+        [propget, id(55), helpstring("property DownloadControlFlags")]
+        HRESULT DownloadControlFlags([out, retval] int *pVal);
+        [propput, id(55), helpstring("property DownloadControlFlags")]
+        HRESULT DownloadControlFlags([in] int newVal);
+        
+        [propget, id(56), helpstring("property OperatorTransferType")]
+        HRESULT OperatorTransferType([out, retval] int *pVal);
+        [propput, id(56), helpstring("property OperatorTransferType")]
+        HRESULT OperatorTransferType([in] int newVal);
+        
+        [propget, id(57), helpstring("property Vendor")]
+        HRESULT Vendor([out, retval] BSTR *pVal);
+        [propput, id(57), helpstring("property Vendor")]
+        HRESULT Vendor([in] BSTR newVal);
+        
+        [propget, id(58), helpstring("property EnableFullConfiguration")]
+        HRESULT EnableFullConfiguration([out, retval] VARIANT_BOOL *pVal);
+        [propput, id(58), helpstring("property EnableFullConfiguration")]
+        HRESULT EnableFullConfiguration([in] VARIANT_BOOL newVal);
+        
+        [propget, id(59), helpstring("property RecordStopOnAnyKey")]
+        HRESULT RecordStopOnAnyKey([out, retval] VARIANT_BOOL *pVal);
+        [propput, id(59), helpstring("property RecordStopOnAnyKey")]
+        HRESULT RecordStopOnAnyKey([in] VARIANT_BOOL newVal);
+    };
+    
+        [
+                object,
+                uuid(AFA50DD0-33A8-11D3-8658-0090272F9EEB),
+                dual,
+                helpstring("IApplicationConstrains Interface"),
+                pointer_default(unique)
+        ]
+        interface ITelephonyStepConstrains : IDispatch
+        {
+
+            [propget, id(1), helpstring("property Type")] HRESULT Type([out, retval] long *pVal);
+
+            [propget, id(2), helpstring("property TerminationString")] HRESULT TerminationString([out, retval] BSTR *pVal);
+
+            [propget, id(3), helpstring("property LegalDigits")] HRESULT LegalDigits([out, retval] BSTR *pVal);
+
+            [propget, id(4), helpstring("property InitialNumber")] HRESULT InitialNumber([out, retval] BSTR *pVal);
+
+            [propget, id(5), helpstring("property LowerBoundary")] HRESULT LowerBoundary([out, retval] long *pVal);
+
+            [propget, id(6), helpstring("property UpperBoundary ")] HRESULT UpperBoundary([out, retval] long *pVal);
+
+            [propget, id(7), helpstring("property LowerBlocked")] HRESULT LowerBlocked([out, retval] long *pVal);
+
+            [propget, id(8), helpstring("property UpperBlocked")] HRESULT UpperBlocked([out, retval] long *pVal);
+        };
+
+        [
+                object,
+                uuid(AFA50DD1-33A8-11D3-8658-0090272F9EEB),
+                dual,
+                helpstring("ISession Interface"),
+                pointer_default(unique)
+        ]
+        interface ISession : IDispatch
+        {
+            [propget, id(DISPID_VALUE), helpstring("property Value")] HRESULT Value([in] BSTR bstrName, [out, retval] VARIANT *pVal);
+            [propput, id(DISPID_VALUE), helpstring("property Value")] HRESULT Value([in] BSTR bstrName, [in] VARIANT *pnewVal);
+            [propputref, id(DISPID_VALUE), helpstring("property Value")] HRESULT Value([in] BSTR bstrName, [in] VARIANT *pnewVal);
+
+            [propget, id(2), helpstring("property LastVisitedPage")] HRESULT LastVisitedPage([out, retval] BSTR *pbstrLastVisitedPage);
+
+            [propget, id(3), helpstring("property LastVisitedTagID")] HRESULT LastVisitedTagID([out, retval] BSTR *pbstrLastVisitedTagID);
+
+            [propget, id(4), helpstring("property SessionState")] HRESULT SessionState([out, retval] BSTR *pbstrSessionState);
+
+            [propget, id(5), helpstring("property ServerName")] HRESULT ServerName([out, retval] BSTR *pbstrServerName);
+
+            [propget, id(6), helpstring("property SessionName")] HRESULT SessionName([out, retval] BSTR *pbstrSessionName);
+        };
+
+
+        [
+                object,
+                uuid(AFA50DD2-33A8-11D3-8658-0090272F9EEB),
+                dual,
+                helpstring("ITTSMode Interface"),
+                pointer_default(unique)
+        ]
+        interface ITTSMode : IDispatch
+        {
+            [propget, id(1), helpstring("property EngineID")] HRESULT EngineID([out, retval] BSTR *pVal);
+
+            [propget, id(2), helpstring("property MfgName")] HRESULT MfgName([out, retval] BSTR *pVal);
+
+            [propget, id(3), helpstring("property ProductName")] HRESULT ProductName([out, retval] BSTR *pVal);
+
+            [propget, id(4), helpstring("property ModeID")] HRESULT ModeID([out, retval] BSTR *pVal);
+
+            [propget, id(5), helpstring("property ModeName")] HRESULT ModeName([out, retval] BSTR *pVal);
+
+            [propget, id(6), helpstring("property LanguageID")] HRESULT LanguageID([out, retval] long *pVal);
+
+            [propget, id(7), helpstring("property Dialect")] HRESULT Dialect([out, retval] BSTR *pVal);
+
+            [propget, id(8), helpstring("property Speaker")] HRESULT Speaker([out, retval] BSTR *pVal);
+
+            [propget, id(9), helpstring("property Style")] HRESULT Style([out, retval] BSTR *pVal);
+
+            [propget, id(10), helpstring("property Gender")] HRESULT Gender([out, retval] long *pVal);
+
+
+            [propget, id(11), helpstring("property Age")] HRESULT Age([out, retval] long *pVal);
+
+
+            [propget, id(12), helpstring("property Features")] HRESULT Features([out, retval] long *pVal);
+
+            [propget, id(13), helpstring("property Interfaces")] HRESULT Interfaces([out, retval] long *pVal);
+
+            [propget, id(14), helpstring("property EngineFeatures")] HRESULT EngineFeatures([out, retval] long *pVal);
+        };
+
+        [
+                object,
+                uuid(AFA50DD3-33A8-11D3-8658-0090272F9EEB),
+                dual,
+                helpstring("ISRMode Interface"),
+                pointer_default(unique)
+        ]
+        interface ISRMode : IDispatch
+        {
+            [propget, id(1), helpstring("property EngineID")] HRESULT EngineID([out, retval] BSTR *pVal);
+
+            [propget, id(2), helpstring("property MfgName")] HRESULT MfgName([out, retval] BSTR *pVal);
+
+            [propget, id(3), helpstring("property ProductName")] HRESULT ProductName([out, retval] BSTR *pVal);
+
+            [propget, id(4), helpstring("property ModeID")] HRESULT ModeID([out, retval] BSTR *pVal);
+
+            [propget, id(5), helpstring("property ModeName")] HRESULT ModeName([out, retval] BSTR *pVal);
+
+            [propget, id(6), helpstring("property LanguageID")] HRESULT LanguageID([out, retval] long *pVal);
+
+            [propget, id(7), helpstring("property Dialect")] HRESULT Dialect([out, retval] BSTR *pVal);
+
+            [propget, id(8), helpstring("property Sequencing")] HRESULT Sequencing([out, retval] long *pVal);
+
+            [propget, id(9), helpstring("property MaxWordsVocab")] HRESULT MaxWordsVocab([out, retval] long *pVal);
+
+            [propget, id(10), helpstring("property MaxWordsState")] HRESULT MaxWordsState([out, retval] long *pVal);
+
+            [propget, id(11), helpstring("property Grammars")] HRESULT Grammars([out, retval] long *pVal);
+
+            [propget, id(12), helpstring("property Features")] HRESULT Features([out, retval] long *pVal);
+
+            [propget, id(13), helpstring("property Interfaces")] HRESULT Interfaces([out, retval] long *pVal);
+
+            [propget, id(14), helpstring("property EngineFeatures")] HRESULT EngineFeatures([out, retval] long *pVal);
+        };
+
+        [
+                object,
+                uuid(AFA50DD4-33A8-11D3-8658-0090272F9EEB),
+                dual,
+                helpstring("ITelephonyStep Interface"),
+                pointer_default(unique)
+        ]
+        interface ITelephonyStep : IDispatch
+        {
+            [propget, id(1), helpstring("property MenuItemsLength")] HRESULT MenuItemsLength([out, retval] long *plLength);
+
+            [id(2), helpstring("method GetMenuItem")] HRESULT GetMenuItem([in] long lIndex,[retval, out] IDispatch **ppMenuItem);
+
+            [propget, id(3), helpstring("property SubmitMenu")] HRESULT SubmitMenu([out, retval] BOOL *pfIsSubmit);
+
+            [propget, id(4), helpstring("property AudioItemsLength")] HRESULT AudioItemsLength([out, retval] long *plLength);
+
+            [id(5), helpstring("method AudioItem")] HRESULT GetAudioItem([in] long lIndex,[retval, out] BSTR *pbstrAudioItem);
+
+            [propget, id(6), helpstring("property CutThroughMode")] HRESULT CutThroughMode([out, retval] BOOL *pfCutThroughMode);
+
+            [propget, id(7), helpstring("property IsRecordType")] HRESULT IsRecordType([out, retval] BOOL *pfIsRecord);
+        };
+
+        [
+                object,
+                uuid(AFA50DD5-33A8-11D3-8658-0090272F9EEB),
+                dual,
+                helpstring("ILogCustomField Interface"),
+                pointer_default(unique)
+        ]
+        interface ILogCustomField : IDispatch
+        {
+            [propput, id(DISPID_VALUE), helpstring("property Value")] HRESULT Value([in] BSTR Name, [in] BSTR newVal);
+
+            [propput, id(1), helpstring("property DefaultValue")] HRESULT DefaultValue([in] BSTR newVal);
+        };
+
+
+        [
+                object,
+                uuid(AFA50DD6-33A8-11D3-8658-0090272F9EEB),
+                dual,
+                helpstring("IExOM Interface"),
+                pointer_default(unique)
+        ]
+        interface IExOM : IDispatch
+        {
+            [propget, id(1), helpstring("property hostName")] HRESULT hostName([out, retval] BSTR *pbstrHostName);
+
+            [id(2), helpstring("method Abandon")] HRESULT Abandon();
+
+            [propget, id(3), helpstring("property Session")] HRESULT Session([out, retval] ISession **ppSession);
+
+            [propget, id(4), helpstring("property Configuration")] HRESULT Configuration([out, retval] IWebTEApplication **ppApp);
+
+            [id(5), helpstring("method Log")] HRESULT Log();
+
+            [propget, id(6), helpstring("property ITBasicCallControl")] HRESULT ITBasicCallControl([out, retval] ITBasicCallControl **ppCall);
+
+            [propget, id(7), helpstring("property AlternativePhrases")] HRESULT AlternativePhrases([out, retval] VARIANT *pAlternativePhrases);
+
+            [propget, id(8), helpstring("property LogCustomField")] HRESULT LogCustomField([out, retval] ILogCustomField **ppLogCustomField);
+
+            [propget, id(9), helpstring("property Event")] HRESULT Event([out, retval] LPDISPATCH *ppEvent);
+
+            [propget, id(10), helpstring("property TTSMode")] HRESULT TTSMode([out, retval] ITTSMode **ppTTSMode);
+
+            [propget, id(11), helpstring("property SRMode")] HRESULT SRMode([out, retval] ISRMode **ppSRMode);
+        };
+
+
+        [
+                object,
+                uuid(AFA50DD7-33A8-11D3-8658-0090272F9EEB),
+                dual,
+                helpstring("IWebIvrActiveConnection Interface"),
+                pointer_default(unique)
+        ]
+        interface IWebIvrActiveConnection : IDispatch
+        {
+            [propget, id(1), helpstring("property ExtendedObjectModel")] HRESULT ExtendedObjectModel([out, retval] IExOM **ppExOm);
+
+            [propget, id(2), helpstring("property TelephonyStep")] HRESULT TelephonyStep([out, retval] ITelephonyStep **ppTelephonyStep);
+        };
+
+        [
+                object,
+                uuid(AFA50DD8-33A8-11D3-8658-0090272F9EEB),
+                dual,
+                helpstring("IWebIvr Interface"),
+                pointer_default(unique)
+        ]
+        interface IWebIvrService : IDispatch
+        {
+            [id(1), helpstring("method GetActiveConnection")] HRESULT GetActiveConnection([in] BSTR bstrApplicationName, [retval, out] IWebIvrActiveConnection** ppConnection);
+        };
+        
+        [
+                object,
+                uuid(c59f0ca0-401c-11d3-8659-0090272f9eeb),
+                helpstring("IWebTESnapinNode Interface"),
+                pointer_default(unique)
+        ]
+        interface IWebTESnapinNode : IUnknown
+        {
+                [propget, id(1), helpstring("property CurrentObject")]
+                HRESULT CurrentObject([out, retval] IDispatch **pVal);
+        
+                [propget, id(2), helpstring("property ParentArray")]
+                HRESULT ParentArray([out, retval] IDispatch **pVal);
+        };
+        
+
+
+[
+        uuid(B83E8323-336C-11D3-8657-0090272F9EEB),
+        version(1.0),
+        helpstring("Microsoft WebTE Administration Type Library")
+]
+library msivrCom
+{
+    importlib("stdole32.tlb");
+    importlib("stdole2.tlb");
+
+    [
+        uuid(B83E8324-336C-11D3-8657-0090272F9EEB),
+        helpstring("WebTE Class")
+    ]
+    coclass WebTE
+    {
+        [default] interface IWebTE;
+    };
+    
+    [
+        uuid(B83E8325-336C-11D3-8657-0090272F9EEB),
+        helpstring("WebTEArray Class"),
+        noncreatable
+    ]
+    coclass WebTEArray
+    {
+        [default] interface IWebTEArray;
+    };
+    
+    [
+        uuid(B83E8326-336C-11D3-8657-0090272F9EEB),
+        helpstring("WebTEArrays Class"),
+        noncreatable
+    ]
+    coclass WebTEArrays
+    {
+        [default] interface IWebTEArrays;
+    };
+    
+    [
+        uuid(B83E8327-336C-11D3-8657-0090272F9EEB),
+        helpstring("WebTEServers Class"),
+        noncreatable
+    ]
+    coclass WebTEServers
+    {
+        [default] interface IWebTEServers;
+    };
+    
+    [
+        uuid(B83E8328-336C-11D3-8657-0090272F9EEB),
+        helpstring("WebTEServer Class"),
+        noncreatable
+    ]
+    coclass WebTEServer
+    {
+        [default] interface IWebTEServer;
+    };
+    
+    [
+        uuid(B83E8329-336C-11D3-8657-0090272F9EEB),
+        helpstring("WebTEAddresses Class"),
+        noncreatable
+    ]
+    coclass WebTEAddresses
+    {
+        [default] interface IWebTEAddresses;
+    };
+    
+    [
+        uuid(B83E832A-336C-11D3-8657-0090272F9EEB),
+        helpstring("WebTEAddress Class"),
+        noncreatable
+    ]
+    coclass WebTEAddress
+    {
+        [default] interface IWebTEAddress;
+    };
+    
+    [
+        uuid(B83E832B-336C-11D3-8657-0090272F9EEB),
+        helpstring("WebTELineStatus Class"),
+        noncreatable
+    ]
+    coclass WebTELineStatus
+    {
+        [default] interface IWebTELineStatus;
+    };
+    
+    [
+            uuid(B83E832C-336C-11D3-8657-0090272F9EEB),
+            helpstring("IWebTEParametersChanges sink interfce")
+    ]
+    dispinterface IWebTEParametersChanges
+    {
+        properties:
+
+        methods:
+            [id(1), helpstring("method OnChange")]
+            HRESULT OnChange();
+    };
+
+    [
+            uuid(B83E832D-336C-11D3-8657-0090272F9EEB),
+            helpstring("WebTEVendorDataSets Class"),
+            noncreatable
+    ]
+    coclass WebTEVendorDataSets
+    {
+            [default] interface IWebTEVendorDataSets;
+            interface IEnumVARIANT;
+    };
+    
+    [
+            uuid(B83E832E-336C-11D3-8657-0090272F9EEB),
+            helpstring("WebTEVendorDataSet Class"),
+            noncreatable
+    ]
+    coclass WebTEVendorDataSet
+    {
+            [default] interface IWebTEVendorDataSet;
+    };
+
+    [
+            uuid(B83E832F-336C-11D3-8657-0090272F9EEB),
+            helpstring("WebTEHtmlPropertyPages Class"),
+            noncreatable
+    ]
+    coclass WebTEHtmlPropertyPages
+    {
+            [default] interface IWebTEHtmlPropertyPages;
+            interface IEnumVARIANT;
+    };
+
+    [
+            uuid(B83E8330-336C-11D3-8657-0090272F9EEB),
+            helpstring("WebTEHtmlPropertyPage Class"),
+            noncreatable
+    ]
+    coclass WebTEHtmlPropertyPage
+    {
+            [default] interface IWebTEHtmlPropertyPage;
+    };
+
+    [
+            uuid(B83E8331-336C-11D3-8657-0090272F9EEB),
+            helpstring("WebTEParametersSets Class"),
+            noncreatable
+    ]
+    coclass WebTEParametersSets
+    {
+            [default] interface IWebTEParametersSets;
+            interface IEnumVARIANT;
+    };
+
+    [
+            uuid(B83E8332-336C-11D3-8657-0090272F9EEB),
+            helpstring("WebTEParametersSet Class"),
+            noncreatable
+    ]
+    coclass WebTEParametersSet
+    {
+            [default] interface IWebTEParametersSet;
+            [default, source] dispinterface IWebTEParametersChanges;
+    };
+
+    [
+            uuid(B83E8334-336C-11D3-8657-0090272F9EEB),
+            helpstring("WebTELog Class"),
+            noncreatable
+    ]
+    coclass WebTELog
+    {
+            [default] interface IWebTELog;
+    };
+
+    [
+            uuid(B83E8336-336C-11D3-8657-0090272F9EEB),
+            helpstring("WebTEApplications Class"),
+            noncreatable
+    ]
+    coclass WebTEApplications
+    {
+            [default] interface IWebTEApplications;
+    };
+
+    [
+            uuid(B83E8337-336C-11D3-8657-0090272F9EEB),
+            helpstring("WebTEApplication Class"),
+            noncreatable
+    ]
+    coclass WebTEApplication
+    {
+            [default] interface IWebTEApplication;
+    };
+    
+    [
+        uuid(AFA50DDA-33A8-11D3-8658-0090272F9EEB)
+    ]
+    dispinterface IWebIvrConnectionEvents
+    {
+    properties:
+    methods:
+        [id(wteDispidApplicationEventOnOffering), helpstring("method OnOffering")] HRESULT OnOffering();
+        [id(wteDispidApplicationEventOnConnected), helpstring("method OnConnected")] HRESULT OnConnected();
+        [id(wteDispidApplicationEventOnDisconnected), helpstring("method OnDisconnected")] HRESULT OnDisconnected();
+        [id(wteDispidApplicationEventOnDigit), helpstring("method OnDigit")] HRESULT OnDigit([in] BSTR bstrDigit);
+        [id(wteDispidApplicationEventOnDigitsUsed), helpstring("method OnDigitsUsed")] HRESULT OnDigitsUsed([in] BSTR bstrUsedDigits);
+        [id(wteDispidApplicationEventOnBeforeNavigate), helpstring("method OnBeforeNavigate")] HRESULT OnBeforeNavigate([in] BSTR bstrURL);
+        [id(wteDispidApplicationEventOnNavigateComplete), helpstring("method OnNavigateComplete")] HRESULT OnNavigateComplete([in] BSTR bstrURL);
+        [id(wteDispidApplicationEventOnDocumentComplete), helpstring("method OnDocumentComplete")] HRESULT OnDocumentComplete([in] BSTR bstrURL);
+        [id(wteDispidApplicationEventOnTagBegin), helpstring("method OnTagBegin")] HRESULT OnTagBegin([in] IDispatch *pTagElement);
+        [id(wteDispidApplicationEventOnTagEnd), helpstring("method OnTagEnd")] HRESULT OnTagEnd([in] IDispatch *pTagElement);
+        [id(wteDispidApplicationEventOnSessionValue), helpstring("method OnSessionValue")] HRESULT OnSessionValue([in] BSTR bstrValueName);
+        [id(wteDispidApplicationEventOnTelephonyStepEnd), helpstring("method OnTelephonyStepEnd")] HRESULT OnTelephonyStepEnd([in] IDispatch *pTagElement, [in] TelephonyObjectEndReasonType Reason, [in] IDispatch *pAppConstrains);
+        [id(wteDispidApplicationEventOnSessionEnd), helpstring("method OnSessionEnd")] HRESULT OnSessionEnd();
+    };
+    
+    [
+        uuid(AFA50DDB-33A8-11D3-8658-0090272F9EEB),
+        helpstring("WebIvr Class")
+    ]
+    coclass WebIvrService
+    {
+        [default] interface IWebIvrService;
+    };
+    
+    [
+        uuid(AFA50DDC-33A8-11D3-8658-0090272F9EEB),
+        helpstring("WebIvrActiveConnection Class"),
+        noncreatable
+    ]
+    coclass WebIvrActiveConnection
+    {
+        [default] interface IWebIvrActiveConnection;
+        [default, source] dispinterface IWebIvrConnectionEvents;
+    };
+    
+    [
+        uuid(AFA50DDD-33A8-11D3-8658-0090272F9EEB),
+        helpstring("TelephonyStep Class"),
+        noncreatable
+    ]
+    coclass TelephonyStep
+    {
+        [default] interface ITelephonyStep;
+    };
+    
+    [
+        uuid(AFA50DDE-33A8-11D3-8658-0090272F9EEB),
+        helpstring("TelephonyStepConstrains Class"),
+        noncreatable
+    ]
+    coclass TelephonyStepConstrains
+    {
+        [default] interface ITelephonyStepConstrains;
+    };
+    
+    [
+        uuid(AFA50DDF-33A8-11D3-8658-0090272F9EEB),
+        helpstring("Session Class"),
+        noncreatable
+    ]
+    coclass Session
+    {
+        [default] interface ISession;
+    };
+    
+    [
+        uuid(AFA50DE0-33A8-11D3-8658-0090272F9EEB),
+        helpstring("TTSMode Class"),
+        noncreatable
+    ]
+    coclass TTSMode
+    {
+        [default] interface ITTSMode;
+    };
+    
+    [
+        uuid(AFA50DE1-33A8-11D3-8658-0090272F9EEB),
+        helpstring("SRMode Class"),
+        noncreatable
+    ]
+    coclass SRMode
+    {
+        [default] interface ISRMode;
+    };
+    
+    [
+        uuid(AFA50DE2-33A8-11D3-8658-0090272F9EEB),
+        helpstring("ExOM Class"),
+        noncreatable
+    ]
+    coclass ExOM
+    {
+        [default] interface IExOM;
+    };
+    
+    [
+        uuid(AFA50DE3-33A8-11D3-8658-0090272F9EEB),
+        helpstring("LogCustomField Class"),
+        noncreatable
+    ]
+    coclass LogCustomField
+    {
+        [default] interface ILogCustomField;
+    };
+    
+    [
+        uuid(b3a60310-401c-11d3-8659-0090272f9eeb),
+        helpstring("WebTESnapinNode Class"),
+        noncreatable
+    ]
+    coclass WebTESnapinNode
+    {
+        [default] interface IWebTESnapinNode;
+    };
+
+};
+

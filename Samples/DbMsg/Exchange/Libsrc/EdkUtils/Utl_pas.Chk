@@ -1,0 +1,63 @@
+// --UTL_PAS.chk------------------------------------------------------------------
+//
+// Parameter checking for utl_pas.c
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+//
+// -----------------------------------------------------------------------------
+#ifndef DEBUG
+
+#define CHK__HrInputCommandLinePassword(a,b,c) NOERROR
+
+#else
+
+//$--CHK__HrInputCommandLinePassword---------------------------------------------------------
+//
+//  DESCRIPTION: Check parameters for _HrInputCommandLinePassword
+//
+//  INPUT:  dwFlags     --  reserved - must be zero
+//          cbLength    --  length of buffer
+//
+//  OUTPUT: pszBuffer   --  buffer to write password into
+//
+//
+//  RETURNS:    HRESULT --  NOERROR if no error,
+//                          E_INVALIDARG if bad input
+//
+// -----------------------------------------------------------------------------
+
+static _inline HRESULT CHK__HrInputCommandLinePassword(	// RETURNS: HRESULT
+	IN DWORD dwFlags,					// reserved--must be zero
+	IN DWORD cbLength,					// size of the buffer in bytes
+	OUT LPSTR pszBuffer)				// buffer to write string into
+{
+    HRESULT     hr          = NOERROR;
+
+    if ( dwFlags != 0 )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( cbLength == 0 )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_WRITE_PTR(pszBuffer, cbLength) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+	return hr;
+
+}
+
+#endif /* DEBUG */

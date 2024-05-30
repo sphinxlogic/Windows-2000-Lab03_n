@@ -1,0 +1,4 @@
+Internet Information Server HomePage
+"http://www.microsoft.com/iis"
+Internet Explorer HomePage
+"http://www.microsoft.com/ie"

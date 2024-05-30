@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Login Screens</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_login_screens"></a>  Login Screens</h3>
+<p>
+This example illustrates how you can use ASP to leverage IIS and Windows&nbsp;NT&reg; security features and authentication schemes to provide secure logon screens. </p>
+<p>
+The bulk of the initial authentication should, if possible, take place before any of the content has actually been sent to the client browser. This example demonstrates one method for accomplishing this. For the purposes of demonstration, this script simply gets the LOGON_USER variable from the <b>Request.ServerVariables</b> property, and checks that the user has been authenticated by the user's local server. An actual application could just as easily check the username and password against a database at this point in the script. </p>
+<p>
+If the user making the request, with the client browser, has not been authenticated, this script bars access to them. <b>Response.Status</b> is set to the HTTP 401 error code, indicating that there has been an access problem, and the <b>Response.End</b> method is then called, which ceases script processing and terminates the connection. </p>
+<p>
+If the user has bee authenticated, the rest of the Web page is sent to the client browser as usual. This sample uses the <b>Request.ServerVariables</b> twice more to retrieve some information on your current logon and authentication status. </p>
+</BODY>
+</HTML>

@@ -1,0 +1,74 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "FooTest"=.\FooTest\FooTest.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name HBEventClass
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name HBPublisher
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name HBSubscriber
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "HBEventClass"=.\HBEventClass\HBEventClass.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "HBPublisher"=.\HBPublisher\HBPublisher.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "HBSubscriber"=.\HBSubscriber\HBSubscriber.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

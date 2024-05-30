@@ -1,0 +1,22 @@
+#---------------------------------------------------------------------------
+# Description:
+#   Make file to generate GWPerf.Dll
+#
+# Copyright (C) Microsoft Corporation 1986 - 1998.  All Rights Reserved.
+#---------------------------------------------------------------------------
+
+USE_EXCHANGE=1
+dll=1
+crtdll=1
+
+Proj = GwPerf
+
+DLLFLAGS = -entry:DllEntryPoint $(DLLFLAGS)
+LibList = EdkDebug.Lib Monitor.Lib EdkEvent.Lib EdkUtils.Lib
+Building_ExchSDK =1
+
+!Include <BkOffice.Mak>
+
+all:    $(ObjDir)\GWPerfM.Res $(ObjDir)\$(Proj).Dll
+
+$(ObjDir)\$(Proj).Dll: $(ObjDir)\AllRes.Res $(@R).Obj

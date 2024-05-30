@@ -1,0 +1,36 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\filter.res \
+    $(_OBJ_DIR)\alpha\filter.obj \
+    $(_OBJ_DIR)\alpha\pnp.obj \
+    $(_OBJ_DIR)\alpha\power.obj \
+    $(_OBJ_DIR)\alpha\util.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\filter.res \
+    $(_OBJ_DIR)\axp64\filter.obj \
+    $(_OBJ_DIR)\axp64\pnp.obj \
+    $(_OBJ_DIR)\axp64\power.obj \
+    $(_OBJ_DIR)\axp64\util.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\filter.res \
+    $(_OBJ_DIR)\i386\filter.obj \
+    $(_OBJ_DIR)\i386\pnp.obj \
+    $(_OBJ_DIR)\i386\power.obj \
+    $(_OBJ_DIR)\i386\util.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\filter.res \
+    $(_OBJ_DIR)\ia64\filter.obj \
+    $(_OBJ_DIR)\ia64\pnp.obj \
+    $(_OBJ_DIR)\ia64\power.obj \
+    $(_OBJ_DIR)\ia64\util.obj
+
+PASS0_IA64_OBJECTS=
+

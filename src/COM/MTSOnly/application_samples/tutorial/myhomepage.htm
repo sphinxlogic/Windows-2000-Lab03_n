@@ -1,0 +1,16 @@
+<HTML>
+<%
+
+Dim objPref, rs
+
+set objPref = Server.CreateObject("db_CustPreferences.Preferences")
+set rs = objPref.ReadPreferences()
+
+%>
+
+<BODY>
+<H1>
+You are logged on.
+</H1>
+</BODY>
+</HTML>

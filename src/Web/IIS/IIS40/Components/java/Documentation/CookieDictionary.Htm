@@ -1,0 +1,139 @@
+<html>
+
+<head>
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 3.0">
+<title>CookieDictionary</title>
+<meta NAME="Version" CONTENT="8.0.3410">
+<meta NAME="Date" CONTENT="10/11/96">
+<meta NAME="Template" CONTENT="C:\Program Files\Office\Office\HTML.DOT">
+</head>
+
+<body TEXT="#000000" LINK="#0000ff" BGCOLOR="#ffffff">
+<font FACE="Arial" SIZE="4"><b>
+
+<p><a NAME="_Toc397403949">CookieDictionary</a></p>
+</b></font>
+
+<p>The CookieDictionary class represents the collection of <a HREF="Cookie.htm">Cookies</a>
+that are sent to and received from the browser. Using the CookieDictionary, you can
+create, delete, and retrieve cookies, and enumerate through the set of cookies.</p>
+<font FACE="Arial"><b>
+
+<p>Creating a new Cookie</p>
+</b></font>
+
+<p>To create a new cookie, call the <i>get</i> method, passing in the new cookie name. The
+get( ) method will create a new cookie if one does not already exist with that name. 
+
+<dir>
+  <font FACE="Courier New" SIZE="1"><p></font><font FACE="Courier New" size="2">public class
+  CookieDictionary extends java.util.Dictionary</p>
+  <p>implements aspcomp.Enumerator<br>
+  {<br>
+  &nbsp;&nbsp;&nbsp; public int <a HREF="#getCount">getCount</a>();<br>
+  &nbsp;&nbsp;&nbsp; public Cookie <a HREF="#getCookie">getCookie</a>(String name) throws
+  ClassCastException;<br>
+  &nbsp;&nbsp;&nbsp; //<br>
+  &nbsp;&nbsp;&nbsp; // aspcomp.Enumerator Methods <br>
+  &nbsp;&nbsp;&nbsp; //<br>
+  &nbsp;&nbsp;&nbsp; public void <a HREF="#reset">reset</a>();<br>
+  &nbsp;&nbsp;&nbsp; //<br>
+  &nbsp;&nbsp;&nbsp; // java.util.Enumeration Methods<br>
+  &nbsp;&nbsp;&nbsp; //<br>
+  &nbsp;&nbsp;&nbsp; public Boolean <a HREF="#hasMoreElements">hasMoreElements</a>();<br>
+  &nbsp;&nbsp;&nbsp; public Object <a HREF="#nextElement">nextElement</a>() throws
+  NoSuchElementException,<br>
+  &nbsp;&nbsp;&nbsp; ClassCastException;<br>
+  &nbsp;&nbsp;&nbsp; //<br>
+  &nbsp;&nbsp;&nbsp; // java.lang.Cloneable Method<br>
+  &nbsp;&nbsp;&nbsp; //<br>
+  &nbsp;&nbsp;&nbsp; public Object <a HREF="#clone">clone</a>();<br>
+  &nbsp;&nbsp;&nbsp; //<br>
+  &nbsp;&nbsp;&nbsp; // java.util.Dictionary Methods <br>
+  &nbsp;&nbsp;&nbsp; //<br>
+  &nbsp;&nbsp;&nbsp; public int <a HREF="#size">size</a>();<br>
+  &nbsp;&nbsp;&nbsp; public Boolean <a HREF="#isEmpty">isEmpty</a>();<br>
+  &nbsp;&nbsp;&nbsp; public Enumeration <a HREF="#keys">keys</a>();<br>
+  &nbsp;&nbsp;&nbsp; public Enumeration <a HREF="#elements">elements</a>();<br>
+  &nbsp;&nbsp;&nbsp; public Object <a HREF="#get">get</a>(Object key);<br>
+  &nbsp;&nbsp;&nbsp; public Object <a HREF="#put">put</a>(Object key, Object value);<br>
+  &nbsp;&nbsp;&nbsp; public Object <a HREF="#remove">remove</a>(Object key);<br>
+  }</p>
+  </font><hr>
+</dir>
+<font face="Arial" size="3"><b>
+
+<p><font color="#0000A0"><em>CookieDictionary Methods</em></font></p>
+
+<p>public int <a NAME="getCount"></a>getCount( );</p>
+
+<p></b></font>Returns the number of items in the collection.</p>
+
+<p><font face="Arial" size="3"><b>public Cookie <a NAME="getCookie"></a>getCookie(String
+name) throws ClassCastException;</p>
+
+<p></b></font>Returns the cookie specified by <em>name.</em></p>
+
+<p><font face="Arial" size="3"><b><font color="#0000A0"><em>Enumerator Methods </em></font></p>
+</b></font>
+
+<p><font face="Arial" size="3"><b>public void <a NAME="reset"></a>reset( );</p>
+</b></font>
+
+<p>Resets the Enumerator to the start of the collection.</p>
+
+<p><font face="Arial" size="3"><b>public Boolean <a NAME="hasMoreElements"></a>hasMoreElements( );</p>
+</b></font>
+
+<p>Returns <b>true</b> if there are any more items in the collection that can be obtained
+by calling nextElement().</p>
+
+<p><font face="Arial" size="3"><b>public Object <a NAME="nextElement"></a>nextElement( )
+throws NoSuchElementException, ClassCastException;</p>
+
+<p></b></font>Returns the next Object in the collection. You should typically call this
+following a call to hasMoreElements().</p>
+
+<p><font face="Arial" size="3"><b>public Object <a NAME="clone"></a>clone( );</p>
+
+<p></b></font>Makes a copy of the Enumerator, with the current state of the Enumeration.</p>
+
+<p><font face="Arial" size="3"><b><font color="#0000A0"><em>java.util.Dictionary Methods</em></font></p>
+</b></font>
+
+<p><font face="Arial" size="3"><b>public int <a NAME="size"></a>size( );</p>
+
+<p></b></font>Returns the number of entries in the dictionary.</p>
+
+<p><font face="Arial" size="3"><b>public Boolean <a NAME="isEmpty"></a>isEmpty( );</p>
+
+<p></b></font>Returns <b>true</b> only if the dictionary contains no entries.</p>
+
+<p><font face="Arial" size="3"><b>public Enumeration <a NAME="keys"></a>keys( );</p>
+
+<p></b></font>Returns an Enumeration that will enumerate through all of the keys contained in the dictionary. </p>
+
+<p><font face="Arial" size="3"><b>public Enumeration <a NAME="elements"></a>elements( );</p>
+
+<p></b></font>Returns an Enumeration that will enumerate through all of the entries contained in the dictionary. </p>
+
+<p><font face="Arial" size="3"><b>public Object <a NAME="get"></a>get(Object key);</p>
+
+<p></b></font>Returns the cookie for the specified key. If no cookie exists for the
+specified key, a new cookie will be created and returned.</p>
+
+<p>Note that <em>key</em> must be of type <strong>String</strong>.</p>
+
+<p><font face="Arial" size="3"><b>public Object <a NAME="put"></a>put(Object key, Object
+value);</p>
+
+<p></b></font>This method is not implemented for CookieDictionary. If called, it
+will throw an AspComponentException.</p>
+
+<p><font face="Arial" size="3"><b>public Object <a NAME="remove"></a>remove(Object key);</p>
+
+<p></b></font>This method is not implemented for CookieDictionary. If called, it
+will throw an AspComponentException.</p>
+</body>
+</html>

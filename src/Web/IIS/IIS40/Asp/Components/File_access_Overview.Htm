@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>File Access</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_file_access"></a>  File Access</h3>
+<p>
+The File Access component provides access to the server's file system through the <b>FileSystemObject </b>object, and can be used to accomplish most typical file and directory manipulation and management.</p>
+<p>
+This script first creates an instance of the <b>FileSystemObject</b> with the <b>Server.CreateObject</b>, using the PROGID of Scripting.FileSystemObject. The reference returned from this method can be used to accomplish virtually any file and directory manipulations and management tasks that you can think of.</p>
+<p>
+This script calls <b>Server.MapPath</b> to determine the actual physical path that corresponds to the \iissamples virtual directory, then uses the <b>FileSystemObject</b> instance to open a file called mytextfile.txt in that directory. The script uses the reference to this new text file object, <i>MyFile</i>, to access the <b>WriteLine</b> and <b>ReadAll</b> methods, to write to and read from the file. </p>
+</BODY>
+</HTML>

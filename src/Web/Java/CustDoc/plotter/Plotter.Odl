@@ -1,0 +1,29 @@
+// Copyright (c) 1997  Microsoft Corporation.  All rights reserved.
+
+[ uuid(EFFA21E0-6928-11d0-BFFC-00AA003CFDFC), version(1.0),
+  helpstring("Sample Custom Marshaling (Java->COM)") ]
+library JavaLib
+{
+
+    importlib("stdole32.tlb");
+    importlib("sysdata.tlb");
+
+
+    [ uuid(EFFA21E1-6928-11d0-BFFC-00AA003CFDFC), version(1.0),
+      helpstring("Simple test"),
+      odl]
+    interface IPlotter : IUnknown
+    {
+        HRESULT DrawLine([in] POINT *start, [in] POINT *end);  
+    }
+
+
+
+    [ uuid(EFFA21E2-6928-11d0-BFFC-00AA003CFDFC), version(1.0),
+      helpstring("Simple test")
+    ]
+    coclass CPlotter {
+        [default] interface IPlotter;
+    }
+
+};

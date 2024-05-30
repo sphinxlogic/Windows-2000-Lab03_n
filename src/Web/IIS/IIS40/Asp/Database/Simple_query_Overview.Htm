@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Simple Query</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_simple_query"></a>  Simple Query</h3>
+<p>
+Databases can be very complicated systems, and data access tools must be powerful and responsive enough to accomplish the often difficult and exacting tasks that you require. However, it is equally important to you that simple database access tasks be easy to accomplish. </p>
+<p>
+This sample demonstrates how ADO provides just such a solution. The goal of this sample application is to retrieve a small recordset from a Microsoft&reg; Access database, and print the results. The first step is to create an instance of the <b>Connection</b> object, using the <b>Server.CreateObject</b> method. The sample uses the <b>Connection</b> object instance to open the ODBC data source, then uses the <b>Connection</b> instance again to execute a SQL <b>SELECT</b> command to retrieve all the records from the Authors table. The script finishes by iterating through the returned recordset collection and displaying the results. Afterwards, both the recordset and ODBC data source connection are closed. It's that simple.</p>
+<p>
+<b>Note</b>&nbsp;&nbsp;ODBC must be properly configured on the server before this sample will run properly. </p>
+</BODY>
+</HTML>

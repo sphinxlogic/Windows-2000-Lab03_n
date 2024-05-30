@@ -1,0 +1,58 @@
+//--------------------------------------------------------------------------
+// (C) Copyright 1999 Microsoft Corporation.  All Rights Reserved.
+//
+// THIS CODE AND INFORMATION IS PROVIDED "AS-IS" WITHOUT WARRANTY OF
+// ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+// THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+// PARTICULAR PURPOSE.
+//
+// --- THIS CODE IS NOT SUPPORTED BY MICROSOFT ---
+//
+// Author: S.R.
+//         Support Engineer - Internet Client SDK
+//         Microsoft Developer Support
+//
+// AtlBrowser.idl : IDL source for AtlBrowser.dll
+//--------------------------------------------------------------------------
+
+// This file will be processed by the MIDL tool to
+// produce the type library (AtlBrowser.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+#include "DispIds.h"
+
+	[
+		object,
+		uuid(0818D42F-6247-11D1-ABEE-00D049C10000),
+		dual,
+		helpstring("IAtlBrCon Interface"),
+		pointer_default(unique)
+	]
+	interface IAtlBrCon : IDispatch
+	{
+		HRESULT Run();
+		HRESULT Stop();
+		[id(DISPID_GETHWND), helpstring("method GetHWND")] HRESULT GetHwnd(long* phwnd);
+		[id(DISPID_SAYHELLO), helpstring("method SayHello")] HRESULT SayHello();
+	};
+[
+	uuid(0818D422-6247-11D1-ABEE-00D049C10000),
+	version(1.0),
+	helpstring("AtlBrowser 1.0 Type Library")
+]
+library ATLBROWSERLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(0818D430-6247-11D1-ABEE-00D049C10000),
+		helpstring("AtlBrCon Class")
+	]
+	coclass AtlBrCon
+	{
+		[default] interface IAtlBrCon;
+	};
+};

@@ -1,0 +1,245 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "1 TYPELIB ""DXTSamp.tlb""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,1,100
+ PRODUCTVERSION 1,0,1,100
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "CompanyName", "Microsoft Corporation\0"
+            VALUE "FileDescription", "DXTMsft Module\0"
+            VALUE "FileVersion", "1.00.0001.100\0"
+            VALUE "InternalName", "DXTMsft\0"
+            VALUE "LegalCopyright", "Copyright (C) Microsoft Corp. 1981-1998\0"
+            VALUE "OriginalFilename", "DXTMsft\0"
+            VALUE "ProductName", "DXTransform 2D\0"
+            VALUE "ProductVersion", "1.00.0001.100\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// REGISTRY
+//
+
+IDR_EXPLODE             REGISTRY DISCARDABLE    "Explode.rgs"
+IDR_EXPLODEPROP         REGISTRY DISCARDABLE    "Explpp.rgs"
+IDR_RUFFLE              REGISTRY DISCARDABLE    "ruffle.rgs"
+IDR_RUFFLEPROP          REGISTRY DISCARDABLE    "ruffpp.rgs"
+IDR_DISSOLVE            REGISTRY DISCARDABLE    "dissolve.rgs"
+IDR_FLIP                REGISTRY DISCARDABLE    "flip.rgs"
+IDR_HEIGHTFIELD         REGISTRY DISCARDABLE    "htfield.rgs"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_RIPPROP DIALOG DISCARDABLE  0, 0, 210, 154
+STYLE WS_CHILD
+BEGIN
+    EDITTEXT        IDC_ORIGIN,68,13,36,12,ES_AUTOHSCROLL
+    LTEXT           "Origin",IDC_STATIC,10,13,41,12
+    LTEXT           "Wave Length",IDC_STATIC,10,33,44,8
+    EDITTEXT        IDC_WAVELEN,68,33,36,12,ES_AUTOHSCROLL
+    LTEXT           "Amplitude",IDC_STATIC,10,54,31,12
+    EDITTEXT        IDC_AMPLITUDE,68,53,36,12,ES_AUTOHSCROLL
+    LTEXT           "Number of Waves",IDC_STATIC,10,75,58,8
+    EDITTEXT        IDC_NUMWAVES,68,73,36,12,ES_AUTOHSCROLL
+END
+
+IDD_ExplodePROP DIALOG DISCARDABLE  0, 0, 216, 158
+STYLE WS_CHILD
+BEGIN
+    LTEXT           "Tumble",IDC_STATIC,10,13,41,12
+    CONTROL         "",IDC_Explode_Tumble,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,68,13,36,12
+    LTEXT           "MaxRotations",IDC_STATIC,10,33,44,8
+    EDITTEXT        IDC_Explode_MaxRotations,68,33,36,12
+    LTEXT           "FinalVelocity",IDC_STATIC,10,54,31,12
+    EDITTEXT        IDC_Explode_FinalVelocity,68,53,36,12,ES_AUTOHSCROLL
+    LTEXT           "PositionJump",IDC_STATIC,10,75,58,8
+    EDITTEXT        IDC_Explode_PositionJump,68,73,36,12,ES_AUTOHSCROLL
+    LTEXT           "DecayTime",IDC_STATIC,10,95,58,8
+    EDITTEXT        IDC_Explode_DecayTime,68,93,36,12,ES_AUTOHSCROLL
+END
+
+IDD_RUFFLEPROP DIALOG DISCARDABLE  0, 0, 210, 154
+STYLE WS_CHILD
+BEGIN
+    EDITTEXT        IDC_Ruffle_MaxRotations,68,13,36,12,ES_AUTOHSCROLL
+    LTEXT           "MaxRotations",IDC_STATIC,10,13,41,12
+END
+
+IDD_DISPROP DIALOG DISCARDABLE  0, 0, 199, 93
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_DISSOLVE_SPEEDPT0,59,11,36,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DISSOLVE_SPEEDPT2,59,24,36,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DISSOLVE_SPEEDPT4,59,37,36,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DISSOLVE_SPEEDPT6,59,50,36,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DISSOLVE_SPEEDPT8,59,64,36,12,ES_AUTOHSCROLL
+    LTEXT           "Speed Point 0",IDC_STATIC,10,13,46,8
+    LTEXT           "Speed Point 2",IDC_STATIC,10,26,46,8
+    LTEXT           "Speed Point 4",IDC_STATIC,10,39,46,8
+    LTEXT           "Speed Point 6",IDC_STATIC,10,52,46,8
+    LTEXT           "Speed Point 8",IDC_STATIC,10,65,46,8
+    EDITTEXT        IDC_DISSOLVE_SPEEDPT1,148,11,36,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DISSOLVE_SPEEDPT3,148,24,36,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DISSOLVE_SPEEDPT5,148,37,36,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DISSOLVE_SPEEDPT7,148,50,36,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DISSOLVE_SPEEDPT9,148,63,36,12,ES_AUTOHSCROLL
+    LTEXT           "Speed Point 1",IDC_STATIC,98,13,46,8
+    LTEXT           "Speed Point 3",IDC_STATIC,98,25,46,8
+    LTEXT           "Speed Point 5",IDC_STATIC,98,38,46,8
+    LTEXT           "Speed Point 7",IDC_STATIC,98,52,46,8
+    LTEXT           "Speed Point 9",IDC_STATIC,98,65,46,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_RIPPROP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 203
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 147
+    END
+
+    IDD_DISPROP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 192
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 86
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PROJNAME            "DXTMsft"
+    IDS_TITLERipProp        "Ripple Setting"
+    IDS_HELPFILERipProp     " "
+    IDS_DOCSTRINGRipProp    " "
+    IDS_TITLEDisProp        "Dissolve Setting"
+    IDS_HELPFILEDisProp     "Placeholder"
+    IDS_IDS_DOCSTRINGDisProp "Placeholder"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_TITLERuffleProp     "Ruffle Setting"
+    IDS_HELPFILERuffleProp  " "
+    IDS_DOCSTRINGRuffleProp " "
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_TITLEExplodeProp    "Explode Setting"
+    IDS_HELPFILEExplodeProp " "
+    IDS_DOCSTRINGExplodeProp " "
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+1 TYPELIB "DXTSamp.tlb"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

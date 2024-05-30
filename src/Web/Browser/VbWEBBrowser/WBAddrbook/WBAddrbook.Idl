@@ -1,0 +1,66 @@
+// WBAddrBook.idl : IDL source for WBAddrBook.dll
+// Microsoft Corporation Copyright 1999 
+
+// This file will be processed by the MIDL tool to
+// produce the type library (WBAddrBook.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+	[
+		object,
+		uuid(0340F05E-E75D-11D1-AFDB-000086189887),
+		dual,
+		helpstring("IWBWAB Interface"),
+		pointer_default(unique)
+	]
+	interface IWBWAB : IDispatch
+	{
+		[id(1), propget, helpstring("Gets WebBrowser Pointer")]
+			HRESULT WebBrowser([out, retval] LPDISPATCH* ppWebBrowser);
+		[id(1), propputref, helpstring("Sets WebBrowser Pointer")]
+			HRESULT WebBrowser([in] LPDISPATCH pWebBrowser);
+		[id(2), propget, helpstring("Gets global Offline state")]
+			HRESULT Offline([out, retval] VARIANT_BOOL * pbOffline);
+		[id(2), propput, helpstring("Toggles global Offline state")]
+			HRESULT Offline([in] VARIANT_BOOL bOffline);
+		[id(3), helpstring("Show Internet Explorer Address Book")]
+			HRESULT ShowAddressBook([in] LONG);
+		[id(4), helpstring("Show Internet Explorer Mail")]
+			HRESULT ShowMail([in] LONG hWnd);
+		[id(5), helpstring("Show Internet Explorer News")]
+			HRESULT ShowNews([in] LONG hWnd);
+		[id(6), helpstring("Show \"Internet Options...\" dialog")]
+			HRESULT ShowProperties(void);
+		[id(7), helpstring("Show Internet Explorer \"Find...\" dialog")]
+			HRESULT ShowViewSource(void);
+		[id(8), helpstring("View Source")]
+			HRESULT ShowFind(void);
+		[id(9), helpstring("Show Internet Explorer \"Organize Favorites...\" dialog")]
+			HRESULT ShowOrganizeFavorites([in] LONG);
+		[id(10), helpstring("Show \"Update Subscriptions...\" dialog")]
+			HRESULT ShowUpdateSubscriptions(void);
+		[id(11), helpstring("Show \"My Computer...\" folder")]
+			HRESULT ShowMyComputer([in] LONG);
+		[id(12), helpstring("Determine URL from Internet Shortcut")]
+			HRESULT GetURL([in] VARIANT vPath, [out] LPVARIANT vURL);
+	};
+[
+	uuid(0340F051-E75D-11D1-AFDB-000086189887),
+	version(1.0),
+	helpstring("WBAddrBook 1.0 Type Library")
+]
+library WBADDRBOOKLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(0340F05F-E75D-11D1-AFDB-000086189887),
+		helpstring("Helper class for Visual J++ 6.0 HTMLControl and Visual Basic 5.0 MyWebBrowser Samples")
+	]
+	coclass WBWAB
+	{
+		[default] interface IWBWAB;
+	};
+};

@@ -1,0 +1,118 @@
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<HTML>
+<HEAD>
+<TITLE>The SPAN Tag</TITLE>
+<META NAME="FILENAME" CONTENT="span.HTM">
+
+
+<SCRIPT LANGUAGE="JavaScript">
+
+function forward() {
+
+//This function increments the data bound record after checking to confirm 
+//you are not already at the end of the recordset. If you are, the program 
+//alerts you that it cant go any further. 
+
+  if (StockList.recordset.AbsolutePosition != StockList.recordset.RecordCount) {
+	StockList.recordset.MoveNext();
+	}
+	else {
+	alert("Already at last element");
+	}
+}
+
+function reverse() {
+
+//This function decrements the data bound record after checking to confirm  
+//you are not already at the end of the recordset. If you are, the program 
+//alerts you that it cant go any further.  
+
+  if (StockList.recordset.AbsolutePosition != 1) {
+	StockList.recordset.MovePrevious();
+	}
+	else {
+	alert("Already at first element");
+	}
+}
+
+</SCRIPT>
+</HEAD>
+
+
+<BODY TOPMARGIN=20 LEFTMARGIN=40 BGCOLOR="#ffffff" LINK="#000066" VLINK="#666666 text="#000000">
+
+<H2>The SPAN Tag</H2>
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT>
+<P>
+<P>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+<hr>
+
+<BR>
+
+You can use the SPAN tag to bind data directly into the text of the page.
+The content of the span is bound. The
+example below shows two SPAN tags used to insert the company name and symbol
+for a stock into a paragraph of text. And, although not shown in the
+current record example below, spans can
+also display HTML when present in the data by adding the DATAFORMATAS attribute.
+<P>
+Clicking on the arrow buttons will move the current record. This results in the content of the spans changing to display the values from the current record.
+
+<P>
+<CENTER>
+<DIV STYLE="width:300">
+One of the many technology stocks in your portfolio is <SPAN DATASRC=#STOCKLIST DATAFLD=COMPANY></SPAN>. You can find quotes for <SPAN DATASRC=#STOCKLIST DATAFLD=COMPANY></SPAN>&nbsp;using the symbol: <SPAN DATASRC=#STOCKLIST DATAFLD=SYMBOL></SPAN>.
+</CENTER>
+<P>
+<CENTER>
+<HR WIDTH=100>
+<INPUT TYPE="button" VALUE="  <  " ONCLICK="reverse();">
+<INPUT TYPE="button" VALUE="  >  " onClick="forward();">
+<HR WIDTH=100>
+</DIV>
+</CENTER>
+<P>
+
+SPAN tags can also be used inside a repeated table. The example below shows the
+span using the DATAFORMATAS attribute.
+<P>
+
+<OBJECT ID="StockList" CLASSID="clsid:333C7BC4-460F-11D0-BC04-0080C7055A83"
+	WIDTH=0 HEIGHT=0>
+<PARAM NAME="UseHeader" VALUE="True">
+<PARAM NAME="DataURL" VALUE="quotes.txt">
+</OBJECT>
+
+<CENTER>
+<TABLE DATASRC="#StockList" CELLSPACING=10 BORDER=1>
+	<THEAD>
+		<TR>
+		<TH> 
+			<DIV> Symbol </DIV>
+		</TH>
+	</THEAD>
+	<TBODY>
+		<TD ALIGN=CENTER>
+			<SPAN DATAFLD="Symbol_fmt" DATAFORMATAS="html"> </SPAN>		
+		</TD>
+	</TBODY>
+</TABLE>
+</CENTER>
+<P>
+
+Click on <A HREF="quotes.txt">quotes.txt</A> to see the data file used 
+by this page.
+<P>
+<P>
+<P>
+<P>
+<FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">
+&copy; <A HREF="/misc/cpyright.htm" TARGET="_top">1999 Microsoft Corporation. All rights reserved. Terms of use</A>.
+</FONT>
+</BODY>
+</HTML>

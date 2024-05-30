@@ -1,0 +1,130 @@
+# Microsoft Developer Studio Generated Dependency File, included by admin.mak
+
+.\ADMNDEMO.C : \
+	"..\..\..\..\tools\vc98\include\basetsd.h"\
+	".\ADMNDEMO.H"\
+	".\CHILD.H"\
+	".\DIALOGS.H"\
+	".\ERRCHECK.H"\
+	".\EXECUTE.H"\
+	".\INFO.H"\
+	".\INI.H"\
+	".\MENU.H"\
+	".\RESULTS.H"\
+	".\STANDARD.H"\
+	".\STRINGS.H"\
+	
+
+.\ADMNDEMO.RC : \
+	".\admndemo.dlg"\
+	".\ADMNDEMO.H"\
+	".\ADMNDEMO.ICO"\
+	".\CHILD.H"\
+	".\CONNECT.ICO"\
+	".\DIALOGS.H"\
+	".\ERRCHECK.H"\
+	".\EXECUTE.H"\
+	".\INFO.H"\
+	".\INI.H"\
+	".\MENU.H"\
+	".\RESULTS.H"\
+	".\RESULTS.ICO"\
+	".\STANDARD.H"\
+	".\STRINGS.H"\
+	
+
+.\DIALOGS.C : \
+	"..\..\..\..\tools\vc98\include\basetsd.h"\
+	".\ADMNDEMO.H"\
+	".\CHILD.H"\
+	".\DIALOGS.H"\
+	".\ERRCHECK.H"\
+	".\EXECUTE.H"\
+	".\INFO.H"\
+	".\INI.H"\
+	".\MENU.H"\
+	".\RESULTS.H"\
+	".\STANDARD.H"\
+	".\STRINGS.H"\
+	
+
+.\ERRCHECK.C : \
+	"..\..\..\..\tools\vc98\include\basetsd.h"\
+	".\CHILD.H"\
+	".\ERRCHECK.H"\
+	".\MENU.H"\
+	".\RESULTS.H"\
+	".\STANDARD.H"\
+	".\STRINGS.H"\
+	
+
+.\EXECUTE.C : \
+	"..\..\..\..\tools\vc98\include\basetsd.h"\
+	".\ADMNDEMO.H"\
+	".\CHILD.H"\
+	".\ERRCHECK.H"\
+	".\EXECUTE.H"\
+	".\INFO.H"\
+	".\INI.H"\
+	".\MENU.H"\
+	".\RESULTS.H"\
+	".\STANDARD.H"\
+	".\STRINGS.H"\
+	
+
+.\INFO.C : \
+	"..\..\..\..\tools\vc98\include\basetsd.h"\
+	".\ADMNDEMO.H"\
+	".\CHILD.H"\
+	".\ERRCHECK.H"\
+	".\EXECUTE.H"\
+	".\INFO.H"\
+	".\INI.H"\
+	".\MENU.H"\
+	".\RESULTS.H"\
+	".\STANDARD.H"\
+	".\STRINGS.H"\
+	
+
+.\INI.C : \
+	"..\..\..\..\tools\vc98\include\basetsd.h"\
+	".\CHILD.H"\
+	".\ERRCHECK.H"\
+	".\INI.H"\
+	".\MENU.H"\
+	".\RESULTS.H"\
+	".\STANDARD.H"\
+	
+
+.\MENU.C : \
+	"..\..\..\..\tools\vc98\include\basetsd.h"\
+	".\ADMNDEMO.H"\
+	".\CHILD.H"\
+	".\ERRCHECK.H"\
+	".\EXECUTE.H"\
+	".\INFO.H"\
+	".\INI.H"\
+	".\MENU.H"\
+	".\RESULTS.H"\
+	".\STANDARD.H"\
+	
+
+.\RESULTS.C : \
+	"..\..\..\..\tools\vc98\include\basetsd.h"\
+	".\CHILD.H"\
+	".\ERRCHECK.H"\
+	".\INI.H"\
+	".\MENU.H"\
+	".\RESULTS.H"\
+	".\STANDARD.H"\
+	
+
+.\STANDARD.C : \
+	"..\..\..\..\tools\vc98\include\basetsd.h"\
+	".\CHILD.H"\
+	".\ERRCHECK.H"\
+	".\MENU.H"\
+	".\RESULTS.H"\
+	".\STANDARD.H"\
+	".\STRINGS.H"\
+	

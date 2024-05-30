@@ -1,0 +1,33 @@
+HKCR
+{
+	ObjVw.ObjVw.1 = s 'ObjVw Class'
+	{
+		CLSID = s '{5DC52A12-F33E-11D0-8A4F-00C04FB9C3A5}'
+	}
+	ObjVw.ObjVw = s 'ObjVw Class'
+	{
+		CurVer = s 'ObjVw.ObjVw.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {5DC52A12-F33E-11D0-8A4F-00C04FB9C3A5} = s 'ObjVw Class'
+		{
+			ProgID = s 'ObjVw.ObjVw.1'
+			VersionIndependentProgID = s 'ObjVw.ObjVw'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			ForceRemove 'Control'
+			ForceRemove 'Programmable'
+			ForceRemove 'ToolboxBitmap32' = s '%MODULE%, 1'
+			'MiscStatus' = s '0'
+			{
+			    '1' = s '131473'
+			}
+			'TypeLib' = s '{42BE256D-F339-11D0-8A4E-00C04FB9C3A5}'
+			'Version' = s '1.0'
+		}
+	}
+}

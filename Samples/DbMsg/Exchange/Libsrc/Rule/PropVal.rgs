@@ -1,0 +1,25 @@
+HKCR
+{
+	MSExchange.PropertyValue.1 = s 'PropVal Class'
+	{
+		CLSID = s '{0C5D91B5-0D1B-11D2-BC12-00C04F8C92F7}'
+	}
+	MSExchange.PropertyValue = s 'PropVal Class'
+	{
+		CLSID = s '{0C5D91B5-0D1B-11D2-BC12-00C04F8C92F7}'
+		CurVer = s 'MSExchange.PropertyValue.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {0C5D91B5-0D1B-11D2-BC12-00C04F8C92F7} = s 'PropVal Class'
+		{
+			ProgID = s 'MSExchange.PropertyValue.1'
+			VersionIndependentProgID = s 'MSExchange.PropertyValue'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+		}
+	}
+}

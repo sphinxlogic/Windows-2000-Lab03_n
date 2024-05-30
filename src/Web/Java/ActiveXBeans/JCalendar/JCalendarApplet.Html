@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>JCalendar</title>
+</head>
+<body>
+<hr>
+
+<applet
+    code="JCalendar.class"
+    name="JCalendar"
+    width=320
+    height=240>
+<param name="FiresScriptEvents" value="true">
+</applet>
+
+<br>
+
+<input type=button value="Next Year" name="btnNextYear">
+<input type=button value="Previous Year" name="btnPrevYear">
+<input type=button value="Next Month" name="btnNextMonth">
+<input type=button value="Previous Month" name="btnPrevMonth">
+<input type=button value="Next Week" name="btnNextWeek">
+<input type=button value="Previous Week" name="btnPrevWeek">
+<input type=button value="Next Date" name="btnNextDate">
+<input type=button value="Previous Date" name="btnPrevDate">
+<input type=button value="Today" name="btnToToday">
+
+
+<script language="vbscript">
+
+sub JCalendar_yearChanged(oldYear , newYear)
+    MsgBox "The year has changed", vbOKOnly, "Event Occurred"
+end sub
+
+sub btnNextYear_onClick
+    JCalendar.nextYear()
+end sub
+
+sub btnPrevYear_onClick
+    JCalendar.previousYear()
+end sub
+
+sub btnNextMonth_onClick
+    JCalendar.nextMonth()
+end sub
+
+sub btnPrevMonth_onClick
+    JCalendar.previousMonth()
+end sub
+
+sub btnNextWeek_onClick
+    JCalendar.nextWeek()
+end sub
+
+sub btnPrevWeek_onClick
+    JCalendar.previousWeek()
+end sub
+
+sub btnNextDate_onClick
+    JCalendar.nextDate()
+end sub
+
+sub btnPrevDate_onClick
+    JCalendar.previousDate()
+end sub
+
+sub btnToToday_onClick
+    JCalendar.toToday()
+end sub
+
+</script>
+
+
+<hr>
+<a href="JCalendar.java">The source.</a>
+</body>
+</html>

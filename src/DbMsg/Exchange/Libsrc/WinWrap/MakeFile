@@ -1,0 +1,16 @@
+#----------------------------------------------------------------------------
+# Description:
+#   Makefile for WinWrap.Lib
+#
+# Copyright (C) Microsoft Corporation 1986 - 1998.  All Rights Reserved.
+#----------------------------------------------------------------------------
+
+USE_EXCHANGE=1
+
+Proj = WinWrap
+
+!Include <BkOffice.Mak>
+
+all: $(ObjDir)\$(Proj).Lib
+
+$(ObjDir)\$(Proj).Lib: $(@R).Obj

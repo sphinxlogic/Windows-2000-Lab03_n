@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Intermediate Visual Basic Component</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_intermediate_visual_basic_component"></a>Intermediate Visual Basic Component</h3>
+<p>
+This sample demonstrates how to create and use a component that uses the ASP built-in objects. The <b>myPowerMethod</b> method, when invoked, calls the MTS method <b>GetObjectContext</b> to get a reference to the calling context. That reference is then used to access the built-in <b>Request</b> and <b>Response</b> objects. <b>Request.ServerVariables</b> is invoked to determine what kind of client browser is accessing the component, and a message is sent back to the client browser with the <b>Response.Write</b> method. </p>
+<p>
+A read-only property is also implemented in this sample, as <b>myPowerProperty</b>. When this property is queried, <b>GetObjectContext</b> is again used to access the <b>Request</b> object, and determine the value of the SCRIPT_NAME variable. </p>
+<p>
+In addition, this sample implements several methods, and a basic property. The <b>myProperty</b> property, along with methods to set and query the property, are included, as well as a simple method, <b>myMethod</b>, that can be used to convert the string contained in <b>myProperty</b> to uppercase. </p>
+<p>
+<b>Note</b>&nbsp;&nbsp;Since this sample component uses the MTS method <b>GetObjectContext</b> to gain access to the ASP built-in objects, it is necessary to register the compiled component with MTS before the component can be run successfully. This can be accomplished from the MMC, using the MTS snap-in. </p>
+<p>
+This sample is provided for educational purposes only. It has not been tested in a production environment, and Microsoft&reg; will not provide technical support for it. </p>
+</BODY>
+</HTML>

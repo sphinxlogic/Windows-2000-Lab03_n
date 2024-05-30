@@ -1,0 +1,19 @@
+#----------------------------------------------------------------------------
+# Description:
+#   Makefile for InstForm.Exe
+#
+# Copyright (C) Microsoft Corporation 1986 - 1998.  All Rights Reserved.
+#----------------------------------------------------------------------------
+
+USE_EXCHANGE=1
+console=1
+
+Proj = InstForm
+
+!include <BkOffice.Mak>
+
+ObjList = $(ObjDir)\IFormMsg.Res $(@R).Obj
+
+all: $(ObjDir)\$(Proj).Exe
+
+$(ObjDir)\$(Proj).Exe: $(ObjList)

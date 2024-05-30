@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>PopupMenu -> UIMenuList</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">PopupMenu to UIMenuList</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.PopupMenu should be transformed into instances of
+com.ms.ui.UIMenuList.</p>
+
+<p align="left">PopupMenu extends <a href="Menu.htm"
+target="descriptions">Menu</a>: be sure to see its changes.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">AWT's PopupMenus (which are made up of <a
+href="MenuItem.htm" target="descriptions">MenuItem</a>s) place a
+menu on a specified part of a component. In AFC, you build a menu
+using UIMenuList, create a UIContextMenu containing that, and
+then place it on the screen using a special feature of
+UIContextMenus. UIContextMenus are meant to work as right-click
+type menus in a component: however, you can also launch them into
+a specific location. So code that used to look like</p>
+
+<p align="left">&nbsp;</p>
+
+<p align="left"><font face="Courier">Component myComponent = new
+Component();<br>
+PopupMenu myPopMenu = new PopupMenu();<br>
+myPopMenu.add(new MenuItem(&quot;First Item&quot;));<br>
+myPopMenu.show(myComponent, 10, 10);</font></p>
+
+<p align="left">will now look like</p>
+
+<p align="left"><font face="Courier">UIComponent myComponent =
+new UIComponent();<br>
+UIMenuList myMenuList = new UIMenuList();<br>
+myMenuList.add(new UIText(&quot;First Item&quot;));<br>
+UIContextMenu myPopMenu = new UIContextMenu(myMenuList);<br>
+myPopMenu.launchAt(10, 10, myComponent);</font></p>
+
+<p align="left">AFC also provides you many more options for your
+menus: you can add any UIComponent to a UIMenuList (like a
+UIItem, which combines text and images, or any kind of button)
+and provide many other kinds of menu types.</p>
+
+<p align="left">&nbsp;</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">This is the set of changes you need to make to
+port all PopupMenu methods to UIMenuList/UIContextMenu methods.
+Any method not listed here or below does not need to be changed.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial"><strong>AWT Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">PopupMenu() or<br>
+        PopupMenu(String)</font></td>
+        <td nowrap><font size="2" face="Courier">UIMenuList()</font></td>
+        <td><font size="2">UIMenuLists cannot be associated with
+        names: you need to assign a UIMenuButton or UIMenuItem to
+        the UIMenuList to do that.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">show(Component,
+        int, int)</font></td>
+        <td nowrap><font size="2" face="Courier">menu =
+        UIContextMenu(UIMenuList);<br>
+        menu.launchAt(int, int, Component);</font></td>
+        <td><font size="2">See the usage example above for a
+        clearer demonstration.</font></td>
+    </tr>
+</table>
+</body>
+</html>

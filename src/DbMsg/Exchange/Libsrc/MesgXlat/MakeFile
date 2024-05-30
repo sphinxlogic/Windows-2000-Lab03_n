@@ -1,0 +1,22 @@
+#---------------------------------------------------------------------------
+# Description:
+#   Make file to generate MesgXlat.Lib
+#
+# Copyright (C) Microsoft Corporation 1986 - 1998.  All Rights Reserved.
+#---------------------------------------------------------------------------
+
+USE_EXCHANGE=1
+
+Proj = MesgXlat
+
+cDefines=-DUNICODE -D_UNICODE
+
+ObjList =  $(@D)\ConvClss.Obj $(@D)\ConvDllE.Obj $(@D)\ConvReg.Obj  \
+           $(@D)\ConvRegH.Obj $(@D)\ConvCwrp.Obj $(@D)\ConvDll.Obj  \
+           $(@D)\ConvEngn.Obj $(@D)\ConvDllC.Obj $(@R).Obj
+
+!Include <BkOffice.Mak>
+
+all: $(ObjDir)\$(Proj).Lib
+
+$(ObjDir)\$(Proj).Lib: $(ObjList)

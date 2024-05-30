@@ -1,0 +1,877 @@
+===========================================================================
+       - JAVA/COM CUSTOM MARSHALING FOR USER-DEFINED DATA TYPES -
+
+     Copyright (c) 1997 Microsoft Corporation.  All rights reserved.
+===========================================================================
+
+This document explains how custom marshaling can be implemented between Java
+and COM.  Basically, this involves the writing of a HOOK CLASS to do the
+marshaling, and the use of the JACTIVEX tool to create a Java type library
+file that describes the custom interface. 
+
+Suppose you have a COM library that uses various data types as parameters 
+and return values for its methods.  For these methods to be callable from
+Java, the data types need to be converted between the COM types and Java
+types.  For some types, like integers, floats, booleans, and strings, the
+Microsoft VM for Java provides intrinsic marshaling support that does the
+type conversion for you.
+
+Besides the conversion work, the COM types must be represented as Java
+types in order to be callable from Java.  This requires a Java class
+file that contains type declarations in Java format.  This class file is
+usually created by running a type-conversion tool such as JACTIVEX (with
+the /javatlb switch) on the typelib of the COM server.  This tool will
+generate the proper type mappings for all types that are supported by
+the intrinsic marshaling of the VM. 
+
+However, the VM does not have intrinsic support for complex COM library
+data types such as C structures.  In such cases, you will need to create
+a user-defined Java type and write a HOOK CLASS that does the marshaling.
+
+Also, JACTIVEX cannot automatically create type mappings that will work for
+user-defined types.  You will need to tell JACTIVEX how to generate the Java
+type declarations.  You do this by creating a Java Information (.JNF) file
+that describes your custom data types, and passing this extra file to JACTIVEX
+when it creates the COM library class header file. 
+
+The remainder of this document provides information on how this is done.
+
+
+
+CUSTOM MARSHALING OVERVIEW
+==========================
+Suppose you have a simple COM library, represented by this pseudo-ODL file:
+
+            typedef struct POINT
+            {   long    x;
+                long    y;
+            } POINT;
+
+            interface IPlotter : IUnknown
+            {
+                HRESULT DrawLine([in] POINT *start, [in] POINT *end);
+            }
+        
+            coclass CPlotter
+            {
+                [default] interface IPlotter;
+            }
+
+To implement or access this library with Java, you would go through
+the following steps:
+
+    1. Write a PLOTTER.IDL or PLOTTER.ODL file for the COM library.
+       Pass it to MIDL or MKTYPLIB to generate a type library called
+       PLOTTER.TLB.
+
+
+    2. Write a .JNF file which describes all the user-defined types.
+       Here is what the .JNF file would look like for the above
+       POINT type:
+
+       PLOTTER.JNF
+       -----------
+       [Custom]
+       POINT = java.awt.Point, PointMarshaler
+
+       This declaration tells JACTIVEX that when it sees a reference
+       to the type named POINT in the typelib, it should substitute the
+       Java type java.awt.Point.  It also tells the VM  to use the
+       PointMarshaler.class as the HOOK CLASS for the POINT type.
+       A hook class is a special class that you write for each
+       user-defined type you create.  It contains the code that actually
+       does the marshaling.  In other words, it translates the COM type
+       to the Java type and vice-versa.  Much of this document will deal
+       with what a hook class looks like and how to author one.
+
+       IMPORTANT: IDL and ODL files differ on how they expose the type
+       name.  If your typedef is:
+
+       typedef struct _Foo
+       {
+         ...
+       } FOO;
+
+       you need to put the struct tag name ("_Foo") in the JNF if
+       you are writing an IDL file.  If you are writing an ODL file,
+       you must put the typedef name ("FOO").
+
+
+    3. Pass the TLB and the JNF file to JACTIVEX.  It will create two
+       .java files that include special syntax.  This syntax will generate
+       the extra bits the Microsoft VM for Java needs to treat these files
+       as Java/COM classes.  For example, the name of the "PointMarshaler"
+       class is part of these bits.
+
+       For this example, JACTIVEX will generate two files: CPlotter.java
+       (representing the coclass), and IPlotter.java (representing the
+       interface).  Excluding the extra syntax for the magic bits, the
+       generated source for IPlotter looks like this:
+
+       IPLOTTER.JAVA
+       -------------
+       // In the actual file, you will see extra syntax that
+       // represents the extra bits needed for the VM Java/COM
+       // marshaling layer.
+       
+       interface IPlotter
+       {
+           public DrawLine(java.awt.Point start, java.awt.Point end);
+       }
+
+
+    4. Compile CPlotter.java and IPlotter.java using JVC.  You must use
+       JVC version 1.02.3920 or later, which understands the extra syntax
+       that JACTIVEX generates.  This version of JVC is included in the BIN
+       directory of the SDK.
+
+
+    5. A Java application can now load and use an installed Plotter
+       library by invoking:
+
+          IPlotter plotter = (IPlotter)(new CPlotter());
+          plotter.DrawLine(new Point(x1,y1), new Point(x2,y2));
+
+       A Java class can also implement the Plotter library via IPlotter:
+       
+          class MyPlotterImp implements IPlotter
+          {
+             void DrawLine(Point start, Point end)
+             {
+               ...
+             }
+          }
+
+The sources for a working copy of this example can be found under the
+plotter subdirectory.  The sources for PointMarshaler are under the point
+subdirectory.  To execute the sample, change the current directory to
+the prundir subdirectory, and type "GO".
+
+
+
+HOW JAVA/COM CUSTOM MARSHALING WORKS
+====================================
+How does the Microsoft VM for Java actually marshal the call from Java to
+Plotter?  In the interface file IPlotter.class, there are special bits
+associated with the "start" and "end" parameters that indicate that these
+parameters are a user-defined class and that the hook class is
+PointMarshaler.class.  These bits are all generated by JACTIVEX.EXE.
+
+When a Java application invokes the DrawLine() method, the Microsoft VM for
+Java loads the PointMarshaler class (if it hasn't already), and looks for a
+public static field named "cbByValSize", whose presence indicates that the
+COM type is fixed-size.  In this example, PointMarshaler does expose this
+field, and it is equal to 8, the size (in bytes) of a POINT structure.
+
+Hence, the Microsoft VM for Java allocates 8 bytes of space on the stack,
+and invokes another public static method on PointMarshaler called
+copyToExternal.  The VM passes the copyToExternal method a pointer to
+this 8-byte space, and a reference to the "end" parameter, in this
+case java.awt.Point.  (NOTE: the pointer to the 8-byte space is passed
+as an integer value).
+
+With this information, copyToExternal translates the java.awt.Point to
+a POINT structure in that 8 byte space. The same is repeated for the
+"end" argument.  The COM method DrawLine ultimately receives a pointer
+to the two stack buffers as its "start" and "end" parameters.  Since both
+parameters were marked "[in]",  there is no further action for this simple
+type.
+
+NOTE: The above explanation is necessarily simplified.  Much of the hook
+class analysis implied above is done prior to any method calls and does
+not actually occur at method call time.
+
+
+
+HOOK CLASS OVERVIEW
+===================
+Aside from the extra step of writing a hook class, and listing your data
+types in the JNF file, the procedure above is no different from that of
+integrating any other COM library with Java.  The hook class is the
+cornerstone of user-defined types.  Therefore, this document is primarily
+about writing hook classes.
+
+A hook class is a collection of static methods and fields packaged
+as a Java class.  The hook class must be installed and visible to the
+classpath on any system where the user-defined types are used.  However,
+they otherwise remain "behind the scenes."  The Microsoft VM for Java loads
+the hook class as part of loading a JACTIVEX-created interface file that
+references them, and invokes methods on the hook class in order to marshal
+the user-defined type.
+
+All hook methods and fields are static (i.e. per-class, rather than
+per-instance).  The Java/COM integration layer of the VM will never create
+an instance of a hook class.  There are approximately 10 fields and methods
+defined by the Hook Class Specification; however, all hook members are
+either optional or have reasonable defaults, so most hook classes will
+only need to implement a subset of the members.
+
+The responsibilities of a hook class are:
+
+  1. Specifying the Java type (which we will refer to generically as JTYPE).
+     JTYPE can be a primitive type (int, double, etc.) or a reference
+     type (objects and arrays).
+
+  2. Specifying the size, in bytes, of the COM type (which we will refer
+     to generically as ETYPE).  ETYPE can be variable-sized, in which
+     case, the hook class will indicate this fact by not offering a size.
+
+  3. Providing code (methods) to translate JTYPEs to ETYPEs and back.
+
+  4. (Optional) Providing destructor code for ETYPEs (to release
+     embedded resources.)
+
+  5. (Optional) Providing code to allocate and free ETYPEs.
+
+In turn, the VM has the responsibility to call the appropriate hook
+methods at the right time whenever ETYPEs are passed to or from COM
+methods.  Once the hook class is written, the VM automatically supports
+passing ETYPEs (if ETYPE is fixed-size), ETYPE*, and ETYPE**, as well as
+returning ETYPE*.  The VM also implements the correct semantics for "[in]",
+"[out]", "[in,out]" and "[out,retval]."  These are typelib attributes
+which JACTIVEX passes along via the extra bits in the .class file.  An "[out]"
+or double indirection is mapped to a one-element array of JTYPE rather than
+to JTYPE itself. 
+
+
+
+HOOK CLASS IMPLEMENTATION
+=========================
+Although hook classes are packaged as Java classes, they cannot be written
+in Java.  Hook classes must receive and pass machine addresses (pointers).
+Java methods can receive pointers by masquerading them as an int, but the
+Java language offers no way to dereference, allocate, destroy or otherwise
+manipulate pointers.  Thus, use of the Raw Native Interface (RNI) is
+virtually a necessity for authoring hook classes.  RNI allows Java methods
+to be implemented as C functions inside a DLL.  RNI also offers a small set
+of APIs that can be called from C to create, manipulate and destroy Java
+objects.
+
+Why not use the Java/COM layer itself to author hook classes by
+implementing the methods as a COM inproc server and exposing them as Java?
+Actually, this approach is possible; however, the Java/COM layer was
+designed to insulate the called method from the fact that Java is involved.
+This makes it more difficult for the called method to create, manipulate and
+destroy Java objects, which is something that hook classes also need to do.
+
+RNI, although more low-level, is usually the preferred approach for writing
+code that bridges Java and COM, which is what a hook class does.  Therefore, 
+this document will assume that RNI is being used to author hook classes.
+
+
+
+RAW NATIVE INTERFACE BASICS
+===========================
+This section covers the basics of RNI so you can get started; however,
+a full discussion of the RNI API set is well beyond scope of this document.
+RNI is fully documented in the Java SDK.  If you are familiar with RNI,
+you can skip this section.
+
+Here is a simple Java class with two methods: a normal Java method (Add)
+and an RNI method (AddRNI):
+
+  package MyPackage.MySubPackage;
+
+  class SampleRNI
+  {
+    public static int Add(int x, int y)
+    {
+       return x + y;
+    }
+
+    public static native int AddRNI(int x, int y);
+
+    static
+    {
+      System.loadLibrary("SampleRNICode");
+    }
+  }  
+
+The AddRNI method uses the modifier "native" to declare that the method
+is implemented in C (or C++).  The static initializer of the class loads
+the DLL SampleRNICode.dll.  This DLL exports a function named
+MyPackage_MySubPackage_SampleRNI_AddRNI which is implemented as follows:
+
+
+        #include "native.h";  // RNI declarations (part of Microsoft SDK for
+                              // Java)
+
+        // All RNI DLLs must export this method - otherwise, an
+        // UnsatisfiedLinkError will be thrown when the method is called.
+        // This a new requirement for the Microsoft VM for Java.
+        // Previous releases did not require this export. 
+        __declspec(dllexport)
+        DWORD __cdecl RNIGetCompatibleVersion()
+        {
+            return RNIVER;
+        }
+
+
+        __declspec(dllexport)
+        int
+        __cdecl
+        MyPackage_MySubPackage_SampleRNI_AddRNI(OBJECT*nil, int x, int y)
+        {
+            return x + y;
+        }
+
+
+When the SampleRNI class is first loaded, the VM invokes the static
+initializer block, which uses the system.loadLibrary() API to locate
+and load SampleRNICode.dll into the internal RNI DLL list of the VM.
+It then verifies that SampleRNICode.dll exports the public function
+"RNIGetCompatibleVersion", and that this function returns a version
+number compatible with the VM.
+
+When the AddRNI method is actually invoked, the VM searches all
+DLLs loaded via system.loadLibrary() for one that exports the name
+MyPackage_MySubPackage_SampleRNI_AddRNI (naturally, the result of this
+lookup is remembered for future calls.)  When this export is found, the VM
+invokes it, passing the Java parameters. The return value of this
+C function becomes the value returned by the AddRNI method.
+
+The "nil" argument declared by MyPackage_MySubPackage_SampleRNI_AddRNI
+will always be NULL for a static method.  If this were a non-static method,
+the nil parameter would hold a pointer to the instance being called
+(the "this" pointer.)  Static methods do not have a "this" pointer, but
+RNI still requires you to declare a dummy parameter as a place-holder.
+
+The C function for RNI methods must be declared __cdecl (not __stdcall).
+Declaring them as __stdcall will un-balance the stack.
+
+For the exports in a DLL to be visible for RNI linkage, the DLL must
+have been loaded using System.loadLibrary(). There is no way to prevent
+RNI from searching for names in DLLs loaded by other unrelated classes.
+RNI linkage depends entirely on the uniqueness of the export name formed
+from the package hierachy, class name, and method name.
+
+In general, the msjavah tool can be used to generate a C header
+file containing the appropriate function declarations corresponding to a
+class.  For writing hook classes, it is easier to use the provided
+template.c file for the methods.   
+
+
+
+STARTING A HOOK CLASS
+=====================
+The easiest way to start is by copying the files under the template
+subdirectory to a new directory. The key files are:
+
+     TemplateMarshaler.java - a skeleton hook class
+     TemplateMarshaler.c    - contains a blank C function for each method
+     TemplateMarshaler.def  - exports the C functions in template.c
+
+To make the files compilable, you must follow the instructions in each
+of the comments marked "TODO" in TemplateMarshaler.java and
+TemplateMarshaler.c. This involves replacing ETYPE and JTYPE with your
+particular type, and uncommenting some optional methods.
+
+The template contains C functions for eight hook methods. The comments
+inside each function describe what that hook function is supposed to do.
+We will go into more detail about this as we proceed through the examples.
+First, a few salient points about the hook functions as a whole:
+
+   - Each C function starts with an unused parameter "OBJECT*x". This is
+     an artifact of RNI and will always be NULL for a static method. This
+     parameter can be ignored.
+
+   - Several C functions have parameters "JTYPE javaval". "JTYPE" should
+     be replaced throughout by the C type that represents your Java type.
+     To find out what C type to use, consult the table in TemplateMarshaler.c
+     or use msjavah.
+
+   - Several C functions have parameters "PPETYPE ppetype" (a pointer to
+     a pointer to an ETYPE).  These parameters are represented as "int"
+     in the Java method, but they are true pointers.  IMPORTANT: All
+     pointers passed to hook methods are double-indirect ETYPE (PPETYPE).
+     For many methods (such as releaseExternal), this will seem like an
+     unnecessary level of indirection.  The reason ETYPE is always
+     double-indirected has to do with an obscure feature of hook classes
+     that allows you to redefine the size and nature of A POINTER to
+     ETYPE.  This is a very arcane use of hook classes and will not be
+     mentioned again in this primer.  Just remember that you will, in
+     some cases, have to deal with an extra level of indirection because
+     of this.
+
+   - Except for the functions that return Java types, hook methods return
+     VOID or return a native pointer through an output buffer.  To indicate
+     failures, hook methods should use SignalError() or SignalErrorPrintf()
+     which will cause RNI to throw a Java exception upon the exit of the 
+     C function.  Remember that SignalError() and SignalErrorPrintf()
+     return to their callers, so you must arrange to exit from your C
+     function immediately after calling these APIs.
+
+
+
+EXAMPLE 1: FixedPtMarshaler (THE BASIC HOOK CLASS).
+===================================================
+The FixedPtMarshaler is about the simplest useful hook class.  It
+exposes only two methods and one field. The JTYPE is "double", and
+the ETYPE is the Win32 FIXED structure for representing fixed point
+fractions:
+
+        struct FIXED {
+            WORD        fract;
+            short       value;
+        } FIXED;
+
+
+The source code for FixedPtMarshaler can be found under the fixed
+directory. The executables (FixedPtMarshaler.class and FixedPtMarshaler.dll)
+are under the rundir directory.
+
+    The members implemented by FixedPtMarshaler are:
+
+      public FixedPtMarshaler {
+
+                                        
+          public static int cbByValSize; // set of sizeof(FIXED) = 8
+
+          public static double toJava(int ppFIXED, int flags)
+          {
+              convert **ppFIXED to a double
+              return the double
+          }
+
+          public static void copyToExternal(double javaval,
+                                            int    ppFIXED,
+                                            int    Flags)
+          {
+              convert double to a FIXED
+              copy the FIXED to **ppFIXED
+          }
+          
+
+      }
+
+
+Even with only these methods, this hook class can now be used in the
+following ways:
+
+    COM                         becomes         Java
+    ---------------------------------------     ---------------------------
+    HRESULT func([in] FIXED)                    func(double)
+    HRESULT func([out,retval] FIXED*)           double func()
+    HRESULT func([in] FIXED*)                   func(double)
+    HRESULT func([out] FIXED*)                  func(double[])
+    HRESULT func([in,out] FIXED*)               func(double[])
+
+Note that when using this hook class in a JNF file, you should preceed
+the Java type "double" with the "const" modifier: i.e.
+
+    [Custom]
+    FIXED=const double, FixedPtMarshaler
+
+If you do not include the "const" modifier, JACTIVEX will assume that you
+wish to implement "[out]" parameters by side-effecting a value passed
+in by the caller, rather than passing a new value out via a 1-element
+array.  That is, JACTIVEX would map
+
+    HRESULT func([out] FIXED*)
+
+to
+
+    func(double)           // Not what you wanted!
+
+    
+Because "double" cannot be side-effected (it is immutable), this
+method prototype cannot possibly return a value to the caller.
+
+
+
+EXAMPLE 2: VarStrMarshaler (EMBEDDED RESOURCES).
+================================================
+The basic hook class assumes that ETYPE contained no embedded pointers
+or handles to allocated resources that need to be freed when ETYPE is no
+longer needed. In C++ terms, if ETYPE was a class, it was assumed ETYPE
+did not have a destructor. Some structures, however, do need to clean up
+embedded resources. A well known example is the VARIANT structure
+used in Automation. A VARIANT is a fixed-size structure, yet it can have
+allocated objects such as BSTRs, SAFEARRAYSs and COM objects hanging
+off it. The "destructor" for a VARIANT is the VariantClear API, which
+checks the type of the variant and performs the appropriate cleanup
+(freeing the BSTR, freeing the SAFEARRAY, calling Release on the COM
+object, etc.)
+
+Arranging for proper cleanup of embedded resources requires only
+one new method: releaseByValExternal.
+
+The VarStr marshaler maps VARIANTs, confining itself to only one
+case: BSTR Variants, to Java String objects. That is, the JTYPE is
+String, and the ETYPE is:
+
+        struct {
+            short vt;           // Always VT_BSTR for this example
+            short unused;
+            short unused1;
+            short unused2;
+            BSTR  bstrVal;      // Points to characters in BSTR
+            long  unused3;      // never used in this example.
+
+        } VARIANT;
+
+
+The source code for VarStrMarshaler can be found under the varstr
+directory. The executables (VarStrMarshaler.class and VarStrMarshaler.dll)
+are under the rundir directory.
+
+    The members implemented by VarStrMarshaler are:
+
+      public VarStrMarshaler {
+
+                                        
+          public static int cbByValSize; // set of sizeof(VARIANT) = 16
+
+          public static String toJava(int ppVARIANT, int flags)
+          {
+              convert **ppVARIANT to a String
+              return the String
+          }
+
+          public static void copyToExternal(String javaval,
+                                            int    ppVARIANT,
+                                            int    Flags)
+          {
+              convert String to a VARIANT
+              copy the VARIANT to **ppVARIANT
+          }
+
+          /* NEW! */
+          public static void releaseByValExternal(int ppVARIANT, int Flags)
+          {
+              SysStringFree( (*ppVARIANT)->bstrVal );
+          }
+          
+
+      }
+
+    This hook class can be used in the following ways.
+
+    COM                         becomes         Java
+    ---------------------------------------     ---------------------------
+    HRESULT func([in] VARIANT)                    func(String)
+    HRESULT func([out,retval] VARIANT*)           String func()
+    HRESULT func([in] VARIANT*)                   func(String)
+    HRESULT func([out] VARIANT*)                  func(String[])
+    HRESULT func([in,out] VARIANT*)               func(String[])
+
+As before, String is immutable so the "const" modifier should be used
+for it in the JNF file.
+
+
+
+EXAMPLE 3: PointMarshaler (NON-"CONST" JAVA OBJECTS).
+====================================================
+Up till now, all JTYPEs were immutable. This is why "[out]" parameters
+could only be handled by one element arrays: that is, a caller had to write:
+
+        {
+           double ad1[] = {0};
+           double ad2[] = {0};
+
+           func(ad1, ad2);
+
+           System.out.println("func gave back: " + ad1[0] + ", " + ad1[1]);
+
+        }
+
+    It should be clear that the function:
+
+        HRESULT func([out] FIXED *, [out] FIXED *);
+
+    could not be usefully mapped to:
+
+        func(double d1, double d2);
+
+    because "func" would have no way of returning information to the caller.
+
+However, consider the java class java.awt.Point (which represents a
+point in 2-dimensional space.) The Point class is mutable as its "x" and "y"
+fields are public and can set by anyone. Therefore, it is advantageous
+to use the non-array form for passing [out] parameters. To do this only
+requires wo new methods "copyToJava" and "toUninitJava".
+
+The PointMarshaler class maps java.awt.Point to the Win32 POINT
+structure. The source code for PointMarshaler can be found under the point
+directory. The executables (PointMarshaler.class and PointMarshaler.dll)
+are under the rundir directory.
+
+    The members implemented by PointMarshaler are:
+
+      public PointMarshaler {
+
+                                        
+          public static int cbByValSize; // set of sizeof(POINT) = 8
+
+          public static Point toJava(int ppPOINT, int flags)
+          {
+              convert **ppPOINT to a Point
+              return the Point
+          }
+
+          public static void copyToExternal(Point javaval,
+                                            int    ppPOINT,
+                                            int    Flags)
+          {
+              convert Point to a POINT
+              copy the POINT to **ppPOINT
+          }
+
+          /* NEW! */
+          public static void copyToJava(Point javaval, int ppPOINT, int Flags)
+          {
+              modify "javaval" in place so it is "equivalent" to **ppPOINT;
+          }
+
+          /* NEW! */
+          public static Point toUninitJava(int ppPOINT, int flags)
+          {
+              create a new Point with arbitrary x and y values.
+              the contents of **ppPOINT are completely undefined and should
+              be ignored for fixed-size hook classes.
+          }
+      }
+
+    This hook class can be used in the following ways.
+
+    COM                         becomes         Java
+    ---------------------------------------     ---------------------------
+    HRESULT func([in] POINT)                    func(Point)
+    HRESULT func([out,retval] POINT*)           Point func()
+    HRESULT func([in] POINT*)                   func(Point)
+    HRESULT func([out] POINT*)                  func(Point)
+    HRESULT func([in,out] POINT*)               func(Point)
+
+This differs from the basic hook class in that "[out] POINT*" becomes
+Point rather than Point[]. To force JACTIVEX to generate the non-array
+mapping, you must *omit* the const modifier from "Point" in the JNF file.
+
+
+
+EXAMPLE 4: RectMarshaler (SUPPORT FOR CUSTOM ALLOCATION).
+=========================================================
+The hook classes up to this point have provided no method for allocating
+or freeing the memory for ETYPE itself. They have relied entirely on the
+VM to allocate the actual memory for ETYPE. As a result, the use of
+custom datatypes up till now has been restricted to cases where ETYPE can
+be allocated on the stack and its lifetime is bounded by the lifetime of the
+call. While this is sufficient for some types, there are cases where stack
+allocation is insufficient. The first case is when there is need to marshal
+methods where an ETYPE is allocated by the callee but freed by the caller
+(or vice-versa, as can happen with [in,out] paramaters.) The second case is
+if the datatype is variable-sized (such as a string), in which case, the
+VM cannot do the stack-allocation because it does not know the size.
+We will consider the first case here, and the second case later.
+
+It is the responsibility of the hook class to specify which API is used to
+allocate and release the memory for ETYPE.  The new hook methods required
+to support this are "toExternal" and "releaseExternal".
+
+For this example, we will marshal the Win32 RECT structure into
+java.awt.Rect objects. The source code for RectMarshaler can be found
+under the fixed directory. The executables (RectMarshaler.class and
+RectMarshaler.dll) are under the rundir directory.
+
+    The members implemented by RectMarshaler are:
+
+      public RectMarshaler {
+
+                                        
+          public static int cbByValSize; // set of sizeof(RECT) = 8
+
+          public static Rect toJava(int ppRECT, int flags)
+          {
+              convert **ppRECT to a Rect
+              return the Rect
+          }
+
+          public static void copyToExternal(Rect javaval,
+                                            int    ppRECT,
+                                            int    Flags)
+          {
+              convert Rect to a RECT
+              copy the RECT to **ppRECT
+          }
+
+
+          /*NEW*/
+          public static void toExternal(Rect javaval, int ppRECT, int Flags)
+          {
+              allocate a new RECT, initialize it using javaval,
+              store pointer in *ppRECT
+          }
+
+
+          /*NEW*/
+          public static void releaseExternal(int ppRECT, int Flags)
+          {
+              release *ppRECT. If RECT required a releaseByValExternal
+              (which it doesn't), this routine must do that work as well.
+          }
+          
+
+      }
+
+Note we could also have implemented copyToJava and toUninitJava here since
+Rect is mutable (like Point). However, that would just cloud the issue
+here.
+
+IMPORTANT NOTE: even in the presence of the new methods, the VM will
+optimize away certain allocations by allocating the data structure on
+the stack (for example, for "[in] ETYPE*" calls, the COM method will receive
+a pointer to a VM-allocated ETYPE on the stack rather than one allocated
+by toExternal()). If you want ALL ETYPEs to be allocated using toExternal(),
+you must *omit* the cbByValSize field. This will prevent the VM from
+optimizing to stack allocations as it cannot know how many bytes to allocate.
+
+
+   This hook class can be used in the following ways:
+
+    COM                         becomes         Java
+    ---------------------------------------     ---------------------------
+    HRESULT func([in] RECT)                     func(Rect)
+    HRESULT func([out,retval] RECT*)            Rect func()
+    HRESULT func([in] RECT*)                    func(Rect)
+    HRESULT func([out] RECT*)                   func(Rect[])
+    HRESULT func([in,out] RECT*)                func(Rect[])
+    HRESULT func([out,retval] RECT**)           Rect func()
+    HRESULT func([in] RECT**)                   func(Rect[])
+    HRESULT func([out] RECT**)                  func(Rect[])
+    HRESULT func([in,out] RECT**)               func(Rect[])
+
+
+
+EXAMPLE 5: AnsiMarshaler (Variable-sized data types).
+=========================================================
+So far, all of the ETYPE examples have been fixed-size structures. For
+some data structures, this is a prohibitive limitation. The classic example
+is a simple null-terminated string.
+
+To define a variable-sized structure, the hook class must omit the
+cbByValSize field. The absence of this field marks the hook class as
+variable-size. Unlike a fixed-sized hook class, a variable-size hook class
+must support toExternal and releaseExternal in order to be useful (the
+VM cannot stack-allocate a variable-sized structure). In addition
+certain mappings available to fixed-size hooks (in particular, those
+that pass the datatype by value) are not available to variable-size hooks. 
+
+More specifically, let us consider the simple case where ETYPE is char
+(not LPSTR!), and JTYPE is java.lang.String. We will consider both
+types immutable. This structure can be defined by a hook class with only
+three methods: toJava, toExternal and releaseExternal; the minimum useful
+variable-size hook class.
+
+The AnsiMarshaler class maps Strings to the LPSTR (ANSI null-terminated
+strings.). The source code for AnsiMarshaler can be found under the ansistr
+directory. The executables (AnsiMarshaler.class and AnsiMarshaler.dll)
+are under the rundir directory.
+
+    The members implemented by AnsiMarshaler are:
+
+      public AnsiMarshaler {
+
+                                        
+          public static String toJava(int ppCHAR, int flags)
+          {
+              convert **ppCHAR to a String
+              return the String
+          }
+
+          public static void toExternal(String javaval, int ppCHAR, int Flags)
+          {
+              allocate a new LPSTR, initialize it using javaval,
+              store pointer in *ppCHAR
+          }
+
+
+          public static void releaseExternal(int ppCHAR, int Flags)
+          {
+              release *ppCHAR. If LPSTR required a releaseByValExternal
+              (which it doesn't), this routine must do that work as well.
+          }
+          
+
+      }
+
+    The allowed usages are:
+
+
+    COM                         becomes         Java
+    ---------------------------------------     ---------------------------
+    HRESULT func([in] CHAR*)                    func(String)
+    HRESULT func([out] CHAR*)                   func(String[])
+    HRESULT func([in,out] CHAR*)                func(String[])
+    HRESULT func([out,retval] CHAR**)           String func()
+    HRESULT func([in] CHAR**)                   func(String[])
+    HRESULT func([out] CHAR**)                  func(String[])
+    HRESULT func([in,out] CHAR**)               func(String[])
+
+
+
+RUNNING AND BUILDING THE SAMPLE CLIENT
+=========================================================
+The "client" subdirectory contains the sources for a sample Java client
+and a C++ inproc COM server which exchange all the various types we have
+implemented.
+
+To run the example, simply change the current directory to "rundir",
+and type "GO".
+
+To build the sample, you will need to provide a makefile compatible with
+your build environment. Here are the steps:
+
+
+   1. Compile sysdata.odl to produce sysdata.tlb:
+
+        midl /mktyplib203 sysdata.odl.
+
+
+
+   2. Compile CustSample.odl to produce CustSample.tlb and CustSample.h:
+
+		mkdir debug
+		midl /mktyplib203 /h CustSample.h /out debug CustSample.odl
+
+
+
+   3. Compile CustSample.tlb to produce CCustSample.java and ICustSample.java:
+
+		JACTIVEX debug\CustSample.tlb -javatlb -nCustSample.jnf -d . /p:b-
+
+
+
+   4. Compile CustSample.java to produce CustSample.class and callbacks.class:
+
+        JVC CustSample  (You must use JVC version 1.02.3920 or later)
+
+
+
+   5. Compile and link CustSample.cpp & CustSample.def to produce CustSample.dll:
+		
+		cl /LD CustSample.cpp oleaut32.lib uuid.lib advapi32.lib user32.lib ole32.lib CustSample.def
+
+
+
+   6. Copy the server and class files to the run location:
+
+		copy *.dll ..\rundir
+		copy *.class ..\rundir
+  
+
+
+   7. Follow the build steps in the README.TXT files in each of the following directories:
+
+		ansistr
+		fixedpt
+		point
+		rect
+		varstr
+
+
+
+   8. Run the sample:
+
+		cd ..\rundir
+		RegSvr32 CustSample.dll
+		jview -cp:p . CustSample
+		RegSvr32 -u CustSample.dll

@@ -1,0 +1,88 @@
+
+<HTML> 
+<HEAD>
+<TITLE>Ripple Transform in Direct Animation</TITLE>
+</HEAD>  
+
+<BODY BGCOLOR=WHITE TOPMARGIN=15 LEFTMARGIN=20>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=2> 
+<CENTER>
+<H1>Ripple Transform in Direct Animation</H1>
+
+<OBJECT ID="DAControl"
+  STYLE="position:relative; left:0; top:50;width:600;height:600" 
+  CLASSID="CLSID:69AD90EF-1C20-11d1-8801-00C04FC29D46">
+</OBJECT>
+
+</CENTER>
+
+<SCRIPT LANGUAGE="JScript">
+<!--
+  m = DAControl.MeterLibrary;
+  dim = 0.03;  // in meters
+
+  img1 = m.ImportImage("../../media/image/tulipshol1.jpg");
+  img2 = m.ImportImage("../../media/image/tulipshol2.jpg");
+  
+  inputImgs = new Array(2);
+  inputImgs[0] = img1;
+  inputImgs[1] = img2;
+
+  ripple = new ActiveXObject("DX3DTransform.Microsoft.Ripple");
+  // these could be used to change the triangle density in the wave
+  ripple.MinSteps = 20;
+  ripple.MaxSteps = 22;
+
+  function myInterp(duration) {
+       forward = m.Interpolate(0, 1, duration);
+       back = m.Interpolate(1, 0, duration);
+       return m.Sequence(forward, back).RepeatForever();
+   }
+
+  // cycle through effect in 4 seconds
+  result = m.ApplyDXTransform(ripple, inputImgs, myInterp(4));
+
+  // This will run it's course over the canonical 0 to 1 period.
+  rippleGeo = result.OutputBvr;
+  
+  // sinosoidal angle of rotation in radians
+  extent = (3.1415 / 2) * 0.25;
+  ang1 = m.Interpolate(-extent, extent, 15);
+  ang2 = m.Interpolate(extent, -extent, 15);
+  ang = m.Sequence(ang1, ang2).RepeatForever();
+
+  rippleGeo = rippleGeo.Transform(
+                m.Compose3Array(new Array(
+				           m.Translate3(0, 0, -5 * dim),
+						   m.Rotate3Anim(m.YVector3, ang),
+						   m.Scale3Uniform(3.5*dim),
+						   m.Translate3(0, 0.5, 0))));
+
+  // a point light
+  light = m.PointLight.Transform(m.Translate3(dim/2, dim/4, 1.3*dim));
+
+  // a perspective camera
+  camera = m.PerspectiveCamera(3*dim, 2.8*dim);
+
+  // render the geometry with the light and camera
+  finalImg = m.UnionGeometry(rippleGeo, light).Render(camera);
+
+  fpsImg = m.StringImageAnim(m.ViewFrameRate.ToString(1),
+                             m.DefaultFont.Color(m.Red));
+  fpsImg = fpsImg.Transform(m.Scale2Uniform(2))
+		 .Transform(m.Translate2(0, -1.4*dim));
+
+  fpsImg = m.Cond(m.LeftButtonState, fpsImg, m.EmptyImage);
+
+  finalImg = m.Overlay(fpsImg, finalImg);
+
+  DAControl.Image = m.Overlay(finalImg, m.SolidColorImage(m.White));
+
+  // start the animation       
+  DAControl.Start();
+
+//-->
+</SCRIPT>
+</FONT>
+</BODY>
+</HTML>

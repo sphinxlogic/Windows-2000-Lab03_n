@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Server Variables</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_server_variables"></a>Server Variables</h3>
+<p>
+This example demonstrates how to access and display server variables using an ISAPI extension. Once compiled and registered, a client browser that accesses the DLL will receive all documented IIS server variables and values.</p>
+<p>
+The sample implements the standard ISAPI entry-point function <b>GetExtensionVersion</b> to identify itself to the serer. The real meat of the processing, as usual, however, occurs in the other entry-point function, <b>HttpExtensionProc</b>. This function begins, after it establishes a data array of available server variable names, by sending the HSE_REQ_SEND_RESPONSE_HEADER_EX extension request to the server, along with the content type of text/html and two \r\n pairs. The server will send a complete HTTP response header to the client browser, and the connection is now open for whatever the extension would like to write.</p>
+<p>
+The rest of the sample is a large loop that iterates through the data array of server variables, searching for each variable name and value using the server call-back function <b>GetServerVariable</b>. Each server variable is printed, along with the value of the variable. Error checking is accomplished after each <b>GetServerVariable</b> with a <b>GetLastError</b> call, to make sure that there were no problems retrieving the server variable. After all of the server variables have been displayed, the extension exits and the connection is terminated. </p>
+<p>
+This sample is provided for educational purposes only. It has not been tested in a production environment, and Microsoft&reg; will not provide technical support for it. </p>
+</BODY>
+</HTML>

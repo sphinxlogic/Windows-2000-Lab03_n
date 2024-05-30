@@ -1,0 +1,25 @@
+HKCR
+{
+	MSExchange.Action.1 = s 'Action Class'
+	{
+		CLSID = s '{40E6B497-0976-11D2-BC0F-00C04F8C92F7}'
+	}
+	MSExchange.Action = s 'Action Class'
+	{
+		CLSID = s '{40E6B497-0976-11D2-BC0F-00C04F8C92F7}'
+		CurVer = s 'MSExchange.Action.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {40E6B497-0976-11D2-BC0F-00C04F8C92F7} = s 'Action Class'
+		{
+			ProgID = s 'MSExchange.Action.1'
+			VersionIndependentProgID = s 'MSExchange.Action'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+		}
+	}
+}

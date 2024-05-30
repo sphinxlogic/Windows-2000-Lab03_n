@@ -1,0 +1,20 @@
+#---------------------------------------------------------------------------
+# Description:
+#   Make file to generate ProxyGen.Dll
+#
+# Copyright (C) Microsoft Corporation 1986 - 1998.  All Rights Reserved.
+#---------------------------------------------------------------------------
+
+USE_EXCHANGE=1
+crtdll=1
+dll=1
+
+Proj = ProxyGen
+
+!Include <BkOffice.Mak>
+
+all:     $(ObjDir)\$(Proj).Dll
+
+$(ObjDir)\$(Proj).Dll: $(@R).Obj $(ObjDir)\EDKProxy.Res
+
+$(ObjDir)\$(Proj).Obj: $(@B).c  $(ObjDir)\ProxyMsg.Res $(ObjDir)\EDKProxy.Res

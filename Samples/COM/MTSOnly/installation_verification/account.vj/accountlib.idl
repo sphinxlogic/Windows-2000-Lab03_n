@@ -1,0 +1,138 @@
+// Filename: Account.idl
+//
+// Description: IDL source for Account.dll
+// This file will be processed by the MIDL tool to
+// produce the type library (Account.tlb) and marshalling code
+//
+// This file is provided as part of the Microsoft Transaction Server Samples
+//
+// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT 
+// WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, 
+// INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES 
+// OF MERCHANTABILITY AND/OR FITNESS FOR A  PARTICULAR 
+// PURPOSE.
+//
+// Copyright (C) 1997 Microsoft Corporation, All rights reserved
+
+#include <mtxattr.h>
+#include <javaattr.h>
+
+[
+   uuid(c6bb360d-289a-11d1-9dc5-00c04fc2fba2),
+   helpstring("AccountLib Type Library"),
+   version(1.0)
+]
+library AccountLib
+{
+   importlib("stdole32.tlb");
+
+
+   [
+      uuid(a9f34d04-28a2-11d1-9dc5-00c04fc2fba2),
+      helpstring("IAccount Interface")
+   ]
+   dispinterface IAccount
+   {
+      properties:
+      methods:
+      [ helpstring("Post Method"), id(1) ]
+      BSTR Post([in] long p1, [in] long p2);
+
+   }
+
+   [
+   	  JAVACLASS("Account.Account"),
+	  PROGID("Bank.Account.VJ"),
+	  TRANSACTION_REQUIRED,
+      uuid(9faf8612-e902-11d0-b5be-00c04fb957d8),
+      helpstring("CAccount Object")
+   ]
+   coclass CAccount
+   {
+      [ default ]
+      dispinterface IAccount;
+   };
+
+
+   [
+      uuid(c20d92dc-28a2-11d1-9dc5-00c04fc2fba2),
+      helpstring("IGetReceipt Interface")
+   ]
+   dispinterface IGetReceipt
+   {
+      properties:
+      methods:
+      [ helpstring("GetNextReceipt Method"), id(1) ]
+      long GetNextReceipt();
+
+   }
+
+   [
+	  JAVACLASS("Account.GetReceipt"),
+	  PROGID("Bank.GetReceipt.VJ"),
+	  TRANSACTION_SUPPORTED,
+      uuid(ab077646-e902-11d0-b5be-00c04fb957d8),
+      helpstring("CGetReceipt Object")
+   ]
+   coclass CGetReceipt
+   {
+      [ default ]
+      dispinterface IGetReceipt;
+   };
+
+
+   [
+      uuid(ca6cf4ea-28a2-11d1-9dc5-00c04fc2fba2),
+      helpstring("IMoveMoney Interface")
+   ]
+   dispinterface IMoveMoney
+   {
+      properties:
+      methods:
+      [ helpstring("Perform Method"), id(1) ]
+      BSTR Perform([in] long p1, [in] long p2, [in] long p3, [in] long p4);
+
+   }
+
+   [
+   	  JAVACLASS("Account.MoveMoney"),
+	  PROGID("Bank.MoveMoney.VJ"),
+	  TRANSACTION_REQUIRED,
+      uuid(b790937a-e902-11d0-b5be-00c04fb957d8),
+      helpstring("CMoveMoney Object")
+   ]
+   coclass CMoveMoney
+   {
+      [ default ]
+      dispinterface IMoveMoney;
+   };
+
+
+   [
+      uuid(d1bc8ae4-28a2-11d1-9dc5-00c04fc2fba2),
+      helpstring("IUpdateReceipt Interface")
+   ]
+   dispinterface IUpdateReceipt
+   {
+      properties:
+      methods:
+      [ helpstring("Update Method"), id(1) ]
+      long Update();
+
+   }
+
+   [
+   	  JAVACLASS("Account.UpdateReceipt"),
+	  PROGID("Bank.UpdateReceipt.VJ"),
+	  TRANSACTION_REQUIRES_NEW,
+      uuid(c25e3b4a-e902-11d0-b5be-00c04fb957d8),
+      helpstring("CUpdateReceipt Object")
+   ]
+   coclass CUpdateReceipt
+   {
+      [ default ]
+      dispinterface IUpdateReceipt;
+   };
+
+
+};

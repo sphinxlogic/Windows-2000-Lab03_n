@@ -1,0 +1,12 @@
+; --ipm_in.def--------------------------------------------------------------
+;
+; Definition file for exported ipm_in DLL functions
+;
+; Copyright (C) Microsoft Corp. 1986-1996.  All rights reserved.
+;
+; ---------------------------------------------------------------------------
+LIBRARY ipm_in
+
+EXPORTS
+    DllEntryPoint
+    GetTrivialVector = HrGetExportVector @32

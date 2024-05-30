@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Arrays</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_arrays"></a>  Arrays</h3>
+<p>
+Arrays are essentially variables that can hold more than one value. Both VBScript and JScript support arrays for most data types. This sample demonstrates how you can create and use arrays in ASP scripts.</p>
+<p>
+Each element of an array is accessed by using an index. Thus, in the array <i>A,</i> <i>A(0)</i> refers to the first element<i>, A(1)</i> refers to the second element, and so on. Note that array elements in both VBScript and JScript are numbered starting at 0.</p>
+<p>
+Arrays can be fixed-size, or dynamically sizable. In both VBScript and JScript, the variable name must be declared, and storage space must be allocated for a new array. This is accomplished by using the <b>Dim</b> statement in VBScript, and the <b>new</b> statement in JScript. If a specific size is explicitly stated, then the array is fixed-size, but if a specific size is omitted from the declaration, then the array is considered dynamically sizable. </p>
+<p>
+This sample creates two arrays, <i>aFixed</i>, which is fixed-size, and <i>aColors</i>, which is dynamically sizable. The script then assigns specific string values to each element in the arrays, using the index notation <i>ArrayName</i>(<i>Index</i>) to access the appropriate element. The script then loops through each array using a <b>For</b> loop and displays the results in a table.</p>
+<p>
+Notice that dynamically sizable arrays are implicitly expanded in JScript, so as to include the highest element indexed in an assignment. VBScript, in contrast, requires that you explicitly resize the dynamic array with the <b>ReDim</b> statement. </p>
+</BODY>
+</HTML>

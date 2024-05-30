@@ -1,0 +1,6 @@
+LIBRARY tnefenc
+
+DESCRIPTION 'TNEF encode example of a conversion dll'
+
+EXPORTS
+    GetTrivialVector = HrGetExportVector @32

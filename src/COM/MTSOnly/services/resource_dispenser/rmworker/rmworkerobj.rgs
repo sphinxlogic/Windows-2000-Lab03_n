@@ -1,0 +1,23 @@
+HKCR
+{
+	MTX.RmWorker.1 = s 'RmWorker Class'
+	{
+		CLSID = s '{FC005CE5-3F0B-11D0-9693-00AA00C149A6}'
+	}
+	MTX.RmWorker = s 'RmWorker Class'
+	{
+		CurVer = s 'MTX.RmWorker.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {FC005CE5-3F0B-11D0-9693-00AA00C149A6} = s 'RmWorker Class'
+		{
+			ProgID = s 'MTX.RmWorker.1'
+			VersionIndependentProgID = s 'MTX.RmWorker'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'	
+			}
+		}
+	}
+}

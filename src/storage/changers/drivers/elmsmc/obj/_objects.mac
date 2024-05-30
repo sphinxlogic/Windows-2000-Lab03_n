@@ -1,0 +1,24 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\elmsmc.res \
+    $(_OBJ_DIR)\alpha\elmsmc.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\elmsmc.res \
+    $(_OBJ_DIR)\axp64\elmsmc.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\elmsmc.res \
+    $(_OBJ_DIR)\i386\elmsmc.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\elmsmc.res \
+    $(_OBJ_DIR)\ia64\elmsmc.obj
+
+PASS0_IA64_OBJECTS=
+

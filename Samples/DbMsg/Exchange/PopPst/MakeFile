@@ -1,0 +1,23 @@
+#----------------------------------------------------------------------------
+# Description:
+#   Makefile for PopPst.Exe
+#
+# Copyright (C) Microsoft Corporation 1986 - 1998.  All Rights Reserved.
+#----------------------------------------------------------------------------
+
+USE_EXCHANGE=1
+console=1
+
+Proj = PopPst
+
+!Include <BkOffice.Mak>
+
+ObjList = $(@R).Res $(@R).Obj
+
+all:      $(ObjDir)\$(Proj).Exe
+
+$(ObjDir)\$(Proj).Res: $(ObjDir)\PopPstMc.Res
+
+$(ObjDir)\$(Proj).Obj: $(ObjDir)\PopPstMc.h
+
+$(ObjDir)\$(Proj).Exe: $(ObjList)

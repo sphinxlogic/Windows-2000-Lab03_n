@@ -1,0 +1,238 @@
+<?XML VERSION="1.0" ENCODING="windows-1252" ?>
+<XML>
+	<CUSTOMER>
+		<NAME>HILARIÓN-Abastos</>
+		<ORDER>
+		  <OrderID>10976</>
+		  <Salesperson>Nancy Davolio</>
+		  <OrderDate>4/24/96</>
+		  <RequiredDate>6/5/96</>
+		  <ShippedDate>5/3/96</>
+		  <Shippers.CompanyName>Speedy Express</>
+		  <Freight>37.97</>
+		  <shipTo>
+			  <shipName>HILARIÓN-Abastos</>
+			  <shipAddress>Carrera 22 con Ave. Carlos Soublette #8-35</>
+			  <shipCity>San Cristóbal</>    
+			  <shipRegion>Táchira</>  
+			  <shipPostalCode>5022</>        
+			  <shipCountry>Venezuela</>  
+		  </>
+		  <soldTo>
+			  <Customers.CompanyName>HILARIÓN-Abastos</>
+			  <Address>Carrera 22 con Ave. Carlos Soublette #8-35</>
+			  <City>San Cristóbal</>
+			  <Region>Táchira</>
+			  <PostalCode>5022</>
+			  <Country>Venezuela</>
+		  </>
+		  <ITEM>
+			  <ProductID>28</>
+			  <ProductName>Rössle Sauerkraut</>
+			  <UnitPrice>45.6</>  
+			  <Quantity>20</>
+			  <Discount>0</>
+		  </>
+		</>
+	</>
+	<CUSTOMER>
+		<NAME>Königlich Essen</>
+		<ORDER>
+		  <OrderID>10325</>
+		  <Salesperson>Nancy Davolio</>
+		  <OrderDate>11/9/94</>
+		  <RequiredDate>11/23/94</>
+		  <ShippedDate>11/14/94</>
+		  <Shippers.CompanyName>Federal Shipping</>
+		  <Freight>64.86</>
+		  <shipTo>
+			  <shipName>Königlich Essen</>
+			  <shipAddress>Maubelstr. 90</>
+			  <shipCity>Brandenburg</>    
+			  <shipRegion></>  
+			  <shipPostalCode>14776</>        
+			  <shipCountry>Germany</>  
+		  </>
+		  <soldTo>
+			  <Customers.CompanyName>Königlich Essen</>
+			  <Address>Maubelstr. 90</>
+			  <City>Brandenburg</>
+			  <Region></>
+			  <PostalCode>14776</>
+			  <Country>Germany</>
+		  </>
+		  <ITEM>
+			  <ProductID>6</>
+			  <ProductName>Grandma's Boysenberry Spread</>
+			  <UnitPrice>20</>  
+			  <Quantity>6</>
+			  <Discount>0</>
+		  </>
+		  <ITEM>
+			  <ProductID>13</>
+			  <ProductName>Konbu</>
+			  <UnitPrice>4.8</>  
+			  <Quantity>12</>
+			  <Discount>0</>
+		  </>
+		  <ITEM>
+			  <ProductID>14</>
+			  <ProductName>Tofu</>
+			  <UnitPrice>18.6</>  
+			  <Quantity>9</>
+			  <Discount>0</>
+		  </>
+		  <ITEM>
+			  <ProductID>31</>
+			  <ProductName>Gorgonzola Telino</>
+			  <UnitPrice>10</>  
+			  <Quantity>4</>
+			  <Discount>0</>
+		  </>
+		  <ITEM>
+			  <ProductID>72</>
+			  <ProductName>Mozzarella di Giovanni</>
+			  <UnitPrice>27.8</>  
+			  <Quantity>40</>
+			  <Discount>0</>
+		  </>
+		</>
+		<ORDER>
+		  <OrderID>10357</>
+		  <Salesperson>Nancy Davolio</>
+		  <OrderDate>12/20/94</>
+		  <RequiredDate>1/17/95</>
+		  <ShippedDate>1/2/95</>
+		  <Shippers.CompanyName>Federal Shipping</>
+		  <Freight>34.88</>
+		  <shipTo>
+			  <shipName>LILA-Supermercado</>
+			  <shipAddress>Carrera 52 con Ave. Bolívar #65-98 Llano Largo</>
+			  <shipCity>Barquisimeto</>    
+			  <shipRegion>Lara</>  
+			  <shipPostalCode>3508</>        
+			  <shipCountry>Venezuela</>  
+		  </>
+		  <soldTo>
+			  <Customers.CompanyName>LILA-Supermercado</>
+			  <Address>Carrera 52 con Ave. Bolívar #65-98 Llano Largo</>
+			  <City>Barquisimeto</>
+			  <Region>Lara</>
+			  <PostalCode>3508</>
+			  <Country>Venezuela</>
+		  </>
+		  <ITEM>
+			  <ProductID>10</>
+			  <ProductName>Ikura</>
+			  <UnitPrice>24.8</>  
+			  <Quantity>30</>
+			  <Discount>0.2</>
+		  </>
+		  <ITEM>
+			  <ProductID>26</>
+			  <ProductName>Gumbär Gummibärchen</>
+			  <UnitPrice>24.9</>  
+			  <Quantity>16</>
+			  <Discount>0</>
+		  </>
+		  <ITEM>
+			  <ProductID>60</>
+			  <ProductName>Camembert Pierrot</>
+			  <UnitPrice>27.2</>  
+			  <Quantity>8</>
+			  <Discount>0.2</>
+		  </>
+		</>
+	</>
+	<CUSTOMER>
+		<NAME>Bottom-Dollar Markets</>
+		<ORDER>
+		  <OrderID>10975</>
+		  <Salesperson>Nancy Davolio</>
+		  <OrderDate>4/24/96</>
+		  <RequiredDate>5/22/96</>
+		  <ShippedDate>4/26/96</>
+		  <Shippers.CompanyName>Federal Shipping</>
+		  <Freight>32.27</>
+		  <shipTo>
+			  <shipName>Bottom-Dollar Markets</>
+			  <shipAddress>23 Tsawassen Blvd.</>
+			  <shipCity>Tsawassen</>    
+			  <shipRegion>BC</>  
+			  <shipPostalCode>T2F 8M4</>        
+			  <shipCountry>Canada</>  
+		  </>
+		  <soldTo>
+			  <Customers.CompanyName>Bottom-Dollar Markets</>
+			  <Address>23 Tsawassen Blvd.</>
+			  <City>Tsawassen</>
+			  <Region>BC</>
+			  <PostalCode>T2F 8M4</>
+			  <Country>Canada</>
+		  </>
+		  <ITEM>
+			  <ProductID>8</>
+			  <ProductName>Northwoods Cranberry Sauce</>
+			  <UnitPrice>40</>  
+			  <Quantity>16</>
+			  <Discount>0</>
+		  </>
+		  <ITEM>
+			  <ProductID>75</>
+			  <ProductName>Rhönbräu Klosterbier</>
+			  <UnitPrice>7.75</>  
+			  <Quantity>10</>
+			  <Discount>0</>
+		  </>
+		</>
+	</>
+	<CUSTOMER>
+		<NAME>Ernst Handel</>
+		<ORDER>
+		  <OrderID>10258</>
+		  <Salesperson>Nancy Davolio</>
+		  <OrderDate>8/17/94</>
+		  <RequiredDate>9/14/94</>
+		  <ShippedDate>8/23/94</>
+		  <Shippers.CompanyName>Speedy Express</>
+		  <Freight>140.51</>
+		  <shipTo>
+			  <shipName>Ernst Handel</>
+			  <shipAddress>Kirchgasse 6</>
+			  <shipCity>Graz</>    
+			  <shipRegion></>  
+			  <shipPostalCode>8010</>        
+			  <shipCountry>Austria</>  
+		  </>
+		  <soldTo>
+			  <Customers.CompanyName>Ernst Handel</>
+			  <Address>Kirchgasse 6</>
+			  <City>Graz</>
+			  <Region></>
+			  <PostalCode>8010</>
+			  <Country>Austria</>
+		  </>
+		  <ITEM>
+			  <ProductID>2</>
+			  <ProductName>Chang</>
+			  <UnitPrice>15.2</>  
+			  <Quantity>50</>
+			  <Discount>0.2</>
+		  </>
+		  <ITEM>
+			  <ProductID>5</>
+			  <ProductName>Chef Anton's Gumbo Mix</>
+			  <UnitPrice>17</>  
+			  <Quantity>65</>
+			  <Discount>0.2</>
+		  </>
+		  <ITEM>
+			  <ProductID>32</>
+			  <ProductName>Mascarpone Fabioli</>
+			  <UnitPrice>25.6</>  
+			  <Quantity>6</>
+			  <Discount>0.2</>
+		  </>
+		</>
+	</>
+</>

@@ -1,0 +1,64 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\plotui.res \
+    $(_OBJ_DIR)\alpha\upgrade.obj \
+    $(_OBJ_DIR)\alpha\qryprint.obj \
+    $(_OBJ_DIR)\alpha\devcaps.obj \
+    $(_OBJ_DIR)\alpha\help.obj \
+    $(_OBJ_DIR)\alpha\cpsui.obj \
+    $(_OBJ_DIR)\alpha\formbox.obj \
+    $(_OBJ_DIR)\alpha\pensetup.obj \
+    $(_OBJ_DIR)\alpha\plotui.obj \
+    $(_OBJ_DIR)\alpha\ptrinfo.obj \
+    $(_OBJ_DIR)\alpha\ptrprop.obj \
+    $(_OBJ_DIR)\alpha\docprop.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\plotui.res \
+    $(_OBJ_DIR)\axp64\upgrade.obj \
+    $(_OBJ_DIR)\axp64\qryprint.obj \
+    $(_OBJ_DIR)\axp64\devcaps.obj \
+    $(_OBJ_DIR)\axp64\help.obj \
+    $(_OBJ_DIR)\axp64\cpsui.obj \
+    $(_OBJ_DIR)\axp64\formbox.obj \
+    $(_OBJ_DIR)\axp64\pensetup.obj \
+    $(_OBJ_DIR)\axp64\plotui.obj \
+    $(_OBJ_DIR)\axp64\ptrinfo.obj \
+    $(_OBJ_DIR)\axp64\ptrprop.obj \
+    $(_OBJ_DIR)\axp64\docprop.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\plotui.res \
+    $(_OBJ_DIR)\i386\upgrade.obj \
+    $(_OBJ_DIR)\i386\qryprint.obj \
+    $(_OBJ_DIR)\i386\devcaps.obj \
+    $(_OBJ_DIR)\i386\help.obj \
+    $(_OBJ_DIR)\i386\cpsui.obj \
+    $(_OBJ_DIR)\i386\formbox.obj \
+    $(_OBJ_DIR)\i386\pensetup.obj \
+    $(_OBJ_DIR)\i386\plotui.obj \
+    $(_OBJ_DIR)\i386\ptrinfo.obj \
+    $(_OBJ_DIR)\i386\ptrprop.obj \
+    $(_OBJ_DIR)\i386\docprop.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\plotui.res \
+    $(_OBJ_DIR)\ia64\upgrade.obj \
+    $(_OBJ_DIR)\ia64\qryprint.obj \
+    $(_OBJ_DIR)\ia64\devcaps.obj \
+    $(_OBJ_DIR)\ia64\help.obj \
+    $(_OBJ_DIR)\ia64\cpsui.obj \
+    $(_OBJ_DIR)\ia64\formbox.obj \
+    $(_OBJ_DIR)\ia64\pensetup.obj \
+    $(_OBJ_DIR)\ia64\plotui.obj \
+    $(_OBJ_DIR)\ia64\ptrinfo.obj \
+    $(_OBJ_DIR)\ia64\ptrprop.obj \
+    $(_OBJ_DIR)\ia64\docprop.obj
+
+PASS0_IA64_OBJECTS=
+

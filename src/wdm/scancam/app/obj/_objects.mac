@@ -1,0 +1,32 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\stillvue.res \
+    $(_OBJ_DIR)\alpha\stillvue.obj \
+    $(_OBJ_DIR)\alpha\winx.obj \
+    $(_OBJ_DIR)\alpha\wsti.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\stillvue.res \
+    $(_OBJ_DIR)\axp64\stillvue.obj \
+    $(_OBJ_DIR)\axp64\winx.obj \
+    $(_OBJ_DIR)\axp64\wsti.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\stillvue.res \
+    $(_OBJ_DIR)\i386\stillvue.obj \
+    $(_OBJ_DIR)\i386\winx.obj \
+    $(_OBJ_DIR)\i386\wsti.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\stillvue.res \
+    $(_OBJ_DIR)\ia64\stillvue.obj \
+    $(_OBJ_DIR)\ia64\winx.obj \
+    $(_OBJ_DIR)\ia64\wsti.obj
+
+PASS0_IA64_OBJECTS=
+

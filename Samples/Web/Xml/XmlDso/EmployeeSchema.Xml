@@ -1,0 +1,23 @@
+<Schema xmlns="urn:schemas-microsoft-com:xml-data" xmlns:dt="urn:schemas-microsoft-com:datatypes"> 
+  <ElementType name="direct_reports" content="eltOnly"> 
+    <element type="employee"/>
+  </ElementType>
+  <ElementType name="employee" content="eltOnly" order="many">
+    <element type="ss_number"/> 
+    <element type="first_name"/> 
+    <element type="middle_name"/> 
+    <element type="last_name"/> 
+    <element type="email"/> 
+    <element type="extension"/>
+    <element type="birthdate"/>
+    <element type="salary"/> 
+  </ElementType> 
+  <ElementType name="ss_number" content="textOnly" dt:type="ui4"/> 
+  <ElementType name="first_name" content="textOnly"/> 
+  <ElementType name="middle_name" content="textOnly"/>
+  <ElementType name="last_name" content="textOnly"/>
+  <ElementType name="email" content="textOnly"/>
+  <ElementType name="extension" content="textOnly" dt:type="ui4"/>
+  <ElementType name="birthdate" content="textOnly" dt:type="date"/>
+  <ElementType name="salary" content="textOnly" dt:type="fixed.14.4"/>
+</Schema> 

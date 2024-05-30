@@ -1,0 +1,41 @@
+
+<PUBLIC:PROPERTY name=refFormat />
+<PUBLIC:PROPERTY name=textFormat />
+
+<PUBLIC:ATTACH event=oncontentready handler=contentchange />
+<PUBLIC:ATTACH event=ondocumentready handler=documentready />
+
+<script language="jscript">
+
+var refNumber;
+
+function contentchange()
+{
+
+        if (window.fnRefNumber == null)
+        {
+            window.fnRefNumber = 1;
+        }
+            
+        refNumber = window.fnRefNumber++;
+
+        title = innerText;
+}
+
+function documentready()
+{
+        ref = (refFormat != null) ? refFormat : "(#)";
+        i = ref.indexOf("#");
+        ref = ref.slice(0, i) + refNumber + ref.slice(i+1); 
+
+        text = (textFormat != null) ? textFormat : "#/ ";
+        i = text.indexOf("#");
+        text = text.slice(0, i) + refNumber + text.slice(i+1); 
+
+        element.document.body.insertAdjacentHTML("BeforeEnd", 
+            "<BR><A NAME=FOOTNOTE" + refNumber + ">" + text + "</A>" + element.innerHTML);
+
+        element.innerHTML = "<A HREF=#FOOTNOTE" + refNumber + ">" + ref + "</A>";
+}
+
+</script>

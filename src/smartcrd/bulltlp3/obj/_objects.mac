@@ -1,0 +1,36 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\bulltlp3.res \
+    $(_OBJ_DIR)\alpha\tlp3nt.obj \
+    $(_OBJ_DIR)\alpha\tlp3cb.obj
+
+PASS0_ALPHA_OBJECTS= \
+    $(PASS0_HEADERDIR)\tlp3log.h \
+    $(MC_SOURCEDIR)\tlp3log.rc
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\bulltlp3.res \
+    $(_OBJ_DIR)\axp64\tlp3nt.obj \
+    $(_OBJ_DIR)\axp64\tlp3cb.obj
+
+PASS0_AXP64_OBJECTS= \
+    $(PASS0_HEADERDIR)\tlp3log.h \
+    $(MC_SOURCEDIR)\tlp3log.rc
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\bulltlp3.res \
+    $(_OBJ_DIR)\i386\tlp3nt.obj \
+    $(_OBJ_DIR)\i386\tlp3cb.obj
+
+PASS0_386_OBJECTS= \
+    $(PASS0_HEADERDIR)\tlp3log.h \
+    $(MC_SOURCEDIR)\tlp3log.rc
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\bulltlp3.res \
+    $(_OBJ_DIR)\ia64\tlp3nt.obj \
+    $(_OBJ_DIR)\ia64\tlp3cb.obj
+
+PASS0_IA64_OBJECTS= \
+    $(PASS0_HEADERDIR)\tlp3log.h \
+    $(MC_SOURCEDIR)\tlp3log.rc
+

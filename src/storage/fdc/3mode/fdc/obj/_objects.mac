@@ -1,0 +1,28 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\fdc.res \
+    $(_OBJ_DIR)\alpha\fdc.obj \
+    $(_OBJ_DIR)\alpha\q117enum.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\fdc.res \
+    $(_OBJ_DIR)\axp64\fdc.obj \
+    $(_OBJ_DIR)\axp64\q117enum.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\fdc.res \
+    $(_OBJ_DIR)\i386\fdc.obj \
+    $(_OBJ_DIR)\i386\q117enum.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\fdc.res \
+    $(_OBJ_DIR)\ia64\fdc.obj \
+    $(_OBJ_DIR)\ia64\q117enum.obj
+
+PASS0_IA64_OBJECTS=
+

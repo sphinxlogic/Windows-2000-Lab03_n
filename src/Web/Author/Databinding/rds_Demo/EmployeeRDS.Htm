@@ -1,0 +1,92 @@
+<html>
+  <head>
+    <style>
+      TD {font-size:18pt}
+      INPUT {font-size:18pt}
+    </style>
+
+    <title>Optimistic Update using RDS</title>
+  </head>
+
+  <body>
+
+    <p>
+      <object classid="clsid:bd96c556-65a3-11d0-983a-00c04fc29e33"
+              id=rds1 height=10 width = 10>   
+        <param name="SQL" value="select * from direct_reports">
+        <param name="SERVER" value="http://your_server">
+        <param name="CONNECT" value="dsn=employees;UID=;PWD=;">
+      </object>
+
+    <h1 style="color:#0000CD">EMPLOYEE SALARIES</h1>
+
+    <table style="table-layout:fixed" border datasrc="#rds1">
+      <col width=150>
+      <col width=150>
+      <col width=100>
+
+      <thead>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Salary</th>
+      </thead>
+
+      <tr>
+        <td>
+          <input type=text datasrc=#rds1 datafld="First Name" size=15>
+        </td>
+        <td>
+          <input type=text datasrc=#rds1 datafld="Last Name" size=15>
+        </td>
+        <td>
+          <input type=text datasrc=#rds1 datafld="Salary" size=10>
+       </td>
+      </tr>
+    </table>
+
+    <BR>
+    <br>
+    <input type=button id=updateDB name=updateDB value="Update">
+  </body>
+
+  <script language=VBScript>
+
+    Sub updateDB_onclick()
+      On Error Resume Next
+
+      rds1.recordset.update
+      rds1.recordset.updateBatch
+
+      IF (Err.Number <> 0) Then
+        HandleError()
+      End IF
+
+    End Sub
+
+    Sub HandleError()
+      Msgbox "Conflict detected during update"
+      Set myRecordset = rds1.recordset 
+      myRecordset.Filter = 5  'adFilterConflictingRecords
+
+      MsgBox "Recordset could not be updated.  " & _
+             "Update conflicts occurred on " & _
+             CStr(myRecordset.RecordCount) & " records."
+  
+      myRecordset.Resync 4,1
+  
+      myRecordset.moveFirst()
+
+      While Not myRecordset.EOF
+        MsgBox "The original salary (" & _
+               myRecordset.fields("Salary").OriginalValue & _
+               ") has already been changed to " & _
+               myRecordset.fields("Salary").UnderlyingValue
+        myRecordset.moveNext()
+      Wend
+ 
+      rds1.sql = "select * from direct_reports"
+      rds1.refresh
+    End Sub
+  </script>
+
+</html>

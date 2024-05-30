@@ -1,0 +1,189 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE></TITLE>
+<META content="text/html; charset=windows-1252" http-equiv=Content-Type>
+<META content="MSHTML 5.00.2918.400" name=GENERATOR></HEAD>
+<BODY>
+<P><FONT size=5><STRONG><U>OVERVIEW</U></STRONG></FONT></P>
+<P>The NEWS sample demonstrates the power of composing 
+Queued Components with COM+ Events. This sample shows how to create Queued 
+EventClasses and Queued Subscriptions. This sample assumes familiarity with COM+ Events and Queued Components. Please go through 
+the appropriate documentation and samples (EventMonitor sample for&nbsp;introduction to COM+ Events) for 
+familiarity.</P>
+<P>NEWS sample consists of five projects.</P>
+<P><STRONG>NewsFlash</STRONG>, a 
+publisher program that publishes news events. NewsFlash.exe is a 
+VB application, that registers an EventClass (NewsEventClass) and publish events through that 
+eventclass.</P>
+<P><STRONG>NewsSubscriber</STRONG>, 
+a&nbsp;subscriber (acts as a a transient subscriber in this sample) program that 
+receives news events. NewsSubscriber.exe is a VB application, that could 
+register transient and persistent subscriptions and receive events. It creates a 
+transient subscription with it being the target subscriber. 
+It also registers PersistATL as a COM+ configured component and 
+creates a persistent subscription for it.</P>
+<P><STRONG>NewsEventClass</STRONG>, an EventClass dll that could be registered 
+as a COM+ configured component</P>
+<P><STRONG>CascadeEventClass</STRONG>, 
+an EventClass dll that could be registered as a COM+ configured component. This 
+is registered using the NewsSubscriber program. NewsSubscriber program creates a 
+persistent subscription for this, which means that it acts like a subscriber to the the 
+NewsFlash publisher. Apart from being a subscriber, this could also publish 
+events to registered subscribers. So, in effect whatever events it receives 
+from the publisher, it propagates them to its registered subscribers.</P>
+<P><STRONG>PersistATL</STRONG>, a 
+subscriber (treated as a persistent subscriber in this sample) program that receives news events. This 
+is registered as a COM+ configured component using the NewsSubscriber program.</P>
+<P><FONT size=5><STRONG><U>BUILDING THE SAMPLE</U></STRONG></FONT></P>
+<P>Open the workspace <FONT color=red>News.dsw </FONT>in the VC++6.0. Press F7. 
+This builds the following threeprojects.</P>
+<P><EM>CascadeEC.dsp,&nbsp;NewsEventClass.dsp, PersistATL.dsp,&nbsp;</EM> The 
+output files are CascadeEC.dll, NewsEventClass.dll, PersistATL.dll.</P>
+<P><U>CascadeEC &amp; NewsEventClass</U> </P>
+<P>This is a COM+ configured component which exports DllRegisterServer, 
+DllUnregisterServer, DllCanUnloadNow, DllGetClassObject<FONT color=red>.&nbsp; 
+[Note</FONT><FONT color=red>: Only DllRegisterServer needs to have an 
+implementation and other exported API's can just return a S_OK. Also this dll 
+doesn't need to implement the firing interfaces]. </FONT><FONT color=black>The 
+CLSID and the ProgID of these components are used as EventClassID and 
+EventClassName of the respective EventClasses.</FONT> </P>
+<P><U>PersistATL</U> </P>
+<P>Subscriber of the events. This is also a COM+ configured component. This 
+component implements the INewsEvent interface</P>
+<P>Open the TradersConsts.bas file in the ..\Include subdirectory and enter the 
+full path name of PersistATL.dll {ex. c:\News\PersistATL\debug\PersistATL.dll} 
+as the value for the constant COMPONENT.</P>
+<P>Compile NewsFlash and NewsSubscriber projects and generate respective 
+executables</P>
+<P><FONT color=red>Note: You should have MSMQ client/server installed to execute 
+this sample. Please consult the appropriate MSMQ documentation for installation 
+instructions</FONT></P>
+<P><FONT size=5><U><STRONG>OPERATION</STRONG></U></FONT> </P>
+<P>Launch NewsFlash.exe and <STRONG>two </STRONG>instances of NewsSubscriber.exe 
+and let us call the first instance as sub(1) and the second instance as sub(2) 
+</P>
+<P><STRONG><EM><U>Step 1 Blocked Publisher (Queued EventClass)</U></EM></STRONG> 
+</P>
+<P>(a) In the sub(1) and sub (2), click the "Subscribe" button in the "Transient 
+Subscription" group box. This action creates a transient subscription to receive 
+events from any publisher that could publish events using NewsEventClass. </P>
+<P>(b) In NewsFlash.Exe, enter the full path of the NewsEventClass dll in the 
+edit control against EC DLL path text. Then click on the "Install" button. This 
+actions creates an application called NewsPublisher and registers the eventclass 
+under it. If the action is successfully completed, the text on the button 
+changes to "Uninstall", else an appropriate error message is returned. </P>
+<P>(c) Now enter the event related information in the Symbol, HeadLine and the 
+URL edit boxes. Click the "Publish" button. This action instantiates an 
+eventclass object and makes NewsFlash method on the object. This information is 
+published in the form of events through eventsystem to the registered 
+subscribers, in our case sub(1) and sub(2). You should see a new line of event 
+information in the list box on both the subscribers.</P>
+<P>             
+           
+               
+           (d) Let us 
+similate a bad subscriber. A bad subscriber is a program which doesn' return from 
+the event processing. This has the following effects: </P>
+<P>             
+           
+               
+              
+             &nbsp;- 
+the publisher program that publishes events is blocked </P>
+<P>             
+           
+               
+              
+     &nbsp;- the subscriber programs next in the list, registered 
+to receive events, are blocked from receiving events. </P>
+<P>       Click the "Bad Subscriber" check-box of 
+the "Transient Subscriber" group-box in sub(1). Now click the "Publish" button in the "News Flash". You should see a message box with the event information in sub(1). 
+Till you dismiss the message box, Publisher is blocked (you can check that the 
+publisher UI is frozen) and the subscibers next in the list, in this case 
+sub(2), is also blocked from receiving the information. After clicking the "OK" button on the message box, both the publisher and sub(2) will be un-blocked.</P>
+<P>  (e) The NewsEventClass and be composed with QC, to overcome 
+the blocked publisher syndrome. With 
+the "Queued" check-box in "News Flash" checked, click the "Publish" button. When you publish events, the publisher won't be 
+blocked even if you have a bad subscriber but, other subscribers to be called next 
+in the list would be blocked (step 2 shows how to solve this problem).&nbsp;Queued 
+invocation of EventClass using the "queue:/" moniker instead 
+of a direct invocation fixes this problem. </P>
+<P><IMG alt="Queued EventClass" 
+src="gifs\QueuedEC.gif" 
+style="HEIGHT: 247px; WIDTH: 680px"></P>
+<P><STRONG><EM><U>Step 2 Blocked Subscriber (Parallel Firing)</U></EM></STRONG> 
+</P>
+<P>(f) In the NewsFlash, click the "Uninstall" button to uninstall the 
+eventclass. Select the "Parallel" check-box and click on the "Install" button. 
+This action installs the NewsEventClass and sets the "FireInParallel" attribute 
+to TRUE on the eventclass. [<FONT color=red>Note: To change this 
+"FireInParallel" attribute value, there is no need to reinstall the eventclass 
+as we do in the sample. You can navigate down the Object hierarchy in the 
+Component Services Snapin and change it</FONT> .] </P>
+<P>(g) Now click the "Publish" button in the "News Flash", you could observe that not only did the publisher 
+was unblocked but also the subscriber (sub(2)) next in the list received events 
+irrespective of the behavior of sub(1). </P>
+<P><STRONG><EM><U>Step 3 Queued Subscription</U></EM></STRONG> </P>
+<P>(h) Close the both instances of "Subscriber". Now open a new instance of "Subscriber" and select the "Direct" Radio button and the "Queued" 
+check box in the "Persistent Subscriber" group box and click on the "Subscribe" 
+button. This creates a persistent subscription for the already installed 
+"PersistATL.NewsEvent.1" subscriber component. Now, click the "Publish" button in "News Flash". You 
+should see a message box as a result of event delivery to the PersistATL 
+component. [COM+ EventSystem creates a new instance of PersistATL component, 
+makes a method call on it and then releases the component] </P>
+<P>This step shows how an event can be propagated to a queued subscriber. On the 
+delivery of an event, instead of instantiating the component directly and making 
+a method call on it, COM+ EventSystem instantiates the component using the 
+"queue:/" moniker and makes a method call on it. This makes event delivery 
+possible in an evironment where you cannot always expect a 
+connection&nbsp;between a publisher and a subscriber machine (combined with the 
+MachineName property of the subscription). This sample shows both the publisher 
+and the subscriber programs on the same machine. This concept could be easily 
+extended to having a subscriber on a different machine. </P>
+<P>               
+            
+            
+             
+          
+          
+           
+             
+         </P>
+<P><IMG alt="" height=247 
+src="gifs\QueuedSub.gif" 
+style="HEIGHT: 247px; WIDTH: 680px" width=680>               
+            
+            
+             
+          
+          
+           
+             
+         </P>
+<P><STRONG><EM><U>Step 4 Cascaded EventClass (Propagates Events to downstream 
+subscribers)</U></EM></STRONG> </P>
+<P>&nbsp;(i) An EventClass can also be made to behave as a subscriber. In this 
+step you'' create an intermediate eventclass component called CascadeEventClass 
+which behaves as a subscriber to NewsEventClass component and it also in turn 
+publishes events to&nbsp;registered subscribers. In the Subscriber application, 
+enter the&nbsp; full path of the CascadeEventClass in the edit control inside 
+the "Cascaded EventClass" group box and click on the "Install" button. This 
+action registers the CascadeEventClass as a subscriber to the NewsEventClass and 
+also registers it as an EventClass. </P>
+<P>(j) In the Transient Subscriber group box, select the 
+"Cascaded" radio button and click on the "Subscribe" button. This action 
+registers the running subscriber application as a transient subscriber to the 
+CascadeEventClass. Make sure that you have PersistATL registered as a Persistent Subscription for NewsEventClass. [If it 
+is not already done, then select "Direct" button in the "Persistent 
+Subscription" group box and click the "Subscribe" button] </P>
+<P>(k) Click on the "Publish" button in "News Flash". You should see a message box from the "PersistATL" subscriber and a new line of event 
+information in the list box in the subscriber.<br><br>
+The event propagation is:<br>
+NewsFlash=&gt;CascadeEventClass=&gt;Subscriber. 
+(You can check this by unregistering the CascadeEventClass by clicking the 
+"Uninistall" button in the "Cascaded EventClass" group box and again publishing 
+the event from the NewsFlash application but this time you will get a message box from the"PersistATL" subscriber but you won't be receiving 
+any events in the Transient subscriber) </P>
+<P>&nbsp;</P>
+<P><IMG alt="" height=350 
+src="gifs\CascadeEC.gif" 
+style="HEIGHT: 350px; WIDTH: 680px" width=680></P></BODY></HTML>

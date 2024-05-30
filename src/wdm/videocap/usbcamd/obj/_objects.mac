@@ -1,0 +1,44 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\usbcamd.res \
+    $(_OBJ_DIR)\alpha\dbglog.obj \
+    $(_OBJ_DIR)\alpha\iso.obj \
+    $(_OBJ_DIR)\alpha\reset.obj \
+    $(_OBJ_DIR)\alpha\stream.obj \
+    $(_OBJ_DIR)\alpha\usbcamd.obj \
+    $(_OBJ_DIR)\alpha\intbulk.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\usbcamd.res \
+    $(_OBJ_DIR)\axp64\dbglog.obj \
+    $(_OBJ_DIR)\axp64\iso.obj \
+    $(_OBJ_DIR)\axp64\reset.obj \
+    $(_OBJ_DIR)\axp64\stream.obj \
+    $(_OBJ_DIR)\axp64\usbcamd.obj \
+    $(_OBJ_DIR)\axp64\intbulk.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\usbcamd.res \
+    $(_OBJ_DIR)\i386\dbglog.obj \
+    $(_OBJ_DIR)\i386\iso.obj \
+    $(_OBJ_DIR)\i386\reset.obj \
+    $(_OBJ_DIR)\i386\stream.obj \
+    $(_OBJ_DIR)\i386\usbcamd.obj \
+    $(_OBJ_DIR)\i386\intbulk.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\usbcamd.res \
+    $(_OBJ_DIR)\ia64\dbglog.obj \
+    $(_OBJ_DIR)\ia64\iso.obj \
+    $(_OBJ_DIR)\ia64\reset.obj \
+    $(_OBJ_DIR)\ia64\stream.obj \
+    $(_OBJ_DIR)\ia64\usbcamd.obj \
+    $(_OBJ_DIR)\ia64\intbulk.obj
+
+PASS0_IA64_OBJECTS=
+

@@ -1,0 +1,26 @@
+#---------------------------------------------------------------------------
+# Description:
+#   Make file to generate MBxAdmin.Dll
+#
+# Copyright (C) Microsoft Corporation 1986 - 1998.  All Rights Reserved.
+#---------------------------------------------------------------------------
+
+Proj = MBxAdmin
+
+USE_EXCHANGE=1
+Use_MFC = 1
+dll=1
+
+LibList = Shell32.Lib 
+
+ObjList = $(@R).obj $(@D)\Global.Obj $(@R).Res
+
+!include <BkOffice.Mak>
+
+!if "$(CPU)" == "ALPHA"
+LINK = $(LINK) /FORCE:MULTIPLE
+!endif
+
+all:    $(ObjDir)\$(Proj).Dll
+
+$(ObjDir)\$(Proj).Dll: $(ObjList)

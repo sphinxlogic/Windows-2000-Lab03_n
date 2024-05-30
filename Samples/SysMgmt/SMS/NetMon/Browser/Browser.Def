@@ -1,0 +1,12 @@
+LIBRARY         BROWSER
+
+DESCRIPTION     "Bloodhound Browser parser DLL.
+
+VERSION         1.0
+
+EXPORTS
+                BrowserFormatProperties
+                BrowserRegister
+                BrowserDeregister
+                BrowserRecognizeFrame
+                BrowserAttachProperties

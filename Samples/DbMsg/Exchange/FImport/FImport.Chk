@@ -1,0 +1,132 @@
+// --fimport.chk----------------------------------------------------------------
+//
+//  File containing parameter checking functions for fimport.c.
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+// -----------------------------------------------------------------------------
+
+#ifndef DEBUG 
+ 
+#define CHK_HrGetFolderFromPath(a,b,c)            NOERROR
+#define CHK_HrParseMultiPropValue(a,b,c,d)        NOERROR
+#define CHK_HrParsePropValue(a,b,c,d)             NOERROR
+#define CHK_HrCreateMessageAttachment(a,b)        NOERROR
+#define CHK_HrStrAToStrWEx(a,b,c)				  NOERROR
+
+#else
+
+//$--CHK_fHrGetFolderFromPath---------------------------------------------------
+//  Check the parameters for HrGetFolderFromPath().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrGetFolderFromPath(
+    IN LPMAPISESSION lpSession, 
+    IN LPSTR pszFolderPath, 
+    OUT LPMAPIFOLDER * lppFolder)
+{
+    HRESULT             hr						= NOERROR;
+
+	if (!TEST_IUNKNOWN_PTR(lpSession))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+    if (!TEST_STRINGA_PTR(pszFolderPath))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if (!TEST_WRITE_PTR(lppFolder, sizeof(*lppFolder)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+    return(hr);
+}
+
+//$--CHK_HrParseMultiPropValue--------------------------------------------------
+//  Check the parameters for HrParseMultiPropValue().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrParseMultiPropValue(
+	IN	ULONG			ulPropTag,		// property tag of this property
+	IN	LPSTR			pszValueText,	// text of property value to parse
+	IN	LPVOID			pBaseObject,	// base object for MAPIAllocateMore()
+	OUT	LPSPropValue	pProp)			// structure to write results
+{
+	HRESULT		hr		= NOERROR;
+
+	if (!(ulPropTag & MV_FLAG) || 
+        !TEST_STRINGA_PTR(pszValueText) ||
+        !TEST_WRITE_PTR(pBaseObject, 1) ||
+        !TEST_WRITE_PTR(pProp, sizeof(*pProp)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+	}
+
+	return(hr);
+}
+
+//$--CHK_HrParsePropValue-------------------------------------------------------
+//  Check the parameters for HrParsePropValue().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrParsePropValue(
+	IN	ULONG			ulPropTag,		// property tag of this property
+	IN	LPSTR			pszValueText,	// text of property value to parse
+	IN	LPVOID			pBaseObject,	// base object for MAPIAllocateMore()
+	OUT	LPSPropValue	pProp)			// structure to write results
+{
+	HRESULT		hr		= NOERROR;
+
+	if ( (ulPropTag & MV_FLAG) ||
+        !TEST_STRINGA_PTR(pszValueText) ||
+        !TEST_WRITE_PTR(pBaseObject, 1) ||
+        !TEST_WRITE_PTR(pProp, sizeof(*pProp)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+	}
+
+	return(hr);
+}
+
+//$--CHK_HrCreateMessageAttachment----------------------------------------------
+//  Check parameters for HrCreateMessageAttachment().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrCreateMessageAttachment(
+	IN		LPMESSAGE	lpMsg,
+	IN		LPSTR		lpszAttachPath)
+{
+    HRESULT hr  =   NOERROR;    // return code
+
+    if( !TEST_IUNKNOWN_PTR(lpMsg) ||
+        !TEST_STRINGA_PTR(lpszAttachPath) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+}
+
+//$--CHK_HrStrAToStrWEx---------------------------------------------------------
+//  Check parameters for HrStrAToStrWEx().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrStrAToStrWEx(
+    IN  LPCSTR          lpszSource,     // source string
+    IN  LPVOID          lpvBaseObject,  // base object for MAPIAllocateMore
+    OUT LPWSTR *        lppwszDest)     // destination string
+{
+    HRESULT hr  =   NOERROR;    // return code
+
+    if (!TEST_STRINGA_PTR(lpszSource) || 
+		!TEST_WRITE_PTR(lppwszDest, sizeof(*lppwszDest)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+}
+
+
+#endif /* DEBUG */

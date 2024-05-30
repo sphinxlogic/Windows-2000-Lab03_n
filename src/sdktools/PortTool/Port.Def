@@ -1,0 +1,6 @@
+LIBRARY 	PORT
+
+VERSION 	2.2
+
+EXPORTS 	CheckString
+            InitPortData

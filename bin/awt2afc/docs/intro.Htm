@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>Introduction to AWT->AFC</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">Welcome to AWT2AFC!</h1>
+
+<h3>Introduction</h3>
+
+<p>AWT2AFC is a tool that helps you take advantage of
+Microsoft&#146;s acclaimed class libraries for Java, the
+Application Foundation Classes (AFC). Since Java&#146;s
+invention, the tools for building user interfaces have come from
+Java&#146;s Abstract Windowing Toolkit (AWT). Now, with
+Microsoft&#146;s Application Foundation Classes, you have more
+control and more options for providing powerful, coherent user
+interfaces, which results in better user experiences. AFC is
+written entirely in Java, and the classes run on any virtual
+machine that supports JDK 1.1. So developers who convert AWT code
+to AFC code will retain cross-platform capabilities while adding
+features and power to their software.</p>
+
+<p>Converting code from AWT to AFC is fairly straightforward. The
+classes considered for conversion come from java.awt and
+java.applet. Many classes do not change at all: for those that
+do, most every conversion usually consists of changing the
+declarations and instantiations of the class and changing some of
+the methods called on that class. In some cases, there are
+methods and constants that are unsupported in AFC: workarounds
+are suggested as appropriate. The AWT2AFC tool helps you convert
+your code from AWT to AFC by both noting the places that changes
+need to be made and by providing you with the information you
+need to make them. In this way, not only can you convert old
+programs, but you can learn how AFC differs from AWT and how you
+can take advantage of AFC&#146;s new features.</p>
+
+<p>AWT2AFC provides a great deal of information but should not be
+seen as a replacement for the AFC documentation. The information
+here acts as a supplement to the class documentation and refers
+to it often--be sure to keep that handy as well.</p>
+
+<p>&nbsp;</p>
+
+<h3>Usage</h3>
+
+<p>AWT2AFC is a web-based application running through the applet
+in the bottom-left corner of your browser. To convert a file,
+first type in its full path name (i.e. c:\dev\java\foo.java) in
+the edit box or hit the <b>Browse</b> button to search for a
+file. This interface will only take .java or .jav files. When you
+have chosen a file, hit <b>Go</b>.</p>
+
+<p>AWT2AFC has two functions, one of which you can turn on and
+off. First, AWT2AFC can determine the list of classes that need
+to be changed to make the code AFC-compliant. This list will be
+generated every time you hit <b>Go</b> and will appear below the
+applet. In this list, there is a link to a web page that
+describes how to convert that AWT class to a corresponding AFC
+class (see <a href="Button.htm" target="descriptions"><u>Button</u></a>
+for an example). These web pages will come up in this frame. At
+the end of the list is a link to this page and to the list of
+classes that AFC does not change, so that you can be sure that
+all of your classes were considered. If you click on <b>Show All
+Conversions</b>, a list of all the classes and their conversions
+will appear.</p>
+
+<p>The second function is optional and is turned on and off by
+the <b>Add comments to source </b>check button. If this is
+checked, AWT2AFC will add a comment by each declaration or
+instantiation of a class that should be replaced into your code.
+This comment gives a short description of what change needs to
+happen: it serves only as a reminder and locator, and is not a
+substitute for the web pages. It does not comment each method
+used in the class. Each of these comments begins with TODO and
+ends with (AWT2AFC), so that you can do a quick-search for them.
+After comments are added, your code may look like</p>
+
+<p><font face="Courier">// TODO: Replace Choice with UIChoice
+(AWT2AFC)</font></p>
+
+<p><font face="Courier">Choice c;</font></p>
+
+<p>If you check the <strong>Create Backup </strong>check button,
+a copy of the current Java file will automatically be made and be
+saved with .bak added as an extension. Thus foo.java will become
+foo.java.bak. Please note that only one backup is made, so if you
+continually make backup files of the same Java file, you will
+keep replacing the backup.</p>
+
+<h3>Notes</h3>
+
+<p>Because AWT2AFC does not do a full parse of your code, it may
+catch &quot;extra mentions&quot;--specifically, when you use a
+class name as the name of an instance of something else. That is,
+in the line</p>
+
+<p><font face="Courier">Button Panel = new Button();</font></p>
+
+<p>Panel will be picked up as a class to be changed. </p>
+
+<p>We hope that this tool will help you both convert code to AFC
+and learn how to program with AFC. Please provide suggestions and
+bug reports at <a
+href="http://www.microsoft.com/java/misc/sdkbug.htm">http://www.microsoft.com/java/misc/sdkbug.htm</a>.
+</p>
+</body>
+</html>

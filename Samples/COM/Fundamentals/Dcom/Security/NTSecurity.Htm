@@ -1,0 +1,258 @@
+<html>
+
+<head>
+<title>Windows NT Security and COM Applications</title>
+<link rel="stylesheet" href="../../../styles.css" type="text/css">
+<style>
+A:link {color: Olive}
+A:visited {color: 336666}
+A:hover {background:Olive; color: White}
+</style>
+</head>
+
+<body>
+
+<h2>Windows NT Security and COM Applications</h2>
+
+<hr>
+<h4>Overview</h4>
+<p>The Security Server Sample is a simple COM client/server sample
+that allows you to experiment with the various COM security parameters. Almost all of the
+parameters that effect COM security can be configured by using two simple configuration
+files in the sample. These files are &quot;sclient.cfg&quot; for the client and
+&quot;sserver.cfg&quot; for the server. The files themselves contain an explanation of the
+syntax and usage of the security parameters. Note that the sample does only very
+rudimentary token parsing, hence extraneous leading/trailing spaces and other deviations
+from the shown syntax can cause the programs to work incorrectly. If this happens, it is
+strongly recommended to run the programs under the debugger to make sure that the values
+read from the file are indeed what is intended. </p><p>he sample consists of a client program &quot;sclient&quot; and a
+server program &quot;sserver&quot;. The server hosts an object that implements the
+following interface:</p>
+<blockquote>
+  <p><font face="Courier">import &quot;unknwn.idl&quot;; </font></p>
+  <p><font face="Courier">[object, uuid(73A30D73-C27E-11d0-B72A-00AA00C006CF),
+  pointer_default(unique)] interface IServer : IUnknown { </font></p>
+  <p><font face="Courier">HRESULT AccessFile(LPCWSTR szFileName); </font></p>
+  <p><font face="Courier">HRESULT SetCallBackInterface(IUnknown *p); </font></p>
+  <p><font face="Courier">HRESULT ImpersonateAndCallback(); } </font></p>
+  <p><font face="Courier">AccessFile() </font></p>
+</blockquote>
+
+
+<p>This method receives a file name from the client. This method
+calls CoQueryClientBlanket() to identify the client and displays the client identity (if
+possible). Then the method tries to open the file for read-write access while running
+under the security context of the server. Next, it impersonates the client (by calling
+CoImpersonateClient) and tries to access the same file again, this time under the security
+context of the client.</p>
+
+<p>SetCallBackInterface() </p>
+
+<p>This method is called by the client to pass an interface pointer
+to a client side object to the server. The server stores this interface pointer in a data
+member and triggers a win32 Event object which causes a server thread that is waiting on
+the Event to wake up and call the client through the interface pointer. </p>
+
+<p>ImpersonateAndCallBack() </p>
+
+<p>In this method again, the server impersonates the client and then
+calls back through the interface pointer provided by the client. In NT4, there is no
+delegation support. Hence the client, when it receives the callback, will see the identity
+of the server, and not itself, eventhough the server was impersonating the client when
+making the call. With NT5 and kerberos, delegation is possible, hence if the client
+specifies delegate level impersonation and the server sets the cloaking flag on the proxy,
+then the client will see itself as the caller identity. </p>
+
+<p>The client hosts an object that implements the following interface
+</p>
+
+<p>[object, uuid(73A30D74-C27E-11d0-B72A-00AA00C006CF),
+pointer_default(unique)] interface ICallBack : IUnknown { </p>
+
+<p>HRESULT AccessFile(LPCWSTR szFileName); } </p>
+
+<p>AccessFile() </p>
+
+<p>This method receives a file name from the server. This method
+calls CoQueryClientBlanket() to identify the server and displays the server identity (if
+possible). Then the method tries to open the file for read-write access while running
+under the security context of the client. Next, it impersonates the server (by calling
+CoImpersonateClient) and tries to access the same file again, this time under the security
+context of the server. </p>
+
+<p>The sclient.cfg and sserver.cfg files These files allow you to
+configure virtually each and every COM security settings except Launch Permissions and
+Authentication Services. The former can be set by DCOMCNFG and the latter is assumed to be
+NTLM SSP for the time being. Some of these parameters are &quot;static&quot;; ie; the
+client and the server programs read them only once. Example: activation parameters and
+CoInitializeSecurity parameters. Others are &quot;dynamic&quot;, example: the proxy
+security parameters. These can be changed before each call and the effect of the change on
+the call can be observed. The configuration files are self-documenting. </p>
+
+<p>As supplied, the client uses no COAUTHINFO structure on
+authentication (uses process credentials). The client will authenticate and accept calls
+from all valid incoming callers. The client will not call CoSetProxyBlanket on the proxy. </p>
+
+<p>As supplied, the configuration parameters make the server
+authenticate and accept calls from all valid incoming clients. The server will not call
+CoSetProxyBlanket on the callback proxy. </p>
+
+<p>NOTE: This sample uses IAccessControl to set access permisisons in
+CoInitializeSecurity. This makes the sample work without any change on both NT and DCOM95.
+The only NT group that is allowed is &quot;*&quot;(Everyone). Due to a bug in NT4(fixed in
+NT5), special groups such as &quot;NT Authority\Interactive&quot;, &quot;NT
+Authority\Network&quot; are not allowed. The sample automatically adds &quot;NT
+Authority\System&quot; to the access permission list, so there is no need to specify that
+account. </p>
+
+
+<h4>Project Files</h4>
+<table border="0" width="444">
+
+  <tr>
+    <td width="192"><b>File Name</b></td>
+    <td width="240"><b>Description </b></td>
+  </tr>
+  <tr>
+    <td width="192">register.reg &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="240">Registration script </td>
+  </tr>
+  <tr>
+    <td width="192">ps\dlldata.c &nbsp;</td>
+    <td width="240">MIDL generated file </td>
+  </tr>
+  <tr>
+    <td width="192">ps\i.c &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="240">MIDL generated file </td>
+  </tr>
+  <tr>
+    <td width="192">ps\p.c &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="240">MIDL generated file </td>
+  </tr>
+  <tr>
+    <td width="192">ps\ps.h &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="240">MIDL generated file </td>
+  </tr>
+  <tr>
+    <td width="192">ps\ps.def &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="240">Export Definitions File </td>
+  </tr>
+  <tr>
+    <td width="192">ps\ps.dsp &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="240">VC project file </td>
+  </tr>
+  <tr>
+    <td width="192">ps\ps.dsw &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="240">VC workspace file </td>
+  </tr>
+  <tr>
+    <td width="192">ps\server.idl &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="240">Interface Definition File </td>
+  </tr>
+  <tr>
+    <td width="192">ps\makefile &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="240">Win32 SDK makefile </td>
+  </tr>
+  <tr>
+    <td width="192">sclient\IAC.CPP &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="240">Implements IAccessControl </td>
+  </tr>
+  <tr>
+    <td width="192">sclient\IAC.H &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="240">Implements IAccessControl </td>
+  </tr>
+  <tr>
+    <td width="192">sclient\SCLIENT.CPP &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="240">Implements client </td>
+  </tr>
+  <tr>
+    <td width="192">sclient\setparam.cpp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+    <td width="240">Implements client configuration </td>
+  </tr>
+  <tr>
+    <td width="192">sclient\sclient.dsp &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="240">VC project file </td>
+  </tr>
+  <tr>
+    <td width="192">sclient\sclient.dsw &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="240">VC workspace file </td>
+  </tr>
+  <tr>
+    <td width="192">sclient\makefile &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="240">Win32 makefile </td>
+  </tr>
+  <tr>
+    <td width="192">sclient\sclient.cfg &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="240">Client configuration </td>
+  </tr>
+  <tr>
+    <td width="192">sserver\IAC.CPP &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="240">Implements IAccessControl </td>
+  </tr>
+  <tr>
+    <td width="192">sserver\IAC.H &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="240">Implements IAccessControl </td>
+  </tr>
+  <tr>
+    <td width="192">sserver\setparam.cpp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+    <td width="240">Implements client configuration </td>
+  </tr>
+  <tr>
+    <td width="192">sserver\SSERVER.CPP &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="240">Implements server </td>
+  </tr>
+  <tr>
+    <td width="192">sserver\sserver.dsp &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="240">VC project file </td>
+  </tr>
+  <tr>
+    <td width="192">sserver\sserver.dsw &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="240">VC workspace file </td>
+  </tr>
+  <tr>
+    <td width="192">sserver\makefile &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="240">Win32 makefile </td>
+  </tr>
+  <tr>
+    <td width="192">sserver\sserver.cfg &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="240">Server configuration </td>
+  </tr>
+</table>
+
+
+</p>
+<h4>To Build</h4>
+<p>
+Open SServer.Dsw, set <b>"sserver classes"</b> to be the active project, then to build press the <b>"F7"</b> key. <i>You can also run NMake from the command line using the makefile in the \Dcom\Security folder.</i>
+</p>
+
+<h4>To Configure</h4>
+<p>Copy sserver.exe and register.reg to the
+server machine. Edit register.reg to make the LocalServer32 key point to the correct
+location of sserver.exe on the server machine. Register the server by running
+&quot;regedit /s register.reg&quot;. Copy sserver.cfg to the &quot;c:\&quot; directory
+(The server is hardcoded to look for the file there, if a different location is desired,
+re-compile the server). Run DCOMCNFG.EXE, select the &quot;Security Sample Server&quot;
+application and apply launch permissions to the server. Typically, you would give launch
+permissions to the user account under which the client is running. If the serer is on NT4
+(sp2) or above, you can also allow anonymous activation by specifying Everyone in the
+launch permission list. Copy sclient.exe and sclient.cfg to the same directory on the
+client machine. Run sclient <servermachine> where <servermachine> is the NETBIOS name/DNS name or the IP address of the
+server machine. If the client is on the same machine as the server, simply run
+&quot;sclient&quot;. </p>
+<h4>Remarks</h4>
+<p>NOTE to DCOM95 users. Remember to copy sclient.exe and sserver.exe
+from the AnsiDebug directory, these binaries are compiled without UNICODE defined. Also
+other DCOM95 specific conditions apply (such as the server needs to be pre-started etc). You can use standard COM remoting mechanisms to remote the servers
+if needed. </p>
+
+
+
+<p>&nbsp;</p>
+
+<hr>
+
+
+<p>&nbsp;</p>
+</body>
+</html>

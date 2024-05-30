@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>ISAPI and COM</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_isapi_and_com"></a>ISAPI and COM</h3>
+<p>
+This sample demonstrates how to invoke a method provided by an ActiveX™ component from within an ISAPI extension. Included in the project directory you will find getusername.dll, which is a simple ATL-based component which creates one class with a single method, <b>GetMyName</b>. This method, when called, will return the user name for the context in which the component is running.</p>
+<p>
+Interaction with COM objects requires careful library management, and this sample performs two operations that allow the extension to function properly. First, the initial entry-point function <b>GetExtensionVersion</b> is used to initialize the COM Library with the <b>CoInitialize</b> method. This method must be called before any other COM-based operations. This sample also uses the <b>#import</b> directive to collect and incorporate type library information directly from the .dll file itself.</p>
+<p>
+The <b>HttpExtensionProc</b> function is called by IIS next, and the real work of the extension begins. <b>ServerSupportFunction</b> is used to pass the HSE_REQ_SEND_RESPONSE_HEADER_EX extension request to the server, which takes care of sending the initial HTTP header to the client browser. Then the <b>CreateInstance</b> method, a wrapper for the COM library's <b>CoCreateInstance</b> method, is invoked to create an instance of the <b>GetUserName</b> object. The reference obtained from that method is used to access the <b>GetMyName</b> method of the component, and the output is written to the client browser.</p>
+<p>
+To close the COM Library gracefully, it is important that any call to <b>CoInitialize</b> be balanced by its companion function, <b>CoUninitialize</b>. This sample extension makes use of the fact that IIS calls the entry-point function <b>TerminateExtension</b> as the last action before the extension is unloaded from memory. <b>CoUninitialize</b> is invoked from this final function, allowing the extension to terminate cleanly and efficiently. </p>
+<p>
+<b>Note</b>&nbsp;&nbsp;The <b>#import</b> directive is supported by Visual C++ versions 5.0 or later. If your compiler does not support this directive, this sample will not compile and link properly. </p>
+<p>
+This sample is provided for educational purposes only. It has not been tested in a production environment, and Microsoft&reg; will not provide technical support for it. </p>
+</BODY>
+</HTML>

@@ -1,0 +1,6 @@
+VBGROUP 5.0
+Project=bus_Customer\bus_Customer.vbp
+Project=db_Customer\db_Customer.vbp
+Project=db_CustOnline\db_CustOnline.vbp
+Project=db_CustPreferences\db_CustPreferences.vbp
+StartupProject=..\Project1.vbp

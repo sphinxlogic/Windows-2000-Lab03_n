@@ -1,0 +1,56 @@
+//
+// This file will be processed by MIDL to build a typelibrary and marshalling code
+//
+
+
+
+// Type library description
+[
+	uuid(D50BD661-7471-11d2-9A80-006097DA88F5),			// LIBID_Student
+	version(1.0),
+	lcid(0x409),
+	helpstring("User Defined Data Type Test' v 1.0 typelibrary")
+]
+library Student
+{
+	importlib("stdole2.tlb");
+
+typedef enum tagclassification {school_Bully, class_Clown, teachers_Favorite} classification;
+
+typedef [uuid(D8B3861A-74C6-11d2-A0D6-00C04FB17CDB)] struct tagStudentStruct {
+		BSTR name;
+		short grade;
+		classification  type;
+		VARIANT_BOOL	graduate;
+} StudentStruct;
+
+typedef StudentStruct* LPSTUDENTSTRUCT;
+
+
+[
+	object,
+	uuid(D50BD660-7471-11d2-9A80-006097DA88F5),			// IID_IStudent
+	helpstring("User Defined Data Server"),
+	dual,
+	pointer_default(unique)
+]
+interface IStudent : IDispatch
+{
+	import "unknwn.idl";
+	typedef IStudent* LPSTUDENT;
+
+	HRESULT Test1([in,out] LPSTUDENTSTRUCT lpStudent);
+	HRESULT Test2([in,out] SAFEARRAY(StudentStruct));
+};
+
+	[
+		uuid(D50BD662-7471-11d2-9A80-006097DA88F5),		// CLSID_UDT
+		appobject,
+		version(1.0),
+		helpstring("UDT Test Class")
+	]
+	coclass UDT
+	{
+		[default] interface IStudent;
+	};
+};

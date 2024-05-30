@@ -1,0 +1,26 @@
+HKCR
+{
+	DX3DTransform.Microsoft.Dissolve.1 = s 'Dissolve'
+	{
+		CLSID = s '{90b5e2e1-5050-11d1-b83e-00a0c933be86}'
+	}
+	DX3DTransform.Microsoft.Dissolve = s 'Dissolve'
+	{
+		CurVer = s 'DX3DTransform.Microsoft.Dissolve.1'
+		CLSID = s '{90b5e2e1-5050-11d1-b83e-00a0c933be86}'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {90b5e2e1-5050-11d1-b83e-00a0c933be86} = s 'Dissolve'
+		{
+			ProgID = s 'DX3DTransform.Microsoft.Dissolve.1'
+			VersionIndependentProgID = s 'DX3DTransform.Microsoft.Dissolve'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+                        ToolBoxBitmap32 = s '%MODULE%,235'
+		}
+	}
+}

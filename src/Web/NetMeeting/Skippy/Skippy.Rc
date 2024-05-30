@@ -1,0 +1,422 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+// Generated Help ID header file
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "resource.hm"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU1 MENU DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "E&xit",                       IDM_EXIT
+    END
+    POPUP "&Server"
+    BEGIN
+        MENUITEM "&Create Server...",           IDM_CREATESERVER
+        MENUITEM "&Destroy Server..",           IDM_DESTROYSERVER
+    END
+    POPUP "&Users"
+    BEGIN
+        MENUITEM "Clone E&xisting User",        IDM_CLONEUSER
+        MENUITEM "&Create User...",             IDM_NEWUSER
+        MENUITEM "&Destroy User...",            IDM_DESTROYUSER
+        MENUITEM SEPARATOR
+        MENUITEM "&Register User...",           IDM_REGISTERUSER
+        MENUITEM "Unre&gister User...",         IDM_UNREGISTERUSER
+        MENUITEM SEPARATOR
+        MENUITEM "Enumerate &Users",            IDM_ENUMUSERS
+        MENUITEM "Enumerate User &Names",       IDM_ENUMUSERNAMES
+        MENUITEM "Get User In&fo...",           IDM_GETUSERINFO
+        MENUITEM SEPARATOR
+        MENUITEM "&Modify Existing User",       IDM_MODIFYUSER
+    END
+    POPUP "&Filter"
+    BEGIN
+        MENUITEM "Create &User Filter...",      IDM_USER_FILTER
+        MENUITEM "&Destroy User Filter...",     IDM_DESTROY_USERFILTER
+        MENUITEM SEPARATOR
+        MENUITEM "Create &Protocol Filter...",  IDM_PROTOCOL_FILTER
+        MENUITEM "Destroy P&rotocol Filter...", IDM_DESTROY_PROTFILTER
+    END
+    POPUP "&Protocol"
+    BEGIN
+        MENUITEM "&Create Protocol...",         IDM_CREATE_PROT
+        MENUITEM "&Destroy Protocol...",        IDM_DESTROY_PROT
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About this app...",          IDM_ABOUT
+    END
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DLG_APP DIALOG DISCARDABLE  0, 0, 285, 178
+STYLE DS_MODALFRAME | DS_3DLOOK | DS_CENTER | WS_POPUP | WS_VISIBLE | 
+    WS_CAPTION | WS_SYSMENU
+CAPTION "SKIPPY! - ILS Test Application"
+MENU IDR_MENU1
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_ACT_EDIT,7,7,270,164,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_READONLY | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
+END
+
+IDD_DLG_USERINFO DIALOG DISCARDABLE  0, 0, 311, 146
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Your Information..."
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,254,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,254,24,50,14
+    LTEXT           "&First Name:",IDC_STATIC,7,9,40,8
+    EDITTEXT        IDC_UI_FIRSTNAME,54,7,196,14,ES_AUTOHSCROLL
+    LTEXT           "&Last Name:",IDC_STATIC,7,28,40,8
+    EDITTEXT        IDC_UI_LASTNAME,54,26,196,14,ES_AUTOHSCROLL
+    LTEXT           "&E-Mail Name:",IDC_STATIC,7,48,46,8
+    EDITTEXT        IDC_UI_EMAIL,54,45,196,14,ES_AUTOHSCROLL
+    LTEXT           "C&ity:",IDC_STATIC,7,67,46,8
+    EDITTEXT        IDC_UI_CITY,54,64,196,14,ES_AUTOHSCROLL
+    LTEXT           "C&ountry:",IDC_STATIC,7,86,46,8
+    EDITTEXT        IDC_UI_COUNTRY,54,83,196,14,ES_AUTOHSCROLL
+    LTEXT           "Co&mment:",IDC_STATIC,7,105,46,8
+    EDITTEXT        IDC_UI_COMMENT,54,102,196,14,ES_AUTOHSCROLL
+    LTEXT           "I&P Address:",IDC_STATIC,7,128,46,8
+    EDITTEXT        IDC_UI_IPADD,54,125,196,14,ES_AUTOHSCROLL
+END
+
+IDD_DLG_ATTRIB DIALOG DISCARDABLE  0, 0, 186, 101
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Edit Attribute..."
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,78,80,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,129,80,50,14
+    LTEXT           "&Name:",IDC_STATIC,7,7,40,8
+    EDITTEXT        IDC_ATTR_NAME,7,19,172,14,ES_AUTOHSCROLL
+    LTEXT           "&Value:",IDC_STATIC,7,40,28,8
+    EDITTEXT        IDC_ATTR_VALUE,7,52,172,14,ES_AUTOHSCROLL
+END
+
+IDD_DLG_SERVERNAME DIALOGEX 0, 0, 265, 167
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "New ILS Server"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,208,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,208,24,50,14
+    EDITTEXT        IDC_SVR_NAME,66,7,135,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_LOGON_NAME,66,27,135,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PASSWORD,66,47,135,14,ES_AUTOHSCROLL
+    COMBOBOX        IDC_AUTH_METHOD,65,67,135,61,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP,0,HIDC_AUTH_METHOD
+    EDITTEXT        IDC_AUTH_CRED,66,86,135,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_TIMEOUT,66,106,135,14,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_DOMAIN,66,127,135,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_BASEDN,66,146,135,14,ES_AUTOHSCROLL
+    LTEXT           "&Server name:",IDC_STATIC,7,10,43,8
+    LTEXT           "&Log on name:",IDC_STATIC,7,30,44,8
+    LTEXT           "&Password",IDC_STATIC,7,50,32,8
+    LTEXT           "&Auth method:",IDC_STATIC,7,69,43,8
+    LTEXT           "Auth &credential:",IDC_STATIC,7,89,50,8
+    LTEXT           "Time &out:",IDC_STATIC,7,109,30,8
+    LTEXT           "Domain",IDC_STATIC,7,130,25,8
+    LTEXT           "BaseDN",IDC_STATIC,7,149,28,8
+END
+
+IDD_DLG_USERNAME DIALOG DISCARDABLE  0, 0, 186, 71
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "ILS User Name"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,77,50,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,129,50,50,14
+    LTEXT           "&Enter the name to find:",IDC_STATIC,7,7,108,8
+    EDITTEXT        IDC_USER_NAME,7,23,172,14,ES_AUTOHSCROLL
+END
+
+IDD_DLG_ILSUSER DIALOG DISCARDABLE  0, 0, 277, 159
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "ILS User Information"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,165,138,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,220,138,50,14
+    LTEXT           "",IDC_UU_INFO,7,7,187,129,SS_NOPREFIX
+    PUSHBUTTON      "Enum Protocols",IDC_UU_PROT,199,7,71,14
+    PUSHBUTTON      "Extended Attributes",IDC_UU_EXATTR,199,23,71,14
+    PUSHBUTTON      "Get Protocol",IDC_UU_GETPROT,199,39,71,14
+END
+
+IDD_DLG_PROTOCOL DIALOG DISCARDABLE  0, 0, 230, 70
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Protocol"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,173,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,173,23,50,14
+    LTEXT           "Name:",IDC_STATIC,7,10,34,8
+    EDITTEXT        IDC_PROT_NAME,62,7,104,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PROT_MIME,62,27,104,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PROT_PORT,62,47,104,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "MIME Type:",IDC_STATIC,7,30,44,8
+    LTEXT           "Port number:",IDC_STATIC,7,50,44,8
+END
+
+IDD_DLG_LIST DIALOG DISCARDABLE  0, 0, 186, 95
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Empty List"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,129,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,129,24,50,14
+    LISTBOX         IDC_LIST,7,7,118,81,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_DLG_FILTER DIALOG DISCARDABLE  0, 0, 234, 204
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Create Filter"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,177,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,177,24,50,14
+    LTEXT           "Standard Attribute Type",IDC_STD_TXT1,7,36,76,8
+    COMBOBOX        IDC_ATT_LIST1,7,47,83,68,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "Equal",IDC_OP_EQUAL1,"Button",BS_AUTORADIOBUTTON,109,47,
+                    34,10
+    CONTROL         "Approx",IDC_OP_APPROX1,"Button",BS_AUTORADIOBUTTON,109,
+                    58,38,10
+    CONTROL         "Less than",IDC_OP_LESSTHAN1,"Button",BS_AUTORADIOBUTTON,
+                    109,68,47,10
+    CONTROL         "Greater than",IDC_OP_GREATERTHAN1,"Button",
+                    BS_AUTORADIOBUTTON,109,78,55,10
+    CONTROL         "Exist",IDC_OP_EXIST1,"Button",BS_AUTORADIOBUTTON,109,87,
+                    31,10
+    EDITTEXT        IDC_VALUE1,7,76,83,14,ES_AUTOHSCROLL
+    GROUPBOX        "Filter operations",IDC_FIL_OP1,95,36,71,66
+    LTEXT           "Attribute value",IDC_ATT_TXT1,7,66,46,8
+    GROUPBOX        "Composite operations",IDC_COMP_FRAME,7,100,159,27
+    CONTROL         "AND",IDC_AND,"Button",BS_AUTORADIOBUTTON,25,112,31,10
+    CONTROL         "OR",IDC_OR,"Button",BS_AUTORADIOBUTTON,73,112,27,10
+    CONTROL         "NOT",IDC_NOT,"Button",BS_AUTORADIOBUTTON,113,112,31,10
+    LTEXT           "Standard Attribute Type",IDC_STD_TXT2,7,130,76,8
+    COMBOBOX        IDC_ATT_LIST2,7,140,82,57,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "Equal",IDC_OP_EQUAL2,"Button",BS_AUTORADIOBUTTON,109,
+                    141,34,10
+    CONTROL         "Approx",IDC_OP_APPROX2,"Button",BS_AUTORADIOBUTTON,109,
+                    151,38,10
+    CONTROL         "Less than",IDC_OP_LESSTHAN2,"Button",BS_AUTORADIOBUTTON,
+                    109,161,47,10
+    CONTROL         "Greater than",IDC_OP_GREATERTHAN2,"Button",
+                    BS_AUTORADIOBUTTON,109,171,55,10
+    CONTROL         "Exist",IDC_OP_EXIST2,"Button",BS_AUTORADIOBUTTON,109,
+                    181,31,10
+    EDITTEXT        IDC_VALUE2,7,169,82,14,ES_AUTOHSCROLL
+    GROUPBOX        "Filter operations",IDC_FIL_OP2,95,130,71,66
+    LTEXT           "Attribute value",IDC_ATT_TXT2,7,159,46,8
+    GROUPBOX        "Filter Type",IDC_STATIC,7,7,158,25
+    CONTROL         "Simple",IDC_SIMPLE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,22,17,37,10
+    CONTROL         "Composite",IDC_COMPOSITE,"Button",BS_AUTORADIOBUTTON,80,
+                    16,49,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_DLG_APP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 277
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 171
+    END
+
+    IDD_DLG_USERINFO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 304
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 139
+    END
+
+    IDD_DLG_ATTRIB, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 94
+    END
+
+    IDD_DLG_SERVERNAME, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 258
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 160
+    END
+
+    IDD_DLG_USERNAME, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 64
+    END
+
+    IDD_DLG_ILSUSER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 270
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 152
+    END
+
+    IDD_DLG_PROTOCOL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 223
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 63
+    END
+
+    IDD_DLG_LIST, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 88
+    END
+
+    IDD_DLG_FILTER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 227
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 197
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_APP_ICON            ICON    DISCARDABLE     "face.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_DLG_SERVERNAME DLGINIT
+BEGIN
+    IDC_AUTH_METHOD, 0x403, 5, 0
+0x7561, 0x6874, "\000" 
+    IDC_AUTH_METHOD, 0x403, 7, 0
+0x6973, 0x6963, 0x796c, "\000" 
+    IDC_AUTH_METHOD, 0x403, 5, 0
+0x6e61, 0x6e6f, "\000" 
+    IDC_AUTH_METHOD, 0x403, 5, 0
+0x6574, 0x7473, "\000" 
+    IDC_AUTH_METHOD, 0x403, 6, 0
+0x7373, 0x6970, 0x006f, 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_VERSION             "SKIPPY.EXE    v 0.2"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

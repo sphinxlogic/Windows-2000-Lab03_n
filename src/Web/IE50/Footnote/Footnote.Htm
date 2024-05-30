@@ -1,0 +1,52 @@
+<HTML xmlns:fn >
+<HEAD>
+
+<TITLE>Behavior Footnote Demo</TITLE>
+
+<style>
+  @media all{
+  FN\:FOOTNOTE {behavior:url(footnote.htc)}
+    }
+</style>
+</HEAD>
+
+<BODY>
+<h2>Footnote DHTML Behavior</h2>
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="top.close();return false">Close This Sample</A>
+</FONT>
+<br>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+<hr>
+
+<H1>A footnote tag</H1>
+
+Thanks to the use of the new DHTML component model <FN:FOOTNOTE>Use Internet Explorer 5 to see the behavior in action
+</FN:FOOTNOTE>, it is now possible to attach behavior to any tag. In particular it is possible to attach behavior to XML tags in the HTML document<FN:FOOTNOTE> the XML namespace can be declared in the head of the document</FN:FOOTNOTE>. 
+
+<P>This can be used to create a FN:FOOTNOTE tag as shown in this document. This tag inserts a auto-numbered footnote 
+reference and pushes the text it contains to the end of the document as a footnote (or rather, an endnote) does. It also 
+automatically sets up a tooltip showing the text of the footnote when the mouse is over the reference. The implementation of
+this behavior is only a few lines of JavaScript <FN:FOOTNOTE>Note that the current implementation does not support dynamic addition or 
+removal of footnotes after the page has been downloaded, but it would not be very difficult to add.</FN:FOOTNOTE>. The particular
+implementation shown here supports two attributes to customize the format of the references and of the text of the footnote.
+
+
+<P>The syntax for this tag is the following:
+<FONT COLOR=blue>
+<BR> ... <BR>
+&lt;FN:FOOTNOTE REFFORMAT=<I>string</I> TEXTFORMAT=<I>string</I>&gt;<BR>
+text of the footnote<BR>
+&lt;/FN:FOOTNOTE&gt;<BR>
+...
+</FONT>
+<P>
+REFFORMAT: specifies the format of the reference to the footnote. Default is "(#)".<BR>
+TEXTFORMAT: specifies the format of the footnote header placed just before the text of the footnote. Default is "#/".<BR>
+The <I>string</I> arguments are any string of character where '#' represents the footnote number, i.e., "(see #)"<BR>
+A link to the footnote text is automatically wrapped around the footnote reference.<P>
+
+
+
+</BODY>
+</HTML>

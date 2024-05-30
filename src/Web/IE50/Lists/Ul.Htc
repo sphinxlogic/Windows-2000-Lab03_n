@@ -1,0 +1,39 @@
+
+<script language="jscript">
+
+attachEvent("onclick", event_onclick);
+attachEvent("onmouseover", event_onmouseover);
+attachEvent("onmouseout", event_onmouseout);
+
+function event_onmouseover()
+{
+   style.cursor = "hand";
+   style.color = "red";
+}
+
+function event_onmouseout()
+{
+   style.cursor = "";
+   style.color = "black";
+}
+
+function event_onclick()
+{
+   var i;
+   var style;
+  
+   for (i = 0; i < children.length; i++)
+   {
+       style = children[i].style;
+       if (style.display == "none")
+       {
+           style.display = "";
+       }
+       else
+       {
+           style.display = "none";
+       }
+   } 
+}
+
+</script>

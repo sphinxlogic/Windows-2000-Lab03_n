@@ -1,0 +1,19 @@
+'<!--Mailbox Maintenance Sample Application-->
+'<!--Global.asa : App & Session Start & End Routines -->
+'<!--Copyright (c) Microsoft Corporation 1993-1998. All rights reserved.-->
+'
+' Global.asa contains Application/Session start/end routines.
+'
+' Note that global.asa does not include constants.inc.  Any changes to constants must also
+' be made here.
+'
+
+<SCRIPT LANGUAGE=VBScript RUNAT=Server> 
+Sub Session_OnStart
+    Const gstrSESS_ADS_SERVER = "sessServer"
+    Const gstrSESS_B_SUPPORTS_IE4_DHTML = "sessBSupportsIE4DHTML"
+
+    Session(gstrSESS_ADS_SERVER) = Empty
+    Session(gstrSESS_B_SUPPORTS_IE4_DHTML) = Empty
+End Sub
+</SCRIPT> 

@@ -1,0 +1,7 @@
+; sgwadmin.def : Declares the module parameters for the DLL.
+
+LIBRARY      SGWADMIN
+DESCRIPTION  'SGWADMIN.DLL Sample Gateway Admin property sheet.'
+
+EXPORTS    ; Explicit exports can go here
+    ADMIN_Initialize    @2

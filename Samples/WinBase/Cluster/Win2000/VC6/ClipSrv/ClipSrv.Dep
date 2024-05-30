@@ -1,0 +1,9 @@
+# Microsoft Developer Studio Generated Dependency File, included by ClipSrv.mak
+
+.\ClipSrv.cpp : \
+	".\ClRes.h"\
+	
+
+.\ClRes.cpp : \
+	".\ClRes.h"\
+	

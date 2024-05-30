@@ -1,0 +1,216 @@
+ tbatm155
+
+ Timestamp is 656655a7 (Tue Nov 28 16:03:35 2023)
+
+ Preferred load address is 00010000
+
+ Start         Length     Name                   Class
+ 0001:00000000 00014b80H .text                   CODE
+ 0002:00000000 000000e8H .idata$5                DATA
+ 0002:000000e8 0000013cH .rdata                  DATA
+ 0003:00000000 000005a0H .data                   DATA
+ 0003:000005a0 00000004H .bss                    DATA
+ 0004:00000000 0000027aH INIT                    CODE
+ 0004:0000027c 0000003cH .idata$2                CODE
+ 0004:000002b8 00000014H .idata$3                CODE
+ 0004:000002cc 000000e8H .idata$4                CODE
+ 0004:000003b4 00000574H .idata$6                CODE
+ 0005:00000000 00000058H .rsrc$01                DATA
+ 0005:00000060 00000338H .rsrc$02                DATA
+
+  Address         Publics by Value              Rva+Base     Lib:Object
+
+ 0001:0000008d       _tbAtm155InitConfigurationInformation@4 0001034d f   init.obj
+ 0001:000002b5       _tbAtm155ReadConfigurationInformation@12 00010575 f   init.obj
+ 0001:000008d5       _tbAtm155ReadPciConfiguration@4 00010b95 f   init.obj
+ 0001:00000ef2       _tbAtm155SoftresetNIC@4    000111b2 f   init.obj
+ 0001:00001133       _tbAtm155GetHardwareInformation@4 000113f3 f   init.obj
+ 0001:00001372       _tbAtm155FreeResources@4   00011632 f   init.obj
+ 0001:00001753       _tbAtm155AllocateReportQueues@4 00011a13 f   init.obj
+ 0001:000019a0       _tbAtm155SetBufSizesOfCtrl2Reg@8 00011c60 f   init.obj
+ 0001:00001b4a       _tbAtm155InitRegisters@4   00011e0a f   init.obj
+ 0001:00001ef2       _tbAtm155InitSarParameters@4 000121b2 f   init.obj
+ 0001:000020c7       _tbAtm155InitSarSegment@4  00012387 f   init.obj
+ 0001:0000276b       _TbAtm155Initialize@24     00012a2b f   init.obj
+ 0001:00002e00       _TbAtm155EnableInterrupt@4 000130c0 f   int.obj
+ 0001:00002e26       _TbAtm155DisableInterrupt@4 000130e6 f   int.obj
+ 0001:0000313b       _tbAtm155ErrorInterrupt@4  000133fb f   int.obj
+ 0001:0000347c       _TbAtm155ISR@12            0001373c f   int.obj
+ 0001:0000379f       _TbAtm155HandleInterrupt@4 00013a5f f   int.obj
+ 0001:00003c53       _tbAtm155FreeReceiveBufferInfo@8 00013f13 f   receive.obj
+ 0001:00003d5c       _tbAtm155AllocateReceiveBufferInfo@8 0001401c f   receive.obj
+ 0001:00003f0c       _tbAtm155FreeReceiveBufferPool@8 000141cc f   receive.obj
+ 0001:00004304       _tbAtm155InitializeReceiveBuffer@24 000145c4 f   receive.obj
+ 0001:000046fd       _tbAtm155InitializeBlockReceivePool@4 000149bd f   receive.obj
+ 0001:0000484e       _tbAtm155BuildIndividualReceiveHeader@28 00014b0e f   receive.obj
+ 0001:00004992       _tbAtm155AllocateIndividualReceiveBuffers@8 00014c52 f   receive.obj
+ 0001:00004b3f       _tbAtm155QueueReceivePoolToSarInfo@8 00014dff f   receive.obj
+ 0001:00004ede       _tbAtm155AllocateReceiveBufferPool@16 0001519e f   receive.obj
+ 0001:0000588e       _tbAtm155RxInterruptOnCompletion@4 00015b4e f   receive.obj
+ 0001:0000665b       _tbAtm155FreeReceiveBuffer@12 0001691b f   receive.obj
+ 0001:0000680a       _tbAtm155ProcessReturnPacket@12 00016aca f   receive.obj
+ 0001:00006a35       _TbAtm155ReturnPacket@8    00016cf5 f   receive.obj
+ 0001:00006b2f       _TbAtm155AllocateComplete@20 00016def f   receive.obj
+ 0001:00006e57       _TbAtm155AllocateRecvBufferComplete@20 00017117 f   receive.obj
+ 0001:0000729e       _tbAtm155QueueRecvBuffersToReceiveSlots@8 0001755e f   receive.obj
+ 0001:00007635       _tbAtm155QueryInformation@12 000178f5 f   request.obj
+ 0001:00007ce5       _tbAtm155SetInformation@12 00017fa5 f   request.obj
+ 0001:000080e4       _tbAtm155QueryStatistics@12 000183a4 f   request.obj
+ 0001:000084b8       _TbAtm155Request@12        00018778 f   request.obj
+ 0001:0000867f       _tbAtm155CheckConnectionStatus@4 0001893f f   reset.obj
+ 0001:0000882e       _TbAtm155CheckForHang@4    00018aee f   reset.obj
+ 0001:00008a41       _tbAtm155CompletePacketQueue@4 00018d01 f   reset.obj
+ 0001:00008d7f       _tbAtm155ProcessReset@4    0001903f f   reset.obj
+ 0001:00009418       _TbAtm155Reset@8           000196d8 f   reset.obj
+ 0001:000096b1       _TbAtm155Halt@4            00019971 f   reset.obj
+ 0001:000097fb       _TbAtm155Shutdown@4        00019abb f   reset.obj
+ 0001:00009981       _tbAtm155TransmitPacket@8  00019c41 f   send.obj
+ 0001:00009d30       _tbAtm155ProcessTransmitDmaWaitQueue@12 00019ff0 f   send.obj
+ 0001:0000a059       _tbAtm155ProcessSegmentQueue@8 0001a319 f   send.obj
+ 0001:0000a2f0       _tbAtm155QueuePacketsToDmaWaitQueue@4 0001a5b0 f   send.obj
+ 0001:0000a5b8       _tbAtm155TxInterruptOnCompletion@4 0001a878 f   send.obj
+ 0001:0000acf7       _TbAtm155SendPackets@12    0001afb7 f   send.obj
+ 0001:0000b304       _AlignStructure@8          0001b5c4 f   send.obj
+ 0001:0000b3a6       _tbAtm155FreeTransmitBuffers@8 0001b666 f   send.obj
+ 0001:0000b652       _tbAtm155AllocateTransmitBuffers@4 0001b912 f   send.obj
+ 0001:0000b9e6       _TbAtm155AllocateXmitBufferComplete@20 0001bca6 f   send.obj
+ 0001:0000bda7       _TbAtm155CreateVc@12       0001c067 f   vc.obj
+ 0001:0000c0a9       _TbAtm155DeleteVc@4        0001c369 f   vc.obj
+ 0001:0000c2d4       _tbAtm155NextPowerOf2@4    0001c594 f   vc.obj
+ 0001:0000c3b1       _tbAtm155WriteEntryOfTheSramTbl@16 0001c671 f   vc.obj
+ 0001:0000c6e4       _tbAtm155AdjustTrafficParameters@20 0001c9a4 f   vc.obj
+ 0001:0000cf51       _tbAtm155SetCbrTblsInSRAM@12 0001d211 f   vc.obj
+ 0001:0000d899       _tbAtm155SetUbrTblsInSRAM@8 0001db59 f   vc.obj
+ 0001:0000dae7       _tbAtm155SetAbrTblsInSRAM@8 0001dda7 f   vc.obj
+ 0001:0000dc3a       _tbAtm155FreeReceiveSegment@4 0001defa f   vc.obj
+ 0001:0000e07d       _tbAtm155AllocateReceiveSegment@12 0001e33d f   vc.obj
+ 0001:0000e4af       _tbAtm155FreeTransmitSegment@8 0001e76f f   vc.obj
+ 0001:0000e88e       _tbAtm155AllocateTransmitSegment@16 0001eb4e f   vc.obj
+ 0001:0000ed8d       _tbAtm155ValidateVpiVci@8  0001f04d f   vc.obj
+ 0001:0000f375       _TbAtm155ActivateVc@8      0001f635 f   vc.obj
+ 0001:0000fd6d       _tbAtm155OpenVcChannels@8  0002002d f   vc.obj
+ 0001:000101b0       _TbAtm155ActivateVcComplete@8 00020470 f   vc.obj
+ 0001:0001048d       _TbAtm155DeactivateVc@4    0002074d f   vc.obj
+ 0001:00010748       _TbAtm155DeactivateVcComplete@8 00020a08 f   vc.obj
+ 0001:0001095b       _dbgDumpHardwareInformation@4 00020c1b f   debug.obj
+ 0001:00010c01       _dbgDumpPciCommonConfig@4  00020ec1 f   debug.obj
+ 0001:00010df8       _InsertPacketAtTailDpc@8   000210b8 f   support.obj
+ 0001:00010df8       _InsertPacketAtTail@8      000210b8 f   support.obj
+ 0001:00010e22       _RemovePacketFromHead@8    000210e2 f   support.obj
+ 0001:00010e22       _RemovePacketFromHeadDpc@8 000210e2 f   support.obj
+ 0001:00010e46       _tbAtm155InsertRecvBufferAtTail@12 00021106 f   support.obj
+ 0001:00010ed4       _tbAtm155RemoveReceiveBufferFromHead@8 00021194 f   support.obj
+ 0001:00010f20       _tbAtm155SearchRecvBufferFromQueue@12 000211e0 f   support.obj
+ 0001:00011080       _tbAtm155MergeRecvBuffers2FreeBufferQueue@12 00021340 f   support.obj
+ 0001:000111b6       _tbAtm155HashVc@8          00021476 f   support.obj
+ 0001:000111e4       _tbAtm155UnHashVc@8        000214a4 f   support.obj
+ 0001:00011230       _tbAtm155RemoveHash@8      000214f0 f   support.obj
+ 0001:00011282       _tbAtm155InitializePacketQueue@4 00021542 f   support.obj
+ 0001:000112c0       _tbAtm155FreePacketQueue@4 00021580 f   support.obj
+ 0001:000112f2       _tbAtm155InitializeReceiveBufferQueue@4 000215b2 f   support.obj
+ 0001:000113c6       _tbAtm155FreeReceiveBufferQueue@8 00021686 f   support.obj
+ 0001:00011466       _tbAtm155ConvertToFP@8     00021726 f   support.obj
+ 0001:000114fc       _tbAtm155_ChkPhCompleteStatus@8 000217bc f   peephole.obj
+ 0001:00011538       _tbAtm155_Ph_Write_WORD@12 000217f8 f   peephole.obj
+ 0001:0001159a       _tbAtm155_Ph_Read_WORD@12  0002185a f   peephole.obj
+ 0001:000115ea       _SetRead93C46StructureWord@12 000218aa f   peephole.obj
+ 0001:00011982       _ReadSerialEEPROM93C46Word@12 00021c42 f   peephole.obj
+ 0001:00011e1e       _tbAtm155Read_PermanentAddress@8 000220de f   peephole.obj
+ 0001:000120d6       _tbAtm155InitSuniLitePhyRegisters@4 00022396 f   suni_lit.obj
+ 0001:00012370       _tbAtm155SuniInterrupt@4   00022630 f   suni_lit.obj
+ 0001:000125e2       _tbAtm155DetectPhyType@4   000228a2 f   suni_lit.obj
+ 0001:00012892       _tbAtm155CheckSuniLiteLinkUp@4 00022b52 f   suni_lit.obj
+ 0001:00012b13       _tbAtm155InitPLC2PhyRegisters@4 00022dd3 f   plc_2.obj
+ 0001:00012ea0       _tbAtm155PLC2Interrupt@4   00023160 f   plc_2.obj
+ 0001:0001342e       _tbAtm155CheckPLC2LinkUp@4 000236ee f   plc_2.obj
+ 0001:00013af5       _tbAtm155InitSRAM_1KVCs@4  00023db5 f   tbmeteor.obj
+ 0001:00014091       _tbAtm155InitSRAM_4KVCs@4  00024351 f   tbmeteor.obj
+ 0001:0001461d       _tbAtm155IsIt4KVc@4        000248dd f   tbmeteor.obj
+ 0001:00014b6e       _DbgPrint                  00024e2e f   ntoskrnl:ntoskrnl.exe
+ 0001:00014b74       _DbgBreakPoint@0           00024e34 f   ntoskrnl:ntoskrnl.exe
+ 0001:00014b7a       _NdisAdjustBufferLength@8  00024e3a f   ndis:NDIS.SYS
+ 0002:00000000       __imp__KeStallExecutionProcessor@4 00024e40     hal:HAL.dll
+ 0002:00000004       \177HAL_NULL_THUNK_DATA    00024e44     hal:HAL.dll
+ 0002:00000008       __imp__NdisMRegisterInterrupt@28 00024e48     ndis:NDIS.SYS
+ 0002:0000000c       __imp__NdisMRegisterIoPortRange@16 00024e4c     ndis:NDIS.SYS
+ 0002:00000010       __imp__NdisMSetAttributesEx@20 00024e50     ndis:NDIS.SYS
+ 0002:00000014       __imp__NdisMCoDeactivateVcComplete@8 00024e54     ndis:NDIS.SYS
+ 0002:00000018       __imp__NdisMCoActivateVcComplete@12 00024e58     ndis:NDIS.SYS
+ 0002:0000001c       __imp__NdisMRegisterMiniport@12 00024e5c     ndis:NDIS.SYS
+ 0002:00000020       __imp__NdisInitializeWrapper@16 00024e60     ndis:NDIS.SYS
+ 0002:00000024       __imp__NdisCloseConfiguration@4 00024e64     ndis:NDIS.SYS
+ 0002:00000028       __imp__NdisReadNetworkAddress@16 00024e68     ndis:NDIS.SYS
+ 0002:0000002c       __imp__NdisReadConfiguration@20 00024e6c     ndis:NDIS.SYS
+ 0002:00000030       __imp__NdisOpenConfiguration@12 00024e70     ndis:NDIS.SYS
+ 0002:00000034       __imp__NdisWritePciSlotInformation@20 00024e74     ndis:NDIS.SYS
+ 0002:00000038       __imp__NdisReadPciSlotInformation@20 00024e78     ndis:NDIS.SYS
+ 0002:0000003c       __imp__NdisMPciAssignResources@12 00024e7c     ndis:NDIS.SYS
+ 0002:00000040       __imp__NdisMMapIoSpace@20  00024e80     ndis:NDIS.SYS
+ 0002:00000044       __imp__NdisMFreeSharedMemory@24 00024e84     ndis:NDIS.SYS
+ 0002:00000048       __imp__NdisMUnmapIoSpace@12 00024e88     ndis:NDIS.SYS
+ 0002:0000004c       __imp__NdisMDeregisterIoPortRange@16 00024e8c     ndis:NDIS.SYS
+ 0002:00000050       __imp__NdisMFreeMapRegisters@4 00024e90     ndis:NDIS.SYS
+ 0002:00000054       __imp__NdisFreeSpinLock@4  00024e94     ndis:NDIS.SYS
+ 0002:00000058       __imp__NdisMDeregisterInterrupt@4 00024e98     ndis:NDIS.SYS
+ 0002:0000005c       __imp__NdisFreeMemory@12   00024e9c     ndis:NDIS.SYS
+ 0002:00000060       __imp__NdisMAllocateSharedMemory@20 00024ea0     ndis:NDIS.SYS
+ 0002:00000064       __imp__NdisMInitializeScatterGatherDma@12 00024ea4     ndis:NDIS.SYS
+ 0002:00000068       __imp__NdisAllocateSpinLock@4 00024ea8     ndis:NDIS.SYS
+ 0002:0000006c       __imp__NdisAllocateMemoryWithTag@12 00024eac     ndis:NDIS.SYS
+ 0002:00000070       __imp__NdisMRegisterAdapterShutdownHandler@12 00024eb0     ndis:NDIS.SYS
+ 0002:00000074       __imp__NdisAllocateBuffer@20 00024eb4     ndis:NDIS.SYS
+ 0002:00000078       __imp__NdisAllocatePacket@12 00024eb8     ndis:NDIS.SYS
+ 0002:0000007c       __imp__NdisMSynchronizeWithInterrupt@12 00024ebc     ndis:NDIS.SYS
+ 0002:00000080       __imp__NdisMCoReceiveComplete@4 00024ec0     ndis:NDIS.SYS
+ 0002:00000084       __imp__NdisInterlockedIncrement@4 00024ec4     ndis:NDIS.SYS
+ 0002:00000088       __imp__NdisDprReleaseSpinLock@4 00024ec8     ndis:NDIS.SYS
+ 0002:0000008c       __imp__NdisDprAcquireSpinLock@4 00024ecc     ndis:NDIS.SYS
+ 0002:00000090       __imp__NdisFreePacketPool@4 00024ed0     ndis:NDIS.SYS
+ 0002:00000094       __imp__NdisFreeBufferPool@4 00024ed4     ndis:NDIS.SYS
+ 0002:00000098       __imp__NdisFreePacket@4    00024ed8     ndis:NDIS.SYS
+ 0002:0000009c       __imp__NdisFreeBuffer@4    00024edc     ndis:NDIS.SYS
+ 0002:000000a0       __imp__NdisAdjustBufferLength@8 00024ee0     ndis:NDIS.SYS
+ 0002:000000a4       __imp__NdisMCoSendComplete@12 00024ee4     ndis:NDIS.SYS
+ 0002:000000a8       __imp__NdisReleaseSpinLock@4 00024ee8     ndis:NDIS.SYS
+ 0002:000000ac       __imp__NdisAcquireSpinLock@4 00024eec     ndis:NDIS.SYS
+ 0002:000000b0       __imp__NdisMAllocateSharedMemoryAsync@16 00024ef0     ndis:NDIS.SYS
+ 0002:000000b4       __imp__NdisAllocateBufferPool@12 00024ef4     ndis:NDIS.SYS
+ 0002:000000b8       __imp__NdisAllocatePacketPool@16 00024ef8     ndis:NDIS.SYS
+ 0002:000000bc       __imp__NdisMCoIndicateReceivePacket@12 00024efc     ndis:NDIS.SYS
+ 0002:000000c0       __imp__NdisUnchainBufferAtBack@8 00024f00     ndis:NDIS.SYS
+ 0002:000000c4       __imp__NdisQueryBuffer@12  00024f04     ndis:NDIS.SYS
+ 0002:000000c8       __imp__NDIS_BUFFER_TO_SPAN_PAGES@4 00024f08     ndis:NDIS.SYS
+ 0002:000000cc       __imp__NdisQueryBufferOffset@12 00024f0c     ndis:NDIS.SYS
+ 0002:000000d0       \177NDIS_NULL_THUNK_DATA   00024f10     ndis:NDIS.SYS
+ 0002:000000d4       __imp__WRITE_REGISTER_ULONG@8 00024f14     ntoskrnl:ntoskrnl.exe
+ 0002:000000d8       __imp__DbgPrint            00024f18     ntoskrnl:ntoskrnl.exe
+ 0002:000000dc       __imp__DbgBreakPoint@0     00024f1c     ntoskrnl:ntoskrnl.exe
+ 0002:000000e0       __imp__RtlAssert@16        00024f20     ntoskrnl:ntoskrnl.exe
+ 0002:000000e4       \177ntoskrnl_NULL_THUNK_DATA 00024f24     ntoskrnl:ntoskrnl.exe
+ 0002:00000148       _gTbAtm155DriverDescription 00024f88     request.obj
+ 0002:00000160       ??_C@_1CK@GNMJ@?$AAN?$AAu?$AAm?$AAb?$AAe?$AAr?$AAo?$AAf?$AAM?$AAa?$AAp?$AAR?$AAe?$AAg?$AAi?$AAs?$AAt?$AAe?$AAr?$AAs@ 00024fa0     data.obj
+ 0002:0000018c       ??_C@_1CO@EODM@?$AAS?$AAm?$AAa?$AAl?$AAl?$AAR?$AAe?$AAc?$AAe?$AAi?$AAv?$AAe?$AAB?$AAu?$AAf?$AAf?$AAe?$AAr?$AAS?$AAi@ 00024fcc     data.obj
+ 0002:000001bc       ??_C@_1CK@JLIL@?$AAB?$AAi?$AAg?$AAR?$AAe?$AAc?$AAe?$AAi?$AAv?$AAe?$AAB?$AAu?$AAf?$AAf?$AAe?$AAr?$AAS?$AAi?$AAz?$AAe@ 00024ffc     data.obj
+ 0002:000001e8       ??_C@_1BK@PFNP@?$AAT?$AAo?$AAt?$AAa?$AAl?$AAR?$AAx?$AAB?$AAu?$AAf?$AAf?$AAs?$AA?$AA@ 00025028     data.obj
+ 0002:00000204       ??_C@_1CA@CHFM@?$AAV?$AAc?$AAH?$AAa?$AAs?$AAh?$AAT?$AAa?$AAb?$AAl?$AAe?$AAS?$AAi?$AAz?$AAe?$AA?$AA@ 00025044     data.obj
+ 0003:00000000       _gTbAtm155OidListSupported 00025080     request.obj
+ 0003:000000a0       _gTbAtm155GuidListSupported 00025120     request.obj
+ 0003:00000110       _gTbAtm155DebugSystems     00025190     debug.obj
+ 0003:00000114       _gTbAtm155DebugLevel       00025194     debug.obj
+ 0003:00000118       _gaRegistryParameterString 00025198     data.obj
+ 0003:00000140       _Exp_Tbl                   000251c0     support.obj
+ 0003:000001a0       _AcrLookUpTbl              00025220     peephole.obj
+ 0003:000005a0       _gWrapperHandle            00025620     data.obj
+ 0004:000000dc       _DriverEntry@8             0002571c f   init.obj
+ 0004:0000027c       __IMPORT_DESCRIPTOR_ntoskrnl 000258bc     ntoskrnl:ntoskrnl.exe
+ 0004:00000290       __IMPORT_DESCRIPTOR_HAL    000258d0     hal:HAL.dll
+ 0004:000002a4       __IMPORT_DESCRIPTOR_NDIS   000258e4     ndis:NDIS.SYS
+ 0004:000002b8       __NULL_IMPORT_DESCRIPTOR   000258f8     ntoskrnl:ntoskrnl.exe
+
+ entry point at        0004:000000dc
+
+ Static symbols
+
+
+ 76 bytes saved through ICF
+

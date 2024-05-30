@@ -1,0 +1,19 @@
+#----------------------------------------------------------------------------
+# Description:
+#   Makefile for Exchange Server Install Utilities
+#
+# Copyright (C) Microsoft Corp. 1998 - 1998.  All Rights Reserved.
+#----------------------------------------------------------------------------
+
+USE_EXCHANGE=1
+console=1
+
+LibList =  RpcRt4.Lib
+
+Proj = TmplInst
+
+!include <BkOffice.Mak>
+
+all: $(ObjDir)\$(Proj).Exe
+
+$(ObjDir)\$(Proj).Exe: $(@R).Obj

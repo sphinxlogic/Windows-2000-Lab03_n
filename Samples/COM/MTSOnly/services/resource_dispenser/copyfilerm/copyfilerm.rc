@@ -1,0 +1,203 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "1 TYPELIB ""..\inc\CopyFileRm.tlb""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "CopyFileRm Module\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "COPYFILERM\0"
+            VALUE "LegalCopyright", "Copyright 1997\0"
+            VALUE "OriginalFilename", "COPYFILERM.DLL\0"
+            VALUE "ProductName", "CopyFileRm Module\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+            VALUE "OLESelfRegister", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// REGISTRY
+//
+
+IDR_CopyFileRm          REGISTRY MOVEABLE PURE  "CopyFileRm.rgs"
+IDR_FILERM              REGISTRY DISCARDABLE    "FileRm.rgs"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_RMDLG DIALOGEX 0, 0, 243, 112
+STYLE DS_3DLOOK | WS_MINIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU | 
+    WS_THICKFRAME
+EXSTYLE WS_EX_CLIENTEDGE
+CAPTION "Copy File Resource Manager"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Connections:",IDC_STATIC,18,9,42,8
+    LTEXT           "",IDC_USAGE,89,10,36,8
+    DEFPUSHBUTTON   "Exit",ID_FILE_EXIT,63,91,50,14
+    LTEXT           "Locks:",IDC_STATIC,18,24,22,8
+    LTEXT           "",IDC_LOCKS,89,25,36,8
+    LTEXT           "&Log Directory:",IDC_STATIC,18,50,45,8
+    LTEXT           "&Recovery Directory:",IDC_STATIC,18,60,64,8
+    LTEXT           "",IDC_LOGDIR,89,50,124,8
+    LTEXT           "",IDC_RECOVERDIR,89,61,124,8
+    DEFPUSHBUTTON   "&Set Options",ID_OPTIONS,129,91,50,14
+END
+
+IDD_RMOPTIONSDLG DIALOG DISCARDABLE  0, 0, 236, 116
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Copy File RM Options"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "&Log Directory:",IDC_STATIC,7,20,45,8
+    EDITTEXT        IDC_LOG,79,20,112,14,ES_AUTOHSCROLL
+    LTEXT           "&Recovery Directory:",IDC_STATIC,7,50,64,8
+    EDITTEXT        IDC_RECOVER,79,49,112,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",1,60,95,50,14
+    PUSHBUTTON      "Cancel",2,126,95,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU1 MENU DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "E&xit",                       ID_FILE_EXIT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_RMDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 239
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 108
+    END
+
+    IDD_RMOPTIONSDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 229
+        BOTTOMMARGIN, 111
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PROJNAME            "CopyFileRm"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+1 TYPELIB "..\..\..\common\inc\CopyFileRm.tlb"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

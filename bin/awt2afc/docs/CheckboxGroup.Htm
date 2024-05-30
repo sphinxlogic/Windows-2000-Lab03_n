@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>CheckboxGroup -> UIRadioGroup</title>
+<base target="descriptions">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">CheckboxGroup to UIRadioGroup</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.CheckboxGroup should be transformed into instances of
+com.ms.ui.UIRadioGroup.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">UIRadioGroup is a replacement for CheckboxGroup.
+One advantage, though, is that instead of just adding checkboxes
+(which are created with text items only), you can add components,
+so items in a UIRadioGroup could be represented by images,
+panels, and even other checkbuttons.</p>
+
+<p align="left">UIRadioGroups are built differently than
+CheckboxGroups. In AWT's CheckboxGroup, you could associate a
+checkbox with a particular UIRadioGroup by calling <font size="2"
+face="Courier">setCheckboxGroup()</font>. In AFC, though, you
+create a UIRadioGroup and add components or strings to it. The <font
+size="2" face="Courier">add()</font> method also returns the new
+UIRadioButton. This could look like</p>
+
+<p align="left"><font face="Courier">UIRadioGroup rg = new
+UIRadioGroup(&quot;Colors&quot;);<br>
+UIRadioButton c1 = rg.add(&quot;red&quot;);<br>
+UIText c2 = new UIText(&quot;blue&quot;);<br>
+rg.add(c2);</font></p>
+
+<p align="left">You can specify the header of a UIRadioGroup by
+declaring it in the constructor, like</p>
+
+<p align="left"><font face="Courier">new UIRadioGroup(new
+UICanvas()) </font></p>
+
+<p align="left">or<font face="Courier"> </font></p>
+
+<p align="left"><font face="Courier">new
+UIRadioGroup(&quot;Title&quot;);</font></p>
+
+<p align="left">You could also call the <font size="2"
+face="Courier">setHeader()</font> method. </p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">This is the set of changes you need to make to
+port all CheckboxGroup methods to UIRadioGroup methods. Any
+method not listed here or below does not need to be changed.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial"><strong>AWT Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">setCurrent(Checkbox)</font></td>
+        <td nowrap><font size="2" face="Courier">(UIRadioButton).setChecked(true);</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">setSelectedCheckbox(Checkbox)</font></td>
+        <td nowrap><font size="2" face="Courier">(UIRadioButton).setChecked(true);</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h3>Unsupported Methods</h3>
+
+<p>Some methods in java.awt.CheckboxGroup are not directly
+supported in com.ms.ui.UIRadioGroup. Those methods are described
+here.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial">AWT Code</font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">getCurrent()<br>
+        getSelectedCheckbox()</font></td>
+        <td><font size="2">UIRadioButton does not support getting
+        the selected checkbox from the group: instead, you need
+        to use normal event handling to find it. getCurrent() is
+        Deprecated in AWT 1.1.</font></td>
+    </tr>
+</table>
+
+<p align="left">&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,23 @@
+HKCR
+{
+	TxFile.FileRmPxy.1 = s 'FileRmPxy Class'
+	{
+		CLSID = s '{8A7339E4-5397-11D0-B151-00AA00BA3258}'
+	}
+	TxFile.FileRmPxy = s 'FileRmPxy Class'
+	{
+		CurVer = s 'TxFile.FileRmPxy.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {8A7339E4-5397-11D0-B151-00AA00BA3258} = s 'FileRmPxy Class'
+		{
+			ProgID = s 'TxFile.FileRmPxy.1'
+			VersionIndependentProgID = s 'TxFile.FileRmPxy'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'		
+			}
+		}
+	}
+}

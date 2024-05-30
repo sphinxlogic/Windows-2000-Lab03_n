@@ -1,0 +1,543 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<HTML>
+<HEAD>
+    <TITLE>Windows Media Player DVD Demo</TITLE>
+    
+<STYLE TYPE="text/css">
+ 
+<!--
+
+    BODY      {
+        margin-top: 0px; 
+        margin-left: 0px; 
+        background-color: #FFFFFF;
+        background-attachment: fixed;
+        background-position: left top;
+        background-repeat: no-repeat;
+        background-image: url(dvduibg.jpg);
+        }
+
+-->
+
+</STYLE>
+
+</HEAD>
+
+<BODY onload="FadeIn(DVDPlayStationButtons);">
+<DIV ID="DVDPlayStationButtons" STYLE="position:absolute; TOP: 0; LEFT: 0; WIDTH: 550; HEIGHT: 440; filter:revealTrans(Duration=2, Transition=12) alpha(opacity=60, enabled=0); VISIBILITY:hidden">
+<IMG SRC="play.jpg" WIDTH=53 HEIGHT=32 ALT="" BORDER="0" STYLE="position:absolute; top:31; left:90;" ID="BTN_PLAY" IDX onclick="BtnPlay()" TITLE="Play" onmouseover="SetMouseOver(this)" onmouseout="SetMouseOut(this)">
+
+<IMG SRC="stop.jpg" WIDTH=52 HEIGHT=32 ALT="" BORDER="0" STYLE="position:absolute; top:31; left:143;" ID="BTN_STOP" IDX onclick="BtnStop()" TITLE="Stop" onmouseover="SetMouseOver(this)" onmouseout="SetMouseOut(this)" >
+
+<IMG SRC="pause.jpg" WIDTH=52 HEIGHT=32 ALT="" BORDER="0" STYLE="position:absolute; top:31; left:195;" ID="BTN_PAUSE" IDX onclick="BtnPause()" TITLE="Pause" onmouseover="SetMouseOver(this)" onmouseout="SetMouseOut(this)">
+
+<IMG SRC="chpprev.jpg" WIDTH=52 HEIGHT=32 ALT="" BORDER="0" STYLE="position:absolute; top:31; left:253;" ID="BTN_CHPPREV" IDX onclick="BtnChpPrev()" TITLE="Previous Chapter" onmouseover="SetMouseOver(this)" onmouseout="SetMouseOut(this)">
+
+<IMG SRC="seekprev.jpg" WIDTH=52 HEIGHT=32 ALT="" BORDER="0" STYLE="position:absolute; top:31; left:305;" ID="BTN_SEEKPREV" IDX onclick="BtnSeekPrev()" TITLE="Rewind" onmouseover="SetMouseOver(this)" onmouseout="SetMouseOut(this)">
+
+<IMG SRC="seeknext.jpg" WIDTH=52 HEIGHT=32 ALT="" BORDER="0" STYLE="position:absolute; top:31; left:357;" ID="BTN_SEEKNEXT" IDX onclick="BtnSeekNext()" TITLE="Fast Forward" onmouseover="SetMouseOver(this)" onmouseout="SetMouseOut(this)">
+
+<IMG SRC="chpnext.jpg" WIDTH=53 HEIGHT=32 ALT="" BORDER="0" STYLE="position:absolute; top:31; left:409;" ID="BTN_CHPNEXT" IDX onclick="BtnChpNext()" TITLE="Next Chapter" onmouseover="SetMouseOver(this)" onmouseout="SetMouseOut(this)">
+
+<IMG SRC="menu.jpg" WIDTH=373 HEIGHT=33 ALT="" BORDER="0" STYLE="position:absolute; top:377; left:88;" ID="BTN_HOME" IDX onclick="BtnHome()" TITLE="Menu" onmouseover="SetMouseOver(this)" onmouseout="SetMouseOut(this)">
+</DIV>
+<DIV ID= "DVDMSG" STYLE="position:absolute; top:65; left:90; height:12; width:200; font-family:Verdana; font-size:10; color:white;">STATUS: <SPAN ID="DVD_STATUS">Ready</SPAN></DIV>
+
+<SCRIPT LANGUAGE="JSCRIPT">
+
+/*******************************************************
+* File name: DVD_ADVANCED_UI.htm
+* Implements DVD User Interface Control
+*******************************************************/
+
+/*******************************************************
+
+Buttons States
+    Play, Home:
+      1. disabled
+      2. normal
+      3. mouseover
+      4. clicked (active)
+      5. blink
+    
+    Stop, Pause:
+      1. disabled
+      2. normal
+      3. mouseover
+      4. clicked (active)
+    
+    Previous Chapter, Rewind, Fast Forward, Next Chapter:
+      1. disabled
+      2. normal
+      3. mouseover
+
+DVD Button States and Events
+    Normal: mouseover, mouseout, onclick
+
+    Active: onclick
+        
+    Blink: no events
+
+    Disabled: no events
+    
+    Mouseover: no events
+    
+General Behavior
+    1. When the page first loads, all buttons with the exception of Play are disabled.
+    2. STATUS: Not Initialized
+    3. When Play button is pressed for the first time, disable the following buttons:
+        Stop, Pause, Home, Previous Chapter, Next Chapter, Rewind, Fast Forward
+    4. All buttons have a mouse-over state, not displayed in STATUS.
+    5. Events and behaviors are disabled. 
+
+Button Behavior for onclick event.
+    1. Play: Execute associated DVD action and change behavior of the other buttons.
+      a. Active (clicked) - set once, following clicks should do nothing.
+        (if not blinking and if not already active)
+      b. Set following buttons to normal state: Stop, Pause
+      c. Set following buttons to disabled state: Previous Chapter, Next Chapter
+      d. Display STATUS: Playing
+
+    2. Stop: Execute associated DVD action and change behavior of the other buttons.
+      a. Active (clicked) - set once, following clicks should do nothing.
+        (if not disabled and if not already active)
+      b. Set following buttons to normal state: Play, Previous Chapter, Next Chapter
+      c. Set following button to disabled: Pause
+      d. Display STATUS: Stopped
+
+    3. Pause: Execute associated DVD action and change behavior of the other buttons.
+      a. Active (clicked once) - set active mode only if Pause is not active and Stop is not 
+        disabled (this covers when the page is first loaded and DVD is not initialized).
+        1. Set following button to normal state: Stop
+        2. Set following buttons to disabled state: Previous Chapter, Next Chapter
+        3. Set following button to blink state and disable mouseover: Play
+        4. Display STATUS: Playing [Paused]
+      b. Normal (every other click) - set to normal and resume play mode.
+        1. Set following buttons to disabled state:    Previous Chapter, Next Chapter
+        2. Set following buttons to active state: Play
+        3. Set following buttons to normal state: Stop, Pause 
+        4. Display STATUS: Playing    
+
+    4. Home: Execute menu DVD action and change behavior of the other buttons.
+        a. Active - clicked once.
+            1. Set all other buttons to disabled state.
+            2. Set this button to blink state.
+            3. If the DVD is in pause state (Play button blinking), resume play, then go to menu mode.
+        b. Normal - every other click.
+            1. Set all buttons to normal state, except set Play to active.
+                (upon returning from the menu, DVD will resume playback).
+        
+    5. Previous Chapter, Next Chapter, Rewind, Fast Forward: Execute associated DVD action.
+        a. Does not affect behavior of the other buttons.
+
+DVD UI Control API.
+
+DVD Interactive Buttons Naming Conventions
+    "FileName.ext"                     - normal state
+    "disabled_" + "FileName.ext"     - disabled state
+    "active_" + "FileName.ext"         - active state
+    "over_" + "FileName.ext"         - mouseover transition state
+
+Global Variables
+    // DVD interactive button collection.
+    var arDVDButtons = new Array();
+    
+Function Prototypes
+
+    FUNCTION: DVDUIObj(oBtnID, sBtnImgNormal, sBtnImgActive, sBtnImgDisabled, sBtnImgOver, bBtnActive,
+      bBtnDisabled, bBtnBlinking, nBlinker) 
+    DESCRIPTION: Button data type
+    PARAMETERS:
+      oBtnID: object, ID of the button image object
+      sBtnImgNormal: string, button image path and file name for normal state or mouse out.
+      sBtnImgActive: string, button image path and file name for clicked state.
+      sBtnImgDisabled: button image path and file name for disabled state.
+      sBtnImgOver: string, button image path and file name for mouse over.
+      bBtnActive: boolean, if button clicked state = true else false.
+      bBtnDisabled: boolean, if button disabled state = true else false.
+      bBtnBlinking: boolean, if button set to blink = true else false.
+      nBlinker: integer, setInterval return value.
+    
+    FUNCTION: NewDVDButton(oBtnID, sState)
+    DESCRIPTION: Adds a new button to DVD interactive button collection. Auto configures file
+      names for all states (see DVD Interactive Buttons Naming Conventions).
+    PARAMETERS:
+      oBtnID: object, ID of the image object.
+      sState: optional string, defines starting state to set.
+        - Values: "active", "disabled" (not case sensitive)
+      
+    FUNCTION: BtnPlay(), BtnStop(), BtnPause(), BtnHome(), BtnChpPrev(), BtnChpNext(), BtnSeekPrev()
+       BtnSeekNext()
+    DESCRIPTION: See "Button Behavior" for details  
+    
+    FUNCTION: DisplayStatus()
+    DESCRIPTION: Displays message in Status area
+
+    FUNCTION: GlideObject(oObjID, nDirection, nDistance)
+    DESCRIPTION: Glides an object from current position to a new position in one of the four directions.
+    PARAMETERS:
+      oObjID: object, ID of the HTML object.
+      sDirection: string, description of direction.
+        - Values:  "up", "down", "left", "right" (not case sensitive)
+      nDistance: integer, distance in pt.
+
+    FUNCTION: SetMouseOver(oBtnID)
+    DESCRIPTION: Sets button mouseover state.
+    PARAMETERS: 
+      oBtnID: Button image ID
+    
+    FUNCTION: SetMouseOut(oBtnID)
+    DESCRIPTION: Sets button mouseout state.
+    PARAMETERS: 
+      oBtnID: Button image ID
+    
+    FUNCTION: SetMouseClick(oBtnID);
+    DESCRIPTION: Sets button clicked state.
+    PARAMETERS: 
+      oBtnID: Button image ID    
+
+    FUNCTION: SetToState(sObjID, sState);
+    DESCRIPTION: Sets elements to a given state.
+    PARAMETERS: 
+      sObjID: string containing HTML object IDs to set state (case sensitive).
+        Example: "BTN1;BTN2;" (Only BTN1 and BTN2 will have the states altered.)
+        IMPORTANT NOTE!
+          IDs need to be terminated with a semicolon.
+      sState: string, defines state to alter:
+        - Values: "normal", "active", "disabled"
+
+    FUNCTION: SetBlinker(nIDX)
+    DESCRIPTION: Converts button into a blinker type button, checks DVD menu status
+      (only for Home menu button) and restores buttons states if not in DVD menu mode.       
+    PARAMETERS:
+        nIDX: integer, nth element in the DVD button collection.
+        
+    FUNCTION: ButtonPopBack(nIDX)
+    DESCRIPTION: Used for two-state buttons, on mouse click the button is briefly set to active state. 
+    PARAMETERS:
+      nIDX: integer, nth element in the DVD button collection.
+
+    FUNCTION: ClearInterval(nIDX) 
+    DESCRIPTION: Clears out the timeout interval set with ButtonPopBack. Sets button to normal state
+    PARAMETERS:
+       nIDX: integer, nth element in the DVD button collection.
+    
+IMPORTANT NOTE!
+  NewDVDButton() method allows you to dynamically set the default state, in your HTML page you need to
+  code normal state button path.   
+
+*******************************************************/
+// DVD interactive button collection.
+var arDVDButtons = new Array();
+    
+function DVDUIObj(oBtnID, sBtnImgNormal, sBtnImgActive, sBtnImgDisabled, sBtnImgMouseOver, bBtnActive, bBtnDisabled, bBtnBlinking, nBlinker){
+    this.oBtnID             = oBtnID;
+    this.sBtnImgNormal         = sBtnImgNormal;
+    this.sBtnImgActive         = sBtnImgActive;
+    this.sBtnImgDisabled     = sBtnImgDisabled;
+    this.sBtnImgMouseOver     = sBtnImgMouseOver;
+    this.bBtnActive         = bBtnActive;
+    this.bBtnDisabled         = bBtnDisabled;
+    this.bBtnBlinking         = bBtnBlinking;
+    this.nBlinker            = nBlinker;
+}
+
+function NewDVDButton(oBtnID, sState){
+    oButton = new DVDUIObj();
+    imgOver = new Image;    //For preloading mouseover image
+    imgActive = new Image;    //For preloading onclick image
+    imgDisabled = new Image    //For preloading disabled image
+    //Preload mouseover & active & disabled images
+    imgOver.src = oButton.sBtnImgOver;
+    imgActive.src = oButton.sBtnImgActive;
+    imgDisabled.src = oButton.sBtnImgDisabled;
+    
+    sOver = "over_";
+    sActive = "active_";
+    sDisabled = "disabled_";
+    
+    //Create button path & file name for mouseover, active and disabled states.
+    nLastSlash = oBtnID.src.lastIndexOf("\/");
+	if(nLastSlash == -1) 
+		nLastSlash = oBtnID.src.lastIndexOf("\\");
+	
+    oButton.sBtnImgOver = oBtnID.src.substring(0,nLastSlash + 1) + sOver + oBtnID.src.substring(nLastSlash + 1, oBtnID.src.length);
+    oButton.sBtnImgActive = oBtnID.src.substring(0,nLastSlash + 1) + sActive + oBtnID.src.substring(nLastSlash + 1, oBtnID.src.length);
+    oButton.sBtnImgDisabled = oBtnID.src.substring(0,nLastSlash + 1) + sDisabled + oBtnID.src.substring(nLastSlash + 1, oBtnID.src.length);
+    
+    //Update remaining items
+    oButton.oBtnID = oBtnID;
+    oButton.sBtnImgNormal = oBtnID.src;
+    oButton.bBtnActive     = false;
+    oButton.bBtnDisabled = false;
+    oButton.bBtnBlinking = false;
+    oButton.nBlinker = 0;
+    
+    oBtnID.IDX = arDVDButtons.length;
+    arDVDButtons[arDVDButtons.length] = oButton;
+    
+    //set button state if sState defined
+    if(typeof(sState) != "undefined"){
+        sState = sState.toLowerCase();
+        if(sState == "active"){
+            // Call function to set this button as active
+            oBtnID.src = oButton.sBtnImgActive;
+            oButton.bBtnActive     = true;
+        }
+        if(sState == "disabled"){
+            // Call function to set this button as active
+            oBtnID.src = oButton.sBtnImgDisabled;
+            oButton.bBtnDisabled = true;
+        }
+    }
+}
+
+function BtnPlay(){
+    if(arDVDButtons[BTN_PLAY.IDX].bBtnDisabled == false){
+        if (typeof(MediaPlayer1.DVD) != "undefined"){
+            //Set DVD FileName property, this happens only once 
+            if(arDVDButtons[BTN_HOME.IDX].bBtnDisabled == true)
+                MediaPlayer1.FileName = "DVD:";
+            SetToState("BTN_PLAY","active");
+            SetToState("BTN_STOP;BTN_PAUSE;BTN_HOME;BTN_SEEKPREV;BTN_SEEKNEXT;BTN_CHPPREV;BTN_CHPNEXT","normal");
+            DisplayStatus("Playing");
+            BTN_PLAY.style.cursor = "";
+            //Hook in DVD action for play
+            MediaPlayer1.Play();
+            MediaPlayer1.DVD.ForwardScan(1);
+        }
+        else{
+            DisplayStatus("No DVD-Video playback!");
+            alert("\n\n\n\n\nYour system does not support DVD-Video playback.\n\n\n\n\n")
+        }
+    }
+}
+
+function BtnStop(){
+    if(arDVDButtons[BTN_STOP.IDX].bBtnDisabled == false && arDVDButtons[BTN_STOP.IDX].bBtnActive == false){
+        SetToState("BTN_STOP","active");
+        SetToState("BTN_PLAY;BTN_CHPPREV;BTN_CHPNEXT","normal");
+        SetToState("BTN_PAUSE;","disabled");
+        DisplayStatus("Stopped");
+        BTN_STOP.style.cursor = "";
+        //Hook in DVD action for stop
+        MediaPlayer1.Stop();
+    }
+}
+
+function BtnPause(){
+    if(arDVDButtons[BTN_PAUSE.IDX].bBtnDisabled == false && arDVDButtons[BTN_PLAY.IDX].bBtnActive == true && arDVDButtons[BTN_STOP.IDX].bBtnDisabled == false){
+        SetToState("BTN_PAUSE","active");
+        SetToState("BTN_STOP;","normal");
+        SetToState("BTN_PLAY","blink");
+            // Should always call last or it will be terminated next time SetToState is called 
+        DisplayStatus("Playing [Paused]");
+        //Hook in DVD action for pause
+        MediaPlayer1.Pause();
+    }
+    else if(arDVDButtons[BTN_STOP.IDX].bBtnDisabled == false && arDVDButtons[BTN_STOP.IDX].bBtnActive == false){
+        SetToState("BTN_PLAY","active");
+        SetToState("BTN_STOP;BTN_PAUSE;","normal");
+        DisplayStatus("Playing");
+        //Hook in DVD action for resume play
+        MediaPlayer1.Play();
+    }
+}
+
+function BtnHome(){
+    if(arDVDButtons[BTN_HOME.IDX].bBtnDisabled == false){
+        if(arDVDButtons[BTN_HOME.IDX].bBtnBlinking == true){
+            SetToState("BTN_HOME","normal");
+            BTN_HOME.style.cursor = "hand";
+            SetToState("BTN_PLAY","active");
+            SetToState("BTN_STOP;BTN_PAUSE;BTN_HOME;BTN_SEEKPREV;BTN_SEEKNEXT;BTN_CHPPREV;BTN_CHPNEXT","normal");
+            //Hook in DVD action for resume from menu
+            MediaPlayer1.DVD.ResumeFromMenu();
+        }
+        else{
+            SetToState("BTN_HOME","active");
+            BTN_HOME.style.cursor = "hand";
+            //If paused resume play first
+            if(arDVDButtons[BTN_PLAY.IDX].bBtnBlinking == true)
+                BtnPlay();
+        
+            SetToState("BTN_STOP;BTN_PAUSE;BTN_PLAY;BTN_SEEKPREV;BTN_SEEKNEXT;BTN_CHPPREV;BTN_CHPNEXT","disabled");
+            SetToState("BTN_HOME","blink"); //blink terminated next time SetToState is called 
+            //Hook in DVD action for menu
+            MediaPlayer1.DVD.MenuCall(3);
+        }
+    }
+}
+
+function BtnChpPrev(){
+    if(arDVDButtons[BTN_CHPPREV.IDX].bBtnDisabled == false){
+    ButtonPopBack(BTN_CHPPREV.IDX);
+        //Hook in DVD action for previous chapter
+        MediaPlayer1.DVD.PrevPGSearch();
+    }
+}
+
+function BtnChpNext(){
+    if(arDVDButtons[BTN_CHPNEXT.IDX].bBtnDisabled == false){
+        ButtonPopBack(BTN_CHPNEXT.IDX);
+        //Hook in DVD action for next chapter
+        MediaPlayer1.DVD.NextPGSearch();
+    }
+}
+
+function BtnSeekPrev(){
+    if(arDVDButtons[BTN_SEEKPREV.IDX].bBtnDisabled == false){
+        ButtonPopBack(BTN_SEEKPREV.IDX);
+        //Hook in DVD action for backward seek
+        MediaPlayer1.DVD.BackwardScan(5);
+        MediaPlayer1.DVD.Play();
+    }
+}
+
+function BtnSeekNext(){
+    if(arDVDButtons[BTN_SEEKNEXT.IDX].bBtnDisabled == false){
+        ButtonPopBack(BTN_SEEKNEXT.IDX)
+        //Hook in DVD action for forward seek
+        MediaPlayer1.DVD.ForwardScan(5);
+        MediaPlayer1.Play();
+    }
+}
+
+function DisplayStatus(sMessage){
+    DVD_STATUS.innerHTML = sMessage;
+}
+
+function SetBlinker(nIDX){
+    if(arDVDButtons[nIDX].oBtnID.src == arDVDButtons[nIDX].sBtnImgActive){
+        arDVDButtons[nIDX].oBtnID.src = arDVDButtons[nIDX].sBtnImgNormal;
+        }
+    else{
+        arDVDButtons[nIDX].oBtnID.src = arDVDButtons[nIDX].sBtnImgActive
+    }
+    if(!MenuStat()){
+        if(arDVDButtons[nIDX].oBtnID.id == "BTN_HOME"){
+            SetToState("BTN_PLAY","active");
+            SetToState("BTN_STOP;BTN_PAUSE;BTN_HOME;BTN_SEEKPREV;BTN_SEEKNEXT;BTN_CHPPREV;BTN_CHPNEXT","normal");
+        }
+    }
+}
+
+function ButtonPopBack(nIDX){
+    arDVDButtons[nIDX].oBtnID.src = arDVDButtons[nIDX].sBtnImgActive;
+    arDVDButtons[nIDX].nBlinker = setInterval("ClearInterval(" + nIDX + ")", 250);
+}
+
+//New: not in the API list
+function MenuStat(){
+    if(MediaPlayer1.DVD.CurrentDomain == 3)
+        return true;
+    else 
+        return false;
+}
+
+function ClearInterval(nIDX){
+    clearInterval(arDVDButtons[nIDX].nBlinker);
+    arDVDButtons[nIDX].nBlinker = 0;
+    if(arDVDButtons[nIDX].oBtnID.style.cursor == "hand") //
+        arDVDButtons[nIDX].oBtnID.src = arDVDButtons[nIDX].sBtnImgOver;
+    else
+        arDVDButtons[nIDX].oBtnID.src = arDVDButtons[nIDX].sBtnImgNormal;
+}
+//New: not in the API list
+function FadeIn(oObjID){
+    if (oObjID.filters[0].Status == 0){
+        oObjID.filters[0].Apply();
+        oObjID.style.visibility = "visible";
+        oObjID.filters[0].Play();
+    }
+}
+
+function debug(sMessage){
+    DEBUG.innerHTML = sMessage;
+}
+
+function SetMouseOver(oBtnID){
+    if (arDVDButtons[oBtnID.IDX].bBtnActive == false && arDVDButtons[oBtnID.IDX].bBtnDisabled == false){
+        oBtnID.style.cursor = "hand";
+        if(arDVDButtons[oBtnID.IDX].bBtnBlinking == false)
+            oBtnID.src = arDVDButtons[oBtnID.IDX].sBtnImgOver;
+    }
+    else {
+        if (arDVDButtons[oBtnID.IDX].oBtnID.id == "BTN_PAUSE" && arDVDButtons[oBtnID.IDX].bBtnDisabled == false)
+            oBtnID.style.cursor = "hand";
+        else 
+            oBtnID.style.cursor = "";
+    }
+}
+
+function SetMouseOut(oBtnID){
+    if (arDVDButtons[oBtnID.IDX].bBtnActive == false && arDVDButtons[oBtnID.IDX].bBtnBlinking == false && arDVDButtons[oBtnID.IDX].bBtnDisabled == false){
+        oBtnID.src = arDVDButtons[oBtnID.IDX].sBtnImgNormal;
+        oBtnID.style.cursor = "";
+    }
+}
+
+function SetToState(sObjID,sState){
+    sState = sState.toLowerCase();
+    var i = 0;
+    for(i=0; i< arDVDButtons.length; i++){
+        //Clear all blinking buttons
+        if(arDVDButtons[i].nBlinker) {clearInterval(arDVDButtons[i].nBlinker); arDVDButtons[i].nBlinker = 0}
+        //Set state for selected buttons only
+        if(sObjID.indexOf(arDVDButtons[i].oBtnID.id) > -1){
+            if(sState == "normal"){        // set normal state
+                arDVDButtons[i].oBtnID.src = arDVDButtons[i].sBtnImgNormal;
+                arDVDButtons[i].bBtnActive = false;
+                arDVDButtons[i].bBtnDisabled = false;
+                arDVDButtons[i].bBtnBlinking = false;
+            }
+            if(sState == "active"){        // set active state
+                arDVDButtons[i].oBtnID.src = arDVDButtons[i].sBtnImgActive;
+                arDVDButtons[i].bBtnActive = true;
+                arDVDButtons[i].bBtnDisabled = false;
+                arDVDButtons[i].bBtnBlinking = false;
+            }
+            if(sState == "disabled"){    // set disabled state
+                arDVDButtons[i].oBtnID.src = arDVDButtons[i].sBtnImgDisabled;
+                arDVDButtons[i].bBtnActive = false;
+                arDVDButtons[i].bBtnDisabled = true;
+                arDVDButtons[i].bBtnBlinking = false;
+            }
+            if(sState == "blink"){        // set blink state
+                arDVDButtons[i].nBlinker = setInterval("SetBlinker(" + i + ")",400);
+                arDVDButtons[i].bBtnActive = false;
+                arDVDButtons[i].bBtnDisabled = false;
+                arDVDButtons[i].bBtnBlinking = true;
+            }
+        }
+    }
+}
+
+</SCRIPT>
+
+<SCRIPT LANGUAGE="JSCRIPT">
+    NewDVDButton(BTN_PLAY);
+    NewDVDButton(BTN_STOP, "disabled");
+    NewDVDButton(BTN_PAUSE, "disabled");
+    NewDVDButton(BTN_HOME, "disabled");
+    NewDVDButton(BTN_CHPPREV, "disabled");
+    NewDVDButton(BTN_CHPNEXT, "disabled");
+    NewDVDButton(BTN_SEEKPREV, "disabled");
+    NewDVDButton(BTN_SEEKNEXT, "disabled");
+</SCRIPT>
+
+
+<!-- <PARAM NAME="FileName" VALUE="DVD:"> -->
+<OBJECT STYLE="position:absolute; top:80px; left:40px;" 
+    CLASSID="CLSID:22d6f312-b0f6-11d0-94ab-0080c74c7e95" 
+    WIDTH="472" 
+    HEIGHT="280" ID="MediaPlayer1">
+    
+    <PARAM NAME="AutoStart" VALUE="0">
+    <PARAM NAME="ShowControls" VALUE="0">
+</OBJECT>
+
+
+</BODY>
+</HTML>

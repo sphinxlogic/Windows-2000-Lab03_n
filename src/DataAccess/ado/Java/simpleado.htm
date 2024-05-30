@@ -1,0 +1,36 @@
+<html>
+<body>
+
+<head>
+<title>
+ActiveX Data Objects (ADO) Sample
+</title>
+</head>
+
+<center><h1>
+ActiveX Data Objects (ADO) Sample
+</h1></center>
+
+<hr>
+
+<center>
+<applet
+    code       = simpleado.class
+    id         = simpleado
+    width      = 400
+    height     = 300 >
+
+    <param name=Connection 
+          value="dsn=OLE_DB_NWind_Jet;uid=Admin;pwd=;">
+
+    <param name=Command
+          value="select employeeid, lastname, firstname, 
+                HomePhone, Address, city, region, PostalCode, 
+                country from employees">
+</applet>
+</center>
+
+<hr>
+
+</body>
+</html>

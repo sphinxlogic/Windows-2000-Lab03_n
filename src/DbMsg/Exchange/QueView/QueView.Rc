@@ -1,0 +1,378 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// German (Germany) (unknown sub-lang: 0x0) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
+#ifdef _WIN32
+LANGUAGE LANG_GERMAN, 0x0
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_QUEUE_VIEW DIALOG DISCARDABLE  0, 0, 325, 216
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog(GER)"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            6031,IDC_ADMINICON,6,6,18,20,WS_GROUP
+    LTEXT           "",IDC_TITLE,35,8,281,20
+    LTEXT           "&Folders:(GER)",IDC_STATIC,6,34,96,8
+    COMBOBOX        IDC_COMBO_FOLDERS,6,45,257,46,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "&Originator(GER)",IDC_STATIC,18,62,64,8
+    LTEXT           "Subject(GER)",IDC_STATIC,86,62,71,8
+    LTEXT           "Size(GER)",IDC_STATIC,221,62,41,8
+    LISTBOX         IDC_LIST_MSGS,6,73,257,132,LBS_SORT | LBS_USETABSTOPS | 
+                    LBS_NOINTEGRALHEIGHT | LBS_EXTENDEDSEL | WS_VSCROLL | 
+                    WS_HSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&Delete...(GER)",IDC_CMD_DELETE,268,73,50,14,
+                    WS_DISABLED
+    DEFPUSHBUTTON   "&NDR...(GER)",IDC_CMD_NDR,268,94,50,14,WS_DISABLED
+    PUSHBUTTON      "&Refresh(GER)",IDC_CMD_REFRESH,268,115,50,14,
+                    WS_DISABLED
+    PUSHBUTTON      "De&tails...(GER)",IDC_CMD_DETAILS,268,136,50,14,
+                    WS_DISABLED
+END
+
+IDD_PROPS DIALOG DISCARDABLE  0, 0, 331, 201
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Properties(GER)"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LISTBOX         IDC_LIST_PROPS,9,26,312,147,LBS_SORT | LBS_USETABSTOPS | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | 
+                    WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,271,179,50,14
+    LTEXT           "Property(GER)",IDC_STATIC,10,16,80,8
+    LTEXT           "Description(GER)",IDC_STATIC,145,15,121,8
+END
+
+IDD_DELETE_MESSAGE DIALOG DISCARDABLE  0, 0, 268, 114
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Delete Message(GER)"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Delete &Now(GER)",IDC_CMD_DELETE_NOW,5,6,95,18
+    PUSHBUTTON      "Delete by &Gateway(GER)",IDC_CMD_DELETE_BY_GATEWAY,5,33,
+                    95,18
+    PUSHBUTTON      "&Cancel(GER)",IDCANCEL,5,63,95,18
+    PUSHBUTTON      "&Help(GER)",IDC_CMD_HELP,5,90,95,18
+    LTEXT           "Remove message(s) from the queue immediately.(GER)",
+                    IDC_STATIC,107,13,161,8
+    LTEXT           "Instruct the gateway to delete the selected message(s).  Messages will stay in the queue until the gateway can process them.(GER)",
+                    IDC_STATIC,107,30,161,26
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_YOUR                "Your Property Sheet Name(GER)"
+    IDS_QUEUE_VIEW          "Queue Viewer(GER)"
+    IDS_MESSAGE_GONE        "This message has left the queue already.\nThe list will now be refreshed.(GER)"
+    IDS_DELETENOW           "Delete message(s) from the queue now?(GER)"
+    IDS_DELETEMSGTITLE      "Delete Message(GER)"
+    IDS_NDRNOW              "Set NDR flag on message(s) now?(GER)"
+    IDS_NDRMSGTITLE         "NDR Message(GER)"
+END
+
+#endif    // German (Germany) (unknown sub-lang: 0x0) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) (unknown sub-lang: 0x0) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, 0x0
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_QUEUE_VIEW DIALOG DISCARDABLE  0, 0, 325, 216
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            6031,IDC_ADMINICON,6,6,18,20,WS_GROUP
+    LTEXT           "",IDC_TITLE,35,8,281,20
+    LTEXT           "&Folders:",IDC_STATIC,6,34,70,8
+    COMBOBOX        IDC_COMBO_FOLDERS,6,45,257,46,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "&Originator",IDC_STATIC,18,62,53,8
+    LTEXT           "Subject",IDC_STATIC,86,62,80,8
+    LTEXT           "Size",IDC_STATIC,221,62,39,8
+    LISTBOX         IDC_LIST_MSGS,6,73,257,132,LBS_SORT | LBS_USETABSTOPS | 
+                    LBS_NOINTEGRALHEIGHT | LBS_EXTENDEDSEL | WS_VSCROLL | 
+                    WS_HSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&Delete...",IDC_CMD_DELETE,268,73,50,14,WS_DISABLED
+    DEFPUSHBUTTON   "&NDR...",IDC_CMD_NDR,268,94,50,14,WS_DISABLED
+    PUSHBUTTON      "&Refresh",IDC_CMD_REFRESH,268,115,50,14,WS_DISABLED
+    PUSHBUTTON      "De&tails...",IDC_CMD_DETAILS,268,136,50,14,WS_DISABLED
+END
+
+IDD_PROPS DIALOG DISCARDABLE  0, 0, 331, 201
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Properties"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LISTBOX         IDC_LIST_PROPS,9,26,312,147,LBS_SORT | LBS_USETABSTOPS | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | 
+                    WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,271,179,50,14
+    LTEXT           "Property",IDC_STATIC,10,16,29,8
+    LTEXT           "Description",IDC_STATIC,139,16,49,8
+END
+
+IDD_DELETE_MESSAGE DIALOG DISCARDABLE  0, 0, 254, 114
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Delete Message"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Delete &Now",IDC_CMD_DELETE_NOW,5,6,72,18
+    PUSHBUTTON      "Delete by &Gateway",IDC_CMD_DELETE_BY_GATEWAY,5,33,72,
+                    18
+    PUSHBUTTON      "&Cancel",IDCANCEL,5,63,72,18
+    PUSHBUTTON      "&Help",IDC_CMD_HELP,5,90,72,18
+    LTEXT           "Remove message(s) from the queue immediately.",
+                    IDC_STATIC,82,12,161,8
+    LTEXT           "Instruct the gateway to delete the selected message(s).  Messages will stay in the queue until the gateway can process them.",
+                    IDC_STATIC,82,30,161,26
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "#include ""afxres.rc""  // Standard components\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "Comments", "A Microsoft Exchange EDK sample for viewing message headers in gateways.\0"
+            VALUE "CompanyName", "Microsoft\0"
+            VALUE "FileDescription", "QUEVIEW MFC Extension DLL\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "QUEVIEW\0"
+            VALUE "LegalCopyright", "Copyright© Microsoft Corp. 1986-1996.  All Rights Reserved.\0"
+            VALUE "OriginalFilename", "QUEVIEW.DLL\0"
+            VALUE "ProductName", "QUEVIEW Dynamic Link Library\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_YOUR                "Your Property Sheet Name"
+    IDS_QUEUE_VIEW          "Queue Viewer"
+    IDS_MESSAGE_GONE        "This message has left the queue already.\nThe list will now be refreshed."
+    IDS_DELETENOW           "Delete message(s) from the queue now?"
+    IDS_DELETEMSGTITLE      "Delete Message"
+    IDS_NDRNOW              "Set NDR flag on message(s) now?"
+    IDS_NDRMSGTITLE         "NDR Message"
+END
+
+#endif    // English (U.S.) (unknown sub-lang: 0x0) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// French (France) (unknown sub-lang: 0x0) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE LANG_FRENCH, 0x0
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_QUEUE_VIEW DIALOG DISCARDABLE  0, 0, 325, 216
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog(FRN)"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            6031,IDC_ADMINICON,6,6,18,20,WS_GROUP
+    LTEXT           "",IDC_TITLE,35,8,281,20
+    LTEXT           "&Folders:(FRN)",IDC_STATIC,6,34,74,8
+    COMBOBOX        IDC_COMBO_FOLDERS,6,45,257,46,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "&Originator(FRN)",IDC_STATIC,18,62,63,8
+    LTEXT           "Subject(FRN)",IDC_STATIC,86,62,80,8
+    LTEXT           "Size(FRN)",IDC_STATIC,221,62,36,8
+    LISTBOX         IDC_LIST_MSGS,6,73,257,132,LBS_SORT | LBS_USETABSTOPS | 
+                    LBS_NOINTEGRALHEIGHT | LBS_EXTENDEDSEL | WS_VSCROLL | 
+                    WS_HSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&Delete...(FRN)",IDC_CMD_DELETE,268,73,50,14,
+                    WS_DISABLED
+    DEFPUSHBUTTON   "&NDR...(FRN)",IDC_CMD_NDR,268,94,50,14,WS_DISABLED
+    PUSHBUTTON      "&Refresh(FRN)",IDC_CMD_REFRESH,268,115,50,14,
+                    WS_DISABLED
+    PUSHBUTTON      "De&tails...(FRN)",IDC_CMD_DETAILS,268,136,50,14,
+                    WS_DISABLED
+END
+
+IDD_PROPS DIALOG DISCARDABLE  0, 0, 331, 201
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Properties(FRN)"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LISTBOX         IDC_LIST_PROPS,9,26,312,147,LBS_SORT | LBS_USETABSTOPS | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | 
+                    WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,271,179,50,14
+    LTEXT           "Property(FRN)",IDC_STATIC,10,16,64,8
+    LTEXT           "Description(FRN)",IDC_STATIC,139,16,96,8
+END
+
+IDD_DELETE_MESSAGE DIALOG DISCARDABLE  0, 0, 282, 114
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Delete Message(FRN)"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Delete &Now(FRN)",IDC_CMD_DELETE_NOW,5,6,105,18
+    PUSHBUTTON      "Delete by &Gateway(FRN)",IDC_CMD_DELETE_BY_GATEWAY,5,33,
+                    105,18
+    PUSHBUTTON      "&Cancel(FRN)",IDCANCEL,5,63,105,18
+    PUSHBUTTON      "&Help(FRN)",IDC_CMD_HELP,5,90,105,18
+    LTEXT           "Remove message(s) from the queue immediately.(FRN)",
+                    IDC_STATIC,120,10,161,8
+    LTEXT           "Instruct the gateway to delete the selected message(s).  Messages will stay in the queue until the gateway can process them.(FRN)",
+                    IDC_STATIC,120,30,161,26
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_YOUR                "Your Property Sheet Name(FRN)"
+    IDS_QUEUE_VIEW          "Queue Viewer(FRN)"
+    IDS_MESSAGE_GONE        "This message has left the queue already.\nThe list will now be refreshed.(FRN)"
+    IDS_DELETENOW           "Delete message(s) from the queue now?(FRN)"
+    IDS_DELETEMSGTITLE      "Delete Message(FRN)"
+    IDS_NDRNOW              "Set NDR flag on message(s) now?(FRN)"
+    IDS_NDRMSGTITLE         "NDR Message(FRN)"
+END
+
+#endif    // French (France) (unknown sub-lang: 0x0) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.K.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
+#pragma code_page(1252)
+#endif //_WIN32
+#endif    // English (U.K.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+#include "afxres.rc"  // Standard components
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

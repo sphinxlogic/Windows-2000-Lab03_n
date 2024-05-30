@@ -1,0 +1,254 @@
+<HTML> 
+<HEAD>
+<TITLE>DirectAnimation SDK, JScript sample</TITLE>
+<SCRIPT LANGUAGE="JScript">
+<!--
+if (window.top.frames.length!=0 && window.top.frames[0].ShowNoButtons!=null)
+    window.top.frames[0].ShowNoButtons();
+//-->
+</SCRIPT>
+</HEAD>
+
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT><hr>	 
+
+<BODY BGCOLOR=WHITE TOPMARGIN=15 LEFTMARGIN=20>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=2>
+<CENTER>
+<H1>LightBox and FrameRate</H1>
+
+<OBJECT ID="DAControl"
+  WIDTH=250
+  HEIGHT=250    
+  CLASSID="CLSID:B6FFC24C-7E13-11D0-9B47-00C04FC2F51D">
+</OBJECT>
+
+<SCRIPT LANGUAGE="JScript">
+<!--
+    
+  // The DirectAnimation library in meter mode
+  m = DAControl.MeterLibrary;      
+
+  // constants
+  // import the needed media files
+  cm = 0.01;      // a conversion factor from centimeters to meters
+  dim = 3*cm;     // all coordinates are specified in meters
+  halfDepth = 0.75*dim;  // depth of the room
+  speed = 3/4;          // speed of travelling objects
+  spread = 1.5;     // spread factor for spot lights
+  pi = Math.PI;     // for specifying angles in radian.
+  zeroNum = m.DANumber(0);  // for convenience
+  font = m.Font("Helvetica", 14, m.Black);
+
+  cubeGeo = m.ImportGeometry("cube.x");
+
+  function Dot(clr) {
+    fillImg = m.SolidColorImage(clr);
+    lineStyle = m.Cond(m.LeftButtonState, m.DefaultLineStyle, m.EmptyLineStyle);
+    return(m.Oval(0.3*cm,0.3*cm).Fill(lineStyle, fillImg));
+  } 
+
+  // Constructs a uniform cubic BSpline with standard end conditions
+  // based on a given list of control points. It hides the details
+  // of the knot vector from the developer.
+  function SimpleSpline(pts) {
+    numPts = pts.length/2;
+    knts = new Array(numPts + 2);
+    for (i=2; i<numPts; i++) knts[i] = i;
+    knts[0] = knts[1] = knts[2];
+    knts[numPts+1] = knts[numPts] = knts[numPts-1];
+    return(m.cubicBSplinePath(pts, knts));
+  }
+
+  // construct a rendering of the given path with a given image
+  // travelling back and forth on the path in dur time each way.
+  // SlowInSlowOut and FastInFastOut are used for going forward and backward,
+  // respectively. This function also returns the travelling point along the path,
+  // and a coincident 3D spot light that travels along the trajectory and 
+  // tilts towards the wall.
+  function MotionPath(path, dur, img, clr, fun) {
+    pImg = path.Draw(m.DefaultLineStyle);
+    pathImg = m.Cond(m.LeftButtonState, pImg, m.EmptyImage);
+    evaluator = m.Sequence(m.SlowInSlowOut(0, 1, dur/speed, 0), 
+                      m.SlowInSlowOut(1, 0, dur/speed, 0)).RepeatForever();
+    tf = eval(fun + "(path, evaluator);");
+    mImg = img.Transform(tf);
+    posPt2 = m.Origin2.Transform(tf);
+    ptLength = posPt2.PolarCoordLength;
+    // perpendicular to the vec to posPt2 in ccw direction
+    rotVec = m.Vector3Anim(posPt2.X, posPt2.Y, zeroNum).
+                Transform(m.Rotate3(m.ZVector3, -pi/2));
+    // spot light is facing -Z and tilts gradually outwards 
+    spotLight = m.SpotLight(m.DANumber(spread*pi/4), 1.5*spread*pi/4).
+                  LightColor(clr).
+                  Transform(m.Compose3(
+                    m.Translate3Anim(posPt2.X, posPt2.Y, zeroNum),
+                    m.Rotate3Anim(rotVec, m.Div(ptLength, m.DANumber(2*dim)))));
+    return(new Array(m.Overlay(mImg, pathImg), posPt2, spotLight));
+  } 
+
+  function MakeBackGeo(backGeoInit, scale)  {
+    backGeoFinal = m.EmptyGeometry;
+	i = -1;
+	j = -1;
+    while(i<=1)  {
+	  while(j<=1) {
+        backGeoTrans  =  backGeoInit.Transform( m.Translate3(-dim*i,-dim*j,-dim));
+		backGeoFinal = m.UnionGeometry(backGeoTrans,backGeoFinal);
+		j += scale;
+	  }
+	  i+=scale;
+	  j=-1;
+	}
+	return backGeoFinal;
+  }
+
+  // constructs a five faced cubic room 
+  function OpenRoom() {
+    // quad is a [-1, 1] square on XY plane
+    quadGeo = m.ImportGeometry("quad5x10.x").Transform(m.Scale3Uniform(dim));
+	
+    // Are we running 4.01 bits ?
+	if( m.VersionString == "5.01.15.1106")  {
+	  realbackGeo = quadGeo.Transform(m.Translate3(0, 0, -dim));
+	  frameCounterImg = m.EmptyImage;
+	  fGeo = cubeGeo;
+	}
+	else {
+	  cowGeo  = m.ImportGeometry("cow.x")
+      fGeo  = new ActiveXObject("DirectAnimation.DAGeometry");
+      fGeo.Init(m.Until(cubeGeo, m.RightButtonDown, 
+        m.Until(m.EmptyGeometry, m.RightButtonDown, m.Until(cowGeo, m.RightButtonDown, fGeo))));
+	  frameCountNum = m.ViewFrameRate;
+	  cond1 = m.GT(frameCountNum, m.DANumber(3));
+	  cond2 = m.GT(frameCountNum, m.DANumber(4));
+	  cond3 = m.GT(frameCountNum, m.DANumber(7));
+
+	  backGeo1 = quadGeo.Transform(m.Translate3(0, 0, -dim));
+
+      backGeo2  = MakeBackGeo(backGeo1.Transform( m.Scale3Uniform(0.5)), 1 );
+      backGeo3  = MakeBackGeo(backGeo1.Transform( m.Scale3Uniform(0.25)), 0.5 );
+      backGeo4  = MakeBackGeo(backGeo1.Transform( m.Scale3Uniform(0.125)), 0.25 );
+
+	  realbackGeo = m.Cond(cond3, backGeo4, m.Cond(cond2, backGeo3, 
+	    m.Cond( cond1, backGeo2,  backGeo1) ) );
+
+      frameCounterImg = m.StringImageAnim(m.ConcatString(m.DAString("View FrameRate: "), 
+	    m.ViewFrameRate.ToString(2)),font);
+
+	  frameCounterImg = frameCounterImg.Transform( m.Translate2(0,-0.01) );
+	}
+    leftGeo = quadGeo.Transform(m.Compose3(
+				                m.Translate3(-dim, 0, 0),
+                        m.Rotate3(m.YVector3, pi/2)));    
+    rightGeo = quadGeo.Transform(m.Compose3(
+				                m.Translate3(dim, 0, 0),
+                        m.Rotate3(m.YVector3, -pi/2)));    
+    topGeo = quadGeo.Transform(m.Compose3(
+				                m.Translate3(0, dim, 0),
+                        m.Rotate3(m.XVector3, pi/2)));    
+    bottomGeo = quadGeo.Transform(m.Compose3(
+				                m.Translate3(0, -dim, 0),
+                        m.Rotate3(m.XVector3, -pi/2)));
+    return m.UnionGeometry(bottomGeo,
+             m.UnionGeometry(topGeo,
+               m.UnionGeometry(rightGeo,
+                 m.UnionGeometry(leftGeo, realbackGeo))));
+  }     
+
+
+  bgSnd = m.ImportSound("island.mid").Sound;		// extract the sound property
+
+  carImg = m.ImportImage("car3.gif").Transform(m.Scale2Uniform(0.60));
+
+  // stretch the cubed room in the depth direction
+  roomGeo = OpenRoom().Transform(m.Compose3(
+                                   m.Translate3(0, 0, -halfDepth),
+                                   m.Scale3(1.5, 1.5, halfDepth/dim))).
+                       DiffuseColor(m.ColorRGB(0.7,0.7,0.7));
+                                                    
+  // an X and Y axis
+  xAxis = m.Line(m.Point2(-dim, 0), m.Point2(dim, 0));
+  yAxis = m.Line(m.Point2(0, -dim), m.Point2(0, dim));
+
+  // 8 control points for an "S" figure spline
+  splinePts = new Array(-3,3, -3.8,1.5, -2.4,0.3, -0.6,0.9, 
+						0.6,3, 3,3.9, 3.9,2.7, 3,1.2);                      
+  qDim = dim/4;   // quarter of dimension 
+  // make the spline's size proportional to dim   
+  spline = SimpleSpline(splinePts).Transform(m.Scale2Uniform(qDim));
+
+  // an arc: X and Y parameters are in meters.
+  // specifying angles in radians goes well with the meter construction mode.
+  arc = m.ArcRadians(-pi/6, -5*pi/6, 7*qDim, 7*qDim); 
+
+  // construct a cube whose first diagonal coincides with positive Z axis,
+  // lower-left-back corner is at the origin, and it spins around the Z axis.
+  rotCube = fGeo.Transform(
+                 m.Compose3Array(new Array(m.Rotate3Rate(m.ZVector3, pi/2),
+                                 m.Rotate3(m.XVector3, Math.asin(Math.sqrt(2/3))),
+                                 m.Rotate3(m.ZVector3, pi/4),
+                                 m.Scale3Uniform(0.25*cm),
+                                 m.Translate3(1, 1, 1))));  
+
+  camera = m.PerspectiveCamera(dim, dim - 1*cm);
+  diffLight = m.DirectionalLight.Transform(m.Rotate3(m.YVector3, pi/6));
+  cubeImg = m.UnionGeometry(rotCube.DiffuseColor(m.Red), 
+                            diffLight).Render(camera);
+  pImg = m.StringImage("Pan", font).Transform(m.Translate2(0, 0.3*cm));
+  panImg = m.Cond(m.LeftButtonState, pImg, m.EmptyImage);
+  vImg = m.StringImage("Volume", font).Transform(m.Translate2(1*cm, 0)); 
+  volumeImg = m.Cond(m.LeftButtonState, vImg, m.EmptyImage); 
+                                                     
+  // construct four motion paths with travelling images and lights
+  xArr = MotionPath(xAxis, 2.5, m.Overlay(Dot(m.Green), panImg), 
+                    m.Green, "m.FollowPathEval");
+  yArr = MotionPath(yAxis, 4, m.Overlay(Dot(m.Green), volumeImg), 
+                    m.Green, "m.FollowPathEval");
+  aArr = MotionPath(arc, 1.5, cubeImg, m.Red, "m.FollowPathEval"); 
+  sArr = MotionPath(spline, 3, carImg, m.Blue, "m.FollowPathAngleUprightEval");
+
+  // render the open room with the four travelling spot lights and a point light
+  pntLight = m.PointLight.Transform(m.Translate3(2*dim/3, dim/3, 1.5*halfDepth));
+  bgImg = m.UnionGeometry(roomGeo, 
+            m.UnionGeometry(xArr[2], 
+              m.UnionGeometry(yArr[2], 
+                m.UnionGeometry(aArr[2], 
+                  m.UnionGeometry(sArr[2], pntLight))))).Render(camera);
+
+  // These images are composited in left-on-top order
+  finalImg = m.OverlayArray(new Array(xArr[0], yArr[0], //rDotImg, xDot, yDot, 
+                                      aArr[0], sArr[0], bgImg));
+
+  DAControl.Image = m.Overlay(frameCounterImg,finalImg);  
+  // set the background in case of a non-windowless browser (like IE3)
+  DAControl.BackgroundImage = m.SolidColorImage(m.Blue);
+
+  // construct a gain factor tied to the Y point and varies between 0.5 and 1.
+  // gainFac = 1/2 + (1/2)*(yArr[1].Y + dim)/(2*dim) writen in prefix form
+  dimAnim = m.DANumber(dim);    // just for type matching
+  gainFac = m.Div(m.Add(yArr[1].Y, dimAnim), m.mul(dimAnim, m.DANumber(2)));
+
+  // construct a pan factor tied to the X point and varies between -1 and 1.
+  panFac = m.Div(xArr[1].X, dimAnim); 
+
+  // Loop the imported sound with the time varying pan and gain number bvrs.
+  DAControl.Sound = bgSnd.Loop().GainAnim(gainFac).PanAnim(panFac);     
+     
+  // start the animation       
+  DAControl.Start()
+//-->
+</SCRIPT>
+
+<P> 
+</CENTER>
+
+</FONT>
+<P>
+<P>
+<FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">
+&copy; <A HREF="/misc/cpyright.htm" TARGET="_top">1999 Microsoft Corporation. All rights reserved. Terms of use</A>.
+</FONT>
+</BODY>
+</HTML>

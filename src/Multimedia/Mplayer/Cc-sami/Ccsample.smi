@@ -1,0 +1,30 @@
+<SAMI>
+<HEAD>
+    <Title>Netshow 3.0 - Close Captioning Sample</Title>
+
+    <STYLE TYPE="text/css">
+        <!--
+            P {margin-top:15pt; margin-left:10pt; font-size: 12pt;
+               font-family: tahoma, sans-serif; font-weight: normal;
+               color: silver;}
+            .ENUSCC {Name:'English Captions' lang: en-US; SAMIType:CC;}
+        -->
+    </Style>
+</HEAD>
+
+<BODY>
+    <SYNC Start=5000>
+        <P Class=ENUSCC>Hello I'm John Keister from "Almost Live" 
+    <SYNC Start=7000>
+        <P Class=ENUSCC>and as you know I've been a pitch man for a variety of products.
+    <SYNC Start=10000>
+        <P Class=ENUSCC>Ah, and now I've been asked to
+    <SYNC Start=12000>
+        <P Class=ENUSCC>endorse Microsoft's Netshow.
+    <SYNC Start=15500>
+        <P Class=ENUSCC>Nah, not gonna do that.
+    <SYNC Start=18000>
+        <P Class=ENUSCC>End of Stream.
+</BODY>
+</SAMI>
+

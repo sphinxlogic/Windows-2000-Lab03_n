@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD><TITLE>FxShapes Sample Applet</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=iso8859-1">
+<META NAME="MS.LOCALE" CONTENT="EN-US">
+<META NAME="ROBOTS" CONTENT="all">
+</HEAD>
+<BODY BGCOLOR="White" TOPMARGIN=0 LEFTMARGIN=0 VLINK="Gray">
+<A NAME="top"></A>
+<!--TOOLBAR_START-->
+<TABLE WIDTH="100%" CELLPADDING=0 CELLSPACING=0 BORDER=0>
+<TR><TD WIDTH=500 ROWSPAN=2 VALIGN=TOP><NOBR><FONT FACE="VERDANA,ARIAL,Helvetica" SIZE=1>
+<!--TOOLBAR_FRAMES_START-->
+
+<!--MS home button-->
+<A HREF="http://www.microsoft.com" TARGET="_top"><IMG SRC="../../images/home.gif" WIDTH="103" HEIGHT="21"  BORDER=0 ALT="Microsoft Home"></A><A HREF="http://www.microsoft.com/products/default.asp" TARGET="_top"><IMG SRC="../../images/prod.gif" WIDTH="81" HEIGHT="21"  BORDER=0 ALT="Products"></A><A HREF="http://www.microsoft.com/search/default.asp" TARGET="_top"><IMG SRC="../../images/search.gif" WIDTH="68" HEIGHT="21"  BORDER=0 ALT="Search"></A><A HREF="http://www.microsoft.com/support/" TARGET="_top"><IMG SRC="../../images/support.gif" WIDTH="74" HEIGHT="21"  BORDER=0 ALT="Support"></A><A HREF="http://www.microsoft.com/referral/default.asp" TARGET="_top"><IMG SRC="../../images/shop.gif" WIDTH="55" HEIGHT="21"  BORDER=0 ALT="Shop"></A><A HREF="http://www.microsoft.com/regwiz/regwiz.asp" TARGET="_top"><IMG SRC="../../images/write.gif" WIDTH="78" HEIGHT="21"  BORDER=0 ALT="Write Us"></A><IMG SRC="../../images/spacer.gif" WIDTH="49" HEIGHT="21"  BORDER=0 ALT="spacer.gif"></FONT></NOBR></TD><TD BGCOLOR="#000000" WIDTH="100%" HEIGHT=20></TD><TD WIDTH=91 ROWSPAN=2 ALIGN=RIGHT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,Helvetica" SIZE=1>
+<A HREF="http://www.microsoft.com" TARGET="_top"><IMG SRC="../../images/msft.gif" WIDTH="91" HEIGHT="21"  BORDER=0 ALT="Microsoft Home"></A></FONT></TD></TR><TR><TD BGCOLOR="#FFFFFF" WIDTH="100%" HEIGHT=1></TD></TR></TABLE>
+<!--TOOLBAR_END-->
+<TABLE BORDER=0 CELLPADDING=0 CELLSPACING=0 WIDTH="98%">
+<TR>
+<TD ROWSPAN=2 WIDTH=162 ALIGN="LEFT" VALIGN="TOP">
+<IMG SRC="../../images/titleAFC.gif" WIDTH="160" HEIGHT="108"  BORDER=0 ALT="AFC Samples"><TABLE CELLPADDING=0 CELLSPACING=0 BORDER=0 WIDTH="100%">
+<TR><TD WIDTH=10>&nbsp;</TD><TD VALIGN="top"><FONT FACE="Verdana,Arial,Helvetica" SIZE=1><B STYLE="color:#006699">In this topic</B><P><IMG SRC="../../images/linkbull.gif" WIDTH="10" HEIGHT="8"  BORDER=0 ALT="*"><A STYLE="color: #333366;text-decoration:none" HREF="afcsamp.htm#afcsamp_0000000107010000">Description</A>
+<P><IMG SRC="../../images/linkbull.gif" WIDTH="10" HEIGHT="8"  BORDER=0 ALT="*"><A STYLE="color: #333366;text-decoration:none" HREF="afcsamp.htm#afcsamp_0000000107020000">Sources</A>
+</FONT></TD></TR></TABLE>
+</TD>
+<TD WIDTH=20>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP">
+<P>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR>
+<TD WIDTH="355" VALIGN="bottom"><IMG SRC="../../images/afcsamp1.gif" WIDTH="355" HEIGHT="27"  BORDER=0 ALT="AFC Samples"></TD>
+<TD WIDTH=20>&nbsp;</TD>
+<TD ALIGN="center" VALIGN="bottom"><A HREF="../../Scrolls/classes/afcsamp.htm"><IMG SRC="../../images/prevnrm.gif" WIDTH="51" HEIGHT="38"  BORDER=0 ALT="Previous"></A></TD><TD ALIGN="center" VALIGN="bottom"><A HREF="../../afcsamp.htm#afcsamp_0000000100000000"><IMG SRC="../../images/butt_gen.gif" WIDTH="51" HEIGHT="38"  BORDER=0 ALT="AFC Samples"></A></TD><TD ALIGN="center" VALIGN="bottom"><A HREF="../../FxTextures/classes/afcsamp.htm"><IMG SRC="../../images/nextnrm.gif" WIDTH="51" HEIGHT="38"  BORDER=0 ALT="Next"></A></TD></TR>
+<TR>
+<TD WIDTH="355" ALIGN="right" VALIGN="top">&nbsp;</TD>
+<TD WIDTH=20>&nbsp;</TD>
+<TD ALIGN="center" VALIGN="top"><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="1">Previous</FONT></TD>
+<TD ALIGN="center" VALIGN="top"><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="1">AFC<BR>Samples</FONT></TD>
+<TD ALIGN="center" VALIGN="top"><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="1">Next</FONT></TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD WIDTH=20>&nbsp;</TD>
+<TD>
+<BR>
+<FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2">
+<BR><BR><H2 STYLE="color:#333366">FxShapes Sample Applet</H2>
+<P>This FxShapes sample shows the various line, shape, and pen styles provided by AFC's graphics and effects classes.<P> 
+
+<applet code=SDKSample.class id=SDKSample width=520 height=390 ></applet>
+<H3 STYLE="color:#333366"><A NAME="afcsamp_0000000107010000">Description</A></H3><P>The sample consists of a UIGroup control that contains five panels. The largest panel is the Test Area that displays the options you've selected. By default, the Primitive Type is set to Line, the Pen Style to Solid, and the Pen Width to 4. Click and drag the mouse over the display area to change the position of the line and experiment with different pen styles and widths.
+
+<P>When a different primitive is selected from the list of graphics primitive types, the pen styles and widths for that primitive are enabled (if possible). Those not available are shaded. You can change the position and scale of the primitive by dragging the mouse over the test area. The test area uses an FxTexture as its background, and the Formatted Text option demonstrates both vertical writing and setting text along an outline (FxFormattedText.setOutline).
+
+<P>The Polygon Number of Points option is only enabled when the Polygon primitive type is selected. This option lets you increase or decrease the number of points that form the polygon to a minimum of three or a maximum of ten.
+
+<H3 STYLE="color:#333366"><A NAME="afcsamp_0000000107020000">Sources</A></H3><P>This sample applet consists of the following sources:
+
+<TABLE BORDER=0>
+<TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2"><A HREF="..\src\PaintPnl.java">PaintPnl.java</A>
+</FONT></TD><TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2"><A HREF="..\src\BtnPanel.java">BtnPanel.java</A>
+</FONT></TD><TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2"><A HREF=" ..\src\SDKSample.java">SDKSample.java</A>
+</FONT></TD><TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2"><A HREF=" ..\src\SDKConsts.java">SDKConsts.java</A>
+</FONT></TD><TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2"><A HREF=" ..\src\SDKCtrlPnl.java">SDKCtrlPnl.java</A>
+</FONT></TD><TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2"><A HREF="..\src\SDKImages.java">SDKImages.java</A>
+</FONT></TD><TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2"><A HREF="..\src\SDKInsetPanel.java">SDKInsetPanel.java</A>
+</FONT></TD></TABLE>
+<P>
+</FONT>
+</TD>
+</TR>
+</TABLE>
+<CENTER>
+<P><TABLE WIDTH="95%"><TR><TD HEIGHT=1 BGCOLOR="RED"></TD></TR></TABLE>
+<TABLE WIDTH="100%"><TR>
+<TD ALIGN="left"><A HREF="#top"><IMG SRC="../../images/upnrm.gif" WIDTH="51" HEIGHT="38"  BORDER=0 ALT="Top"></A></TD>
+<TD ALIGN="right">
+<FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="1"></FONT></TD></TR></TABLE>
+</CENTER>
+</BODY></HTML>

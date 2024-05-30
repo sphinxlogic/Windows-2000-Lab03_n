@@ -1,0 +1,24 @@
+HKCR
+{
+	Membership.CheckNTUser.1 = s 'CheckNTUserImp Class'
+	{
+		CLSID = s '{D39DFE07-B881-11D1-A10D-006008C3D8D3}'
+	}
+	Membership.CheckNTUser = s 'CheckNTUserImp Class'
+	{
+		CurVer = s 'Membership.CheckNTUser.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {D39DFE07-B881-11D1-A10D-006008C3D8D3} = s 'CheckNTUserImp Class'
+		{
+			ProgID = s 'Membership.CheckNTUser.1'
+			VersionIndependentProgID = s 'Membership.CheckNTUser'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+		}
+	}
+}

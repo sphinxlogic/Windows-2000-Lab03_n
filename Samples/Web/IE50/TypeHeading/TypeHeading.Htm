@@ -1,0 +1,26 @@
+<html>
+<head>
+<title>Dynamic Expressions Demo</title>
+</head>
+
+<body>
+<h2>Updating Contents with Dynamic Expressions</h2>
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="top.close();return false">Close This Sample</A>
+</FONT>
+<br>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+<hr>
+<h1 id=H1>Dynamic Expressions</h1>
+<br>
+Enter New Title Here<br>
+<input style="width: 400px" type=text id=NewValue value="Dynamic Expressions"><br>
+It appears here<br>
+<input style="width: 400px" type=text id=TargetID>
+<script>
+  TargetID.setExpression("value","NewValue.value","");
+  H1.setExpression("innerHTML","NewValue.value","");
+
+</script>
+</body>
+</html>

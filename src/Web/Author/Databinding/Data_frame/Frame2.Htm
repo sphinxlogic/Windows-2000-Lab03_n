@@ -1,0 +1,94 @@
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<HTML>
+<HEAD>
+<TITLE>The FRAME Tag</TITLE>
+<META NAME="FILENAME" CONTENT="frame2.HTM">
+
+<SCRIPT LANGUAGE="JavaScript">
+
+function forward() {
+
+//This function increments the data bound record after checking to confirm 
+//you are not already at the end of the recordset. If you are, the program 
+//alerts you that it cant go any further. 
+
+  if (StockList.recordset.AbsolutePosition != StockList.recordset.RecordCount) {
+	window.parent.StockList.recordset.MoveNext();
+	StockList.recordset.MoveNext();
+	}
+	else {
+	alert("Already at last element");
+	}
+}
+
+// function forward and reverse do 2 something else besides move through the
+// recordset.  They also increment in recordset in the parent frame (file frame.htm)
+// thus engaging the dynamic frames in that frame.  Thus by incrementing the recordframe
+// in the parent frame, it automatically loads the new url in the recordset into the frame.
+
+function reverse() {
+
+//This function decrements the data bound record after checking to confirm  
+//you are not already at the end of the recordset. If you are, the program 
+//alerts you that it cant go any further.  
+
+  if (StockList.recordset.AbsolutePosition != 1) {
+	window.parent.StockList.recordset.MovePrevious();
+	StockList.recordset.MovePrevious();
+	}
+	else {
+	alert("Already at first element");
+	}
+}
+
+</SCRIPT>
+</HEAD>
+
+
+<BODY TOPMARGIN=0 LEFTMARGIN=40 BGCOLOR="#ffffff" LINK="#000066" VLINK="#666666 text="#000000">
+
+<OBJECT ID="StockList" CLASSID="clsid:333C7BC4-460F-11D0-BC04-0080C7055A83"
+	WIDTH=0 HEIGHT=0>
+<PARAM NAME="TextQualifier" VALUE="&quot;">
+<PARAM NAME="FieldDelim" VALUE=",">
+<PARAM NAME="UseHeader" VALUE="True">
+<PARAM NAME="DataURL" VALUE="quotes.txt">
+</OBJECT>
+<H4>The FRAME Tag</H4>
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="top.close();return false" Language="Javascript">Close This Sample</A>
+</FONT>
+<BR>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+The SRC attribute on the FRAME tag can be bound to a URL in your data set.
+You can only bind frames to the current record of the data set. The data source
+object supplying the data set should be present in the HEAD of the HTML page
+that contains the frameset. Navigation buttons for moving the current record
+then need to reference this data source object in the parent frameset.
+<P>
+An example of a bound frame is shown on the right.  Click on the arrow buttons
+to change the current record. Notice that the page displayed in the frame on
+the right changes to match the page at the URL from the data set.
+<BR>
+<CENTER>
+<INPUT TYPE="button" VALUE="  <  " ONCLICK="reverse();">
+<INPUT TYPE="button" VALUE="  >  " onClick="forward();">
+</CENTER>
+<BR>
+<FONT SIZE="1">
+Click on <A HREF="quotes.txt" TARGET="_text">quotes.txt</A> to see the data
+file used by this page.
+</FONT>
+</TD>
+</TR>
+</TABLE>
+
+<br><br>
+<FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">
+&copy; <A HREF="/misc/cpyright.htm" TARGET="_top">1999 Microsoft Corporation. All rights reserved. Terms of use</A>.
+
+</FONT>
+</BODY>
+</HTML>

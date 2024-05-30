@@ -1,0 +1,6 @@
+LIBRARY trivial
+
+DESCRIPTION 'Trivial example of a conversion dll'
+
+EXPORTS
+    GetTrivialVector = HrGetExportVector @32

@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>Sample Profile Assistant HTML</title>
+</head>
+
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT><hr>
+<body>
+
+<form method=POST action="http://example.microsoft.com/cgi/bin/collectInfo">
+<table>
+  <tr>
+    <td align="right">Last Name:       </td>
+    <td align="left"><input type=text name=user  size=32 maxlength=80></td>
+  </tr>
+  <tr>
+    <td align="right">Email:       </td>
+    <td align="left"><input type=text name=email  size=32 maxlength=80></td>
+  </tr>
+  <tr>
+    <td align="right">Phone #:       </td>
+    <td align="left"><input type=text name=phone  size=16 maxlength=80></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><input type=submit></td>
+  </tr>
+</table>
+</form>
+
+<script language="JavaScript">
+
+    var profile = navigator.userProfile;
+
+    profile.clearRequest();
+
+    profile.addReadRequest("Vcard.LastName");
+    profile.addReadRequest("Vcard.Email");
+    profile.addReadRequest("Vcard.Business.Phone");
+
+    profile.doReadRequest(1,"foobar Inc.");
+
+    var myForm = document.forms[0];
+
+    myForm.elements["user"].value = profile.getAttribute("Vcard.LastName");
+    myForm.elements["email"].value = profile.getAttribute("Vcard.Email");
+    myForm.elements["phone"].value = profile.getAttribute("Vcard.Business.Phone");
+
+    profile.clearRequest();
+
+</script>
+</body>
+</html>

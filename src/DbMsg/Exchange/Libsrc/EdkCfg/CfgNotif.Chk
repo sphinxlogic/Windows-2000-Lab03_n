@@ -1,0 +1,207 @@
+// --edkcfg.chk----------------------------------------------------------------
+//
+//  File containing parameter checking functions for cfgnotif.c.
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+// -----------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_HrCfgCreateAdviseObj(a,b,c)         NOERROR
+#define CHK_HrCfgPollAdviseObj(a)               NOERROR
+#define CHK_HrCfgDestroyAdviseObj(a)            NOERROR
+#define CHK_HrCfgAdvise(a,b,c,d)                NOERROR
+#define CHK_HrCfgUnadvise(a,b)                  NOERROR
+#define CHK_PollThread(a)                       NOERROR
+#define CHK_HrUpdateAdviseNotify(a,b)           NOERROR
+#define CHK_HrDestroyAdviseNotify(a)            NOERROR
+
+#else
+
+//$--CHK_HrCfgCreateAdviseObj---------------------------------------------------
+//  Check the parameters for HrCfgCreateAdviseObj().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrCfgCreateAdviseObj(
+                                            // RETURNS: HRESULT
+    IN  LPMAPISESSION       lpSession,      // MAPI session to monitor
+    IN  ULONG               nPollInterval,  // milliseconds between polling
+    OUT LPADVISEOBJ *       lppAdviseObj)   // created advise object
+{
+    HRESULT                 hr              = NOERROR;
+
+	if (!TEST_IUNKNOWN_PTR(lpSession))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(lppAdviseObj, sizeof(*lppAdviseObj)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+//$--CHK_HrCfgPollAdviseObj-----------------------------------------------------
+//  Check the parameters for HrCfgPollAdviseObj().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrCfgPollAdviseObj(
+                                            // RETURNS: HRESULT
+    IN  LPADVISEOBJ     lpAdviseObj)        // advise object to poll
+{
+    HRESULT             hr                  = NOERROR;
+
+	if (!TEST_WRITE_PTR(lpAdviseObj, sizeof(*lpAdviseObj)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+//$--CHK_HrCfgDestroyAdviseObj--------------------------------------------------
+//  Check the parameters for HrCfgDestroyAdviseObj().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrCfgDestroyAdviseObj(
+                                            // RETURNS: HRESULT
+    IN  LPADVISEOBJ         lpAdviseObj)    // advise object to destroy
+{
+    HRESULT                 hr              = NOERROR;
+
+	if (!TEST_WRITE_PTR(lpAdviseObj, sizeof(*lpAdviseObj)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+//$--CHK_HrCfgAdvise------------------------------------------------------------
+//  Check the parameters for HrCfgAdvise().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrCfgAdvise(    // RETURNS: HRESULT
+    IN  LPADVISEOBJ         lpAdviseObj,    // advise object
+    IN  LPSTR              lpszSection,    // name of extension data section
+    IN  LPADVISECALLBACK    lpfnCallback,   // function to call on changes
+    IN  LPVOID              lpvUserContext) // user-defined context
+{
+    HRESULT                 hr              = NOERROR;
+
+	if (!TEST_WRITE_PTR(lpAdviseObj, sizeof(*lpAdviseObj)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+    if (!TEST_STRINGA_PTR(lpszSection))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+    if (!TEST_FUNCTION_PTR((FARPROC)lpfnCallback))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+//$--CHK_HrCfgUnadvise----------------------------------------------------------
+//  Check the parameters for HrCfgUnadvise().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrCfgUnadvise(  // RETURNS: HRESULT
+    IN  LPADVISEOBJ         lpAdviseObj,    // advise object
+    IN  LPSTR              lpszSection)    // name of extension data section
+{
+    HRESULT                 hr              = NOERROR;
+
+	if (!TEST_WRITE_PTR(lpAdviseObj, sizeof(*lpAdviseObj)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+    if (!TEST_STRINGA_PTR(lpszSection))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+//$--CHK_PollThread-------------------------------------------------------------
+//  Check the parameters for PollThread().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_PollThread(     // RETURNS: HRESULT
+    IN  LPVOID          lpvThreadParam)     // pointer to advise object
+{
+    HRESULT             hr                  = NOERROR;
+
+	if (!TEST_WRITE_PTR(lpvThreadParam, sizeof(ADVISEOBJ)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+//$--CHK_HrUpdateAdviseNotify---------------------------------------------------
+//  Check the parameters for HrUpdateAdviseNotify().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrUpdateAdviseNotify(
+                                            // RETURNS: HRESULT
+    IN      LPSPropValue    lpNewData,      // new extension data
+    IN OUT  LPADVISENOTIFY  lpNotify)       // notification structure
+{
+    HRESULT                 hr              = NOERROR;
+
+	if (!TEST_READ_PTR(lpNewData, sizeof(*lpNewData)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_READ_PTR(lpNotify, sizeof(*lpNotify)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+//$--CHK_HrDestroyAdviseNotify--------------------------------------------------
+//  Check the parameters for HrDestroyAdviseNotify().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrDestroyAdviseNotify(
+                                            // RETURNS: HRESULT
+    IN OUT  LPADVISENOTIFY * lppNotify)     // address of ptr to ADVISENOTIFY
+{
+    HRESULT                  hr             = NOERROR;
+
+	if (!TEST_READ_PTR(lppNotify, sizeof(*lppNotify)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+#endif /* DEBUG */

@@ -1,0 +1,229 @@
+// --report.chk-----------------------------------------------------------------
+// 
+//  Module containing report functions.
+// 
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+// -----------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_HrEDKReportSubject(a,b,c)             NOERROR
+#define CHK_HrEDKReportMessageClass(a,b,c)        NOERROR
+#define CHK_HrEDKSetReportMessageClass(a,b,c)     NOERROR
+#define CHK_HrEDKEnvelopeMessageClass(a,b)        NOERROR
+#define CHK_HrEDKCopyReportProps(a,b,c,d,e,f,g,h) NOERROR
+#define CHK_HrReadReceipt(a,b,c,d,e)              NOERROR
+#define CHK_HrEDKCreateReadReceipt(a,b,c,d,e,f,g) NOERROR
+#define CHK_HrEDKCreateReadNotificationReport(a,b,c,d,e) NOERROR
+#define CHK_HrEDKCreateNonReadNotificationReport(a,b,c,d,e,f,g) NOERROR
+
+#else
+
+//$--CHK_HrEDKReportSubject-----------------------------------------------------
+//  Return a report subject.
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrEDKReportSubject(// RETURNS: return code
+    IN REPORT_T ReportType,                 // report type
+    IN LPSTR lpszSubject,                  // pointer to subject
+    OUT LPSTR *lppszReportSubject)         // pointer to report subject
+{
+    HRESULT hr = NOERROR;
+
+    if( !VALID_REPORT_T(ReportType) ||
+        !TEST_STRINGA_PTR(lpszSubject) ||
+        !TEST_WRITE_PTR(lppszReportSubject,sizeof(LPSTR *)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return(hr);
+}
+
+//$--CHK_HrEDKReportMessageClass------------------------------------------------
+//  Return a report message class.
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrEDKReportMessageClass(// RETURNS: return code
+    IN REPORT_T ReportType,                 // report type
+    IN LPSTR lpszMessageClass,             // pointer to message class
+    OUT LPSTR *lppszReportMessageClass)    // pointer to report message class
+{
+    HRESULT hr = NOERROR;
+
+    if( !VALID_REPORT_T(ReportType) ||
+        !TEST_STRINGA_PTR(lpszMessageClass) ||
+        !TEST_WRITE_PTR(lppszReportMessageClass,sizeof(LPSTR *)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return(hr);
+}
+
+//$--CHK_HrEDKSetReportMessageClass---------------------------------------------
+//  Set the report message class.
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrEDKSetReportMessageClass(// RETURNS: return code
+    IN REPORT_T ReportType,                 // report type
+    IN LPMESSAGE lpMessage,                 // pointer to message
+    IN OUT LPMESSAGE lpReport)              // pointer to report
+{
+    HRESULT hr = NOERROR;
+
+    if( !VALID_REPORT_T(ReportType) ||
+        !TEST_IUNKNOWN_PTR(lpMessage) ||
+        !TEST_IUNKNOWN_PTR(lpReport))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return(hr);
+}
+
+//$--CHK_HrEDKEnvelopeMessageClass----------------------------------------------
+//  Return an envelope message class.
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrEDKEnvelopeMessageClass(// RETURNS: return code
+    IN LPSTR lpszMessageClass,             // pointer to message class
+    OUT LPSTR *lppszEnvelopeMessageClass)  // pointer to envelope message class
+{
+    HRESULT hr = NOERROR;
+
+    if( !TEST_STRINGA_PTR(lpszMessageClass) ||
+        !TEST_WRITE_PTR(lppszEnvelopeMessageClass,sizeof(LPSTR *)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return(hr);
+}
+
+//$--CHK_HrEDKCopyReportProps---------------------------------------------------
+//  Copy report properties.
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrEDKCopyReportProps(// RETURNS: return code
+    IN REPORT_T ReportType,                 // report type
+    IN LPMESSAGE lpReport,                  // pointer to report
+    IN ULONG cbSubjectMtsId,                // count of bytes in subject MTS-ID
+    IN LPBYTE lpSubjectMtsId,               // pointer to subject MTS-ID
+    IN LPSTR lpszReportName,               // pointer to report name
+    IN ULONG cbReportEntryId,               // count of bytes in report entry ID
+    IN LPENTRYID lpReportEntryId,           // pointer to report entry ID
+    IN OUT LPMESSAGE lpReportEnvelope)      // pointer to report envelope
+{
+    HRESULT hr = NOERROR;
+
+    if( !VALID_REPORT_T(ReportType) ||
+        !TEST_IUNKNOWN_PTR(lpReport) ||
+        cbSubjectMtsId == 0 || 
+        !TEST_READ_PTR(lpSubjectMtsId, cbSubjectMtsId) ||
+        cbReportEntryId == 0 ||
+        !TEST_READ_PTR(lpReportEntryId, cbReportEntryId) ||
+        !TEST_IUNKNOWN_PTR(lpReportEnvelope))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return(hr);
+}
+
+//$--CHK_HrReadReceipt----------------------------------------------------------
+//  Create a read/non-read notification report.
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrReadReceipt(// RETURNS: return code
+    IN ULONG ulFlags,                   // flags
+	IN LPSTR lpszReportText,            // report text
+	IN LPSTR lpszSubjectPrefix,         // subject prefix
+    IN LPMESSAGE lpMessage,             // message
+    OUT LPMESSAGE lpReadReceipt)        // report
+{
+
+	HRESULT	hr = NOERROR;
+
+	if( ulFlags & ~MAPI_NON_READ ||
+	    !TEST_IUNKNOWN_PTR(lpMessage) ||
+	    !TEST_IUNKNOWN_PTR(lpReadReceipt))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+	}
+
+	return(hr);
+}
+
+//$--CHK_HrEDKCreateReadReceipt-------------------------------------------------
+//  Create a RN/NRN report.
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrEDKCreateReadReceipt(// RETURNS: return code
+    IN ULONG ulFlags,                       // flags
+    IN LPMAPIFOLDER lpFolder,               // pointer to folder
+    IN LPMESSAGE lpMessage,                 // pointer to message
+    IN LPSTR lpszSubjectPrefix,             // pointer to subject prefix
+    IN LPSTR lpszReportText,                // pointer to report text
+    OUT LPMESSAGE *lppReportEnvelope,       // pointer to report envelope
+    OUT LPMESSAGE *lppReport)               // pointer to report
+{
+    HRESULT hr = NOERROR;
+
+	if( ulFlags & ~MAPI_NON_READ ||
+        !TEST_IUNKNOWN_PTR(lpFolder) ||
+        !TEST_IUNKNOWN_PTR(lpMessage) ||
+        !TEST_STRINGA_PTR(lpszSubjectPrefix) ||
+        !TEST_STRINGA_PTR(lpszReportText) ||
+        !TEST_WRITE_PTR(lppReportEnvelope,sizeof(LPMESSAGE *)) ||
+        !TEST_WRITE_PTR(lppReport,sizeof(LPMESSAGE *)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return(hr);
+}
+
+//$--CHK_HrEDKCreateReadNotificationReport--------------------------------------
+//  Create a read notification report.
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrEDKCreateReadNotificationReport(// RETURNS: return code
+    IN LPMAPIFOLDER lpFolder,               // pointer to folder
+    IN LPMESSAGE lpMessage,                 // pointer to message
+    IN LPSTR lpszReportText,                // pointer to report text
+    OUT LPMESSAGE *lppReportEnvelope,       // pointer to report envelope
+    OUT LPMESSAGE *lppReport)               // pointer to report
+{
+    HRESULT hr = NOERROR;
+
+    if( !TEST_IUNKNOWN_PTR(lpFolder) ||
+        !TEST_IUNKNOWN_PTR(lpMessage) ||
+        !TEST_STRINGA_PTR(lpszReportText) ||
+        !TEST_WRITE_PTR(lppReportEnvelope,sizeof(LPMESSAGE *)) ||
+        !TEST_WRITE_PTR(lppReport,sizeof(LPMESSAGE *)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return(hr);
+}
+
+//$--CHK_HrEDKCreateNonReadNotificationReport-----------------------------------
+//  Create a non-read notification report.
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrEDKCreateNonReadNotificationReport(// RETURNS: return code
+    IN LPMAPIFOLDER lpFolder,                   // pointer to folder
+    IN LPMESSAGE lpMessage,                     // pointer to message
+    IN LPSTR lpszReportText,                    // pointer to report text
+    IN ULONG ulNonReceiptReason,                // non-receipt reason
+    IN ULONG ulDiscardReason,                   // discard reason
+    OUT LPMESSAGE *lppReportEnvelope,           // pointer to report envelope
+    OUT LPMESSAGE *lppReport)                   // pointer to report
+{
+    HRESULT hr = NOERROR;
+
+    if( !TEST_IUNKNOWN_PTR(lpFolder) ||
+        !TEST_IUNKNOWN_PTR(lpMessage) ||
+        !TEST_STRINGA_PTR(lpszReportText) ||
+        !TEST_WRITE_PTR(lppReport,sizeof(LPMESSAGE *)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return(hr);
+}
+
+#endif /* DEBUG */

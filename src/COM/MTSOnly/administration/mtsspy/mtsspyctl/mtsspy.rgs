@@ -1,0 +1,35 @@
+HKCR
+{
+	MtsSpy.MtsSpy.1 = s 'MtsSpy ActiveX Control'
+	{
+		CLSID = s '{A9B39081-AAD0-11D0-B183-00AA00BA3258}'
+		'Insertable'
+	}
+	MtsSpy.MtsSpy = s 'MtsSpy ActiveX Control'
+	{
+		CurVer = s 'MtsSpy.MtsSpy.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {A9B39081-AAD0-11D0-B183-00AA00BA3258} = s 'MtsSpy ActiveX Control'
+		{
+			ProgID = s 'MtsSpy.MtsSpy.1'
+			VersionIndependentProgID = s 'Mts.MtsSpy'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			ForceRemove 'Control'
+			ForceRemove 'Programmable'
+			ForceRemove 'Insertable'
+			ForceRemove 'ToolboxBitmap32' = s '%MODULE%, 1'
+			'MiscStatus' = s '0'
+			{
+			    '1' = s '131473'
+			}
+			'TypeLib' = s '{A9B39071-AAD0-11D0-B183-00AA00BA3258}'
+			'Version' = s '1.0'
+		}
+	}
+}

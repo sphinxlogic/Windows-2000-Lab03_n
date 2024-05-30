@@ -1,0 +1,140 @@
+// --fifo.chk-------------------------------------------------------------------
+//
+//  File containing parameter checking functions for fifo.cpp.
+// 
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+// -----------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_CFIFO_HrReset(a)            NOERROR
+#define CHK_CFIFO_PushElement(a,b)      NOERROR
+#define CHK_CFIFO_PushNNulls(a,b)       NOERROR
+#define CHK_CFIFO_Min(a)                NOERROR
+#define CHK_CFIFO_Max(a)                NOERROR
+#define CHK_CFIFO_Average(a)            NOERROR
+
+#else
+
+//$--CHK_CFIFO_HrReset----------------------------------------------------------
+//  Check the parameters for CFIFO::HrReset().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_CFIFO_HrReset(
+                                        // RETURNS: HRESULT
+    IN DWORD maxElements)               // Maximum number of elements in buffer. 
+{
+    HRESULT hr = NOERROR;
+
+	if (maxElements < 2)
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+    return(hr);        
+}
+
+
+//$--CHK_CFIFO_PushElement------------------------------------------------------
+//  Check the parameters for CFIFO::PushElement().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_CFIFO_PushElement(        
+                                // RETURNS: HRESULT
+    IN DWORD dwValue,           // New Value to Push into buffer. 
+    OUT DWORD &dwPushedOut)     // Recieves old value pushed out of buffer. 
+{
+    HRESULT hr = NOERROR;
+
+	if (!TEST_WRITE_PTR(&dwPushedOut, sizeof(dwPushedOut)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+    return(hr);        
+}
+
+
+//$--CHK_CFIFO_PushNNulls-------------------------------------------------------
+//  Check the parameters for CFIFO::PushNNulls().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_CFIFO_PushNNulls(         
+                                // RETURNS: HRESULT
+    IN DWORD cNulls,            // Number of NULLS to push. 
+    OUT DWORD &dwPushedOut)     // Receives total values pushed out. 
+{
+    HRESULT hr = NOERROR;
+
+	if (!TEST_WRITE_PTR(&dwPushedOut, sizeof(dwPushedOut)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+    return(hr);        
+}
+
+
+//$--CHK_CFIFO_Min--------------------------------------------------------------
+//  Check the parameters for CFIFO::Min().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_CFIFO_Min(
+                       // RETURNS: HRESULT
+    OUT DWORD &dwMin)  // receives the minimum of all values in the buffer. 
+{
+    HRESULT hr = NOERROR;
+
+	if (!TEST_WRITE_PTR(&dwMin, sizeof(dwMin)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+    return(hr);        
+}
+
+
+//$--CHK_CFIFO_Max--------------------------------------------------------------
+//  Check the parameters for CFIFO::Max().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_CFIFO_Max(
+                       // RETURNS: HRESULT
+    OUT DWORD &dwMax)  // receives the maximum value in the buffer. 
+{
+    HRESULT hr = NOERROR;
+
+	if (!TEST_WRITE_PTR(&dwMax, sizeof(dwMax)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+    return(hr);        
+}
+
+
+//$--CHK_CFIFO_Average----------------------------------------------------------
+//  Check the parameters for CFIFO::Average().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_CFIFO_Average(
+                           // RETURNS: HRESULT
+    OUT DWORD &dwAverage)  // receives buffer average 
+{
+    HRESULT hr = NOERROR;
+
+	if (!TEST_WRITE_PTR(&dwAverage, sizeof(dwAverage)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+    return(hr);        
+}
+
+#endif /* DEBUG */

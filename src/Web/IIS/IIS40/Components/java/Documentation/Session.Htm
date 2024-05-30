@@ -1,0 +1,100 @@
+<html>
+
+<head>
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 3.0">
+<title>Session</title>
+<meta NAME="Version" CONTENT="8.0.3410">
+<meta NAME="Date" CONTENT="10/11/96">
+<meta NAME="Template" CONTENT="C:\Program Files\Office\Office\HTML.DOT">
+</head>
+
+<body TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<font FACE="Arial" SIZE="4"><b>
+
+<p><a NAME="_Toc397403939">Session</a></p>
+</b></font>
+
+<p>The <b>Session</b> object is an ObjectDictionary that you can use to store information
+needed for a particular user-session. Variables stored in the <b>Session </b>object are
+not discarded when the user jumps between pages in the application; instead, these
+variables persist for the entire user-session. </p>
+
+<p>The Web server automatically creates a <b>Session </b>object when a Web page from the
+application is requested by a user who does not already have a session. The server
+destroys the <b>Session </b>object when the session expires or is abandoned. </p>
+
+<p>One common use for the <b>Session </b>object is to store user preferences set on a
+previous visit to the Web application, such as high, medium, or low graphics.</p>
+<b>
+
+<p>Note</b> Session state is only maintained for browsers that support cookies.<font
+FACE="Courier New" SIZE="1">
+
+<dir>
+  </font><font FACE="Courier New" size="2">public class Session extends ObjectDictionary<br>
+  {<br>
+  <blockquote>
+    public ObjectDictionary <a HREF="#staticObjects">staticObjects</a>;<br>
+    public String <a HREF="#getSessionID">getSessionID</a>();<br>
+    public int <a HREF="#getTimeout">getTimeout</a>();<br>
+    public void <a HREF="#setTimeout">setTimeout</a>(int timeout);<br>
+    public int <a HREF="#getLCID">getLCID</a>();<br>
+    public void <a HREF="#setLCID">setLCID</a>(int lcid);<br>
+    public int <a HREF="#getCodePage">getCodePage</a>();<br>
+    public void <a HREF="#setCodePage">setCodePage</a>(int cp);<br>
+    public void <a HREF="#abandon">abandon</a>();<br>
+  </blockquote>
+  }</font><font FACE="Courier New" SIZE="1"><br>
+</dir>
+</font>
+
+<hr>
+<b><font face="Arial">
+
+<p></font><em><font color="#0000A0" face="Arial">Session </font><font FACE="Arial"><font
+color="#0000A0">Properties</font></em></p>
+</font></b>
+
+<p><b><font FACE="Arial"><a NAME="staticObjects"></a>public ObjectDictionary staticObjects</font></b></p>
+
+<p>Contains all of the objects created with the &lt;OBJECT&gt;
+tag and given session scope.</p>
+<b><font FACE="Arial">
+
+<p></font><em><font FACE="Arial" color="#0000A0">Session </font><font FACE="Arial"><font
+color="#0000A0">Methods</font></em></p>
+</font></b>
+
+<p><b><font FACE="Arial"><a NAME="getSessionID"></a>public String getSessionID( )</font></b></p>
+
+<p>Returns the session identification for this user. </p>
+<font FACE="Arial"><b>
+
+<p><a NAME="getTimeout"></a>public int getTimeout( )<br>
+<a NAME="setTimeout"></a>public void setTimeout(int timeout)</p>
+</b></font>
+
+<p>Provides the timeout period for the application's session state, in minutes.</p>
+<font FACE="Arial"><b>
+
+<p><a NAME="getLCID"></a>public int getLCID( )<br>
+<a NAME="setLCID"></a>public void setLCID(int lcid)</p>
+</b></font>
+
+<p>Identifies locales.</p>
+<font FACE="Arial"><b>
+
+<p><a NAME="getCodePage"></a>public int getCodePage( )<br>
+<a NAME="setCodePage"></a>public void setCodePage(int cp)</p>
+</b></font>
+
+<p>Maps symbols.</p>
+<font FACE="Arial"><b>
+
+<p><a NAME="abandon"></a>public void abandon( )</p>
+</b></font>
+
+<p>Destroys a <b>Session</b> object and releases its resources.</p>
+</body>
+</html>

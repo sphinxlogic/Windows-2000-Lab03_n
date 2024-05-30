@@ -1,0 +1,92 @@
+<html>
+  <head>
+    <title>C++ XML Data Source (XMLDSO)</title>
+  </head>
+
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT>
+<hr>
+<BODY BGCOLOR=#ffffff>
+
+    <h2>XML DSO: Exposing Attributes using the New Heuristic</h2>
+	<P>
+<XML id=DSC1 src="custOrderAttrib.xml"></XML>
+	<p>
+	  <table border dataSrc=#DSC1 dataFld=Customer width=100%>
+		  <THEAD> <th>CustomerID Attribute</th><th> Company Name</th> <th> Address</th><th> Fax</th></THEAD>
+		  <tr>
+			<td>
+				<table dataSrc=#DSC1 dataFld=Customer.CustomerID>
+				 <tr>
+				   <td>
+					<div datafld=AttribCustomer > </div>
+				   </td>
+				 </tr>
+				</table>
+			</td>
+			<td>
+				<div datafld=CompanyName ></div>
+			</td>
+			<td>
+				<div datafld=Address ></div>
+			</td>
+			<td>
+				<div datafld=Fax ></div>
+			</td>
+		  </tr>
+		  <tr>
+			<td>
+			</td>
+			<td colspan=3>
+				<table  border=2 width=80% datasrc=#DSC1 datafld=Customer.ORDER>
+				  <THEAD> <th>Order ID Attribute</th><th>Order Date</th> <th> Ship Country</th></THEAD>
+				  <tr>
+					<td>
+						<table dataSrc=#DSC1 dataFld=Customer.ORDER.OrderID>
+						 <tr>
+						   <td>
+							<div datafld=AttribOrder> </div>
+						   </td>
+						 </tr>
+						</table>
+					</td>
+					<td>
+						<div datafld=OrderDate > </div>
+					</td>
+					<td>
+						<div datafld=ShipCountry > </div>
+					</td>
+				  </tr>
+				</table>
+			</td>
+		  </tr>
+		</table>
+	<p>
+<h3> Outer Elements exposed only by the XML DSO</h3>
+  <table> <comment> for Layout </comment>
+   <tr>
+	 <td>
+	  <table border dataSrc=#DSC1 dataFld=OuterCustomerID>
+		  <THEAD> <th>Customer Attrib</th></THEAD>
+		  <tr>
+			<td>
+				<div datafld=AttribCustomer> </div>
+			</td>
+		  </tr>
+	  </table>
+	 </td>
+	 <td>
+	  <table border dataSrc=#DSC1 dataFld=OuterCompanyName>
+		  <THEAD> <th> Company Name Attribute</th> </THEAD>
+		  <tr>
+			<td>
+				<div datafld=AttribCompany> </div>
+			</td>
+		  </tr>
+	  </table>
+	 </td>
+	</tr>
+  </table>
+ </body>
+</html>

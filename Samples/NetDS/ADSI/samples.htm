@@ -1,0 +1,690 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Active Directory Service Interfaces 2.5 - Samples</title>
+</head>
+
+<body topmargin="0" leftmargin="0">
+
+<table border="0" height="86" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="77%" valign="top" height="58"><img src="banner.gif"
+    alt="banner.gif (5982 bytes)" width="250" height="60"></td>
+    <td width="3%" height="58"></td>
+    <td width="21%" height="58" valign="bottom"><p align="right"><img src="mslogo.gif"
+    alt="mslogo.gif (666 bytes)" width="112" height="40"></td>
+  </tr>
+  <tr>
+    <td valign="top" align="left" height="28"><map name="FPMap0">
+      <area href="rtk.htm" shape="rect" coords="420, 1, 515, 18">
+      <area href="interopt.htm" shape="rect" coords="350, 1, 415, 19">
+      <area href="ad.htm" shape="rect" coords="233, 1, 345, 19">
+      <area href="winnt.htm" shape="rect" coords="165, 1, 223, 19">
+      <area href="dev.htm" shape="rect" coords="67, 1, 165, 19">
+      <area href="default.htm" shape="rect" coords="13, 1, 65, 20"></map><img rectangle="(233,1) (345, 19)  ad.htm" rectangle="(165,1) (223, 19)  winnt.htm" rectangle="(67,1) (165, 19)  dev.htm" rectangle="(13,1) (65, 20)  default.htm" src="router.gif" alt="router.gif (3874 bytes)" border="0" usemap="#FPMap0" width="536" height="26"></td>
+    <td width="3%" height="28"></td>
+    <td width="21%" height="28"></td>
+  </tr>
+</table>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0" height="34">
+  <tr>
+    <td width="2%" height="19"></td>
+    <td width="98%" height="19"><hr color="#0080C0">
+    </td>
+  </tr>
+  <tr>
+    <td width="2%" height="21"></td>
+    <td width="98%" height="21"><img src="samples.gif" width="142" height="82"
+    alt="samples.gif (4580 bytes)"></td>
+  </tr>
+  <tr>
+    <td width="2%" height="15"></td>
+    <td width="98%" height="15" valign="top">&nbsp;<hr color="#0080C0">
+    <p><font face="Verdana" color="#0080C0"><strong><small>Samples Sorted by Development
+    Platforms</small></strong></font></p>
+    <blockquote>
+      <ul>
+        <li><a href="#cpp"><small><font face="Verdana">Visual C++</font></small></a><small><font face="Verdana">®</font></small></li>
+        <li><a href="#vb"><small><font face="Verdana">Visual Basic</font></small></a><small><font face="Verdana">®</font></small></li>
+        <li><a href="#vbs"><small><font face="Verdana">Visual Basic Script</font></small></a></li>
+        <li><a href="#asp"><small><font face="Verdana">Active Server Page</font></small></a></li>
+        <li><a href="#perl"><small><font face="Verdana">Perl</font></small></a></li>
+      </ul>
+    </blockquote>
+      <p><font face="Verdana" size="2">For complete list, please browse the <a href="samples">ADSI
+      samples directory</a>.</font></p>
+    <hr color="#0080C0">
+    <p><font face="Verdana" color="#0080C0"><strong><small>Getting Started Samples</small></strong></font></p>
+    <p><font face="Verdana"><small>Getting Started Samples can be found in <a href="start.htm">here</a>.
+    The source codes can be found in <a href="samples/start">samples/start</a>.</small></font></p>
+    <p>&nbsp;</p>
+    <hr color="#0080C0">
+    <p><font face="Verdana" color="#0080C0"><strong><small>Application Samples</small></strong></font></p>
+    <p><font face="Verdana"><small>Some samples listed below is actually <a href="samapps.htm">working
+    applications</a>. </small></font></p>
+    <hr color="#0080C0">
+    <p><font face="Verdana" color="#0080C0"><strong><small>Samples Sorted by Providers ( or
+    Technologies )</small></strong></font></p>
+    <blockquote>
+      <ul>
+        <li><font face="Verdana" color="#000000"><a href="#activeds"><small>Active Directory</small></a><small>™</small></font></li>
+        <li><font face="Verdana" color="#000000"><a href="#winnt"><small>WinNT</small></a></font></li>
+        <li><font face="Verdana" color="#000000"><a href="#exchange"><small>Exchange</small></a></font></li>
+        <li><font face="Verdana" color="#000000"><a href="#siteserver"><small>Site
+          Server</small></a></font></li>
+        <li><font face="Verdana" color="#000000"><a href="#nds"><small>NDS</small></a></font></li>
+        <li><font face="Verdana" color="#000000"><a href="#netware"><small>NetWare</small></a></font></li>
+        <li><font face="Verdana" color="#000000"><a href="#netscape"><small>Netscape</small></a></font></li>
+        <li><font face="Verdana" color="#000000"><a href="dq.htm"><small>Distributed Query</small></a></font></li>
+        <li><font face="Verdana" color="#000000"><a href="datalink.htm"><small>Data Link</small></a></font></li>
+        <li><font face="Verdana" color="#000000"><a href="internet.htm"><small>Internet Directory</small></a></font></li>
+      </ul>
+    </blockquote>
+    <p>&nbsp;</p>
+    <hr color="#0080C0">
+    <p><font face="Verdana" color="#0080C0"><strong><small>Samples Highlighting ADSI
+    Interfaces, APIs, and Technologies</small></strong></font></p>
+    <p><font face="Verdana" color="#0080C0"><strong><small>Technologies</small></strong></font></p>
+    <blockquote>
+      <ul>
+        <li><a href="#adoquery"><font face="Verdana" color="#0000FF"><small>ADO Search</small></font></a></li>
+        <li><a href="#provider"><font face="Verdana" color="#0000FF"><small>ADSI Provider</small></font></a></li>
+      </ul>
+    </blockquote>
+    <p><font face="Verdana" color="#0080C0"><strong><small>Interfaces</small></strong></font></p>
+    <blockquote>
+      <ul>
+        <li><a href="#dssrch"><font face="Verdana" color="#0000FF"><small>IDirectorySearch</small></font></a></li>
+        <li><a href="#iadsextension"><font face="Verdana" color="#0000FF"><small>IADsExtension</small></font></a></li>
+        <li><a href="#exchsd"><font face="Verdana" color="#0000FF"><small>IADsPropertyValue2</small></font></a></li>
+        <li><font face="Verdana" color="#0080C0" size="2"><a href="#adPropertyList">Property
+          List</a></font></li>
+      </ul>
+    </blockquote>
+    <p><font face="Verdana" color="#0080C0"><strong><small>APIs</small></strong></font></p>
+    <blockquote>
+      <ul>
+        <li><a href="#adscmd"><font face="Verdana" color="#0000FF"><small>Enumerator:
+          ADsBuildEnumerator, ADsEnumerateNext, ADsFreeEnumerator</small></font></a></li>
+        <li><a href="#adscmd"><small><font face="Verdana">ADsBuildVarArrayStr</font></small></a></li>
+      </ul>
+    </blockquote>
+    <p>&nbsp;</p>
+    <hr color="#0080C0">
+    <p><a name="cpp"></a><font face="Verdana" color="#0080C0"><strong><small>Visual C++</small></strong></font></p>
+    <blockquote>
+      <ul>
+        <li><a href="#adscmd"><font face="Verdana" color="#0000FF"><small>ADsCmd</small></font></a></li>
+        <li><font face="Verdana" color="#0000FF"><small><a href="#adqi">ADQI</a></small></font></li>
+        <li><a href="#dssrch"><font face="Verdana" color="#0000FF"><small>DsSrch</small></font></a></li>
+        <li><a href="#adsidump"><font face="Verdana" color="#0000FF"><small>ADSIDump</small></font></a></li>
+        <li><a href="#iadsextension"><font face="Verdana" color="#0000FF"><small>ADSI Extension</small></font></a></li>
+        <li><a href="#provider"><font face="Verdana" color="#0000FF"><small>ADSI Provider</small></font></a></li>
+        <li><font face="Verdana" color="#0080C0" size="2"><a href="#adAddGroup">Active
+          Directory Add Group</a></font></li>
+        <li><font face="Verdana" color="#0080C0" size="2"><a href="#adAttributes">Active
+          Directory Attributes</a></font></li>
+        <li><font face="Verdana" color="#0080C0" size="2"><a href="#adBindToParent">Active
+          Directory Bind To Parent</a></font></li>
+        <li><font face="Verdana" color="#0080C0" size="2"><a href="#adComputer">Active
+          Directory Computer</a></font></li>
+        <li><font face="Verdana" color="#0080C0" size="2"><a href="#adCreateUser">Active
+          Directory Create User</a></font></li>
+        <li><font face="Verdana" color="#0080C0" size="2"><a href="#adCredentials">Active
+          Directory Credentials</a></font></li>
+        <li><font face="Verdana" color="#0080C0" size="2"><a href="#adGCUsers">Active
+          Directory GC All Users</a></font></li>
+        <li><font face="Verdana" color="#0080C0" size="2"><a href="#adGetDomainMode">Active
+          Directory Get Domain Mode</a></font></li>
+        <li><font face="Verdana" color="#0080C0" size="2"><a href="#adSchemaInfo">Active
+          Directory Schema Info</a></font></li>
+        <li><font face="Verdana" color="#0080C0" size="2"><a href="#adGuidBinding">Active
+          Directory Guid Binding</a></font></li>
+        <li><font face="Verdana" color="#0080C0" size="2"><a href="#adWKGUID">Active
+          Directory Well Known Guid</a></font></li>
+        <li><font face="Verdana" color="#0080C0" size="2"><a href="#adPropertyList">Active
+          Directory Property List</a></font></li>
+        <li><font face="Verdana" color="#0080C0" size="2"><a href="#adQueryUser">Active
+          Directory Query Users</a></font></li>
+        <li><font face="Verdana" color="#0080C0" size="2"><a href="#adRootDSE">Active
+          Directory RootDSE</a></font>
+          <p>&nbsp;</p>
+          <p>&nbsp;</li>
+      </ul>
+    </blockquote>
+    <p><a name="vb"></a><strong><font face="Verdana" color="#0080C0"><small>Visual Basic</small></font></strong></p>
+    <blockquote>
+      <ul>
+        <li><a href="#ntBinding"><small><font face="Verdana">WinNT Binding</font></small></a></li>
+        <li><a href="#ntGroup"><small><font face="Verdana">WinNT Group</font></small></a></li>
+        <li><a href="#ntComputer"><small><font face="Verdana">WinNT Computer</font></small></a></li>
+        <li><a href="#ntUser"><small><font face="Verdana">WinNT User</font></small></a></li>
+        <li><a href="#ntUserManagement"><small><font face="Verdana">WinNT User Management</font></small></a></li>
+        <li><a href="#nt_changepwd"><small><font face="Verdana">WinNT Change Password</font></small></a></li>
+        <li><font face="Verdana" color="#000000"><a href="#mailbox"><small>Exchange MailBox</small></a></font></li>
+        <li><a href="#rdbl"><font face="Verdana" color="#0000FF"><small>Exchange ule Based
+          Distribution Lists</small></font></a></li>
+        <li><a href="#tombstone"><font face="Verdana" color="#0000FF"><small>Exchange Tombstone</small></font></a></li>
+        <li><a href="#ExchConfig"><font face="Verdana" color="#0000FF"><small>Exchange Configuration</small></font></a></li>
+        <li><a href="#ExchSearchVB"><font face="Verdana" color="#0000FF"><small>Exchange Search
+          Alias (VB)</small></font></a></li>
+        <li><a href="#dl"><font face="Verdana" color="#0000FF"><small>Exchange Distribution List</small></font></a></li>
+        <li><font face="Verdana" color="#000000"><a href="#homemdb"><small>Exchange Home-MDB</small></a></font></li>
+        <li><font face="Verdana" color="#000000"><a href="#usnchange"><small>Exchange USN-Change</small></a></font></li>
+        <li><font face="Verdana" color="#000000"><a href="#recipient"><small>Exchange Custom
+          Recipient</small></a></font></li>
+        <li><font face="Verdana" color="#000000"><a href="#org"><small>Exchange Organization</small></a></font></li>
+        <li><font face="Verdana" color="#000000"><a href="#exchsd"><small>Displaying and Modifying
+          Exchange Security Descriptor</small></a></font></li>
+      </ul>
+    </blockquote>
+    <p><a name="vbs"></a><strong><font face="Verdana" color="#0080C0"><small>Visual Basic
+    Script</small></font></strong></p>
+    <blockquote>
+      <ul>
+        <li><a href="#ExchSearchVBS"><font face="Verdana" color="#0000FF"><small>Exchange Search
+          Alias (VBS)</small></font></a></li>
+        <li><font face="Verdana" color="#000000"><a href="#enum"><small>Enumeration</small></a></font></li>
+      </ul>
+    </blockquote>
+    <p><a name="asp"></a><strong><font face="Verdana" color="#0080C0"><small>Active Server
+    Page</small></font></strong></p>
+    <blockquote>
+      <ul>
+        <li><font face="Verdana" color="#000000"><a href="#adwab"><small>Active Directory Windows
+          Address Book</small></a></font></li>
+      </ul>
+    </blockquote>
+    <p><a name="perl"></a><strong><font face="Verdana" color="#0080C0"><small>Perl</small></font></strong></p>
+    <blockquote>
+      <ul>
+        <li><a href="#perl_binding"><small><font face="Verdana">Binding</font></small></a></li>
+        <li><a href="#perl_create"><small><font face="Verdana">Create and Delete Object</font></small></a></li>
+        <li><font face="Verdana"><a href="#perl_retreive"><small>Retrieve and Modify Properties</small></a><br>
+          <small></small></font></li>
+      </ul>
+    </blockquote>
+    <p>&nbsp;</p>
+    <hr color="#0080C0">
+    <p><a name="activeds"></a><font face="Verdana" color="#0080C0"><strong><small>Active
+    Directory</small></strong></font></p>
+      <p><font face="Verdana" color="#0080C0" size="2">Samples can also be found
+      in the <a href="samples/ActiveDir">sample directory </a>and <a href="ad.htm">Active
+      Directory Page</a>.</font></p>
+    <blockquote>
+      <ul>
+        <li><font face="Verdana" color="#000000"><a href="#adwab"><small>Active Directory Windows
+          Address Book</small></a></font></li>
+        <li><font face="Verdana" color="#0080C0" size="2"><a href="#adAddGroup">Add
+          Group</a></font></li>
+        <li><font face="Verdana" color="#0080C0" size="2"><a href="#adAttributes">Attributes</a></font></li>
+        <li><font face="Verdana" color="#0080C0" size="2"><a href="#adBindToParent">Bind
+          To Parent</a></font></li>
+        <li><font face="Verdana" color="#0080C0" size="2"><a href="#adComputer">Computer</a></font></li>
+        <li><font face="Verdana" color="#0080C0" size="2"><a href="#adCreateUser">Create
+          User</a></font></li>
+        <li><font face="Verdana" color="#0080C0" size="2"><a href="#adCredentials">Credentials</a></font></li>
+        <li><font face="Verdana" color="#0080C0" size="2"><a href="#adGCUsers">GC
+          All Users</a></font></li>
+        <li><font face="Verdana" color="#0080C0" size="2"><a href="#adGetDomainMode">Get
+          Domain Mode</a></font></li>
+        <li><font face="Verdana" color="#0080C0" size="2"><a href="#adSchemaInfo">Schema
+          Info</a></font></li>
+        <li><font face="Verdana" color="#0080C0" size="2"><a href="#adGuidBinding">Guid
+          Binding</a></font></li>
+        <li><font face="Verdana" color="#0080C0" size="2"><a href="#adWKGUID">Well
+          Known Guid</a></font></li>
+        <li><font face="Verdana" color="#0080C0" size="2"><a href="#adPropertyList">Property
+          List</a></font></li>
+        <li><font face="Verdana" color="#0080C0" size="2"><a href="#adQueryUser">Query
+          Users</a></font></li>
+        <li><font face="Verdana" color="#0080C0" size="2"><a href="#adRootDSE">RootDSE</a></font></li>
+      </ul>
+      <p>&nbsp;</p>
+    </blockquote>
+    <p><a name="winnt"></a><font face="Verdana" color="#0080C0"><strong><small>WinNT</small></strong></font></p>
+    <blockquote>
+      <ul>
+        <li><a href="#ntBinding"><small><font face="Verdana">Binding</font></small></a></li>
+        <li><a href="#ntGroup"><small><font face="Verdana">Group</font></small></a></li>
+        <li><a href="#ntComputer"><small><font face="Verdana">Computer,Service, Session,File Share
+          and Resources</font></small></a></li>
+        <li><a href="#ntUser"><small><font face="Verdana">User</font></small></a></li>
+        <li><a href="#nt_changepwd"><small><font face="Verdana">Change Password</font></small></a></li>
+        <li><a href="#ntUserManagement"><small><font face="Verdana">User Management</font></small></a></li>
+      </ul>
+    </blockquote>
+    <p><a name="exchange"></a><font face="Verdana" color="#0080C0"><strong><small>Exchange</small></strong></font></p>
+    <blockquote>
+      <ul>
+        <li><font face="Verdana" color="#000000"><a href="#mailbox"><small>Mailbox</small></a></font></li>
+        <li><font face="Verdana" color="#000000"><a href="#rdbl"><small>Rule Based Distribution
+          Lists</small></a></font></li>
+        <li><font face="Verdana" color="#000000"><a href="#tombstone"><small>Exchange Tombstone</small></a></font></li>
+        <li><font face="Verdana" color="#000000"><a href="#ExchConfig"><small>Exchange Configuration</small></a></font></li>
+        <li><font face="Verdana" color="#000000"><a href="#ExchSearchVBS"><small>Exchange Search
+          Alias (VBS)</small></a></font></li>
+        <li><font face="Verdana" color="#000000"><a href="#ExchSearchVB"><small>Exchange Search
+          Alias (VB)</small></a></font></li>
+        <li><font face="Verdana" color="#000000"><a href="#dl"><small>Exchange Distribution List</small></a></font></li>
+        <li><font face="Verdana" color="#000000"><a href="#homemdb"><small>Home-MDB</small></a></font></li>
+        <li><font face="Verdana" color="#000000"><a href="#usnchange"><small>USN-Change</small></a></font></li>
+        <li><font face="Verdana" color="#000000"><a href="#recipient"><small>Custom Recipient</small></a></font></li>
+        <li><a href="#enum"><font face="Verdana" color="#0000FF"><small>Enumeration</small></font></a></li>
+        <li><a href="#org"><font face="Verdana" color="#0000FF"><small>Organization</small></font></a></li>
+        <li><a href="#exchsd"><font face="Verdana" color="#0000FF"><small>Displaying and Modifying
+          the Security Descriptor</small></font></a></li>
+      </ul>
+    </blockquote>
+    <p><a name="siteserver"></a><strong><font face="Verdana" color="#0080C0"><small>Site
+    Server</small></font></strong></p>
+    <blockquote>
+      <ul>
+        <li><font face="Verdana" size="2">Please visit <a href="ss.htm">Site
+          Server Page</a></font></li>
+      </ul>
+    </blockquote>
+    <p><a name="nds"></a><strong><font face="Verdana" color="#0080C0"><small>NDS</small></font></strong></p>
+    <blockquote>
+      <ul>
+        <li><font face="Verdana" size="2">Please visit <a href="nds.htm">Interopt
+          Page</a></font></li>
+      </ul>
+    </blockquote>
+    <p><a name="netware"></a><strong><font face="Verdana" color="#0080C0"><small>Netware</small></font></strong></p>
+    <blockquote>
+      <ul>
+        <li><font face="Verdana" size="2">Please visit <a href="nwcompat.htm">Interopt
+          Page</a></font></li>
+      </ul>
+    </blockquote>
+    <p><a name="netscape"></a><strong><font face="Verdana" color="#0080C0"><small>Netscape</small></font></strong></p>
+    <blockquote>
+      <ul>
+        <li><font face="Verdana" size="2">Please visit <a href="netscape.htm">Interopt
+          Page</a></font></li>
+      </ul>
+    </blockquote>
+    <p>&nbsp;</p>
+    <hr color="#0080C0">
+    <p><a name="adscmd"></a><strong><font face="Verdana" color="#0080C0"><small>ADsCmd</small></font></strong><br>
+    <font face="Verdana" color="#000000"><small>Source code: <a href="samples/general/adscmd">samples\general\adscmd</a></small></font></p>
+    <p><font face="Verdana" color="#000000"><small>A C++ sample code demonstrates <a
+    href="samples/general/adscmd/enum.cxx">Enumerator and Filtering</a> by getting a list of
+    attributes from the schema and displaying attributes on an object.</small></font></p>
+    <p><small><font face="Verdana" color="#000000">Usage: </font><font face="Verdana">adscmd
+    [list|dump] &lt;ADsPath&gt;</font></small></p>
+    <p><font face="Verdana" color="#000000"><small>Examples: </small></font></p>
+    <p><font face="Verdana" color="#000000"><small>&nbsp; adscmd dump WinNT://MYDOMAIN</small></font></p>
+    <p><font face="Verdana" color="#000000"><small>&nbsp; adscmd list
+    LDAP://dc01/CN=Administrators, OU=Admin, DC=MyDomain, DC=Com</small></font></p>
+    <p>&nbsp;</p>
+      <p><small><font face="Verdana" color="#0000FF"><a name="adqi"></a><b>ADQI</b><br>
+      </font><font face="Verdana">Source Code: <a href="samples/general/adqi">samples\general\adqi</a></font></small></p>
+      <p><font face="Verdana" size="2">ADQI allows you to find out all ADSI
+      related interfaces supported for a given ADsPath. You can, then, use the
+      interfaces to further manipulate the object.&nbsp;</font></p>
+    <p><a name="dssrch"></a><strong><font face="Verdana" color="#0080C0"><small>DsSrch</small></font></strong><br>
+    <font face="Verdana" color="#000000"><small>Source code: <a href="samples/general/dssrch">samples\general\dssrch</a></small></font></p>
+    <p><font face="Verdana" color="#000000"><small>A command line executable, highlighting
+    <b>
+    IDirectorySearch</b> usage complete with the Preference option.</small></font></p>
+    <p><strong><font face="Verdana" color="#000000"><small>Usage:</small></font></strong></p>
+    <p><font face="Verdana"><small>dssrch /b &lt;baseObject&gt; /f &lt;search_filter&gt; [/f
+    &lt;attrlist&gt;] [/p &lt;preference&gt;=value&gt;] [/u &lt;UserName&gt; &lt;Password&gt;]
+    [/t&lt;flagName&gt;=&lt;value&gt;<br>
+    <br>
+    <strong>Where:</strong><br>
+    baseObject = ADsPath of the base of the search<br>
+    search_filter = search filter string in LDAP format<br>
+    attrlist = list of the attributes to display</small></font></p>
+    <p><font face="Verdana"><small><br>
+    <strong>Preference could be one of:</strong><br>
+    Asynchronous, AttrTypesOnly, DerefAliases, SizeLimit, TimeLimit,<br>
+    TimeOut, PageSize, SearchScope, SortOn, CacheResults</small></font></p>
+    <p><font face="Verdana"><small><br>
+    <strong>FlagName could be one of:</strong><br>
+    SecureAuth or UseEncrypt<br>
+    </small>
+    </font></p>
+    <p><font face="Verdana"><strong><small>Value</small></strong><br>
+    <small>yes/no for a Boolean and the respective integer for integers<br>
+    </small><br>
+    <small><strong>Scope</strong></small><br>
+    <small>Either &quot;Base&quot;, &quot;OneLevel&quot;, or &quot;Subtree&quot;<br>
+    <br>
+    For Example: </small></font></p>
+    <p><font face="Verdana"><small>dssrch /b NDS://ntmarst/ms /f &quot;(object Class=*)&quot;
+    /a &quot;ADsPath, name, description&quot; /p searchScope=onelevel /p searchscope=onelevel<br>
+    <br>
+    <br>
+    dssrch /b &quot;LDAP://O=Internet/DC=COM/DC=MICROSOFT/DC=NTDEV&quot; /f
+    &quot;(objectClass=*)&quot; /a &quot;ADsPath, name, usnchanged&quot; /u</small><br>
+    <small>&quot;CN=NTDS,CN=Users,DC=NTDEV,DC=MICROSOFT,DC=COM&quot; &quot;&quot; /p
+    searchScope=onelevel /t secureauth=yes /p SortOn=name /p CacheResults=no</small></font></p>
+    <p>&nbsp;</p>
+    <p><a name="adsidump"></a><strong><font face="Verdana" color="#0080C0"><small>ADSI Dump</small></font></strong><br>
+    <font face="Verdana" color="#000000"><small>Source code: <a
+    href="samples/general/adsidump">samples\general\adsidump</a></small></font></p>
+    <p><font face="Verdana"><small>An application that traverse a tree, visit each object in a
+    tree and getting the attributes on each object. All actions are recorded in a log file.
+    Written using C++/ATL.</small></font></p>
+    <p><font face="Verdana"><strong><small>Usage:</small></strong><br>
+    <small>ADSIDUMP ADsPath LogFile<br>
+    <br>
+    Example:<br>
+    ADSIDUMP LDAP://OU=Dev,DC=Platforms,DC=Microsoft,DC=COM ntdev.log<br>
+    </small></font></p>
+    <p><a name="adoquery"></a><font face="Verdana" color="#0080C0"><strong><small>ADO Query</small></strong></font><br>
+    <font face="Verdana" color="#000000"><small>Source code: <a
+    href="samples/general/adsidump">samples\general\adoquery</a></small></font></p>
+    <p><font face="Verdana" color="#000000"><small>It demonstrates ADO Query against LDAP
+    provider. Only ADSI providers that support <b> IDirectorySearch</b> and OLE
+    DB can work with ADO.
+    ADSI 2.5 ships two providers </small><small>that are aware of OLE DB: LDAP and
+    NDS.</small></font></p>
+    <p>&nbsp;</p>
+    <p><a name="adwab"></a><font face="Verdana" color="#0080C0"><strong><small>Active
+    Directory Windows Address Book</small></strong></font><br>
+    <font face="Verdana" color="#000000"><small>ASP source code: <a href="samples/asp/wab">samples\asp\wab</a></small></font></p>
+    <p><font face="Verdana" color="#000000"><small>The Windows address book
+    searches and displays users, groups, and contacts in Active Directory. It showcases the Active Directory search based on
+    ambigious name resolution (ANR). It also demonstrates ADSI search using ADO against Active
+    Directory.</small></font></p>
+    <p><font face="Verdana" color="#000000"><small>To run the samples, first you must move the
+    global.asa (or append the existing global.asa) to the default web site directory.\</small></font></p>
+      <p><font face="Verdana" size="2" color="#0080C0"><b><a name="adAddGroup"></a>Active
+      Directory: Add Group<br>
+      </b></font><font face="Verdana" color="#000000"><small>Visual C++ source code:
+      <a href="samples/ActiveDir/AddGroup/vc">samples/ActiveDir/AddGroup</a></small></font></p>
+      <p><font face="Verdana" color="#000000"><small>Add Windows 2000 Group
+      under a container. The group can be security or distribution list type,
+      other option is the group type for Universal, Global and Domain Local
+      groups.</small></font></p>
+      <p><font face="Verdana" size="2" color="#0080C0"><b><a name="adAttributes"></a>Active
+      Directory: Attributes<br>
+      </b></font><font face="Verdana" color="#000000"><small>Visual C++ source
+      code:<a href="samples/ActiveDir/Attributes/vc">samples/ActiveDir/Attributes</a></small></font></p>
+      <p><font face="Verdana" color="#000000"><small>The sample demonstrates how
+      to find attributes by indexed value, GC replication and by type.</small></font></p>
+      <p><font face="Verdana" size="2" color="#0080C0"><b><a name="adBindToParent"></a>Active
+      Directory: Bind To Parent<br>
+      </b></font><font face="Verdana" color="#000000"><small>Visual C++ source
+      code:<a href="samples/ActiveDir/BindToParent/vc">samples/ActiveDir/BindToParent</a></small></font></p>
+      <p><font face="Verdana" color="#000000"><small>This program find a user
+      and display the user's container.</small></font></p>
+      <p><font face="Verdana" size="2" color="#0080C0"><b><a name="adComputer"></a>Active
+      Directory: Computer<br>
+      </b></font><font face="Verdana" color="#000000"><small>Visual Basic source
+      code:<a href="samples/ActiveDir/Computer">samples/ActiveDir/Computer</a></small></font></p>
+      <p><font face="Verdana" color="#000000"><small>Creating a user under a
+      specified container. It requires to specify the user's Relative
+      Distinguished Name and Downlevel Name.</small></font></p>
+      <p><font face="Verdana" size="2" color="#0080C0"><b><a name="adCreateUser"></a>Active
+      Directory: Create User<br>
+      </b></font><font face="Verdana" color="#000000"><small>Visual C++ source
+      code:<a href="samples/ActiveDir/CreateUser/vc">samples/ActiveDir/CreateUser</a></small></font></p>
+      <p><font face="Verdana" color="#000000"><small>Creating a user under a
+      specified container. It requires to specify the user's Relative
+      Distinguished Name and Downlevel Name.</small></font></p>
+      <p><font face="Verdana" size="2" color="#0080C0"><b><a name="adCredentials"></a>Active
+      Directory: Credentials<br>
+      </b></font><font face="Verdana" color="#000000"><small>Visual C++ source
+      code:<a href="samples/ActiveDir/Credentials/vc">samples/ActiveDir/Credentials</a></small></font></p>
+      <p><font face="Verdana" color="#000000"><small>Logon to the current domain
+      with the alternate credentials.</small></font></p>
+      <p><font face="Verdana" size="2" color="#0080C0"><b><a name="adGCUsers"></a>Active
+      Directory: GC All Users<br>
+      </b></font><font face="Verdana" color="#000000"><small>Visual C++ source
+      code:<a href="samples/ActiveDir/GCAllUsers/vc">samples/ActiveDir/GCAllUsers</a></small></font></p>
+      <p><font face="Verdana" color="#000000"><small>Searching a user in the
+      forest by searching the Global Catalog.</small></font></p>
+      <p><font face="Verdana" size="2" color="#0080C0"><b><a name="adGetDomainMode"></a>Active
+      Directory: Get Domain Mode<br>
+      </b></font><font face="Verdana" color="#000000"><small>Visual C++ source
+      code:<a href="samples/ActiveDir/GetDomainMode/vc">samples/ActiveDir/GetDomainMode</a></small></font></p>
+      <p><font face="Verdana" color="#000000"><small>The sample checks if Active
+      Directory is in mixed or native mode.</small></font></p>
+      <p><font face="Verdana" size="2" color="#0080C0"><b><a name="adSchemaInfo"></a>Active
+      Directory: Schema Info<br>
+      </b></font><font face="Verdana" color="#000000"><small>Visual C++ source
+      code:<a href="samples/ActiveDir/GetSchemaInfo/vc">samples/ActiveDir/GetSchemaInfo</a></small></font></p>
+      <p><font face="Verdana" color="#000000"><small>This program queries schema
+      for the specified classes or attributes.</small></font></p>
+      <p><font face="Verdana" size="2" color="#0080C0"><b><a name="adGuidBinding"></a>Active
+      Directory: Guid Binding<br>
+      </b></font><font face="Verdana" color="#000000"><small>Visual C++ source
+      code:<a href="samples/ActiveDir/GUIDBind/vc">samples/ActiveDir/GUIDBinding</a></small></font></p>
+      <p><font face="Verdana" color="#000000"><small>Active Directory allows you
+      to bind object by GUID. This sample demonstrates it.</small></font></p>
+      <p><font face="Verdana" size="2" color="#0080C0"><b><a name="adWKGUID"></a>Active
+      Directory: Well Known Guid<br>
+      </b></font><font face="Verdana" color="#000000"><small>Visual C++ source
+      code:<a href="samples/ActiveDir/WKGUID/vc">samples/ActiveDir/WKGUID</a></small></font></p>
+      <p><font face="Verdana" color="#000000"><small>Active Directory has a
+      concept of Well Known GUID. It's a well known place, normally a container,
+      which is associated with a </small><small>well known GUID.&nbsp;</small></font></p>
+      <p><font face="Verdana" size="2" color="#0080C0"><b><a name="adPropertyList"></a>Active
+      Directory: Property List<br>
+      </b></font><font face="Verdana" color="#000000"><small>Visual C++ source
+      code:<a href="samples/ActiveDir/PropertyList/vc">samples/ActiveDir/PropertyList</a></small></font></p>
+      <p><font face="Verdana" color="#000000"><small>It demonstrate the use of
+      PropertyList in Active Directory.</small></font></p>
+      <p><font face="Verdana" size="2" color="#0080C0"><b><a name="adQueryUser"></a>Active
+      Directory: Query Users<br>
+      </b></font><font face="Verdana" color="#000000"><small>Visual C++ source
+      code:<a href="samples/ActiveDir/QueryUsers/vc">samples/ActiveDir/QueryUsers</a></small></font></p>
+      <p><font face="Verdana" color="#000000"><small>Finding a user in the
+      current domain.</small></font></p>
+      <p><font face="Verdana" size="2" color="#0080C0"><b><a name="adRootDSE"></a>Active
+      Directory: RootDSE<br>
+      </b></font><font face="Verdana" color="#000000"><small>Visual C++ source
+      code:<a href="samples/ActiveDir/RootDSE/vc">samples/ActiveDir/RootDSE<br>
+      <br>
+      </a>Get the RootDSE on a server and print out the entries.<br>
+      </small></font></p>
+    <p><a name="iadsextension"></a><font face="Verdana" color="#0080C0"><strong><small>IADsExtension</small></strong></font><br>
+    <font face="Verdana" color="#000000"><small>C++ Source code: <a
+    href="samples/Extension/Tutorial/Step2">samples\Extension\Tutorial\Step2</a></small></font></p>
+    <p><font face="Verdana" color="#000000"><small>This is a step-by-step tutorial on how to create an
+    ADSI extension. The first step is to create an early binding extension without
+    implementing <b>IADsExtension</b>. The second step implements the <b> IADsExtension</b> to support late
+    binding.</small></font></p>
+    <p><font face="Verdana" color="#000000"><small>This extension will extend a 'user' object
+    on the LDAP provider. You can easily change it to other provider by modifying the DLL
+    Registration code. You can use this source code as a code base for your extension. </small></font></p>
+    <p><font face="Verdana" color="#000000"><small>This sample code accompanies with the <a
+    href="samples/Extension/Tutorial/Step2/client">client code</a> written in VB.</small></font></p>
+    <p>&nbsp;</p>
+    <p><a name="mailbox"></a><font face="Verdana" color="#0080C0"><strong><small>Mailbox</small></strong></font><br>
+    <font face="Verdana" color="#000000"><small>VB source code: <a
+    href="samples/Exchange/MailBox">samples\Exchange\Mailbox</a></small></font></p>
+    <p><font face="Verdana" color="#000000"><small>It demonstrate how to create an Exchange
+    Mailbox using Visual Basic. It uses many Win32 APIs to manipulate the security descriptor and
+    SID.&nbsp; Alternatively, you can use the <a
+    href="ResourceKit/ADsSecurity/Exchange/Mailbox">ADSI Resource Tool Kit to create a mailbox</a>.</small></font></p>
+    <p>&nbsp;</p>
+    <p><a name="rdbl"></a><font face="Verdana" color="#0080C0"><strong><small>Rule-Based
+    Distribution List</small></strong></font><br>
+    <font face="Verdana" color="#000000"><small>VB source code: <a
+    href="samples/Exchange/rdbl">samples\Exchange\RDBL</a></small></font><font face="Verdana"
+    color="#0080C0"><strong><br>
+    </strong></font><font face="Verdana"><small><br>
+    RBDL.EXE will automatically populate and update Microsoft Exchange &quot;rules based
+    distribution lists&quot;. The membership in a &quot;rules based distribution list&quot; is
+    determined by criteria based upon Exchange directory attributes. RBDL.EXE determines which
+    distribution lists to modify and the precise membership of the distribution list based
+    upon a criteria string that is stored within the DL itself. This functionality allows
+    RBDL.EXE to populate and keep up to date DLs like the following:</small>
+    </font></p>
+    <p><font face="Verdana"><small>&quot;All mailboxes in California&quot; or<br>
+    &quot;All mailboxes on ServerX&quot; or<br>
+    &quot;All people in the Sales Department that are not Temporary Employees&quot;.<br>
+    <br>
+    Since RBDL.EXE uses LDAP v3 to update the directory, at least one Exchange 5.5 server per
+    organization is required.<br>
+    <br>
+    Run the distribution list with the following command line parameter &quot;/container:&quot;LDAP://server/o=organization/ou=site/cn=Recipients&quot;<br>
+    </small>
+    </font></p>
+    <p><a name="tombstone"></a><strong><font face="Verdana" color="#0080C0"><small>Exchange
+    Tombstone</small></font></strong><br>
+    <font face="Verdana" color="#000000"><small>VB source code: <a
+    href="samples/Exchange/Tombstone">samples\Exchange\Tombstone</a></small></font></p>
+    <p><font face="Verdana" color="#000000"><small>It shows how to retrieve a tombstone
+    (deleted) object on Exchange Server 5.5</small></font></p>
+    <p>&nbsp;</p>
+    <p><a name="ExchConfig"></a><font face="Verdana" color="#0080C0"><strong><small>Exchange
+    Configuration</small></strong></font><br>
+    <font face="Verdana" color="#000000"><small>VB source code: <a
+    href="samples/Exchange/Configuration">samples\Exchange\Configuration</a></small></font></p>
+    <p><font face="Verdana" color="#000000"><small>It shows you how to modify Exchange
+    Configuration attributes, such as set the maximum value of message size on an Exchange
+    Server.</small></font></p>
+    <p>&nbsp;</p>
+    <p><a name="ExchSearchVBS"></a><font face="Verdana" color="#0080C0"><strong><small>Exchange
+    Search Alias (VBS)</small></strong></font><br>
+    <font face="Verdana" color="#000000"><small>VBS source code: <a href="samples/Exchange/Search">samples\Exchange\SearchAlias\SearchAlias.vbs</a></small><br>
+    <small>Usage: cscript searchAlias.vbs aliasName</small></font></p>
+    <p><font face="Verdana" color="#000000"><small>Given a alias name, this script will search
+    the alias object for a given Exchange Server name.</small></font></p>
+    <p><a name="dl"></a><font face="Verdana" color="#0080C0"><strong><small>Exchange
+    Distribution List</small></strong></font><br>
+    <font face="Verdana" color="#000000"><small>VB source code: <a
+    href="samples/Exchange/Distribution%20List">samples\Exchange\Distribution List</a></small></font></p>
+    <p><font face="Verdana" color="#000000"><small>This sample demonstrates how
+    to:</small></font><ul>
+      <li><font face="Verdana" color="#000000"><small>Create a new distribution list </small></font></li>
+      <li><font face="Verdana" color="#000000"><small>Add a member to a distribution list</small></font></li>
+      <li><font face="Verdana" color="#000000"><small>Enumerate a member in a distribution list</small></font></li>
+      <li><font face="Verdana" color="#000000"><small>Set the owner of distribution list</small></font></li>
+      <li><font face="Verdana" color="#000000"><small>Set permission of a distribution list</small></font></li>
+    </ul>
+    <p>&nbsp;</p>
+    <p><a name="homemdb"></a><font face="Verdana" color="#0080C0"><strong><small>Getting
+    Home-MDB of a Mailbox</small></strong></font><br>
+    <font face="Verdana" color="#000000"><small>VB source code: <a
+    href="samples/Exchange/HomeMDB">samples\Exchange\HomeMDB</a></small></font></p>
+    <p><font face="Verdana" color="#000000"><small>For a given mailbox, this
+    sample
+    demonstrates how to instantiate its HomeMDB object.</small></font></p>
+    <p>&nbsp;</p>
+    <p><a name="usnchange"></a><strong><font face="Verdana" color="#0080C0"><small>Retrieving
+    Objects Based on USN-Change</small></font></strong><br>
+    <font face="Verdana" color="#000000"><small>VB source code: <a
+    href="samples/Exchange/USNChange">samples\Exchange\USNChange</a></small></font></p>
+    <p><font face="Verdana" color="#000000"><small>Exchange uses USNChange for replication
+    purposes. Now you can try it yourself to find out which objects were changed since last
+    replication (you need to know the USNChange value).</small></font></p>
+    <p>&nbsp;</p>
+    <p><a name="recipient"></a><strong><font face="Verdana" color="#0080C0"><small>Creating a
+    Custom Recipient</small></font></strong><br>
+    <font face="Verdana" color="#000000"><small>VB source code: <a
+    href="samples/Exchange/Custom%20Recipient">samples\Exchange\Custom Recipient</a></small></font></p>
+      <p><font face="Verdana" color="#000000"><small>Create a new recipient object in
+      a
+    container. Set the new recipient's attributes such as <b>telephoneNumber</b>,
+      <b>target-address</b>, <b>cn</b>, and so on.</small></font></p>
+    <p>&nbsp;</p>
+    <p><a name="enum"></a><strong><font face="Verdana" color="#0080C0"><small>Enumerating
+    an Exchange Container</small></font></strong><br>
+    <font face="Verdana" color="#000000"><small>VB source code: <a
+    href="samples/Exchange/Enum">samples\Exchange\Enum</a></small></font></p>
+    <p><font face="Verdana" color="#000000"><small>It enumerates a container and list and
+    categorize persons, custom recipients and distribution lists in that container.</small></font></p>
+    <p>&nbsp;</p>
+    <p><a name="org"></a><font face="Verdana" color="#0080C0"><strong><small>Finding Exchange
+    Organization Name for a Given Server</small></strong></font><br>
+    <font face="Verdana" color="#000000"><small>VB source code: <a href="samples/Exchange/Org">samples\Exchange\Org</a></small></font></p>
+    <p><font face="Verdana" color="#000000"><small>It demonstrates how to get an Exchange
+    organization name if you know the Exchange Server name.</small></font></p>
+    <p>&nbsp;</p>
+    <p><a name="exchsd"></a><font face="Verdana" color="#0080C0"><strong><small>Displaying and
+    Modifying Exchange Security Descriptor</small></strong></font><br>
+    <font face="Verdana" color="#000000"><small>VB source code: <a href="samples/Exchange/Org">samples\Exchange\Security</a></small></font></p>
+    <p><font face="Verdana" color="#000000"><small>It shows how to get and set
+    the Exchange
+    security descriptor using <b>IADsPropertyValue2</b>.</small><br>
+    <small>Requirements: Exchange 5.5 SP1 and ADSI 2.5.</small></font></p>
+    <p>&nbsp;</p>
+    <p><a name="ntBinding"></a><font face="Verdana" color="#0080C0"><strong><small>WinNT
+    Binding</small></strong></font><br>
+    <font face="Verdana" color="#000000"><small>VB source code: <a
+    href="samples/WinNT/Binding/VB">samples\WinNT\Binding\vb</a></small></font></p>
+    <p><font face="Verdana" color="#000000"><small>This code snippet illustrates how to bind to
+    a domain, remote computer, or a user in a domain. It also shows how to bind an object with
+    alternate credentials.</small></font></p>
+    <p>&nbsp;</p>
+    <p><a name="ntGroup"></a><strong><font face="Verdana" color="#0080C0"><small>WinNT Group</small></font></strong><br>
+    <font face="Verdana" color="#000000"><small>VB source code: <a href="samples/WinNT/Group/VB">samples\WinNT\Group\vb</a></small></font></p>
+    <p><font face="Verdana"><small>Walkthrough</small><small> Group life cycle management, from group creation
+    (local and global), group enumeration, adding user/group to a group and removing members.</small></font></p>
+    <p><a name="ntComputer"></a><strong><font face="Verdana" color="#0080C0"><small>WinNT
+    Computer</small></font></strong><br>
+    <font face="Verdana" color="#000000"><small>VB source code: <a href="samples/WinNT/Computer/VB">samples\WinNT\Computer\vb</a></small></font></p>
+    <p><font face="Verdana"><small>This sample demonstrates how to bind to a computer object, to
+    enumerate services, sessions, and resources and to create file share.</small></font></p>
+    <p><a name="ntUser"></a><strong><font face="Verdana" color="#0080C0"><small>WinNT User</small></font></strong><br>
+    <font face="Verdana" color="#000000"><small>VB source code: <a href="samples/WinNT/User/VB">samples\WinNT\User\vb</a></small></font></p>
+    <p><font face="Verdana"><small>This sample demonstrates how to create a user,
+    set a user's properties, and rename and delete a user.<br>
+    </small>
+    </font></p>
+    <p><a name="ntUserManagement"></a><strong><font face="Verdana" color="#0080C0"><small>WinNT
+    User Management</small></font></strong></p>
+      <p>
+    <font face="Verdana" color="#000000"><small>VB source code: <a href="samples/WinNT/UserMgr">samples\WinNT\User\vb</a></small></font></p>
+      <p><small><font face="Verdana">A WinNt User Management Application.</font></small></p>
+      <p>&nbsp;</p>
+    <p><a name="nt_changepwd"></a><font face="Verdana" color="#0080C0"><strong><small>WinNT
+    Change Password</small></strong></font><br>
+    <font face="Verdana" color="#000000"><small>VB source code: <a href="samples/WinNT/ChangePwd">samples\WinNT\ChangePwd</a></small></font></p>
+    <p><font face="Verdana"><small><br>
+    Change the Windows NT Password. The user is required to enter an old and new password.&nbsp; You
+    can change your domain password or your local account password.</small>
+    </font></p>
+    <p>&nbsp;</p>
+    <p><a name="perl_binding"></a><strong><font face="Verdana" color="#0080C0"><small>Perl:
+    Binding</small><br>
+    </font></strong><font face="Verdana" color="#000000"><small>Perl source code:
+    <a href="samples/Perl/Binding.pl">samples\Perl\binding.pl</a></small></font></p>
+    <p><small><font face="Verdana" color="#0080C0"><strong>&nbsp;</strong></font></small></p>
+    <p><a name="perl_create"></a><font face="Verdana" color="#0080C0"><strong><small>Perl:
+    Create and Delete Object</small><br>
+    </strong></font><font face="Verdana" color="#000000"><small>Perl source code:
+    <a href="samples/Perl/create.pl">samples\Perl\create.pl</a></small></font></p>
+    <p><font face="Verdana" color="#0080C0"><strong><small>&nbsp;</small></strong></font></p>
+    <p><a name="perl_retreive"></a><strong><font face="Verdana" color="#0080C0"><small>Perl:
+    Retrieve and Modify Properties</small></font></strong><br>
+    <font face="Verdana" color="#000000"><small>Perl source code: <a href="samples/Perl/Modify.pl">samples\Perl\modify.pl</a></small></font></p>
+    <p>&nbsp;</p>
+    <p><a name="provider"></a><font face="Verdana" color="#0080C0"><strong><small>ADSI
+    Provider</small><br>
+    </strong></font><font face="Verdana" color="#000000"><small>C++ source code: <a
+    href="samples/Provider">samples\Provider</a></small></font></p>
+    <p><small><font face="Verdana">Installation procedure for the Active DS Sample Provider:<br>
+    1)Install ADSI 2.5<br>
+    2)Install the Sample Provider using install.bat found in samples\provider\setup<br>
+    <br>
+    Running install.bat will perform the following:<br>
+    1)Install Sample Provider<br>
+    2)Setup the sample DS in the registry <br>
+    <br>
+    To view the sample provider<br>
+    1) Run ADSVW.EXE<br>
+    2) Type Sample: as the ADsPath<br>
+    3) Now you can navigate the name space <br>
+    </font></small></p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="2%" height="15"></td>
+    <td width="98%" height="15" valign="top"></td>
+  </tr>
+</table>
+</body>
+</html>

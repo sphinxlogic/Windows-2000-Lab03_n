@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>FlowLayout -> UIFlowLayout</title>
+<base target="descriptions">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">FlowLayout to UIFlowLayout</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.FlowLayout should be transformed into instances of
+com.ms.ui.UIFlowLayout. </p>
+
+<p align="left">FlowLayout implements <a href="LayoutManager.htm"
+target="descriptions">LayoutManager</a>: be sure to see its
+changes.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">UIFlowLayout is a replacement for FlowLayout in
+AFC's improved UILayoutManager. The changes here are minimal.
+AWT's FlowLayout decides on its own whether the layout can wrap
+onto multiple lines. UIFlowLayout allows you to determine that by
+setting <font size="2" face="Courier">setwrap(boolean)</font>.
+You can also add and remove layout components from multiple
+containers in one method.</p>
+
+<p align="left">You may also want to try other layout managers
+that are provided with AFC and are similar to FlowLayout.
+UIVerticalFlowLayout arranges components in a vertical line;
+UIRowLayout arranges components in a single row; and
+UIFixedFlowLayout gives you more control over the width of the
+components, including allowing you to set a fixed width.</p>
+
+<p align="left">&nbsp;</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">This is the set of changes you need to make to
+port all FlowLayout methods to UIFlowLayout methods. Any method
+not listed here or below does not need to be changed.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial"><strong>AWT Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>AFC Code</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">FlowLayout() or<br>
+        FlowLayout(int) or<br>
+        FlowLayout(int, int, int)</font></td>
+        <td nowrap><font size="2" face="Courier">UIFlowLayout()
+        or<br>
+        UIFlowLayout(int) or<br>
+        UIFlowLayout(int, int, int)</font></td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h3>Unsupported Methods</h3>
+
+<p>Some methods in java.awt.FlowLayout are not directly supported
+in com.ms.ui.UIFlowLayout. Those methods and suggested changes
+are described here.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial">AWT Code<strong>/Suggested
+        AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">addLayoutComponent(String,
+        Component)</font><p><font size="2" face="Courier"><strong>addLayoutComponent(Container,
+        Component, String)</strong></font></p>
+        </td>
+        <td><font size="2">You need to specify a container for
+        the component.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">removeLayoutComponent(Component)</font><p><font
+        size="2" face="Courier"><strong>removeLayoutComponent(Container,
+        Component)</strong></font></p>
+        </td>
+        <td nowrap><font size="2">You need to specify the
+        container holding the component.</font></td>
+    </tr>
+</table>
+</body>
+</html>

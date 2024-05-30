@@ -1,0 +1,320 @@
+<STYLE>
+<!--This file is provided as part of the Microsoft Visual Studio 6.0 Samples
+
+	THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT
+	WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED,
+	INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES
+	OF MERCHANTABILITY AND/OR FITNESS FOR A  PARTICULAR
+	PURPOSE.
+
+	Copyright (C) 1997, 1998 Microsoft Corporation, All rights reserved
+-->
+
+.adBody
+{
+    COLOR: #003333;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 9pt;
+    MARGIN-LEFT: 10px
+}
+.adEmail
+{
+    COLOR: #6699ff;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 9pt;
+    FONT-WEIGHT: bold;
+    MARGIN-LEFT: 10px
+}
+.alink
+{
+    COLOR: #0099cc;
+    CURSOR: hand;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 9pt;
+    FONT-WEIGHT: bold;
+    TEXT-DECORATION: none
+}
+.adTitle
+{
+    BACKGROUND-COLOR: #ffffff;
+    COLOR: black;
+    CURSOR: hand;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+.alert
+{
+    COLOR: black;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 8pt
+}
+A:link
+{
+    COLOR: #00cccc;
+    CURSOR: hand;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 9pt;
+    FONT-WEIGHT: bold;
+    MARGIN-LEFT: 10px;
+    TEXT-DECORATION: none
+}
+A:visited
+{
+    COLOR: #0099cc;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 9pt;
+    FONT-WEIGHT: bold
+}
+.billing
+{
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 10pt
+}
+.body
+{
+    BACKGROUND: url(images/water.jpg);
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 8pt;
+    MARGIN-LEFT: 0px;
+    MARGIN-RIGHT: 0px;
+    MARGIN-TOP: 0px
+}
+.border
+{
+    BORDER-BOTTOM-COLOR: #006666;
+    BORDER-LEFT-COLOR: #006666;
+    BORDER-RIGHT-COLOR: #006666;
+    BORDER-TOP-COLOR: #006666
+}
+.box-label
+{
+    COLOR: #000000;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 11pt;
+    FONT-WEIGHT: bold
+}
+.browselinkover
+{
+    COLOR: #00cccc;
+    CURSOR: hand;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 11pt;
+    FONT-WEIGHT: bold
+}
+.button
+{
+    COLOR: #006666;
+    CURSOR: hand;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 11pt;
+    FONT-WEIGHT: bold
+}
+.buttonOver
+{
+    COLOR: #0099cc;
+    CURSOR: hand;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 11pt;
+    FONT-WEIGHT: bold
+}
+.category
+{
+    COLOR: black;
+    CURSOR: hand;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+.description
+{
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 9pt
+}
+.headlinebody
+{
+    BACKGROUND: #ffffff;
+    MARGIN-LEFT: 0px;
+    MARGIN-RIGHT: 0px;
+    MARGIN-TOP: 0px;
+    bgcolor: #FFFFFF
+}
+.hlink
+{
+    COLOR: white;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+.hlinkMouseOver
+{
+    COLOR: #66cccc;
+    CURSOR: hand;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 10pt;
+    FONT-STYLE: italic;
+    FONT-WEIGHT: bold
+}
+.item
+{
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 14pt
+}
+.label
+{
+    COLOR: #000000;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+.link
+{
+    COLOR: white;
+    CURSOR: hand;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+.link16
+{
+    COLOR: white;
+    CURSOR: hand;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+.linkMouseOver
+{
+    COLOR: #ffff00;
+    CURSOR: hand;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 10pt;
+    FONT-STYLE: italic;
+    FONT-WEIGHT: bold
+}
+.linkMouseOver16
+{
+    COLOR: #ffff00;
+    CURSOR: hand;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 10pt;
+    FONT-STYLE: italic;
+    FONT-WEIGHT: bold
+}
+.listMouseOver
+{
+    COLOR: #009999;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 9pt
+}
+.navbar
+{
+    COLOR: #003366;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 9pt
+}
+.navbarOff
+{
+    COLOR: #003366;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 9pt;
+    FONT-WEIGHT: bold
+}
+.navbarHighlight
+{
+    BACKGROUND-COLOR: #003366;
+    COLOR: #ffffff;
+    CURSOR: hand;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 9pt;
+    FONT-WEIGHT: bold
+}
+.navbarMouseOver
+{
+    BACKGROUND-COLOR: #003366;
+    COLOR: #ffffff;
+    CURSOR: hand;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 9pt
+}
+.newlink
+{
+    COLOR: #009999;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 9pt;
+    FONT-WEIGHT: bold;
+    TEXT-DECORATION: none
+}
+.newsText
+{
+    COLOR: black;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+.olink
+{
+    COLOR: #006666;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 11pt;
+    FONT-WEIGHT: bold
+}
+.oMouseOver
+{
+    COLOR: #ffff00;
+    CURSOR: hand;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: normal
+}
+.oMouseOut
+{
+    COLOR: #ffffff;
+    CURSOR: default;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: normal
+}
+.P
+{
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: normal;
+    TEXT-INDENT: 0.5in
+}
+.AdPreview
+{
+    BACKGROUND: white;
+    BORDER-BOTTOM: black solid 1px;
+    BORDER-LEFT: black solid 1px;
+    BORDER-RIGHT: black solid 1px;
+    BORDER-TOP: black solid 1px
+}
+.text
+{
+    COLOR: #000000;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 9pt
+}
+.textBox
+{
+    COLOR: #000000;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 9pt
+}
+.textBoxGray
+{
+    BACKGROUND-COLOR: #bbbbbb;
+    COLOR: #000000;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 10pt
+}
+.textBoxGray
+{
+    BACKGROUND-COLOR: #bbbbbb;
+    COLOR: #000000;
+    FONT-FAMILY: Verdana, Arial, Helvetica;
+    FONT-SIZE: 9pt
+}
+
+</STYLE>

@@ -1,0 +1,58 @@
+// --MBLOGON.chk----------------------------------------------------------------
+//
+//  Privileged Access to logon and off of any message store.
+//  
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+// -----------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_HrMailboxLogon(a,b,c,d,e)   NOERROR
+#define CHK_HrMailboxLogoff(a)          NOERROR
+
+#else
+
+//$--HrMailboxLogon------------------------------------------------------
+//  Check parameters for HrMailboxLogon().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrMailboxLogon(
+    IN  LPMAPISESSION   lplhSession,                // ptr to MAPI session handle
+    IN  LPMDB           lpMDB,                      // ptr to message store
+    IN  LPSTR           lpszMsgStoreDN,             // ptr to server DN
+    IN  LPSTR           lpszMailboxDN,              // ptr to mailbox DN
+    OUT LPMDB           *lppMailboxMDB)             // ptr to mailbox message store ptr
+{
+    HRESULT     hr  = NOERROR;
+
+    if( !TEST_IUNKNOWN_PTR( lplhSession) ||
+        !TEST_IUNKNOWN_PTR( lpMDB) ||
+        !TEST_STRINGA_PTR( lpszMsgStoreDN) ||
+        !TEST_STRINGA_PTR_OR_NULL( lpszMailboxDN) ||
+        !TEST_WRITE_PTR( lppMailboxMDB, sizeof(LPMDB)))
+    {
+        hr = HR_LOG( E_INVALIDARG);
+    }
+
+    return( hr);
+}
+
+//$--HrMailboxLogoff-------------------------------------------------------
+//  Check parameters for HrMailboxLogoff().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrMailboxLogoff(
+    IN OUT LPMDB *lppMailboxMDB)                    // ptr to mailbox message store ptr
+{
+    HRESULT     hr  = NOERROR;
+
+    if( !lppMailboxMDB || !TEST_IUNKNOWN_PTR( *lppMailboxMDB))
+    {
+        hr = HR_LOG( E_INVALIDARG);
+    }
+
+    return( hr);
+}
+
+// -----------------------------------------------------------------------------
+
+#endif /* DEBUG */
+

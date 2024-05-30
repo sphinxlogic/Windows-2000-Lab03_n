@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Chunked Transfer Encoding</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_chunked_transfer_encoding"></a>Chunked Transfer Encoding</h3>
+<p>
+This sample demonstrates how you can use HTTP 1.1 chunked transfer-encoding in your own ISAPI extension. Chunked transfer encoding enables the sender, whether it be IIS or an ISAPI extension, to transfer the body of an HTTP message in a series of chunks, each with its own size indicator. Since message content is transferred along with the information necessary for the recipient to verify that it has received the complete message, chunked transfer encoding enables your ISAPI extension to send dynamically-created messages without pre-calculating the message length. For more information about chunked transfer encoding, and HTTP 1.1 in general, see section 3.6 of RFC 2068 at http://www.w3.org. </p>
+<p>
+This sample implements a simple extension that demonstrates chunked transfer encoding. Once the project has been compiled and the DLL created, the extension can be accessed. A query string is appended to the URL, specifying the file that should be sent and the chunk size to use in the chunked transfer. Thus the URL http://www.mysite.com/ctetest.dll?file=/sample.gif&amp;chunksize=1024 indicates that the extension should send the file sample.gif, located in the virtual root directory of the Web site, to your client browser, using chunked transfer encoding and a chunk size of 1024 bytes. </p>
+<p>
+The project file ctetest.c implements the main ISAPI entry-point functions <b>GetExtensionVersion</b> and <b>HttpExtensionProc</b>, as well as various helper functions used to process the transfer request. </p>
+<p>
+The bulk of the chunked transfer code is contained within the actual transfer functions, in the project file cte_enc.c. Three functions are provided in this file: <b>CteBeginWrite</b>, <b>CteWrite</b>, and <b>CteEndWrite</b>. These functions, though commented for educational value, were designed to be reusable, so if you need to create an extension that is HTTP 1.1-compliant, these functions may be called, in the obvious order, to accomplish the chunked transfer. </p>
+<p>
+<b>Note</b>&nbsp;&nbsp;To access this sample extension, you will need to use a client browser that supports HTTP 1.1, such as Microsoft&reg; Internet Explorer&reg; 4.0 or later.</p>
+<p>
+This sample is provided for educational purposes only. It has not been tested in a production environment, and Microsoft&reg; will not provide technical support for it. </p>
+</BODY>
+</HTML>

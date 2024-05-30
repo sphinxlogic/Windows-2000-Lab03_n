@@ -1,0 +1,9 @@
+LIBRARY     SampView
+
+DESCRIPTION "Sample Name Space Extension"
+
+EXPORTS
+   DllCanUnloadNow   PRIVATE
+   DllGetClassObject PRIVATE
+   DllRegisterServer PRIVATE
+   DllUnregisterServer PRIVATE

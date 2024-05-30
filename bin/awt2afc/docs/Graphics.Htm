@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>Graphics -> FxGraphics</title>
+<base target="descriptions">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">Graphics to FxGraphics</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.Graphics should be transformed into instances of
+com.ms.fx.FxGraphics.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">FxGraphics extends from Graphics, so everything
+you could do before can still be done. FxGraphics, however,
+provides an extended graphics object implementation and abstract
+methods for cross-platform compatibility. FxGraphics adds new
+drawing primitives, like <font size="2" face="Courier">draw3DRect(),</font>
+<font size="2" face="Courier">drawChars(),</font> and <font
+size="2" face="Courier">drawString()</font>. You can also take
+advantage of the extended objects in the fx package (like FxPen
+and FxTexture) to draw more complex and compelling graphics. You
+can draw strings at different angles, take parts of images and
+place them, expanded or contracted, onto other parts of the
+screen, and try many other new graphics options.</p>
+
+<h3 align="left">Porting</h3>
+
+<p>FxGraphics extends Graphics, so no changes need to be made to
+create AFC applications. It is recommended, though, that you
+change Graphics instances to FxGraphics instances.</p>
+</body>
+</html>

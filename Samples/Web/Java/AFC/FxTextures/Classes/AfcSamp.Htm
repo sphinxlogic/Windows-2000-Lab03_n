@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD><TITLE>FxTextures Sample Applet</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=iso8859-1">
+<META NAME="MS.LOCALE" CONTENT="EN-US">
+<META NAME="ROBOTS" CONTENT="all">
+</HEAD>
+<BODY BGCOLOR="White" TOPMARGIN=0 LEFTMARGIN=0 VLINK="Gray">
+<A NAME="top"></A>
+<!--TOOLBAR_START-->
+<TABLE WIDTH="100%" CELLPADDING=0 CELLSPACING=0 BORDER=0>
+<TR><TD WIDTH=500 ROWSPAN=2 VALIGN=TOP><NOBR><FONT FACE="VERDANA,ARIAL,Helvetica" SIZE=1>
+<!--TOOLBAR_FRAMES_START-->
+
+<!--MS home button-->
+<A HREF="http://www.microsoft.com" TARGET="_top"><IMG SRC="../../images/home.gif" WIDTH="103" HEIGHT="21"  BORDER=0 ALT="Microsoft Home"></A><A HREF="http://www.microsoft.com/products/default.asp" TARGET="_top"><IMG SRC="../../images/prod.gif" WIDTH="81" HEIGHT="21"  BORDER=0 ALT="Products"></A><A HREF="http://www.microsoft.com/search/default.asp" TARGET="_top"><IMG SRC="../../images/search.gif" WIDTH="68" HEIGHT="21"  BORDER=0 ALT="Search"></A><A HREF="http://www.microsoft.com/support/" TARGET="_top"><IMG SRC="../../images/support.gif" WIDTH="74" HEIGHT="21"  BORDER=0 ALT="Support"></A><A HREF="http://www.microsoft.com/referral/default.asp" TARGET="_top"><IMG SRC="../../images/shop.gif" WIDTH="55" HEIGHT="21"  BORDER=0 ALT="Shop"></A><A HREF="http://www.microsoft.com/regwiz/regwiz.asp" TARGET="_top"><IMG SRC="../../images/write.gif" WIDTH="78" HEIGHT="21"  BORDER=0 ALT="Write Us"></A><IMG SRC="../../images/spacer.gif" WIDTH="49" HEIGHT="21"  BORDER=0 ALT="spacer.gif"></FONT></NOBR></TD><TD BGCOLOR="#000000" WIDTH="100%" HEIGHT=20></TD><TD WIDTH=91 ROWSPAN=2 ALIGN=RIGHT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,Helvetica" SIZE=1>
+<A HREF="http://www.microsoft.com" TARGET="_top"><IMG SRC="../../images/msft.gif" WIDTH="91" HEIGHT="21"  BORDER=0 ALT="Microsoft Home"></A></FONT></TD></TR><TR><TD BGCOLOR="#FFFFFF" WIDTH="100%" HEIGHT=1></TD></TR></TABLE>
+<!--TOOLBAR_END-->
+<TABLE BORDER=0 CELLPADDING=0 CELLSPACING=0 WIDTH="98%">
+<TR>
+<TD ROWSPAN=2 WIDTH=162 ALIGN="LEFT" VALIGN="TOP">
+<IMG SRC="../../images/titleAFC.gif" WIDTH="160" HEIGHT="108"  BORDER=0 ALT="AFC Samples"><TABLE CELLPADDING=0 CELLSPACING=0 BORDER=0 WIDTH="100%">
+<TR><TD WIDTH=10>&nbsp;</TD><TD VALIGN="top"><FONT FACE="Verdana,Arial,Helvetica" SIZE=1><B STYLE="color:#006699">In this topic</B><P><IMG SRC="../../images/linkbull.gif" WIDTH="10" HEIGHT="8"  BORDER=0 ALT="*"><A STYLE="color: #333366;text-decoration:none" HREF="afcsamp.htm#afcsamp_0000000108010000">Description</A>
+<P><IMG SRC="../../images/linkbull.gif" WIDTH="10" HEIGHT="8"  BORDER=0 ALT="*"><A STYLE="color: #333366;text-decoration:none" HREF="afcsamp.htm#afcsamp_0000000108020000">Sources</A>
+</FONT></TD></TR></TABLE>
+</TD>
+<TD WIDTH=20>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP">
+<P>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR>
+<TD WIDTH="355" VALIGN="bottom"><IMG SRC="../../images/afcsamp1.gif" WIDTH="355" HEIGHT="27"  BORDER=0 ALT="AFC Samples"></TD>
+<TD WIDTH=20>&nbsp;</TD>
+<TD ALIGN="center" VALIGN="bottom"><A HREF="../../Fxshapes/classes/afcsamp.htm"><IMG SRC="../../images/prevnrm.gif" WIDTH="51" HEIGHT="38"  BORDER=0 ALT="Previous"></A></TD><TD ALIGN="center" VALIGN="bottom"><A HREF="../../afcsamp.htm#afcsamp_0000000100000000"><IMG SRC="../../images/butt_gen.gif" WIDTH="51" HEIGHT="38"  BORDER=0 ALT="AFC Samples"></A></TD><TD ALIGN="center" VALIGN="bottom"><A HREF="../../Puzzle15/classes/afcsamp.htm"><IMG SRC="../../images/nextnrm.gif" WIDTH="51" HEIGHT="38"  BORDER=0 ALT="Next"></A></TD></TR>
+<TR>
+<TD WIDTH="355" ALIGN="right" VALIGN="top">&nbsp;</TD>
+<TD WIDTH=20>&nbsp;</TD>
+<TD ALIGN="center" VALIGN="top"><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="1">Previous</FONT></TD>
+<TD ALIGN="center" VALIGN="top"><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="1">AFC<BR>Samples</FONT></TD>
+<TD ALIGN="center" VALIGN="top"><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="1">Next</FONT></TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD WIDTH=20>&nbsp;</TD>
+<TD>
+<BR>
+<FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2">
+<BR><BR><H2 STYLE="color:#333366">FxTextures Sample Applet</H2>
+<P>This sample demonstrates the flexibility of the texture options provided by the com.ms.fx package. 
+<P>
+
+<applet code=SDKSample.class id=SDKSample width=520 height=390 ></applet>
+<H3 STYLE="color:#333366"><A NAME="afcsamp_0000000108010000">Description</A></H3><P>AWT is able to draw images and stretch them evenly to fill an area with an arbitrary width and height. This is not always useful, however, if you want to stretch an image to internal parameters. For example, with the circle and cross texture used in this sample, you may want the circle to stay as a border and simply stretch the cross, or prevent confusing visual artifacts if a texture is difficult to scale evenly. 
+
+<P>The Texture Stretch Mode panel in this sample shows the variety of stretch modes offered by the FxTexture class. Fx enables you to specify arbitrary gridlines; in this sample, these have been added to the texture above, below, to the left and to the right of the circle enclosing the red-colored cross. By default, the first stretch mode, NONE, is selected. This means that the circle and cross texture is tiled (or repeated across a surface), but the circle is repeated only on the outer edges of the textured area, while the cross is repeated only in the middle of the textured area, to give an automatic bordering effect. 
+
+<P>If you choose the MIDDLE stretch mode, the cross in the middle of the texture is stretched, while the circle at the edge of the textured area continues to be repeated. If you choose the OUTER stretch mode, the outer border is stretched, while the cross in the middle is repeated. Finally, if you choose the ALL stretch mode, both the border and the cross are stretched relative to the origin of the texture.
+
+<P>You can change the position and size of the texture on the display area by clicking and dragging the mouse over the test area.
+
+<P>The Texture Features option below the Texture Stretch Mode list of choices is Partial Texture (by default). If you select NONE from the Texture Stretch Mode list, you will see that the borders do not line up correctly. Unchecking Partial Texture enables the snap-to-grid capability in Fx, ensuring that all portions of the texture are automatically drawn evenly and that the borders look correct. The effects of the Partial Texture option can also be seen with the other Texture Stretch Mode options as you experiment with the sample.
+
+<P>Finally, the Tile Texture option allows you to pin the origin of the texture to the origin of the panel in which the component that is being textured is displayed, resulting in the texture being tiled within the selected area. When this option is selected no stretching of the texture occurs.
+
+<H3 STYLE="color:#333366"><A NAME="afcsamp_0000000108020000">Sources</A></H3><P>This sample applet consists of the following sources:
+
+<TABLE BORDER=0>
+<TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2"><A HREF=" ..\src\SDKConsts.java">SDKConsts.java</A>
+</FONT></TD><TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2"><A HREF=" ..\src\SDKCtrlPnl.java">SDKCtrlPnl.java</A>
+</FONT></TD><TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2"><A HREF="..\src\SDKImages.java">SDKImages.java</A>
+</FONT></TD><TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2"><A HREF=" ..\src\SDKSample.java">SDKSample.java</A>
+</FONT></TD><TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2"><A HREF="..\src\SDKInsetPanel.java">SDKInsetPanel.java</A>
+</FONT></TD><TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2"><A HREF="..\src\TexturePnl.java">TexturePnl.java</A>
+</FONT></TD><TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2"><A HREF="..\src\BtnPanel.java">BtnPanel.java</A>
+</FONT></TD></TABLE>
+<P>
+</FONT>
+</TD>
+</TR>
+</TABLE>
+<CENTER>
+<P><TABLE WIDTH="95%"><TR><TD HEIGHT=1 BGCOLOR="RED"></TD></TR></TABLE>
+<TABLE WIDTH="100%"><TR>
+<TD ALIGN="left"><A HREF="#top"><IMG SRC="../../images/upnrm.gif" WIDTH="51" HEIGHT="38"  BORDER=0 ALT="Top"></A></TD>
+<TD ALIGN="right">
+<FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="1"></FONT></TD></TR></TABLE>
+</CENTER>
+</BODY></HTML>

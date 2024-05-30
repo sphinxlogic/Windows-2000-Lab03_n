@@ -1,0 +1,77 @@
+<HTML> 
+<HEAD>
+<TITLE>DirectAnimation SDK, JScript sample</TITLE>
+<SCRIPT LANGUAGE="JScript">
+<!--
+if (window.top.frames.length!=0 && window.top.frames[0].ShowNoButtons!=null)
+    window.top.frames[0].ShowNoButtons();
+//-->
+</SCRIPT>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+//<!--
+var g_isIE = false, g_isNav = false, g_iMaj = 0, g_sPlat = "";
+// -->
+</SCRIPT>
+<SCRIPT SRC="../ver.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript">if((g_isIE == true) && (g_iMaj < 4)) window.location.href = '../../../../../help/da/demo/demo_downlevel.htm'</SCRIPT>
+</HEAD>	 
+
+<BODY BGCOLOR=WHITE LINK="#0033CC" TOPMARGIN=15 LEFTMARGIN=20>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=2>
+<CENTER>
+<H1>Draggable Image
+</H1>
+</CENTER>
+<OBJECT ID="DAControl"
+  WIDTH=300
+  HEIGHT=300    
+  ALIGN=LEFT 
+  CLASSID="CLSID:B6FFC24C-7E13-11D0-9B47-00C04FC2F51D">
+</OBJECT>
+<SCRIPT language="JScript">  
+<!--
+  m = DAControl.MeterLibrary;
+if( m.VersionString != "5.01.15.1106" && m.VersionString != "6.00.03.0518" && m.VersionString != "5.01.17.0825" && m.VersionString != "5.01.15.0828")  {
+  
+  // Draggable Image Component
+  var mouseX, mouseY;
+  DAControl.AddBehaviorToRun(m.MousePosition.X.AnimateProperty("mouseX", "JScript", false, .1));
+  DAControl.AddBehaviorToRun(m.MousePosition.Y.AnimateProperty("mouseY", "JScript", false, .1)); 
+
+  // Import the needed media files
+  mediaBase = "..\\..\\..\\media\\";
+  imgBase = mediaBase + "image\\";
+
+  block = m.ImportImage(imgBase + "gumballs.gif");
+
+  pickblock = block.Pickable();
+  GrabEvent = m.AndEvent(pickblock.PickEvent, m.LeftButtonDown);
+  ReleaseEvent = m.AndEvent(pickblock.PickEvent, m.LeftButtonUp);
+
+  initPos = m.Point2(0,0);
+
+
+  function grab_proc()  {
+   GrabPos = m.UntilNotifyScript(m.Point2(mouseX, mouseY), GrabEvent, "release_proc");
+   return GrabPos;
+  }
+
+  function release_proc()  {
+   ReleasePos = m.UntilNotifyScript(m.MousePosition, ReleaseEvent, "grab_proc");
+   return ReleasePos;
+  }
+
+  Position = m.UntilNotifyScript(initPos, GrabEvent, "release_proc");
+
+  realblock = pickblock.Image.Transform(m.Translate2Point(Position));
+  DAControl.Image = m.Overlay(realblock, m.SolidColorImage(m.Blue)); 
+  DAControl.Start();
+}
+ else
+    window.top.location.href = "../../../../../help/da/demo/demo_downlevel.htm"
+	//-->
+
+</SCRIPT>
+</FONT>
+</BODY>
+</HTML>

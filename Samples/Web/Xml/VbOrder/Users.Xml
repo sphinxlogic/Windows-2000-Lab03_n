@@ -1,0 +1,8 @@
+<root>
+<users>
+  <user>
+    <name>Guest</name>
+  	<password>password</password>
+  </user>
+</users>
+</root>

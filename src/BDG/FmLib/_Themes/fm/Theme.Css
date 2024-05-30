@@ -1,0 +1,450 @@
+BUTTON
+{
+    FONT-SIZE: xx-small
+}
+BODY
+{
+    BACKGROUND-COLOR: white;
+    COLOR: black;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: x-small
+}
+TABLE.smallfont
+{
+    FONT-SIZE: x-small;
+    WIDTH: 100%
+}
+TABLE
+{
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: x-small;
+    LINE-HEIGHT: normal
+}
+TABLE.watermark
+{
+    BACKGROUND-ATTACHMENT: fixed;
+    BACKGROUND-IMAGE: url(../../images/AMP2.GIF);
+    BACKGROUND-POSITION: center center;
+    BACKGROUND-REPEAT: no-repeat;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: x-small;
+    TEXT-DECORATION: none
+}
+TABLE.small
+{
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: x-small
+}
+TABLE.admin
+{
+    COLOR: white;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 8pt;
+    FONT-WEIGHT: bold;
+    MARGIN-BOTTOM: 10px;
+    MARGIN-LEFT: 5px;
+    MARGIN-TOP: 10px;
+    PADDING-BOTTOM: 5px;
+    TEXT-ALIGN: right;
+    font-color: white
+}
+DIV.bluemenu
+{
+    MARGIN-LEFT: 38px;
+    MARGIN-TOP: -10px
+}
+DIV.orangemenu
+{
+    MARGIN-LEFT: 85px;
+    MARGIN-TOP: -10px
+}
+INPUT
+{
+    FONT-SIZE: 7pt;
+    FONT-WEIGHT: bold
+}
+TR
+{
+    PADDING-TOP: 4px
+}
+TD.menu
+{
+    CURSOR: hand;
+    PADDING-LEFT: 10px
+}
+TD.orangerule
+{
+    BACKGROUND-COLOR: #ce6300
+}
+TD.seprule
+{
+    BACKGROUND-COLOR: gray
+}
+TD.colheader
+{
+    FONT-FAMILY: Tahoma, Verdana;
+    FONT-WEIGHT: bold;
+    WIDTH: 125px
+}
+TD.colheader2
+{
+    COLOR: #f4a460;
+    FONT-WEIGHT: bolder;
+    TEXT-ALIGN: right
+}
+IMG.logo
+{
+    LEFT: 10px;
+    POSITION: absolute;
+    TOP: 10px;
+    Z-INDEX: 4
+}
+BUTTON
+{
+    PADDING-LEFT: 10px;
+    TEXT-ALIGN: left
+}
+A.menu
+{
+    FONT-SIZE: x-small;
+    TEXT-DECORATION: none
+}
+SPAN.pagestat
+{
+    COLOR: white;
+    FONT-SIZE: smaller;
+    FONT-WEIGHT: lighter
+}
+A.bn
+{
+    COLOR: white;
+    FONT-SIZE: x-small
+}
+DIV
+{
+}
+DIV.MENUI
+{
+    FONT-FAMILY: Verdana, Arial;
+    LEFT: 0px;
+    POSITION: absolute;
+    TOP: 130px
+}
+DIV.Contents
+{
+    LEFT: 300px;
+    POSITION: absolute;
+    TOP: 100px;
+    WIDTH: 450px
+}
+SELECT.navigator
+{
+}
+TD.navigator
+{
+    COLOR: #f4a460;
+    FONT-WEIGHT: bolder;
+    PADDING-LEFT: 10px;
+    TEXT-ALIGN: left
+}
+TD.dispdata
+{
+    BACKGROUND-COLOR: transparent;
+    PADDING-LEFT: 10px;
+    TEXT-ALIGN: left
+}
+SPAN.status
+{
+    FLOAT: right;
+    POSITION: relative;
+    TEXT-ALIGN: right;
+    TOP: -10px
+}
+SPAN.pagesubtitle
+{
+    COLOR: white;
+    FONT-SIZE: larger;
+    FONT-WEIGHT: bolder
+}
+TD.actionButtons
+{
+    TEXT-ALIGN: right
+}
+IMG.graph
+{
+}
+TD.coloredGrid
+{
+    BACKGROUND-COLOR: #ffdead
+}
+TR.detailheaders
+{
+    COLOR: orange;
+    CURSOR: hand;
+    FONT-WEIGHT: bolder;
+    PADDING-TOP: 6px
+}
+TABLE.detailslist
+{
+    TEXT-ALIGN: left;
+    WIDTH: 95%
+}
+SPAN.BulletNumber
+{
+    COLOR: #cccc99;
+    FONT-SIZE: medium;
+    FONT-WEIGHT: bold;
+    LINE-HEIGHT: 14pt
+}
+IMG.sublogo
+{
+    LEFT: 66px;
+    POSITION: absolute;
+    TOP: 84px;
+    Z-INDEX: 100
+}
+SPAN.Item
+{
+    BACKGROUND-COLOR: white;
+    COLOR: black;
+    FONT-STYLE: normal;
+    LEFT: 13px;
+    POSITION: absolute
+}
+SPAN.Highlight
+{
+    COLOR: yellow;
+    FONT-VARIANT: normal
+}
+DIV.BUTTON
+{
+    BACKGROUND-COLOR: #aaaaaa;
+    BORDER-BOTTOM: #eeeeee inset;
+    BORDER-LEFT: #eeeeee inset;
+    BORDER-RIGHT: #eeeeee inset;
+    BORDER-TOP: #eeeeee inset;
+    COLOR: black;
+    CURSOR: hand;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 10pt;
+    HEIGHT: 20px;
+    LEFT: 9px;
+    POSITION: absolute;
+    TEXT-ALIGN: center;
+    TOP: 400px;
+    WIDTH: 85px
+}
+SPAN.submit
+{
+    BACKGROUND-COLOR: #aaaaaa;
+    BORDER-BOTTOM: #eeeeee outset;
+    BORDER-LEFT: #eeeeee outset;
+    BORDER-RIGHT: #eeeeee outset;
+    BORDER-TOP: #eeeeee outset;
+    COLOR: black;
+    CURSOR: hand;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 10pt;
+    HEIGHT: 20px;
+    LEFT: 125px;
+    POSITION: absolute;
+    TEXT-ALIGN: center;
+    TOP: 118px;
+    WIDTH: 75px
+}
+IMG.line
+{
+    HEIGHT: 95%;
+    LEFT: 250px;
+    POSITION: absolute;
+    TOP: 20px;
+    WIDTH: 2px;
+    Z-INDEX: 4
+}
+DIV.logon
+{
+    LEFT: 100pt;
+    MARGIN-LEFT: 62px;
+    POSITION: absolute;
+    TOP: 100pt
+}
+A:active
+{
+    COLOR: brown;
+    PADDING-LEFT: 10px
+}
+A:link
+{
+    COLOR: #336699;
+    PADDING-LEFT: 10px
+}
+A:visited
+{
+    COLOR: black;
+    PADDING-LEFT: 10px
+}
+A
+{
+    COLOR: orange;
+    PADDING-LEFT: 10px
+}
+DIV.current
+{
+    LEFT: 100px;
+    MARGIN-LEFT: 65px;
+    POSITION: absolute;
+    TOP: 140px
+}
+DIV.SORTBUTTON
+{
+    LEFT: 255px;
+    POSITION: absolute;
+    TOP: 50px
+}
+SPAN.function
+{
+    BACKGROUND-COLOR: #aaaaaa;
+    BORDER-BOTTOM: #ffffff outset;
+    BORDER-LEFT: #ffffff outset;
+    BORDER-RIGHT: #ffffff outset;
+    BORDER-TOP: #ffffff outset;
+    COLOR: black;
+    CURSOR: hand;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 10pt;
+    POSITION: absolute;
+    TEXT-ALIGN: center;
+    TOP: 20px;
+    WIDTH: 100px
+}
+SPAN.subbuttondown
+{
+    BACKGROUND-COLOR: #aaaaaa;
+    BORDER-BOTTOM: #eeeeee inset;
+    BORDER-LEFT: #eeeeee inset;
+    BORDER-RIGHT: #eeeeee inset;
+    BORDER-TOP: #eeeeee inset;
+    COLOR: black;
+    CURSOR: hand;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 10pt;
+    TEXT-ALIGN: center;
+    WIDTH: 80px
+}
+SPAN.sortsubbutton
+{
+    BACKGROUND-COLOR: #aaaaaa;
+    BORDER-BOTTOM: #eeeeee outset;
+    BORDER-LEFT: #eeeeee outset;
+    BORDER-RIGHT: #eeeeee outset;
+    BORDER-TOP: #eeeeee outset;
+    COLOR: black;
+    CURSOR: hand;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 9pt;
+    TEXT-ALIGN: center;
+    WIDTH: 75px
+}
+SPAN.DownButton
+{
+    BACKGROUND-COLOR: #aaaaaa;
+    BORDER-BOTTOM: #eeeeee inset;
+    BORDER-LEFT: #eeeeee inset;
+    BORDER-RIGHT: #eeeeee inset;
+    BORDER-TOP: #eeeeee inset;
+    COLOR: black;
+    CURSOR: default;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 10pt;
+    HEIGHT: 20px;
+    LEFT: 0px;
+    POSITION: relative;
+    TEXT-ALIGN: center;
+    TOP: 0px;
+    WIDTH: 75px
+}
+SPAN.UpButton
+{
+    BACKGROUND-COLOR: #aaaaaa;
+    BORDER-BOTTOM: #eeeeee outset;
+    BORDER-LEFT: #eeeeee outset;
+    BORDER-RIGHT: #eeeeee outset;
+    BORDER-TOP: #eeeeee outset;
+    COLOR: black;
+    CURSOR: hand;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 10pt;
+    HEIGHT: 20px;
+    LEFT: 0px;
+    POSITION: relative;
+    TEXT-ALIGN: center;
+    TOP: 0px;
+    WIDTH: 75px
+}
+DIV.deselButton
+{
+    BACKGROUND-COLOR: #aaaaaa;
+    BORDER-BOTTOM: #eeeeee outset;
+    BORDER-LEFT: #eeeeee outset;
+    BORDER-RIGHT: #eeeeee outset;
+    BORDER-TOP: #eeeeee outset;
+    COLOR: black;
+    CURSOR: hand;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 10pt;
+    HEIGHT: 20px;
+    LEFT: 9px;
+    POSITION: absolute;
+    TEXT-ALIGN: center;
+    TOP: 400px;
+    WIDTH: 85px
+}
+DIV.chkin
+{
+    BACKGROUND-COLOR: aqua;
+    COLOR: black;
+    LEFT: 300pt;
+    POSITION: absolute;
+    TOP: 100pt;
+    VISIBILITY: visible
+}
+SPAN.Title
+{
+    COLOR: darkorange;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: x-small;
+    FONT-WEIGHT: bold
+}
+DIV.Cmenu
+{
+    BACKGROUND-COLOR: #ce6300;
+    FONT-WEIGHT: bold;
+    LEFT: 300px;
+    LINE-HEIGHT: normal;
+    POSITION: absolute;
+    TOP: 30px
+}
+TABLE.CAdmin
+{
+    COLOR: white;
+    CURSOR: hand;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-WEIGHT: bold
+}
+DIV.Cusermenu
+{
+    BACKGROUND-COLOR: #336699;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-WEIGHT: bold;
+    LEFT: 350px;
+    POSITION: absolute;
+    TOP: 60px;
+    Z-INDEX: 5
+}
+TABLE.Cuser
+{
+    COLOR: white;
+    CURSOR: hand;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-WEIGHT: bold
+}

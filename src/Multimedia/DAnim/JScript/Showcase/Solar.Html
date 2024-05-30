@@ -1,0 +1,145 @@
+<HTML> 
+<HEAD>
+<TITLE>DirectAnimation SDK, JScript sample</TITLE>
+<SCRIPT LANGUAGE="JScript">
+<!--
+if (window.top.frames.length!=0 && window.top.frames[0].ShowNoButtons!=null)
+    window.top.frames[0].ShowNoButtons();
+//-->
+</SCRIPT>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+//<!--
+var g_isIE = false, g_isNav = false, g_iMaj = 0, g_sPlat = "";
+// -->
+</SCRIPT>
+<SCRIPT SRC="../ver.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript">if((g_isIE == true) && (g_iMaj < 4)) window.location.href = '../../../../../help/da/demo/demo_downlevel.htm'</SCRIPT>
+</HEAD>	 
+
+<BODY BGCOLOR=WHITE LINK="#0033CC" TOPMARGIN=15 LEFTMARGIN=20>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=2>
+<CENTER>
+<H1>The Inner Planets
+</H1>
+</CENTER>
+<OBJECT ID="DAControl"
+  WIDTH=800
+  HEIGHT=500    
+  ALIGN=LEFT 
+  CLASSID="CLSID:B6FFC24C-7E13-11D0-9B47-00C04FC2F51D">
+</OBJECT>
+<SCRIPT LANGUAGE="JScript">
+<!--
+  m = DAControl.MeterLibrary;
+if( m.VersionString != "5.01.15.1106" && m.VersionString != "6.00.03.0518" && m.VersionString != "5.01.17.0825" && m.VersionString != "5.01.15.0828")  {
+
+  cm = 0.01;
+  dim = 3*cm;
+  pi = Math.PI;
+
+  mediaBase = "..\\..\\..\\media\\";
+  imgBase = mediaBase + "image\\";
+  sndBase = mediaBase + "sound\\";
+  geoBase = mediaBase + "geometry\\";
+  
+  bgSnd = m.ImportSound(sndBase + "moon.mp2").Sound;
+  soundGeo = m.SoundSource(bgSnd.Loop());
+  geoSphere = m.ImportGeometry(geoBase + "sphere.x");
+  imgSun = m.ImportImage(imgBase + "sun.JPG");
+  imgMercury = m.ImportImage(imgBase + "mercury.JPG");
+  imgVenus = m.ImportImage(imgBase + "venus.JPG");
+  imgEarth = m.ImportImage(imgBase + "earth.JPG");
+  imgMoon = m.ImportImage(imgBase + "moon.JPG");
+  imgMars = m.ImportImage(imgBase + "mars.JPG");
+  imgStars = m.ImportImage(imgBase + "stars.JPG");
+
+  imgMappedSun = imgSun.MapToUnitSquare();
+  imgMappedMercury = imgMercury.MapToUnitSquare();
+  imgMappedVenus = imgVenus.MapToUnitSquare();
+  imgMappedEarth = imgEarth.MapToUnitSquare();
+  imgMappedMoon = imgMoon.MapToUnitSquare();
+  imgMappedMars = imgMars.MapToUnitSquare();
+
+  geoSun = geoSphere.EmissiveColor(m.White).TextureImage(imgMappedSun).Transform(m.Scale3Uniform(1.0*cm));
+  geoMercury = geoSphere.TextureImage(imgMappedMercury).Transform(m.Scale3Uniform(0.16*cm));
+  geoVenus = geoSphere.TextureImage(imgMappedVenus).Transform(m.Scale3Uniform(0.4*cm));
+  geoEarth = geoSphere.TextureImage(imgMappedEarth).Transform(m.Scale3Uniform(0.4*cm));
+  geoMoon = geoSphere.TextureImage(imgMappedMoon).Transform(m.Scale3Uniform(0.15*cm));
+  geoMars = geoSphere.TextureImage(imgMappedMars).Transform(m.Scale3Uniform(0.22*cm));
+
+  distMercury = 1.6*cm;
+  distVenus = 2.9*cm;
+  distEarth = 4*cm;
+  distMoon = 0.8*cm;
+  distMars = 6*cm;
+
+  periodMercury = 10*pi/88;
+  periodVenus = 10*pi/224;
+  periodEarth = 10*pi/365;
+  periodMoon = 10*pi/27;
+  periodMars = 10*pi/686;
+
+  own_periodSun = pi/25;
+  own_periodMercury = pi/59;
+  own_periodVenus = pi/243;
+  own_periodEarth = pi;
+  own_periodMoon = pi/27;
+  own_periodMars = pi;
+
+  rotSun = geoSun.Transform(m.Rotate3Rate(m.YVector3, own_periodSun));
+
+  rotMercury = geoMercury.Transform(
+	m.Compose3(m.Rotate3Rate(m.YVector3, periodMercury),m.Compose3(m.Translate3(distMercury,0,0),
+	  m.Rotate3Rate(m.YVector3, own_periodMercury))));
+
+  rotVenus = geoVenus.Transform(
+    m.Compose3(m.Rotate3Rate(m.YVector3, periodVenus), m.Compose3(m.Translate3(distVenus,0,0),
+	  m.Rotate3Rate(m.YVector3, own_periodVenus))));
+
+  rotEarth = geoEarth.Transform(
+    m.Compose3(m.Rotate3Rate(m.YVector3, periodEarth), m.Compose3(m.Translate3(distEarth,0,0),
+	  m.Rotate3Rate(m.YVector3, own_periodEarth))));
+
+  originEarth = m.Origin3.Transform(m.Compose3(m.Rotate3Rate(m.YVector3, periodEarth),
+    m.Translate3(distEarth,0,0)));
+
+  rotMoon = geoMoon.Transform(m.Compose3(m.Translate3Point(originEarth),
+    m.Compose3(m.Rotate3Rate(m.YVector3, periodMoon), m.Translate3(distMoon,0,0))));
+
+  soundGeo = soundGeo.Transform(m.Compose3(m.Translate3Point(originEarth),
+    m.Compose3(m.Rotate3Rate(m.YVector3, periodMoon), m.Translate3(distMoon,0,0))));
+
+
+  rotMars = geoMars.Transform(
+    m.Compose3(m.Rotate3Rate(m.YVector3, periodMars), m.Compose3(m.Translate3(distMars,0,0),
+	  m.Rotate3Rate(m.YVector3, own_periodMars))));
+
+  camera = m.PerspectiveCamera(dim*5, dim + 4*cm);
+
+  geoModel =   m.UnionGeometry(rotMars, m.UnionGeometry(rotMoon,
+    m.UnionGeometry(rotEarth,m.UnionGeometry(rotVenus,
+      m.UnionGeometry(rotMercury,m.UnionGeometry(rotSun, m.DirectionalLight))))));
+
+  planetsAndSoundGeo = m.UnionGeometry(geoModel, soundGeo);
+
+  finalModel = m.UnionGeometry(planetsAndSoundGeo.Transform(m.Rotate3(m.XVector3,pi/16)),m.PointLight);
+   
+  imgModel = finalModel.Render(camera);
+
+  //the sound 
+  spatialSound = m.Mix(finalModel.RenderSound(m.DefaultMicrophone.Transform(m.Translate3(-0.5,0,1))).Pan(-1),
+  finalModel.RenderSound(m.DefaultMicrophone.Transform(m.Translate3(0.5,0,1))).Pan(1));
+
+  DAControl.Sound = spatialSound;
+
+  DAControl.Image = m.Overlay(imgModel, imgStars.Tile());
+  DAControl.Start();
+ 
+ }
+ else
+    window.top.location.href = "../../../../../help/da/demo/demo_downlevel.htm"
+-->
+</SCRIPT>
+</FONT>
+</BODY>
+</HTML>

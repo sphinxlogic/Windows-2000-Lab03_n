@@ -1,0 +1,48 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\hclient.res \
+    $(_OBJ_DIR)\alpha\hclient.obj \
+    $(_OBJ_DIR)\alpha\pnp.obj \
+    $(_OBJ_DIR)\alpha\report.obj \
+    $(_OBJ_DIR)\alpha\strings.obj \
+    $(_OBJ_DIR)\alpha\logpnp.obj \
+    $(_OBJ_DIR)\alpha\buffers.obj \
+    $(_OBJ_DIR)\alpha\ecdisp.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\hclient.res \
+    $(_OBJ_DIR)\axp64\hclient.obj \
+    $(_OBJ_DIR)\axp64\pnp.obj \
+    $(_OBJ_DIR)\axp64\report.obj \
+    $(_OBJ_DIR)\axp64\strings.obj \
+    $(_OBJ_DIR)\axp64\logpnp.obj \
+    $(_OBJ_DIR)\axp64\buffers.obj \
+    $(_OBJ_DIR)\axp64\ecdisp.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\hclient.res \
+    $(_OBJ_DIR)\i386\hclient.obj \
+    $(_OBJ_DIR)\i386\pnp.obj \
+    $(_OBJ_DIR)\i386\report.obj \
+    $(_OBJ_DIR)\i386\strings.obj \
+    $(_OBJ_DIR)\i386\logpnp.obj \
+    $(_OBJ_DIR)\i386\buffers.obj \
+    $(_OBJ_DIR)\i386\ecdisp.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\hclient.res \
+    $(_OBJ_DIR)\ia64\hclient.obj \
+    $(_OBJ_DIR)\ia64\pnp.obj \
+    $(_OBJ_DIR)\ia64\report.obj \
+    $(_OBJ_DIR)\ia64\strings.obj \
+    $(_OBJ_DIR)\ia64\logpnp.obj \
+    $(_OBJ_DIR)\ia64\buffers.obj \
+    $(_OBJ_DIR)\ia64\ecdisp.obj
+
+PASS0_IA64_OBJECTS=
+

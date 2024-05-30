@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Using Cookies</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_using_cookies"></a> Using Cookies</h3>
+<p>
+You can use cookies to store information about a particular client, session, or application. You can then use this information to intelligently customize and streamline a client browser's session. </p>
+<p>
+This sample illustrates how your application can query the value of a particular cookie. IIS makes cookies available to ASP scripts through the <b>Request.Cookies</b> collection. This example first queries the cookie CookieVBScript or CookieJScript by using the standard collection-access format, <i>object.collection</i>(<i>keyname</i>). It then resets that cookie to the current date and time.</p>
+<p>
+If the initial query yields a null string, that indicates the client browser has never visited the page in question before; and a first-time welcome message is displayed. If a value was returned by the initial query of CookieVBScript or CookieJScript, however, it indicates not only that the client browser has visited before, but when that last visit took place.</p>
+<p>
+<b>Note</b>&nbsp;&nbsp;IIS sends all HTTP headers required for a given Web page or script before any HTML is sent to the client browser. Therefore, all statements and methods that modify the HTTP headers of the response, including setting of the <b>Response.Cookies</b> collection members, must be located before the &lt;HTML&gt; tag in your script. If your script attempts to modify the HTTP headers after the server has begun sending HTML content back to the client browser, the script will generate an error. </p>
+</BODY>
+</HTML>

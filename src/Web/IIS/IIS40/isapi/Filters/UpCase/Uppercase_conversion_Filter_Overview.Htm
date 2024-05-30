@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Uppercase Conversion Filter</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_uppercase_conversion_filter"></a>Uppercase Conversion Filter</h3>
+<p>
+This sample illustrates how you can create a simple conversion filter. Any conversion filter must accomplish several tasks, including parsing HTTP request headers, sending HTTP responses, and saving filter state. For the purposes of demonstration, this sample filter converts HTML files into upper case if requested by the client browser. The client browser makes the request by inserting the (nonexistent) subdirectory \uc someplace in the URL path. Thus the URL request</p>
+<pre>http://www.mysite.com/uc/mypage.htm</pre>
+<p>
+would indicate that the server should send an all-upper case version of the mypage.htm file back to the client browser. </p>
+<p>
+The <b>GetFilterVersion</b> entry-point function is called by IIS when the filter is first loaded into memory, when the Web service is initially started. In addition to passing the typical version and descriptive information to IIS, <b>GetFilterVersion</b> also registers this filter for the SF_NOTIFY_URL_MAP and SF_NOTIFY_SEND_RAW_DATA notifications. </p>
+<p>
+As with most filters, <b>HttpFilterProc</b> handles the bulk of the processing. <b>HttpFilterProc</b> will first be invoked when the client browser's URL request has been received and mapped to a local, physical path on the server. The filter parses the path, looking for the \uc string that will indicate whether the file should be converted to uppercase. If the string is found, it is removed from the request, the request is reassembled, and the pFilterContext member of the HTTP_FILTER_CONTEXT structure is set to 1. If the string is not found, pFilterContext remains null. </p>
+<p>
+When <b>HttpFilterProc</b> is invoked for the SF_NOTIFY_SEND_RAW_DATA notifications, it first checks to see if the pFilterContext flag has been set or not. A null value for the flag indicates that the \uc string was never found in the SF_NOTIFIY_URL_MAP event, so no conversion is performed for the current request. However, if pFilterContext has been set to 1, it indicates that the string was found and that uppercase conversion is requested by the client browser. </p>
+<p>
+Once it is determined that conversion is requested, <b>HttpFilterProc</b> runs through a series of loops to parse the outgoing response. The first loop separates the HTTP header from the rest of the response. The header is then searched to make sure that the content-type of the response is HTML. The final loop of the function performs the actual character case conversion. It is important to note that if <b>HttpFilterProc</b> did not check the content-type specified in the header, responses that contained binary data, such as GIF files, would be corrupted by the case conversion loop. </p>
+<p>
+This sample is provided for educational purposes only. It has not been tested in a production environment, and Microsoft&reg; will not provide technical support for it. </p>
+</BODY>
+</HTML>

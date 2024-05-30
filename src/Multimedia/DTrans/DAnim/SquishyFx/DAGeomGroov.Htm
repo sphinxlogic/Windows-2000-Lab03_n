@@ -1,0 +1,345 @@
+<HTML>
+<HEAD><TITLE>GeomGroov Direct Animation Sample</TITLE>
+
+<!-- ************************************************************************************** -->
+<!-- **********************************BGN SCRIPT ***************************************** -->
+<!-- ************************************************************************************** -->
+
+<script LANGUAGE="JavaScript">
+<!--
+
+
+
+function presetz(num){
+
+Geomgroove.preset=num;
+updatinputboxes();
+}
+
+function updatinputboxes(){
+
+				
+			
+				
+				AmplitudeX.value=	Geomgroove.amplitudeX;
+	
+				AmplitudeY.value=Geomgroove.amplitudeY;
+			
+				AmplitudeZ.value=Geomgroove.amplitudeZ;
+			
+			
+
+				speedX.value=	Geomgroove.speedx;
+	
+				speedY.value=Geomgroove.speedy;
+			
+				speedZ.value=Geomgroove.speedz;
+			
+				
+
+			
+				FrequencyX.value=Geomgroove.frequencyX;
+			
+				FrequencyY.value=Geomgroove.frequencyY;
+			
+				FrequencyZ.value=Geomgroove.frequencyZ;
+			
+			
+				timeAccurate.value=Geomgroove.timeAccurate;
+				physics.value=Geomgroove.physics;				
+				oscillation.value=Geomgroove.oscillation;
+				gravity.value=Geomgroove.gravity;				
+				lifespan.value=Geomgroove.lifespan;
+			lifespan_noise.value=Geomgroove.lifeSpanNoise;
+				VelocityX.value=Geomgroove.velocityX;
+				VelocityY.value=Geomgroove.velocityY;
+				VelocityZ.value=Geomgroove.velocityZ;
+				vNoiseX.value=Geomgroove.vNoiseX;
+				vNoiseY.value=Geomgroove.vNoiseY;
+			    vNoiseZ.value=Geomgroove.vNoiseZ;
+				bounciness.value=Geomgroove.bounciness;
+				roomsize.value=Geomgroove.roomsize;			
+				
+
+
+}
+
+//------------------------------------------------------------
+function updateall()
+{
+				Geomgroove.amplitudeX=AmplitudeX.value;
+				Geomgroove.amplitudeY=AmplitudeY.value;
+				Geomgroove.amplitudeZ=AmplitudeZ.value;
+				
+
+				Geomgroove.speedx=speedX.value;
+				Geomgroove.speedy=speedY.value;
+ 				Geomgroove.speedz=speedZ.value;
+				
+				Geomgroove.frequencyX=FrequencyX.value;
+				Geomgroove.frequencyY=FrequencyY.value;
+				
+				Geomgroove.frequencyZ=FrequencyZ.value;
+			
+			
+			
+				Geomgroove.timeAccurate=timeAccurate.value;
+				
+				Geomgroove.physics=physics.value;				
+				
+				Geomgroove.oscillation=oscillation.value;
+				
+				
+				Geomgroove.gravity=gravity.value;				
+				
+				Geomgroove.lifespan=lifespan.value;
+				Geomgroove.lifeSpanNoise=lifespan_noise.value;
+				
+				Geomgroove.velocityX=VelocityX.value;
+				Geomgroove.velocityY=VelocityY.value;
+				Geomgroove.velocityZ=VelocityZ.value;
+				
+				Geomgroove.vNoiseX=vNoiseX.value;
+				Geomgroove.vNoiseY=vNoiseY.value;
+			    Geomgroove.vNoiseZ=vNoiseZ.value;
+				
+				Geomgroove.bounciness=bounciness.value;
+				Geomgroove.roomsize=roomsize.value;		
+
+}
+//------------------------------------------------------------
+
+
+var Geomgroove;
+function t3dLoad() 
+{
+		 m = DAControl.MeterLibrary;
+		Geomgroove=new ActiveXObject("DX3DTransform.SquishyFX.GeomGroov");
+		
+		
+		Geom = m.ImportGeometry("media/test3.x");
+		inputs = new Array(1);
+		inputs[0] = Geom;
+	
+		//animation parameters could pass evaluator to ApplyDXTransform
+		holdTime = m.DANumber(0).Duration(0);
+		forward = m.Interpolate(0, 1, 3);
+		back = m.Interpolate(1, 0, 3);
+
+		evaluator =
+		m.Sequence(holdTime, m.Sequence(forward, back)).RepeatForever();
+
+		result = m.ApplyDXTransform(Geomgroove, inputs, evaluator);
+		grooveGeo = result.OutputBvr;
+  
+		texture = m.ImportImage("media/joe.jpg");
+		texture = texture.MapToUnitSquare();
+		grooveGeo = grooveGeo.Texture(texture);
+
+
+   // Place nicely in the window.                  
+  //grooveGeo = grooveGeo.Transform(m.Translate3(0, 0, 0));
+
+ grooveGeo = grooveGeo.Transform(m.Scale3Uniform(1))
+  camerapos=30;
+ 
+  // a point light
+  light = m.PointLight.Transform(m.Translate3(camerapos, camerapos/2, 1.3*camerapos));
+
+  // a perspective camera
+  camera = m.PerspectiveCamera(.25, .001).Transform(m.Translate3(0, 0, camerapos));
+
+  // render the geometry with the light and camera
+  finalImg = m.UnionGeometry(grooveGeo, light).Render(camera);
+
+  fpsImg = m.StringImageAnim(m.ViewFrameRate.ToString(1),
+                             m.DefaultFont.Color(m.Red));
+  fpsImg = fpsImg.Transform(m.Scale2Uniform(2))
+		 .Transform(m.Translate2(0, -.05));
+
+  fpsImg = m.Cond(m.LeftButtonState, fpsImg, m.EmptyImage);
+
+  finalImg = m.Overlay(fpsImg, finalImg);
+
+
+  // Use Trident timers for speed.
+  DAControl.TimerSource = 1;
+
+  //col = m.ColorHslAnim(m.Div(m.LocalTime, m.DANumber(20)), m.DANumber(0.2), m.DANumber(0.9));  
+  //DAControl.Image = m.Overlay(finalImg, m.SolidColorImage(col));
+
+  // Can't have a really static background until 18306 is resolved.
+  //having a static background slows us down
+  DAControl.Image = m.Overlay(finalImg, m.SolidColorImage(m.Blue));
+ 
+  // start the animation       
+  DAControl.Start();
+
+
+	updatinputboxes();
+	presetz(1);
+				
+
+			
+
+
+}
+
+
+
+
+
+
+-->
+</script>
+
+<!-- ************************************************************************************** -->
+
+<!-- **********************************END SCRIPT AND BGN htXML********************************** -->
+
+<!-- ************************************************************************************** -->
+
+
+</HEAD>
+
+<BODY bgcolor="black" text="orange" onload="t3dLoad()">
+
+<center>
+<h1>GeomGroov Animating a Mesh from a .X file</h1>
+<br>
+
+
+<!-- ************************************************************************************** -->
+
+<!-- ********{  2   }******************GEOM GROOV TRANSFORM ********************************** -->
+
+<!-- ************************************************************************************** -->
+
+
+
+
+<OBJECT ID="DAControl"
+  STYLE="width:600;height:400" 
+  CLASSID="CLSID:69AD90EF-1C20-11d1-8801-00C04FC29D46">
+</OBJECT>
+
+
+<!-- ************************************************************************************** -->
+<!-- **********************************CONSOLE********************************************* -->
+<!-- ************************************************************************************** -->
+
+<br>
+
+
+
+
+<table border =4>
+
+
+<tr>
+<td colspan=4>presets</td>
+<td><INPUT ID="update" TYPE="BUTTON" STYLE="width:60" VALUE="2dbounce" TITLE="update button" onClick="presetz(1)"></td>
+<td><INPUT ID="update" TYPE="BUTTON" STYLE="width:60" VALUE="3dbounce" TITLE="update button" onClick="presetz(2)"></td>
+
+<td><INPUT ID="update" TYPE="BUTTON" STYLE="width:60" VALUE="oscill" TITLE="update button" onClick="presetz(5)"></td>
+<td><INPUT ID="update" TYPE="BUTTON" STYLE="width:60" VALUE="oscill1" TITLE="update button" onClick="presetz(6)"></td>
+<td><INPUT ID="update" TYPE="BUTTON" STYLE="width:60" VALUE="oscill2" TITLE="update button" onClick="presetz(7)"></td>
+<td><INPUT ID="update" TYPE="BUTTON" STYLE="width:60" VALUE="oscill3" TITLE="update button" onClick="presetz(8)"></td>
+
+
+
+</tr>
+</table>
+<br>
+<table border =4>
+<tr>
+<td colspan=8 align="center"><INPUT ID="update" TYPE="BUTTON"  VALUE="                                                    update                                           " TITLE="update button" onClick="updateall()"></input></td>
+</tr>
+<tr><td>
+<table border =4>
+
+
+
+<tr>
+   <td colspan=2>velocity</td>   <td colspan=2>noise</td> <td colspan=2>frequency</td>    <td colspan=2>amplitude</td>   <td colspan=2>speed</td> 
+</tr>
+<tr>
+
+
+
+<td>vx</td> <td><INPUT ID="VelocityX" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="vx"></input></td>
+<td>nx(0-1)</td> <td><INPUT ID="vNoiseX" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="nx"></input></td>
+<td>fx</td><td><INPUT ID="FrequencyX" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="fx"></input></td>
+<td>ax</td><td><INPUT ID="AmplitudeX" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="ax"></input></td>
+<td>sx</td><td><INPUT ID="speedX" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="speedx"></input></td>
+
+</tr>
+<tr>
+
+<td>vy</td><td><INPUT ID="VelocityY" TYPE="TEXT"  STYLE="width:40" VALUE=".0" TITLE="vy"></input></td>
+<td>ny(0-1)</td><td><INPUT ID="vNoiseY" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="ny"></input></td>
+<td>fy</td><td><INPUT ID="FrequencyY" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="fy"></input></td>
+<td>ay</td><td><INPUT ID="AmplitudeY" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="ay"></input></td>
+<td>sy</td><td><INPUT ID="speedY" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="speedy"></input></td>
+
+
+</tr>
+
+
+<tr>
+
+
+<td>vz</td><td><INPUT ID="VelocityZ" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="vz"></input></td>
+<td>nz(0-1)</td><td><INPUT ID="vNoiseZ" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="nz"></input></td>
+<td>fz</td><td><INPUT ID="FrequencyZ" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="fz"></input></td>
+<td>az</td><td><INPUT ID="AmplitudeZ" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="az"></input></td>
+<td>sz</td><td><INPUT ID="speedZ" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="speedz"></input></td>
+
+</tr>
+
+
+</table>
+</td>
+<td>
+<table border=2>
+
+<tr>
+<td>oscillation (0/1)</td><td><INPUT ID="oscillation" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="oscill"></input></td>
+<td>physics (0/1)</td><td><INPUT ID="physics" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="ph"></input></td>
+
+
+
+</tr>
+
+<tr>
+
+<td>grav</td><td><INPUT ID="gravity" TYPE="TEXT"  STYLE="width:50" VALUE="0" TITLE="gravity"></input></td>
+<td>bounciness (0/1)</td><td><INPUT ID="bounciness" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="bounciness"></input></td>
+</tr>
+
+<tr>
+<td>roomsize</td><td><INPUT ID="roomsize" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="roomsize"></input></td>
+<td>lifespan</td><td><INPUT ID="lifespan" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="lifespan"></input></td>
+
+</tr>
+
+
+<tr>
+<td>lifespan noise (0-1)</td><td><INPUT ID="lifespan_noise" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="lifespan_noise"></input></td>
+<td>timeacc(0/1)</td><td><INPUT ID="timeAccurate" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="ta"></input></td>
+
+
+</tr>
+
+
+</table>
+</td>
+</TR>
+</table>
+
+
+
+
+</CENTER>
+</BODY>
+</HTML>

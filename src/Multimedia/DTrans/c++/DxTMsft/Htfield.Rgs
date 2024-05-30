@@ -1,0 +1,26 @@
+HKCR
+{
+	DX3DTransform.Microsoft.HeightField.1 = s 'HeightField'
+	{
+		CLSID = s '{04921709-B159-11d1-9207-0000F8758E66}'
+	}
+	DX3DTransform.Microsoft.HeightField = s 'HeightField'
+	{
+		CurVer = s 'DX3DTransform.Microsoft.HeightField.1'
+		CLSID = s '{04921709-B159-11d1-9207-0000F8758E66}'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {04921709-B159-11d1-9207-0000F8758E66} = s 'HeightField'
+		{
+			ProgID = s 'DX3DTransform.Microsoft.HeightField.1'
+			VersionIndependentProgID = s 'DX3DTransform.Microsoft.HeightField'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+                        ToolBoxBitmap32 = s '%MODULE%,235'
+		}
+	}
+}

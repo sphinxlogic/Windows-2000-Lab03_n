@@ -1,0 +1,135 @@
+// --edkrtf.chk------------------------------------------------------------------
+//
+// Parameter checking for edkrtf.c
+//
+// Copyright (C) Microsoft Corp. 1986-1996. All rights reserved.
+//
+// ----------------------------------------------------------------------------
+#ifndef DEBUG
+#define CHK_HrTextToRTFCompressed(a,b,c,d,e,f) NOERROR
+#define CHK_HrRTFCompressedToText(a,b,c,d) 	NOERROR
+#else
+//$--CHK_HrTextToRTFCompressed--------------------------------------------------
+//
+// DESCRIPTION: Parameter checking for HrTextToRTFCompressed
+// 
+// INPUT:       cchText --  number of characters of text
+//              lpText  --  plain ANSI text to convert
+//				cAttachments	--	number of message attachments (optional)
+//				rgiRendering	--	array of attachment rendering positions (optional)
+//              lpMsg   --  MAPI message pointer to set RTF compressed for
+//
+// RETURNS:     HRESULT --  NOERROR if successful,
+//                          E_INVALIDARG if bad input,
+//
+// ----------------------------------------------------------------------------
+static __inline HRESULT CHK_HrTextToRTFCompressed(
+            IN ULONG cchText,       // # characters of text
+            IN LPSTREAM lpText,     // plain text stream pointer
+			IN ULONG cAttachments,	// # of message attachments
+			IN ULONG * rgiRendering,// array of attachment rendering positions
+            IN LPMESSAGE lpMsg,     // MAPI message pointer
+            IN ULONG cpid)          // code page
+{
+    HRESULT hr                          =   NOERROR;
+
+    if ( cchText < 1 )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_IUNKNOWN_PTR(lpText) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+	if ( (cAttachments > 0) &&
+	     ( ! TEST_READ_PTR(rgiRendering, cAttachments * sizeof(ULONG)) ) )
+	{
+		hr = HR_LOG(E_INVALIDARG);
+
+		goto cleanup;
+	}
+
+    if ( ! TEST_IUNKNOWN_PTR(lpMsg) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( cpid < 0 )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return hr;
+
+}
+
+//$--CHK_HrRTFCompressedToText--------------------------------------------------
+//
+// DESCRIPTION: Parameter checking for HrRTFCompressedToText
+// 
+// INPUT:       lpMsg   --  MAPI message pointer for which to retrieve
+//                          the ANSI text.
+//              pText   --   pointer to ANSI message text stream to
+//                          which ANSI message text is copied.
+//              cpid    --  code page
+//
+// OUTPUT:      pcb     --  number of bytes copied to stream
+//
+// RETURNS:     HRESULT --  NOERROR if successful,
+//                          E_INVALIDARG if bad input,
+//
+// ----------------------------------------------------------------------------
+static __inline HRESULT CHK_HrRTFCompressedToText(
+            IN LPMESSAGE lpMsg,     // MAPI message pointer
+            IN LPSTREAM pText,      // pointer to plain text stream
+            IN ULONG cpid,          // code page
+            OUT ULONG * pcb)        // # bytes copied to stream
+{
+    HRESULT     hr                          =   NOERROR;
+
+    if ( ! TEST_IUNKNOWN_PTR(lpMsg) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_IUNKNOWN_PTR(pText) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( cpid < 0 )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_WRITE_PTR(pcb, sizeof(ULONG)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return hr;
+
+}
+#endif

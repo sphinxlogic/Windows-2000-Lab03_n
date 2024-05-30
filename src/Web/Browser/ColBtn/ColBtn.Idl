@@ -1,0 +1,45 @@
+
+//=--------------------------------------------------------------------------=
+//  (C) Copyright 1996-1999 Microsoft Corporation. All Rights Reserved.
+//=--------------------------------------------------------------------------=
+#include <olectl.h>
+// colbtn.idl : IDL source for colbtn.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (colbtn.tlb) and marshalling code.
+import "oaidl.idl";
+import "ocidl.idl";
+
+
+	
+
+	[
+		object,
+		uuid(7022DA42-930B-11D0-AF9A-00A0C909FE5F),
+		dual,
+		helpstring("IButton Interface"),
+		pointer_default(unique)
+	]
+	interface IButton : IDispatch
+	{
+	};
+[
+	uuid(7022DA40-930B-11D0-AF9A-00A0C909FE5F),
+	version(1.0),
+	helpstring("colbtn 1.0 Type Library")
+]
+library COLBTNLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(7022DA43-930B-11D0-AF9A-00A0C909FE5F),
+		helpstring("Button Class")
+	]
+	coclass Button
+	{
+		[default] interface IButton;
+	};
+};

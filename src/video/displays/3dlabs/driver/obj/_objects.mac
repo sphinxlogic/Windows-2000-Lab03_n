@@ -1,0 +1,212 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\res.res \
+    $(_OBJ_DIR)\alpha\bitblt.obj \
+    $(_OBJ_DIR)\alpha\brush.obj \
+    $(_OBJ_DIR)\alpha\clip.obj \
+    $(_OBJ_DIR)\alpha\d3d.obj \
+    $(_OBJ_DIR)\alpha\d3ddx6.obj \
+    $(_OBJ_DIR)\alpha\d3dhw.obj \
+    $(_OBJ_DIR)\alpha\d3dline.obj \
+    $(_OBJ_DIR)\alpha\d3dpoint.obj \
+    $(_OBJ_DIR)\alpha\d3dstate.obj \
+    $(_OBJ_DIR)\alpha\d3dtri.obj \
+    $(_OBJ_DIR)\alpha\d3dtxman.obj \
+    $(_OBJ_DIR)\alpha\dd.obj \
+    $(_OBJ_DIR)\alpha\ddblt.obj \
+    $(_OBJ_DIR)\alpha\ddcpyblt.obj \
+    $(_OBJ_DIR)\alpha\dddebug.obj \
+    $(_OBJ_DIR)\alpha\ddenable.obj \
+    $(_OBJ_DIR)\alpha\ddldblt.obj \
+    $(_OBJ_DIR)\alpha\ddstrblt.obj \
+    $(_OBJ_DIR)\alpha\ddsurf.obj \
+    $(_OBJ_DIR)\alpha\debug.obj \
+    $(_OBJ_DIR)\alpha\download.obj \
+    $(_OBJ_DIR)\alpha\draw.obj \
+    $(_OBJ_DIR)\alpha\enable.obj \
+    $(_OBJ_DIR)\alpha\escape.obj \
+    $(_OBJ_DIR)\alpha\fastfill.obj \
+    $(_OBJ_DIR)\alpha\fillpath.obj \
+    $(_OBJ_DIR)\alpha\hwinit.obj \
+    $(_OBJ_DIR)\alpha\hwmisc.obj \
+    $(_OBJ_DIR)\alpha\heap.obj \
+    $(_OBJ_DIR)\alpha\lines.obj \
+    $(_OBJ_DIR)\alpha\lineto.obj \
+    $(_OBJ_DIR)\alpha\log.obj \
+    $(_OBJ_DIR)\alpha\mini.obj \
+    $(_OBJ_DIR)\alpha\p2ctxt.obj \
+    $(_OBJ_DIR)\alpha\palette.obj \
+    $(_OBJ_DIR)\alpha\patnfill.obj \
+    $(_OBJ_DIR)\alpha\permedia.obj \
+    $(_OBJ_DIR)\alpha\pointer.obj \
+    $(_OBJ_DIR)\alpha\registry.obj \
+    $(_OBJ_DIR)\alpha\rops.obj \
+    $(_OBJ_DIR)\alpha\solidfil.obj \
+    $(_OBJ_DIR)\alpha\stretch.obj \
+    $(_OBJ_DIR)\alpha\strips.obj \
+    $(_OBJ_DIR)\alpha\stroke.obj \
+    $(_OBJ_DIR)\alpha\sync.obj \
+    $(_OBJ_DIR)\alpha\textout.obj \
+    $(_OBJ_DIR)\alpha\text.obj \
+    $(_OBJ_DIR)\alpha\thunks.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\res.res \
+    $(_OBJ_DIR)\axp64\bitblt.obj \
+    $(_OBJ_DIR)\axp64\brush.obj \
+    $(_OBJ_DIR)\axp64\clip.obj \
+    $(_OBJ_DIR)\axp64\d3d.obj \
+    $(_OBJ_DIR)\axp64\d3ddx6.obj \
+    $(_OBJ_DIR)\axp64\d3dhw.obj \
+    $(_OBJ_DIR)\axp64\d3dline.obj \
+    $(_OBJ_DIR)\axp64\d3dpoint.obj \
+    $(_OBJ_DIR)\axp64\d3dstate.obj \
+    $(_OBJ_DIR)\axp64\d3dtri.obj \
+    $(_OBJ_DIR)\axp64\d3dtxman.obj \
+    $(_OBJ_DIR)\axp64\dd.obj \
+    $(_OBJ_DIR)\axp64\ddblt.obj \
+    $(_OBJ_DIR)\axp64\ddcpyblt.obj \
+    $(_OBJ_DIR)\axp64\dddebug.obj \
+    $(_OBJ_DIR)\axp64\ddenable.obj \
+    $(_OBJ_DIR)\axp64\ddldblt.obj \
+    $(_OBJ_DIR)\axp64\ddstrblt.obj \
+    $(_OBJ_DIR)\axp64\ddsurf.obj \
+    $(_OBJ_DIR)\axp64\debug.obj \
+    $(_OBJ_DIR)\axp64\download.obj \
+    $(_OBJ_DIR)\axp64\draw.obj \
+    $(_OBJ_DIR)\axp64\enable.obj \
+    $(_OBJ_DIR)\axp64\escape.obj \
+    $(_OBJ_DIR)\axp64\fastfill.obj \
+    $(_OBJ_DIR)\axp64\fillpath.obj \
+    $(_OBJ_DIR)\axp64\hwinit.obj \
+    $(_OBJ_DIR)\axp64\hwmisc.obj \
+    $(_OBJ_DIR)\axp64\heap.obj \
+    $(_OBJ_DIR)\axp64\lines.obj \
+    $(_OBJ_DIR)\axp64\lineto.obj \
+    $(_OBJ_DIR)\axp64\log.obj \
+    $(_OBJ_DIR)\axp64\mini.obj \
+    $(_OBJ_DIR)\axp64\p2ctxt.obj \
+    $(_OBJ_DIR)\axp64\palette.obj \
+    $(_OBJ_DIR)\axp64\patnfill.obj \
+    $(_OBJ_DIR)\axp64\permedia.obj \
+    $(_OBJ_DIR)\axp64\pointer.obj \
+    $(_OBJ_DIR)\axp64\registry.obj \
+    $(_OBJ_DIR)\axp64\rops.obj \
+    $(_OBJ_DIR)\axp64\solidfil.obj \
+    $(_OBJ_DIR)\axp64\stretch.obj \
+    $(_OBJ_DIR)\axp64\strips.obj \
+    $(_OBJ_DIR)\axp64\stroke.obj \
+    $(_OBJ_DIR)\axp64\sync.obj \
+    $(_OBJ_DIR)\axp64\textout.obj \
+    $(_OBJ_DIR)\axp64\text.obj \
+    $(_OBJ_DIR)\axp64\thunks.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\res.res \
+    $(_OBJ_DIR)\i386\bitblt.obj \
+    $(_OBJ_DIR)\i386\brush.obj \
+    $(_OBJ_DIR)\i386\clip.obj \
+    $(_OBJ_DIR)\i386\d3d.obj \
+    $(_OBJ_DIR)\i386\d3ddx6.obj \
+    $(_OBJ_DIR)\i386\d3dhw.obj \
+    $(_OBJ_DIR)\i386\d3dline.obj \
+    $(_OBJ_DIR)\i386\d3dpoint.obj \
+    $(_OBJ_DIR)\i386\d3dstate.obj \
+    $(_OBJ_DIR)\i386\d3dtri.obj \
+    $(_OBJ_DIR)\i386\d3dtxman.obj \
+    $(_OBJ_DIR)\i386\dd.obj \
+    $(_OBJ_DIR)\i386\ddblt.obj \
+    $(_OBJ_DIR)\i386\ddcpyblt.obj \
+    $(_OBJ_DIR)\i386\dddebug.obj \
+    $(_OBJ_DIR)\i386\ddenable.obj \
+    $(_OBJ_DIR)\i386\ddldblt.obj \
+    $(_OBJ_DIR)\i386\ddstrblt.obj \
+    $(_OBJ_DIR)\i386\ddsurf.obj \
+    $(_OBJ_DIR)\i386\debug.obj \
+    $(_OBJ_DIR)\i386\download.obj \
+    $(_OBJ_DIR)\i386\draw.obj \
+    $(_OBJ_DIR)\i386\enable.obj \
+    $(_OBJ_DIR)\i386\escape.obj \
+    $(_OBJ_DIR)\i386\fastfill.obj \
+    $(_OBJ_DIR)\i386\fillpath.obj \
+    $(_OBJ_DIR)\i386\hwinit.obj \
+    $(_OBJ_DIR)\i386\hwmisc.obj \
+    $(_OBJ_DIR)\i386\heap.obj \
+    $(_OBJ_DIR)\i386\lines.obj \
+    $(_OBJ_DIR)\i386\lineto.obj \
+    $(_OBJ_DIR)\i386\log.obj \
+    $(_OBJ_DIR)\i386\mini.obj \
+    $(_OBJ_DIR)\i386\p2ctxt.obj \
+    $(_OBJ_DIR)\i386\palette.obj \
+    $(_OBJ_DIR)\i386\patnfill.obj \
+    $(_OBJ_DIR)\i386\permedia.obj \
+    $(_OBJ_DIR)\i386\pointer.obj \
+    $(_OBJ_DIR)\i386\registry.obj \
+    $(_OBJ_DIR)\i386\rops.obj \
+    $(_OBJ_DIR)\i386\solidfil.obj \
+    $(_OBJ_DIR)\i386\stretch.obj \
+    $(_OBJ_DIR)\i386\strips.obj \
+    $(_OBJ_DIR)\i386\stroke.obj \
+    $(_OBJ_DIR)\i386\sync.obj \
+    $(_OBJ_DIR)\i386\textout.obj \
+    $(_OBJ_DIR)\i386\text.obj \
+    $(_OBJ_DIR)\i386\thunks.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\res.res \
+    $(_OBJ_DIR)\ia64\bitblt.obj \
+    $(_OBJ_DIR)\ia64\brush.obj \
+    $(_OBJ_DIR)\ia64\clip.obj \
+    $(_OBJ_DIR)\ia64\d3d.obj \
+    $(_OBJ_DIR)\ia64\d3ddx6.obj \
+    $(_OBJ_DIR)\ia64\d3dhw.obj \
+    $(_OBJ_DIR)\ia64\d3dline.obj \
+    $(_OBJ_DIR)\ia64\d3dpoint.obj \
+    $(_OBJ_DIR)\ia64\d3dstate.obj \
+    $(_OBJ_DIR)\ia64\d3dtri.obj \
+    $(_OBJ_DIR)\ia64\d3dtxman.obj \
+    $(_OBJ_DIR)\ia64\dd.obj \
+    $(_OBJ_DIR)\ia64\ddblt.obj \
+    $(_OBJ_DIR)\ia64\ddcpyblt.obj \
+    $(_OBJ_DIR)\ia64\dddebug.obj \
+    $(_OBJ_DIR)\ia64\ddenable.obj \
+    $(_OBJ_DIR)\ia64\ddldblt.obj \
+    $(_OBJ_DIR)\ia64\ddstrblt.obj \
+    $(_OBJ_DIR)\ia64\ddsurf.obj \
+    $(_OBJ_DIR)\ia64\debug.obj \
+    $(_OBJ_DIR)\ia64\download.obj \
+    $(_OBJ_DIR)\ia64\draw.obj \
+    $(_OBJ_DIR)\ia64\enable.obj \
+    $(_OBJ_DIR)\ia64\escape.obj \
+    $(_OBJ_DIR)\ia64\fastfill.obj \
+    $(_OBJ_DIR)\ia64\fillpath.obj \
+    $(_OBJ_DIR)\ia64\hwinit.obj \
+    $(_OBJ_DIR)\ia64\hwmisc.obj \
+    $(_OBJ_DIR)\ia64\heap.obj \
+    $(_OBJ_DIR)\ia64\lines.obj \
+    $(_OBJ_DIR)\ia64\lineto.obj \
+    $(_OBJ_DIR)\ia64\log.obj \
+    $(_OBJ_DIR)\ia64\mini.obj \
+    $(_OBJ_DIR)\ia64\p2ctxt.obj \
+    $(_OBJ_DIR)\ia64\palette.obj \
+    $(_OBJ_DIR)\ia64\patnfill.obj \
+    $(_OBJ_DIR)\ia64\permedia.obj \
+    $(_OBJ_DIR)\ia64\pointer.obj \
+    $(_OBJ_DIR)\ia64\registry.obj \
+    $(_OBJ_DIR)\ia64\rops.obj \
+    $(_OBJ_DIR)\ia64\solidfil.obj \
+    $(_OBJ_DIR)\ia64\stretch.obj \
+    $(_OBJ_DIR)\ia64\strips.obj \
+    $(_OBJ_DIR)\ia64\stroke.obj \
+    $(_OBJ_DIR)\ia64\sync.obj \
+    $(_OBJ_DIR)\ia64\textout.obj \
+    $(_OBJ_DIR)\ia64\text.obj \
+    $(_OBJ_DIR)\ia64\thunks.obj
+
+PASS0_IA64_OBJECTS=
+

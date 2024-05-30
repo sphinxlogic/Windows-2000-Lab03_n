@@ -1,0 +1,22 @@
+XSL Visual Pattern Builder
+
+Files:
+XSL_Visual_Builder.exe
+XSL.frm
+XSL.frx
+XSL.log
+XSL.vbp
+XSL.vbw
+XSL_Mod1.bas
+
+Description:
+This demo is a Visual Basic application that allows the user to build XSL patterns and use 
+those patterns to retrieve XML nodes from an XML document.  This demo loads and parses the 
+XML document using the MSXML parser that ships with Microsoft Internet Explorer 5.  It
+also uses the XML Object Model to retrieve nodes based on XSL pattern matching.
+
+This is a great tool for learning the syntax for XSL patterns.  It is also a good example of 
+how to use the MSXML parser from Visual Basic.
+
+Compatibility/Platform Compatibility:
+This demo was built using Visual Basic 6.0 and accesses the MSXML.DLL that ships with Microsoft's Internet Explorer 5.  

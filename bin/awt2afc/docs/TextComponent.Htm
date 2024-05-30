@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>TextComponent -> UIEdit</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">TextComponent to UIEdit</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.TextComponent should be transformed into instances of
+com.ms.ui.UIEdit.</p>
+
+<p align="left">TextComponent extends <a href="Component.htm"
+target="descriptions">Component</a>: be sure to see its changes.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">AWT provides TextComponent as an abstract class
+for two types of text input components, TextArea and TextField.
+AFC provides one class for all three purposes, UIEdit.</p>
+
+<p align="left">&nbsp;</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">This is the set of changes you need to make to
+port all TextComponent methods to UIEdit methods. Any method not
+listed here or below does not need to be changed.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial"><strong>AWT Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>AFC Code</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">getCaretPosition()</font></td>
+        <td nowrap><font size="2" face="Courier">getCurrIndex()</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getText()</font></td>
+        <td><font size="2" face="Courier">getValueText()</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">isEditable()</font></td>
+        <td nowrap><font size="2" face="Courier">(! isReadOnly())</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">select(int, int)</font></td>
+        <td><font size="2" face="Courier">setSelection(int, int)</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setCaretPosition(int)</font></td>
+        <td><font size="2" face="Courier">setCurrIndex(int)</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">setEditable(boolean)</font></td>
+        <td nowrap><font size="2" face="Courier">setReadOnly(!
+        boolean)</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setText()</font></td>
+        <td><font size="2" face="Courier">setValueText()</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">addTextListener(TextListener)</font></td>
+        <td><font size="2" face="Courier">addTextListener(IUITextListener)</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">removeTextListener(TextListener)</font></td>
+        <td nowrap><font size="2" face="Courier">removeTextListener(IUITextListener)</font></td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h3>Unsupported Methods</h3>
+
+<p>Some methods in java.awt.TextComponent are not directly
+supported in com.ms.ui.UIEdit. Those methods and suggested
+changes are described here.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial">AWT Code<strong>/Suggested
+        AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">paramString()</font><p><font
+        size="2" face="Courier"><strong>getName(), etc.</strong></font></p>
+        </td>
+        <td><font size="2">Use the appropriate getXXX function to
+        gather the information you need.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">setSelectionEnd(int)</font><p><font
+        size="2" face="Courier"><strong>setSelection(getSelectionStart(),
+        int)</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setSelectionStart(int)</font><p><font
+        size="2" face="Courier"><strong>setSelection(int,
+        getSelectionEnd())</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+</body>
+</html>

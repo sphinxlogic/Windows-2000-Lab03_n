@@ -1,0 +1,11 @@
+frmMain = 0, 0, 0, 0, C, 0, 0, 0, 0, C
+frmConnectDlg = 0, 0, 0, 0, C, 0, 0, 0, 0, C
+Utils = 0, 0, 0, 0, C
+frmAbout = 0, 0, 0, 0, C, 0, 0, 0, 0, C
+QueryFile = 0, 0, 0, 0, C
+SplitRegion = 0, 0, 0, 0, C, 0, 0, 0, 0, C
+QueryPane = 0, 0, 0, 0, C, 0, 0, 0, 0, C
+QueryTextPane = 0, 0, 0, 0, C, 0, 0, 0, 0, C
+QueryMetaDataPane = 0, 0, 0, 0, C, 0, 0, 0, 0, C
+ResultsPane = 0, 0, 0, 0, C, 0, 0, 0, 0, C
+Globals = 0, 0, 0, 0, C

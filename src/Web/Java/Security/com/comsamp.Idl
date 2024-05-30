@@ -1,0 +1,59 @@
+// comntv.idl
+//
+// Created 09/08/97
+//
+// (C)Copyright 1997 Microsoft Corporation, All rights reserved.
+//
+
+
+cpp_quote("EXTERN_C const CLSID CLSID_CMyCOMObject;")
+cpp_quote("EXTERN_C const CLSID CLSID_CMyCOMObjectSecurity;")
+
+[
+    uuid(8EACC4B0-289A-11d1-BA1D-006008039BF0),
+]
+library JavaSecuritySampleLibrary
+{
+    importlib("stdole32.tlb");
+
+    [
+        object,
+        uuid(8EACC4B1-289A-11d1-BA1D-006008039BF0),
+        pointer_default(unique),
+    ]
+    interface IMyInterface : IUnknown
+    {
+        // Checks FILEIO from COM.
+        HRESULT COMCheckedLoad ([in] BSTR filename, [out] byte buffer[], [in,out] int *bufsize);
+
+        // Checks FILEIO on Java side before calling through COM.
+        HRESULT JavaCheckedLoad ([in] BSTR filename, [out] byte buffer[], [in,out] int *bufsize);
+    }
+
+    [
+        uuid(8EACC4B2-289A-11d1-BA1D-006008039BF0),
+    ]
+    coclass CMyCOMObject
+    {
+        interface IMyInterface;
+    }
+
+    [
+        object,
+        uuid(8EACC4B3-289A-11d1-BA1D-006008039BF0),
+        pointer_default(unique),
+    ]
+    interface IMyCOMObjectSecurity : IUnknown
+    {
+        HRESULT CheckRead ([in] BSTR filename);
+    }
+
+    [
+        uuid(8EACC4B4-289A-11d1-BA1D-006008039BF0),
+    ]
+    coclass CMyCOMObjectSecurity
+    {
+        interface IMyCOMObjectSecurity;
+    }
+}
+

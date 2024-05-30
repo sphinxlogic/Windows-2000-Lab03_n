@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Ad Rotator</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_ad_rotator"></a>  Ad Rotator</h3>
+<p>
+The Ad Rotator component creates an <b>AdRotator</b> object that automates the rotation of advertisement images on a Web page. The component is designed to enable you to display a new advertisement each time a client browser opens or reloads a Web page. </p>
+<p>
+This sample demonstrates how to use the Ad Rotator component. The script itself is simple, creating an instance of the <b>AdRotator</b> object and calling the <b>GetAdvertisement</b> method each time the page is loaded. <b>GetAdvertisement</b> returns a single ad entry from the Ad Rotator schedule file, adrot.txt in this example, and the special script delimiter &lt;% = ... %&gt; displays the results to the client browser. </p>
+<p>
+The schedule file for this sample, adrot.txt, is relatively straightforward. The four lines above the asterisk (*) are global file settings that affect all schedule entries in the file. The most interesting and useful global setting is the redirection specification. In this sample, if a user clicks on the advertisement, no matter which particular entry is currently displayed, they will be transported to the .asp file indicated. These scripts, or DLLs, usually count how many hits a given ad has received, collect user information, and then extract the URL from the request and redirect the client browser once again to the URL they originally requested.</p>
+<p>
+Each of the entries that occurs below the asterisk consist of four lines, denoting the image to be displayed, hyperlink, alternate text, and the relative probability that that particular entry will be displayed on any given visit to that Web page. Thus, the Microsoft&reg; Internet Information Server site has an 80 percent chance of being displayed with each hit on that page, while the Microsoft Internet Explorer site only will be displayed for 20 percent of the hits. </p>
+<p>
+<b>Note</b>&nbsp;&nbsp;If an advertisement entry in the schedule file does not have a corresponding URL, the hyperlink line of the entry must contain a hyphen (-) or the Ad Rotator component will return an error. </p>
+</BODY>
+</HTML>

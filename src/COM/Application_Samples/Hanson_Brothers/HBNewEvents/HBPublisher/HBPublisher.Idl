@@ -1,0 +1,21 @@
+// HBPublisher.idl : IDL source for HBPublisher.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (HBPublisher.tlb) and marshalling code.
+
+
+import "..\Include\HB.idl";
+
+[
+	uuid(68F60230-0021-11D3-8403-0000F8751B94),
+	version(1.0),
+	helpstring("HBPublisher 1.0 Type Library")
+]
+library HBPUBLISHERLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+};
+

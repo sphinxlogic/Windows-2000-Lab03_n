@@ -1,0 +1,902 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Active Directory Service Interfaces 2.5 - Exchange</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+</head>
+
+<body topmargin="0" leftmargin="0">
+
+<table border="0" height="86" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="77%" valign="top" height="58"><img src="banner.gif"
+    alt="banner.gif (5982 bytes)" width="250" height="60"></td>
+    <td width="3%" height="58"></td>
+    <td width="21%" height="58" valign="bottom"><p align="right"><img src="mslogo.gif"
+    alt="mslogo.gif (666 bytes)" width="112" height="40"></td>
+  </tr>
+  <tr>
+    <td valign="top" align="left" height="28"><map name="FPMap0">
+      <area href="rtk.htm" shape="rect" coords="420, 1, 515, 18">
+      <area href="interopt.htm" shape="rect" coords="350, 1, 415, 19">
+      <area href="ad.htm" shape="rect" coords="233, 1, 345, 19">
+      <area href="winnt.htm" shape="rect" coords="165, 1, 223, 19">
+      <area href="dev.htm" shape="rect" coords="67, 1, 165, 19">
+      <area href="default.htm" coords="13, 1, 65, 20" shape="rect"></map><img rectangle="(233,1) (345, 19)  ad.htm" rectangle="(165,1) (223, 19)  winnt.htm" rectangle="(67,1) (165, 19)  dev.htm" rectangle="(13,1) (65, 20)  adsi.htm" src="router.gif" alt="router.gif (3874 bytes)" border="0" usemap="#FPMap0" width="536" height="26"></td>
+    <td width="3%" height="28"></td>
+    <td width="21%" height="28"></td>
+  </tr>
+</table>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0" height="40">
+  <tr>
+    <td width="2%" height="19"></td>
+    <td width="98%" height="19"><hr color="#0080C0">
+    </td>
+  </tr>
+  <tr>
+    <td width="2%" height="21"></td>
+    <td width="98%" height="21"><img src="exchange.gif" alt="exchange.gif (5538 bytes)"
+    width="302" height="74"></td>
+  </tr>
+  <tr>
+    <td width="2%" height="21"></td>
+    <td width="98%" height="21" valign="top">&nbsp;<p><font face="Verdana"><small>You can use ADSI
+    to talk to Exchange Directory Services. You can enumerate sites, containers, create
+      recipients, and many other tasks.</small> <small>For more information about ADSI in the
+    Exchange Server 5.5, please see the new ADSI Exchange Programmer's Guide in
+      the <a href="adsi25.chm">ADSI
+      2.5 Help File</a>.</small></font></p>
+    <p><font face="Verdana" color="#0080C0"><small><strong>Requirements</strong></small></font><ul>
+      <li><font face="Verdana" color="#000000"><small>Install Exchange Server. For more
+        information about Exchange, visit <a href="http://www.microsoft.com/exchange">http://www.microsoft.com/exchange</a>.</small><br>
+        </font></li>
+      <li><font face="Verdana" color="#000000"><small>For the purpose of the
+        walkthrough, copy <a
+        href="adsvw.exe">adsvw.exe</a> to your local hard drive, if you haven't
+        already done so.</small><br>
+        </font></li>
+    </ul>
+      <p><a name="top"></a><font face="Verdana" color="#0080C0"><small><strong>Getting to know
+      Exchange</strong></small></font></p>
+      <ul>
+        <li><font face="Verdana" color="#0080C0"><strong><a href="#browse"><small>Browsing an
+          Exchange Server</small></a>
+          </strong></font></li>
+      </ul>
+      <ul>
+        <li><font face="Verdana" color="#0080C0"><strong><a href="#enumerate"><small>Enumerating a
+          Recipient container</a><br>
+          </small>
+          </strong></font></li>
+      </ul>
+    <p><small><strong><font face="Verdana" color="#0080C0">Exchange Tasks</font></strong></small></p>
+      <ul>
+        <li><a href="#recipient_create"><strong><font face="Verdana" color="#0000FF" size="2">Creating
+          a custom recipient</font></strong></a></li>
+      </ul>
+      <ul>
+        <li><a href="#mailbox_create"><strong><font face="Verdana" color="#0000FF" size="2">Creating a
+          mailbox</font></strong></a></li>
+      </ul>
+      <ul>
+        <li><a href="#mailbox_sid"><strong><font face="Verdana" color="#0000FF" size="2">Associating a
+          mailbox owner with a Windows NT user</font></strong></a></li>
+      </ul>
+      <ul>
+        <li><a href="#mailbox_sd"><strong><font face="Verdana" color="#0000FF" size="2">Setting a
+          mailbox's permission</font></strong></a></li>
+      </ul>
+      <ul>
+        <li><a href="#container_create"><strong><font face="Verdana" color="#0000FF" size="2">Creating
+          a Recipient container</font></strong></a></li>
+      </ul>
+      <ul>
+        <li><a href="#dl_create"><strong><font face="Verdana" color="#0000FF" size="2">Creating a
+          distribution list</font></strong></a></li>
+      </ul>
+      <ul>
+        <li><a href="#dl_owner"><strong><font face="Verdana" color="#0000FF" size="2">Setting the
+          owner of a distribution list</font></strong></a></li>
+      </ul>
+      <ul>
+        <li><a href="#dl_sd"><strong><font face="Verdana" color="#0000FF" size="2">Setting the
+          distribution list owner's permission</font></strong></a></li>
+      </ul>
+      <ul>
+        <li><a href="#dl_add"><strong><font face="Verdana" color="#0000FF" size="2">Adding a member to
+          a distribution list</font></strong></a></li>
+      </ul>
+      <ul>
+        <li><a href="#dl_enum"><strong><font face="Verdana" color="#0000FF" size="2">Enumerating
+          members in a distribution list</font></strong></a></li>
+      </ul>
+      <ul>
+        <li><a href="#dl_remove"><strong><font face="Verdana" color="#0000FF" size="2">Removing
+          members in a distribution list</font></strong></a></li>
+      </ul>
+      <ul>
+        <li><a href="#tombstone"><strong><font face="Verdana" color="#0000FF" size="2">Accessing
+          hidden or deleted entries</font></strong></a></li>
+      </ul>
+      <ul>
+        <li><a href="#usn"><strong><font face="Verdana" color="#0000FF" size="2">Retrieving
+          changes</font></strong></a></li>
+      </ul>
+      <ul>
+        <li><a href="#org"><b><font SIZE="2" face="Verdana" color="#0000FF">Getting the organization
+          and site name from a server</font></b></a></li>
+      </ul>
+      <ul>
+        <li><a href="#search_server"><b><font SIZE="2" face="Verdana" color="#0000FF">Searching
+          Exchange Servers in the entire organization</font></b></a></li>
+      </ul>
+      <ul>
+        <li><a href="#search_alias"><b><font SIZE="2" face="Verdana" color="#0000FF">Searching for
+          an alias</font></b></a></li>
+      </ul>
+      <ul>
+        <li><a href="#config_modify"><b><font SIZE="2" face="Verdana" color="#0000FF">Getting and
+          modifying configuration properties</font></b></a></li>
+      </ul>
+      <ul>
+        <li><a href="#homeMDB"><b><font SIZE="2" face="Verdana" color="#0000FF">Finding
+          the home
+          server of a mailbox</font></b></a></li>
+      </ul>
+      <ul>
+        <li><font face="Verdana" color="#0080C0"><strong><a href="#sd"><small>Setting and
+          modifying the Exchange security descriptor</small></a><br>
+          <br>
+          </strong></font></li>
+      </ul>
+    <p><a name="browse"></a><font face="Verdana" color="#0080C0"><strong><small>Browsing an
+    Exchange Server</small></strong></font><ul>
+      <li><font face="Verdana"><small>Before browsing the Exchange directory, you must know the server
+        name on which Exchange Server is running.</small><br>
+        </font></li>
+      <li><font face="Verdana"><small>Run the ADSVW, select <b> View</b> as <b> Object
+        Viewer</b>.</small><br>
+        </font></li>
+      <li><font face="Verdana"><small>Type ADsPath as:&nbsp; LDAP://exchsrv </small><br>
+        <small>where exchsrv is the Exchange server name.</small><br>
+        </font></li>
+      <li><font face="Verdana"><small>Optionally, you can provide an alternate credential, by
+        checking <b>Use OpenObject</b>, and provide a username and password.</small><br>
+        </font></li>
+      <li><font face="Verdana"><small>Click <b>OK</b>.</small><br>
+        </font></li>
+      <li><font face="Verdana"><small>You will be able to navigate the Exchange Directory as shown
+        below.</small><br>
+        <br>
+        <img src="exch.jpg" alt="exch.jpg (32719 bytes)" width="239" height="305"></font></li>
+    </ul>
+    <p><font face="Verdana"><small>Go to <a href="#top">top</a>.</small></font></p>
+    <p>&nbsp;</p>
+    <p><a name="enumerate"></a><font face="Verdana" color="#0080C0"><strong><small>Enumerating
+    a Recipient Container Programmatically</small></strong></font></p>
+      <p style="margin-top: 0; margin-bottom: 0"><font face="Verdana"><small>'----Replace
+      these variables accordingly----</small></font></p>
+    <blockquote>
+      <p style="margin-top: 0; margin-bottom: 0"><font face="Verdana"><small>
+      siteName = &quot;INDEPENDENCE&quot;<br>
+      exchSrv = &quot;exchsrv11&quot;<br>
+      <br>
+      'By getting rootDSE's defaultNamingContext, we don't have to hard code the
+      Exchange
+      Organization<br>
+      Set rootDSE = GetObject(&quot;LDAP://&quot; &amp; exchSrv &amp; &quot;/RootDSE&quot;)<br>
+      <br>
+      'Build ADsPath for the container<br>
+      contPath = &quot;LDAP://&quot; &amp; exchSrv &amp; &quot;/&quot; &amp;
+      &quot;CN=Recipients,&quot; &amp; &quot;OU=&quot; &amp; siteName &amp; &quot;,&quot; &amp;
+      rootDSE.Get(&quot;defaultNamingContext&quot;)<br>
+      Set cont = GetObject(contPath)<br>
+      <br>
+      'Print all persons in the recipient container<br>
+      wscript.echo &quot;Person List----&quot;<br>
+      cont.Filter = Array(&quot;organizationalPerson&quot;)<br>
+      For Each person In cont<br>
+      &nbsp;&nbsp; wscript.echo person.Name<br>
+      Next<br>
+      </small></font></p>
+      <p style="margin-top: 0; margin-bottom: 0"><font face="Verdana"><small>
+      wscript.echo<br>
+      wscript.echo &quot;Distribution List----&quot;<br>
+      'Print all distribution lists in the recipient container<br>
+      cont.Filter = Array(&quot;groupOfNames&quot;)<br>
+      For Each dl In cont<br>
+      &nbsp;&nbsp; wscript.echo dl.Name<br>
+      Next<br>
+      </small><br>
+      <small>'-- Source code in \samples\Exchange directory<br>
+      </small></font></p>
+    </blockquote>
+    <p><font face="Verdana"><small>Go to <a href="#top">top</a>.</small></font></p>
+    <p>&nbsp;</p>
+    <p><a name="recipient_create"></a><font face="Verdana" color="#0080C0"><small><strong>Creating
+    a Custom Recipient</strong></small></font></p>
+    <p style="margin-top: 0; margin-bottom: 0"><font face="Verdana"><small>'-------------------------------------------------------<br>
+    '-----CREATING A CUSTOM RECIPIENT ----------------------<br>
+    '--------------------------------------------------------<br>
+    <br>
+    '----Server, Organization, and Site information----</small>
+    </font></p>
+      <blockquote>
+    <p style="margin-top: 0; margin-bottom: 0"><font face="Verdana"><small>
+    server = &quot;exchsrv55&quot;<br>
+    org = &quot;Microsoft&quot;<br>
+    site = &quot;Redmond&quot;</small>
+    </font></p>
+      </blockquote>
+    <p style="margin-top: 0; margin-bottom: 0"><font face="Verdana"><small>
+    '----Custom Recipient----</small>
+    </font></p>
+      <blockquote>
+    <p style="margin-top: 0; margin-bottom: 0"><font face="Verdana"><small>
+    strDisplayname = &quot;James Smith&quot;<br>
+    strAlias = &quot;jsmith&quot;<br>
+    strTelephone = &quot;867-5309&quot;</small>
+    </font></p>
+      </blockquote>
+    <p style="margin-top: 0; margin-bottom: 0"><font face="Verdana"><small>
+    '----Build </small><small>an adsPath that looks like this: LDAP://myserver/CN=Recipients, OU=Site, O=Org</small>
+    </font></p>
+      <blockquote>
+    <p style="margin-top: 0; margin-bottom: 0"><font face="Verdana"><small>
+    adsPath = &quot;LDAP://&quot; + server<br>
+    adsPath = adsPath + &quot;/cn=Recipients,OU=&quot;<br>
+    adsPath = adsPath + site<br>
+    adsPath = adsPath + &quot;,O=&quot;<br>
+    adsPath = adsPath + org<br>
+    <br>
+    <br>
+    Set objCont = GetObject(adsPath)<br>
+    Set objNewCR = objCont.Create(&quot;Remote-Address&quot;, CStr(&quot;cn=&quot; &amp;
+    strAlias))<br>
+    objNewCR.Put &quot;cn&quot;, CStr(strDisplayname)<br>
+    objNewCR.Put &quot;uid&quot;, CStr(strAlias)<br>
+    objNewCR.Put &quot;telephoneNumber&quot;, CStr(strTelephone)<br>
+    objNewCR.Put &quot;Target-Address&quot;, &quot;SMTP:jsmith@microsoft.com&quot;<br>
+    objNewCR.SetInfo<br>
+    </small></font></p>
+      </blockquote>
+    <p><font face="Verdana"><small>Go to <a href="#top">top</a>.</small></font></p>
+    <p>&nbsp;</p>
+    <p><a name="mailbox_create"></a><font face="Verdana" color="#0080C0"><strong><small>Creating
+    a Mailbox</small>
+    </strong></font></p>
+    <p><font face="Verdana" color="#000000"><small>You can create a mailbox using
+    Win32 Security APIs. <a href="samples/Exchange/MailBox">The mailbox sample</a> demonstrates
+    this.</small></font></p>
+    <p><font face="Verdana" color="#000000"><small>Alternatively, you can use the ADSI
+    Resource Kit to <a href="ResourceKit/ADsSecurity/Exchange/Mailbox">create a mailbox</a>.</small></font></p>
+    <p style="margin-top: 0; margin-bottom: 0" align="left"><font face="Verdana" color="#000000"><small>'------------------------------------------------<br>
+    '-----CREATING A MAILBOX ----------------------<br>
+    '------------------------------------------------<br>
+    <br>
+    '----Server, Organization, and Site information----</small></font></p>
+      <blockquote>
+    <p style="margin-top: 0; margin-bottom: 0"><font face="Verdana" color="#000000"><small>
+    server = &quot;exchsrv&quot;<br>
+    org = &quot;ARCADIABAY&quot;<br>
+    Site = &quot;REDMOND&quot;</small></font></p>
+      </blockquote>
+    <p style="margin-top: 0; margin-bottom: 0"><font face="Verdana" color="#000000"><small>
+    '--- Mailbox Parameters -----</small></font></p>
+      <blockquote>
+    <p style="margin-top: 0; margin-bottom: 0"><font face="Verdana" color="#000000"><small>
+    strDisplayName = &quot;Alice Wonderland&quot;<br>
+    strFirstName = &quot;Alice&quot;<br>
+    strLastName = &quot;Wonderland&quot;<br>
+    strAlias = &quot;alicew&quot;<br>
+    strMTA = &quot;cn=Microsoft
+    MTA,cn=exchsrv,cn=Servers,cn=Configuration,ou=REDMOND,o=ARCADIABAY&quot;<br>
+    strMDB = &quot;cn=Microsoft Private
+    MDB,cn=exchsrv,cn=Servers,cn=Configuration,ou=REDMOND,o=ARCADIABAY&quot;<br>
+    <br>
+    strSMTPAddr = &quot;<a href="mailto:alicew@arcadiabay.com">alicew@arcadiabay.com</a>&quot;</small></font></p>
+      </blockquote>
+    <p style="margin-top: 0; margin-bottom: 0"><font face="Verdana" color="#000000"><small>
+    '--- Build the Recipient container's adsPath to look like this:
+    LDAP://myserver/CN=Recipients, OU=Site, O=Org</small></font></p>
+      <blockquote>
+    <p style="margin-top: 0"><font face="Verdana" color="#000000"><small>
+    ADsPath = &quot;LDAP://&quot; + server<br>
+    ADsPath = ADsPath + &quot;/cn=Recipients,OU=&quot;<br>
+    ADsPath = ADsPath + Site<br>
+    ADsPath = ADsPath + &quot;,O=&quot;<br>
+    ADsPath = ADsPath + org<br>
+    <br>
+    Set objCont = GetObject(ADsPath)<br>
+    'Create a new MailBox<br>
+    Set objNewUser = objCont.Create(&quot;organizationalPerson&quot;, &quot;cn=&quot; &amp;
+    strAlias)<br>
+    objNewUser.Put &quot;mailPreferenceOption&quot;, 0<br>
+    objNewUser.Put &quot;givenName&quot;, strFirstName<br>
+    objNewUser.Put &quot;sn&quot;, strLastName<br>
+    objNewUser.Put &quot;cn&quot;, strDisplayName<br>
+    objNewUser.Put &quot;uid&quot;, strAlias<br>
+    objNewUser.Put &quot;Home-MTA&quot;, strMTA<br>
+    objNewUser.Put &quot;Home-MDB&quot;, strMDB<br>
+    objNewUser.Put &quot;mail&quot;, strSMTPAddr<br>
+    objNewUser.Put &quot;MAPI-Recipient&quot;, True<br>
+    objNewUser.Put &quot;rfc822Mailbox&quot;, strSMTPAddr</small></font></p>
+      </blockquote>
+    <p><font face="Verdana" color="#000000"><small>'You should <a href="#mailbox_sid">associate
+    your mailbox</a> to a Windows NT account using <b>IADsSID</b> in </small><small>the
+    Resource Kit.<br>
+    'Commit the property cache to the directory service.</small></font></p>
+      <blockquote>
+    <p><font face="Verdana" color="#000000"><small>objNewUser.SetInfo</small></font></p>
+      </blockquote>
+    <p><font face="Verdana" color="#000000"><small>'Additionally, you may set
+    X.400 and other
+    mailbox addresses.</small></font></p>
+    <p><font face="Verdana"><small>Go to <a href="#top">top</a>.</small></font></p>
+    <p>&nbsp;</p>
+    <p><a name="mailbox_sid"></a><font face="Verdana" color="#0080C0"><strong><small>Associating
+    a Mailbox Owner with a Windows NT User</small></strong></font></p>
+    <p><font face="Verdana" color="#000000"><small>You need to install the <a href="rtk.htm">ADSI
+    Resource Tool Kit</a> for this sample.</small></font></p>
+    <p><font face="Verdana"><small>'--------------------------------------------------------<br>
+    ' ASSOCIATING TO A WINDOWS NT PRIMARY ACCOUNT<br>
+    ' (REQUIRED ADSI TOOL KIT - ADSSECURITY.DLL )<br>
+    '---------------------------------------------------------</small></font></p>
+      <blockquote>
+    <p><font face="Verdana"><small>Dim sid As New ADsSID</small></font></p>
+    <p><small><font face="Verdana"><br>
+    Set mailBox =
+    GetObject(&quot;LDAP://exchsrv03/cn=alicew,cn=Recipients,ou=REDMOND,o=ARCADIABAY&quot;)<br>
+    sid.SetAs ADS_SID_WINNT_PATH, &quot;WinNT://REDMOND/alicew&quot;<br>
+    sidHex = sid.GetAs(ADS_SID_HEXSTRING)<br>
+    mailBox.Put &quot;Assoc-NT-Account&quot;, sidHex<br>
+    mailBox.SetInfo<br>
+    </font></small></p>
+      </blockquote>
+    <p><font face="Verdana"><small>
+    Go to <a href="#top">top</a>.</small></font></p>
+    <p>&nbsp;</p>
+    <p><a name="mailbox_sd"></a><font face="Verdana" color="#0080C0"><strong><small>Setting a
+    Mailbox's Permission</small></strong></font></p>
+    <p><font face="Verdana" color="#000000"><small>You need to install the <a href="rtk.htm">ADSI
+    Resource Tool Kit</a> for this sample.</small></font></p>
+    <p><small><font face="Verdana">'--------------------------------------------------------<br>
+    ' SETTING MAILBOX' SECURITY DESCRIPTOR<br>
+    ' (REQUIRED ADSI TOOL KIT - ADSSECURITY.DLL )<br>
+    '---------------------------------------------------------</font></small></p>
+      <blockquote>
+    <p><small><font face="Verdana">Dim sec As New ADsSecurity<br>
+    Dim sd As IADsSecurityDescriptor<br>
+    Dim dacl As IADsAccessControlList<br>
+    Dim ace As New AccessControlEntry<br>
+    <br>
+    <br>
+    Const ADS_RIGHT_EXCH_MODIFY_USER_ATT = &amp;H2<br>
+    Const ADS_RIGHT_EXCH_MAIL_SEND_AS = &amp;H8<br>
+    Const ADS_RIGHT_EXCH_MAIL_RECEIVE_AS = &amp;H10<br>
+    <br>
+    Set sd =
+    sec.GetSecurityDescriptor(&quot;LDAP://exchsrv/cn=alicew,cn=Recipients,ou=REDMOND,o=Microsoft&quot;)<br>
+    Set dacl = sd.DiscretionaryAcl<br>
+    ace.Trustee = &quot;REDMOND\alicew&quot;<br>
+    ace.AccessMask = RIGHT_DS_MODIFY_USER_ATT Or RIGHT_MAIL_SEND_AS Or RIGHT_MAIL_RECEIVE_AS<br>
+    ace.AceType = ADS_ACETYPE_ACCESS_ALLOWED<br>
+    dacl.AddAce ace<br>
+    sd.DiscretionaryAcl = dacl<br>
+    sec.SetSecurityDescriptor sd</font></small></p>
+      </blockquote>
+    <p><font face="Verdana"><small>Go to <a href="#top">top</a>.</small></font></p>
+    <p><a name="container_create"></a><font face="Verdana" color="#0080C0"><small><strong>Creating
+    a Recipient Container</strong></small></font></p>
+      <blockquote>
+    <p><small><font face="Verdana">adsPath = &quot;LDAP://excsrv/ou=Site,o=Org&quot;<br>
+    <br>
+    Set objExistingCont = GetObject(adsPath)<br>
+    ' Create the container<br>
+    Set objNewCont = objExistingCont.Create(&quot;Container&quot;,
+    &quot;cn=MyNewContainer&quot;)<br>
+    ' Put the continer-info prop to tell Exchange this is a recipients cont.<br>
+    objNewCont.Put &quot;Container-Info&quot;, &amp;H80000001<br>
+    objNewCont.SetInfo<br>
+    </font></small></p>
+      </blockquote>
+    <p><font face="Verdana"><small>Go to <a href="#top">top</a>.</small></font></p>
+    <p><a name="dl_create"></a><font face="Verdana" color="#0080C0"><small><strong>Creating a
+    Distribution List</strong></small></font></p>
+    <p style="margin-bottom: 0"><font face="Verdana"><small>'-------------------------------------------------------<br>
+    '-----CREATING A DISTRIBUTION LIST ----------------------<br>
+    '--------------------------------------------------------<br>
+    <br>
+    '----Server, Organization, and Site information----</small></font></p>
+      <blockquote>
+    <p style="margin-top: 0"><font face="Verdana"><small>
+    server = &quot;exchsrv04&quot;<br>
+    org = &quot;ArcadiaBay&quot;<br>
+    site = &quot;ANN-ARBOR&quot;<br>
+    </small></font></p>
+      </blockquote>
+    <p style="margin-bottom: 0"><font face="Verdana"><small>
+    '----Distribution List----</small></font></p>
+      <blockquote>
+    <p style="margin-top: 0"><font face="Verdana"><small>
+    strDisplayname = &quot;Distributed System PM&quot;<br>
+    strAlias = &quot;dpm&quot;<br>
+    strSMTPAddr = <a href="mailto:%22dpm@arcadiabay.com%22"> &quot;dpm@arcadiabay.com&quot;<br>
+    </a></small></font></p>
+      </blockquote>
+    <p style="margin-bottom: 0"><font face="Verdana"><small>
+    '----Build a Recipient container's adsPath to look like this:
+    LDAP://myserver/CN=Recipients, OU=Site, O=Org</small></font></p>
+      <blockquote>
+    <p style="margin-top: 0"><font face="Verdana"><small>
+    AdsPath = &quot;LDAP://&quot; + server<br>
+    AdsPath = AdsPath + &quot;/cn=Recipients,OU=&quot;<br>
+    AdsPath = AdsPath + site<br>
+    AdsPath = AdsPath + &quot;,O=&quot;<br>
+    AdsPath = AdsPath + org<br>
+    <br>
+    <br>
+    Set objCont = GetObject(AdsPath)<br>
+    'Create a new DL<br>
+    Set objNewDL = objCont.Create(&quot;groupOfNames&quot;, &quot;cn=&quot; &amp; strAlias)<br>
+    <br>
+    'Set the DL props<br>
+    objNewDL.Put &quot;cn&quot;, CStr(strDisplayname)<br>
+    objNewDL.Put &quot;uid&quot;, CStr(strAlias)<br>
+    objNewDL.Put &quot;mail&quot;, CStr(strSMTPAddr)<br>
+    objNewDL.SetInfo<br>
+    </small></font></p>
+      </blockquote>
+    <p><font face="Verdana"><small>Go to <a href="#top">top</a>.</small></font></p>
+    <p style="margin-bottom: 0"><a name="dl_owner"></a><font face="Verdana"><font color="#0080C0"><strong><small>Setting
+    the Owner of a Distribution List</small></strong></font><br>
+    <small><br>
+    '-------------------------------------------------------------------------------------<br>
+    '--- SET THE OWNER OF THE DISTRIBUTION LIST<br>
+    '------------------------------------------------------------------------------------
+    </small></font></p>
+      <blockquote>
+    <p style="margin-top: 0"><font face="Verdana">
+    <small>
+    Set dl =
+    GetObject(&quot;LDAP://exchsrv/cn=dpm,cn=Recipients,ou=REDMOND,o=ArcadiaBay&quot;)<br>
+    dl.Put &quot;Owner&quot;, &quot;cn=bobg,cn=Recipients,ou=REDMOND,o=ArcadiaBay&quot;<br>
+    dl.SetInfo<br>
+    </small></font></p>
+      </blockquote>
+    <p><font face="Verdana"><small>Go to <a href="#top">top</a>.</small></font></p>
+    <p><a name="dl_sd"></a><font face="Verdana" color="#0080C0"><strong><small>Setting a
+    Distribution List Owner</small>'<small>s</small>  <small>Permission</small></strong></font></p>
+    <p><font face="Verdana" color="#000000"><small>You need to install the <a href="rtk.htm">ADSI
+    Resource Tool Kit</a> for this sample.</small></font></p>
+      <blockquote>
+        <p><small><font face="Verdana">Dim sec As New ADsSecurity<br>
+    Dim sd As IADsSecurityDescriptor<br>
+    Dim dacl As IADsAccessControlList<br>
+    Dim ace As New AccessControlEntry<br>
+    <br>
+    Const RIGHT_DS_MODIFY_USER_ATT = &amp;H2<br>
+    Const RIGHT_MAIL_SEND_AS = &amp;H8<br>
+    Const RIGHT_MAIL_RECEIVE_AS = &amp;H10</font></small></p>
+      </blockquote>
+    <p><font face="Verdana"><small>'---------------------------------------------------------------------------------------<br>
+    '-- SET PERMISSION ON THE OWNER TO MODIFY AND SEND AS/RECEIVE&nbsp;<br>
+    '---NOTE:&nbsp; IT REQUIRES THAT THE ADSI RESOURCE TOOL KIT BE INSTALLED (IADsSecurity)<br>
+    '---------------------------------------------------------------------------------------</small></font></p>
+      <blockquote>
+    <p><font face="Verdana"><small>
+    Set sd =
+    sec.GetSecurityDescriptor(&quot;LDAP://exchsrv/cn=dpm,cn=Recipients,ou=REDMOND,o=ArcadiaBay&quot;)<br>
+    Set dacl = sd.DiscretionaryAcl<br>
+    <br>
+    ace.AccessMask = RIGHT_DS_MODIFY_USER_ATT Or RIGHT_MAIL_SEND_AS Or RIGHT_MAIL_RECEIVE_AS<br>
+    ace.Trustee = &quot;REDMOND\bobg&quot;<br>
+    dacl.AddAce ace<br>
+    sd.DiscretionaryAcl = dacl<br>
+    sec.SetSecurityDescriptor sd</small></font></p>
+      </blockquote>
+    <p><font face="Verdana"><small>Go to <a href="#top">top</a>.</small></font></p>
+    <p><font face="Verdana" color="#0080C0"><br>
+    <a name="distributionList"></a><a name="dl_add"></a><strong><small>Adding
+    Recipients to a
+    Distribution List</small></strong></font></p>
+    <p><font face="Verdana"><small>'----------------------------------------------<br>
+    '----ADDING MEMBERS TO A DISTRIBUTION LIST<br>
+    '----------------------------------------------</small>
+    </font></p>
+      <blockquote>
+    <p><font face="Verdana"><small>
+    Set dl =
+    GetObject(&quot;LDAP://excsrv11/cn=dpm,cn=Recipients,ou=REDMOND,o=Microsoft&quot;)<br>
+    dl.Add &quot;LDAP://excsrv11/cn=jsmith,cn=Recipients,ou=REDMOND,o=Microsoft&quot;<br>
+    dl.Add &quot;LDAP://excsrv11/cn=andyhar,cn=Recipients,ou=REDMOND,o=Microsoft&quot;</small>
+    </font></p>
+      </blockquote>
+    <p><font face="Verdana"><small>Go to <a href="#top">top</a>.</small></font></p>
+    <p><a name="dl_enum"></a><strong><font face="Verdana" color="#0080C0"><small>Enumerating
+    Members in a Distribution List</small></font></strong></p>
+    <p><font face="Verdana"><small>'-------------------------------------------------<br>
+    '----ENUMERATE MEMBERS IN A DISTRIBUTION LIST<br>
+    '-------------------------------------------------</small></font></p>
+      <blockquote>
+    <p><font face="Verdana"><small>
+    Set dl =
+    GetObject(&quot;LDAP://excsrv11/cn=dpm,cn=Recipients,ou=REDMOND,o=Microsoft&quot;)<br>
+    For Each member In dl.Members<br>
+    &nbsp;&nbsp; Debug.Print member.Name &amp; &quot; (&quot; &amp; member.Class &amp;
+    &quot;)&quot;<br>
+    Next</small></font></p>
+      </blockquote>
+    <p><font face="Verdana"><small>Go to <a href="#top">top</a>.</small></font></p>
+    <p><a name="dl_remove"></a><font face="Verdana" color="#0080C0"><strong><small>Removing
+    Members in a Distribution List</small></strong></font></p>
+    <p><font face="Verdana"><small>'------------------------------------------------<br>
+    '----REMOVING MEMBERS IN A DISTRIBUTION LIST<br>
+    '------------------------------------------------</small></font></p>
+      <blockquote>
+    <p><font face="Verdana"><small>
+    Set dl =
+    GetObject(&quot;LDAP://excsrv11/cn=dpm,cn=Recipients,ou=REDMOND,o=Microsoft&quot;)<br>
+    dl.Remove &quot;LDAP://excsrv11/cn=jsmith,cn=Recipients,ou=REDMOND,o=Microsoft&quot;<br>
+    </small></font></p>
+      </blockquote>
+    <p><font face="Verdana"><small>Go to <a href="#top">top</a>.</small></font></p>
+    <p><a name="tombstone"></a><font face="Verdana" color="#0080C0"><strong><small>Accessing
+    Hidden or Deleted Entries</small></strong></font></p>
+    <font size="2"><p><font face="Verdana">Hidden objects are objects with the Boolean
+    attribute, &quot;Hide from AB&quot; (&quot;Hide-From-Address-Book&quot; to LDAP) set to
+    true (&quot;1&quot;). Deleted objects, also called tombstones, are objects with the
+    Boolean attribute &quot;Is-Deleted&quot; (also &quot;Is-Deleted&quot; to LDAP) attribute
+    set to true (&quot;1&quot;).</font></p>
+    </font><p><font face="Verdana"><small>'----ACCESSING HIDDEN OR DELETED ENTRIES----</small></font></p>
+      <blockquote>
+    <p><font face="Verdana"><small>' To access hidden or deleted items in the directory, you
+    must use<br>
+    ' OpenDSObject or AdsOpenObject(for VC++) to explicitly bind to the directory object<br>
+    ' with a valid user account using simple clear text authentication with
+    &#147;cn=admin&#148; appended to the username.<br>
+    ' For example: &#147;cn=jsmith, dc=ARCADIABAY, cn=admin&#148;.<br>
+    ' Also, the Exchange service account must be a member of the local administrators group on
+    the server<br>
+    ' and have explicit Restore Files and Directories privilege.<br>
+    <br>
+    strADsPath = &quot;LDAP://excsvr/cn=JustinH,cn=Recipients,ou=REDMOND,o=ARCADIABAY&quot;<br>
+    Set dso = GetObject(&quot;LDAP:&quot;)<br>
+    Set objDeleted = dso.OpenDSObject(strADsPath, _<br>
+    &quot;cn=Administrator, dc=ARCADIABAY, cn=admin&quot;, &quot;PasswordGoesHere&quot;, 0)<br>
+    <br>
+    'objDeleted now is a reference to a deleted object.<br>
+    <br>
+    Debug.Print objDeleted.Name</small>
+    </font></p>
+      </blockquote>
+    <p><font face="Verdana"><small>Go to <a href="#top">top</a>.</small></font></p>
+    <p>&nbsp;</p>
+    <p><a name="usn"></a><font face="Verdana" color="#0080C0"><small><strong>Retrieving
+    Changes</strong></small></font></p>
+    <font size="2"><p><font face="Verdana">One important attribute is the object&#146;s Update
+    Sequence Number or USN. When a change is made to an object in the Exchange directory, the
+    local directory service modifies the USN on the object to be the next available USN for
+    the server. Each server maintains it&#146;s own USN count. So, when a server changes an
+    object, the directory service takes the current USN, increments it and stamps it on the
+    changed object. This way, if an application knows the USN number of the last changed
+    object it received from the server, the next time it makes a request for changes, it asks
+    for all directory objects with USNs greater than the last USN it received. </font></p>
+      </font>
+      <blockquote>
+    <p><font face="Verdana"><small>Dim ADOConn As ADODB.Connection<br>
+    Dim ADOCommand As New Command<br>
+    Dim RS As ADODB.Recordset<br>
+    <br>
+    Set ADOConn = CreateObject(&quot;ADODB.Connection&quot;)<br>
+    ADOConn.Provider = &quot;ADSDSOObject&quot;<br>
+    ADOConn.Open &quot;Active Directory Provider&quot;<br>
+    <br>
+    Set ADOCommand.ActiveConnection = ADOConn<br>
+    ADOCommand.CommandText =
+    &quot;&lt;LDAP://localhost/o=ARCADIABAY&gt;;(USN-Changed&gt;1030);rdn;subtree&quot;<br>
+    Set RS = ADOCommand.Execute<br>
+    While Not RS.EOF<br>
+    Debug.Print (RS.Fields(0))<br>
+    RS.MoveNext<br>
+    Wend<br>
+    RS.Close</small></font></p>
+      </blockquote>
+    <p><font face="Verdana"><small>Go to <a href="#top">top</a>.</small></font></p>
+    <p><a name="org"></a><font SIZE="2" face="Verdana" color="#0080C0"><b>Getting the
+    Organization and Site Name from a Server</b></font></p>
+      <blockquote>
+    <p><font face="Verdana"><small>srvName = &quot;exchsrv&quot;<br>
+    <br>
+    Set objRoot = GetObject(&quot;LDAP://&quot; &amp; srvName)<br>
+    Debug.Print objRoot.Get(&quot;o&quot;)<br>
+    <br>
+    <br>
+    '--- OR ------<br>
+    Set objRoot = GetObject(&quot;LDAP://&quot; &amp; srvName &amp; &quot;/RootDSE&quot;)<br>
+    Debug.Print objRoot.Get(&quot;defaultNamingContext&quot;)<br>
+    &nbsp;</small>
+    </font></p>
+      </blockquote>
+    <p><small><font face="Verdana">Go to <a href="#top">top</a></font></small></p>
+    <p><a name="search_server"></a><font SIZE="2" face="Verdana" color="#0080C0"><b>Searching
+    all Exchange Servers in the Entire Organization</b></font></p>
+    <p><font size="2" face="Verdana" color="#000000">We will be using the LDAP Dialect for
+    searching. You can also use the SQL Dialect. For LDAP Dialect searching,&nbsp; please see <a
+    href="#search_alias">Searching for an Alias</a>.</font></p>
+      <blockquote>
+    <p><small><font face="Verdana">Dim ADOConn As ADODB.Connection<br>
+    Dim ADOCommand As New Command<br>
+    Dim RS As ADODB.Recordset<br>
+    <br>
+    srvName = &quot;exchsrv&quot;<br>
+    Set ADOConn = CreateObject(&quot;ADODB.Connection&quot;)<br>
+    ADOConn.Provider = &quot;ADSDSOObject&quot;<br>
+    ADOConn.Open &quot;Active Directory Provider&quot;<br>
+    <br>
+    Set ADOCommand.ActiveConnection = ADOConn<br>
+    ADOCommand.CommandText = &quot;&lt;LDAP://&quot; &amp; srvName &amp; &quot;&gt;;(
+    objectClass=Computer);rdn;subtree&quot;<br>
+    Set RS = ADOCommand.Execute<br>
+    Debug.Print RS.Fields.Count<br>
+    While Not RS.EOF<br>
+    &nbsp;&nbsp; Debug.Print &quot;Server: &quot; &amp; RS.Fields(0)<br>
+    RS.MoveNext<br>
+    Wend<br>
+    RS.Close<br>
+    Set ADOConn = Nothing<br>
+    Set ADOCommand = Nothing<br>
+    Set RS = Nothing</font></small></p>
+      </blockquote>
+    <p><small><font face="Verdana">Go to <a href="#top">top</a></font></small></p>
+    <p><a name="search_alias"></a><font SIZE="2" face="Verdana" color="#0080C0"><b>Searching
+    for an Alias</b></font></p>
+    <p><font size="2" face="Verdana" color="#000000">We will be using the SQL Dialect for
+    searching. You can also use the LDAP Dialect. For LDAP Dialect searching,&nbsp; please see
+    <a href="#search_server">Searching all Exchange Servers in the Entire Organization</a>. </font></p>
+      <blockquote>
+    <p><font face="Verdana"><small>Set con = CreateObject(&quot;ADODB.Connection&quot;)<br>
+    Set Com = CreateObject(&quot;ADODB.Command&quot;)<br>
+    <br>
+    'Open a Connection object<br>
+    con.Provider = &quot;ADsDSOObject&quot;<br>
+    <br>
+    '------------------------------------------------------------------------------<br>
+    ' If you want to be authenticated as someone other than currently logged on user<br>
+    ' use the connection properties of User ID and Password.<br>
+    '------------------------------------------------------------------------------<br>
+    con.Properties(&quot;User ID&quot;) = &quot;domain\user&quot;<br>
+    con.Properties(&quot;Password&quot;) = &quot;password&quot;<br>
+    <br>
+    '----------------------<br>
+    ' Open the connection.<br>
+    '----------------------<br>
+    con.Open &quot;Active Directory Provider&quot;<br>
+    <br>
+    'Create a command object on this connection<br>
+    Set Com.ActiveConnection = con<br>
+    <br>
+    '---------------------<br>
+    'Set the query string.<br>
+    '---------------------<br>
+    <br>
+    adDomainPath = &quot;LDAP://exchsrv/o=microsoft&quot;<br>
+    searchAlias = &quot;jsmith&quot;<br>
+    Com.CommandText = &quot;select ADsPath, uid, title, givenName, sn,
+    physicalDeliveryOfficeName,telephoneNumber from '&quot; &amp; adDomainPath &amp; &quot;'
+    where uid='&quot; &amp; searchAlias &amp; &quot;'&quot;<br>
+    <br>
+    '-------------------------------<br>
+    'Set the preferences for search.<br>
+    '-------------------------------<br>
+    Com.Properties(&quot;Page Size&quot;) = 100<br>
+    Com.Properties(&quot;Timeout&quot;) = 30 'seconds<br>
+    Com.Properties(&quot;searchscope&quot;) = ADS_SCOPE_SUBTREE 'Define in ADS_SCOPEENUM<br>
+    Com.Properties(&quot;Cache Results&quot;) = False ' do not cache the result, it results in
+    less memory requirements<br>
+    <br>
+    '-------------------<br>
+    'Execute the query.<br>
+    '-------------------<br>
+    Set RS = Com.Execute
+    <br>
+    <br>
+    '------------------------<br>
+    ' Navigate the record set.<br>
+    '------------------------<br>
+    <br>
+    If (RS.EOF = False) Then<br>
+    &nbsp; Debug.Print &quot;Alias = &quot; &amp; RS.Fields(&quot;UID&quot;).Value<br>
+    &nbsp; Debug.Print &quot;Name = &quot; &amp; RS.Fields(&quot;givenName&quot;).Value &amp;
+    &quot; &quot; &amp; RS.Fields(&quot;sn&quot;)<br>
+    &nbsp; Debug.Print &quot;Title = &quot; &amp; RS.Fields(&quot;Title&quot;).Value<br>
+    &nbsp; Debug.Print &quot;Office = &quot; &amp;
+    RS.Fields(&quot;physicalDeliveryOfficeName&quot;).Value<br>
+    &nbsp; Debug.Print &quot;Telephone = &quot; &amp;
+    RS.Fields(&quot;telephoneNumber&quot;).Value<br>
+    End If</small></font></p>
+      </blockquote>
+    <p><font face="Verdana"><small>Go to <a href="#top">top</a>.</small></font></p>
+    <p><a name="config_modify"></a><font SIZE="2" face="Verdana" color="#0080C0"><b>Getting
+    and Modifying Configuration Properties</b></font></p>
+    <p><font face="Verdana"><small>This example displays and sets the value of the maximum
+    message size on an Exchange Server's Message Transfer Agent to 5mb.</small></font></p>
+      <blockquote>
+    <p><font face="Verdana"><small>
+    Dim objMTA As IADs<br>
+    Set objMTA = GetObject(&quot;LDAP://exchsrv/cn=Microsoft
+    MTA,cn=exchsrv,cn=Servers,cn=Configuration,ou=REDMOND,o=ARCADIABAY&quot;)<br>
+    <br>
+    'Getting<br>
+    objMTA.GetInfoEx Array(&quot;Deliv-Cont-Length&quot;), 0<br>
+    Debug.Print objMTA.Get(&quot;Deliv-Cont-Length&quot;)<br>
+    <br>
+    'Modifying<br>
+    objMTA.Put &quot;Deliv-Cont-Length&quot;, 5000<br>
+    objMTA.SetInfo<br>
+    Set bjMTA = Nothing</small></font></p>
+      </blockquote>
+    <p><font face="Verdana"><small>Go to <a href="#top">top</a>.</small></font></p>
+    <p><small><font face="Verdana"><br>
+    </font></small><a name="homeMDB"></a><font SIZE="2" face="Verdana" color="#0080C0"><b>Finding
+    a Home Server of a Mailbox</b></font></p>
+      <blockquote>
+    <p><small><font face="Verdana">srvName = &quot;exchsrv&quot;<br>
+    Set objMailbox = GetObject(&quot;LDAP://&quot; &amp; srvName &amp;
+    &quot;/cn=jsmit,cn=Recipients,ou=REDMOND,o=ArcadiaBay&quot;)<br>
+    <br>
+    objMailbox.GetInfoEx Array(&quot;Home-MDB&quot;), 0<br>
+    dnPath = objMailbox.Get(&quot;Home-MDB&quot;)<br>
+    Debug.Print dnPath<br>
+    <br>
+    'Build the ADsPath for Home MDB<br>
+    adsPath = &quot;LDAP://&quot; &amp; srvName &amp; &quot;/&quot; &amp; dnPath<br>
+    Set homeMDB = GetObject(adsPath)<br>
+    <br>
+    'Home MDB object resides on the computer object<br>
+    'So we need to go up one level before we get the computer object<br>
+    Set srvMDB = GetObject(homeMDB.Parent())<br>
+    Debug.Print &quot;Home MDB ServerName is: &quot; &amp; srvMDB.Get(&quot;rdn&quot;)<br>
+    </font></small></p>
+      </blockquote>
+    <p><small><font face="Verdana">Go to <a href="#top">top</a></font></small></p>
+    <p><a name="sd"></a><font face="Verdana" color="#0080C0"><strong><small>Setting and
+    Modifying the Exchange Security Descriptor</small></strong></font></p>
+      <blockquote>
+    <p><small><font face="Verdana">Public Const RIGHT_DS_ADD_CHILD = &amp;H1<br>
+    Public Const RIGHT_DS_MODIFY_USER_ATT = &amp;H2<br>
+    Public Const RIGHT_DS_MODIFY_ADMIN_ATT = &amp;H4<br>
+    Public Const RIGHT_DS_DELETE = &amp;H10000<br>
+    Public Const RIGHT_MAIL_SEND_AS = &amp;H8<br>
+    Public Const RIGHT_MAIL_RECEIVE_AS = &amp;H10<br>
+    Public Const RIGHT_MAIL_ADMIN_AS = &amp;H20<br>
+    Public Const RIGHT_DS_REPLICATION = &amp;H40<br>
+    Public Const RIGHT_DS_MODIFY_SEC_ATT = &amp;H80<br>
+    Public Const RIGHT_DS_SEARCH = &amp;H100</font></small></p>
+      </blockquote>
+    <p><font face="Verdana"><small>The following sample is for reading and modifying
+    the Exchange Security Descriptor
+    Attribute in Exchange 5.5 and ADSI 2.5.</small></font></p>
+      <blockquote>
+    <p><small><font face="Verdana">Dim propVal As IADsPropertyValue2<br>
+    Dim sd As IADsSecurityDescriptor<br>
+    Dim dacl As IADsAccessControlList<br>
+    Dim ace As IADsAccessControlEntry<br>
+    Dim o As IADs<br>
+    Dim srv<br>
+    <br>
+    srv = &quot;andyhar04&quot;<br>
+    mailbox = &quot;cn=andyhar&quot;<br>
+    Site = &quot;ou=Redmond&quot;<br>
+    Org = &quot;o=Microsoft&quot;</font></small></p>
+      </blockquote>
+    <p style="margin-bottom: 0"><font face="Verdana"><small>
+    '----Binding----</small></font></p>
+      <blockquote>
+    <p style="margin-top: 0"><font face="Verdana"><small>
+    ADsPath = &quot;LDAP://&quot; &amp; srv &amp; &quot;/&quot; &amp; mailbox &amp;
+    &quot;,cn=Recipients,&quot; &amp; Site &amp; &quot;,&quot; &amp; Org<br>
+    Set o = GetObject(ADsPath)</small></font></p>
+      </blockquote>
+    <p style="margin-bottom: 0"><font face="Verdana"><small>
+    '----Get the Windows NT Security Descriptor as a raw binary security descriptor----</small></font></p>
+      <blockquote>
+    <p style="margin-top: 0"><small><font face="Verdana">
+    o.GetInfoEx Array(&quot;NT-Security-Descriptor;binary&quot;), 0<br>
+    v = o.Get(&quot;NT-Security-Descriptor&quot;)</font></small></p>
+      </blockquote>
+    <p style="margin-bottom: 0"><font face="Verdana"><small>
+    '----Convert from a raw Security Descriptor to </small><small>an IADsSecurityDescriptor----</small></font></p>
+      <blockquote>
+    <p style="margin-top: 0"><small><font face="Verdana">
+    Set propVal = CreateObject(&quot;PropertyValue&quot;)<br>
+    propVal.PutObjectProperty ADSTYPE_OCTET_STRING, v<br>
+    Set sd = propVal.GetObjectProperty(ADSTYPE_NT_SECURITY_DESCRIPTOR)</font></small></p>
+      </blockquote>
+    <p style="margin-bottom: 0"><font face="Verdana"><small>
+    '----Enumerate an ACE in DACL----</small></font></p>
+      <blockquote>
+    <p style="margin-top: 0; margin-bottom: 0"><small><font face="Verdana">
+    Set dacl = sd.DiscretionaryAcl<br>
+    For Each ace In dacl</font></small></p>
+      </blockquote>
+    <p style="margin-top: 0; margin-bottom: 0"><font face="Verdana"><small>
+    '----TRUSTEE----</small></font></p>
+      <blockquote>
+    <p style="margin-top: 0; margin-bottom: 0"><small><font face="Verdana">
+    perm = ace.Trustee</font></small></p>
+      </blockquote>
+    <p style="margin-top: 0; margin-bottom: 0"><small><font face="Verdana">
+    '----ACE TYPE-----</font></small></p>
+      <blockquote>
+    <p style="margin-top: 0; margin-bottom: 0"><small><font face="Verdana">
+    If (ace.AceType = ADS_ACETYPE_ACCESS_ALLOWED) Then<br>
+    &nbsp;&nbsp; perm = perm &amp; &quot; is allowed to &quot;<br>
+    ElseIf (ace.Type = ADS_ACETYPE_ACCESS_DENIED) Then<br>
+    &nbsp;&nbsp; perm = perm &amp; &quot; is denied to:&quot;<br>
+    End If</font></small></p>
+      </blockquote>
+    <p style="margin-bottom: 0"><font face="Verdana"><small>
+    '----ACE MASK----</small></font></p>
+      <blockquote>
+    <p style="margin-top: 0"><font face="Verdana"><small>
+    If (ace.AccessMask And RIGHT_MAIL_SEND_AS) Then<br>
+    &nbsp;&nbsp; perm = perm &amp; &quot; -send mail&quot;<br>
+    End If<br>
+    <br>
+    If (ace.AccessMask And RIGHT_MAIL_RECEIVE_AS) Then<br>
+    &nbsp; perm = perm &amp; &quot; -receive mail as&quot;<br>
+    End If<br>
+    <br>
+    If (ace.AccessMask And RIGHT_DS_MODIFY_USER_ATT) Then<br>
+    &nbsp; perm = perm &amp; &quot; -modify user attributes&quot;<br>
+    End If<br>
+    <br>
+    If (ace.AccessMask And RIGHT_DS_MODIFY_ADMIN_ATT) Then<br>
+    &nbsp; perm = perm &amp; &quot; -modify admin attributes&quot;<br>
+    End If<br>
+    <br>
+    If (ace.AccessMask &amp; RIGHT_DS_DELETE) Then<br>
+    &nbsp; perm = perm &amp; &quot; -delete this object&quot;<br>
+    End If<br>
+    <br>
+    Debug.Print perm<br>
+    <br>
+    Next</small></font></p>
+      </blockquote>
+    <p style="margin-bottom: 0"><font face="Verdana"><small>
+    '---- You can also add a new ace, and add it to DACL</small></font></p>
+      <blockquote>
+    <p style="margin-top: 0"><font face="Verdana"><small>
+    Set ace = CreateObject(&quot;AccessControlEntry&quot;)<br>
+    ace.AceType = ADS_ACETYPE_ACCESS_ALLOWED ' Allow permission<br>
+    ace.AccessMask = RIGHT_MAIL_SEND_AS Or RIGHT_DS_MODIFY_USER_ATT Or
+    RIGHT_DS_MODIFY_ADMIN_ATT Or RIGHT_DS_DELETE<br>
+    ace.Trustee = &quot;NTDEV\Administrator&quot;<br>
+    dacl.AddAce ace<br>
+    sd.DiscretionaryAcl = dacl</small></font></p>
+      </blockquote>
+    <p style="margin-bottom: 0"><font face="Verdana"><small>
+    '--- Now you have to convert back to the Raw Security Descriptor</small></font></p>
+      <blockquote>
+    <p style="margin-top: 0"><font face="Verdana"><small>
+    propVal.PutObjectProperty ADSTYPE_NT_SECURITY_DESCRIPTOR, sd<br>
+    v = propVal.GetObjectProperty(ADSTYPE_OCTET_STRING)</small></font></p>
+      </blockquote>
+    <p style="margin-top: 0; margin-bottom: 0"><font face="Verdana"><small>'-- Commit to the Directory</small></font></p>
+      <blockquote>
+    <p style="margin-top: 0"><font face="Verdana"><small>
+    o.Put &quot;NT-Security-Descriptor;binary&quot;, v<br>
+    o.SetInfo<br>
+    <br>
+    </small></font></p>
+      </blockquote>
+    <p><small><font face="Verdana">Go to <a href="#top">top</a></font></small></p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,48 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\permedia.res \
+    $(_OBJ_DIR)\alpha\permedia.obj \
+    $(_OBJ_DIR)\alpha\permdata.obj \
+    $(_OBJ_DIR)\alpha\permmem.obj \
+    $(_OBJ_DIR)\alpha\interupt.obj \
+    $(_OBJ_DIR)\alpha\pciprobe.obj \
+    $(_OBJ_DIR)\alpha\video.obj \
+    $(_OBJ_DIR)\alpha\power.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\permedia.res \
+    $(_OBJ_DIR)\axp64\permedia.obj \
+    $(_OBJ_DIR)\axp64\permdata.obj \
+    $(_OBJ_DIR)\axp64\permmem.obj \
+    $(_OBJ_DIR)\axp64\interupt.obj \
+    $(_OBJ_DIR)\axp64\pciprobe.obj \
+    $(_OBJ_DIR)\axp64\video.obj \
+    $(_OBJ_DIR)\axp64\power.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\permedia.res \
+    $(_OBJ_DIR)\i386\permedia.obj \
+    $(_OBJ_DIR)\i386\permdata.obj \
+    $(_OBJ_DIR)\i386\permmem.obj \
+    $(_OBJ_DIR)\i386\interupt.obj \
+    $(_OBJ_DIR)\i386\pciprobe.obj \
+    $(_OBJ_DIR)\i386\video.obj \
+    $(_OBJ_DIR)\i386\power.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\permedia.res \
+    $(_OBJ_DIR)\ia64\permedia.obj \
+    $(_OBJ_DIR)\ia64\permdata.obj \
+    $(_OBJ_DIR)\ia64\permmem.obj \
+    $(_OBJ_DIR)\ia64\interupt.obj \
+    $(_OBJ_DIR)\ia64\pciprobe.obj \
+    $(_OBJ_DIR)\ia64\video.obj \
+    $(_OBJ_DIR)\ia64\power.obj
+
+PASS0_IA64_OBJECTS=
+

@@ -1,0 +1,7 @@
+# Microsoft Developer Studio Generated Dependency File, included by httpauth.mak
+
+.\httpauth.cpp : \
+	"..\..\..\include\nt50\basetsd.h"\
+	"..\..\..\include\nt50\propidl.h"\
+	"..\..\..\include\nt50\winefs.h"\
+	

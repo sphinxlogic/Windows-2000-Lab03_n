@@ -1,0 +1,28 @@
+#---------------------------------------------------------------------------
+# Description:
+#   Make file to generate QueView.Dll
+#
+# Copyright (C) Microsoft Corp. 1986 - 1998.  All Rights Reserved.
+#---------------------------------------------------------------------------
+
+Proj = QueView
+USE_EXCHANGE=1
+Use_MFC = 1
+dll=1
+
+LibList = Shell32.Lib
+
+ObjList = $(@R).Obj       $(@D)\FaildMsg.Obj $(@D)\Global.Obj \
+          $(@D)\PropDlg.Obj   $(@D)\Property.Obj $(@D)\DelMsgDl.Obj \
+          $(@D)\PrpLstCb.Obj  $(@D)\BinArray.Obj $(@D)\MapiMsg.Obj \
+          $(@R).Res
+
+!Include <BkOffice.Mak>
+
+!if "$(CPU)" == "ALPHA"
+LINK = $(LINK) /FORCE:MULTIPLE
+!endif
+
+all: $(ObjDir)\$(Proj).Dll
+
+$(ObjDir)\$(Proj).Dll: $(ObjList) 

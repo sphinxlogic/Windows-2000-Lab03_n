@@ -1,0 +1,12 @@
+// FileRmClient.odl : type library source for FileRmClient.exe
+
+// This file will be processed by the Make Type Library (mktyplib) tool to
+// produce the type library (FileRmClient.tlb).
+
+[ uuid(B8A90BB4-3D8D-11D0-9693-00AA00C149A6), version(1.0) ]
+library FileRmClient
+{
+	importlib("stdole32.tlb");
+	
+	//{{AFX_APPEND_ODL}}
+};

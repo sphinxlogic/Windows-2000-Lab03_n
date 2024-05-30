@@ -1,0 +1,24 @@
+HKCR
+{
+	DXSurface.SimpleGradient.1 = s 'Simple Gradient'
+	{
+		CLSID = s '{D4ADDB80-A306-11D1-9054-00C04FD9189D}'
+	}
+	DXSurface.SimpleGradient = s 'Simple Gradient'
+	{
+		CurVer = s 'DXSurface.SimpleGradient.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {D4ADDB80-A306-11D1-9054-00C04FD9189D} = s 'Simple Gradient DXSurface Example'
+		{
+			ProgID = s 'DXSurface.SimpleGradient.1'
+			VersionIndependentProgID = s 'DXSurface.SimpleGradient'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+		}
+	}
+}

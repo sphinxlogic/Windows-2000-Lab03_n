@@ -1,0 +1,23 @@
+HKCR
+{
+	FileRm.SimpleLog.1 = s 'SimpleLog Class'
+	{
+		CLSID = s '{5BFC4336-4C90-11D0-9697-00AA00C149A6}'
+	}
+	FileRm.SimpleLog = s 'SimpleLog Class'
+	{
+		CurVer = s 'FileRm.SimpleLog.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {5BFC4336-4C90-11D0-9697-00AA00C149A6} = s 'SimpleLog Class'
+		{
+			ProgID = s 'FileRm.SimpleLog.1'
+			VersionIndependentProgID = s 'FileRm.SimpleLog'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+		}
+	}
+}

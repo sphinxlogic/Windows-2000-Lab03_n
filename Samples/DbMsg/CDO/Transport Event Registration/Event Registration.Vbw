@@ -1,0 +1,7 @@
+frmEventRegister = 68, 27, 1104, 788, C, 91, -14, 809, 437, C
+EventRegistrationInfo = 302, 121, 1020, 569, 
+frmWizard = 129, 341, 1102, 986, , 48, 42, 644, 404, C
+modConsts = -261, 367, 563, 895, C
+frmAbout = 187, 123, 1011, 651, , 87, 216, 911, 744, C
+frmProps = 93, 173, 917, 701, C, 87, 20, 911, 548, C
+modCommon = 91, 48, 915, 679, 

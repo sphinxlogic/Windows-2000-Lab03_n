@@ -1,0 +1,11 @@
+LIBRARY MPHEAP
+
+EXPORTS
+    MpHeapAlloc
+    MpHeapCompact
+    MpHeapCreate
+    MpHeapDestroy
+    MpHeapFree
+    MpHeapGetStatistics
+    MpHeapReAlloc
+    MpHeapValidate

@@ -1,0 +1,161 @@
+<html>
+
+<head>
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 3.0">
+<title>map</title>
+<meta NAME="Version" CONTENT="8.0.3410">
+<meta NAME="Date" CONTENT="10/11/96">
+<meta NAME="Template" CONTENT="C:\Program Files\Office\Office\HTML.DOT">
+</head>
+
+<body TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<font FACE="Arial" SIZE="4"><b>
+
+<p><a NAME="_Toc397403948">Interface Map</a> </p>
+</b></font>
+
+<p>The Map interface implements an associative set, where a name can be mapped to a value.
+Maps wrap the ASP collection which store Variants, but provide only the methods for
+getting/setting a value in the collection. Objects that implement Map, and which actually
+encapsulate the objects (i.e., ObjectDictionary, RequestDictionary) will also typically
+extend java.util.Dictionary, and the implement the Enumerator interface </p>
+
+<p>The ASP Maps have been extended to allow auto-conversion between the variant
+representation and common Java types that have directly analogous variant types. So, for
+example, such as Object, String, Date, would map to IUnknown, BSTR, and OLE Date objects
+while intrinsic Java types such as int, boolean, float, etc., would be converted to
+appropriate Variant object types. So, for example, the programmer could use the Session
+collection, store and retrieve an integer or java.util.Date object, and conversions
+between the Java and Variant types would be done transparently. The goal is to allow the
+Java developer to interact with data types that are comfortable and natural, while
+exposing them to the script developer that is natural for that environment.</p>
+
+<p>Note that there are some Maps, such as the various Request collections, that are
+read-only. For these, calls to a put method should throw an AspComponentException
+exception.<font FACE="Courier New" SIZE="1"> 
+
+<dir>
+  </font><font FACE="Courier New" SIZE="2">public interface Map {<br>
+  &nbsp;&nbsp;&nbsp; int </font><a HREF="#getType">getType</a><font FACE="Courier New"
+  SIZE="2">(String name);<br>
+  &nbsp;&nbsp;&nbsp; Object </font><a HREF="#getObject">getObject</a><font
+  FACE="Courier New" SIZE="2">(String name) throws ClassCastException;<br>
+  &nbsp;&nbsp;&nbsp; boolean </font><a HREF="#getBoolean">getBoolean</a><font
+  FACE="Courier New" SIZE="2">(String name) throws ClassCastException;<br>
+  &nbsp;&nbsp;&nbsp; byte </font><a HREF="#getByte">getByte</a><font FACE="Courier New"
+  SIZE="2">(String name) throws ClassCastException;<br>
+  &nbsp;&nbsp;&nbsp; short </font><a HREF="#getShort">getShort</a><font
+  FACE="Courier New" SIZE="2">(String name) throws ClassCastException;<br>
+  &nbsp;&nbsp;&nbsp; char </font><a HREF="#getChar">getChar</a><font FACE="Courier New"
+  SIZE="2">(String name) throws ClassCastException;<br>
+  &nbsp;&nbsp;&nbsp; int </font><a HREF="#getInt">getInt</a><font FACE="Courier New"
+  SIZE="2">(String name) throws ClassCastException;<br>
+  &nbsp;&nbsp;&nbsp; long </font><a HREF="#getLong">getLong</a><font FACE="Courier New"
+  SIZE="2">(String name) throws ClassCastException;<br>
+  &nbsp;&nbsp;&nbsp; float </font><a HREF="#getFloat">getFloat</a><font
+  FACE="Courier New" SIZE="2">(String name) throws ClassCastException;<br>
+  &nbsp;&nbsp;&nbsp; double </font><a HREF="#getDouble">getDouble</a><font
+  FACE="Courier New" SIZE="2">(String name) throws ClassCastException;<br>
+  &nbsp;&nbsp;&nbsp; String </font><a HREF="#getString">getString</a><font
+  FACE="Courier New" SIZE="2">(String name) throws ClassCastException;<br>
+  &nbsp;&nbsp;&nbsp; java.util.Date </font><a HREF="#getDate">getDate</a><font
+  FACE="Courier New" SIZE="2">(String name) throws ClassCastException;<br>
+  &nbsp;&nbsp;&nbsp; Variant </font><a HREF="#getVariant">getVariant</a><font
+  FACE="Courier New" SIZE="2">(String name) throws ClassCastException;<br>
+  &nbsp;&nbsp;&nbsp; void </font><a HREF="#setObject">setObject</a><font
+  FACE="Courier New" SIZE="2">(String name, Object o) throws AspComponentException;<br>
+  &nbsp;&nbsp;&nbsp; void </font><a HREF="#setBoolean">setBoolean</a><font
+  FACE="Courier New" SIZE="2">(String name,boolean b) throws AspComponentException;<br>
+  &nbsp; &nbsp;&nbsp;void </font><a HREF="#setByte">setByte</a><font FACE="Courier New"
+  SIZE="2">(String name,byte b) throws AspComponentException;<br>
+  &nbsp;&nbsp;&nbsp; void </font><a HREF="#setShort">setShort</a><font FACE="Courier New"
+  SIZE="2">(String name,short s) throws AspComponentException;<br>
+  &nbsp;&nbsp;&nbsp; void </font><a HREF="#setInt">setInt</a><font FACE="Courier New"
+  SIZE="2">(String name,int i) throws AspComponentException;<br>
+  &nbsp;&nbsp;&nbsp; void </font><a HREF="#setFloat">setFloat</a><font FACE="Courier New"
+  SIZE="2">(String name,float f) throws AspComponentException;<br>
+  &nbsp;&nbsp;&nbsp; void </font><a HREF="#setDouble">setDouble</a><font
+  FACE="Courier New" SIZE="2">(String name,double d) throws AspComponentException;<br>
+  &nbsp;&nbsp;&nbsp; void </font><a HREF="#setString">setString</a><font
+  FACE="Courier New" SIZE="2">(String name,String str) throws AspComponentException;<br>
+  &nbsp;&nbsp;&nbsp; void </font><a HREF="#setDate">setDate</a><font FACE="Courier New"
+  SIZE="2">(String name, java.util.Date d) throws AspComponentException;<br>
+  &nbsp;&nbsp;&nbsp; void </font><a HREF="#setVariant">setVariant</a><font
+  FACE="Courier New" SIZE="2">(String name, Variant var)<br>
+  &nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  throws AspComponentException;<br>
+  }<br>
+</dir>
+</font>
+
+<hr>
+<font FACE="Arial"><b>
+
+<p>int <a NAME="getType">getType</a>(String name)</p>
+
+<p></b></font>Returns the variant type of the object identified by <em>name.</em><font
+FACE="Arial"><b></p>
+
+<p></b></font>Note, this method does not actually retrieve the object from the Map, but
+rather the value of the type field of the Variant that holds the object.<font FACE="Arial"><b></p>
+
+<p>Object <a NAME="getObject">getObject</a>(String name) throws ClassCastException<p>
+boolean <a NAME="getBoolean">getBoolean</a>(String name) throws ClassCastException<p>
+byte <a NAME="getByte">getByte</a>(String name) throws ClassCastException<p>
+short <a NAME="getShort">getShort</a>(String name) throws ClassCastException<p>
+char <a NAME="getChar">getChar</a>(String name) throws ClassCastException<p>
+int <a NAME="getInt">getInt</a>(String name) throws ClassCastException<p>
+long <a NAME="getLong">getLong</a>(String name) throws ClassCastException<p>
+float <a NAME="getFloat">getFloat</a>(String name) throws ClassCastException<p>
+double <a NAME="getDouble">getDouble</a>(String name) throws ClassCastException<p>
+String <a NAME="getString">getString</a>(String name) throws ClassCastException<p>
+java.util.Date <a NAME="getDate">getDate</a>(String name) throws ClassCastException<p>
+Variant <a NAME="getVariant">getVariant</a>(String name) throws ClassCastException</p>
+
+<p></b></font>Returns the object associated with <em>name</em> as the requested type.
+&nbsp; Since all ASP collections store objects as variants, they can hold objects of
+various types.&nbsp; The various get members allow you to retrieve the objects in the
+collection, converting them to the appropriate Java types.&nbsp; For intrinsic types, you
+should use methods like <em>getDouble</em>, or <em>getInt</em>.&nbsp; For the OLE Date
+type, use the <em>getDate</em>, which will convert it to a <em>java.util.Date</em>.<font
+FACE="Arial"><b></p>
+</b></font>
+
+<p>The <em>getVariant</em> method can be used to retrieve the object as the actual Variant
+stored in the collection.</p>
+
+<p>Note: You can only retrieve an object whose variant type matches the type that you
+attempting to retrieve it as.&nbsp; For example, if the actual variant is type int, you <strong>can
+not</strong> retrieve it using the getFloat method.&nbsp; If you attempt to obtain a given
+object using a method that does not match the actual type, a <em>ClassCastException</em>
+will be thrown.</p>
+
+<p><font FACE="Arial"><b>void <a NAME="setObject">setObject</a>(String name, Object o)
+throws AspComponentException<p>
+void <a NAME="setBoolean">setBoolean</a>(String name,boolean b) throws
+AspComponentException<p>
+void <a NAME="setByte">setByte</a>(String name,byte b) throws AspComponentException<p>
+void <a NAME="setShort">setShort</a>(String name,short s) throws AspComponentException<p>
+void <a NAME="setInt">setInt</a>(String name,int i) throws AspComponentException<p>
+void <a NAME="setFloat">setFloat</a>(String name,float f) throws AspComponentException<p>
+void <a NAME="setDouble">setDouble</a>(String name,double d) throws AspComponentException<p>
+void <a NAME="setString">setString</a>(String name,String str) throws
+AspComponentException<p>
+void <a NAME="setDate">setDate</a>(String name, Date d) throws AspComponentException<p>
+void <a NAME="setVariant">setVariant</a>(String name, Variant var) throws
+AspComponentException</b></font></p>
+
+<p>Sets the object associated with <em>name</em> as the specified type.&nbsp; Since all
+ASP collections store objects as variants, they can hold objects of various types. &nbsp;
+The various set members allow you to store objects in the collection, passing them in as
+the native Java types, they will be converted to the appropriate variants for you. For
+intrinsic types, you should use methods like <em>setDouble</em>, or <em>setInt</em>.
+&nbsp; For the <em>java.util.Date</em> type, use the <em>setDate</em>, which will convert
+it to an OLE Date.</p>
+
+<p>The <em>setVariant</em> method can be used to store an actual Variant in the
+collection, with no conversion.</p>
+</body>
+</html>

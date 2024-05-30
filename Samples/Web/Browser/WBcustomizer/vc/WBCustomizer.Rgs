@@ -1,0 +1,24 @@
+HKCR
+{
+	WBCustomizer.WBCustomizer.1 = s 'WBCustomizer Class'
+	{
+		CLSID = s '{D31843D1-C275-11D1-ABEE-602546C11E08}'
+	}
+	WBCustomizer.WBCustomizer = s 'WBCustomizer Class'
+	{
+		CurVer = s 'WBCustomizer.WBCustomizer.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {D31843D1-C275-11D1-ABEE-602546C11E08} = s 'WBCustomizer Class'
+		{
+			ProgID = s 'WBCustomizer.WBCustomizer.1'
+			VersionIndependentProgID = s 'WBCustomizer.WBCustomizer'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+		}
+	}
+}

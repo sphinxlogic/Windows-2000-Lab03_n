@@ -1,0 +1,28 @@
+XML Validator
+
+Files:
+validate.htm
+WeatherReport.xml
+WeatherSchema.xml
+
+Description:
+This web page allows you to enter in the URL of an XML document and both parse and validate that 
+document.  This demo utilizes the new validation support (XML schemas, validateOnParse property, etc.).
+To run the validator on this site, enter in the following URL: "WeatherReport.xml".
+
+The new MSXML parser that ships with Internet Explorer 5 now supports XML schemas as 
+a way to define content models.  XML Schema can now be used to validate XML data against.
+
+The new validateOnParse property gives the web application builder more control over what actions are
+taken with the document she is downloading.  In some cases, validating the document may be an 
+unnecessary step.  In other cases, validation may be required.  
+
+More Details:
+When entering a URL, be aware that, for security reasons, you cannot access data across protocols.
+Therefore, if you load the page via http, you can only access data via http.  The same goes
+for other protocols.
+
+This validator can be used with both XML schemas and DTDs.
+
+Compatibility/Platform Compatibility:
+This demo requires Microsoft Internet Explorer 5 or greater on Win32 or Unix platforms.

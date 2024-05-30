@@ -1,0 +1,264 @@
+Option Explicit
+Const LAYOUTFLAG_VERTICAL_ONLY = 65
+Const LAYOUTFLAG_VERTICAL_AND_HORIZONTAL = 68
+Const MAPI_PROPTAG_SERVERNAME = &H6644001E 'PropID For Server Name
+
+Dim Critique_Status
+Dim CurrentUser
+
+Function Item_Open()
+   Dim MyPage,MyInspector
+
+   On Error Resume Next
+
+   Item_Open = True
+
+   Set MyInspector = Item.GetInspector
+   MyInspector.HideFormPage("Browser")
+ 
+   'Check who is opening item and use appropriate Compose/Read Page combination
+   CurrentUser = Application.GetNameSpace("MAPI").CurrentUser
+   If Item.UserProperties("OldUserName") = CurrentUser Then
+      If UserProperties("bibNo") <> 0 Then
+         ' This person has reviewed a library item. Show HALF-READ form.
+  	   MyInspector.ShowFormPage("HalfRead")
+         MyInspector.HideFormPage("Others")
+         MyInspector.SetCurrentFormPage("HalfRead")
+         Set MyPage = MyInspector.ModifiedFormPages("HalfRead")
+      Else
+         ' Not a library item.  Show CURRENT USER form.
+         MyInspector.ShowFormPage("CurrentUser")
+         MyInspector.HideFormPage("Others")
+         MyInspector.SetCurrentFormPage("CurrentUser")
+         Set MyPage = MyInspector.ModifiedFormPages("CurrentUser")
+      End If
+   Else
+      ' Reader is not submitter. Show DEFAULT (Others) form.
+      MyInspector.SetCurrentFormPage("Others")
+      Set MyPage = MyInspector.ModifiedFormPages("Others")
+   End If
+
+   ' Show this box only for the for first time
+   If Item.UserProperties("OldUserName") = "" Then
+      Dim BibNo,Title,Authors,MediaType,ObjectID
+      Dim Response, objCritique, LogOn, ServerName
+      Dim objNamespace,MyFields,element,MyAddressLists,MyEntries,MyEntry,MyName
+      Dim objCDOSession,Field,MyControl,objItem,objStore,lMask,StoreID
+  
+      Item.UserProperties("OldUserName") = CurrentUser
+
+      ' Get the SERVER name from the fields collection of the Inbox
+      ' The MAPI.Session object isn't the same as the MAPI namespace
+      ' because the Fields collection doesn't exist. The next bit of
+      ' code launches a CDO Session (as opposed to the Outlook Session)...
+
+      Set objCDOSession = Application.CreateObject("MAPI.Session")
+      If IsObject(objCDOSession) Then
+
+         ' Share same context as current session
+         objCDOSession.LogOn "",False,False,False
+         For Each Field in objCDOSession.Inbox.Fields
+            If Field.ID = MAPI_PROPTAG_SERVERNAME  Then 
+               ServerName = Field.Value
+               Exit For
+            End If
+         Next
+
+         ' Next, let's look for the StoreID of the Public Folders in case
+         ' we have to open an existing item in the script below...
+
+         For Each objStore In objCDOSession.InfoStores
+            If objStore.ProviderName <> "Personal Folders" Then
+               lMask = objStore.Fields.Item(&H340D0003) ' PR_STORE_SUPPORT_MASK
+               If lMask And &H00004000 Then ' STORE_PUBLIC_FOLDERS
+                  StoreID = objStore.ID
+                  Exit For
+               End If
+            End If
+         Next
+         objCDOSession.Logoff
+      Else
+         MsgBox "CDO.DLL doesn't appear to be registered on your computer." & vbCrLf & _
+                "Use REGSVR32.EXE to register it. The form will continue with default" & vbCrLf & _
+                "application settings.", vbInformation, "MAPI.Session Not Found"
+      End If
+
+      ' Try instantiating the LitCrit client-side component.  If it can't
+      ' be done, redirect to a Web page that installs the component automatically.
+
+      Set objCritique = Application.CreateObject("LitCritC.Critique")
+      If Not IsObject(objCritique) Then
+         MsgBox "The client-side object for the Enhanced LitCrit form is not installed." & vbCrLf & _
+                "Please visit http://" & CStr(ServerName) & "/FmLib/LitCritC/Install.htm.", _
+                vbInformation, "LitCritC Not Installed"
+         MyInspector.ShowFormPage("Browser")
+         MyInspector.HideFormPage("Others")
+         MyInspector.SetCurrentFormPage("Browser")
+         Set MyPage = MyInspector.ModifiedFormPages("Browser")
+         Set MyControl = MyPage.Controls("WebBrowser1")
+         MyControl.Navigate("http://" & CStr(ServerName) & "/FmLib/LitCritC/Install.htm")
+         Exit Function
+      End If
+
+      If ServerName = "" Then
+	   ServerName = objCritique.GetApplicationSetting("ExchangeServer")
+      End If
+
+      ' Here we're interested in the user's ALIAS (not DISPLAY NAME).  We can use
+      ' the Outlook object model to find that...
+
+      Set objNamespace = Application.GetNameSpace("MAPI")
+      Set MyAddressLists = objNamespace.AddressLists("Global Address List")
+      Set MyEntries = MyAddressLists.AddressEntries
+      Set MyEntry = MyEntries.Item(CurrentUser)
+      LogOn = MyEntry.Address
+    
+      objCritique.ChooseTitle BibNo, Title, Authors, MediaType, ObjectID, _
+                              CStr(LogOn), CStr(ServerName)
+
+      If BibNo <> 0 Then
+
+         ' If ObjectID is returned, a review exists for this item.  Now open it...
+         If ObjectID <> "" Then
+            Set objItem = objNamespace.GetItemFromID(ObjectID,StoreID)
+            If Not (IsEmpty(objItem) Or objItem Is Nothing) Then
+               objItem.GetInspector.Display
+               Item_Open = False
+            Else
+		   MsgBox "Unable to open existing review. Please resubmit your review for this library item."
+            End If
+            Exit Function
+         End If
+
+         MyInspector.ShowFormPage("HalfRead")
+	   MyInspector.HideFormPage("Others")
+         MyInspector.SetCurrentFormPage("HalfRead")
+         Set MyPage= MyInspector.ModifiedFormPages("HalfRead") 
+
+         Item.UserProperties("bibNo").Value = BibNo
+
+         Item.UserProperties("ApprovalRequired") = objCritique.GetApplicationSetting("ApprovalRequired",CStr(ServerName))
+         If Item.UserProperties("ApprovalRequired").Value =  1 Then
+            Item.UserProperties("ApproverEmail")= objCritique.GetApplicationSetting("ApproverEmail",CStr(ServerName))
+         End If
+      Else
+         MyInspector.SetCurrentFormPage("Others")
+         Set MyPage = MyInspector.ModifiedFormPages("Others")
+      End If
+
+      Item.UserProperties("Item Title").Value  = Title
+      Item.UserProperties("AuthName").Value = Authors
+
+      Select Case MediaType
+      Case "AV":   Item.UserProperties("Media").Value = "Audio/Video"
+      Case "Prd":  Item.UserProperties("Media").Value = "Periodicals"
+      Case "Soft": Item.UserProperties("Media").Value = "Software"
+      Case Else:   Item.UserProperties("Media").Value = "Book"
+      End Select
+   End If
+
+   'Choose the default option of radio button to load image
+   Select Case Item.UserProperties("Media").Value 
+   Case "Book": 
+      Set MyPage.imgMedia.Picture = MyPage.ImageList1.ListImages("Book").Picture
+   Case "Audio/Video":
+	Set MyPage.imgMedia.Picture = MyPage.ImageList1.ListImages("AV").Picture
+   Case "Periodicals"
+	Set MyPage.imgMedia.Picture = MyPage.ImageList1.ListImages("Prd").Picture
+   Case "Software"
+	Set MyPage.imgMedia.Picture = MyPage.ImageList1.ListImages("Soft").Picture
+   End Select
+   Call Item_CustomPropertyChange("Media")
+
+   'To Resize the Message Control Vertically
+   MyPage.frmMessage.LayoutFlags=LAYOUTFLAG_VERTICAL_AND_HORIZONTAL
+   MyPage.frmMessage.txtMessage.LayoutFlags=LAYOUTFLAG_VERTICAL_AND_HORIZONTAL 
+End Function
+
+'This event is fired when value of custom property changes
+Sub Item_CustomPropertyChange(ByVal Name)
+   Dim MyPage,MyInspector
+
+   Set MyInspector = Item.GetInspector
+
+   Select Case Name
+     Case "Item Title"
+	    If Not Critique_Status  And Len(UserProperties("Item Title"))> 0 Then
+  	       UserProperties("Subject")="Critique of: " & UserProperties("Item Title")
+	    End If
+   
+     Case "Media"
+        If Item.UserProperties("OldUserName")= CurrentUser Then
+           If UserProperties("bibNo") <> 0 Then
+              MyInspector.SetCurrentFormPage("HalfRead")
+              Set MyPage = MyInspector.ModifiedFormPages("HalfRead")
+           Else
+              MyInspector.SetCurrentFormPage("CurrentUser")
+              Set MyPage = MyInspector.ModifiedFormPages("CurrentUser")
+           End If
+        Else
+           MyInspector.SetCurrentFormPage("HalfRead")
+           Set MyPage = MyInspector.ModifiedFormPages("Others")
+        End If
+
+ 	  Select Case Item.UserProperties("Media").Value 
+     	    Case "Book"
+	  	Set MyPage.imgMedia.Picture = MyPage.ImageList1.ListImages("Book").Picture
+          Case "Audio/Video"
+            Set MyPage.imgMedia.Picture = MyPage.ImageList1.ListImages("AV").Picture
+          Case "Periodicals"
+            Set MyPage.imgMedia.Picture = MyPage.ImageList1.ListImages("Prd").Picture
+          Case "Software"
+            Set MyPage.imgMedia.Picture = MyPage.ImageList1.ListImages("Soft").Picture
+
+        End Select
+   End Select
+End Sub
+
+'This event is fired when the standard property like subject,from,to is changed
+Sub Item_PropertyChange(ByVal Name)
+	Dim TempString
+ 	Select Case Name
+  	  Case "Subject"
+	    TempString = "Critique of: " & Item.UserProperties("Item Title").Value
+	    If TempString <> UserProperties("Subject").Value then 
+	    	Critique_Status = True
+	    End If
+	  Case Else
+      End Select
+End Sub
+
+'Event is called when User hits the post button 
+Function Item_Write()
+   Dim MyPage,MyInspector,Reviewer
+
+   If UserProperties("AuthName") = "<Last,First>"  or UserProperties("AuthName")="" Then
+      UserProperties("AuthName") = "Not Mentioned"
+   End If
+
+   If UserProperties("Tech Level") = "<Select Rating>" Then
+      UserProperties("Tech Level") = "Not Rated"
+   End If
+ 
+   If UserProperties("Job Relevance") = "<Select Rating>" Then
+      UserProperties("Job Relevance") = "Not Rated"
+   End If
+
+   If UserProperties("Clarity Rating") = "<Select Rating>" Then
+      UserProperties("Clarity Rating") = "Not Rated"
+   End If 
+	
+   'To attach the text to body property of postItem
+   Item.Body = Item.UserProperties("CritiqueText").Value
+	
+   'Concatenating the strings into one field 
+   If UserProperties("OldUserName").Value ="" Then
+      Reviewer = CurrentUser
+   Else
+      Reviewer = UserProperties("OldUserName").Value 
+   End If
+
+   UserProperties("LongAuthor") = "by " & UserProperties("AuthName")
+   UserProperties("LongMedia") = UserProperties("Media") & " reviewed by " & Reviewer & " on " & Now()
+End Function
+

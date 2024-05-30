@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>Adjustable -> IUIScroll</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">Adjustable to IUIScroll</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.Adjustable should be transformed into instances of
+com.ms.ui.IUIScroll.</p>
+
+<p align="left">Adjustable extends <a href="Scrollbar.htm"
+target="descriptions">Scrollbar</a>: be sure to see its changes.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">You will usually want to use UIScroll, which
+implements IUIScroll. UIScroll provides the same functionality as
+Adjustable, and adds several more options. See the documentation
+for more information.</p>
+
+<p align="left">&nbsp;</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">This is the set of changes you need to make to
+port all Adjustable methods to IUIScroll methods. Any method not
+listed here or below does not need to be changed.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial"><strong>AWT Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>AFC Code</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">getBlockIncrement()</font></td>
+        <td nowrap><font size="2" face="Courier">getScrollPage()</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">getMaximum()</font></td>
+        <td nowrap><font size="2" face="Courier">getScrollMax()</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getMinimum()</font></td>
+        <td><font size="2" face="Courier">getScrollMin()</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getUnitIncrement()</font></td>
+        <td><font size="2" face="Courier">getScrollLine()</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getValue()</font></td>
+        <td><font size="2" face="Courier">getScrollPos()</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getVisibleAmount()</font></td>
+        <td><font size="2" face="Courier">getScrollPage()</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setBlockIncrement(int)</font></td>
+        <td><font size="2" face="Courier">setScrollPage(int)</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setMaximum(int)</font></td>
+        <td><font size="2" face="Courier">setScrollMax(int)</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setMinimum(int)</font></td>
+        <td><font size="2" face="Courier">setScrollMin(int)</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setUnitIncrement(int)</font></td>
+        <td><font size="2" face="Courier">setScrollLine(int)</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setValue(int)</font></td>
+        <td><font size="2" face="Courier">setScrollPos(int)</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setVisibleAmount(int)</font></td>
+        <td><font size="2" face="Courier">setScrollPage(int)</font></td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h3>Unsupported Methods</h3>
+
+<p>Some methods in java.awt.Adjustable are not directly supported
+in com.ms.IUIScroll. Those methods and suggested changes are
+described here.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial">AWT Code<strong>/Suggested
+        AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">HORIZONTAL</font><p><font
+        size="2" face="Courier"><strong>(UIScroll).setStyle(0)</strong></font></p>
+        </td>
+        <td><font size="2">Horizontal and vertical settings are
+        set in UIScroll, which implements IUIScroll. UIScroll
+        covers what Adjustable provided.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">VERTICAL</font><p><font
+        size="2" face="Courier"><strong>(UIScroll).setStyle(UIScroll.VERTICAL)</strong></font></p>
+        </td>
+        <td><font size="2">Horizontal and vertical settings are
+        set in UIScroll, which implements IUIScroll. UIScroll
+        covers what Adjustable provided.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">addAdjustmentListener(AdjustmentListener)</font><p><font
+        size="2" face="Courier"><strong>(UIScroll).addAdjustmentListener(IUIAdjustmentListener)</strong></font></p>
+        </td>
+        <td><font size="2">UIScroll implements IUIScroll.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getOrientation()</font><p><font
+        size="2" face="Courier"><strong>(UIScroll).getStyle()</strong></font></p>
+        </td>
+        <td><font size="2">UIScroll implements IUIScroll.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">removeAdjustmentListener(AdjustmentListener)</font><p><font
+        size="2" face="Courier"><strong>(UIScroll).removeAdjustmentListener(IUIAdjustmentListener)</strong></font></p>
+        </td>
+        <td><font size="2">UIScroll implements IUIScroll.</font></td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+</body>
+</html>

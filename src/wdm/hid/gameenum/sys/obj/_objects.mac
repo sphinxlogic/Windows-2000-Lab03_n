@@ -1,0 +1,28 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\gameenum.res \
+    $(_OBJ_DIR)\alpha\gameenum.obj \
+    $(_OBJ_DIR)\alpha\pnp.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\gameenum.res \
+    $(_OBJ_DIR)\axp64\gameenum.obj \
+    $(_OBJ_DIR)\axp64\pnp.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\gameenum.res \
+    $(_OBJ_DIR)\i386\gameenum.obj \
+    $(_OBJ_DIR)\i386\pnp.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\gameenum.res \
+    $(_OBJ_DIR)\ia64\gameenum.obj \
+    $(_OBJ_DIR)\ia64\pnp.obj
+
+PASS0_IA64_OBJECTS=
+

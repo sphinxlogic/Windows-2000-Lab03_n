@@ -1,0 +1,109 @@
+<HTML>
+<HEAD>
+<TITLE>Advanced Buttons Demo</TITLE>
+</HEAD>
+
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT><hr>
+
+<BODY BGCOLOR="#ffffff">
+<CENTER>
+<!-- BEGIN GENERIC ALL BROWSER FRIENDLY HTML FOR WINDOWS MEDIA PLAYER -->
+<OBJECT ID="MediaPlayer1" width=160 height=112 
+	classid="CLSID:22D6F312-B0F6-11D0-94AB-0080C74C7E95"
+	codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=5,1,52,701"
+        standby="Loading Microsoft® Windows® Media Player components..." 
+        type="application/x-oleobject">
+  <PARAM NAME="FileName" VALUE="mms://netshow.microsoft.com/ms/sbnasfs/wmt/turtle28.asf">
+  <PARAM NAME="ShowControls" VALUE="0">
+  <EMBED type="application/x-mplayer2" 
+	pluginspage = "http://www.microsoft.com/Windows/Downloads/Contents/Products/MediaPlayer/"
+	SRC="mms://netshow.microsoft.com/ms/sbnasfs/wmt/turtle28.asf"
+	name="MediaPlayer1"
+	width=160
+	height=112
+	ShowControls=0></EMBED>
+</OBJECT>
+<!-- END GENERIC ALL BROWSER FRIENDLY HTML FOR WINDOWS MEDIA PLAYER -->
+
+<FORM NAME="myButtons">
+   <INPUT NAME="btnPlay" TYPE="Button" VALUE="Play" onclick="document.MediaPlayer1.Play();">
+   <INPUT NAME="btnPause" TYPE="Button" VALUE="Pause" onclick="document.MediaPlayer1.Pause();">
+   <INPUT NAME="btnStop" TYPE="Button" VALUE="Stop" onclick="document.MediaPlayer1.Stop();">
+  <BR>
+   <INPUT NAME="btnShowControls" TYPE="Button" VALUE="Show Controls" onclick="showClick()">
+   <INPUT NAME="btnHideControls" TYPE="Button" VALUE="Hide Controls" onclick="hideClick()">
+  <BR>
+   <INPUT NAME="btnMute" TYPE="Button" VALUE="&nbsp;Mute&nbsp;" onclick="muteClick()">
+<BR><FONT SIZE="-2" FACE="Arial">Video courtesy of <A TARGET="_blank" HREF="http://www.softimage.com">Soft Image</A>
+</FORM>
+
+</CENTER>
+
+<SCRIPT LANGUAGE="JavaScript">
+// Browser sniff -- the following code does a very simple browser check and rates the 
+//     browser as either Internet Explorer on a Win32 platform or not, so that we 
+//     know to use the ActiveX model, or the plug-in Model.
+var sBrowser = navigator.userAgent;  
+if ((sBrowser.indexOf("IE") > -1) && (navigator.platform == "Win32"))
+{
+	sBrowser = "IE";
+} else {
+	sBrowser = "nonIE";
+}
+// end browser sniff
+
+function showClick() // This function is called by the btnShowControls button.
+                     // It sets the ShowControls property of Media Player to true.
+{
+	if (sBrowser == "IE") {
+		document.MediaPlayer1.ShowControls = true;
+	} else {
+		document.MediaPlayer1.SetShowControls(true);
+	}
+}
+
+function hideClick() // This function is called by the btnHideControls button.
+                     // It sets the ShowControls property of Media Player to false.
+
+{
+	if (sBrowser == "IE") {
+		document.MediaPlayer1.ShowControls = false;
+	} else {
+		document.MediaPlayer1.SetShowControls(false);
+	}
+}
+
+function muteClick() // This function is called by the "Mute" button.
+                     // It toggles the state of the Mute property of the Media Player.
+{
+	var bMuteState;
+
+	if (sBrowser == "IE") {
+		bMuteState = document.MediaPlayer1.Mute;
+	} else {
+		bMuteState = document.MediaPlayer1.GetMute();
+	}
+
+	if (bMuteState == true) {
+		document.myButtons.btnMute.value="Mute";
+		if (sBrowser == "IE") {
+			document.MediaPlayer1.Mute = false;
+		} else {
+			document.MediaPlayer1.SetMute(false);
+		}
+	} else {
+		document.myButtons.btnMute.value="Un-Mute";
+		if (sBrowser == "IE") {
+			document.MediaPlayer1.Mute = true;
+		} else {
+			document.MediaPlayer1.SetMute(true);
+		}
+	}
+}
+
+</SCRIPT>
+
+</BODY>
+</HTML>

@@ -1,0 +1,181 @@
+<HTML>
+<HEAD>
+<TITLE>AFC Bean Demo</TITLE>
+</HEAD>
+
+<BODY BGPROPERTIES="FIXED" BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="#0000FF" ALINK="#0000FF" TOPMARGIN=0 LEFTMARGIN=0>
+
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE="2">
+
+<A NAME="pagetop"></A>
+
+<!--margin-->
+<TD WIDTH=23><IMG SRC="/art/1pixel.gif" WIDTH=23 HEIGHT=1></TD>
+<!--margin ENDS-->
+
+<!--main title (fixed coloured cell type)-->
+<BR>
+<TABLE BORDER=0 WIDTH=100%>
+<TR><TD BGCOLOR=BLUE WIDTH=200><FONT FACE="HELVETICA, ARIAL" SIZE=4 COLOR=WHITE>
+&nbsp;<NOBR>ActiveX and Beans</NOBR></FONT>
+</TD>
+<!--main title ENDS-->
+
+<!--main page navigation-->
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP></TD>
+
+<!--<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP><FONT FACE="ARIAL,HELVETICA" SIZE=1 COLOR=BLACK>
+<A HREF="../../afc/uifxdemo/sample.html"><IMG SRC="../../art/butt_pre.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Previous"></A><BR><B>
+Previous</B></FONT></TD>-->
+
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP><FONT FACE="ARIAL,HELVETICA" SIZE=1 COLOR=BLACK>
+<A HREF="../../art/start.htm"><IMG SRC="../../art/butt_.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Welcome"></A><BR><B>
+Welcome</B></FONT></TD>
+
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP><FONT FACE="ARIAL,HELVETICA" SIZE=1 COLOR=BLACK>
+<A HREF="../samplebean/sample.html"><IMG SRC="../../art/butt_nex.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Next"></A><BR><B>
+Next</B></FONT></TD>
+</TABLE>
+<!--main page navigation ENDS-->
+
+
+<!--this odd little break must accompany .gif filled cell title-->
+<BR>
+
+
+<TABLE BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<TR VALIGN=TOP>
+
+
+<!--main page sub-title-->
+<TD><FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=4>
+<B>AFC Bean Demo</B></A>
+</FONT><BR>
+
+<!--main contents (NEW TABLE required in this scenario)-->
+<TABLE BORDER=0>
+<TR><TD ALIGN=LEFT VALIGN=TOP>
+
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=2>
+<P>This sample bean demonstrates how AFC objects can source events that are caught by the HTML page, expose methods and properties, and use the PropertyViewer class to dynamically change the attributes of the object at runtime.
+<P><ol>
+<li>The Populate button will use JavaScript to add 50 items to the AFCBean object.</li>
+<li>The Add Item button will get the text and add it to the end of the AFCBean object.</li>
+<li>The Select Item button will jump the selection to the index.</li>
+<li>As you select items with the mouse or keyboard, the item number will be displayed in the text box. The event is being fired from AFCBean and caught by the HTML page.</li>
+<li>The property viewer button will use the Bean PropertyViewer to allow you to change the properties at runtime.</li>
+</ol>
+<P>Beans are a new to the 1.1 Java specification and are not supported in the IE 3.0 scripting model; please install IE 4.0 to see the full functionality of this sample.
+
+
+<!--rule-->
+<TABLE WIDTH=95%><TD HEIGHT=1 BGCOLOR=BLUE></TD></TABLE>
+
+
+
+<!--rule tex back type>
+<TABLE WIDTH=95%><TD HEIGHT=1 BACKGROUND="../../art/Stex_4.gif" BGCOLOR="WHITE"></TD></TABLE>
+<BR-->
+
+
+<TR><TD>
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=4>
+<B></A></B></FONT><BR>
+<!--****************************************************************************************-->
+
+<center>
+    <applet code="AFCBean.class" name="AFCBean" width="300" height="300">
+        <param name="FiresScriptEvents" value="true">
+    </applet>
+</center>
+<hr>
+
+<center>
+<table border=1>
+    <tr>
+        <td>Populate the list with 50 items.</td>
+        <td><input type="button" value="Populate" name="btnPopulate" onClick="doPopulate();"></td>
+    </tr>
+    <tr>
+        <td>Add a string to the end of the list.</td>
+        <td>
+            <input name="txtAddItem">
+            <input type="button" value="Add Item" name="btnAddItem" onClick="doAddItem();">
+        </td>
+    </tr>
+    <tr>
+        <td>Select an item in the list based on index.</td>
+        <td>
+            <input name="txtSelectIndex">
+            <input type="button" value="Select Item" name="btnSelectItem" onClick="doSelectItem();">
+        </td>
+    </tr>
+    <tr>
+        <td>Sinks the event itemSelected and displays the string.</td>
+        <td><input name="txtSelectedText"></td>
+    </tr>
+    <tr>
+        <td>Display the Property Viewer for the bean.</td>
+        <td><input type="button" value="Property Viewer" onClick="doPropertyViewer();"></td>
+    </tr>
+</table>
+</center>
+
+<script language="JavaScript">
+
+    function doPopulate()
+    {
+        for (i=0; i<50; i++)
+        {
+            s = "Item " + i;
+            AFCBean.newItem(s);
+        }
+    }
+
+    function doAddItem()
+    {
+        AFCBean.newItem(txtAddItem.value);
+    }
+
+    function doSelectItem()
+    {
+        AFCBean.setSelectedItem(txtSelectIndex.value);
+    }
+
+    function doPropertyViewer()
+    {
+        AFCBean.showPropertyViewer();
+    }
+    
+</script>
+
+<script language="JavaScript" for="AFCBean" event="itemSelected()">
+    txtSelectedText.value = AFCBean.getSelectedItem();
+</script>
+<!--****************************************************************************************-->
+
+<BR><BR>
+
+<FONT FACE="HELVETICA, ARIAL" SIZE=2>
+<B></B><BR>
+
+<!--remarks 1-->
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=2>
+<B><I>Remarks:</I></B>
+<BR>
+<I>This bean was made with AFC.</I>
+
+<BR>
+
+<!--rule-->
+<TABLE WIDTH=95%><TD HEIGHT=2 BGCOLOR=BLUE></TD></TABLE>
+<BR>
+
+<!--page top button-->
+<TABLE WIDTH=100%><TR><TD ALIGN=LEFT><A HREF="#pagetop"><IMG SRC="../../art/butt_up.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Top"></A></TD>
+
+<!--MS copyright-->
+<TD ALIGN=RIGHT><FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK"><A HREF="../../art/cpyright.htm">&#169; 1996-1997 Microsoft Corporation. All rights reserved.</A></FONT></TD></TR></TABLE>
+</FONT>
+</BODY>
+</HTML>

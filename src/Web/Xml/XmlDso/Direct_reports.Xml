@@ -1,0 +1,71 @@
+
+<?xml version="1.0"?>
+<direct_reports xmlns="x-schema:employeeSchema.xml">
+
+
+   <employee>
+      <ss_number>440030000</ss_number>
+      <first_name>Calvin</first_name>
+      <middle_name>Thomas</middle_name>
+      <last_name>Jefferson</last_name>
+      <email>calthom</email>
+      <extension>23345</extension>
+      <birthdate>1970-09-30</birthdate>
+      <salary>38000</salary>
+   </employee>
+
+
+
+   <employee>
+      <ss_number>388833433</ss_number>
+      <first_name>Jane</first_name>
+      <middle_name>LeAnn</middle_name>
+      <last_name>Laurie</last_name>
+      <email>janele</email>
+      <extension>36229</extension>
+      <birthdate>1970-07-26</birthdate>
+      <salary>44000</salary>
+   </employee>
+
+
+
+   <employee>
+      <ss_number>002224331</ss_number>
+      <first_name>Marie</first_name>
+      <middle_name>none</middle_name>
+      <last_name>Hanson</last_name>
+      <email>mhans</email>
+      <extension>98174</extension>
+      <birthdate>1964-10-03</birthdate>
+      <salary>39000</salary>
+   </employee>
+
+
+
+   <employee>
+      <ss_number>556984841</ss_number>
+      <first_name>Roger</first_name>
+      <middle_name>M.</middle_name>
+      <last_name>Johnson</last_name>
+      <email>rogjoh</email>
+      <extension>36248</extension>
+      <birthdate>1973-01-09</birthdate>
+      <salary>66000</salary>
+   </employee>
+
+
+
+   <employee>
+      <ss_number>332567711</ss_number>
+      <first_name>Pilar</first_name>
+      <middle_name>Margaret</middle_name>
+      <last_name>Castillo</last_name>
+      <email>pilar</email>
+      <extension>45532</extension>
+      <birthdate>1968-04-11</birthdate>
+      <salary>55000</salary>
+   </employee>
+
+
+
+</direct_reports>

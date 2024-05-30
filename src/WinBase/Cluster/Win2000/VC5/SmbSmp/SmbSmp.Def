@@ -1,0 +1,6 @@
+; SmbSmp.def : Declares the module parameters for the DLL.
+
+LIBRARY      "SMBSMP"
+
+EXPORTS
+    Startup

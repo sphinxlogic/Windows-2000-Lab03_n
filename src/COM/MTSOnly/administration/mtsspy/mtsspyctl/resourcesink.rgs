@@ -1,0 +1,22 @@
+HKCR
+{
+	ResourceSink.ResourceSink.1 = s 'ResourceSink Class'
+	{
+		CLSID = s '{32E1C9D4-7A1E-11D0-B16D-00AA00BA3258}'
+	}
+	ResourceSink.ResourceSink = s 'ResourceSink Class'
+	{
+		CurVer = s 'ResourceSink.ResourceSink.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {32E1C9D4-7A1E-11D0-B16D-00AA00BA3258} = s 'ResourceSink Class'
+		{
+			ProgID = s 'ResourceSink.ResourceSink.1'
+			VersionIndependentProgID = s 'ResourceSink.ResourceSink'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			val AppID = s '{C2202E8A-773D-11D0-B167-00AA00BA3258}'
+		}
+	}
+}

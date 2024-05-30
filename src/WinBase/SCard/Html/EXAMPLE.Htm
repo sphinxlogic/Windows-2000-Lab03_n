@@ -1,0 +1,91 @@
+<HTML>
+<COMMENT>
+'
+'THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+'ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED
+'TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+'PARTICULAR PURPOSE.
+'
+' Copyright (c) 1996-1999  Microsoft Corporation
+'
+' Example HTML using the Smart Card COM library
+'
+'
+' Author:
+'
+' Notes:
+'   This assumes we are using Internet Explorer as the browser
+'   for VBScript support!
+'
+</COMMENT>
+
+<PRE>   <INPUT TYPE=BUTTON VALUE="Do it! (ATL)" NAME="DoATL"> </PRE>
+
+<HEAD>
+<TITLE>Simple SSP HTML Example</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=Green >
+<COMMENT>
+'
+'Create the Vendor Wrapper SSP objects...
+'
+</COMMENT>
+<OBJECT
+    classid="clsid:5E586218-5A09-11d0-B84C-00C04FD424B9"
+    id=ISCardManage
+>
+</OBJECT>
+<OBJECT
+    classid="clsid:B0598981-6E6F-11d0-B859-00C04FD424B9"
+    id=ISCardAuth
+>
+</OBJECT>
+<OBJECT
+    classid="clsid:4029DD8E-5902-11D0-B84C-00C04FD424B9"
+    id=ISCardFileAccess
+>
+</OBJECT>
+<OBJECT
+    classid="clsid:4029DD89-5902-11D0-B84C-00C04FD424B9"
+    id=ISCardVerify
+>
+</OBJECT>
+
+</BODY>
+Example using Smart Card Service Providers (Vendor Wrapper) in HTML...
+
+<COMMENT>
+'
+'Use VBScript to call the object(s)
+'
+</COMMENT>
+
+<SCRIPT LANGUAGE="VBScript">
+    Sub DoATL_OnClick
+        Dim ReturnValue
+        ReturnValue=ISCardManage.AttachByIFD("Keyboard")
+        If ReturnValue<> 0 Then
+            MsgBox "Attach to reader failed..."
+        Else
+            MsgBox "Attached to reader..."
+        End If
+
+        If ReturnValue=0 Then
+        '
+        ' Todo: Put your code here...
+        '
+        ' Example below:
+        ISCardAuth.GetChallenge lAlgoID:=0, dwLengthOfChallenge:=8, pParam:=Buffer1, pBuffer:=Buffer2
+        End If
+
+        ReturnValue=ISCardManage.Detach()
+        If ReturnValue<> 0 Then
+                MsgBox "Detach from reader failed..."
+        Else
+            MsgBox "Detached from reader..."
+        End If
+    End Sub
+</SCRIPT>
+
+</HTML>

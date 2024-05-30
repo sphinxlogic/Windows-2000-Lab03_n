@@ -1,0 +1,13 @@
+Microsoft Visual Studio Solution File, Format Version 1.00
+Project("{66355F20-A65B-11D0-BFB5-00A0C91EBFA0}") = "InitDatabase", "InitDatabase.vjp", "{F19E9642-1D63-4FE8-B666-DC0B501E5703}"
+EndProject
+Global
+	GlobalSection(LocalDeployment) = postSolution
+		StartupProject = {F19E9642-1D63-4FE8-B666-DC0B501E5703}
+	EndGlobalSection
+	GlobalSection(BuildOrder) = postSolution
+		0 = {F19E9642-1D63-4FE8-B666-DC0B501E5703}
+	EndGlobalSection
+	GlobalSection(DeploymentRoot) = postSolution
+	EndGlobalSection
+EndGlobal

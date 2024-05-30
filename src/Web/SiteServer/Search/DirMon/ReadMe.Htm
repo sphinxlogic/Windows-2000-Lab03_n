@@ -1,0 +1,199 @@
+<html>
+
+<head>
+<title>Dirmon Sample Readme</title>
+<link REL="stylesheet" HREF="msdn_ie4.css" TYPE="text/css">
+</head>
+
+<body BGCOLOR="#FFFFFF" TOPMARGIN="0" LEFTMARGIN="10" TEXT="#000000">
+
+<h2>Directory Monitor Sample Readme</h2>
+
+<p>This readme describes the Directory Monitor sample application, DirMon.</p>
+
+<h3>Purpose</h3>
+
+<p>DirMon is a sample application that demonstrates how you can use the <strong>IGatherNotify</strong>
+interface to manage a notification-based catalog, how to monitor a directory for file
+changes and notify the gatherer (the process that collects documents to index) of these
+changes. Search then determines whether it should index these files as part of the defined
+catalog, which is then built and propagated periodically, so it can be searched.</p>
+
+<p>To use notification-based catalogs, you must supply a software component that monitors
+content and notifies Search when the content has changed. Microsoft® Site Server&#153;
+does not provide such as software component. <em>Dirmon.exe </em>is an example of such a
+software component. </p>
+
+<p>To use this sample, create a Microsoft Visual Studio&#153; project containing the
+source files <em>dirmon.cpp, main.cpp, gthrntfysdk.h</em> and <em>gthrntfydsk_i.c</em>
+(you must compile <em>gthrntfySDK.idl to get</em> <em>gthrntfysdk.h</em> and <em>gthrntfydsk_i.c</em>)
+and build <em>Dirmon.exe</em>. This SDK contains both an Alpha and x86 version of 
+<em>Dirmon.exe</em> in the appropriate <em>bin</em> directory. 
+The included .vbs files create and maintain the
+notification-based catalog and serve as examples of calling the Search administration
+interfaces.</p>
+
+<h3>Using DirMon</h3>
+
+<p>To use DirMon, do the following: 
+
+<ol>
+  <li>Ensure the directory that you want to monitor exists (e.g. <strong>c:\test</strong>).</li>
+  <li>Run <em>DirmonCatalog.vbs</em> with the name of the directory you want to monitor as
+    parameter (e.g., <strong>cscript DirmonCatalog.vbs c:\test</strong>).</li>
+  <li>Run <em>Dirmon.exe </em>with the same directory name you supplied to <em>DirmonCatalog.vbs</em>
+    as parameter (e.g., <strong>Dirmon.exe c:\test</strong>).</li>
+  <li>While <em>Dirmon.exe</em> runs, add/delete/modify files in the directory you want to
+    monitor.</li>
+  <li>Optionally, you can run <em>ForcePropDirmonCatalog.vbs</em> periodically to force Search
+    to build and propagate <em>DirmonCatalog</em>.</li>
+</ol>
+
+<p align="center"><em><strong>NOTE</strong></em></p>
+
+<p>You need not use <em>DirmonCatalog.vbs</em> to create the Dirmon catalog or <em>ForcePropDirmonCatalog.vbs</em>
+to force Search to propagate the Dirmon catalog to the Search servers. You can get the
+same results through either WebAdmin or MMC.</p>
+
+<p>Consult the Search sections of the main Site Server documentation and the Site Server
+SDK documentation for specific details on how to use Search and its interfaces, such as
+the default file extensions that Search enables. </p>
+
+<h3>Sample Components</h3>
+
+<h4><strong>Dirmon.exe</strong></h4>
+
+<h4>Syntax</h4>
+
+<p><em><strong>&nbsp;&nbsp;&nbsp; Dirmon.exe </strong>NotificationDirectory </em></p>
+
+<p><em>&nbsp;&nbsp;&nbsp; NotificationDirectory</em> is a required parameter representing
+the name of the directory you want to monitor</p>
+
+<h4>Example</h4>
+
+<p><strong>&nbsp;&nbsp;&nbsp; Dirmon.exe c:\test</strong></p>
+
+<h4>Remarks</h4>
+
+<p>&nbsp;&nbsp;&nbsp; This component: 
+
+<ul>
+  <li>Monitors the directory supplied on the command line for any file changes.</li>
+  <li>Sends notifications to the gatherer, if a file change occurs in&nbsp;<em>NotificationDirectory</em>
+    or one of its subtrees (as add/delete/modify file).</li>
+</ul>
+
+<p><em><strong>Note:&nbsp;&nbsp;&nbsp; </strong></em>This executable loops continuously,
+awaiting changes in <em>NotificationDirectory</em>.</p>
+
+<h4><strong>DirmonCatalog.vbs</strong> </h4>
+
+<h4>Syntax</h4>
+
+<p><em><strong>&nbsp;&nbsp;&nbsp; cscript DirmonCatalog.vbs </strong>NotificationDirectory<strong>
+</strong></em></p>
+
+<p><em>&nbsp;&nbsp; NotificationDirectory</em> is a required parameter representing the
+name of the directory you want to monitor</p>
+
+<h4>Example</h4>
+
+<p><strong>&nbsp;&nbsp;&nbsp; cscript DirmonCatalog.vbs c:\test</strong></p>
+
+<h4><strong>Remarks</strong></h4>
+
+<p>&nbsp;&nbsp;&nbsp; This component: 
+
+<ul>
+  <li>Creates a catalog definition named <em>DirmonCatalog</em></li>
+  <li>Marks this catalog as a notification one</li>
+  <li>Sets the notification source to &quot;<em>DirmonSource</em>&quot;</li>
+  <li>Sets the start address to <em>NotificationDirectory</em>, so the gatherer initially
+    performs an incremental crawl of <em>NotificationDirectory</em>. </li>
+  <li>Enables and sets the auto propagation limit to 500, the number of file changes after
+    which Search automatically propagates <em>DirmonCatalog</em></li>
+  <li>Enables gatherer to log successful accesses</li>
+  <li>Sets the local host as a Search server host for <em>DirmonCatalog</em></li>
+</ul>
+
+<p><em><strong>Note:</strong></em></p>
+
+<p>You need only run this script once (subsequent runs either do nothing, or perform a
+general clean up by deleting the <em>DirmonCatalog</em> catalog definition and all of its
+corresponding search catalogs, depending on the user choice).</p>
+
+<h4><strong>ForcePropDirmonCatalog.vbs</strong> </h4>
+
+<h4>Syntax</h4>
+
+<p><strong><em>&nbsp;&nbsp;&nbsp; </em>cscript ForcePropDirmonCatalog.vbs</strong> [<em>SearchServerHostName</em>]
+</p>
+
+<h4>Example</h4>
+
+<p><strong>&nbsp;&nbsp;&nbsp; cscript ForcePropDirmonCatalog.vbs KnowledgeServer</strong></p>
+
+<h4>Remarks</h4>
+
+<p>&nbsp;&nbsp;&nbsp; This component: 
+
+<ul>
+  <li>Adds the Search server host name provided on the command line, if it exists, to the list
+    of Search servers to which Search propagates <em>DirmonCatalog</em></li>
+  <li>Propagates the resulting <em>DirmonCatalog</em> to all of the assigned Search servers
+    (at least the local host one, which is explicitly added by <em>DirmonCatalog.vbs</em>)</li>
+</ul>
+
+<p><em><strong>Note:&nbsp;&nbsp;&nbsp; </strong></em>You can run this script periodically
+to force Search to build and propagate <em>DirmonCatalog</em> with the changes received so
+far.</p>
+
+<h3>DirMon Sample Directory Contents</h3>
+
+<p>The following files are in the DirMon sample directory: 
+
+<ul>
+  <li><em>Dirmon.cpp</em> <br>
+    The source to the <em>MonitorDirectory</em> and <em>SendNotifications</em> functions. <em>MonitorDirectory</em>
+    loops continuously, calling the Win32 <b>ReadDirectoryChangesW</b> function, which returns
+    information describing the changes occurring within a directory, and calling <em>SendNotifications</em>
+    with that change information. <em>SendNotifications</em> parses the change information and
+    sends gatherer notifications for each file.</li>
+  <li><em>DirmonCatalog.vbs</em><br>
+    Creates a notification catalog definition, DirmonCatalog.</li>
+  <li><em>ForcePropDirmonCatalog.vbs</em> <br>
+    Forces Search to propagate the DirmonCatalog catalog.</li>
+  <li><em>Main.cpp</em> <br>
+    This source file contains the entry point, initializes the object that implements <b>IGatherNotify</b>
+    interface, and calls <em>MonitorDirectory</em>. <em>Main.cpp</em> also calls the <b>IGatherNotify.Init</b>
+    method.</li>
+  <li><em>Makefile</em><br>
+    An <strong>Nmake</strong> configuration file that builds <em>Dirmon.exe</em>.</li>
+  <li><em>Readme.htm</em> <br>
+    This file. </li>
+</ul>
+
+<h3>Watching DirMon at Work</h3>
+
+<p>You can watch DirMon at work by creating, copying, deleting or modifying files into the
+monitored directory. You can examine the gatherer logs and see which files were indexed.</p>
+
+<p>You can use also Performance Monitor to watch <em>Dirmon.exe</em> send notification
+events to Search by performing the following steps: 
+
+<ol>
+  <li>Invoke Perfmon.exe.</li>
+  <li>Select Site Server Gatherer in the Object list.</li>
+  <li>Select Notifications Received in the Counter list.</li>
+</ol>
+
+<p>Microsoft® Site Server&#153; version 3.0</p>
+
+<p>Copyright 1998 Microsoft Corporation. All rights reserved.</p>
+
+<p>This information is provided on an &quot;as is&quot; basis and is without warranty of
+any kind, either expressed or implied, including, but not limited to, the implied
+warranties of merchantability or fitness for a particular purpose.</p>
+</body>
+</html>

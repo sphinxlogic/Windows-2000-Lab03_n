@@ -1,0 +1,40 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\wmarkps.res \
+    $(_OBJ_DIR)\alpha\dllentry.obj \
+    $(_OBJ_DIR)\alpha\intrface.obj \
+    $(_OBJ_DIR)\alpha\command.obj \
+    $(_OBJ_DIR)\alpha\fdebug.obj \
+    $(_OBJ_DIR)\alpha\fdevmode.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\wmarkps.res \
+    $(_OBJ_DIR)\axp64\dllentry.obj \
+    $(_OBJ_DIR)\axp64\intrface.obj \
+    $(_OBJ_DIR)\axp64\command.obj \
+    $(_OBJ_DIR)\axp64\fdebug.obj \
+    $(_OBJ_DIR)\axp64\fdevmode.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\wmarkps.res \
+    $(_OBJ_DIR)\i386\dllentry.obj \
+    $(_OBJ_DIR)\i386\intrface.obj \
+    $(_OBJ_DIR)\i386\command.obj \
+    $(_OBJ_DIR)\i386\fdebug.obj \
+    $(_OBJ_DIR)\i386\fdevmode.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\wmarkps.res \
+    $(_OBJ_DIR)\ia64\dllentry.obj \
+    $(_OBJ_DIR)\ia64\intrface.obj \
+    $(_OBJ_DIR)\ia64\command.obj \
+    $(_OBJ_DIR)\ia64\fdebug.obj \
+    $(_OBJ_DIR)\ia64\fdevmode.obj
+
+PASS0_IA64_OBJECTS=
+

@@ -1,0 +1,16 @@
+//  Copyright (c) 1997  Microsoft Corporation.  All rights reserved.
+
+[ uuid(EFFA21E4-6928-11d0-BFFC-00AA003CFDFC), version(1.0),
+  helpstring("Sample Custom Marshaling (Java->COM") ]
+library JavaLib
+{
+
+    importlib("stdole32.tlb");
+
+
+    typedef struct POINT {
+        long           x;
+        long           y;
+    } POINT;
+
+}

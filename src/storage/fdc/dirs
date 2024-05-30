@@ -1,0 +1,4 @@
+DIRS= \
+     3mode \
+     fdc \
+     flpydisk

@@ -1,0 +1,38 @@
+// --convclss.chk---------------------------------------------------------------
+// 
+// Parameter checking for convclss.cpp
+// 
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+//
+// -----------------------------------------------------------------------------
+#ifndef DEBUG
+#define CHK_CClassName_HrEDKSet(a,b)  NOERROR
+
+#else
+//$--CHK_CClassName_HrEDKSet----------------------------------------------------------
+//
+//  DESCRIPTION: Parameter checking for CClassName::HrEDKSet()
+//
+//  INPUT:  pszClassName    --  class name
+//          pEntryPoint --  entry point information
+//
+//  RETURNS:    HRESULT --  NOERROR if successful,
+//                          E_INVALIDARG if bad input
+//
+//------------------------------------------------------------------------------
+static inline HRESULT CHK_CClassName_HrEDKSet(               // RETURNS: HRESULT
+    IN LPCWSTR pszClassName,                // class name.      (Assigned)
+    IN CDllEntryPoint * pEntryPoint )       // entry point info (Copied)
+                                            //  reference count increased internally.
+{
+    HRESULT  hr  =   NOERROR;    // return code
+
+    if ( IsBadStringPtrW(pszClassName, INFINITE) ||
+         IsBadReadPtr(pEntryPoint, sizeof(CDllEntryPoint)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+}
+#endif

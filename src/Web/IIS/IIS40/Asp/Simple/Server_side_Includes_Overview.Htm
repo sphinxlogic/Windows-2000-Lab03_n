@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Server-Side Includes</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_server_side_includes"></a>  Server-Side Includes</h3>
+<p>
+Modularity and reusability of code is a concept that can be very useful in your development of ASP scripts. For example, if you want to display copyright information on the bottom of each of your HTML pages and ASP pages, it would be tedious for you to enter that copyright text into every file. ASP provides a solution to this problem: server-side includes, which are directives to the server to include a certain file, be it a text file, graphical image, or an ASP function. The copyright notice can exist as one file, and be included into the rest of your Web site's files. And if the copyright notice changes, you only have to change one file instead of 50 or 500.</p>
+<p>
+The format for including a file looks like this:</p>
+<pre>&lt;!-- #include PathType=Name --&gt;
+</pre>
+<p>
+The <i>PathType</i> parameter consists of a keyword, either FILE or VIRTUAL, that indicates whether the <i>Name</i> string specified is a physical or virtual path. Include files can only be accessed if they reside in the same directory as the including .asp file, or one of its child directories.</p>
+<p>
+This example uses the <b>#include</b> directive to include the file headerInfo.asp. When this script is executed, ASP loads the script line by line, character by character, until it gets to the <b>#include</b> directive, at which point it loads the contents of the designated file, line by line. Then the remainder of the sample script is loaded; once this is finished the script is executed, included file and all. </p>
+</BODY>
+</HTML>

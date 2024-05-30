@@ -1,0 +1,65 @@
+# Microsoft Developer Studio Generated Dependency File, included by ClipSrvEx.mak
+
+.\BasePage.cpp : \
+	".\BasePage.h"\
+	".\BasePage.inl"\
+	".\ClipSrvEx.h"\
+	".\ExtObj.h"\
+	".\ExtObjID.h"\
+	".\PropList.h"\
+	".\StdAfx.h"\
+	
+
+.\ClipSrvEx.cpp : \
+	".\BasePage.h"\
+	".\ClipSrvEx.h"\
+	".\ExtObj.h"\
+	".\ExtObjID.h"\
+	".\PropList.h"\
+	".\RegExt.h"\
+	".\StdAfx.h"\
+	
+
+.\ClipSrvEx.rc : \
+	".\res\ClipSrvEx.rc2"\
+	
+
+.\DDxDDv.cpp : \
+	".\DDxDDv.h"\
+	".\StdAfx.h"\
+	
+
+.\ExtObj.cpp : \
+	".\BasePage.h"\
+	".\ClipSrvEx.h"\
+	".\ExtObj.h"\
+	".\ExtObjID.h"\
+	".\PropList.h"\
+	".\ResProp.h"\
+	".\StdAfx.h"\
+	
+
+.\PropList.cpp : \
+	".\PropList.h"\
+	".\StdAfx.h"\
+	
+
+.\RegExt.cpp : \
+	".\StdAfx.h"\
+	
+
+.\ResProp.cpp : \
+	".\BasePage.h"\
+	".\BasePage.inl"\
+	".\ClipSrvEx.h"\
+	".\DDxDDv.h"\
+	".\ExtObj.h"\
+	".\ExtObjID.h"\
+	".\PropList.h"\
+	".\ResProp.h"\
+	".\StdAfx.h"\
+	
+
+.\StdAfx.cpp : \
+	".\StdAfx.h"\
+	

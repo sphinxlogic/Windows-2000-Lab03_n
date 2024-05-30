@@ -1,0 +1,158 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_NEUTRAL
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_EXT_DATA_VIEWER DIALOG DISCARDABLE  0, 0, 371, 224
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            6031,IDC_ADMINICON,6,6,18,20,WS_GROUP
+    LTEXT           "",IDC_TITLE,35,8,281,20
+    LTEXT           "Extension Data &Name:",IDC_STATIC,5,33,75,8
+    EDITTEXT        IDC_EDIT_EXT_DATA_NAME,80,31,283,13,ES_AUTOHSCROLL
+    LTEXT           "E&xtension Data:",IDC_STATIC,5,59,68,8
+    LISTBOX         IDC_LB_VIEW,5,70,357,149,LBS_USETABSTOPS | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "&Refresh",IDC_BTN_REFRESH,137,50,50,14
+    PUSHBUTTON      "A&dd",IDC_BTN_ADD,203,50,50,14
+    PUSHBUTTON      "&Modify",IDC_BTN_MODIFY,258,50,50,14
+    PUSHBUTTON      "D&elete",IDC_BTN_DELETE,312,50,50,14
+END
+
+IDD_EDIT DIALOG DISCARDABLE  0, 0, 185, 79
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Edit Value"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "&Type:",IDC_STATIC,5,6,21,8
+    COMBOBOX        IDC_CBO_TYPE,27,4,97,83,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "&Data Value:",IDC_STATIC,5,23,42,8
+    EDITTEXT        IDC_EDIT_DATA_VALUE,5,35,173,13,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,75,58,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,128,58,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_EXT_DATA_VIEWER     "Ext Data Viewer"
+END
+
+#endif    // English resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "EXTDATVW MFC Extension DLL\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "EXTDATVW\0"
+            VALUE "LegalCopyright", "Copyright© Microsoft Corp. 1986-1996.  All Rights Reserved.\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "EXTDATVW.DLL\0"
+            VALUE "ProductName", "EXTDATVW Dynamic Link Library\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,28 @@
+Example Files:
+
+Files:
+books.xml
+booksSchema.xml
+schema.xml
+booksDTD.xml
+books.dtd
+booksEnts.xml
+booksIntSub.xml
+
+
+Description:
+This is a collection of brief XML files.  These files can be used in conjunction with other
+demos on this site, including The XML Validator, The XML Tree Viewer, The XSL Visual Pattern Builder.  
+
+More Details:
+books.xml -- a brief XML document containing bookstore data.
+booksSchema.xml -- a brief XML document that validates against an XML schema.
+schema.xml -- the XML schema for booksSchema.xml
+booksDTD.xml -- a brief XML document that validates against a DTD.
+books.dtd -- the DTD for booksDTD.xml
+booksEnts.xml -- a brief XML document that declares entities and utilizes entity references.
+booksIntSub.xml -- a brief XML document that validates against an internal subset.
+
+Compatibility/Platform Compatibility:
+N/A
+

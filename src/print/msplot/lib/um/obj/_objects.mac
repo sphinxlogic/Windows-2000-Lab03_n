@@ -1,0 +1,60 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\plotdbg.obj \
+    $(_OBJ_DIR)\alpha\readgpc.obj \
+    $(_OBJ_DIR)\alpha\widechar.obj \
+    $(_OBJ_DIR)\alpha\file.obj \
+    $(_OBJ_DIR)\alpha\forms.obj \
+    $(_OBJ_DIR)\alpha\regdata.obj \
+    $(_OBJ_DIR)\alpha\plotdm.obj \
+    $(_OBJ_DIR)\alpha\drvinfo.obj \
+    $(_OBJ_DIR)\alpha\cachegpc.obj \
+    $(_OBJ_DIR)\alpha\devmode.obj \
+    $(_OBJ_DIR)\alpha\halftone.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\plotdbg.obj \
+    $(_OBJ_DIR)\axp64\readgpc.obj \
+    $(_OBJ_DIR)\axp64\widechar.obj \
+    $(_OBJ_DIR)\axp64\file.obj \
+    $(_OBJ_DIR)\axp64\forms.obj \
+    $(_OBJ_DIR)\axp64\regdata.obj \
+    $(_OBJ_DIR)\axp64\plotdm.obj \
+    $(_OBJ_DIR)\axp64\drvinfo.obj \
+    $(_OBJ_DIR)\axp64\cachegpc.obj \
+    $(_OBJ_DIR)\axp64\devmode.obj \
+    $(_OBJ_DIR)\axp64\halftone.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\plotdbg.obj \
+    $(_OBJ_DIR)\i386\readgpc.obj \
+    $(_OBJ_DIR)\i386\widechar.obj \
+    $(_OBJ_DIR)\i386\file.obj \
+    $(_OBJ_DIR)\i386\forms.obj \
+    $(_OBJ_DIR)\i386\regdata.obj \
+    $(_OBJ_DIR)\i386\plotdm.obj \
+    $(_OBJ_DIR)\i386\drvinfo.obj \
+    $(_OBJ_DIR)\i386\cachegpc.obj \
+    $(_OBJ_DIR)\i386\devmode.obj \
+    $(_OBJ_DIR)\i386\halftone.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\plotdbg.obj \
+    $(_OBJ_DIR)\ia64\readgpc.obj \
+    $(_OBJ_DIR)\ia64\widechar.obj \
+    $(_OBJ_DIR)\ia64\file.obj \
+    $(_OBJ_DIR)\ia64\forms.obj \
+    $(_OBJ_DIR)\ia64\regdata.obj \
+    $(_OBJ_DIR)\ia64\plotdm.obj \
+    $(_OBJ_DIR)\ia64\drvinfo.obj \
+    $(_OBJ_DIR)\ia64\cachegpc.obj \
+    $(_OBJ_DIR)\ia64\devmode.obj \
+    $(_OBJ_DIR)\ia64\halftone.obj
+
+PASS0_IA64_OBJECTS=
+

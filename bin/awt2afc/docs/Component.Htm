@@ -1,0 +1,337 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>Component -> UIStateComponent</title>
+<base target="descriptions">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">Component to UIStateComponent</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.Component should be transformed into instances of
+com.ms.ui.UIStateComponent.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">AFC's UIStateComponent and UIComponent classes
+(UIStateComponent extends from UIComponent) add functionality to
+the component model. </p>
+
+<p align="left">One of the most important advantages is that
+instances of UIStateComponent and UIComponent can be associated
+with global IDs, which associate an ID with a component
+instantiated inside a method in the class. By doing this, you can
+remove global instances of component, and instead just have
+integers. This reduces the size of your classes. An example using
+UIPushButton, which replaces <a href="Button.htm"
+target="descriptions">Button</a> and extends from
+UIStateComponent, is below: </p>
+
+<blockquote>
+    <p align="left"><font size="2" face="Courier">import
+    com.ms.ui.*;<br>
+    import com.ms.ui.event.*;</font></p>
+    <p align="left"><font size="2" face="Courier">public class
+    MyButton extends UIFrame implements IUIActionListener<br>
+    {</font></p>
+    <blockquote>
+        <p align="left"><font size="2" face="Courier">/* These
+        are the IDs for two buttons */<br>
+        <br>
+        public static final int FOO_BUTTON = 101;<br>
+        public static final int BAR_BUTTON = 102;<br>
+        <br>
+        public static void main(String args[])<br>
+        {</font></p>
+        <blockquote>
+            <p align="left"><font size="2" face="Courier">new
+            MyButton();</font></p>
+        </blockquote>
+        <p align="left"><font size="2" face="Courier">}</font></p>
+        <p align="left"><font size="2" face="Courier">public
+        MyButton()<br>
+        {</font></p>
+        <blockquote>
+            <p align="left"><font size="2" face="Courier">/* This
+            code instantiates two buttons, one as a <br>
+            /* string, the other as a UIText object */<br>
+            <br>
+            UIPushButton fooButton = <br>
+            new UIPushButton(&quot;foo&quot;);<br>
+            <br>
+            fooButton.setID(FOO_BUTTON);<br>
+            fooButton.addActionListener(this);</font></p>
+        </blockquote>
+        <blockquote>
+            <p align="left"><font size="2" face="Courier">UIText
+            barText = new UIText(&quot;bar&quot;);<br>
+            UIPushButton barButton = <br>
+            new UIPushButton(barText, UIPushButton.RAISED);<br>
+            <br>
+            barButton.setID(BAR_BUTTON);<br>
+            barButton.addActionListener(this);</font></p>
+            <p align="left"><font size="2" face="Courier">/* This
+            adds the buttons to a visible frame */<br>
+            <br>
+            add(fooButton, &quot;north&quot;);<br>
+            add(barButton, &quot;south&quot;);</font></p>
+            <p align="left"><font size="2" face="Courier">setSize(200,200);<br>
+            setVisible(true);</font></p>
+        </blockquote>
+        <p align="left"><font size="2" face="Courier">}</font></p>
+        <p align="left"><font size="2" face="Courier">public void
+        actionPerformed(UIActionEvent evt)<br>
+        {</font></p>
+        <blockquote>
+            <p align="left"><font size="2" face="Courier">/* This
+            code watches for the buttons to be pressed<br>
+            /* by getting the IDs of actions, and bases the <br>
+            /* output on those IDs. */<br>
+            <br>
+            switch((evt.getActionItem()).getID())<br>
+            {<br>
+            <br>
+            case FOO_BUTTON:</font></p>
+            <blockquote>
+                <p align="left"><font size="2" face="Courier">System.out.println(&quot;Foo
+                clicked&quot;);<br>
+                break;</font></p>
+            </blockquote>
+            <p align="left"><font size="2" face="Courier">case
+            BAR_BUTTON:</font></p>
+            <blockquote>
+                <p align="left"><font size="2" face="Courier">System.out.println(&quot;Bar
+                clicked&quot;);<br>
+                break;</font></p>
+            </blockquote>
+            <p align="left"><font size="2" face="Courier">}</font></p>
+        </blockquote>
+        <p align="left"><font size="2" face="Courier">}</font></p>
+    </blockquote>
+    <p align="left"><font size="2" face="Courier">}</font></p>
+    <blockquote>
+        <blockquote>
+            <p align="left">&nbsp;</p>
+        </blockquote>
+    </blockquote>
+</blockquote>
+
+<p align="left">In UIStateComponent the mechanism of giving
+keyboard focus is slightly different. Use the function <font
+size="2" face="Courier">isKeyable()</font> to find out if this
+component can receive keyboard input or use <font size="2"
+face="Courier">isKeyable(true)</font> to find out if all the
+ancestors of this control as well as this control can receive
+keyboard input. For transferring focus to another component in
+the same container as the current UIComponent, use the <font
+size="2" face="Courier">navigate() </font>or<font size="2"
+face="Courier"> passFocus() </font>methods of the container. See <a
+href="Container.htm" target="descriptions">Container</a> usage
+for more information.</p>
+
+<p align="left">It is important to note a difference in the
+painting scheme between AWT and AFC. In AWT, <font size="2"
+face="Courier">repaint()</font> executes asynchronously: it may
+not be executed immediately when called, and several pending
+repaints may be combined. In AFC, <font size="2" face="Courier">repaint()
+</font>executes synchronously, which gives you more control. </p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">This is the set of changes you need to make to
+port all Component methods to UIStateComponent methods. Any
+method not listed here or below does not need to be changed.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial"><strong>AWT Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">bounds()</font></td>
+        <td nowrap><font size="2" face="Courier">getBounds()</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">disable()</font></td>
+        <td nowrap><font size="2" face="Courier">setEnabled(false)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">enable(boolean)</font></td>
+        <td><font size="2" face="Courier">setEnabled(true)</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">getComponentAt(int,
+        int)</font></td>
+        <td><font size="2" face="Courier">getComponent(int, int)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getComponentAt(Point)</font></td>
+        <td><font size="2" face="Courier">getComponent(Point)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">inside(int, int)</font></td>
+        <td><font size="2" face="Courier">contains(int, int)</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">isFocusTraversable()</font></td>
+        <td><font size="2" face="Courier">isKeyable()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">locate(int, int)</font></td>
+        <td><font size="2" face="Courier">getComponent(int, int)</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">location()</font></td>
+        <td><font size="2" face="Courier">getLocation()</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">minimumSize()</font></td>
+        <td><font size="2" face="Courier">getMinimumSize()</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">move(int, int)</font></td>
+        <td><font size="2" face="Courier">setLocation(int, int)</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">nextFocus()</font></td>
+        <td nowrap><font size="2" face="Courier">(getParent()).navigate(getParent().getFocusComponent(),<br>
+        UIAccessible.NAVDIR_NEXT, true)</font></td>
+        <td><font size="2">see UIContainer: Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">reshape(int,
+        int, int, int)</font></td>
+        <td><font size="2" face="Courier">setBounds(int, int,
+        int, int)</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">resize(Dimension)</font></td>
+        <td><font size="2" face="Courier">setSize(Dimension)</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">show()</font></td>
+        <td><font size="2" face="Courier">setVisible(true)</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">show(boolean)</font></td>
+        <td><font size="2" face="Courier">setVisible(true)</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">size()</font></td>
+        <td><font size="2" face="Courier">getSize()</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">transferFocus()</font></td>
+        <td><font size="2" face="Courier">(getParent()).navigate(getParent().getFocusComponent(),
+        <br>
+        UIAccessible.NAVDIR_NEXT, true)</font></td>
+        <td><font size="2">See UIContainer.</font></td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h3>Unsupported Methods</h3>
+
+<p>Some methods in java.awt.Component are not directly supported
+in com.ms.ui.UIStateComponent. Those methods and suggested
+changes are described here.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial">AWT Code<strong>/Suggested
+        AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">action(Event,
+        Object)</font><p><font size="2" face="Courier"><strong>action(Event,
+        Object)</strong></font></p>
+        </td>
+        <td><font size="2">In AWT, the Object argument is the
+        action event that was generated. In AFC, the Object
+        argument is the UIComponent that threw the action event.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">arg.toString()</font><p><font
+        size="2" face="Courier"><strong>arg.getName()</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">add(PopupMenu popup)</font><p><font
+        size="2" face="Courier"><strong>new
+        UIContextMenu(IUIComponent, UIMenuList)</strong></font></p>
+        </td>
+        <td><font size="2">In AFC, you can create a context menu
+        for a component by using UIContextMenu. UIMenuList is a
+        list of items that will appear in the context menu. See </font><a
+        href="PopupMenu.htm" target="descriptions"><font size="2">PopupMenu</font></a><font
+        size="2"> for more information.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">paramString()</font><p><font
+        size="2" face="Courier"><strong>getName(), etc.</strong></font></p>
+        </td>
+        <td><font size="2">Use the appropriate getXXX function to
+        get the information you need.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">BOTTOM_ALIGNMENT
+        <br>
+        CENTER_ALIGNMENT <br>
+        LEFT_ALIGNMENT <br>
+        RIGHT_ALIGNMENT <br>
+        TOP_ALIGNMENT <br>
+        addComponentListener(ComponentListener)<br>
+        checkImage(Image, ImageObserver) <br>
+        checkImage(Image, int, int, ImageObserver) <br>
+        dispatchEvent(AWTEvent) <br>
+        getAlignmentX() <br>
+        getAlignmentY( ) <br>
+        getColorModel() <br>
+        getLocale() <br>
+        getTreeLock() <br>
+        list() <br>
+        list(PrintStream) <br>
+        list(PrintStream, int) <br>
+        list(PrintWriter) <br>
+        list(PrintWriter, int) <br>
+        remove(MenuComponent popup)<br>
+        removeComponentListener(ComponentListener)<br>
+        setLocale(Locale)</font><p><font size="2" face="Courier"><strong>(no
+        suggestions)<br>
+        </strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+</body>
+</html>

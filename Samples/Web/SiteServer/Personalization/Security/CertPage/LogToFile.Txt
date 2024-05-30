@@ -1,0 +1,24 @@
+
+<SCRIPT RUNAT=SERVER LANGUAGE="VBScript">
+' This function can be used to log information to a specified file.
+Function InitLogging(strLogFilePath)
+  Session("LoggingOn") = True
+  Session("LogFilePath") = strLogFilePath
+End Function
+
+Function LogToFile(strMessage)
+  if Session("LoggingOn") then
+    On Error Resume Next
+    LogToFile = False
+    Application.Lock
+    Set objFSO = CreateObject("Scripting.FileSystemObject")
+    Set objLogFile = objFSO.OpenTextFile(Session("LogFilePath"), 8, True, 0)
+    objLogFile.WriteLine(strMessage)
+    objLogFile.Close
+    Application.Unlock
+  End If
+  LogToFile = True
+End Function
+
+</SCRIPT>
+

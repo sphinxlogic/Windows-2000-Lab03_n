@@ -1,0 +1,52 @@
+// --UTL_DN.chk------------------------------------------------------------------
+//
+// Parameter checking for utl_dn.c
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+//
+// -----------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_HrGetMailboxDN(a,b)     NOERROR
+#define CHK_HrGetServerDN(a,b)      NOERROR
+
+#else
+
+//$--CHK_HrGetMailboxDN---------------------------------------------------------
+//  Parameter checking for HrGetMailboxDN().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrGetMailboxDN(
+    IN  LPMAPISESSION lphSession,       // current session
+    OUT LPSTR *ppszMailboxDN)           // distinguished name of mailbox.
+{
+    HRESULT hr = NOERROR;
+
+    if( !TEST_IUNKNOWN_PTR( lphSession) ||
+        !TEST_WRITE_PTR( ppszMailboxDN, sizeof(LPSTR)) )
+    {
+        hr = HR_LOG( E_INVALIDARG);
+    }
+
+    return( hr);
+}
+
+//$--CHK_HrGetServerDN----------------------------------------------------------
+//  Parameter checking for HrGetServerDN().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrGetServerDN(
+    IN  LPMAPISESSION lphSession,       // current session
+    OUT LPSTR *ppszServerDN)            // distinguished name of server. 
+{
+    HRESULT hr = NOERROR;
+
+    if( !TEST_IUNKNOWN_PTR( lphSession) ||
+        !TEST_WRITE_PTR( ppszServerDN, sizeof(LPSTR)) )
+    {
+        hr = HR_LOG( E_INVALIDARG);
+    }
+
+    return( hr);
+}
+
+#endif /* DEBUG */

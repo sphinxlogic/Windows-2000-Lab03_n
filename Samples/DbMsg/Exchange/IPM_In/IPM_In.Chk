@@ -1,0 +1,377 @@
+// --ipm_in.chk--------------------------------------------------------------
+//
+// Parameter checking for ipm_in.cpp.
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All rights reserved.
+//
+// ---------------------------------------------------------------------------
+
+#ifndef DEBUG
+#define CHK_HrCnvQueryCapability(a,b,c,d,e)    NOERROR
+#define CHK_HrCnvConvert(a,b,c,d,e,f)          NOERROR
+#define CHK_HrAsciitoIPMFormat(a,b,c,d,e,f)    NOERROR
+#define CHK_HrGetExportVector(a,b)             NOERROR
+#else
+
+//$--CHK_HrCnvQueryCapability---------------------------------------------------------
+//
+// DESCRIPTION: Parameter checking for HrCnvQueryCapability
+//
+// INPUT:       
+//              pszOptions  --  conversion options (not used)
+//              pszClass    --  class of message to convert to
+//              pContent    --  stream pointer to convert
+//              pEnv    --  conversion environment pointer
+//
+// OUTPUT:      pbAmCandidate   --  TRUE if can do conversion, FALSE otherwise
+//
+// RETURNS:     HRESULT --  NOERROR if successful,
+//                          E_INVALIDARG if bad input
+//
+// ---------------------------------------------------------------------------
+static inline HRESULT CHK_HrCnvQueryCapability(
+        IN LPCWSTR pszOptions,  // conversion options
+        IN LPCWSTR pszClass,    // message class to convert
+        IN PVOID pContent,      // stream pointer to convert (candidate)
+        IN PEDKCNVENV pEnv,     // conversion environment pointer
+        OUT BOOL * pbAmCandidate)   // TRUE if can convert, FALSE otherwise
+{
+    HRESULT     hr          =   NOERROR;
+    LPSTREAM    lpStream    =   NULL;   // stream pointer
+    LPADRBOOK   lpAddrBook  =   NULL;   // MAPI address book pointer
+
+    // pszOptions is not used
+    if ( ! TEST_STRINGW_PTR(pszClass) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_IUNKNOWN_PTR(pContent) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_READ_PTR(pEnv, sizeof(PEDKCNVENV)) )
+    {
+        hr = HR_LOG(E_FAIL);
+
+        goto cleanup;
+    }
+
+    // We use the address book pointer in pEnv.
+    if ( ! TEST_IUNKNOWN_PTR(pEnv->lpAB) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    // We also use the gateway defined structure in pEnv.
+    if ( ! TEST_READ_PTR(pEnv->pGatewayDefined, sizeof(CONV_OPTIONS)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    // Check the conversion option fields.
+    if ( ! VALID_BOOL(((CONV_OPTIONS *) (pEnv->pGatewayDefined))->fTnefEncode) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_STRINGA_PTR(((CONV_OPTIONS *) (pEnv->pGatewayDefined))->lpszAddressType) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_WRITE_PTR(pbAmCandidate, sizeof(BOOL)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    // Check that address book pointer is really an address
+    // book pointer
+    hr = ((LPUNKNOWN) pEnv->lpAB)->QueryInterface(
+                IID_IAddrBook,
+                (LPVOID *) &lpAddrBook);
+
+    if ( FAILED(hr) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    // Check to see that the object to convert is an OLE stream.
+    hr = ((LPUNKNOWN) pContent)->QueryInterface(IID_IStream, 
+                                                (LPVOID *) &lpStream);
+
+    if ( FAILED(hr) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    // Release MAPI/OLE objects
+    ULRELEASE(lpStream);
+    ULRELEASE(lpAddrBook);
+
+    return hr;
+
+}
+
+//$--CHK_HrCnvConvert---------------------------------------------------------
+//
+// DESCRIPTION: Parameter checking for HrCnvConvert
+//
+// INPUT:       pszOptions  --  not used
+//              pszClass    --  class of message to convert to
+//              pContent    --  stream to convert
+//              pContentOut --  MAPI message to write to
+//              pEnv    --  conversion environment pointer
+//
+// OUTPUT:      pcr --  pointer to conversion result enumeration
+//
+// RETURNS:     HRESULT --  NOERROR if successful,
+//                          E_INVALIDARG if bad input,
+//
+// ---------------------------------------------------------------------------
+static inline HRESULT CHK_HrCnvConvert(
+        IN LPCWSTR pszOptions,  // conversion options
+        IN LPCWSTR pszClass,    // message class to convert to
+        IN PVOID pContent,      // stream to convert (candidate)
+        IN PVOID pContentOut,   // MAPI message to write to
+        IN PEDKCNVENV pEnv,     // conversion environment pointer
+        OUT EDKCNVRES * pcr)    // result of conversion
+{
+    HRESULT hr  =   NOERROR;
+    LPMESSAGE   lpMessage   =   NULL;   // MAPI message pointer
+    LPSTREAM    lpStream    =   NULL;   // OLE stream pointer
+    LPADRBOOK  lpAddrBook  =   NULL;   // MAPI address book pointer
+
+    // pszOptions is not used
+    if ( ! TEST_STRINGW_PTR(pszClass) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_IUNKNOWN_PTR(pContent) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_IUNKNOWN_PTR(pContentOut) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_READ_PTR(pEnv, sizeof(PEDKCNVENV)) )
+    {
+        hr = HR_LOG(E_FAIL);
+
+        goto cleanup;
+    }
+
+    // We use the address book pointer in pEnv.
+    if ( ! TEST_IUNKNOWN_PTR(pEnv->lpAB) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    // We also use the gateway defined structure in pEnv.
+    if ( ! TEST_READ_PTR(pEnv->pGatewayDefined, sizeof(CONV_OPTIONS)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    // Check the conversion option fields.
+    if ( ! VALID_BOOL(((CONV_OPTIONS *) (pEnv->pGatewayDefined))->fTnefEncode) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_STRINGA_PTR(((CONV_OPTIONS *) (pEnv->pGatewayDefined))->lpszAddressType) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_WRITE_PTR(pcr, sizeof(EDKCNVRES)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    // Check that address book pointer is really an address
+    // book pointer
+    hr = ((LPUNKNOWN) pEnv->lpAB)->QueryInterface(
+                IID_IAddrBook,
+                (LPVOID *) &lpAddrBook);
+
+    if ( FAILED(hr) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+    
+    // Check that object to convert is an OLE stream
+    hr = ((LPUNKNOWN) pContent)->QueryInterface(
+                IID_IStream,
+                (LPVOID *) &lpStream);
+
+    if ( FAILED(hr) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    // Check that object to convert to is a MAPI message.
+    hr = ((LPUNKNOWN) pContentOut)->QueryInterface(
+                IID_IMessage,
+                (LPVOID *) &lpMessage);
+
+    if ( FAILED(hr) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    // Release OLE/MAPI objects
+    ULRELEASE(lpMessage);
+    ULRELEASE(lpStream);
+    ULRELEASE(lpAddrBook);
+
+    return hr;
+
+}
+         
+//$--CHK_HrAsciiToIPMFormat----------------------------------------------------
+//
+// DESCRIPTION: Checks input parameters for HrAsciitoIPMFormat().
+//
+// INPUT:       same as for HrAsciitoIPMFormat()
+//
+// RETURNS:     HRESULT --  NOERROR if parameters O.K.
+//                          E_INVALIDARG if parameters not O.K.
+//
+// ---------------------------------------------------------------------------
+
+static inline HRESULT CHK_HrAsciitoIPMFormat( 
+                        IN LPCWSTR lpwszClass,  // message class
+                        IN BOOL fTNEFEncode,    // TNEF encoding flag
+                        IN LPCSTR lpAddrType,  // address type
+                        IN LPADRBOOK lpAddrBook,// address book
+                        IN LPSTREAM lpStream,   // stream pointer
+                        IN LPMESSAGE lpMessage) // message pointer
+{
+    HRESULT hr  =   NOERROR;
+    
+    if ( ! TEST_STRINGW_PTR(lpwszClass) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! VALID_BOOL(fTNEFEncode) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_STRINGA_PTR(lpAddrType) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_IUNKNOWN_PTR(lpAddrBook) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_IUNKNOWN_PTR(lpMessage) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_IUNKNOWN_PTR(lpStream) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return hr;
+
+}   // end CHK_HrAsciitoIPMFormat()
+
+//$--CHK_HrGetExportVector--------------------------------------------------------
+//
+// DESCRIPTION: Parameter checking for HrGetExportVector
+//
+// INPUT:       dwVersion   --  version requested
+//
+// OUTPUT:      ppExportVectors --  pointer to export vector structure pointer
+//
+// RETURNS:     HRESULT     --  NOERROR if successful,
+//                              E_INVALIDARG if invalid parameter,
+//
+// ---------------------------------------------------------------------------
+
+static inline HRESULT CHK_HrGetExportVector(     // RETURNS: HRESULT
+        IN DWORD dwVersion,         // version requested
+        OUT PCONVDLLVECT * ppExportVectors)  // pointer to exported functions structure
+{
+    HRESULT hr  =   NOERROR;    // return code
+
+    if ( ! TEST_WRITE_PTR(ppExportVectors, sizeof(PCONVDLLVECT)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+
+}
+#endif

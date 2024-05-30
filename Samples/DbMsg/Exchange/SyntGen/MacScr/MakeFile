@@ -1,0 +1,17 @@
+#---------------------------------------------------------------------------
+# Description:
+#   Make file to generate MacScr address syntax utility
+#
+# Copyright (C) Microsoft Corporation 1986 - 1998.  All Rights Reserved.
+#---------------------------------------------------------------------------
+
+USE_EXCHANGE=1
+console=1
+
+Proj = MacScr
+
+!Include <BkOffice.Mak>
+
+all:  $(ObjDir)\$(Proj).Exe
+
+$(ObjDir)\$(Proj).Exe:  $(@R).Obj

@@ -1,0 +1,44 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\testcap.res \
+    $(_OBJ_DIR)\alpha\capmain.obj \
+    $(_OBJ_DIR)\alpha\capirq.obj \
+    $(_OBJ_DIR)\alpha\capvideo.obj \
+    $(_OBJ_DIR)\alpha\capxfer.obj \
+    $(_OBJ_DIR)\alpha\capprop.obj \
+    $(_OBJ_DIR)\alpha\ddraw.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\testcap.res \
+    $(_OBJ_DIR)\axp64\capmain.obj \
+    $(_OBJ_DIR)\axp64\capirq.obj \
+    $(_OBJ_DIR)\axp64\capvideo.obj \
+    $(_OBJ_DIR)\axp64\capxfer.obj \
+    $(_OBJ_DIR)\axp64\capprop.obj \
+    $(_OBJ_DIR)\axp64\ddraw.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\testcap.res \
+    $(_OBJ_DIR)\i386\capmain.obj \
+    $(_OBJ_DIR)\i386\capirq.obj \
+    $(_OBJ_DIR)\i386\capvideo.obj \
+    $(_OBJ_DIR)\i386\capxfer.obj \
+    $(_OBJ_DIR)\i386\capprop.obj \
+    $(_OBJ_DIR)\i386\ddraw.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\testcap.res \
+    $(_OBJ_DIR)\ia64\capmain.obj \
+    $(_OBJ_DIR)\ia64\capirq.obj \
+    $(_OBJ_DIR)\ia64\capvideo.obj \
+    $(_OBJ_DIR)\ia64\capxfer.obj \
+    $(_OBJ_DIR)\ia64\capprop.obj \
+    $(_OBJ_DIR)\ia64\ddraw.obj
+
+PASS0_IA64_OBJECTS=
+

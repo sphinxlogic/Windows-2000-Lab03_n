@@ -1,0 +1,13 @@
+Microsoft Visual Studio Solution File, Format Version 1.00
+Project("{66355F20-A65B-11D0-BFB5-00A0C91EBFA0}") = "QCClient", "QCClient.vjp", "{4284FE90-32C7-4F35-848A-6967535D668E}"
+EndProject
+Global
+	GlobalSection(LocalDeployment) = postSolution
+		StartupProject = {4284FE90-32C7-4F35-848A-6967535D668E}
+	EndGlobalSection
+	GlobalSection(BuildOrder) = postSolution
+		0 = {4284FE90-32C7-4F35-848A-6967535D668E}
+	EndGlobalSection
+	GlobalSection(DeploymentRoot) = postSolution
+	EndGlobalSection
+EndGlobal

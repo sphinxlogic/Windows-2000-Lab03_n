@@ -1,0 +1,15 @@
+Project     = DXETool
+ProjectType = EXE
+Build       = DEBUG
+DESTDIR     = $(Build)
+Libraries   = ddraw.lib d3drm.lib winmm.lib 
+Objects     = $(DESTDIR)\dxedlg.obj $(DESTDIR)\dxedoc.obj $(DESTDIR)\dxeframe.obj $(DESTDIR)\dxeguids.obj $(DESTDIR)\dxetest.obj $(DESTDIR)\dxetest.res $(DESTDIR)\dxeview.obj $(DESTDIR)\StdAfx.obj
+BinDirectory = $(DTROOT)\test\$(Build)\bin
+LibDirectory = $(DTROOT)\test\$(Build)\lib
+IncDirectory = $(DTROOT)\test\$(Build)\inc
+
+
+UserCompileFlags = /MT $(DEFINES)
+UserLinkFlags = /subsystem:windows
+
+!include <master.mak>

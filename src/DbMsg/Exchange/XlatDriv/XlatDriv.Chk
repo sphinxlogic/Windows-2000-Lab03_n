@@ -1,0 +1,94 @@
+// --xlatdriv.chk-------------------------------------------------------------------
+// 
+//  Parameter checking for xlatdriv.c
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+//
+// -----------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_Process(a)                  NOERROR
+#define CHK_HrParseOptions(a,b,c,d,e,f) NOERROR
+
+#else
+
+//$--CHK_Process--------------------------------------------------------------------
+//  Parameter checking for Process()
+// -----------------------------------------------------------------------------
+static _inline HRESULT CHK_Process(              // RETURNS: HRESULT
+    IN LPVOID lpParameter)     // gateway thread context structure pointer
+{
+    HRESULT      hr                 = NOERROR;   // temporary return code
+
+    if ( lpParameter == NULL )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+}
+
+//$--CHK_HrParseOptions-----------------------------------------------------------
+// Parameter checking for HrParseOptions
+// ----------------------------------------------------------------------------
+static __inline HRESULT CHK_HrParseOptions(
+    IN DWORD cArgs,              // argument count
+    IN LPSTR * pArgv,            // argument array
+    OUT BOOL * pfInbound,        // inbound flag
+    OUT BOOL * pfTnef,           // TNEF desired flag
+    OUT DWORD * pcThreads,       // # threads
+    OUT LPSTR  lpszDirectory)    // file directory
+{
+    HRESULT hr  =   NOERROR;
+
+    // must have at least one argument
+    if ( cArgs == 0 )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_READ_PTR(pArgv, sizeof(LPSTR) * cArgs) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_WRITE_PTR(pfInbound, sizeof(BOOL)) )
+    {                         
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_WRITE_PTR(pfTnef, sizeof(BOOL)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_WRITE_PTR(pcThreads, sizeof(DWORD)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_WRITE_PTR(lpszDirectory, sizeof(CHAR) * (MAX_PATH + 1)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return hr;
+
+}
+
+#endif /* DEBUG */

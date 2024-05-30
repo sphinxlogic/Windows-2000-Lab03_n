@@ -1,0 +1,99 @@
+// --gwclean.chk--------------------------------------------------------------
+//
+// Parameter checking for gwclean.cpp.
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All rights reserved.
+//
+// ---------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_HrParseCommandLine(a,b,c,d,e,f)     NOERROR
+#define CHK_HrCheckFileName(a)                  NOERROR
+#define CHK_HrComputeDate(a,b)                  NOERROR
+
+#else
+
+//$--CHK_HrParseCommandLine---------------------------------------
+//  Check parameters for HrParseCommandLine().
+// ------------------------------------------------------------
+static inline HRESULT CHK_HrParseCommandLine(   // RETURNS: HRESULT
+    IN INT argc,                // argument count
+    IN CHAR * argv[],          // list of arguments
+    OUT LPSTR lpProfile,      // GW profile name
+    OUT LPSTR lpPSTName,      // PST name
+    OUT LPSTR lpFolder,       // GW folder name
+    OUT LPFILETIME lpBeforeTime)// before time pointer
+{
+    HRESULT     hr          =   NOERROR;
+
+    if ( ! TEST_READ_PTR(argv, sizeof(CHAR *)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    // lpProfile, lpPSTName and lpFolder
+    // are MAX_PATH + 1 character buffers
+    if ( ! TEST_WRITE_PTR(lpProfile, MAX_PATH + 1) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if ( ! TEST_WRITE_PTR(lpPSTName, MAX_PATH + 1) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if ( ! TEST_WRITE_PTR(lpFolder, MAX_PATH + 1) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if ( ! TEST_WRITE_PTR(lpBeforeTime, sizeof(FILETIME)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+    return hr;
+}
+
+//$--CHK_HrCheckFileName----------------------------------------------
+//  Check parameters for HrCheckFileName().
+// ---------------------------------------------------------------
+static inline HRESULT CHK_HrCheckFileName(           // RETURNS: HRESULT
+    IN LPSTR lpFileName)   // file name to check
+{
+    HRESULT hr                  =   NOERROR;
+
+    if ( ! TEST_STRINGA_PTR(lpFileName) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+}
+
+//$--CHK_HrComputeDate-------------------------------------------------------
+//  Check parameters for HrComputeDate().
+// ---------------------------------------------------------------------------
+static inline HRESULT CHK_HrComputeDate(    // RETURNS: HRESULT
+    IN  UINT uDaysBack,             // number of days before today
+    OUT LPFILETIME lpSysFileTime)   // pointer to system file time
+{
+    HRESULT hr  =   NOERROR;    // return code
+
+    if ( ! TEST_WRITE_PTR(lpSysFileTime, sizeof(FILETIME)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+}
+
+#endif /* DEBUG */

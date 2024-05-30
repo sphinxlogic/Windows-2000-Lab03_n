@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>LayoutManager2 -> IUILayoutManager</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">LayoutManager2 to IUILayoutManager</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.LayoutManager2 should be transformed into instances of
+com.ms.ui.IUILayoutManager.</p>
+
+<p align="left">LayoutManager2 extends <a
+href="LayoutManager.htm" target="descriptions">LayoutManager</a>:
+be sure to see its changes.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">AFC's IUILayoutManager serves as a replacement
+for both LayoutManager and LayoutManager2. </p>
+
+<p align="left">AFC's UILayoutManager works like AWT's
+LayoutManager2, creating an abstract layout manager with default
+keyboard handling. It also allows you to work with multiple
+containers. With interface IUILayoutManager, AFC provides several
+new and improved default layout managers, like UIBarLayout,
+UITabLayout, and UITreeLayout. (See the documentation for more
+details.)</p>
+
+<p align="left">If you wish to develop your own layout manager,
+the class UILayoutManager implements the interface
+IUILayoutManager, so you can derive from it for convenience. If
+you wish to use IUILayoutManager as your interface for your old
+class, however, you need to add the following methods to your
+extension of LayoutManager2:</p>
+
+<p align="left"><font size="2" face="Courier">adjustLayoutSize(IUIContainer,
+Dimension, IUIComponent, Dimension, Dimension) </font></p>
+
+<p align="left"><font size="2" face="Courier">continueInvalidate(IUIContainer,
+IUIComponent) </font></p>
+
+<p align="left"><font size="2" face="Courier">getComponent(IUIContainer,
+int) </font></p>
+
+<p align="left"><font size="2" face="Courier">getComponent(IUIContainer,
+Object) </font></p>
+
+<p align="left"><font size="2" face="Courier">navigate(IUIContainer,
+IUIComponent, int, boolean) </font></p>
+
+<p align="left"><font size="2" face="Courier">paintContainer(IUIContainer,
+FxGraphics) </font></p>
+
+<p align="left"><font size="2" face="Courier"></font>&nbsp;</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">This is the set of changes you need to make to
+port all LayoutManager2 methods to IUILayoutManager methods. Any
+method not listed here or below does not need to be changed.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial"><strong>AWT Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">addLayoutComponent(Component,
+        Object)</font></td>
+        <td nowrap><font size="2" face="Courier">addLayoutComponent(IUIContainer,
+        IUIComponent, Object)</font></td>
+        <td><font size="2">You need to associate each layout with
+        a container.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">maximumLayoutSize(Container)</font></td>
+        <td nowrap><font size="2" face="Courier">preferredLayoutSize(IUIContainer)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h3>Unsupported Methods</h3>
+
+<p>Some methods in java.awt.LayoutManager2 are not directly
+supported in com.ms.ui.IUILayoutManager. Those methods are listed
+here.</p>
+
+<p><font size="2" face="Courier">getLayoutAlignmentX(Container)</font></p>
+
+<p><font size="2" face="Courier">getLayoutAlignmentY(Container) </font></p>
+
+<p><font size="2" face="Courier">invalidateLayout(Container) </font></p>
+</body>
+</html>

@@ -1,0 +1,26 @@
+HKCR
+{
+	EventMonFilter.EventMonFilter.1 = s 'EventMonFilter Class'
+	{
+		CLSID = s '{621CE0F8-D42C-11D2-9A34-00C04F72EB9B}'
+	}
+	EventMonFilter.EventMonFilter = s 'EventMonFilter Class'
+	{
+		CLSID = s '{621CE0F8-D42C-11D2-9A34-00C04F72EB9B}'
+		CurVer = s 'EventMonFilter.EventMonFilter.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {621CE0F8-D42C-11D2-9A34-00C04F72EB9B} = s 'EventMonFilter Class'
+		{
+			ProgID = s 'EventMonFilter.EventMonFilter.1'
+			VersionIndependentProgID = s 'EventMonFilter.EventMonFilter'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+			'TypeLib' = s '{EE59730C-D42B-11D2-9A34-00C04F72EB9B}'
+		}
+	}
+}

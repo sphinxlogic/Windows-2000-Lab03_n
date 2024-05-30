@@ -1,0 +1,65 @@
+------------------------------------------------------------------
+       Microsoft Chat Control 1.0 Samples Readme File
+------------------------------------------------------------------
+
+             (c) Copyright Microsoft Corporation, 1997
+
+
+OVERVIEW OF THE CHAT CONTROL SAMPLES
+====================================
+
+The chatocx samples directory consists of the following subdirectories, which  
+contain samples demonstrating ways to use the ActiveX Control. Each 
+subdirectory includes a text file with detailed information about the 
+sample and how to install or build it.
+
+ChatAd
+------
+This is a simple Visual Basic Application which provides monitoring 
+capability for administrators. This sample uses Microsoft Chat Control 1.1.
+
+Checkrs
+-------
+This is a Visual Basic Application which enables you to play Checkers 
+game with the people you are chatting. This sample uses Microsoft Chat Control 1.1.
+
+Trnscrpt
+--------
+Trnscrpt contains a VB Application which provides a transcript of the chat 
+session. This sample uses Microsoft Chat Control 1.1.
+
+ExecChat
+--------
+ExecChat contains a VB application for hosting Executive Chat Sessions. 
+This application can be used in three modes: Host, Moderator and Special
+Guest.This sample uses Microsoft Chat Control 1.1.
+
+Webdemo
+-------
+Webdemo contains five web pages that demonstrate the usage of the ActiveX
+control with Visual Basic scripting. These samples use Microsoft Chat Control 1.1.
+
+chat2000
+--------
+Chat2000 contains an example that demonstrates how to use the Chat OCX inside 
+an MDI MFC application. This sample uses Microsoft Chat Control 1.1.
+
+nmstart
+-------
+Nmstart contains an example that demonstrates how to use Chat Protocol Control 2.0
+and will launch Microsoft NetMeeting between two chat users.
+
+procx
+-----
+Procx contains two samples that demonstrate how to use Chat Protocol Control 2.0 
+in a web page.
+
+Prchckrs
+--------
+Prchckrs sample demostrates how to use the Chat Protocol Control 2.0 to transfer data 
+between two checkers players in a chat room.
+
+Chappy 
+------
+Chappy contains an example that demonstrates how to use the Chat Protocol 2.0 inside 
+an MDI MFC application. 

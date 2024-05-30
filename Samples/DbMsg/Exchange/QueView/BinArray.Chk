@@ -1,0 +1,30 @@
+// -----------------------------------------------------------------------------
+// BinArray.chk
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+// -----------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_CBinArray_bAdd(a,b)     NOERROR
+
+#else
+
+// $--CHK_CBinArray_bAdd()----------------------------------------------------
+// -----------------------------------------------------------------------------
+__inline HRESULT CHK_CBinArray_bAdd( 
+    ULONG cb,       // Count of byte array passed in.
+    LPBYTE pBytes)  // Ptr to array of bytes.
+{
+    if( cb == 0)
+        RETURN( E_INVALIDARG);
+    
+    if( !pBytes)
+        RETURN( E_INVALIDARG);
+
+    return( NOERROR);
+}
+
+// -----------------------------------------------------------------------------
+
+#endif /* DEBUG */

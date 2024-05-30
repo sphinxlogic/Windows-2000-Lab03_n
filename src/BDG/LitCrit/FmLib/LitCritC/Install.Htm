@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" Content="Microsoft Visual Studio 6.0">
+<TITLE>Enhanced LitCrit Client-side Component Installer</TITLE>
+<link type="text/css" rel="stylesheet" href="../_Themes/fm/theme.css">	
+</HEAD>
+<BODY>
+
+<H2>Enhanced LitCrit Form Component Installation Page</H2>
+This Web page contains the client-side component required to run the 
+Enhanced LitCrit form.  The component contains the Choose Title dialog, 
+which will allow you to select titles from the online library catalog for review.
+
+<OBJECT id=Critique classid=CLSID:DA949BC8-F349-11D2-ABD6-0080C7665CC0 
+codeBase=LitCritC.CAB#version=1,0,0,0 WIDTH=0 HEIGHT=0 VIEWASTEXT></OBJECT>
+
+<script LANGUAGE=VBScript>
+On Error Resume Next
+Set oLCC = CreateObject("LitCritC.Critique")
+If Not IsObject(oLCC) Then
+   document.write "<P><B>You don't appear to have the LitCrit client-side component.</B> " & _
+                  "Please wait for the CAB file to be downloaded and installed. If your security " & _
+                  "setting prevent the control from appearing, you will need to change your " & _
+                  "options for the <I>Intranet Zone</I> to LOW."
+Else
+   document.write "<P><B>You have already installed the LitCrit client-side component.</B> " & _
+                  "You may now use the Enhanced LitCrit form to select items from the " & _
+                  "library database for review."
+End If
+</script>
+
+<P>NOTE: If this is the first time you have launched the Enhanced LitCrit form, you
+will need to close it and start again after the component is installed. 
+
+</BODY>
+</HTML>

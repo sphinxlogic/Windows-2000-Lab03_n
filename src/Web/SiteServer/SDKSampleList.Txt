@@ -1,0 +1,55 @@
+Site Server 3.0 SDK version 1.1
+
+The following Site Server samples are provided in this SDK.
+
+Site Server
+	Content Deployment
+		CRSTool (language:vbs) 
+			(See \siteserver\contentdeployment\vbscript\wsh\readme.txt)
+		Content Deployment administration (language:vbs) 
+			(See \siteserver\contentdeployment\vbscript\asp\TOC.htm)
+		Filesink 
+			(See \siteserver\contentdeployment\vb\eventsink\filesink\readme.txt)
+		
+	Personalization and Membership (PM)
+		(See \siteserver\personalization\docs\readme.doc)
+		ADSIExplorer
+			View ADSI provider datasources (language:vb)
+		AUO
+			Create dynamic users (language:vbs)
+		Distribution List
+			Remove users from DL (language:vbs)
+			Add/Remove users  (language:vbs)
+			Remove user from all DLs (language:vbs)
+			Count users in each DL (language:vbs)
+			Display DL members (language:vbs)
+		ILS (Dynamic Directory)
+			Dynamic objects in Sessions (language:vbs)
+			Add Dynamic members (language:vbs)
+			NetMeeting/Dynamic Directory (language:vbs) 
+		Membership Directory Manager
+			Add/Remove Group Members (language:vbs)
+			List Group Members (language:vbs)
+			Cancel Users (language:vbs)
+			Dump ACL of MDM Object (language:vbs)
+			List Children of MDM Object (language:vbs)
+			Remove Cancelled Users (language:vbs)
+			Remove Expired Users (language:vbs)
+			Remove MDM Object (language:vbs)
+			Set Attribute (language:vbs)
+		Schema
+			Dump LDAP Configuration (language:vbs)
+			Dump LDAP Schema (language:vbs)
+			Dump Vocabulary (language:vbs)
+		Security
+			Logoff (language:vbs)
+			VerifyPassword (language:vbs)
+			Custom SignIn Interface (language:c,vbs)
+			Certificates (language:c)
+	Push
+		Sample Channel Agent (language:c)
+			(See \siteserver\push\agent\distrib\readme.txt)
+
+	Search
+		Directory Monitor (language:c)		
+			(See \siteserver\search\dirmon\readme.htm)

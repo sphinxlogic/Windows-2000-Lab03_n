@@ -1,0 +1,106 @@
+<html>
+<head>
+<title>oncontextmenu Demo</title>
+<style>
+.menuItem {font-family:sans-serif;font-size:8pt;width:100;padding-left:20;
+   background-Color:menu;color:black}
+.highlightItem {font-family:sans-serif;font-size:8pt;width:100;padding-left:20;
+   background-Color:highlight;color:white}
+.clickableDiv {padding:4;width:500;background-Color:blue;color:white;border:10px double blue}
+}
+</style>
+</head>
+
+<body>
+<h1>OnContextMenu Event</h1>
+<p><A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT>
+<br>
+
+<hr>
+<p>IE5 allows developers to easily determine when somebody right-clicks on an element.  It is also very easy to override the standard behavior for that event.
+
+<br>Try right-clicking the different divs for several examples.<p>
+
+<div class="clickableDiv">
+1. Builtin context menu will always show when you right-click in this box.
+<b><br>Code: </b>
+//no code necessary
+</div><br>
+
+<div class="clickableDiv" oncontextmenu="return event.ctrlKey">
+2. Context menu will only show if you ctrl-right-click in this box.  Useful for developing/debugging.
+<br><b>Code: </b>
+oncontextmenu="return event.ctrlKey"
+</div><br>
+
+<div class="clickableDiv" oncontextmenu="return false">
+3. Context menu will never show when you right-click in this box.
+<b><br>Code: </b>
+oncontextmenu="return false"
+</div><br>
+
+<div class="clickableDiv" oncontextmenu="showMenu();return false;">
+4. Custom menu will show when you right-click in this box.
+<b><br>Code: </b>
+oncontextmenu="showMenu();return false;"
+</div><br>
+
+<div class="clickableDiv" oncontextmenu="if (!event.ctrlKey){showMenu();return false;} else {menu1.style.display='none'}">
+5. Custom menu will show when you right-click in this box.  If you ctrl-right-click, you will see the standard menu.
+<b><br>Code: </b>
+oncontextmenu="if (!event.ctrlKey){showMenu();return false;} else {menu1.style.display='none'}"
+</div><br>
+
+<div id=menu1 onclick="clickMenu()" onmouseover="toggleMenu()" onmouseout="toggleMenu()" oncontextmenu="contextTwice()" style="position:absolute;display:none;width:100;background-Color:menu">
+<div class="menuItem" id=mnuNavy>Navy</div>
+<div class="menuItem" id=mnuPink>Pink</div>
+</div>
+
+<script>
+//context menus would be better implemented as a behavior.  that work is under way.
+
+//this menu can not be seen if it is clipped by a frame or a window.  there is a beta2 task to enable display:popup.
+
+function showMenu() {
+   //this function will position and display a nested div that acts like a menu
+   whichDiv=event.srcElement;
+   menu1.style.posLeft=event.clientX+document.body.scrollLeft;
+   menu1.style.posTop=event.clientY+document.body.scrollTop;
+   menu1.style.display="";
+   menu1.setCapture();
+}
+
+function toggleMenu() {   
+   //as the mouse moves over the menuItems, highlight them
+   el=event.srcElement;
+   if (el.className=="menuItem") {
+      el.className="highlightItem";
+   } else if (el.className=="highlightItem") {
+      el.className="menuItem";
+   }
+}
+
+function clickMenu() {
+   //when the custom menu is visible (and capturing events),
+   //this handler runs after a click event.  if one of the
+   //menu items is clicked, it takes appropriate action.  
+   //otherwise, it just hides the menu.
+   menu1.style.display="none";
+   el=event.srcElement;
+   if (el.id=="mnuNavy") {
+      whichDiv.style.backgroundColor="navy";
+   } else if (el.id=="mnuPink") {
+      whichDiv.style.backgroundColor="pink";   
+   }
+   menu1.releaseCapture();
+}
+
+function contextTwice() {
+   //this handles the case in div#5 when you might right-click, and then you ctrl-right-click in the same div.
+   if (event.srcElement==whichDiv)
+      showMenu();
+}
+</script>
+</body>
+</html>

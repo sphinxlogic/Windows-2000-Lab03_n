@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>Container -> UIContainer</title>
+<base target="descriptions">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">Container to UIContainer</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.Container should be transformed into instances of
+com.ms.ui.UIContainer.</p>
+
+<p align="left">Container extends <a href="Component.htm"
+target="descriptions">Component</a>: see that page for more
+information.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">AFC's UIContainer implements a stateless
+container. This is the base class for all AFC containers and
+allows you to create lightweight controls without having to
+manage an object's states. Most containers in AFC are not
+stateless, but UIContainer allows you to implement containers
+without states. </p>
+
+<p align="left">UIContainers are UIComponent objects that hold
+collections of other UIComponent objects, which means the
+advantages provided by UIComponent transfer to UIContainer. See
+the documentation for more information.</p>
+
+<p align="left">One advantage of UIContainers over AWT's
+Container class is that it allows many more options for
+transferring the keyboard focus within the components in the
+container. The function</p>
+
+<p align="left"><font face="Courier">navigate(getFocusComponent(),
+UIAccessible.NAVDIR_XXX, true)</font></p>
+
+<p align="left">(where <font size="2" face="Courier New">NAVDIR_XXX</font>
+is one of <font size="2" face="Courier">NAVDIR_DOWN, NAVDIR_UP,
+NAVDIR_PREV, NAVDIR_NEXT, NAVDIR_FIRST, NAVDIR_LAST, NAVDIR_LEFT,
+NAVDIR_RIGHT)</font> allows you to navigate between components
+for keyboard focus transfer.</p>
+
+<p align="left">Containers also can be set with specific edge
+styles, which are IFxGraphicsConstants. Those styles are:</p>
+
+<p><font size="3" face="Courier">IFxGraphicsConstants.BDR_RAISED <br>
+IFxGraphicsConstants.BDR_SUNKEN <br>
+IFxGraphicsConstants.BDR_OUTER <br>
+IFxGraphicsConstants.BDR_INNER <br>
+IFxGraphicsConstants.BDR_RAISEDOUTER <br>
+IFxGraphicsConstants.BDR_RAISEDINNER <br>
+IFxGraphicsConstants.BDR_SUNKENOUTER <br>
+IFxGraphicsConstants.BDR_SUNKENINNER <br>
+IFxGraphicsConstants.BDR_FLAT <br>
+IFxGraphicsConstants.EDGE_RAISED <br>
+IFxGraphicsConstants.EDGE_SUNKEN <br>
+IFxGraphicsConstants.EDGE_ETCHED <br>
+IFxGraphicsConstants.EDGE_BUMP <br>
+0 </font><font size="3">(No edge style) </font></p>
+
+<p align="left">&nbsp;</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">This is the set of changes you need to make to
+port all Container methods to UIContainer methods. Any method not
+listed here or below does not need to be changed.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial"><strong>AWT Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">Container()</font></td>
+        <td nowrap><font size="2" face="Courier">UIContainer() or<br>
+        UIContainer(int)</font></td>
+        <td><font size="2">The int in the second kind of AFC
+        constructor specifies the style of the container's edge,
+        which is an IFXGraphicsConstant. See the documentation
+        for more details.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">addImpl(Component,
+        Object, int)</font></td>
+        <td nowrap><font size="2" face="Courier">add(Component,
+        Object, int)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">countComponents()</font></td>
+        <td><font size="2" face="Courier">getComponentCount()</font></td>
+        <td><font size="2">Deprecated method in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getComponentAt(int,
+        int)</font></td>
+        <td><font size="2" face="Courier">getComponent(int, int)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getComponentAt(point)</font></td>
+        <td><font size="2" face="Courier">getComponent(point)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">insets()</font></td>
+        <td><font size="2" face="Courier">getInsets()</font></td>
+        <td><font size="2">Deprecated method in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">locate(int, int)</font></td>
+        <td><font size="2" face="Courier">getComponent(int, int)</font></td>
+        <td><font size="2">Deprecated method in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">minimumSize()</font></td>
+        <td><font size="2" face="Courier">getMinimumSize()</font></td>
+        <td><font size="2">Deprecated method in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">preferredSize()</font></td>
+        <td><font size="2" face="Courier">getPreferredSize()</font></td>
+        <td><font size="2">Deprecated method in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">printComponents(Graphics)</font></td>
+        <td><font size="2" face="Courier">printAll(Graphics)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h3>Unsupported Methods</h3>
+
+<p>Some methods in java.awt.Container are not directly supported
+in com.ms.ui.UIContainer. Those methods and suggested changes are
+described here.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial">AWT Code<strong>/Suggested
+        AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">paramString()</font><p><font
+        size="2" face="Courier"><strong>getName()</strong></font></p>
+        </td>
+        <td><font size="2">You can use this or another get method
+        to get the information you need.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getAlignmentX() <br>
+        getAlignmentY() <br>
+        list(PrintStream, int) <br>
+        list(PrintWriter, int) <br>
+        processContainerEvent(ContainerEvent) <br>
+        processEvent(AWTEvent) <br>
+        validateTree() </font><p><font size="2" face="Courier"><strong>(no
+        suggestions)</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,34 @@
+HKCR
+{
+	Button.Button.1 = s 'Button Class'
+	{
+		CLSID = s '{7022DA43-930B-11D0-AF9A-00A0C909FE5F}'
+	}
+	Button.Button = s 'Button Class'
+	{
+		CurVer = s 'Button.Button.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {7022DA43-930B-11D0-AF9A-00A0C909FE5F} = s 'Button Class'
+		{
+			ProgID = s 'Button.Button.1'
+			VersionIndependentProgID = s 'Button.Button'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			ForceRemove 'Control'
+			ForceRemove 'Programmable'
+			ForceRemove 'Insertable'
+			ForceRemove 'ToolboxBitmap32' = s '%MODULE%, 1'
+			'MiscStatus' = s '0'
+			{
+			    '1' = s '135569'
+			}
+			'TypeLib' = s '{7022DA40-930B-11D0-AF9A-00A0C909FE5F}'
+			'Version' = s '1.0'
+		}
+	}
+}

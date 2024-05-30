@@ -1,0 +1,8 @@
+LIBRARY         CLASSPROV
+DESCRIPTION     'Sample WINMGMT Class Provider (c)1998 Microsoft Corp.'
+
+EXPORTS
+                DllGetClassObject       @2  PRIVATE
+                DllCanUnloadNow         @3  PRIVATE
+                DllRegisterServer       @4  PRIVATE
+                DllUnregisterServer     @5  PRIVATE

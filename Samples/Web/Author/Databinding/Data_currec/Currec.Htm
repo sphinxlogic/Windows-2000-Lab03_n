@@ -1,0 +1,128 @@
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<HTML>
+<HEAD>
+<TITLE>Current Record Binding</TITLE>
+<META NAME="FILENAME" CONTENT="currec.HTM">
+
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+
+</head>
+<BODY TOPMARGIN=20 LEFTMARGIN=40 BGCOLOR="#FFFFFF" LINK="#000066" VLINK="#666666" TEXT="#000000">
+<H2>Current Record Binding</H2>
+
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT>
+<P>
+<P>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+<hr>
+
+<p>Click the buttons below to move the current record forward and
+backward.</p>
+<P>
+<object id="quotelist"
+        classid="clsid:333C7BC4-460F-11D0-BC04-0080C7055A83"
+        border="0" width="0" height="0">
+  <param name="DataURL" value="quotes.txt">
+  <param name="UseHeader" value="True">
+</object>
+
+<TABLE ALIGN=CENTER CELLSPACING=3 CELLPADDING=3>
+  <TR>
+    <TD ALIGN=RIGHT><INPUT TYPE=BUTTON ID=backward VALUE="   <   "></TD>
+    <TD ALIGN=LEFT><INPUT TYPE=BUTTON ID=forward VALUE="   >   "></TD>
+  </TR>
+</TABLE>
+<P>
+
+<TABLE ALIGN=CENTER CELLSPACING=0 CELLPADDING=0>
+<TR>
+<TD ALIGN=RIGHT VALIGN=TOP><LABEL FOR=symbol>Symbol: </LABEL></TD>
+<TD ALIGN=LEFT VALIGN=TOP WIDTH="10"></TD>
+<TD ALIGN=LEFT VALIGN=TOP><INPUT id=symbol TYPE=text DATASRC=#quotelist DATAFLD="Symbol"></TD>
+</TR>
+
+<TR>
+<TD ALIGN=RIGHT VALIGN=TOP><LABEL FOR=quote>Quote: </LABEL></TD>
+<TD ALIGN=LEFT VALIGN=TOP WIDTH="10"></TD>
+<TD ALIGN=LEFT VALIGN=TOP><INPUT id=quote TYPE=text DATASRC=#quotelist DATAFLD="Quote"></TD>
+</TR>
+
+<TR>
+<TD ALIGN=RIGHT VALIGN=TOP><LABEL FOR=change>Change: </LABEL></TD>
+<TD ALIGN=LEFT VALIGN=TOP WIDTH="10"></TD>
+<TD ALIGN=LEFT VALIGN=TOP><INPUT id=change TYPE=text DATASRC=#quotelist DATAFLD="Change"></TD>
+</TR>
+
+<TR>
+<TD ALIGN=RIGHT VALIGN=TOP><LABEL FOR=volume>Volume: </LABEL></TD>
+<TD ALIGN=LEFT VALIGN=TOP WIDTH="10"></TD>
+<TD ALIGN=LEFT VALIGN=TOP><INPUT id=volume TYPE=text DATASRC=#quotelist DATAFLD="Volume"></TD>
+</TR>
+</TABLE>
+
+<SCRIPT LANGUAGE=JavaScript>
+function backwardClick() {
+  if (quotelist.recordset.AbsolutePosition > 1) {
+    quotelist.recordset.movePrevious();
+  } else {
+    alert("Already at first element");
+  }
+}
+
+backward.onclick = backwardClick;
+
+function forwardClick() {
+  if (quotelist.recordset.AbsolutePosition != quotelist.recordset.RecordCount) {
+    quotelist.recordset.moveNext(); 
+  } else {
+    alert("Already at last element");
+  }
+}
+
+forward.onclick = forwardClick;
+
+</SCRIPT>
+
+<p><b>Description</b><br>
+Current record binding is a key feature of the data binding
+functionality included in Dynamic HTML. Current record binding
+allows a page author to merge data with HTML elements on the
+client. The data is supplied by a data source object included in
+the page. Individual HTML elements reference the data source
+object using the DATASRC and DATAFLD attributes. DATASRC is set
+to '#' plus the ID of the data source object. DATAFLD is set to the
+name of the column name that holds the data. (DATASRC and DATAFLD
+are W3C-proposed extensions to HTML.)</p>
+
+<p>The feature is named "current record binding" because the data
+displayed in the bound elements is from the columns of the
+current record of the data source. When the page author, through
+script or another element on the page, changes the position of
+the current record, the data from the new, current record is
+displayed in the elements. This is very much like the data
+binding supported in Microsoft Visual Basic, but it does not
+require controls -- you can bind directly to HTML elements.</p>
+
+<p>The key advantage to current record binding is that the data
+display is done on the client. A round trip to the server is not
+necessary to obtain the next record of the data set, you don't
+have to maintain the client state on the server or hidden in the
+client page, and you don't have to write a CGI script. With the 
+enhanced user experience and increased speed of browsing, it's easy to see the direct benefits of current record
+binding.</p>
+
+<P>
+<FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">
+&copy; <A HREF="/misc/cpyright.htm" TARGET="_top">1999 Microsoft Corporation. All rights reserved. Terms of use</A>.
+</FONT>
+
+
+</FONT>
+</body>
+</html>

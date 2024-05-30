@@ -1,0 +1,49 @@
+// acctcrt.idl : IDL source for acctcrt.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (acctcrt.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+	[
+		object,
+		uuid(A9B46A7E-1DE0-11D2-AAD2-00C04FA3328D),
+		dual,
+		helpstring("IAcctMgmt Interface"),
+		pointer_default(unique)
+	]
+	interface IAcctMgmt : IDispatch
+	{
+		[id(1), helpstring("method NtAccountCreate")] HRESULT NtAccountCreate([in] BSTR bstrDomain, [in] BSTR bstrUserLogin, [in] BSTR bstrPassword, 
+                                                                              [in] BSTR bstrUserComment, [in] BSTR bstrLocalGroup);
+		[id(2), helpstring("method NtAccountDelete")] HRESULT NtAccountDelete([in] BSTR bstrDomain, [in] BSTR bstrUserLogin);
+		[id(3), helpstring("method GetSidFromName")] HRESULT GetSidFromName([in] BSTR bstrDomain, [in] BSTR bstrUserLogin, 
+                                                                            [out] VARIANT* varSid);
+		[id(4), helpstring("method GetNameFromSid")] HRESULT GetNameFromSid([in]BSTR bstrDomain, [in]VARIANT varSid, 
+                                                                            [out]VARIANT* varDomainName, [out]VARIANT* varUserLogin);
+		[id(5), helpstring("method GenerateSecDescriptor")] HRESULT GenerateSecDescriptor([in]BSTR bstrDomain, [in]BSTR bstrUserLogin, [out]VARIANT* varSecDes);
+		[id(6), helpstring("method ChangeOwnerOfSecDescriptor")]
+		HRESULT ChangeOwnerOfSecDescriptor([in]BSTR bstrOldDomain, [in]BSTR bstrOldOwner, [in]BSTR bstrNewDomain, [in]BSTR bstrNewOwner, 
+	                                     [in]VARIANT varSecDesp,[out]VARIANT* varNewSecDesp);
+	};
+[
+	uuid(55E2BE6E-1DE0-11D2-AAD2-00C04FA3328D),
+	version(1.0),
+	helpstring("Microsoft Exchange 5.5 Account Type Library")
+]
+library MSExchangeAcctLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(A9B46A7F-1DE0-11D2-AAD2-00C04FA3328D),
+		helpstring("AcctMgmt Class")
+	]
+	coclass AcctMgmt
+	{
+		[default] interface IAcctMgmt;
+	};
+};

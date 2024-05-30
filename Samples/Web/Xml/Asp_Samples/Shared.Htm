@@ -1,0 +1,42 @@
+<html>
+
+<script>
+  function putXML()
+  {    
+    var xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    xmlhttp.Open("POST", "put.asp", false);
+    xmlhttp.Send(XML.value);
+    alert(xmlhttp.responseText);
+  }
+  function getXML()
+  {    
+    var xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    xmlhttp.Open("POST", "get.asp", false);
+    xmlhttp.Send();
+    XML.value = xmlhttp.responseText;
+  }
+</script>
+<body>
+<P>
+Type in the data you want saved in session state, click the PUT button to save it and
+click the GET button to see if anyone else has changed it.
+<P>
+<textarea id=XML rows=12 cols=60><XML>
+This is the XML document that will be saved on the server.
+</XML></textarea>
+<P>
+<input type=button value="PUT" onclick="putXML()">
+<input type=button value="GET" onclick="getXML()">
+<P>
+The code on the server is :
+<PRE>
+&lt;object id=xmldoc progid=Microsoft.XMLDOM runat=Server></object>
+&lt;% 
+	Application("SHAREDXML") = Server.CreateObject("Microsoft.FreeThreadedXMLDOM");
+	// put
+	Application("SHAREDXML").load(Request);
+	// get
+	Application("SHAREDXML").save(Request);
+%&gt;
+
+</PRE>

@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Redirection Extension</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_redirection_extension"></a>Redirection Extension</h3>
+<p>
+This sample demonstrates how to create an ISAPI extension that redirects requests made to the server. The new target URL is provided to the extension through the query string; if the URL is not provided, or is not legal, an error message is sent to the client browser, along with simple usage instructions. Thus, if http://mysite.com/scripts/Redirect.dll was the URL of the compiled DLL for this extension, the following request, </p>
+<pre>http://mysite.com/scripts/Redirect.dll?//anothersite.com/default.htm 
+</pre>
+<p>
+would cause the browser to look to <code>anothersite.com</code> for its next page.</p>
+<p>
+This example implements the standard extension entry-point functions, <b>GetExtensionVersion</b> and <b>HttpExtensionProc</b>. The latter uses the pointer passed by IIS to access the <b>lpszQueryString</b> member of the ECB, and then parses the query to determine whether the client browser is requesting a remote or local resource. Requests for remote redirection, such as http://othersite.com, are processed by sending the HSE_REQ_SEND_URL_REDIRECT_RESP extension request to the server with the <b>ServerSupportFunction</b>. HSE_REQ_SEND_URL_REDIRECT_RESP indicates that the server is to send the HTTP status code 302, and redirection message, to the client browser. </p>
+<p>
+If the query string is found to contain a virtual path, then <b>ServerSupportFunction</b> is used, this time invoking the HSE_REQ_SEND_URL extension request. The server now sends the file at the indicated new target location, while the extension exits. Note that the sample explicitly checks for the leading forward slash (/) in the virtual path, as the HSE_REQ_SEND_URL extension request of the <b>ServerSupportFunction</b> requires it, and will not work properly if the forward slash is absent.</p>
+<p>
+This sample is provided for educational purposes only. It has not been tested in a production environment, and Microsoft&reg; will not provide technical support for it. </p>
+</BODY>
+</HTML>

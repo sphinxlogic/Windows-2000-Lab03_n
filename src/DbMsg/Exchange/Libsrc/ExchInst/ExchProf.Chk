@@ -1,0 +1,184 @@
+// --exchprof.chk---------------------------------------------------------------
+//
+// Parameter checking functions for exchprof.c.
+// 
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+// -----------------------------------------------------------------------------
+
+#include "edk.h"
+
+#ifndef DEBUG
+
+#define CHK_HrSetGatewayProfileParameters(a,b,c)    NOERROR
+#define CHK_HrSetMailboxProfileParameters(a,b,c)    NOERROR
+#define CHK_HrCreateGatewayProfile(a,b)          NOERROR
+#define CHK_HrCreateMailboxAgentProfile(a,b)     NOERROR
+#define CHK_HrRemoveProfile(a)                   NOERROR
+#define CHK_HrMAPIProfileExists(a,b)                 NOERROR
+
+#else
+
+//$--CHK_HrSetGatewayProfileParameters------------------------------------------
+//  Check the parameters for HrSetGatewayProfileParameters().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrSetGatewayProfileParameters(
+    IN LPSTR lpszServerName,                   // server name
+    IN LPSTR lpszSiteDN,                       // site distinguished name
+    IN LPSTR lpszCommonName)                   // common name
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServerName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszSiteDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszCommonName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrSetMailboxProfileParameters------------------------------------------
+//  Check the parameters for HrSetMailboxProfileParameters().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrSetMailboxProfileParameters(
+    IN LPSTR lpszServerName,                   // server name
+    IN LPSTR lpszSiteDN,                       // site distinguished name
+    IN LPSTR lpszCommonName)                   // common name
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServerName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszSiteDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszCommonName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrCreateGatewayProfile----------------------------------------------
+//  Check the parameters for HrCreateGatewayProfile().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrCreateGatewayProfile(
+	IN LPSTR lpszServiceName,              // service name
+	IN LPSTR lpszProfileName)              // profile name
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServiceName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszProfileName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrCreateMailboxAgentProfile-----------------------------------------
+//  Check the parameters for HrCreateMailboxAgentProfile().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrCreateMailboxAgentProfile(
+	IN LPSTR lpszServiceName,              // service name
+	IN LPSTR lpszProfileName)              // profile name
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszServiceName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszProfileName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrRemoveProfile-----------------------------------------------------
+//  Check the parameters for HrRemoveProfile().
+//------------------------------------------------------------------------------
+__inline static HRESULT CHK_HrRemoveProfile(
+    LPSTR lpszProfileName)                 // profile name
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszProfileName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrMAPIProfileExists-----------------------------------------------------
+//  Check the parameters for HrMAPIProfileExists().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrMAPIProfileExists(
+    IN LPPROFADMIN lpProfAdmin,         // profile admin object
+    IN LPSTR      lpszProfileName)     // profile name
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_IUNKNOWN_PTR(lpProfAdmin))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszProfileName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+#endif /* DEBUG */

@@ -1,0 +1,285 @@
+// --winwrap.chk----------------------------------------------------------------
+// 
+//  Windows NT service (Windows application) shell for EDK applications.
+// 
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+// -----------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_HrFnCreateThread(a)                 NOERROR
+#define CHK_HrEDKCreateThread(a,b,c,d,e,f,g,h)  NOERROR
+#define CHK_HrServiceGetName(a)              NOERROR
+#define CHK_HrServiceGetArgv(a,b)            NOERROR
+#define CHK_HrWaitShutdown(a)                   NOERROR
+#define CHK_HrWorkerThread(a)                   NOERROR
+#define CHK__ServiceMain(a,b)                   NOERROR
+#define CHK_HrServiceWaitForControl(a,b)        NOERROR
+#define CHK_HrServiceWaitForContinue(a,b)       NOERROR
+#define CHK_HrServiceWaitForStop(a,b)           NOERROR
+#define CHK_HrFreeArgvW(a,b)                    NOERROR
+
+#else
+
+//$--CHK_HrFnCreateThread-------------------------------------------------------
+//  Wrapper for CreateThread() function.
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrFnCreateThread(   // RETURNS: return code
+    LPVOID lpParameter)                         // parameter
+{
+    HRESULT hr = NOERROR;
+
+    if((lpParameter != NULL) && IsBadReadPtr(lpParameter, 1))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrEDKCreateThread------------------------------------------------------
+//  Create a wrapped thread.
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrEDKCreateThread(  // RETURNS: return code
+    LPLONG lplStartThreads,                     // number of running threads
+    LPLONG lplStopThreads,                      // number of stopped threads
+    LPSECURITY_ATTRIBUTES lpThreadAttributes,   // thread attributes
+    DWORD dwStackSize,                          // stack size
+    LPTHREAD_START_ROUTINE lpStartAddress,      // start address
+    LPVOID lpParameter,                         // parameter
+    DWORD dwCreationFlags,                      // creation flags
+    LPDWORD lpThreadId)                         // thread ID
+{
+    HRESULT hr = NOERROR;
+
+    if(IsBadWritePtr(lplStartThreads, sizeof(LONG)))
+    {
+        hr = HR_LOG(E_FAIL);
+
+        SetLastError(ERROR_INVALID_PARAMETER);
+        goto cleanup;
+    }
+
+    if(IsBadWritePtr(lplStopThreads, sizeof(LONG)))
+    {
+        hr = HR_LOG(E_FAIL);
+
+        SetLastError(ERROR_INVALID_PARAMETER);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrServiceGetName----------------------------------------------------
+//  The HrServiceGetName function can be used by any thread to get the
+//  service name after the service has been started. lpszName must point to a
+//  block of memory at least MAX_SERVICE_NAME_LENGTH+1 bytes in length.
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrServiceGetName(// RETURNS: return code
+    OUT LPSTR lpszName)                // pointer to service name buffer
+{
+    HRESULT hr = NOERROR;
+
+    if(lpszName == NULL)
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(IsBadWritePtr(lpszName, MAX_SERVICE_NAME_LENGTH+1))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrServiceGetArgv----------------------------------------------------
+//  The HrServiceGetArgv function can be used by any thread to get the
+//  service argv[] after the service has been started.
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrServiceGetArgv(// RETURNS: return code
+    OUT DWORD  *lpdwArgc,               // pointer to argc address variable
+    OUT LPSTR **lppszArgv)             // pointer to argv[] address variable
+{
+    HRESULT hr = NOERROR;
+
+    if(lpdwArgc == NULL)
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(lppszArgv == NULL)
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrWaitShutdown---------------------------------------------------------
+//  Thread that will send WM_DESTROY once hShutdownEvent is signalled.
+//------------------------------------------------------------------------------
+__inline static HRESULT CHK_HrWaitShutdown(// RETURNS: return code
+    IN HANDLE hShutdownEvent)           // handle to shutdown event
+{
+    HRESULT hr = NOERROR;
+
+    if(hShutdownEvent == NULL)
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrWorkerThread---------------------------------------------------------
+//  This function does the actual nuts and bolts work that
+//  the service requires.  It will also Pause or Stop when
+//  asked by the ServiceCtrlProc function.
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrWorkerThread( // RETURNS: nothing
+    IN HANDLE hShutdownEvent)       // service shutdown event handle
+{
+    HRESULT hr = NOERROR;
+
+    if(hShutdownEvent == NULL)
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK__ServiceMain-----------------------------------------------------------
+//  This function takes care of actually starting the service,
+//  informing the service controller at each step along the way.
+//  After launching the worker thread, it waits on the event
+//  that the worker thread will signal at its termination.
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK__ServiceMain(
+    IN DWORD dwArgc,                // count of arguments
+    IN LPSTR *lpszArgv)            // pointer to arguments
+{
+    HRESULT hr = NOERROR;
+
+    if((dwArgc == 0) || (lpszArgv == NULL))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrServiceWaitForControl------------------------------------------------
+//  The HrServiceWaitForControl function can be used by any thread to get or
+//  wait for service control after the service has been started.
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrServiceWaitForControl(// RETURNS: return code
+    IN DWORD dwTimeout,                 // time-out interval in milliseconds
+    OUT EDK_SERVICE_CONTROL_T *pedksc)  // pointer to service name buffer
+{
+    HRESULT hr = NOERROR;
+
+    if(pedksc == NULL)
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrServiceWaitForContinue-----------------------------------------------
+//  The HrServiceWaitForContinue function can be used by any thread to get or
+//  wait for service control after the service has been started.
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrServiceWaitForContinue(// RETURNS: return code
+    IN DWORD dwTimeout,                 // time-out interval in milliseconds
+    OUT EDK_SERVICE_CONTROL_T *pedksc)  // pointer to service name buffer
+{
+    HRESULT hr = NOERROR;
+
+    if(pedksc == NULL)
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrServiceWaitForStop---------------------------------------------------
+//  The HrServiceWaitForStop function can be used by any thread to get or
+//  wait for service control after the service has been started.
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrServiceWaitForStop(// RETURNS: return code
+    IN DWORD dwTimeout,                 // time-out interval in milliseconds
+    OUT EDK_SERVICE_CONTROL_T *pedksc)  // pointer to service name buffer
+{
+    HRESULT hr = NOERROR;
+
+    if(pedksc == NULL)
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrFreeArgvW------------------------------------------------------------
+//  Free a wide character copy of argv[].
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrFreeArgvW(// RETURNS: exit code
+    IN     DWORD  dwArgc,           // Number of arguments
+    IN OUT LPWSTR **lppszArgvW)     // pointer to wide character command line
+{
+    HRESULT hr = NOERROR;
+
+    if(dwArgc == 0)
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(lppszArgvW == NULL)
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+#endif /* DEBUG */

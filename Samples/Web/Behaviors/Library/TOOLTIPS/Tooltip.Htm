@@ -1,0 +1,63 @@
+<html xmlns:tool>
+<head>
+
+<title>Behavior Library: Tooltip</title>
+
+<style>
+
+    @media all
+    {
+        tool\:tip   {
+                    behavior: url(tooltip.htc)
+                    }
+    }
+    
+    H1              {
+                    font: bold 18pt verdana;
+                    color: navy
+                    }
+                    
+    P               {
+                    font: 10pt verdana;
+                    }
+                    
+    .tip            {
+                    color: green;
+                    font-weight: bold;
+                    cursor: hand
+                    }
+    
+</style>
+
+</head>
+<body bgcolor="white">
+<h1>Tooltips</h1>
+
+
+
+<P>
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT>
+<HR>
+
+
+<p>Use <span ID="oTipEl" class="tip">tooltips</span>
+on your HTML pages to give users extra information.</p>
+
+
+<p>&nbsp;
+<p>&nbsp;
+<p>&nbsp;
+
+<p>
+<font FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">© <a HREF="/misc/cpyright.htm" TARGET="_top">1999 Microsoft Corporation. All rights reserved. Terms of use</a>.<p></font>
+
+<!---------------------------------------------------------------------------->
+<!-- TOOLTIP (Use conditional comments to hide from non-behavior browsers) --->
+<!---------------------------------------------------------------------------->
+
+<!--[if IE 5]><tool:tip element="oTipEl" avoidmouse="false">Put any <span style="color:red; font-weight:bold">&nbsp;HTML</span>inside this tooltip, including<br><b>bold</b>, <i>italic</i>, and <u>underline</u></tool:tip><![endif]-->
+
+</body>
+</html>

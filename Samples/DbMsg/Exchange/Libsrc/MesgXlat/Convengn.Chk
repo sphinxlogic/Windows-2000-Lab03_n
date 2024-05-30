@@ -1,0 +1,178 @@
+// --convengn.chk---------------------------------------------------------------
+// 
+// Conversion engine code.  This file defines the CEDKConvEng class which
+// defines the top level behavior of the conversion engine.
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+//
+// -----------------------------------------------------------------------------
+#ifndef DEBUG
+#define CHK_CEDKConvEng_HrEDKInitialize(a)                   NOERROR
+#define CHK_CEDKConvEng_HrEDKConvert(a,b,c,d,e)              NOERROR
+#define CHK_CEDKConvEng_HrEDKAttemptConversion(a,b,c,d,e,f)  NOERROR
+#else
+//$--CHK_CEDKConvEng_HrEDKInitialize---------------------------------------------------
+//
+//  DESCRIPITON: Parameter checking for CEDKConvEng::HrEDKInitialize()
+//
+//  INPUT:  hEventSource    --  event source handle
+//
+//  RETURNS:    HRESULT --  NOERROR if successful,
+//                          E_INVALIDARG if bad input
+//
+//------------------------------------------------------------------------------
+static inline HRESULT CHK_CEDKConvEng_HrEDKInitialize(   // RETURNS: HRESULT
+        IN HANDLE hEventSource)            // event source handle
+{
+    HRESULT hr  =    NOERROR;
+
+    if ( (hEventSource == NULL) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+
+}
+
+//$--CHK_CEDKConvEng_HrEDKConvert---------------------------------------------------------
+//
+//  DESCRIPTION: Parameter checking for CEDKConvEng::HrEDKConvert()
+//
+//  INPUT:  pEnv    --  environment of the conversion
+//          pszContentClass --  class of source to be converted
+//          pContentIn  --  source to be converted
+//          pContentOut --  converted object
+//
+//  OUTPUT: 
+//          crResult    --  result
+//          
+//  RETURNS:    HRESULT --  NOERROR if successful,
+//                          E_INVALIDARG if bad input
+//
+//------------------------------------------------------------------------------
+static inline HRESULT CHK_CEDKConvEng_HrEDKConvert(          // RETURNS:  HRESULT
+    IN PEDKCNVENV pEnv,             // environment of the conversion
+    IN LPCWSTR pszContentClass,     // class of source to be converted.
+    IN PVOID pContentIn,            // source to be converted.
+    IN PVOID pContentOut,           // converted object
+    OUT EDKCNVRES & crResult)       // result.
+{
+    HRESULT hr  =   NOERROR;        // return code
+
+    if ( ! TEST_READ_PTR(pEnv, sizeof(EDKCNVENV)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( (pszContentClass == NULL) || IsBadStringPtrW(pszContentClass, INFINITE) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if (pContentIn == NULL)
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if (pContentOut == NULL)
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_WRITE_PTR(&crResult, sizeof(EDKCNVRES)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return hr;
+
+}
+
+//$--CHK_CEDKConvEng_HrEDKAttemptConversion--------------------------------------------
+//
+//  DESCRIPTION: Parameter checking for CEDKConvEng:HrEDKAttemptConversion
+//
+//  INPUT:  pEnv    --  environment of the conversion
+//          pszContentClass --  class of source to be converted
+//          pszConversionPoint  --  where the conversion happened
+//          pContentIn  --  source to be converted
+//          pContentOut --  converted object
+//
+//  OUTPUT: 
+//          crResult    --  result
+//
+//  RETURNS:    HRESULT --  NOERROR if successful,
+//                          E_INVALIDARG if bad input,
+//
+//------------------------------------------------------------------------------
+static inline HRESULT CHK_CEDKConvEng_HrEDKAttemptConversion(   // RETURNS: HRESULT
+    IN PEDKCNVENV pEnv,             // environment of the convrsion
+    IN LPCWSTR pszContentClass,     // class of source to be converted.
+    IN LPCWSTR pszConversionPoint,  // where the conversion happened.
+    IN PVOID pContentIn,            // source to be converted.
+    IN PVOID pContentOut,           // converted object
+    OUT EDKCNVRES & crResult)       // result.
+{
+    HRESULT hr  =   NOERROR;        // return code
+
+    if ( ! TEST_READ_PTR(pEnv, sizeof(EDKCNVENV)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_READ_PTR(pszContentClass, sizeof(WCHAR)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_READ_PTR(pszConversionPoint, sizeof(WCHAR)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if (pContentIn == NULL)
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if (pContentOut == NULL)
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_WRITE_PTR(&crResult, sizeof(EDKCNVRES)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return hr;
+
+}
+#endif

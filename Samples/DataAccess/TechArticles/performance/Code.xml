@@ -1,0 +1,1109 @@
+<xml xmlns:s='uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882'
+	xmlns:dt='uuid:C2F41010-65B3-11d1-A29F-00AA00C14882'
+	xmlns:rs='urn:schemas-microsoft-com:rowset'
+	xmlns:z='#RowsetSchema'>
+<s:Schema id='RowsetSchema'>
+	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
+		<s:AttributeType name='description' rs:number='1' rs:nullable='true' rs:writeunknown='true' rs:basetable='codetable'
+			 rs:basecolumn='description'>
+			<s:datatype dt:type='string' dt:maxLength='50' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='dbkey' rs:number='2' rs:basetable='codetable' rs:basecolumn='dbkey' rs:keycolumn='true'
+			 rs:autoincrement='true'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='leftcode' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basetable='codetable'
+			 rs:basecolumn='leftcode'>
+			<s:datatype dt:type='string' dt:maxLength='4294967295' rs:long='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='rightcode' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basetable='codetable'
+			 rs:basecolumn='rightcode'>
+			<s:datatype dt:type='string' dt:maxLength='4294967295' rs:long='true'/>
+		</s:AttributeType>
+		<s:extends type='rs:rowbase'/>
+	</s:ElementType>
+</s:Schema>
+<rs:data>
+	<rs:update>
+		<rs:original>
+			<z:row description='Command types specifying vs not                   ' dbkey='1' leftcode='Sub CmdTypeTableTestOld()
+
+    Dim cmd As New ADODB.Command
+    Dim rst As ADODB.Recordset
+    
+    cmd.CommandText = &#x22;testtable&#x22;
+        
+    starttime = Timer
+    
+        For ii = 1 To 500
+            Set cmd.ActiveConnection = Nothing
+            Set cmd.ActiveConnection = cn_Native
+            cmd.CommandText = &#x22;testtable&#x22;
+            cmd.Execute
+        Next
+
+    OriginalTime.Caption = Str(Timer - starttime)
+    DoEvents
+    
+End Sub
+'
+				 rightcode=' Sub CmdTypeTableTestNew()
+
+    Dim cmd As New ADODB.Command
+    Dim rst As ADODB.Recordset
+       
+    starttime = Timer
+    
+        For ii = 1 To 500
+            Set cmd.ActiveConnection = Nothing
+            Set cmd.ActiveConnection = cn_Native
+            cmd.CommandText = &#x22;testtable&#x22;
+            cmd.CommandType = adCmdTable
+            cmd.Execute
+        Next
+
+    EnhancedTime.Caption = Str(Timer - starttime)
+    DoEvents
+    
+End Sub
+'/>
+		</rs:original>
+		<z:row description='Command types specifying vs not                   ' leftcode='Sub CmdTypeTableTestOld()
+    Dim cmd As New ADODB.Command
+    Dim rst As ADODB.Recordset
+    starttime = Timer
+    
+        For ii = 1 To 500
+            Set cmd.ActiveConnection = Nothing
+            Set cmd.ActiveConnection = cn_Native
+            cmd.CommandText = &#x22;testtable&#x22;
+            cmd.Execute
+        Next
+
+    OriginalTime.Caption = Str(Timer - starttime)
+    DoEvents
+End Sub
+'
+			 rightcode='Sub CmdTypeTableTestNew()
+    Dim cmd As New ADODB.Command
+    Dim rst As ADODB.Recordset
+    starttime = Timer
+    
+        For ii = 1 To 500
+            Set cmd.ActiveConnection = Nothing
+            Set cmd.ActiveConnection = cn_Native
+            cmd.CommandText = &#x22;testtable&#x22;
+            cmd.CommandType = adCmdTable
+            cmd.Execute
+        Next
+
+    EnhancedTime.Caption = Str(Timer - starttime)
+    DoEvents
+End Sub
+'/>
+	</rs:update>
+	<rs:update>
+		<rs:original>
+			<z:row description='Command Types - stored procs vs SQL commands      ' dbkey='3' leftcode='
+Sub CmdTypeSprocTestOld()
+
+    Dim cmd As New ADODB.Command
+    Dim rst As ADODB.Recordset
+    
+    Set cmd.ActiveConnection = cn_Native
+    cmd.CommandText = &#x22;inserttest&#x22;
+        
+    starttime = Timer
+    
+        For ii = 1 To 500
+            cmd.Execute
+        Next
+
+    OriginalTime.Caption = Str(Timer - starttime)
+    DoEvents
+    
+End Sub'
+				 rightcode=' Sub CmdTypeSprocTestNew()
+
+    Dim cmd As New ADODB.Command
+    Dim rst As ADODB.Recordset
+    
+    Set cmd.ActiveConnection = cn_Native
+    
+    cmd.CommandText = &#x22;inserttest&#x22;
+    cmd.CommandType = adCmdStoredProc
+    
+    starttime = Timer
+    
+        For ii = 1 To 500
+            cmd.Execute
+        Next
+
+    EnhancedTime.Caption = Str(Timer - starttime)
+    DoEvents
+    
+End Sub'/>
+		</rs:original>
+		<z:row description='Command Types - adStoredProcs vs not              ' leftcode='Sub CmdTypeSprocTestOld()
+    Dim cmd As New ADODB.Command
+    Dim rst As ADODB.Recordset
+    
+    Set cmd.ActiveConnection = cn_Native
+    cmd.CommandText = &#x22;inserttest&#x22;
+
+    starttime = Timer
+        For ii = 1 To 500
+            cmd.Execute
+        Next
+
+    OriginalTime.Caption = Str(Timer - starttime)
+    DoEvents
+End Sub'
+			 rightcode='Sub CmdTypeSprocTestNew()
+    Dim cmd As New ADODB.Command
+    Dim rst As ADODB.Recordset
+    
+    Set cmd.ActiveConnection = cn_Native
+    
+    cmd.CommandText = &#x22;inserttest&#x22;
+    cmd.CommandType = adCmdStoredProc
+    
+    starttime = Timer
+        For ii = 1 To 500
+            cmd.Execute
+        Next
+
+    EnhancedTime.Caption = Str(Timer - starttime)
+    DoEvents
+End Sub'/>
+	</rs:update>
+	<rs:update>
+		<rs:original>
+			<z:row description='Execution - using adExecuteNoRecords              ' dbkey='4' leftcode='
+Sub CmdExecNoRecordsTestOld()
+
+    Dim cmd As New ADODB.Command
+    Dim rst As ADODB.Recordset
+    
+    Set cmd.ActiveConnection = cn_Native
+    cmd.CommandText = &#x22;update testtable set field1 = &#x27;newstring&#x27; where dbkey = 1&#x22;
+    cmd.CommandType = adCmdText
+        
+    starttime = Timer
+    
+        For ii = 1 To 500
+            cmd.Execute
+        Next
+
+    OriginalTime.Caption = Str(Timer - starttime)
+    DoEvents
+    
+End Sub'
+				 rightcode=' 
+Sub CmdExecNoRecordsTestNew()
+
+    Dim cmd As New ADODB.Command
+    Dim rst As ADODB.Recordset
+    
+    Set cmd.ActiveConnection = cn_Native
+    
+    cmd.CommandText = &#x22;update testtable set field1 = &#x27;newstring&#x27; where dbkey = 1&#x22;
+    cmd.CommandType = adCmdText
+    
+    starttime = Timer
+    
+        For ii = 1 To 500
+            cmd.Execute , , adExecuteNoRecords
+        Next
+
+    EnhancedTime.Caption = Str(Timer - starttime)
+    DoEvents
+    
+End Sub
+'/>
+		</rs:original>
+		<z:row description='Execution - using adExecuteNoRecords              ' leftcode='Sub CmdExecNoRecordsTestOld()
+    Dim cmd As New ADODB.Command
+    Dim rst As ADODB.Recordset
+    
+    Set cmd.ActiveConnection = cn_Native
+    cmd.CommandText = &#x22;update testtable set field1 = &#x27;newstring&#x27; where dbkey = 1&#x22;
+    cmd.CommandType = adCmdText
+        
+    starttime = Timer
+        For ii = 1 To 500
+            cmd.Execute
+        Next
+
+    OriginalTime.Caption = Str(Timer - starttime)
+    DoEvents
+End Sub'
+			 rightcode='Sub CmdExecNoRecordsTestNew()
+    Dim cmd As New ADODB.Command
+    Dim rst As ADODB.Recordset
+    
+    Set cmd.ActiveConnection = cn_Native
+    cmd.CommandText = &#x22;update testtable set field1 = &#x27;newstring&#x27; where dbkey = 1&#x22;
+    cmd.CommandType = adCmdText
+    
+    starttime = Timer
+        For ii = 1 To 500
+            cmd.Execute , , adExecuteNoRecords
+        Next
+
+    EnhancedTime.Caption = Str(Timer - starttime)
+    DoEvents
+End Sub'/>
+	</rs:update>
+	<rs:update>
+		<rs:original>
+			<z:row description='Execution - defining params vs refreshing         ' dbkey='6' leftcode='Sub ParamRefreshVsDefineTestOld()
+
+    starttime = Timer
+    
+        For ii = 1 To 500
+            Set cmd = New ADODB.Command
+            cmd.CommandType = adCmdText
+            cmd.CommandText = &#x22;update testtable set field1 = ?, field2 = ?, field3 = ? where dbkey = ?&#x22;
+            Set cmd.ActiveConnection = cn_Native
+            cmd.Parameters.Refresh
+            cmd.Execute , Array(&#x22;string&#x22; &#x26; ii, Time, &#x22;longer string&#x22;, 1)
+        Next
+
+    OriginalTime.Caption = Str(Timer - starttime)
+    DoEvents
+    
+End Sub
+'
+				 rightcode=' 
+Sub ParamRefreshVsDefineTestNew()
+
+    starttime = Timer
+    
+        For ii = 1 To 500
+            Set cmd = New ADODB.Command
+            cmd.CommandType = adCmdText
+            cmd.CommandText = &#x22;update testtable set field1 = ?, field2 = ?, field3 = ? where dbkey = ?&#x22;
+            Set cmd.ActiveConnection = cn_Native
+            cmd.Parameters.Append cmd.CreateParameter(&#x22;field1&#x22;, adVarChar, adParamInput, 10)
+            cmd.Parameters.Append cmd.CreateParameter(&#x22;field2&#x22;, adDBTimeStamp, adParamInput, 16)
+            cmd.Parameters.Append cmd.CreateParameter(&#x22;field3&#x22;, adVarChar, adParamInput, 100)
+            cmd.Parameters.Append cmd.CreateParameter(&#x22;dbkey&#x22;, adInteger, adParamInput, 4)
+            cmd.Execute , Array(&#x22;string&#x22; &#x26; ii, Time, &#x22;longer string&#x22;, 1)
+        Next
+
+    EnhancedTime.Caption = Str(Timer - starttime)
+    DoEvents
+    
+End Sub
+'/>
+		</rs:original>
+		<z:row description='Execution - defining params vs refreshing         ' leftcode='Sub ParamRefreshVsDefineTestOld()
+    starttime = Timer
+    
+        For ii = 1 To 500
+            Set cmd = New ADODB.Command
+            cmd.CommandType = adCmdText
+            cmd.CommandText = &#x22;update testtable set field1 = ?, field2 = ?, field3 = ? where dbkey = ?&#x22;
+            Set cmd.ActiveConnection = cn_Native
+            cmd.Parameters.Refresh
+            cmd.Execute , Array(&#x22;string&#x22; &#x26; ii, Time, &#x22;longer string&#x22;, 1)
+        Next
+
+    OriginalTime.Caption = Str(Timer - starttime)
+    DoEvents
+End Sub
+'
+			 rightcode='Sub ParamRefreshVsDefineTestNew()
+    starttime = Timer
+        For ii = 1 To 500
+            Set cmd = New ADODB.Command
+            cmd.CommandType = adCmdText
+            cmd.CommandText = &#x22;update testtable set field1 = ?, field2 = ?, field3 = ? where dbkey = ?&#x22;
+            Set cmd.ActiveConnection = cn_Native
+            cmd.Parameters.Append cmd.CreateParameter(&#x22;field1&#x22;, adVarChar, adParamInput, 10)
+            cmd.Parameters.Append cmd.CreateParameter(&#x22;field2&#x22;, adDBTimeStamp, adParamInput, 16)
+            cmd.Parameters.Append cmd.CreateParameter(&#x22;field3&#x22;, adVarChar, adParamInput, 100)
+            cmd.Parameters.Append cmd.CreateParameter(&#x22;dbkey&#x22;, adInteger, adParamInput, 4)
+            cmd.Execute , Array(&#x22;string&#x22; &#x26; ii, Time, &#x22;longer string&#x22;, 1)
+        Next
+
+    EnhancedTime.Caption = Str(Timer - starttime)
+    DoEvents
+End Sub
+'/>
+	</rs:update>
+	<rs:update>
+		<rs:original>
+			<z:row description='Recordsets - opening server &#x26; client cursors      ' dbkey='8' leftcode='
+Sub RecordsetOpenSvrVsClientTestClient()
+
+    Dim rst As New ADODB.Recordset
+    
+    Set rst.ActiveConnection = cn_Native
+    rst.Source = &#x22;select * from Customers, Orders&#x22;
+    rst.CursorLocation = adUseClient
+    rst.CacheSize = 50
+    
+    starttime = Timer
+    
+    rst.Open , , adOpenStatic, adLockReadOnly
+    rst.Close
+
+    OriginalTime.Caption = Str(Timer - starttime)
+    DoEvents
+    
+End Sub
+'
+				 rightcode=' 
+Sub RecordsetOpenSvrVsClientTestServer()
+
+    Dim rst As New ADODB.Recordset
+    
+    Set rst.ActiveConnection = cn_Native
+    rst.Source = &#x22;select * from Customers, Orders&#x22;
+    rst.CursorLocation = adUseServer
+    rst.CacheSize = 50
+        
+    starttime = Timer
+    
+    rst.Open , , adOpenKeyset, adLockReadOnly
+    rst.Close
+
+    EnhancedTime.Caption = Str(Timer - starttime)
+    DoEvents
+    DoEvents
+    
+End Sub'/>
+		</rs:original>
+		<z:row description='Recordsets - opening server vs client cursors     ' leftcode='Sub RecordsetOpenSvrVsClientTestClient()
+    Dim rst As New ADODB.Recordset
+    
+    Set rst.ActiveConnection = cn_Native
+    rst.Source = &#x22;select * from Customers, Orders&#x22;
+    rst.CursorLocation = adUseClient
+    rst.CacheSize = 50
+    
+    starttime = Timer
+    rst.Open , , adOpenStatic, adLockReadOnly
+    rst.Close
+
+    OriginalTime.Caption = Str(Timer - starttime)
+    DoEvents
+End Sub
+'
+			 rightcode='Sub RecordsetOpenSvrVsClientTestServer()
+    Dim rst As New ADODB.Recordset
+    
+    Set rst.ActiveConnection = cn_Native
+    rst.Source = &#x22;select * from Customers, Orders&#x22;
+    rst.CursorLocation = adUseServer
+    rst.CacheSize = 50
+        
+    starttime = Timer
+    rst.Open , , adOpenKeyset, adLockReadOnly
+    rst.Close
+
+    EnhancedTime.Caption = Str(Timer - starttime)
+    DoEvents
+End Sub'/>
+	</rs:update>
+	<rs:update>
+		<rs:original>
+			<z:row description='Recordsets - update svr vs client                 ' dbkey='10' leftcode='Sub RecordsetUpdOptSvrVsClientTestClient()
+
+    Dim rst As New ADODB.Recordset
+    
+    Set rst.ActiveConnection = cn_Native
+    rst.Source = &#x22;select * from testtable&#x22;
+    rst.CursorLocation = adUseClient
+    rst.CacheSize = 50
+    
+    rst.Open , , adOpenStatic, adLockOptimistic
+    starttime = Timer
+   
+    While rst.EOF &#x3c;&#x3e; True
+        rst.Update Array(&#x22;field1&#x22;), Array(&#x22;newstring&#x22;)
+        rst.MoveNext
+    Wend
+    rst.Close
+
+    EnhancedTime.Caption = Str(Timer - starttime)
+    DoEvents
+    
+End Sub
+'
+				 rightcode=' Sub RecordsetUpdOptSvrVsClientTestServer()
+
+    Dim rst As New ADODB.Recordset
+    
+    Set rst.ActiveConnection = cn_Native
+    rst.Source = &#x22;select * from testtable&#x22;
+    rst.CursorLocation = adUseServer
+    rst.CacheSize = 50
+    
+    rst.Open , , adOpenKeyset, adLockOptimistic
+    starttime = Timer
+    
+    While rst.EOF &#x3c;&#x3e; True
+        rst.Update Array(&#x22;field1&#x22;), Array(&#x22;newstring&#x22;)
+        rst.MoveNext
+    Wend
+    rst.Close
+
+    OriginalTime.Caption = Str(Timer - starttime)
+    DoEvents
+    
+End Sub'/>
+		</rs:original>
+		<z:row description='Recordsets Update Client vs Server Cursor         ' leftcode='Sub RecordsetUpdOptSvrVsClientTestClient()
+    Dim rst As New ADODB.Recordset
+    
+    Set rst.ActiveConnection = cn_Native
+    rst.Source = &#x22;select * from testtable&#x22;
+    rst.CursorLocation = adUseClient
+    rst.CacheSize = 50
+    
+    rst.Open , , adOpenStatic, adLockOptimistic
+    starttime = Timer
+    While rst.EOF &#x3c;&#x3e; True
+        rst.Update Array(&#x22;field1&#x22;), Array(&#x22;newstring&#x22;)
+        rst.MoveNext
+    Wend
+    rst.Close
+
+    EnhancedTime.Caption = Str(Timer - starttime)
+    DoEvents
+End Sub
+'
+			 rightcode='Sub RecordsetUpdOptSvrVsClientTestServer()
+    Dim rst As New ADODB.Recordset
+    
+    Set rst.ActiveConnection = cn_Native
+    rst.Source = &#x22;select * from testtable&#x22;
+    rst.CursorLocation = adUseServer
+    rst.CacheSize = 50
+    
+    rst.Open , , adOpenKeyset, adLockOptimistic
+    starttime = Timer
+    While rst.EOF &#x3c;&#x3e; True
+        rst.Update Array(&#x22;field1&#x22;), Array(&#x22;newstring&#x22;)
+        rst.MoveNext
+    Wend
+    rst.Close
+
+    OriginalTime.Caption = Str(Timer - starttime)
+    DoEvents
+End Sub'/>
+	</rs:update>
+	<rs:update>
+		<rs:original>
+			<z:row description='Recordsets - batch update server vs client        ' dbkey='11' leftcode='
+Sub RecordsetUpdBatchOptSvrVsClientTestClient()
+
+    Dim rst As New ADODB.Recordset
+    
+    Set rst.ActiveConnection = cn_Native
+    rst.Source = &#x22;select * from testtable&#x22;
+    rst.CursorLocation = adUseClient
+    rst.CacheSize = 50
+    
+    rst.Open , , adOpenStatic, adLockBatchOptimistic
+    starttime = Timer
+   
+    While rst.EOF &#x3c;&#x3e; True
+        rst.Update Array(&#x22;field1&#x22;), Array(&#x22;newstring&#x22;)
+        rst.MoveNext
+    Wend
+    rst.UpdateBatch
+    rst.Close
+
+    EnhancedTime.Caption = Str(Timer - starttime)
+    DoEvents
+    
+End Sub'
+				 rightcode=' Sub RecordsetUpdBatchOptSvrVsClientTestServer()
+
+    Dim rst As New ADODB.Recordset
+    
+    Set rst.ActiveConnection = cn_Native
+    rst.Source = &#x22;select * from testtable&#x22;
+    rst.CursorLocation = adUseServer
+    rst.CacheSize = 50
+    
+    rst.Open , , adOpenKeyset, adLockBatchOptimistic
+    starttime = Timer
+    
+    While rst.EOF &#x3c;&#x3e; True
+        rst.Update Array(&#x22;field1&#x22;), Array(&#x22;newstring&#x22;)
+        rst.MoveNext
+    Wend
+    rst.UpdateBatch
+    rst.Close
+
+    OriginalTime.Caption = Str(Timer - starttime)
+    DoEvents
+    
+End Sub
+'/>
+		</rs:original>
+		<z:row description='Recordsets Update batch server vs client          ' leftcode='Sub RecordsetUpdBatchOptSvrVsClientTestClient()
+    Dim rst As New ADODB.Recordset
+    
+    Set rst.ActiveConnection = cn_Native
+    rst.Source = &#x22;select * from testtable&#x22;
+    rst.CursorLocation = adUseClient
+    rst.CacheSize = 50
+    
+    rst.Open , , adOpenStatic, adLockBatchOptimistic
+    starttime = Timer
+    While rst.EOF &#x3c;&#x3e; True
+        rst.Update Array(&#x22;field1&#x22;), Array(&#x22;newstring&#x22;)
+        rst.MoveNext
+    Wend
+    rst.UpdateBatch
+    rst.Close
+
+    EnhancedTime.Caption = Str(Timer - starttime)
+    DoEvents
+End Sub'
+			 rightcode='Sub RecordsetUpdBatchOptSvrVsClientTestServer()
+    Dim rst As New ADODB.Recordset
+    
+    Set rst.ActiveConnection = cn_Native
+    rst.Source = &#x22;select * from testtable&#x22;
+    rst.CursorLocation = adUseServer
+    rst.CacheSize = 50
+    
+    rst.Open , , adOpenKeyset, adLockBatchOptimistic
+    starttime = Timer
+    While rst.EOF &#x3c;&#x3e; True
+        rst.Update Array(&#x22;field1&#x22;), Array(&#x22;newstring&#x22;)
+        rst.MoveNext
+    Wend
+    rst.UpdateBatch
+    rst.Close
+
+    OriginalTime.Caption = Str(Timer - starttime)
+    DoEvents
+End Sub
+'/>
+	</rs:update>
+	<rs:update>
+		<rs:original>
+			<z:row description='Fields - Column references vs lookup              ' dbkey='15' leftcode=' 
+Sub RecordsetColRefvsLookupTestLookup()
+
+    Dim rst As New ADODB.Recordset
+    
+    Set rst.ActiveConnection = cn_Native
+    rst.Source = &#x22;select * from testtable&#x22;
+    rst.CursorLocation = adUseClient
+    rst.Open , , adOpenStatic, adLockReadOnly
+    
+    starttime = Timer
+    
+    While rst.EOF &#x3c;&#x3e; True
+        For ii = 0 To rst.Fields.Count - 1
+            x = rst.Fields(ii).Value
+        Next
+        rst.MoveNext
+    Wend
+
+    OriginalTime.Caption = Str(Timer - starttime)
+    DoEvents
+    
+End Sub'
+				 rightcode='Sub RecordsetColRefvsLookupTestReference()
+
+    Dim rst As New ADODB.Recordset
+    Dim aColumns(10)
+    
+    Set rst.ActiveConnection = cn_Native
+    rst.Source = &#x22;select * from testtable&#x22;
+    rst.CursorLocation = adUseClient
+    rst.Open , , adOpenStatic, adLockReadOnly
+    
+    starttime = Timer
+       
+    For ii = 0 To rst.Fields.Count - 1
+        Set aColumns(ii) = rst.Fields(ii)
+    Next
+    
+    While rst.EOF &#x3c;&#x3e; True
+        For ii = 0 To rst.Fields.Count - 1
+            x = aColumns(ii).Value
+        Next
+        rst.MoveNext
+    Wend
+
+    EnhancedTime.Caption = Str(Timer - starttime)
+    DoEvents
+    
+End Sub
+'/>
+		</rs:original>
+		<z:row description='Fields - Column references vs lookup              ' leftcode='Sub RecordsetColRefvsLookupTestLookup()
+    Dim rst As New ADODB.Recordset
+    
+    Set rst.ActiveConnection = cn_Native
+    rst.Source = &#x22;select * from testtable&#x22;
+    rst.CursorLocation = adUseClient
+    rst.Open , , adOpenStatic, adLockReadOnly
+    
+    starttime = Timer
+    While rst.EOF &#x3c;&#x3e; True
+        For ii = 0 To rst.Fields.Count - 1
+            x = rst.Fields(ii).Value
+        Next
+        rst.MoveNext
+    Wend
+
+    OriginalTime.Caption = Str(Timer - starttime)
+    DoEvents
+End Sub'
+			 rightcode='Sub RecordsetColRefvsLookupTestReference()
+    Dim rst As New ADODB.Recordset
+    Dim aColumns(10)
+    
+    Set rst.ActiveConnection = cn_Native
+    rst.Source = &#x22;select * from testtable&#x22;
+    rst.CursorLocation = adUseClient
+    rst.Open , , adOpenStatic, adLockReadOnly
+    
+    starttime = Timer
+    For ii = 0 To rst.Fields.Count - 1
+        Set aColumns(ii) = rst.Fields(ii)
+    Next
+    
+    While rst.EOF &#x3c;&#x3e; True
+        For ii = 0 To rst.Fields.Count - 1
+            x = aColumns(ii).Value
+        Next
+        rst.MoveNext
+    Wend
+
+    EnhancedTime.Caption = Str(Timer - starttime)
+    DoEvents
+End Sub
+'/>
+	</rs:update>
+	<rs:update>
+		<rs:original>
+			<z:row description='Providers - native vs ODBC-&#x3e;OLE DB                ' dbkey='16' leftcode='
+Sub RecordsetNativeVsODBCProvTestODBCProv()
+
+    Dim rst As New ADODB.Recordset
+    Dim aColumns(10)
+    
+    Set rst.ActiveConnection = cn_ODBC_Prov
+    rst.Source = &#x22;select * from testtable&#x22;
+    rst.CursorLocation = adUseServer
+
+    starttime = Timer
+    rst.Open , , adOpenForwardOnly, adLockReadOnly
+       
+    For ii = 0 To rst.Fields.Count - 1
+        Set aColumns(ii) = rst.Fields(ii)
+    Next
+    
+    While rst.EOF &#x3c;&#x3e; True
+        For ii = 0 To rst.Fields.Count - 1
+            x = aColumns(ii).Value
+        Next
+        rst.MoveNext
+    Wend
+
+    OriginalTime.Caption = Str(Timer - starttime)
+    DoEvents
+    
+End Sub
+'
+				 rightcode='Sub RecordsetNativeVsODBCProvTestNative()
+
+    Dim rst As New ADODB.Recordset
+    Dim aColumns(10)
+    
+    Set rst.ActiveConnection = cn_Native
+    rst.Source = &#x22;select * from testtable&#x22;
+    rst.CursorLocation = adUseServer
+    
+    starttime = Timer
+    
+    rst.Open , , adOpenForwardOnly, adLockReadOnly
+       
+    For ii = 0 To rst.Fields.Count - 1
+        Set aColumns(ii) = rst.Fields(ii)
+    Next
+    
+    While rst.EOF &#x3c;&#x3e; True
+        For ii = 0 To rst.Fields.Count - 1
+            x = aColumns(ii).Value
+        Next
+        rst.MoveNext
+    Wend
+
+    EnhancedTime.Caption = Str(Timer - starttime)
+    DoEvents
+    
+End Sub
+'/>
+		</rs:original>
+		<z:row description='Providers - native vs ODBC-&#x3e;OLE DB                ' leftcode='Sub RecordsetNativeVsODBCProvTestODBCProv()
+    Dim rst As New ADODB.Recordset
+    Dim aColumns(10)
+    
+    Set rst.ActiveConnection = cn_ODBC_Prov
+    rst.Source = &#x22;select * from testtable&#x22;
+    rst.CursorLocation = adUseServer
+
+    starttime = Timer
+    rst.Open , , adOpenForwardOnly, adLockReadOnly
+    For ii = 0 To rst.Fields.Count - 1
+        Set aColumns(ii) = rst.Fields(ii)
+    Next
+    
+    While rst.EOF &#x3c;&#x3e; True
+        For ii = 0 To rst.Fields.Count - 1
+            x = aColumns(ii).Value
+        Next
+        rst.MoveNext
+    Wend
+
+    OriginalTime.Caption = Str(Timer - starttime)
+    DoEvents
+End Sub
+'
+			 rightcode='Sub RecordsetNativeVsODBCProvTestNative()
+    Dim rst As New ADODB.Recordset
+    Dim aColumns(10)
+    
+    Set rst.ActiveConnection = cn_Native
+    rst.Source = &#x22;select * from testtable&#x22;
+    rst.CursorLocation = adUseServer
+    
+    starttime = Timer
+    rst.Open , , adOpenForwardOnly, adLockReadOnly
+       
+    For ii = 0 To rst.Fields.Count - 1
+        Set aColumns(ii) = rst.Fields(ii)
+    Next
+    
+    While rst.EOF &#x3c;&#x3e; True
+        For ii = 0 To rst.Fields.Count - 1
+            x = aColumns(ii).Value
+        Next
+        rst.MoveNext
+    Wend
+
+    EnhancedTime.Caption = Str(Timer - starttime)
+    DoEvents
+End Sub
+'/>
+	</rs:update>
+	<rs:delete>
+		<z:row description='Recordsets - read-only vs read-write on client    ' dbkey='13' leftcode='Sub RecordsetRWvsROTestReadOnly()
+
+    Dim rst As New ADODB.Recordset
+    
+    Set rst.ActiveConnection = cn_Native
+    rst.Source = &#x22;select * from testtable where dbkey = 50&#x22;
+    rst.CursorLocation = adUseClient
+    
+    starttime = Timer
+       
+    For ii = 1 To 50
+       
+        rst.Open , , adOpenStatic, adLockReadOnly
+        rst.Close
+
+    Next
+
+    EnhancedTime.Caption = Str(Timer - starttime)
+    DoEvents
+    
+End Sub
+'
+			 rightcode=' Sub RecordsetRWvsROTestReadWrite()
+
+    Dim rst As New ADODB.Recordset
+    
+    Set rst.ActiveConnection = cn_Native
+    rst.Source = &#x22;select * from testtable where dbkey = 50&#x22;
+    rst.CursorLocation = adUseClient
+    
+    starttime = Timer
+       
+    For ii = 1 To 50
+       
+        rst.Open , , adOpenStatic, adLockOptimistic
+        rst.Close
+
+    Next
+
+    OriginalTime.Caption = Str(Timer - starttime)
+    DoEvents
+    
+End Sub'/>
+		<z:row description='Execution - using parameters vs strings           ' dbkey='5' leftcode='
+Sub CmdParamVsStringTestOld()
+
+    Dim cmd As New ADODB.Command
+    Dim rst As ADODB.Recordset
+    
+    Set cmd.ActiveConnection = cn_Native
+    cmd.CommandType = adCmdText
+    cmd.Parameters.Refresh
+    
+    starttime = Timer
+    
+        For ii = 1 To 500
+            NewField1 = &#x22;string&#x22; &#x26; ii
+            KeyField = 1
+            cmd.CommandText = &#x22;update testtable set field1 = &#x27;&#x22; &#x26; NewField1 &#x26; &#x22;&#x27; where dbkey = &#x22; &#x26; KeyField
+            cmd.Execute
+        Next
+
+    OriginalTime.Caption = Str(Timer - starttime)
+    DoEvents
+    
+End Sub'
+			 rightcode=' Sub CmdParamVsStringTestNew()
+
+    Dim cmd As New ADODB.Command
+    Dim rst As ADODB.Recordset
+    
+    Set cmd.ActiveConnection = cn_Native
+    cmd.CommandType = adCmdText
+    cmd.CommandText = &#x22;update testtable set field1 = ? where dbkey = ?&#x22;
+    cmd.Parameters.Refresh
+    cmd.Prepared = True
+    
+    starttime = Timer
+    
+        For ii = 1 To 500
+            cmd.Execute , Array(&#x22;string&#x22; &#x26; ii, 1)
+        Next
+
+    EnhancedTime.Caption = Str(Timer - starttime)
+    DoEvents
+    
+End Sub'/>
+		<z:row description='Recordsets - using adCmdTableDirect               ' dbkey='7' leftcode='
+Sub TableDirectTestOld()
+
+    Dim rst As New ADODB.Recordset
+    
+    Set rst.ActiveConnection = DataEnvironment1.cn_JetOLEDB
+    rst.Source = &#x22;`Order Details`&#x22;
+            
+    starttime = Timer
+    
+        For ii = 1 To 100
+            rst.Open , , adOpenStatic, adLockReadOnly, adCmdTable
+            rst.Close
+        Next
+
+    OriginalTime.Caption = Str(Timer - starttime)
+    DoEvents
+    
+End Sub'
+			 rightcode=' 
+Sub TableDirectTestNew()
+
+    Dim rst As New ADODB.Recordset
+       
+    Set rst.ActiveConnection = DataEnvironment1.cn_JetOLEDB
+    rst.Source = &#x22;Order Details&#x22;
+            
+    starttime = Timer
+    
+        For ii = 1 To 100
+            rst.Open , , adOpenStatic, adLockReadOnly, adCmdTableDirect
+            rst.Close
+        Next
+
+    EnhancedTime.Caption = Str(Timer - starttime)
+    DoEvents
+    
+End Sub'/>
+		<z:row description='Recordsets - server vs client scrolling           ' dbkey='9' leftcode='Sub RecordsetScrollSvrVsClientTestClient()
+
+    Dim rst As New ADODB.Recordset
+    
+    Set rst.ActiveConnection = cn_Native
+    rst.Source = &#x22;select * from Orders&#x22;
+    rst.CursorLocation = adUseClient
+    rst.CacheSize = 50
+    
+    rst.Open , , adOpenStatic, adLockReadOnly
+    starttime = Timer
+   
+    While rst.EOF &#x3c;&#x3e; True
+        rst.MoveNext
+    Wend
+    rst.Close
+
+    OriginalTime.Caption = Str(Timer - starttime)
+    DoEvents
+    
+End Sub
+'
+			 rightcode=' 
+Sub RecordsetScrollSvrVsClientTestServer()
+
+    Dim rst As New ADODB.Recordset
+    
+    Set rst.ActiveConnection = cn_Native
+    rst.Source = &#x22;select * from Orders&#x22;
+    rst.CursorLocation = adUseServer
+    rst.CacheSize = 50
+    
+    rst.Open , , adOpenKeyset, adLockReadOnly
+    starttime = Timer
+    
+    While rst.EOF &#x3c;&#x3e; True
+        rst.MoveNext
+    Wend
+    rst.Close
+
+    EnhancedTime.Caption = Str(Timer - starttime)
+    DoEvents
+    
+End Sub'/>
+		<z:row description='Recordsets - batchsize effects on batch update    ' dbkey='12' leftcode='
+Sub RecordsetUpdBatchOptBatchSizeTestClient()
+
+    Dim rst As New ADODB.Recordset
+    
+    Set rst.ActiveConnection = cn_Native
+    rst.Source = &#x22;select * from testtable&#x22;
+    rst.CursorLocation = adUseClient
+    rst.CacheSize = 50
+    rst.Properties(&#x22;Batch Size&#x22;) = 20
+    
+    rst.Open , , adOpenStatic, adLockBatchOptimistic
+    starttime = Timer
+   
+    While rst.EOF &#x3c;&#x3e; True
+        rst.Update Array(&#x22;field1&#x22;), Array(&#x22;newstring&#x22;)
+        rst.MoveNext
+    Wend
+    rst.UpdateBatch
+    rst.Close
+
+    EnhancedTime.Caption = Str(Timer - starttime)
+    DoEvents
+    
+End Sub'
+			 rightcode='Sub RecordsetUpdBatchOptBatchSizeTestServer()
+
+    Dim rst As New ADODB.Recordset
+    
+    Set rst.ActiveConnection = cn_Native
+    rst.Source = &#x22;select * from testtable&#x22;
+    rst.CursorLocation = adUseClient
+    rst.CacheSize = 50
+    rst.Properties(&#x22;Batch Size&#x22;) = 1
+    
+    rst.Open , , adOpenStatic, adLockBatchOptimistic
+    starttime = Timer
+   
+    While rst.EOF &#x3c;&#x3e; True
+        rst.Update Array(&#x22;field1&#x22;), Array(&#x22;newstring&#x22;)
+        rst.MoveNext
+    Wend
+    rst.UpdateBatch
+    rst.Close
+
+    OriginalTime.Caption = Str(Timer - starttime)
+    DoEvents
+    
+End Sub'/>
+		<z:row description='Recordset cursors - client read-only vs none      ' dbkey='14' leftcode='Sub RecordsetClientROvsNoneTestNone()
+
+    Dim rst As New ADODB.Recordset
+    
+    Set rst.ActiveConnection = cn_Native
+    rst.Source = &#x22;select * from testtable&#x22;
+    rst.CursorLocation = adUseServer
+    
+    starttime = Timer
+       
+    For ii = 1 To 50
+       
+        rst.Open , , adOpenForwardOnly, adLockReadOnly
+        rst.Close
+
+    Next
+
+    EnhancedTime.Caption = Str(Timer - starttime)
+    DoEvents
+    
+End Sub'
+			 rightcode=' Sub RecordsetClientROvsNoneTestNone()
+
+    Dim rst As New ADODB.Recordset
+    
+    Set rst.ActiveConnection = cn_Native
+    rst.Source = &#x22;select * from testtable&#x22;
+    rst.CursorLocation = adUseServer
+    
+    starttime = Timer
+       
+    For ii = 1 To 50
+       
+        rst.Open , , adOpenForwardOnly, adLockReadOnly
+        rst.Close
+
+    Next
+
+    EnhancedTime.Caption = Str(Timer - starttime)
+    DoEvents
+    
+End Sub'/>
+		<z:row description='Commands - preparing vs not                       ' dbkey='2' leftcode='Sub PreparedCommandTestOld()
+
+    Dim cmd As New ADODB.Command
+    Dim rst As ADODB.Recordset
+    
+    Set cmd.ActiveConnection = cn_Native
+    cmd.CommandText = &#x22;update testtable set field1 = ?, field2 = ?, field3 = ? where dbkey = ?&#x22;
+    cmd.Parameters.Refresh
+    cmd.CommandType = adCmdText
+        
+    starttime = Timer
+    
+        For ii = 1 To 500
+            cmd.Execute , Array(&#x22;string&#x22; &#x26; ii, Time, &#x22;longer string&#x22;, 1)
+        Next
+
+    OriginalTime.Caption = Str(Timer - starttime)
+    DoEvents
+    
+End Sub'
+			 rightcode=' Sub PreparedCommandTestNew()
+
+    Dim cmd As New ADODB.Command
+    Dim rst As ADODB.Recordset
+    
+    Set cmd.ActiveConnection = cn_Native
+    cmd.CommandText = &#x22;update testtable set field1 = ?, field2 = ?, field3 = ? where dbkey = ?&#x22;
+    cmd.Parameters.Refresh
+    cmd.CommandType = adCmdText
+    cmd.Prepared = True
+    
+    starttime = Timer
+    
+        For ii = 1 To 500
+            cmd.Execute , Array(&#x22;string&#x22; &#x26; ii, Time, &#x22;longer string&#x22;, 1)
+        Next
+
+    EnhancedTime.Caption = Str(Timer - starttime)
+    
+    DoEvents
+    
+End Sub'/>
+	</rs:delete>
+</rs:data>
+</xml>

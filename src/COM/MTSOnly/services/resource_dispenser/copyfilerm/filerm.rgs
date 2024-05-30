@@ -1,0 +1,22 @@
+HKCR
+{
+	MTS.FileRm.1 = s 'FileRm Class'
+	{
+		CLSID = s '{F67A6312-4EC4-11D0-9697-00AA00C149A6}'
+	}
+	MTS.FileRm = s 'FileRm Class'
+	{
+		CurVer = s 'MTS.FileRm.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {F67A6312-4EC4-11D0-9697-00AA00C149A6} = s 'FileRm Class'
+		{
+			ProgID = s 'MTS.FileRm.1'
+			VersionIndependentProgID = s 'MTS.FileRm'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			val AppID = s '{BACEDF7B-74AB-11D0-B162-00AA00BA3258}'
+		}
+	}
+}

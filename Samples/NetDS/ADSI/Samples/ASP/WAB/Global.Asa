@@ -1,0 +1,19 @@
+<SCRIPT LANGUAGE=VBScript RUNAT=Server> 
+Sub Application_OnStart
+
+ '---- To optimize the performance, we hard code the GC servers --------
+ '---- To correct way always uses the GC://domain.name.com----------------
+ '---- More investigate on the DNS looks up performance issue-------------
+ '---- For now, we are randomizing the GC --------------------------------
+   Session("ADsDomain") = "ntdev.microsoft.com"
+   Application("UserID") = "NTDEV\userName"
+   Application("Password") = "yourPasswordHere"
+
+End Sub
+
+
+
+
+</SCRIPT>
+
+

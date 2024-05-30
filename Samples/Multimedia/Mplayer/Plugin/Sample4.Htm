@@ -1,0 +1,32 @@
+<HTML>
+<HEAD>
+    <TITLE>NetShow v3 Codec Sample Page</TITLE>
+</HEAD>
+
+<!--TOOLBAR_START DON'T TOUCH-->		
+<!--TOOLBAR_END-->
+
+<SCRIPT language=javascript>
+var browser = BrowserSniff();
+
+if (browser == "ie4")
+    window.location.replace("sample4_ie.htm");
+else if (browser == "nav4")
+    window.location.replace("sample4_nav.htm");
+else
+    window.location.href = "upgrade.htm";
+
+function BrowserSniff ()
+{
+    var appname = navigator.appName;
+    var version = parseInt(navigator.appVersion);
+
+    if ((appname == "Microsoft Internet Explorer") && (version >= 4))
+        return("ie4");
+    else if ((appname == "Netscape") && (version >= 4))
+        return("nav4");
+
+    return("v3");
+}
+</SCRIPT>
+</HTML>

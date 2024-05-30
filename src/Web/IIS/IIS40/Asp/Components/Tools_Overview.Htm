@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Tools</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_tools"></a>  Tools</h3>
+<p>
+The Tools component creates a <b>Tools</b> object that provides utilities that enable you to easily add sophisticated functionality to your Web pages, including advanced form processing, random number generating, and file existence testing.</p>
+<p>
+This example demonstrates several of the capabilities of the <b>Tools </b>object. This script first uses the <b>FileExists</b> method provided by the <b>Tools</b> object, which can be used to ascertain whether a given file exists or not. The example calls this method using one invalid file name and one valid file name (the file name of the script itself).</p>
+<p>
+The <b>Random </b>method of the <b>Tools</b> object is shown in the second half the script. <b>Random</b>, when called, returns a random value between -32767 and +32767. This sample demonstrates several ways in which the output can be made even more useful, using the <b>Abs</b> function to allow only positive numbers, or using the <b>Mod</b> operator to generate numbers between 1 and 100.</p>
+<p>
+<b>Note</b>&nbsp;&nbsp;This component is not installed with IIS. You can install it from the CD included with the IIS Resource Kit. The ProgID declared by the component version installed from this source specifies &quot;IISSamples&quot; in the vendor component of the ProgID, not &quot;MSWC.&quot; Therefore, the <b>Server.CreateObject</b> invocation in this sample script must be modified to reflect the proper component ProgID.</p>
+</BODY>
+</HTML>

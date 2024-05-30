@@ -1,0 +1,109 @@
+[Root]
+Most Recent Package=Standard Setup Package 1
+
+
+[Package|Standard Setup Package 1|Root]
+SubWizProgID=PDWizard.SetupPkgSubWiz
+BuildFolder=D:\Documents and Settings\jmayans\My Documents\Visual Studio Projects\Protocol Event Registration\Setup
+
+[Package|Standard Setup Package 1|Configure DAO ISAMs]
+Applicable=No
+
+[Package|Standard Setup Package 1|Configure DAO ODBC]
+JetWorkspace=
+ODBCDirect=
+
+[Package|Standard Setup Package 1|Files Found]
+
+[Package|Standard Setup Package 1|Files Released]
+
+[Package|Standard Setup Package 1|Missing Dependency Information]
+D:\WINNT\system32\TLBINF32.DLL=
+D:\WINNT\system32\inetsrv\seo.dll=
+
+[Package|Standard Setup Package 1|Out-of-Date Dependency Information]
+D:\WINNT\system32\scrrun.dll=
+
+[Package|Standard Setup Package 1|Files Added]
+
+[Package|Standard Setup Package 1|Files Removed]
+d:\winnt\system32\inetsrv\seo.dll=
+d:\winnt\system32\msvcrt.dll=
+
+[Package|Standard Setup Package 1|Files In Project]
+D:\WINNT\system32\msvbvm60.dll=Yes
+D:\WINNT\system32\OLEAUT32.DLL=Yes
+D:\WINNT\system32\OLEPRO32.DLL=Yes
+D:\WINNT\system32\asycfilt.dll=Yes
+D:\WINNT\system32\STDOLE2.TLB=Yes
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=Yes
+D:\WINNT\system32\inetsrv\seo.dll=No
+D:\WINNT\system32\TLBINF32.DLL=Yes
+D:\WINNT\system32\scrrun.dll=Yes
+D:\WINNT\system32\MSVCRT.DLL=No
+D:\WINNT\system32\MSCOMCTL.OCX=Yes
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=Yes
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=Yes
+D:\WINNT\system32\VB6STKIT.DLL=Yes
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=Yes
+D:\WINNT\system32\MSSTDFMT.DLL=Yes
+D:\WINNT\system32\COMDLG32.OCX=Yes
+D:\Documents and Settings\jmayans\My Documents\Visual Studio Projects\Protocol Event Registration\Event Registration.exe=Yes
+
+[Package|Standard Setup Package 1|Configure Registry Files]
+Applicable=No
+
+[Package|Standard Setup Package 1|Configure Remote Servers]
+Applicable=No
+
+[Package|Standard Setup Package 1|Install Locations]
+D:\WINNT\Profiles\jmayans\My Documents\Visual Studio Projects\Protocol Events Registration\Event Registration.exe=$(AppPath)
+D:\WINNT\system32\msvbvm60.dll=$(WinSysPathSysFile)
+D:\WINNT\system32\OLEAUT32.DLL=$(WinSysPathSysFile)
+D:\WINNT\system32\OLEPRO32.DLL=$(WinSysPathSysFile)
+D:\WINNT\system32\asycfilt.dll=$(WinSysPathSysFile)
+D:\WINNT\system32\STDOLE2.TLB=$(WinSysPathSysFile)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+D:\WINNT\system32\inetsrv\seo.dll=$(WinSysPath)
+D:\WINNT\system32\TLBINF32.DLL=$(WinSysPath)
+D:\WINNT\system32\scrrun.dll=$(WinSysPath)
+D:\WINNT\system32\MSVCRT.DLL=$(WinSysPathSysFile)
+D:\WINNT\system32\MSCOMCTL.OCX=$(WinSysPath)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+D:\WINNT\system32\VB6STKIT.DLL=$(WinSysPathSysFile)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+D:\WINNT\system32\MSSTDFMT.DLL=$(WinSysPath)
+D:\WINNT\system32\COMDLG32.OCX=$(WinSysPath)
+D:\Documents and Settings\jmayans\My Documents\Visual Studio Projects\Protocol Event Registration\Event Registration.exe=$(AppPath)
+
+[Package|Standard Setup Package 1|Configure Shared Files]
+Applicable=Yes
+D:\WINNT\Profiles\jmayans\My Documents\Visual Studio Projects\Protocol Events Registration\Event Registration.exe=No
+D:\Documents and Settings\jmayans\My Documents\Visual Studio Projects\Protocol Event Registration\Event Registration.exe=No
+
+[Package|Standard Setup Package 1|Distribution]
+Type=single
+Size=1.44 MB
+Title=CDO Protocol Event Registration Tool
+
+[Package|Standard Setup Package 1|IconGroups]
+Group0=CDO Protocol Event Registration Tool
+PrivateGroup0=True
+Parent0=$(Programs)
+
+[Package|Standard Setup Package 1|CDO Protocol Event Registration Tool]
+Icon1="Event Registration.exe"
+Title1=CDO Protocol Event Registration Tool
+StartIn1=$(AppPath)
+Key1=Icon1
+
+[Package|Standard Setup Package 1|Package]
+PackageFolder=D:\Documents and Settings\jmayans\My Documents\Visual Studio Projects\Protocol Event Registration\Setup
+ProjectFolder=D:\Documents and Settings\jmayans\My Documents\Visual Studio Projects\Protocol Event Registration
+ServerSideCab=
+File1=D:\Documents and Settings\jmayans\My Documents\Visual Studio Projects\Protocol Event Registration\Setup\setup.exe
+File2=D:\Documents and Settings\jmayans\My Documents\Visual Studio Projects\Protocol Event Registration\Setup\Setup.Lst
+File3=D:\Documents and Settings\jmayans\My Documents\Visual Studio Projects\Protocol Event Registration\Setup\Event Registration.CAB
+Handler1=PDWizard.FolderDplySubWiz
+Handler2=PDWizard.WebPostDplySubWiz

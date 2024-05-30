@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Basic Transaction</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_basic_transaction"></a>  Basic Transaction</h3>
+<p>
+Using ASP, you can easily take advantage of the reliability provided by MTS services. You only need to include the @TRANSACTION directive in your script. This directive tells MTS that any changes that occur in that page, such as database manipulation or MSMQ message transmission, should be considered transactions. A change that is being managed by transaction services can be either committed, making it more or less permanent, or aborted, which would result in the state of the database or queue being rolled back to before the changes were made.</p>
+<p>
+In this sample, the entire page has been declared a transaction, as described above. The sample then provides some scripting commands for two other procedures that are called to perform additional completion or clean-up tasks. <b>OnTransactionCommit </b>is called when either the script has successfully completed, or the <b>ObjectContext.SetComplete</b> method has been called. Likewise, <b>OnTransactionAbort</b> is called when the script either encounters some kind of processing error, or the <b>ObjectContext.SetAbort</b> method has been called. </p>
+<p>
+This sample commits, by default, because it simply prints a small message and then exits. Since the directive declared the script to be a transaction, exiting successfully automatically commits changes made in the script, of which there are none, and triggers the <b>OnTransactionCommit</b> procedure, which prints a message.</p>
+<p>
+<b>Note</b>&nbsp;&nbsp;The @TRANSACTION directive must be on the first line of the .asp file, or an error will be generated.</p>
+</BODY>
+</HTML>

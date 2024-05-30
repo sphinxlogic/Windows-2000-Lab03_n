@@ -1,0 +1,6 @@
+LIBRARY InvokObj
+
+EXPORTS
+	GetExtensionVersion
+	HttpExtensionProc
+	TerminateExtension

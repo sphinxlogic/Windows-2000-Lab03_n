@@ -1,0 +1,39 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; File : UNIANSI.DEF
+; Contains procedure names to be exported.
+;
+; Created : 25 Sept, 1998 by F. Avery Bishop
+;
+; Copyright (c) 1998 Microsoft Systems Journal
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+LIBRARY UNIANSI     ; UNICODE to ANSI translation wrappers
+
+; DESCRIPTION 'Unicode to ANSI translation wrappers'
+
+; List export procdeures
+EXPORTS
+;    CharLowerAU
+;    ChooseFontAU
+;    CreateWindowExAU
+;    CreateFontIndirectAU
+;    DialogBoxParamAU
+;    FindFirstFileAU
+;    FindNextFileAU
+;    GetDateFormatAU
+;    GetLocaleInfoAU
+;    GetModuleFileNameAU
+;    LoadAcceleratorsAU
+;    LoadLibraryExAU
+;    LoadMenuAU
+;    LoadStringAU
+;    RegisterClassExAU
+;    SendDlgItemMessageAU
+;    SendMessageAU
+;    SetWindowTextAU
+;    
+;    ConvertMessage
+;    UpdateUnicodeAPI
+
+InitUniAnsi

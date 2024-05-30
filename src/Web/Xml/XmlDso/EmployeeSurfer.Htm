@@ -1,0 +1,57 @@
+<HTML>
+<HEAD>
+<STYLE>
+  .heading {color:#8B0000;font-weight:bold;font-size:14pt}
+  .regText {font-size:12pt}
+</STYLE>
+<BODY>
+<XML ID=xmlid src = "direct_reports.xml"></XML>
+<SCRIPT>
+function showXML(){
+  if (ShowXML.value == "Show XML")
+  {
+    insertXML.innerHTML = xmlid.transformNode(xslid.XMLDocument);
+    ShowXML.value = "Hide XML";
+  }
+  else
+  {
+    insertXML.innerHTML = "<SPAN></SPAN>";
+    ShowXML.value = "Show XML";
+  }
+}
+</SCRIPT>
+<XML id=xslid src="raw-xml.xsl"></XML>
+<H1 style="COLOR: #8b0000">DIRECT REPORTS</H1>
+<HR>
+<P><SPAN class=heading>SOCIAL SECURITY #: </SPAN>
+  <INPUT TYPE=TEXT DATASRC=#xmlid DATAFLD=ss_number class=regText>
+<P><SPAN class=heading>FIRST NAME: </SPAN>
+  <INPUT class=regText DATASRC=#xmlid DATAFLD="first_name">
+<P><SPAN class=heading>MIDDLE NAME: </SPAN>
+  <INPUT class=regText DATASRC=#xmlid DATAFLD="middle_name">
+<P><SPAN class=heading>LAST NAME: </SPAN>
+  <INPUT TYPE=TEXT class=regText DATASRC=#xmlid DATAFLD="last_name" id=TEXT1 name=TEXT1>
+<P><SPAN class=heading>EMAIL: </SPAN>
+  <INPUT TYPE=TEXT DATASRC=#xmlid DATAFLD=email class=regText>
+<P><SPAN class=heading>EXTENSION: </SPAN>
+  <INPUT TYPE=TEXT DATASRC=#xmlid DATAFLD=extension class=regText>
+<P><SPAN class=heading>BIRTHDATE (yyyy-mm-dd): </SPAN>
+  <INPUT TYPE=TEXT DATASRC=#xmlid DATAFLD=birthdate class=regText>
+<P><SPAN class=heading>SALARY: </SPAN>
+  <INPUT TYPE=TEXT DATASRC=#xmlid DATAFLD=salary class=regText>
+<BR>
+<BR>
+<INPUT ID="first" TYPE=button VALUE="<<" onClick="xmlid.recordset.moveFirst()">
+<INPUT ID="prev" TYPE=button VALUE="<" onClick="if (xmlid.recordset.absoluteposition > 1) xmlid.recordset.movePrevious()">
+<INPUT ID="next" TYPE=button VALUE=">" onClick="if (xmlid.recordset.absoluteposition < xmlid.recordset.recordcount) xmlid.recordset.moveNext()">
+<INPUT ID="last" TYPE=button VALUE=">>" onClick="xmlid.recordset.moveLast()">
+<BR><BR>
+<INPUT ID="add" TYPE=BUTTON VALUE="Add Employee" onClick="xmlid.recordset.addNew()">
+<BR>
+<BR>
+<INPUT TYPE=BUTTON NAME="ShowXML" VALUE="Show XML" onclick="showXML()">
+
+<DIV ID="insertXML"></DIV>
+
+</BODY>
+</HTML>

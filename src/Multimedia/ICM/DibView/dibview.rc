@@ -1,0 +1,290 @@
+/*++
+
+THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED
+TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+PARTICULAR PURPOSE.
+
+Copyright (C) 1998.  Microsoft Corporation.  All rights reserved.
+
+Module Name:
+
+    dibview.rc
+
+Abstract:
+    Project resources  
+    
+
+--*/
+
+#ifdef APSTUDIO_INVOKED
+    #error this file is not editable by App Studio
+#endif //APSTUDIO_INVOKED
+
+#include "winresrc.h"
+
+#include "resource.h"
+
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",                        ID_FILE_NEW
+        MENUITEM "&Open...\tCtrl+O",                    ID_FILE_OPEN
+        MENUITEM "&Save\tCtrl+S",                       ID_FILE_SAVE
+        MENUITEM "Save &As...",                         ID_FILE_SAVE_AS
+        MENUITEM "&Close\tCtrl+F4",                     ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "Scan Ne&w...",                        ID_FILE_ACQUIRE
+        MENUITEM "Se&lect Scanner...",                  ID_FILE_SELECT_SOURCE
+        MENUITEM SEPARATOR
+        MENUITEM "Page Set&up...",                      ID_FILE_PAGE_SETUP
+        MENUITEM "&Print...\tCtrl+P",                   ID_FILE_PRINT
+#if defined(ICM_INSIDE_DC) || defined(ICM_OUTSIDE_DC)
+        MENUITEM SEPARATOR
+        MENUITEM "Color &Management...",                ID_COLOR_SETUP
+        MENUITEM "CMM Mana&gement...",                  ID_CMM_MANAGER
+#endif
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                               ID_FILE_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Copy\tCtrl+C",                       ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl+V",                      ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+#if defined(ICM_INSIDE_DC) || defined(ICM_OUTSIDE_DC)
+        MENUITEM "Edit Color &Space...",				ID_EDIT_COLOR_SPACE
+#endif
+#ifdef ICM_OUTSIDE_DC
+        MENUITEM "Transform To &New Color Space...",	ID_EDIT_TRANSFORM_DIB
+        MENUITEM "Profile &To Profile...",				ID_EDIT_PROFILE_TO_PROFILE
+#endif
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Stretch to Window",                  ID_VIEW_STRETCH_TO_WINDOW
+        MENUITEM "&Keep Aspect Ratio",                  ID_VIEW_KEEP_ASPECT_RATIO
+        MENUITEM "Auto &Resize Window",                 ID_VIEW_AUTO_RESIZE_WINDOW
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About...",                       ID_HELP_ABOUT
+    END
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_ACCELERATORS ACCELERATORS DISCARDABLE 
+BEGIN
+    "N",            ID_FILE_NEW,                    VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,                   VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,                   VIRTKEY, CONTROL, NOINVERT
+    VK_F4,          ID_FILE_CLOSE,                  VIRTKEY, CONTROL, NOINVERT
+    "P",            ID_FILE_PRINT,                  VIRTKEY, CONTROL, NOINVERT
+    VK_F4,          ID_FILE_EXIT,                   VIRTKEY, ALT, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,                   VIRTKEY, CONTROL, NOINVERT
+    "C",            ID_EDIT_COPY,                   VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,                  VIRTKEY, SHIFT, NOINVERT
+    "V",            ID_EDIT_PASTE,                  VIRTKEY, CONTROL, NOINVERT
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+
+IDD_SELECT_SOURCE_DIALOG DIALOG DISCARDABLE  0, 0, 204, 160
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Select Source"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Sources:",IDC_STATIC,7,7,80,8
+    CONTROL         "Sources",IDC_SOURCELIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOCOLUMNHEADER | 
+                    WS_BORDER | WS_TABSTOP,7,16,140,58
+    LTEXT           "Profiles:",IDC_STATIC,7,81,80,8
+    CONTROL         "Profiles",IDC_PROFILELIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOCOLUMNHEADER | 
+                    WS_BORDER | WS_TABSTOP,7,90,140,58
+    DEFPUSHBUTTON   "&Select",IDOK,152,7,50,14
+    PUSHBUTTON      "&Cancel",IDCANCEL,152,25,50,14
+END
+
+IDD_CMM_MANAGER_DIALOG DIALOG DISCARDABLE  0, 0, 332, 84
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Color Management Module Manager"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Registered CMMs:",IDC_STATIC,7,7,80,8
+    CONTROL         "CMMs",IDC_CMMLIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SORTASCENDING | LVS_NOSORTHEADER | 
+                    WS_BORDER | WS_TABSTOP,7,19,258,58
+    DEFPUSHBUTTON   "Close",IDCLOSE,275,7,50,14
+    PUSHBUTTON      "&Add...",IDC_ADD,275,25,50,14
+    PUSHBUTTON      "&Remove",IDC_REMOVE,275,43,50,14,WS_DISABLED
+    PUSHBUTTON      "&Select",IDC_SELECT,275,62,50,14,WS_DISABLED
+END
+
+IDD_EDITCOLORSPACE_DIALOG DIALOG DISCARDABLE  0, 0, 266, 129
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Color space"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Color space type:",IDC_STATIC,5,7,56,8
+    COMBOBOX        IDC_COLOR_SPACE_TYPE,67,5,140,80,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Intent:",IDC_STATIC,5,23,55,8
+    COMBOBOX        IDC_INTENT,67,21,140,80,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "Profile name:",IDC_STATIC,5,40,56,8
+    COMBOBOX        IDC_PROFILE_NAME,67,38,140,80,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Red Endpoint:",IDC_STATIC,5,58,55,8
+    RTEXT           "X",IDC_STATIC,64,58,10,8
+    EDITTEXT        IDC_ENDPOINT_R_X,79,55,30,14,ES_AUTOHSCROLL
+    RTEXT           "Y",IDC_STATIC,113,58,10,8
+    EDITTEXT        IDC_ENDPOINT_R_Y,127,55,30,14,ES_AUTOHSCROLL
+    RTEXT           "Z",IDC_STATIC,161,58,10,8
+    EDITTEXT        IDC_ENDPOINT_R_Z,175,55,30,14,ES_AUTOHSCROLL
+    LTEXT           "Green Endpoint:",IDC_STATIC,5,77,55,8
+    RTEXT           "X",IDC_STATIC,64,76,10,8
+    EDITTEXT        IDC_ENDPOINT_G_X,79,73,30,14,ES_AUTOHSCROLL
+    RTEXT           "Y",IDC_STATIC,113,76,10,8
+    EDITTEXT        IDC_ENDPOINT_G_Y,127,73,30,14,ES_AUTOHSCROLL
+    RTEXT           "Z",IDC_STATIC,161,76,10,8
+    EDITTEXT        IDC_ENDPOINT_G_Z,175,73,30,14,ES_AUTOHSCROLL
+    LTEXT           "Blue Endpoint:",IDC_STATIC,5,94,55,8
+    RTEXT           "X",IDC_STATIC,63,94,10,8
+    EDITTEXT        IDC_ENDPOINT_B_X,79,91,30,14,ES_AUTOHSCROLL
+    RTEXT           "Y",IDC_STATIC,113,94,10,8
+    EDITTEXT        IDC_ENDPOINT_B_Y,127,91,30,14,ES_AUTOHSCROLL
+    RTEXT           "Z",IDC_STATIC,161,94,10,8
+    EDITTEXT        IDC_ENDPOINT_B_Z,175,91,30,14,ES_AUTOHSCROLL
+    LTEXT           "Gamma:",IDC_STATIC,5,112,52,8
+    RTEXT           "R",IDC_STATIC,64,112,10,8
+    EDITTEXT        IDC_GAMMA_R,79,109,30,14,ES_AUTOHSCROLL
+    RTEXT           "G",IDC_STATIC,113,112,10,8
+    EDITTEXT        IDC_GAMMA_G,127,109,30,14,ES_AUTOHSCROLL
+    RTEXT           "B",IDC_STATIC,161,112,10,8
+    EDITTEXT        IDC_GAMMA_B,175,109,30,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,211,5,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,211,24,50,14
+END
+
+IDD_PROFILE_TO_PROFILE_DIALOG DIALOG DISCARDABLE  0, 0, 252, 56
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Profile to profile transformation"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Source:",IDC_STATIC,5,7,40,8
+    COMBOBOX        IDC_SOURCE_PROFILE,53,5,140,80,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Destination:",IDC_STATIC,5,23,40,8
+    COMBOBOX        IDC_DESTINATION_PROFILE,53,21,140,80,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Intent:",IDC_STATIC,5,40,40,8
+    COMBOBOX        IDC_INTENT,53,38,140,80,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,197,5,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,197,24,50,14
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_IMAGELIST           BITMAP  DISCARDABLE     "imagelist.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_IMAGE_FILES         "Image Files"
+    IDS_BMP_FILES           "Windows Bitmap"
+    IDS_ALL_FILES           "All Files"
+#ifdef _DEBUG
+    IDS_ERROR_FORMAT        "Error %d: %s\nExpression %s\nFile %s, Line %d"
+#else
+    IDS_ERROR_FORMAT        "Error %d: %s"
+#endif
+    IDS_APP_NAME            "DIBVIEW"
+    IDS_INVALID_PROFILE     "Invalid color profile"
+    IDS_UNKNOWN_HEADER      "Unknown file header size"
+    IDS_MISSING_IMAGE_SIZE  "Missing image size in file header"
+    IDS_INVALID_SIGNATURE   "Invalid BMP signature"
+    IDS_INVALID_INTENT      "Invalid gamut mapping method"
+    IDS_WRONG_FILE_SIZE     "File lengths in the BMP header and the actual file do not match"
+    IDS_NO_EXTENSION        "No file extension"
+    IDS_UNKNOWN_EXTENSION   "Unknown file extension"
+    IDS_NO_DIB_DATA         "No DIB data in clipboard"
+    IDS_CLIPBOARD_DATA      "Clipboard Image"
+    IDS_ACQUIRED_IMAGE      "Scanned Image"
+    IDS_PERCENT_COMPLETE    "%d%% complete"
+    IDS_UNKNOWN_ERROR       "Unknown error"
+    IDS_UNICODE_REQUIRED    "This program uses UNICODE functions so it cannot run under Windows 95/98"
+    IDS_NO_TWAIN_SOURCE     "No TWAIN source present"
+    IDS_INTENT_PICTURES     "Pictures"
+    IDS_INTENT_PROOF        "Proof"
+    IDS_INTENT_GRAPHICS     "Graphics"
+    IDS_INTENT_MATCH        "Match"
+    IDS_CALIBRATED_RGB      "Calibrated RGB"
+    IDS_SRGB                "sRGB"
+    IDS_WINDOWS_COLOR_SPACE "Windows color space (sRGB)"
+    IDS_LINKED_PROFILE      "Linked profile"
+    IDS_EMBEDDED_PROFILE    "Embedded profile"
+    IDS_SAVE_BEFORE_EXIT    "Save %s before closing?"
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+#ifdef UNICODE
+    #define VER_UNICODE_STR         "UNICODE"
+#else 
+    #define VER_UNICODE_STR         "ANSI"
+#endif
+
+#ifdef MULTIMON_ENABLED
+    #define VER_MULTIMONITOR_STR    "aware"
+#else 
+    #define VER_MULTIMONITOR_STR    "unaware"
+#endif
+
+#ifdef ICM_INSIDE_DC
+    #define VER_ICM_STR             "inside DC"
+#elif defined(ICM_OUTSIDE_DC)
+    #define VER_ICM_STR             "outside DC"
+#else 
+    #define VER_ICM_STR             "no"
+#endif
+
+#define VER_FILETYPE                VFT_APP
+#define VER_FILESUBTYPE             VFT2_UNKNOWN
+#define VER_FILEVERSION             1,0,0,0
+#define VER_FILEVERSION_STR         "1.0"
+#define VER_INTERNALNAME_STR        "DibView"
+#define VER_FILEDESCRIPTION_STR     VER_UNICODE_STR " multimonitor " VER_MULTIMONITOR_STR " version " VER_FILEVERSION_STR " with " VER_ICM_STR " ICM functionality"
+
+#include <ntverp.h>
+#include <common.ver>
+
+/////////////////////////////////////////////////////////////////////////////

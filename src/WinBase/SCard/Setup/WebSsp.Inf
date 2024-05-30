@@ -1,0 +1,84 @@
+;
+;
+; Copyright (c) 1996-1997 Microsoft Corporation
+;
+; webssp.inf
+;
+; Abstract:
+;   inf file for use with Internet Express setup
+;
+; Created:
+;   2/13/1997
+;
+; Revision history:
+;
+; Notes:
+;
+;   Please see the "INF File Format Reference" section on MSDN for more
+;   information on INF file formats and usage.
+;
+
+[Version]
+signature="$CHICAGO$"
+AdvancedINF=2.5
+
+; Default installation Section
+[DefaultInstall]
+CopyFiles=SSPFiles,InfFiles
+AddReg=SSPInstall
+RegisterOCXs=RegisterSSP
+
+; Default uninstall section
+[Uninstall]
+BeginPrompt=BeginPromptSection
+EndPrompt=EndPromptSection
+DelFiles=SSPFiles
+DelReg=SSPUninstall
+UnRegisterOCXs=RegisterSSP
+
+; Prompt for removal of SSP
+[BeginPromptSection]
+Prompt="%BeginPrompt%"
+ButtonType=YESNO
+Title=%AppName%
+
+[EndPromptSection]
+Prompt="%EndPrompt%"
+
+; Destination directories
+[DestinationDirs]
+SSPFiles=11         ; Windows/System(32)
+InfFiles=17         ; Windows/Inf
+
+; Copy Files section.
+; NOTE: All files copied with no-overwrite of newer, existing files based
+; on version information
+[SSPFiles]
+scardcom.dll,,,32
+
+[InfFiles]
+webssp.inf,,,32
+
+[SSPInstall]
+;Register for Uninstall
+HKLM,SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\SmartcardSSP,"DisplayName",,"%AppName%"
+HKLM,SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\SmartcardSSP,"UninstallString",,"RunDll32 advpack.dll,LaunchINFSection %17%\webssp.inf, Uninstall"
+
+[SSPUninstall]
+HKLM,SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\SmartcardSSP
+
+[RegisterSSP]
+%11%\scardcom.dll
+
+[SourceDisksNames]
+1=%DiskName%,,1
+
+[SourceFilesNames]
+scardcom.dll=1
+webssp.inf=1
+
+[Strings]
+AppName="Smart Card SSP 1.0"
+DiskName="Example SSP Web Install"
+BeginPrompt="Are you sure that you want to remove Smart Card SSP?"
+EndPrompt="Smart Card SSP was successfully removed."

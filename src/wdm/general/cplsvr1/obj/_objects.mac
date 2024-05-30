@@ -1,0 +1,36 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\cplsvr1.res \
+    $(_OBJ_DIR)\alpha\button.obj \
+    $(_OBJ_DIR)\alpha\cplsvr1.obj \
+    $(_OBJ_DIR)\alpha\dicputil.obj \
+    $(_OBJ_DIR)\alpha\pages.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\cplsvr1.res \
+    $(_OBJ_DIR)\axp64\button.obj \
+    $(_OBJ_DIR)\axp64\cplsvr1.obj \
+    $(_OBJ_DIR)\axp64\dicputil.obj \
+    $(_OBJ_DIR)\axp64\pages.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\cplsvr1.res \
+    $(_OBJ_DIR)\i386\button.obj \
+    $(_OBJ_DIR)\i386\cplsvr1.obj \
+    $(_OBJ_DIR)\i386\dicputil.obj \
+    $(_OBJ_DIR)\i386\pages.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\cplsvr1.res \
+    $(_OBJ_DIR)\ia64\button.obj \
+    $(_OBJ_DIR)\ia64\cplsvr1.obj \
+    $(_OBJ_DIR)\ia64\dicputil.obj \
+    $(_OBJ_DIR)\ia64\pages.obj
+
+PASS0_IA64_OBJECTS=
+

@@ -1,0 +1,19 @@
+#---------------------------------------------------------------------------
+# Description:
+#   Make file to generate GWSample.Exe
+#
+# Copyright (C) Microsoft Corporation 1986 - 1998.  All Rights Reserved.
+#---------------------------------------------------------------------------
+
+USE_EXCHANGE=1
+
+Proj = GwSample
+
+ObjList = $(@D)\Address.Obj $(@D)\IAddr.Obj $(@D)\OAddr.Obj \
+          $(@D)\GwSample.Obj
+
+!Include <BkOffice.Mak>
+
+all:    $(ObjDir)\$(Proj).Exe
+
+$(ObjDir)\$(Proj).Exe: $(ObjList)

@@ -1,0 +1,23 @@
+<Schema xmlns="uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:dt="urn:uuid:C2F41010-65B3-11d1-A29F-00AA00C14882/"> 
+  <ElementType name="direct_reports" content="eltOnly"> 
+    <element type="employee"/>
+  </ElementType>
+  <ElementType name="employee" content="eltOnly" order="many">
+    <element type="ss_number"/> 
+    <element type="first_name"/> 
+    <element type="middle_name"/> 
+    <element type="last_name"/> 
+    <element type="email"/> 
+    <element type="extension"/>
+    <element type="birthdate"/>
+    <element type="salary"/> 
+  </ElementType> 
+  <ElementType name="ss_number" content="textOnly" dt:type="ui8"/> 
+  <ElementType name="first_name" content="textOnly"/> 
+  <ElementType name="middle_name" content="textOnly"/>
+  <ElementType name="last_name" content="textOnly"/>
+  <ElementType name="email" content="textOnly"/>
+  <ElementType name="extension" content="textOnly" dt:type="ui8"/>
+  <ElementType name="birthdate" content="textOnly" dt:type="date"/>
+  <ElementType name="salary" content="textOnly" dt:type="fixed.14.4"/>
+</Schema> 

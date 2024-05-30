@@ -1,0 +1,37 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>Set the "Queued" property for the QCShip and QCNotify applications</TITLE>
+<META NAME="Template" CONTENT="D:\Program Files\Microsoft Office\Office\html.dot">
+</HEAD>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<H2>Set the "Queued" property for the QCShip and QCNotify applications</H2>
+<P>In this step you will set the "Queued" property for:</P>
+
+<UL><DIR>
+<DIR>
+
+
+<UL>
+<BLOCKQUOTE><LI>QCShip </LI></BLOCKQUOTE>
+<BLOCKQUOTE><LI>QCNotify </LI></BLOCKQUOTE></UL>
+</DIR>
+</DIR>
+</UL>
+
+<OL>
+
+<LI>If not already started, start the Component Services Explorer by selecting Start-&gt;Programs-&gt;Administrative Tools-&gt; Component Services.</LI>
+<LI>Navigate to and highlight Console Root\Component Services Explorer\Computers\My Computer\COM+ Applications</LI>
+<LI>In the right pane you will see the icon for QCShip.</LI>
+<LI>Right click on QCShip and select Properties.</LI>
+<LI>Select the Queuing tab.</LI>
+<LI>Check the Queued option.</LI>
+<B><LI>Do not select Listen</B>.</LI>
+<LI>Click OK.</LI>
+<LI>Repeat the step for QCNotify.</LI></OL>
+
+<P>This step actually creates the underlying MSMQ queues that provide the queuing services for these queued components. You can see the effect of setting the Queued property on the COM+ application by running the MSMQ MMC Snap-in (see <A HREF="msmq.htm">Important MSMQ Information</A>) and looking in the Public Queues folder.</P></BODY>
+</HTML>

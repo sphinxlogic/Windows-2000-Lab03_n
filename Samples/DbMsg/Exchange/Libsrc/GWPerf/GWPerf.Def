@@ -1,0 +1,11 @@
+LIBRARY gwperf
+
+DESCRIPTION 'Gateway Performance Monitor'
+
+EXETYPE WINDOWS
+
+EXPORTS
+    DllEntryPoint                    @1
+    OpenGatewayPerformanceData       @2
+    CollectGatewayPerformanceData    @3
+    CloseGatewayPerformanceData      @4

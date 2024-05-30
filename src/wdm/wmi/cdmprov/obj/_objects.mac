@@ -1,0 +1,52 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\cdmprov.res \
+    $(_OBJ_DIR)\alpha\cimmap.obj \
+    $(_OBJ_DIR)\alpha\classfac.obj \
+    $(_OBJ_DIR)\alpha\classprov.obj \
+    $(_OBJ_DIR)\alpha\debug.obj \
+    $(_OBJ_DIR)\alpha\maindll.obj \
+    $(_OBJ_DIR)\alpha\testinfo.obj \
+    $(_OBJ_DIR)\alpha\wbemmisc.obj \
+    $(_OBJ_DIR)\alpha\reload.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\cdmprov.res \
+    $(_OBJ_DIR)\axp64\cimmap.obj \
+    $(_OBJ_DIR)\axp64\classfac.obj \
+    $(_OBJ_DIR)\axp64\classprov.obj \
+    $(_OBJ_DIR)\axp64\debug.obj \
+    $(_OBJ_DIR)\axp64\maindll.obj \
+    $(_OBJ_DIR)\axp64\testinfo.obj \
+    $(_OBJ_DIR)\axp64\wbemmisc.obj \
+    $(_OBJ_DIR)\axp64\reload.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\cdmprov.res \
+    $(_OBJ_DIR)\i386\cimmap.obj \
+    $(_OBJ_DIR)\i386\classfac.obj \
+    $(_OBJ_DIR)\i386\classprov.obj \
+    $(_OBJ_DIR)\i386\debug.obj \
+    $(_OBJ_DIR)\i386\maindll.obj \
+    $(_OBJ_DIR)\i386\testinfo.obj \
+    $(_OBJ_DIR)\i386\wbemmisc.obj \
+    $(_OBJ_DIR)\i386\reload.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\cdmprov.res \
+    $(_OBJ_DIR)\ia64\cimmap.obj \
+    $(_OBJ_DIR)\ia64\classfac.obj \
+    $(_OBJ_DIR)\ia64\classprov.obj \
+    $(_OBJ_DIR)\ia64\debug.obj \
+    $(_OBJ_DIR)\ia64\maindll.obj \
+    $(_OBJ_DIR)\ia64\testinfo.obj \
+    $(_OBJ_DIR)\ia64\wbemmisc.obj \
+    $(_OBJ_DIR)\ia64\reload.obj
+
+PASS0_IA64_OBJECTS=
+

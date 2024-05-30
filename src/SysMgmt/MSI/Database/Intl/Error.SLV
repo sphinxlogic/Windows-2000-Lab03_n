@@ -1,0 +1,133 @@
+Error	Message
+i2	L255
+1250	Error	Error
+0	{{Usodna napaka: }}
+1	{{Napaka [1]. }}
+2	Opozorilo [1]. 
+3	
+4	Informacije [1]. 
+5	Notranja napaka [1]. [2]{, [3]}{, [4]}
+6	
+7	{{Disk je poln: }}
+8	Dejanje [Time]: [1]. [2]
+9	[ProductName]
+10	{[2]}{, [3]}{, [4]}
+11	Vrsta sporoèila: [1], argument: [2]
+12	=== Zaèetek pisanja dnevnika: [Date]  [Time] ===
+13	=== Konec pisanja dnevnika: [Date]  [Time] ===
+14	Zaèetek dejanja [Time]: [1].
+15	Konec dejanja [Time]: [1]. Vrnjena vrednost [2].
+16	Preostali èas: {[1] min }{[2] s}
+17	Zmanjkalo je pomnilnika. Zaprite druge aplikacije in nato poskusite znova.
+18	Namestitveni program se ne odziva veè.
+19	Namestitveni program se je prezgodaj konèal.
+20	Poèakajte, da Windows konfigurira [ProductName]
+21	Zbiranje potrebnih informacij ...
+22	Odstranjevanje starih razlièic te aplikacije ...
+23	Priprava na odstranitev starih razlièic te aplikacije ...
+32	Namestitev izdelka {[ProductName] }se je uspešno izvedla.
+33	Namestitev izdelka {[ProductName] }je spodletela.
+1101	Prišlo je do napake pri branju iz datoteke: [2]. {{ Sistemska napaka [3].}}  Preverite, ali datoteka obstaja in ali lahko pridete do nje.
+1301	Datoteke »[2]« ni mogoèe ustvariti.  Imenik s tem imenom že obstaja. Preklièite namestitev in jo poskusite narediti na drugo mesto.
+1302	Vstavite disk: [2]
+1303	Namestitveni program nima zadostnih pravic za dostop do tega imenika: [2]. Namestitve ni mogoèe nadaljevati. Prijavite se kot skrbnik ali pa se obrnite na skrbnika sistema.
+1304	Prišlo je do napake pri pisanju v datoteko: [2]. Preverite, ali imate dostop do tega imenika.
+1305	Prišlo je do napake pri branju iz datoteke: [2]. {{Sistemska napaka [3].}} Preverite, ali datoteka obstaja in ali lahko pridete do nje.
+1306	Druga aplikacija ima izkljuèen dostop do datoteke »[2]«. Zaprite vse druge aplikacije in kliknite »Ponovi«.
+1307	Na disku ni dovolj prostora za namestitev te datoteke: [2]. Sprostite nekaj prostora na disku in kliknite »Ponovi«. Èe želite namestitev preklicati, kliknite »Preklièi«.
+1308	Ni bilo mogoèe najti izvorne datoteke: [2]. Preverite, ali datoteka obstaja in ali lahko pridete do nje.
+1309	Prišlo je do napake pri branju iz datoteke: [3]. {{ Sistemska napaka [2].}}  Preverite, ali datoteka obstaja in ali lahko pridete do nje.
+1310	Prišlo je do napake pri pisanju v datoteko: [3]. {{ Sistemska napaka [2].}}  Preverite, ali imate dostop do tega imenika.
+1311	Ni bilo mogoèe najti izvorne datoteke{{(kabinetna datoteka)}}: [2]. Preverite, ali datoteka obstaja in ali lahko pridete do nje.
+1312	Imenika »[2]« ni mogoèe ustvariti. Datoteka s tem imenom že obstaja. Preimenujte jo ali pa jo odstranite in kliknite »Ponovi«. Èe hoèete operacijo prekiniti, kliknite »Preklièi«.
+1313	Nosilec [2] trenutno ni na voljo. Izberite drugega.
+1314	Navedena pot »[2]« ni na voljo.
+1315	V navedeno mapo »[2]« ni mogoèe pisati.
+1316	Prišlo je do omrežne napake med poskusom branja iz datoteke: [2]
+1317	Prišlo je do napake med poskusom ustvarjanja imenika: [2]
+1318	Prišlo je do omrežne napake med poskusom ustvarjanja imenika: [2]
+1319	Prišlo je do omrežne napake med poskusom odpiranja kabinetne datoteke z izvornimi datotekami: [2]
+1320	Navedena pot je predolga: [2]
+1321	Namestitveni program nima ustreznih pravic za spreminjanje te datoteke: [2].
+1322	Del poti do mape »[2]« je neveljaven. Ali je prazen ali pa presega dolžino, ki jo dovoljuje sistem.
+1323	Pot do mape »[2]« vsebuje besede, ki v poteh niso veljavne.
+1324	Pot do mape »[2]« vsebuje neveljaven znak.
+1325	»[2]« ni veljavno kratko ime datoteke.
+1326	Napaka pri pridobivanju varnosti datoteke: [3] GetLastError: [2]
+1327	Neveljaven pogon: [2]
+1328	Napaka pri uporabi popravka za datoteko [2]. Mogoèe je bila posodobljena kako drugaèe in je ta popravek ne more veè spremeniti. Za dodatne informacije se obrnite na svojega dobavitelja popravka.  {{Sistemska napaka: [3]}}
+1401	Ni bilo mogoèe ustvariti kljuèa: [2]. {{ Sistemska napaka [3].}}  Preverite, ali imate pravice za dostop do tega kljuèa ali pa se obrnite na osebje za podporo. 
+1402	Ni bilo mogoèe odpreti kljuèa: [2]. {{ Sistemska napaka [3].}}  Preverite, ali imate pravice za dostop do tega kljuèa ali pa se obrnite na osebje za podporo. 
+1403	Vrednosti [2] ni bilo mogoèe izbrisati iz kljuèa [3]. {{ Sistemska napaka [4].}}  Preverite, ali imate pravice za dostop do tega kljuèa ali pa se obrnite na osebje za podporo. 
+1404	Ni bilo mogoèe izbrisati kljuèa [2]. {{ Sistemska napaka [3].}}  Preverite, ali imate pravice za dostop do tega kljuèa ali pa se obrnite na osebje za podporo. 
+1405	Vrednosti [2] ni bilo mogoèe prebrati iz kljuèa [3]. {{ Sistemska napaka [4].}}  Preverite, ali imate pravice za dostop do tega kljuèa ali pa se obrnite na osebje za podporo. 
+1406	Vrednosti [2] ni bilo mogoèe zapisati v kljuè [3]. {{ Sistemska napaka [4].}}  Preverite, ali imate pravice za dostop do tega kljuèa ali pa se obrnite na osebje za podporo.
+1407	Imen vrednosti za kljuè [2] ni bilo mogoèe dobiti. {{ Sistemska napaka [3].}}  Preverite, ali imate pravice za dostop do tega kljuèa ali pa se obrnite na osebje za podporo.
+1408	Imen podkljuèev za kljuè [2] ni bilo mogoèe dobiti. {{ Sistemska napaka [3].}}  Preverite, ali imate pravice za dostop do tega kljuèa ali pa se obrnite na osebje za podporo.
+1409	Varnostnih informacij za kljuè [2] ni bilo mogoèe prebrati. {{ Sistemska napaka [3].}}  Preverite, ali imate pravice za dostop do tega kljuèa ali pa se obrnite na osebje za podporo.
+1410	Prostora, ki je na voljo za register, ni bilo mogoèe poveèati. Namestitev te aplikacije zahteva [2] KB prostega prostora za register.
+1500	Izvaja se še ena namestitev. Dokonèati morate prvo namestitev, preden nadaljujete s to namestitvijo.
+1501	Napaka pri dostopu do varnih podatkov. Preverite, ali je Windows Installer pravilno konfiguriran, in poskusite znova.
+1502	Uporabnik »[2]« je prej že sprožil namestitev izdelka »[3]«. Omenjeni uporabnik bo moral ponovno zagnati namestitev, da bi lahko uporabljal ta izdelek. Trenutna namestitev se bo nadaljevala.
+1503	Uporabnik »[2]« je prej že sprožil namestitev izdelka »[3]«. Omenjeni uporabnik bo moral ponovno zagnati namestitev, da bi lahko uporabljal ta izdelek.
+1601	Zmanjkalo je prostora na disku -- nosilec: »[2]«; potreben prostor: [3] KB; prostor na voljo: [4] KB. Sprostite nekaj prostora na disku in poskusite znova.
+1602	Ali ste preprièani, da želite preklicati?
+1603	Datoteko [2][3] uporablja{ ta proces: ime: [4], ID: [5], naslov okna: »[6]«}.  Zaprite to aplikacijo in poskusite znova.
+1604	Izdelek »[2]« je že namešèen in prepreèuje namešèanje tega izdelka. Izdelka nista združljiva.
+1605	Zmanjkalo je prostora na disku -- nosilec: »[2]«; potreben prostor: [3] KB; prostor na voljo: [4] KB. Èe je povrnitev prejšnjega stanja onemogoèena, je na voljo dovolj prostora. Kliknite »Preklièi«, èe želite preklicati namestitev, »Ponovi«, èe želite ponovno preveriti, koliko prostora je na voljo ali pa »Prezri«, èe želite nadaljevati brez možnosti povrnitve.
+1606	Do omrežnega mesta [2] ni bilo mogoèe priti.
+1607	Preden nadaljujete z namestitvijo, morate zapreti te aplikacije:
+1608	V raèunalniku ni bilo mogoèe najti ustreznih, prej namešèenih izdelkov, potrebnih za to namestitev.
+1701	Kljuè [2] ni veljaven. Preverite, ali ste vnesli pravi kljuè.
+1702	Pred nadaljevanjem konfiguracije za [2] mora namestitveni program ponovno zagnati sistem. Èe želite ponovni zagon zdaj, kliknite »Da«. Èe želite sistem sami ponovno zagnati pozneje, kliknite »Ne«.
+1703	Sistem morate ponovno zagnati, èe hoèete uveljaviti spremembe konfiguracije za [2]. Èe ga hoèete ponovno zagnati zdaj, kliknite »Da«. Èe želite sistem sami ponovno zagnati pozneje, kliknite »Ne«.
+1704	Namestitev za [2] je trenutno ustavljena. Èe želite nadaljevati, morate razveljaviti spremembe, ki jih je naredila. Ali jih želite razveljaviti?
+1705	Prejšnja namestitev tega izdelka se še izvaja. Èe želite nadaljevati, morate razveljaviti spremembe, ki jih je naredila omenjena namestitev. Ali želite razveljaviti spremembe?
+1706	Veljavnega namestitvenega paketa izdelka [2] ni bilo mogoèe najti. Poskusite ponoviti namestitev z veljavnim namestitvenim paketom »[3]«.
+1707	Namestitvena operacija se je uspešno izvedla.
+1708	Namestitvena operacija je spodletela.
+1709	Izdelek: [2] -- [3]
+1710	Raèunalnik lahko povrnete v prejšnje stanje ali pa nadaljujete z namestitvijo pozneje. Ali želite obnoviti prejšnje stanje?
+1711	Med pisanjem namestitvenih informacij na disk je prišlo do napake. Poskrbite, da bo na disku dovolj prostora in kliknite »Ponovi«. Èe želite namestitev prekiniti, kliknite »Preklièi«.
+1712	Ene ali veè datotek, potrebnih za obnovitev prejšnjega stanja raèunalnika, ni bilo mogoèe najti. Obnovitev ne bo mogoèa.
+1713	[2] ne more namestiti enega od zahtevanih izdelkov. Obrnite se na skupino za tehnièno podporo. {{Sistemska napaka: [3].}}
+1714	Starejše razlièice [2] ni mogoèe odstraniti. Obrnite se na skupino za tehnièno podporo. {{Sistemska napaka [3].}}
+1801	Pot [2] ni veljavna. Navedite veljavno pot.
+1802	Zmanjkalo je pomnilnika. Zaprite druge aplikacije in nato poskusite znova.
+1803	V pogonu [2] ni diska. Vstavite disk in kliknite »Ponovi« ali pa kliknite »Preklièi«, èe se hoèete vrniti na prej izbrani nosilec.
+1804	V pogonu [2] ni diska. Vstavite disk in kliknite »Ponovi« ali pa kliknite »Preklièi«, èe se hoèete vrniti v pogovorno okno za brskanje in izbrati drug nosilec.
+1805	Mapa [2] ne obstaja. Vnesite pot do obstojeèe mape.
+1806	Nimate zadostnih pravic za branje te mape.
+1807	Veljavne ciljne mape za namestitev ni bilo mogoèe doloèiti.
+1901	Pri poskusu branja iz izvorne namestitvene zbirke podatkov je prišlo do napake: [2].
+1902	Razporejanje ponovnega zagona: preimenovanje datoteke [2] v [3]. Za dokonèanje operacije je potreben ponovni zagon.
+1903	Razporejanje ponovnega zagona: brisanje datoteke [2]. Za dokonèanje operacije je potreben ponovni zagon.
+1904	Registracija modula [2] je spodletela. HRESULT [3]. Obrnite se na osebje za podporo.
+1905	Brisanje registracije modula [2] je spodletelo. HRESULT [3]. Obrnite se na osebje za podporo.
+1906	Paketa [2] ni bilo mogoèe shraniti v predpomnilnik. Napaka: [3]. Obrnite se na osebje za podporo.
+1907	Pisave [2] ni bilo mogoèe registrirati. Preverite, ali imate zadostne pravice za namešèanje pisav in ali sistem podpira to pisavo.
+1908	Registracije pisave [2] ni bilo mogoèe izbrisati. Preverite, ali imate zadostne pravice za odstranjevanje pisav.
+1909	Bližnjice [2] ni bilo mogoèe ustvariti. Preverite, ali ciljna mapa obstaja in ali imate dostop do nje.
+1910	Bližnjice [2] ni bilo mogoèe odstraniti. Preverite, ali datoteka z bližnjico obstaja in ali imate dostop do nje.
+1911	Knjižnice tipov za datoteko [2] ni bilo mogoèe registrirati. Obrnite se na osebje za podporo.
+1912	Registracije knjižnice tipov za datoteko [2] ni bilo mogoèe izbrisati. Obrnite se na osebje za podporo.
+1913	INI datoteke [2][3] ni bilo mogoèe posodobiti. Preverite, ali datoteka obstaja in ali imate dostop do nje.
+1914	Datoteke [2] ni bilo mogoèe razporediti tako, da bi ob zagonu zamenjala datoteko [3]. Preverite, ali imate dovoljenje za pisanje v datoteko [3].
+1915	Prišlo je do napake pri odstranjevanju upravitelja ODBC gonilnikov, ODBC napaka [2]: [3]. Obrnite se na osebje za podporo.
+1916	Prišlo je do napake pri namešèanju upravitelja ODBC gonilnikov, ODBC napaka [2]: [3]. Obrnite se na osebje za podporo.
+1917	Prišlo je do napake pri odstranjevanju ODBC gonilnika: [4], ODBC napaka [2]: [3]. Preverite, ali imate ustrezne pravice za odstranjevanje ODBC gonilnikov.
+1918	Prišlo je do napake pri namešèanju ODBC gonilnika: [4], ODBC napaka [2]: [3]. Preverite, ali datoteka [4] obstaja in ali imate dostop do nje.
+1919	Prišlo je do napake pri konfiguriranju vira ODBC podatkov: [4], ODBC napaka [2]: [3]. Preverite, ali datoteka [4] obstaja in ali imate dostop do nje.
+1920	Zagon storitve »[2]« ([3]) je spodletel. Preverite, ali imate ustrezne pravice za zaganjanje sistemskih storitev.
+1921	Storitve »[2]« ([3]) ni bilo mogoèe ustaviti. Preverite, ali imate ustrezne pravice za ustavljanje sistemskih storitev.
+1922	Storitve »[2]« ([3]) ni bilo mogoèe izbrisati. Preverite, ali imate ustrezne pravice za odstranjevanje sistemskih storitev.
+1923	Storitve »[2]« ([3]) ni bilo mogoèe namestiti. Preverite, ali imate ustrezne pravice za namešèanje sistemskih storitev.
+1924	Spremenljivke okolja »[2]« ni bilo mogoèe posodobiti. Preverite, ali imate ustrezne pravice za spreminjanje spremenljivk okolja.
+1925	Nimate ustreznih pravic za dokonèanje te namestitve za vse uporabnike tega raèunalnika. Prijavite se kot skrbnik in nato ponovite namestitev.
+1926	Za datoteko »[3]« ni bilo mogoèe nastaviti varnosti. Napaka: [2]. Preverite, ali imate ustrezne pravice za spreminjanje varnostnih dovoljenj za to datoteko.
+1927	V tem raèunalniku niso namešèene komponentne storitve (COM+ 1.0). Potrebujete jih za uspešno dokonèanje te namestitve. Najdete jih v Windows 2000.
+1928	Napaka pri registraciji COM+ aplikacije. Èe želite veè informacij, povprašajte svoje osebje za podporo.
+1929	Napaka pri brisanju registracije COM+ aplikacije. Èe želite veè informacij, povprašajte svoje osebje za podporo.
+1930	Ni mogoèe spremeniti opisa storitve »[2]« ([3]).
+1931	Storitev Windows Installer ne more posodobiti sistemske datoteke »[2]«, ker je program Windows datoteko zašèitil. Èe hoèete, da ta program deluje pravilno, boste morda morali posodobiti operacijski sistem. {{Razlièica paketa: [3], Razlièica zašèitenega OS: [4]}}
+1932	Storitev Windows Installer ne more posodobiti zašèitene datoteke programa Windows »[2]«. {{Razlièica paketa: [3], Razlièica zašèitenega OS: [4], Napaka SFP: [5]}}

@@ -1,0 +1,15 @@
+XMLDSO: Exposing Attributes using the New Heuristic
+
+Files:
+newheuristic.htm
+custOrderAttrib.xml
+
+Description:
+This sample illustrates the new heuristic employed by the C++ XMLDSO to create rowsets.  It is
+also a good example of how to bind to various levels in the hierarchy.  
+
+For more information
+on the new heuristic see the reference documentation for the XMLDSO.
+
+Compatibility/Platform Compatibility:
+You must be running Internet Explorer 5 or greater to view this demo.

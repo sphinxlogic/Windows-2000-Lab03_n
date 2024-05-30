@@ -1,0 +1,25 @@
+HKCR
+{
+    DXImageTransform.Microsoft.DXTWipePropPage.1 = s 'DXTWipePropPage Class'
+    {
+	CLSID = s '{54CCEC1B-87A9-11D1-81C0-0000F87557DB}'
+    }
+    DXImageTransform.Microsoft.DXTWipePropPage = s 'DXTWipePropPage Class'
+    {
+	CurVer = s 'DXImageTransform.Microsoft.DXTWipePropPage.1'
+	CLSID = s '{54CCEC1B-87A9-11D1-81C0-0000F87557DB}'
+    }
+    NoRemove CLSID
+    {
+	ForceRemove {54CCEC1B-87A9-11D1-81C0-0000F87557DB} = s 'DXTWipePropPage Class'
+	{
+	    ProgID = s 'DXImageTransform.Microsoft.DXTWipePropPage.1'
+	    VersionIndependentProgID = s 'DXImageTransform.Microsoft.DXTWipePropPage'
+	    ForceRemove 'Programmable'
+	    InprocServer32 = s '%MODULE%'
+	    {
+		val ThreadingModel = s 'Apartment'
+	    }
+	}
+    }
+}

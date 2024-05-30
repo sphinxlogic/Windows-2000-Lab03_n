@@ -1,0 +1,108 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\serial.res \
+    $(_OBJ_DIR)\alpha\error.obj \
+    $(_OBJ_DIR)\alpha\flush.obj \
+    $(_OBJ_DIR)\alpha\immediat.obj \
+    $(_OBJ_DIR)\alpha\initunlo.obj \
+    $(_OBJ_DIR)\alpha\ioctl.obj \
+    $(_OBJ_DIR)\alpha\isr.obj \
+    $(_OBJ_DIR)\alpha\modmflow.obj \
+    $(_OBJ_DIR)\alpha\openclos.obj \
+    $(_OBJ_DIR)\alpha\purge.obj \
+    $(_OBJ_DIR)\alpha\qsfile.obj \
+    $(_OBJ_DIR)\alpha\read.obj \
+    $(_OBJ_DIR)\alpha\utils.obj \
+    $(_OBJ_DIR)\alpha\waitmask.obj \
+    $(_OBJ_DIR)\alpha\write.obj \
+    $(_OBJ_DIR)\alpha\pnp.obj \
+    $(_OBJ_DIR)\alpha\registry.obj \
+    $(_OBJ_DIR)\alpha\legacy.obj \
+    $(_OBJ_DIR)\alpha\wmi.obj \
+    $(_OBJ_DIR)\alpha\power.obj \
+    $(_OBJ_DIR)\alpha\log.obj
+
+PASS0_ALPHA_OBJECTS= \
+    $(PASS0_HEADERDIR)\serlog.h \
+    $(MC_SOURCEDIR)\serlog.rc
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\serial.res \
+    $(_OBJ_DIR)\axp64\error.obj \
+    $(_OBJ_DIR)\axp64\flush.obj \
+    $(_OBJ_DIR)\axp64\immediat.obj \
+    $(_OBJ_DIR)\axp64\initunlo.obj \
+    $(_OBJ_DIR)\axp64\ioctl.obj \
+    $(_OBJ_DIR)\axp64\isr.obj \
+    $(_OBJ_DIR)\axp64\modmflow.obj \
+    $(_OBJ_DIR)\axp64\openclos.obj \
+    $(_OBJ_DIR)\axp64\purge.obj \
+    $(_OBJ_DIR)\axp64\qsfile.obj \
+    $(_OBJ_DIR)\axp64\read.obj \
+    $(_OBJ_DIR)\axp64\utils.obj \
+    $(_OBJ_DIR)\axp64\waitmask.obj \
+    $(_OBJ_DIR)\axp64\write.obj \
+    $(_OBJ_DIR)\axp64\pnp.obj \
+    $(_OBJ_DIR)\axp64\registry.obj \
+    $(_OBJ_DIR)\axp64\legacy.obj \
+    $(_OBJ_DIR)\axp64\wmi.obj \
+    $(_OBJ_DIR)\axp64\power.obj \
+    $(_OBJ_DIR)\axp64\log.obj
+
+PASS0_AXP64_OBJECTS= \
+    $(PASS0_HEADERDIR)\serlog.h \
+    $(MC_SOURCEDIR)\serlog.rc
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\serial.res \
+    $(_OBJ_DIR)\i386\error.obj \
+    $(_OBJ_DIR)\i386\flush.obj \
+    $(_OBJ_DIR)\i386\immediat.obj \
+    $(_OBJ_DIR)\i386\initunlo.obj \
+    $(_OBJ_DIR)\i386\ioctl.obj \
+    $(_OBJ_DIR)\i386\isr.obj \
+    $(_OBJ_DIR)\i386\modmflow.obj \
+    $(_OBJ_DIR)\i386\openclos.obj \
+    $(_OBJ_DIR)\i386\purge.obj \
+    $(_OBJ_DIR)\i386\qsfile.obj \
+    $(_OBJ_DIR)\i386\read.obj \
+    $(_OBJ_DIR)\i386\utils.obj \
+    $(_OBJ_DIR)\i386\waitmask.obj \
+    $(_OBJ_DIR)\i386\write.obj \
+    $(_OBJ_DIR)\i386\pnp.obj \
+    $(_OBJ_DIR)\i386\registry.obj \
+    $(_OBJ_DIR)\i386\legacy.obj \
+    $(_OBJ_DIR)\i386\wmi.obj \
+    $(_OBJ_DIR)\i386\power.obj \
+    $(_OBJ_DIR)\i386\log.obj
+
+PASS0_386_OBJECTS= \
+    $(PASS0_HEADERDIR)\serlog.h \
+    $(MC_SOURCEDIR)\serlog.rc
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\serial.res \
+    $(_OBJ_DIR)\ia64\error.obj \
+    $(_OBJ_DIR)\ia64\flush.obj \
+    $(_OBJ_DIR)\ia64\immediat.obj \
+    $(_OBJ_DIR)\ia64\initunlo.obj \
+    $(_OBJ_DIR)\ia64\ioctl.obj \
+    $(_OBJ_DIR)\ia64\isr.obj \
+    $(_OBJ_DIR)\ia64\modmflow.obj \
+    $(_OBJ_DIR)\ia64\openclos.obj \
+    $(_OBJ_DIR)\ia64\purge.obj \
+    $(_OBJ_DIR)\ia64\qsfile.obj \
+    $(_OBJ_DIR)\ia64\read.obj \
+    $(_OBJ_DIR)\ia64\utils.obj \
+    $(_OBJ_DIR)\ia64\waitmask.obj \
+    $(_OBJ_DIR)\ia64\write.obj \
+    $(_OBJ_DIR)\ia64\pnp.obj \
+    $(_OBJ_DIR)\ia64\registry.obj \
+    $(_OBJ_DIR)\ia64\legacy.obj \
+    $(_OBJ_DIR)\ia64\wmi.obj \
+    $(_OBJ_DIR)\ia64\power.obj \
+    $(_OBJ_DIR)\ia64\log.obj
+
+PASS0_IA64_OBJECTS= \
+    $(PASS0_HEADERDIR)\serlog.h \
+    $(MC_SOURCEDIR)\serlog.rc
+

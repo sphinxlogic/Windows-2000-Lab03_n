@@ -1,0 +1,164 @@
+
+Corporate Media Library Release Notes
+=====================================
+Installment 1b: March 1999
+--------------------------
+(c) Microsoft Corporation, 1999. All rights reserved.
+
+
+--------
+CONTENTS
+--------
+1. What is the Corporate Media Library?
+2. Targeted Platform
+3. Directory Structure of the Sample Application
+4. Revision History
+5. Providing Feedback
+
+
+---------------------------------------
+1. What is the Corporate Media Library?
+---------------------------------------
+The Corporate Media Library (CML) sample application is a
+three-tier application that illustrates programming techniques
+for the Windows DNA programming model and shows how to use
+multiple Microsoft BackOffice Server products together in one
+application. 
+
+The document written to accompany the Corporate Media Library
+sample application is the BackOffice Developer's Guide (BDG). 
+The BDG helps you develop distributed applications using a
+combination of Microsoft BackOffice Server products. 
+
+You can download both the BDG document and the CML application
+from http://msdn.microsoft.com/developer/sdk/bdg.asp.
+
+The application download includes all source code for the CML 
+application and the supporting files you need to run it. The BDG 
+documentation fully explains the steps you take to build and install
+the application.
+
+You can also view the BDG document on the Internet at
+http://msdn.microsoft.com/library/ under the
+Platform SDK, Design Strategies and Standards heading. 
+
+
+--------------------
+2. Targeted Platform
+--------------------
+The deployment of this sample application has been tested only 
+on Windows NT version 4.0, Service Pack 4. It has not been 
+tested on Windows 2000.
+
+
+------------------------------------------------
+3. Directory Structure of the Sample Application
+------------------------------------------------
+When you unzip the FmLib self-extracting executable, the following
+directory structure will be created:
+
+  [+]  FMLib (the Corporate Media Library application)
+   |
+   | - _Private (Visual InterDev files)
+   |
+   | - _Themes (applied themes)
+   |
+   | - Admin (administrative functions)
+   |   | - AdNMat (Add/Edit New Materials Wizard)
+   |
+   | - Component (Visual Basic source for CML.DLL)
+   |   | - alpha (Alpha binary)
+   |   | - x86 (Intel I386 binary)
+   |   | - UserInfo (Visual Basic source for CMLC.DLL)
+   |       | - alpha (Alpha binary)
+   |       | - x86 (Intel I386 binary)
+   |
+   | - Data (SQL Server 7.0 data and log files)
+   |
+   | - Errors (custom errors for IIS)
+   |
+   | - Images (GIF files used by CML)
+   |
+   | - LibrarySearch (full-text search and checkout requests)
+   |
+   | - SQLScripts (scripts used to create empty database)
+   |
+   | - CML.PAK (MTS package)
+   | - CML.CAB (client-side UserInfo component, x86 only)
+   | - DEFAULT.ASP (library home page)
+   | - GLOBAL.ASA (application settings)
+   | - VIEWMYREQUESTS.ASP (user requests and checkouts)
+
+
+-------------------
+4. Revision History
+-------------------
+February 1999: FmLib.exe file contains original CML application.
+   March 1999: Removed full-text search catalog from the CML
+               application's database (\Data\fmlib_data.mdf).
+
+
+---------------------
+5. Providing Feedback
+---------------------
+You can send feedback and report issues concerning the sample
+applications (or the BDG document) by e-mail to:
+
+BDGFeed@microsoft.com
+
+   >>>NOTE: This is not a monitored support alias. However, we would 
+appreciate hearing from you if you have any issues or feedback. To 
+send feedback or report issues concerning the BDG, please do the 
+following:
+
+   a.	Compose an e-mail message with the following text as the subject
+        line: 
+
+	BDG Installment 1 Issues Report
+
+   b.	Provide the following contact Information:
+
+	Primary contact name:  	
+	Job title:
+	Voice number(s): 
+	FAX number(s):
+	Internet e-mail address:
+
+	Alternative contact name:  	
+	Job title:
+	Voice number(s): 
+	FAX number(s):
+	Internet e-mail address:
+
+	Company name:  	
+	Address line1:
+	Address line2:
+	City:
+	State:
+	Zip code:
+	Country:
+
+   c.	Provide a description of your hardware and operating system, 
+	as follows:
+	
+	Operating system (including Service Pack): 
+	Protocol(s) in use:
+	Computer brand:
+	CPU (386, 486, etc):
+	Multiprocessor? (Y/N):
+	RAM (MB):
+	Network adapters:
+	Other/unusual hardware:
+
+   d.	Provide a description and version of the software you are using, 
+	for example:
+
+	Microsoft Internet Explorer 4.01
+	Visual Studio 6.0
+
+   e.	Provide a complete description of the issue you are reporting, 
+	including the sequence of steps required to reproduce it.
+
+   f.	If the issue is code-related, please include a compilable code 
+	example that reproduces the issue or error.
+

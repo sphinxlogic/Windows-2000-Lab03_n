@@ -1,0 +1,34 @@
+<HTML>
+<HEAD>
+<TITLE>Island Hopper - Online Service</TITLE>
+<link REL="STYLESHEET" href=styles.css TYPE="text/css">
+</HEAD>
+<BODY>
+<IMG src="Images\ih_online.gif">
+<OBJECT classid="clsid:C408422A-F069-11D1-9727-00805F31E0AF" codeBase=http://comdemo1/tracey_online/logincontrol.ocx 
+	id=LoginControl style="LEFT: 0px; TOP: 0px">
+	<PARAM NAME="_ExtentX" VALUE="13018">
+	<PARAM NAME="_ExtentY" VALUE="6218">
+	<PARAM NAME="UserID" VALUE="">
+	<PARAM NAME="SavePassword" VALUE="0"></OBJECT>
+<!--#INCLUDE FILE = "NavigationBar.js"-->
+
+</BODY>
+<SCRIPT LANGUAGE="VBSCRIPT">
+Sub LoginControl_LogonFailure(strErrDesc)
+    MsgBox strErrDesc
+End Sub
+
+Sub LoginControl_LogonDuplicate(strErrDesc)
+    MsgBox strErrDesc
+    window.location.href="HomePage.asp"
+End Sub
+
+Sub LoginControl_LogonSuccess(strCustomerID)
+    MsgBox strCustomerID & " logon is complete."
+    window.location.href="HomePage.asp"
+End Sub
+
+</SCRIPT>
+
+</HTML>

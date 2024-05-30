@@ -1,0 +1,12 @@
+
+<SCRIPT RUNAT=SERVER LANGUAGE="VBScript">
+' This function is used to create an error response.
+Function ErrorOut(strMessage)
+response.Clear
+response.write "<BR><BR>The certificate enrollment signup process has encountered the following error:<BR>"
+response.write "<BR>** " + strMessage + " **"
+response.end
+End Function
+
+</SCRIPT>
+

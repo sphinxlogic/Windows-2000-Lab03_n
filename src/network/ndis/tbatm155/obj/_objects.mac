@@ -1,0 +1,80 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\tbatm155.res \
+    $(_OBJ_DIR)\alpha\init.obj \
+    $(_OBJ_DIR)\alpha\int.obj \
+    $(_OBJ_DIR)\alpha\receive.obj \
+    $(_OBJ_DIR)\alpha\request.obj \
+    $(_OBJ_DIR)\alpha\reset.obj \
+    $(_OBJ_DIR)\alpha\send.obj \
+    $(_OBJ_DIR)\alpha\vc.obj \
+    $(_OBJ_DIR)\alpha\debug.obj \
+    $(_OBJ_DIR)\alpha\data.obj \
+    $(_OBJ_DIR)\alpha\support.obj \
+    $(_OBJ_DIR)\alpha\peephole.obj \
+    $(_OBJ_DIR)\alpha\suni_lit.obj \
+    $(_OBJ_DIR)\alpha\plc_2.obj \
+    $(_OBJ_DIR)\alpha\tbmeteor.obj
+
+PASS0_ALPHA_OBJECTS= \
+    .\tbatm155.bmf
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\tbatm155.res \
+    $(_OBJ_DIR)\axp64\init.obj \
+    $(_OBJ_DIR)\axp64\int.obj \
+    $(_OBJ_DIR)\axp64\receive.obj \
+    $(_OBJ_DIR)\axp64\request.obj \
+    $(_OBJ_DIR)\axp64\reset.obj \
+    $(_OBJ_DIR)\axp64\send.obj \
+    $(_OBJ_DIR)\axp64\vc.obj \
+    $(_OBJ_DIR)\axp64\debug.obj \
+    $(_OBJ_DIR)\axp64\data.obj \
+    $(_OBJ_DIR)\axp64\support.obj \
+    $(_OBJ_DIR)\axp64\peephole.obj \
+    $(_OBJ_DIR)\axp64\suni_lit.obj \
+    $(_OBJ_DIR)\axp64\plc_2.obj \
+    $(_OBJ_DIR)\axp64\tbmeteor.obj
+
+PASS0_AXP64_OBJECTS= \
+    .\tbatm155.bmf
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\tbatm155.res \
+    $(_OBJ_DIR)\i386\init.obj \
+    $(_OBJ_DIR)\i386\int.obj \
+    $(_OBJ_DIR)\i386\receive.obj \
+    $(_OBJ_DIR)\i386\request.obj \
+    $(_OBJ_DIR)\i386\reset.obj \
+    $(_OBJ_DIR)\i386\send.obj \
+    $(_OBJ_DIR)\i386\vc.obj \
+    $(_OBJ_DIR)\i386\debug.obj \
+    $(_OBJ_DIR)\i386\data.obj \
+    $(_OBJ_DIR)\i386\support.obj \
+    $(_OBJ_DIR)\i386\peephole.obj \
+    $(_OBJ_DIR)\i386\suni_lit.obj \
+    $(_OBJ_DIR)\i386\plc_2.obj \
+    $(_OBJ_DIR)\i386\tbmeteor.obj
+
+PASS0_386_OBJECTS= \
+    .\tbatm155.bmf
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\tbatm155.res \
+    $(_OBJ_DIR)\ia64\init.obj \
+    $(_OBJ_DIR)\ia64\int.obj \
+    $(_OBJ_DIR)\ia64\receive.obj \
+    $(_OBJ_DIR)\ia64\request.obj \
+    $(_OBJ_DIR)\ia64\reset.obj \
+    $(_OBJ_DIR)\ia64\send.obj \
+    $(_OBJ_DIR)\ia64\vc.obj \
+    $(_OBJ_DIR)\ia64\debug.obj \
+    $(_OBJ_DIR)\ia64\data.obj \
+    $(_OBJ_DIR)\ia64\support.obj \
+    $(_OBJ_DIR)\ia64\peephole.obj \
+    $(_OBJ_DIR)\ia64\suni_lit.obj \
+    $(_OBJ_DIR)\ia64\plc_2.obj \
+    $(_OBJ_DIR)\ia64\tbmeteor.obj
+
+PASS0_IA64_OBJECTS= \
+    .\tbatm155.bmf
+

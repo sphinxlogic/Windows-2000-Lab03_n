@@ -1,0 +1,186 @@
+// --edktrack.chk---------------------------------------------------------------
+// 
+//  Module containing gateway tracking functions.
+// 
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+// -----------------------------------------------------------------------------
+
+#include "edk.h"
+#include "sadapi.h"
+
+#ifndef DEBUG
+
+#define CHK_HrTrackInitLog(a,b)                                 NOERROR
+#define CHK_HrTrackWriteLogW(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o)  NOERROR
+#define CHK_HrTrackWriteLogA(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o)  NOERROR
+#define CHK_HrTrackUninitLog(a)                                 NOERROR
+
+#else
+
+//$--CHK_HrTrackInitLog---------------------------------------------------------
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrTrackInitLog(
+	IN LPSTR lpszComputer,          // name of the remote computer
+    OUT PVOID *ppvSession)          // pointer to gateway tracking session
+{
+    HRESULT hr = NOERROR;
+
+    if( !TEST_STRINGA_PTR(lpszComputer) ||
+        !TEST_WRITE_PTR(ppvSession, sizeof(PVOID)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return(hr);
+}
+
+//$--CHK_HrTrackWriteLog@----------------------------------------------------
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrTrackWriteLogW(
+    IN PVOID           pvSession,       // gateway tracking session
+    IN UINT            nEventType,      // gateway tracking event type
+    IN SYSTEMTIME      stEvent,         // time event took place
+    IN LPCWSTR         lpszGatewayName, // gateway name
+    IN LPCWSTR         lpszPartner,     // pointer to entity name string
+    IN LPCWSTR         lpszMTSID,       // pointer to MTS-ID string
+    IN LPCWSTR         lpszSubjectMTSID,// pointer to subject MTS-ID string
+    IN LPCWSTR         lpszRemoteID,    // pointer to foreign ID string
+    IN LPCWSTR         lpszOriginator,  // pointer to originator string
+    IN INT             nPriority,       // message priority
+    IN INT             nLength,         // message length
+    IN INT             nSeconds,        // seconds to process this message
+    IN INT             nCost,           // cost of processing this message
+    IN INT             cRecipients,     // count of recipients
+    IN LPCWSTR        *lppszRecipients) // pointer to recipient pointers
+{
+    HRESULT hr = NOERROR;
+
+    if( !TEST_READ_PTR(pvSession, sizeof(RPCBINDINFO)) ||
+        !TEST_STRINGW_PTR(lpszGatewayName) ||
+        !TEST_STRINGW_PTR_OR_NULL(lpszPartner) ||
+        !TEST_STRINGW_PTR_OR_NULL(lpszMTSID) ||
+        !TEST_STRINGW_PTR_OR_NULL(lpszSubjectMTSID) ||
+        !TEST_STRINGW_PTR_OR_NULL(lpszRemoteID) ||
+        !TEST_STRINGW_PTR_OR_NULL(lpszOriginator))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    switch( nEventType)
+    {
+    case tevtMessageBackboneTransferIn:
+    case tevtMessageBackboneTransferOut:
+    case tevtMessageGatewayTransferOut:
+    case tevtMessageGatewayTransferIn:
+    case tevtReportGatewayTransferIn:
+    case tevtReportGatewayTransferOut:
+    case tevtReportGatewayGenerated:
+        break;
+    default:
+        hr = HR_LOG( E_INVALIDARG);
+        goto cleanup;
+    }
+    
+    if(! ((((cRecipients >  0) && (lppszRecipients != NULL)) ||
+           ((cRecipients == 0) && (lppszRecipients == NULL)))))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+__inline static HRESULT CHK_HrTrackWriteLogA(
+    IN PVOID           pvSession,       // gateway tracking session
+    IN UINT            nEventType,      // gateway tracking event type
+    IN SYSTEMTIME      stEvent,         // time event took place
+    IN LPCSTR          lpszGatewayName, // gateway name
+    IN LPCSTR          lpszPartner,     // pointer to entity name string
+    IN LPCSTR          lpszMTSID,       // pointer to MTS-ID string
+    IN LPCSTR          lpszSubjectMTSID,// pointer to subject MTS-ID string
+    IN LPCSTR          lpszRemoteID,    // pointer to foreign ID string
+    IN LPCSTR          lpszOriginator,  // pointer to originator string
+    IN INT             nPriority,       // message priority
+    IN INT             nLength,         // message length
+    IN INT             nSeconds,        // seconds to process this message
+    IN INT             nCost,           // cost of processing this message
+    IN INT             cRecipients,     // count of recipients
+    IN LPCSTR         *lppszRecipients) // pointer to recipient pointers
+{
+    HRESULT hr = NOERROR;
+
+    if( !TEST_READ_PTR(pvSession, sizeof(RPCBINDINFO)) ||
+        !TEST_STRINGA_PTR(lpszGatewayName) ||
+        !TEST_STRINGA_PTR_OR_NULL(lpszPartner) ||
+        !TEST_STRINGA_PTR_OR_NULL(lpszMTSID) ||
+        !TEST_STRINGA_PTR_OR_NULL(lpszSubjectMTSID) ||
+        !TEST_STRINGA_PTR_OR_NULL(lpszRemoteID) ||
+        !TEST_STRINGA_PTR_OR_NULL(lpszOriginator))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    switch( nEventType)
+    {
+    case tevtMessageBackboneTransferIn:
+    case tevtMessageBackboneTransferOut:
+    case tevtMessageGatewayTransferOut:
+    case tevtMessageGatewayTransferIn:
+    case tevtReportGatewayTransferIn:
+    case tevtReportGatewayTransferOut:
+    case tevtReportGatewayGenerated:
+        break;
+    default:
+        hr = HR_LOG( E_INVALIDARG);
+        goto cleanup;
+    }
+    
+    if(! ((((cRecipients >  0) && (lppszRecipients != NULL)) ||
+           ((cRecipients == 0) && (lppszRecipients == NULL)))))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrTrackUninitLog-------------------------------------------------------
+//  This function uninitializes the gateway event tracking module.
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrTrackUninitLog(// RETURNS: return code
+    IN OUT PVOID *ppvSession)           // pointer to gateway tracking session
+{
+    HRESULT hr = NOERROR;
+
+    if(ppvSession == NULL)
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(*ppvSession == NULL)
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_READ_PTR(*ppvSession, sizeof(RPCBINDINFO)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+#endif /* DEBUG */

@@ -1,0 +1,392 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Microsoft Data Access Components SDK version 2.5 Readme</TITLE>
+<style>
+BODY {
+	font: x-small Verdana, Arial, Helvetica, sans-serif;
+	background-color: #FFFFFF; }
+	
+h1, h2, h3, h4 {
+	font-family: verdana, Arial, Helvetica, sans-serif;	
+	font-weight: bold;
+	color: #000000; }
+	
+h1 {
+	font-size: 145%;
+	margin-bottom: .5em; }
+	
+h2 {
+	font-size: 125%;
+	margin-top: 1.5em;
+	margin-bottom: .5em; }
+	
+h3 {
+	font-size: 115%;
+	margin-top: 1.2em;
+	margin-bottom: .5em}
+	
+h4 {
+	font-size: 100%;
+	margin-top: 1.2em;
+	margin-bottom: .5em; }
+
+P  {
+	font: x-small Verdana, Arial, Helvetica, sans-serif;
+	color: #000000; }
+
+CODE {
+	font: 120% "Courier New", Courier, mono; }
+
+TD {
+	font-size: x-small; }
+
+A:LINK {
+	color: #0000FF; }
+	
+A:VISITED {
+	color: #660066; }
+	
+A:HOVER {
+	color: #FF9900; }
+	
+.label {
+	font-weight: bold; }
+	
+.tl {
+	margin-bottom: .75em; }
+	
+.atl {
+	padding-left: 1.5em;
+	padding-bottom: .75em; }
+	
+.cfe {
+	font-weight: bold; }
+	
+.mini {
+	font-size: smaller; }
+	
+LI {
+	margin-top: .75em;
+	margin-bottom: .75em; }
+	
+UL {
+	list-style: disc; }
+
+UL UL, OL OL, OL UL, UL OL {
+	margin-top: 1em;
+	margin-bottom: 1em; }
+	
+LI P {
+	margin-top: .5em;
+	margin-bottom: .5em; }
+
+.dt {
+	margin-bottom: -1em; }
+	
+.indent {
+	margin-left: 1.5em; }
+	
+SUP {
+	text-decoration: none;
+	font-size: smaller; }
+
+.product
+	{
+	text-align: right;
+	color: #333333;
+	font-size: smaller;
+	font-style: italic;
+	}
+</style></HEAD>
+<BODY>
+
+<H1><A NAME="mdacsdkreadme"></A>Microsoft Data Access Components (MDAC) SDK Version 2.5 Readme</H1>
+
+<P>© 1999 Microsoft Corporation. All rights reserved.</P>
+
+<P>This document provides late-breaking or other information that supplements the Microsoft Data Access Components (MDAC) SDK documentation, including setup and installation information. </P>
+
+<P class=indent><B><B>Note</B></B>&nbsp;&nbsp;&nbsp;The MDAC SDK was formerly called the Microsoft® Data Access SDK. Its name has changed as of version 2.5. </P>
+
+<H2><A NAME="mdac_toc"></A>Contents</H2>
+
+<P><A HREF="#mdacsdkreleasenotes">MDAC SDK Release Notes</A></P>
+
+<P><A HREF="#adoreleasenotes">ActiveX Data Objects (ADO) Release Notes</A></P>
+
+<P><A HREF="#oledbreleasenotes">OLE DB Release Notes</A></P>
+
+<P>&nbsp;&nbsp;&nbsp;<A HREF="#oledbprogrammersreference">OLE DB Programmer's Reference</A></P>
+
+<P>&nbsp;&nbsp;&nbsp;<A HREF="#oledbproviders">OLE DB Providers</A></P>
+
+<P>&nbsp;&nbsp;&nbsp;<A HREF="#oledbforolap">OLE DB for OLAP</A></P>
+
+<P>&nbsp;&nbsp;&nbsp;<A HREF="#oledbtesting">OLE DB Testing</A></P>
+
+<P><A HREF="#odbcreleasenotes">ODBC Release Notes</A></P>
+
+<P>&nbsp;&nbsp;&nbsp;<A HREF="#odbcprogrammersreference">ODBC Programmer's Reference</A></P>
+
+<P><A HREF="#componentchecker">Component Checker Release Notes</A></P>
+
+<H1><A NAME="mdacsdkreleasenotes"></A>MDAC SDK Release Notes</H1>
+
+<P>The Microsoft Data Access Components (MDAC) SDK release notes contain late-breaking information about setup and SDK content.</P>
+
+<P class=label><B>MDAC System Requirements</B></P>
+
+<P>The requirements for installing the MDAC SDK are the same as for the Platform SDK. </P>
+
+<P>You must have MDAC version 2.5 installed in order to run the latest samples. </P>
+
+<P class=label><B>ActiveX Control Writer Toolkit Removed from SDK</B></P>
+
+<P>The Microsoft ActiveX® Control Writer Toolkit has been removed from the MDAC SDK. It is recommended that you use the Microsoft Visual C++® Active Template Library (ATL) and Microsoft Foundation Classes for COM (MFC COM) instead. See the Visual C++ documentation for more information.</P>
+
+<P><B>Building with Intel Visual C++ 5.0</B></P>
+
+<P><B>Problem:</B>  You will get link errors because the CtlFW and ADBCtl libraries are built with Visual C++ 6.0.</P>
+
+<P><B>Solution:</B>  Rebuild the FrameWork and ADBCtl projects found in Msdasdk\Misc\Aacwsrc to get Visual C++ 5.0 libraries. The sample will then link correctly.</P>
+
+<P class=label><B>Online Catalog and Order Placement Sample Removed from SDK</B></P>
+
+<P>The Online Catalog and Order Placement Sample has been removed from the MDAC SDK for version 2.5.</P>
+
+<P><A HREF="#mdac_toc">Back to the Table of Contents</A></P>
+
+<H1><A NAME="adoreleasenotes"></A>ActiveX Data Objects (ADO) Release Notes</H1>
+
+<P>For information about ADO, see the MDAC release notes (MDACReadme.htm). This file is installed with the typical MDAC 2.5 redistribution at <A HREF="http://www.microsoft.com/data/download.htm">http://www.microsoft.com/data/download.htm</A> or with Microsoft Windows® 2000 and is located at &lt;system drive&gt;:\program files\common files\system\ADO\MDACReadme.htm. </P>
+
+<P><A HREF="#mdac_toc">Back to the Table of Contents</A></P>
+
+<H1><A NAME="oledbreleasenotes"></A>OLE DB Release Notes</H1>
+
+<P>The OLE DB release notes provide late-breaking or other information that supplements the MDAC SDK documentation for OLE DB.</P>
+
+<P><B>Visual C++ Requirements for Alpha</B></P>
+
+<P>On Alpha, OLE DB 2.0 requires Visual C++ 5.0, Service Pack 3, or later.</P>
+
+<P><A HREF="#mdac_toc">Back to the Table of Contents</A></P>
+
+<H1><A NAME="oledbprogrammersreference"></A>OLE DB Programmer's Reference</H1>
+
+<P>The OLE DB Programmer's Reference release notes detail known issues or limitations with the OLE DB specification.
+
+<UL type=disc>
+	<LI><B>Using DBPROPSET_PROPERTIESINERROR with ICommandProperties::GetProperties</B>
+<P class=tl>The <B>ICommandProperties::GetProperties</B> method documentation states: "If <B>ICommand::Execute</B> returns DB_E_ERRORSOCCURRED, the consumer can immediately call <B>GetProperties</B> with the DBPROPSET_PROPERTIESINERROR property set to return all the properties that were in error." However, setting DBPROPSET_PROPERTIESINERROR after DB_S_ERRORSOCCURRED will not return any properties because none are in error. DB_S_ERRORSOCCURRED indicates that you need to check the properties on the rowset (by using <B>IRowsetInfo</B>) to see which optional interface was returned.</P></LI>
+
+	<LI><B>IDBSchemaRowset::GetRowset Selection Is Not Case-Sensitive</B>
+<P class=tl><B>IDBSchemaRowset::GetRowset</B> does not look at the case of the Identifier passed in unless the value is surrounded by quotation marks. Unless you quote the table name when you create it, it will be created in uppercase.</P></LI>
+
+	<LI><B>IRowset::GetNextRows Return Values</B>
+<P class=tl>This information about return values for <B>IRowset::GetNextRows</B> was incorrectly placed in the Method comments for <B>RestartPosition</B>. The same information appears in both topics; it should appear only in <B>GetNextRows</B>. </P>
+<P class=tl>Whether a provider returns DB_S_ENDOFROWSET, DB_S_ROWLIMITEXCEEDED, or DB_S_STOPLIMITREACHED is provider-specific but usually depends on which limit is encountered first, as follows:</P>
+<UL type=disc>
+	<LI>If the maximum number of row handles is obtained before trying to read past the rowset or beyond a resource limit, DB_S_ROWLIMITEXCEEDED is returned. <BR><BR></LI>
+
+	<LI>If a resource limitation is reached when there are still row handles available and before attempting to read past the rowset, DB_S_STOPLIMITREACHED is returned. <BR><BR></LI>
+
+	<LI>If the provider comes to the end of the rowset before using all of the available row handles and before reaching a resource limitation, DB_S_ENDOFROWSET is returned.</LI>
+</UL>
+</LI>
+</UL>
+
+<P><B>Data Conversion Issues</B>
+
+<UL type=disc>
+	<LI><B>Scale Ignored for DBTYPE_DECIMAL</B>
+<P class=tl>The OLE DB documentation states that conversions to decimal values within the consumer's buffers should follow the scale specified in the accessor's binding structure. Be aware that the data conversion library provided in the SDK ignores the scale value when doing conversions to DBTYPE_DECIMAL.</P></LI>
+
+	<LI><B>International Data and OLE DB Data Conversions</B>
+<P class=tl>With OLE DB, most data conversions are independent of locale by spec. In the <I>OLE DB Programmer's Reference,</I> Appendix A, under "Conversions Involving Strings," formats are defined for conversion to and from strings. For example, "...cccc.cccc" is for DBTYPE_CY and "yyyy-mm-dd" for DBTYPE_DBDATE. These formats are independent of locale, which is consistent with the ISO definition of string values representing dates. It is up to the application to convert from the predefined string format to the local string format, if that local format is preferred.</P></LI>
+</UL>
+
+<P><A HREF="#mdac_toc">Back to the Table of Contents</A></P>
+
+<H1><A NAME="oledbproviders"></A>OLE DB Providers</H1>
+
+<P>The OLE DB providers release notes provide late-breaking or other information that supplements the MDAC SDK documentation for OLE DB.</P>
+
+<H3>The OLE DB Simple Provider (OSP) Toolkit</H3>
+
+<P>The following provides late-breaking or other information that supplements the Microsoft OLE DB Simple Provider Toolkit documentation.</P>
+
+<P>The OLE DB Simple Provider Toolkit is a component of the Microsoft Data Access Components (MDAC) SDK, which is now part of the Platform SDK.</P>
+
+<P>The Java sample was developed using the Microsoft SDK for Java 2.01 release. The latest version of this SDK is available for download at <A HREF="http://www.microsoft.com/java/download.htm">http://www.microsoft.com/java/download.htm</A>.</P>
+
+<P><B>OSP Interface in Microsoft Internet Explorer 4.0</B>
+
+<UL type=disc>
+	<LI><B>Simpdata.h</B>
+<P class=tl>The OSP interface, described in Simpdata.h, was previously released with Microsoft Internet Explorer 4.0. The OSP interface released with the OLE DB Simple Provider Toolkit includes a modification of the OSPFIND enumeration. It adds enumeration value OSPFIND_UPCASESENSITIVE. Providers written with this value will not compile using the previous version of Simpdata.h.</P></LI>
+</UL>
+
+<P><B>COM and OLE DB Conformance</B></P>
+
+<P>The OLE DB Simple Provider DLL functions as a Level 0 OLE DB provider. However, the following nuances have been noted during conformance testing:
+
+<UL type=disc>
+	<LI><B>IOpenRowset::OpenRowset</B>
+<P class=tl>If no data member is specified on <B>OpenRowset</B>—because no registration settings have been entered or because no data source initialization property has been set—Msdaosp.dll returns error DB_E_NOTABLE, which indicates that the table does not exist in the current data source. </P></LI>
+
+	<LI><B>Properties</B>
+<UL type=disc>
+	<LI><B>DBPROP_ROWSET_ASYNCH</B><BR>
+Msdaosp.dll supports property DBPROPVAL_ASYNCH_SEQUENTIALPOPULATION. The default value is (DBPROPVAL_ASYNCH_INITIALIZE | DBPROPVAL_ASYNCH_SEQUENTIALPOPULATION | DBPROPVAL_ASYNCH_RANDOMPOPULATION).<BR><BR></LI>
+
+	<LI><B>DBPROP_COLUMNRESTRICT</B><BR>
+When an OSP contains a read-only rowset (that is, <B>getRWStatus</B> returns OSP_READONLY for all rows and columns), Msdaosp.dll sets properties DBPROP_ROWRESTRICT and DBPROP_COLUMNRESTRICT to VARIANT_TRUE. This reflects the possibility that the OSP may still allow new rows to be added, and these new rows might be updatable. If a new, updatable row is added, columns may have mixed write status.&nbsp; </LI>
+</UL>
+</LI>
+</UL>
+
+<P><B>Programming Language Notes</B>
+
+<UL type=disc>
+	<LI><B>Microsoft Visual J++</B>
+<UL type=disc>
+	<LI><B>isAsync()</B><BR>
+<B>IOLEDBSimpleProvider::isAsync()</B> returns type int in Java instead of Boolean because of how the interface definition is generated. Developers should return 0 for false and a nonzero integer for true.<BR><BR></LI>
+
+	<LI><B>getVariant()</B><BR>
+<B>getVariant</B> is one of the few OSP methods that returns an object or Variant. Take care to allocate a fresh Variant that is not used elsewhere to return to the Microsoft Virtual Machine for Java, which may free the object at its leisure.<BR><BR></LI>
+
+	<LI><B>OSP Methods for Visual J++ and Internet Explorer 4.0</B><BR>
+The OSP class package for Java developers, com.ms.osp.*, was released in Internet Explorer 4.0 with alternative versions of three of the OSP methods:
+<UL type=disc>
+	<LI><B>find()</B><BR><BR></LI>
+
+	<LI><B>getVariant()</B><BR><BR></LI>
+
+	<LI><B>setVariant()</B></LI>
+</UL>
+
+<P class=tl>In package com.ms.osp.*, these three methods are defined with arguments of type object, instead of the variant forms of the methods defined in the OSP interface, as distributed in this SDK in the type library Simpdata.tlb. Internet Explorer 4.0 contained native marshaling code, invoked by the com.ms.osp.* package, which converts the object instances to Variants (using Variant VT_UNKNOWN as a default). The OSP-to-OLE DB mapping layer released in this SDK, Msdaosp.dll, does not include custom marshaling. As a result, simple providers written in Java using the Internet Explorer com.ms.osp.* package will not work with the OSP DLL released in this SDK unless Internet Explorer 4.0 is installed to provide the custom marshaling.</P></LI>
+
+	<LI><B>CLASSPATH Settings<BR>
+</B>To run the OSP Java sample, ensure that the Java virtual machine can locate the sample's compiled class files by adding their location to the Java class path search order. You can use the environment variable CLASSPATH for this purpose.</LI>
+</UL>
+</LI>
+
+	<LI><B>Visual Basic</B>
+<P class=tl>The sample simple provider found in project SampleOSP_VB.vbp has been updated to work with new data binding functions of Microsoft Visual Basic® version 6.0. It no longer compiles with Visual Basic 5.0. Refer to the OLE DB Simple Provider Toolkit documentation in the MDAC SDK for instructions on how to build a simple provider using Visual Basic 5.0.</P></LI>
+</UL>
+
+<P><B>The following is a list of OLE DB Simple Provider Toolkit known bugs and limitations:</B>
+
+<UL type=disc>
+	<LI><B>Asynchronous Population</B>
+<P class=tl>Property DBPROP_INIT_ASYNCH is supported as READONLY because initialization of the data source object is always synchronous and immediate.</P>
+<P class=tl>Property DBPROP_ROWSET_ASYNCH is supported as READWRITE, but population of the rowset is determined by the underlying OSP by using the <B>isAsync</B> method. Unless the underlying OSP is asynchronous, setting property DBPROP_ROWSET_ASYNCH will have no effect. Msdaosp.dll will not return until the rowset is populated.</P></LI>
+
+	<LI><B>Compiling OSP VC Sample with Visual C++ 6.0</B>
+<P class=tl>The following error may be encountered when compiling the OSP VC sample with Visual C++ 6.0:</P>
+<P class=tl>&nbsp;&nbsp;&nbsp;"error C2065: 'OSPFIND_UPCASESENSITIVE' : undeclared identifier"</P>
+<P class=tl>This is due to an older header file, simpdata.h, in the compiler. As the updated header is available and installed by the MDAC SDK, one of the following actions will address the error.</P>
+<UL type=disc>
+	<LI>Delete simpdata.h from the VC directory. By default, this is C:\Tools\VC98\INCLUDE.<BR><BR></LI>
+
+	<LI>Update the copy of simpdata.h in the VC directory.<BR><BR></LI>
+
+	<LI>In Visual C++, on the <B>Tools</B> menu, click <B>Options</B>. On the <B>Directories</B> tab, move the entry for C:\Tools\VC98\INCLUDE below the entry for C:\MSDASDK\include\osp.<BR><BR></LI>
+
+	<LI>Add the following line to your code to point to the newer header file (modify path to reflect actual location):</LI>
+</UL>
+
+<PRE><CODE>#include "c:\msdasdk\include\osp\simpdata.h" </CODE></PRE>
+</LI>
+</UL>
+
+<P><A HREF="#mdac_toc">Back to the Table of Contents</A></P>
+
+<H1><A NAME="oledbforolap"></A>OLE DB for OLAP</H1>
+
+<P>The OLE DB for OLAP release notes provide late-breaking or other information that supplements the MDAC SDK documentation for OLE DB for OLAP.</P>
+
+<P><B>MDXSample and Visual Basic</B></P>
+
+<P>If any problems are experienced with the MDXsample application executable file, recompile with Visual Basic version 5.0 (Service Pack 2) or later.</P>
+
+<P><A HREF="#mdac_toc">Back to the Table of Contents</A></P>
+
+<H1><A NAME="oledbtesting"></A>OLE DB Testing</H1>
+
+<P>The OLE DB testing release notes provide late-breaking or other information that supplements the MDAC SDK documentation for OLE DB.</P>
+
+<H3>OLE DB Test Tools</H3>
+
+<P>The OLE DB Testing section of the MDAC SDK has been expanded and reorganized for MDAC 2.5:
+
+<UL type=disc>
+	<LI>The Local Test Manager (LTM) tool now has extensive online help, accessible from its Help menu.<BR><BR></LI>
+
+	<LI>The Conformance Testing and QuikTest Test Module topics have been updated.</LI>
+</UL>
+
+<P><B>ITest and Test Case Wizard Removed from MDAC SDK 2.5</B><BR>
+These tools do not apply to more current operating systems and are no longer available in the MDAC SDK.</P>
+
+<H3>Conformance Testing &amp; Leveling</H3>
+
+<P>The following provides late-breaking or other information that supplements the Microsoft Conformance Testing and Leveling documentation. The documentation comprises the topics under "Conformance Testing in OLE DB" under OLE DB, and the technical articles "Mapping ADO Methods to OLE DB Interfaces" and "OLE DB Leveling."</P>
+
+<P><B>Corrections to the ADO-to-OLE DB Mapping Document</B></P>
+
+<P>In "Conformance Testing in OLE DB," there is a link to a document that outlines the ADO usage of OLE DB interfaces.</P>
+
+<P><B>IRowsetNotify</B>, <B>IDBSchemaRowset</B>, and <B>IDBInfo</B> are listed as interfaces that ADO does not use. This is incorrect.&nbsp; </P>
+
+<P>ADO consumes <B>IRowsetNotify</B> in order to surface Recordset events. It consumes <B>IDBSchemaRowset</B> by using the <B>Connection</B> object <B>OpenSchema</B> method and uses <B>IDBSchemaRowset</B> to populate the Parameters collection when <B>Refresh</B> is called. Finally, ADO consumes <B>IDBInfo</B> to get Literal Info information.</P>
+
+<P><A HREF="#mdac_toc">Back to the Table of Contents</A></P>
+
+<H1><A NAME="odbcreleasenotes"></A>ODBC Release Notes</H1>
+
+<P>The ODBC release notes provide late-breaking or other information that supplements the MDAC SDK documentation for ODBC.</P>
+
+<P><B>Microsoft Transaction Server Transactions</B></P>
+
+<P>For information about participating or enlisting in a Microsoft Transaction Server transaction, consult the Microsoft Transaction Server documentation. Detailed information is provided for driver developers and application writers.</P>
+
+<H1><A NAME="odbcprogrammersreference"></A>ODBC Programmer's Reference</H1>
+
+<P>The <I>ODBC Programmer's Reference</I> release notes provide late-breaking or other information that supplements the MDAC SDK documentation for ODBC.</P>
+
+<P><B>DSN Creation Fails in a Locked Down System</B></P>
+
+<P>Microsoft Windows NT® 4.0 and Windows 2000 introduce the concept of a "locked down system." Briefly stated, a locked down system prohibits users without Administrator privileges from making changes to system or application files.</P>
+
+<P>ODBC applications that attempt to create DSNs, thereby attempting to write to the registry, will fail on a locked down system. Applications writing to the registry must be installed by an Administrator or a user with Read/Write access to the registry.</P>
+
+<P><A HREF="#mdac_toc">Back to the Table of Contents</A></P>
+
+<H1><A NAME="componentchecker"></A>Component Checker Release Notes</H1>
+
+<P>Version 2.5 of the MDAC SDK includes a preview release of the Component Checker tool, which is designed to assist you in determining and diagnosing installation issues with MDAC.</P>
+
+<P>You can use Component Checker to perform the following tasks: 
+
+<UL type=disc>
+	<LI>Identify the current version of MDAC installed on your computer.<BR><BR></LI>
+
+	<LI>Create a series of reports about the files identified for the current MDAC installation.<BR><BR></LI>
+
+	<LI>Completely remove the current MDAC installation after listing .dll conflicts and identifying programs referencing a given .dll file.</LI>
+</UL>
+
+<P><B>Known Bug with Component Checker Online Help</B></P>
+
+<P>At this time, prior to the final release of Component Checker, you must open ComCheck.chm from your hard drive to view the online help. In the final release, the help file will be built into the tool and will be accessible from the <B>Help</B> menu.</P>
+
+<P><A HREF="#mdac_toc">Back to the Table of Contents</A></P>
+
+</BODY>
+</HTML>

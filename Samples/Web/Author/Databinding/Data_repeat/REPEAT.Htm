@@ -1,0 +1,102 @@
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<HTML>
+<HEAD>
+<TITLE>Repeated Tables</TITLE>
+<META NAME="FILENAME" CONTENT="repeat.HTM">
+
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+
+</head>
+
+<Body TOPMARGIN=20 LEFTMARGIN=40 BGCOLOR= "#FFFFFF" LINK= "#000066" VLINK= "#666666" TEXT= "#000000">
+<H2>Repeated Tables</H2>
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT>
+<P>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+<hr>
+<BR>
+<object id="quotelist"
+classid="clsid:333C7BC4-460F-11D0-BC04-0080C7055A83"
+align="baseline" border="0" width="0" height="0"><param
+name="DataURL" value="quotes.txt"><param name="UseHeader"
+value="True"></object>
+Click on the table headers to sort by that column. Note that the sort is done on the client, without a round-trip to the server.
+<P>
+<table border="1" id="elemtbl" datasrc="#quotelist">
+<THEAD>    <tr>
+        <td><font color="#0000FF"><b><u><DIV id=symbol>Symbol</DIV></u></b></font></td>
+        <td><font color="#0000FF"><b><u><DIV id=quote>Quote</DIV></u></b></font></td>
+        <td><font color="#0000FF"><b><u><DIV id=change>Change</DIV></u></b></font></td>
+        <td><font color="#0000FF"><b><u><DIV id=volume>Volume</DIV></u></b></font></td>
+    </tr>
+</THEAD><TBODY>    <tr>
+        <td align=right><SPAN DATAFLD="Symbol"></SPAN></td>
+        <td align=right><DIV DATAFLD="Quote"></DIV></td>
+        <td align=right><SPAN DATAFLD="Change"></SPAN></td>
+        <td align=right><DIV DATAFLD="Volume"></DIV></td>
+    </tr>
+</TBODY></table>
+
+<script language=JavaScript>
+
+function symbolClick() {
+  quotelist.SortColumn = "Symbol";
+  quotelist.Reset();
+}
+
+symbol.onclick = symbolClick;
+
+function quoteClick() {
+  quotelist.SortColumn = "Quote";
+  quotelist.Reset();
+}
+
+quote.onclick = quoteClick;
+
+function changeOnclick() {
+  quotelist.SortColumn = "Change";
+  quotelist.Reset();
+}
+
+change.onclick = changeOnclick;
+
+function volumeOnclick() {
+  quotelist.SortColumn = "Volume";
+  quotelist.Reset();
+}
+
+volume.onclick = volumeOnclick;
+
+</script>
+
+<hr>
+
+<b>Description</b><br>
+Repeated tables are a key feature of the data binding
+functionality included in Dynamic HTML. Repeated tables allow a
+page author to merge data with an HTML table on the client. The
+HTML table is used as a template. The content of the table is
+repeated once for each record in the data set and the data set is
+supplied by a data source object on the page. The table (template)
+is bound to the data source using the DATASRC attribute on
+&lt;TABLE&gt;. (DATASRC is a W3C-proposed extension to HTML.)</p>
+
+<p>The key advantage of repeated tables is that the repetition is
+done on the client without requiring round-trips to the server
+or storing state on the server. The data can subsequently be
+sorted, filtered, or manipulated in any fashion, and the page will
+dynamically be redrawn to reflect the changes -- without writing
+complicated scripts, server-side CGI processes, or Java&#153; code.</p>
+
+<P>
+<FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">
+&copy; <A HREF="/misc/cpyright.htm" TARGET="_top">1999 Microsoft Corporation. All rights reserved. Terms of use</A>. 
+</FONT>
+</body>
+</html>

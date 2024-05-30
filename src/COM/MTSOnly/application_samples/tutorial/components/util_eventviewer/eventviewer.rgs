@@ -1,0 +1,24 @@
+HKCR
+{
+	EventViewer.EventViewer.1 = s 'EventViewer Class'
+	{
+		CLSID = s '{69B4984B-312D-11D1-835C-00C04FB957D8}'
+	}
+	EventViewer.EventViewer = s 'EventViewer Class'
+	{
+		CurVer = s 'EventViewer.EventViewer.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {69B4984B-312D-11D1-835C-00C04FB957D8} = s 'EventViewer Class'
+		{
+			ProgID = s 'EventViewer.EventViewer.1'
+			VersionIndependentProgID = s 'EventViewer.EventViewer'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+		}
+	}
+}

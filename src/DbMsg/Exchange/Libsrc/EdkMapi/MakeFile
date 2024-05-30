@@ -1,0 +1,18 @@
+#----------------------------------------------------------------------------
+# Description:
+#   Makefile for EdkMAPI.Lib
+#
+# Copyright (C) Microsoft Corp. 1986-1998.  All Rights Reserved.
+#----------------------------------------------------------------------------
+
+USE_EXCHANGE=1
+
+Proj = EdkMapi
+
+!include <BkOffice.Mak>
+
+all: $(ObjDir)\$(Proj).Lib
+
+$(ObjDir)\$(Proj).Lib: $(@R).Obj $(@D)\iAddress.Obj $(@D)\iFolder.Obj \
+                       $(@D)\iMessage.Obj $(@D)\iProp.Obj $(@D)\iStore.Obj \
+                       $(@D)\iTrace.Obj $(@D)\IFind.Obj

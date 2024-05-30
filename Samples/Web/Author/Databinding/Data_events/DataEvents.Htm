@@ -1,0 +1,300 @@
+<HTML>
+<HEAD>
+	<TITLE>Home Shopping Simulation</TITLE>
+</HEAD>
+
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT>
+<hr>
+
+<BODY>
+
+<OBJECT ID="homeshop1" WIDTH=0 HEIGHT=0 CODEBASE="dataevents.ocx"
+ CLASSID="CLSID:07E06B08-FB2B-11D1-8B81-00C04F86F194"
+ oncellchange=cellChange()
+ onrowsinserted=rowInserted()
+ onrowsdelete=rowDeleted()
+ ondataavailable=updateStats()>
+    <PARAM NAME="_ExtentX" VALUE="6985">
+    <PARAM NAME="_ExtentY" VALUE="2672">
+</OBJECT>
+
+<H1>Home Shopping Simulation</H1>
+
+<P>Yellow highlight indicates that a new product has become available.</P>
+<P>Red highlight indicates that either the price or the number of units available has changed.</P>
+
+<TABLE BORDER="1" WIDTH="100%" RULES="cols" FRAME="above">
+<TR>
+<TD ALIGN="left" VALIGN="top" WIDTH="65%">
+
+	<TABLE ID="shopTable" DATASRC="#homeshop1" BORDER="1" WIDTH="95%">
+		<COLGROUP><COL WIDTH="25%"><COL WIDTH="40%"><COL WIDTH="15%"><COL WIDTH="15%"><COL WIDTH="5%"></COLGROUP>
+		<THEAD>
+			<TH>Item</TH>
+			<TH>Description</TH>
+			<TH>Initial Price</TH>
+			<TH>Current Price</TH>
+			<TH>Units Available</TH>
+		</THEAD>
+		<TBODY>
+			<TR>
+				<TD><SPAN DATAFLD="Name"></SPAN></TD>
+				<TD><SPAN DATAFLD="Description"></SPAN></TD> 
+				<TD ALIGN="middle">$<SPAN DATAFLD="InitialPrice"></SPAN></TD>
+				<TD ALIGN="middle">$<SPAN DATAFLD="CurrentPrice"></SPAN></TD>
+				<TD ALIGN="middle"><SPAN DATAFLD="Units"></SPAN></TD>
+			</TR>
+		</TBODY>
+	</TABLE>
+
+	<BR><BR>
+	<P>Most expensive item: <B><SPAN ID="mostExpensive"></SPAN></B></P>
+	<P>Least expensive item: <B><SPAN ID="leastExpensive"></SPAN></B></P>
+	<P>Item that has had the largest decrease in value: <B><SPAN ID="mostDecrease"></SPAN></B></P>
+
+</TD>
+<TD ALIGN="left" VALIGN="top" STYLE="font:9pt Courier">
+	<H4>Last five changes:</H4>
+	<P>- <SPAN ID="message1"></SPAN><BR>
+	<P>- <SPAN ID="message2"></SPAN><BR>
+	<P>- <SPAN ID="message3"></SPAN><BR>
+	<P>- <SPAN ID="message4"></SPAN><BR>
+	<P>- <SPAN ID="message5"></SPAN><BR>
+</TD>
+</TR>
+</TABLE>
+
+<SCRIPT LANGUAGE="JScript">
+<!--
+
+	var fadeColor = "#FF0000";
+
+	function updateStats() {
+		var mostValue = 0;
+		var mostRow;
+		var leastValue = 99999999;
+		var leastRow;
+		var changeValue = 0;
+		var changeRow;
+
+		var rs = homeshop1.recordset.Clone();
+		var rs2 = window.event.recordset;
+		var count =	rs.recordCount;
+
+		for (i=1; i <= count ;i++) {
+			if (i == rs2.AbsolutePosition) {
+				if (parseFloat(rs2.fields("CurrentPrice")) > parseFloat(mostValue)) {
+					mostValue = parseFloat(rs2.fields("CurrentPrice"));
+					mostRow = new String(rs2.fields("Name"));
+				}
+
+				if (parseFloat(rs2.fields("CurrentPrice")) < parseFloat(leastValue)) {
+					leastValue = parseFloat(rs2.fields("CurrentPrice"));
+					leastRow= new String(rs2.fields("Name"));
+				}
+		
+				if ( (parseFloat(rs2.fields("InitialPrice")) - parseFloat(rs2.fields("CurrentPrice"))) > parseFloat(changeValue)) {
+					changeValue = parseFloat(rs2.fields("InitialPrice")) - parseFloat(rs2.fields("CurrentPrice"));
+					changeRow = new String(rs2.fields("Name"));
+				}
+			}
+			else {
+				if (parseFloat(rs.fields("CurrentPrice")) > parseFloat(mostValue)) {
+					mostValue = parseFloat(rs.fields("CurrentPrice"));
+					mostRow = new String(rs.fields("Name"));
+				}
+
+				if (parseFloat(rs.fields("CurrentPrice")) < parseFloat(leastValue)) {
+					leastValue = parseFloat(rs.fields("CurrentPrice"));
+					leastRow= new String(rs.fields("Name"));
+				}
+		
+				if ( (parseFloat(rs.fields("InitialPrice")) - parseFloat(rs.fields("CurrentPrice"))) > parseFloat(changeValue)) {
+					changeValue = parseFloat(rs.fields("InitialPrice")) - parseFloat(rs.fields("CurrentPrice"));
+					changeRow = new String(rs.fields("Name"));
+				}
+			}
+
+			if (i < count)
+				rs.MoveNext();
+		}
+
+		mostExpensive.innerText = mostRow;
+		leastExpensive.innerText = leastRow;
+		mostDecrease.innerText = changeRow;
+	}
+
+	function updateStatus(message) {
+/*
+	<P>6. <SPAN ID="message6"></SPAN><BR>
+	<P>7. <SPAN ID="message7"></SPAN><BR>
+	<P>8. <SPAN ID="message8"></SPAN><BR>
+	<P>9. <SPAN ID="message9"></SPAN><BR>
+	<P>10. <SPAN ID="message10"></SPAN><BR>
+
+		message10.innerHTML = message9.innerHTML;
+		message9.innerHTML = message8.innerHTML;
+		message8.innerHTML = message7.innerHTML;
+		message7.innerHTML = message6.innerHTML;
+		message6.innerHTML = message5.innerHTML;
+*/
+		message5.innerHTML = message4.innerHTML;
+		message4.innerHTML = message3.innerHTML;
+		message3.innerHTML = message2.innerHTML;
+		message2.innerHTML = message1.innerHTML;
+		message1.innerHTML = message;
+
+	}
+
+	function cellChange() {
+		
+		var e = window.event;
+		var col = e.dataFld;
+		var rs = e.recordset;
+
+		rs.Move(0, e.bookmarks.item(0));
+		var rowNum = rs.AbsolutePosition
+
+		if (col == "CurrentPrice") {
+			fadeElement(document.all.shopTable.rows(rowNum).cells(3), fadeColor);
+			updateStatus("<B>" + rs.fields("Name") + "</B> has decreased in price.");
+
+			updateStats();
+		}
+
+		if (col == "Units") {
+			fadeElement(document.all.shopTable.rows(rowNum).cells(4), fadeColor);
+			updateStatus("Available units of <B>" + rs.fields("Name") + "</B> have decreased.");
+
+			updateStats();
+		}
+  	
+	}
+
+	function rowInserted() {
+
+		var e = window.event;
+		var rs = e.recordset;
+
+		rs.Move(0, e.bookmarks.item(0));
+
+		updateStatus("Product <B>" + rs.fields("Name") + "</B> is now available for purchase.");
+
+		window.setTimeout("fadeRow(" + rs.recordCount + ")",5);
+		   
+	}
+
+  function fadeRow(number)
+  {
+   fadeElement(document.all.shopTable.rows(number), "#FFFF00");
+  }
+
+
+	function rowDeleted() {
+
+		var e = window.event;
+		var rs = e.recordset;
+
+		rs.Move(0, e.bookmarks.item(0));
+		var rowNum = rs.AbsolutePosition
+
+		updateStatus("Product <B>" + rs.fields("Name") + "</B> has been removed.");
+	}
+
+
+
+
+	var numElements = 0;
+	var elements = new Array();
+	var fadingColors = new Array();
+	var colorDiffs = new Array();
+	var startColors = new Array();
+	var steps = new Array();
+	var numSteps = 20;
+	var fadeTimeout = 50;
+  
+	function fadeElement(e,s)
+	{
+		// This now fades the background color - so if one isn't set,
+		// return immediately.
+		if (e.style.backgroundColor == "") {
+			e.style.backgroundColor = "#FFFFFF";  // Set a default color.
+		} 
+
+    target = parseColor(e.style.backgroundColor);
+    start = parseColor(s);
+		elements[numElements] = e;
+		startColors[numElements] = start;
+		var copy = new Array(3);
+		var i;
+		for (i = 0; i < 3; i++)
+			copy[i] = start[i];
+		fadingColors[numElements] = copy;
+		diff  = new Array(3);
+		for (i = 0; i < 3; i++)
+			diff[i] = target[i] - start[i];
+		colorDiffs[numElements] = diff;
+		steps[numElements] = 0;
+		setColor(e, start, s);	// I change stuff here.
+		numElements++;
+		if (numElements > 0)
+			window.setTimeout("handleFade()",fadeTimeout);
+	}
+
+	function handleFade()
+	{
+		var count = 0;
+		var i;
+		for (i = 0; i < numElements; i++) 
+		{
+			var step = steps[i];
+			if (step <= numSteps)
+			{
+				count++;
+				var diff = colorDiffs[i];
+				var color = fadingColors[i];
+				var start = startColors[i];
+				var k;
+				for (k = 0; k < 3; k++)
+				{
+					color[k] = Math.round(start[k] + ((diff[k] * step) / numSteps));
+				}
+				setColor(elements[i], color);
+				steps[i] = step + 1;
+			} else {
+				elements[i].style.backgroundColor = "";
+			}
+		}
+		if (count > 0) {
+			window.setTimeout("handleFade()",fadeTimeout);
+		} else {
+			numElements = 0; // reset the array sizes.
+		}
+	}
+
+	function setColor(e, rgb, s)
+	{
+		var newColor = "#" + hex(rgb[0]) + hex(rgb[1]) + hex(rgb[2]);
+		e.style.backgroundColor = newColor;
+	}
+	function hex(i)
+	{
+		return (i<16 ? "0" : "") + i.toString(16)
+	}
+	function parseColor(color)
+  {
+    var uc = color.toUpperCase();
+		var r = parseInt("0x" + color.substring(1,3) );
+		var g = parseInt("0x" + color.substring(3,5) );
+		var b = parseInt("0x" + color.substring(5,7) );
+    return new Array(r,g,b);
+  }
+-->
+</script>
+
+<DIV id=debug></DIV>
+
+</BODY>
+</HTML>

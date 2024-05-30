@@ -1,0 +1,75 @@
+<%@ LANGUAGE = VBScript %>
+<%  Option Explicit		%>
+
+
+<HTML>
+    <HEAD>
+        <TITLE>Looping</TITLE>
+    </HEAD>
+
+    <BODY BGCOLOR="White" topmargin="10" leftmargin="10">
+
+
+        <!-- Display Header -->
+
+        <font size="4" face="Arial, Helvetica">
+        <b>Looping with ASP</b></font><br>
+      
+        <hr size="1" color="#000000">
+
+		
+		<%
+			' Index Counter
+			Dim i
+		%>
+
+
+        <!-- Looping with a for loop -->
+		
+        <% for i = 1 to 5 %>
+
+            <FONT SIZE=<% = i %>>
+
+            Hello World with a For Loop!<BR>
+			</FONT>
+        
+        <% next %>
+
+        <hr>
+
+
+        <!-- Looping with a while loop -->
+
+        <% i = 1
+
+           while (i < 6) %>
+    
+                <FONT SIZE=<% = i %>>
+
+                Hello World with a While Loop!<BR>
+				</FONT>
+	
+                <% i = i+1 %>
+
+           <% wend %>
+
+        <hr>
+
+
+        <!-- Looping with a do..while loop -->
+
+        <% i = 1
+
+           do %>
+    
+                <FONT SIZE=<% = i %>>
+
+                Hello World with a Do..While Loop!<BR>
+				</FONT>
+
+                <% i = i+1 %>
+
+           <% loop while (i < 6) %>
+
+    </BODY>
+</HTML>

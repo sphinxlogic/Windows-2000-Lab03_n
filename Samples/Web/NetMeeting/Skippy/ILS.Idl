@@ -1,0 +1,13 @@
+//****************************************************************************
+//
+//  SKIPPY! sample for Microsoft NetMeeting SDK
+//
+//  File:       ils.idl
+//  Content:    This file is a stub for the real IDL
+//
+//  Copyright (c) Microsoft Corporation 1997
+//  All rights reserved
+//
+//****************************************************************************
+
+#include <ils.idl>

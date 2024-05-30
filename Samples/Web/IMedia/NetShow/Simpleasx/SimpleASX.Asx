@@ -1,0 +1,11 @@
+<ASX version = "3.0">
+<TITLE>Simple ASX Demo</TITLE>
+    <Entry>
+	<TITLE>An Entry in a Simple ASX</TITLE>
+	<AUTHOR>Microsoft Corporation</AUTHOR>
+	<COPYRIGHT>(c)1999 Microsoft Corporation</COPYRIGHT>
+<!-- This is a comment.  Change the following path to point to your ASF -->
+        <Ref href = "mms://netshow.microsoft.com/ms/sbnasfs/wmt/wmt.asf" />
+    </Entry>
+</ASX>
+

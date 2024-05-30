@@ -1,0 +1,62 @@
+<TITLE>Media Type control</TITLE>
+<BODY>
+
+<H1>Media Type Control</H1>
+<p>
+The control displays the media type of the HTTP URL downloaded.
+<HR>
+<OBJECT id="IEMime1" type="application/x-oleobject"
+classid="clsid:C60BC919-F40E-11D0-B038-00C04FB9C24A"
+width=300 height=20>
+<param name="URL" value="http://www.microsoft.com">
+</OBJECT>
+
+<HR>
+<SCRIPT LANGUAGE=VBScript>
+	Sub IEMime1_Complete()
+	' Handle complete event
+		MsgBox "Completed download of " + IEMime1.URL
+	End Sub
+
+	Sub PushMe1Click
+		IEMime1.Media = MediaText1.value
+		IEMime1.URL = URLText1.value
+	End Sub
+
+</SCRIPT>
+
+    Type URL here:
+	<INPUT TYPE=Text NAME=URLText ID=URLText1 
+		TITLE="URL To Download" VALUE="http://www.microsoft.com"
+		SIZE=70 MAXLENGTH=255>
+		<BR>
+	Optional Media type here:
+	<INPUT TYPE=Media NAME=MediaText ID=MediaText1
+		TITLE="Media Type for Accept types"
+		SIZE=70 MAXLENGTH=255>
+		<BR>
+	<INPUT TYPE=Button NAME=PushMe ID=PushMe1
+	    TITLE="Push Me" VALUE="Push me to check a new URL"
+			onClick="PushMe1Click">
+		<BR>
+
+<HR>
+<LEFT><H3>Properties</H3>
+	<UL>
+	<LI> URL - HTTP URL to be downloaded.
+	<LI> Media - Custom Media type to be registered. 
+	<LI> Cfformat - Format of the URL downloaded.(Read only).
+	</UL>
+<LEFT><H3>Methods</H3>
+	<UL>
+	<LI> AboutBox - Display the version.
+	<LI> Reload - Reloads the URL specified.
+	</UL>
+<LI>
+<LEFT><H3>Events</H3>
+	<UL>
+	<LI> Complete - DOWNLOAD complete
+	</UL>
+<LI>
+</BODY>
+</HTML>

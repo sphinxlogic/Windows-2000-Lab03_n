@@ -1,0 +1,309 @@
+<HTML>
+<HEAD>
+<STYLE type="text/css">
+    .expandable {color:blue; cursor:hand}
+    .expanded {color:black}
+    .collapsed {display:none}
+</STYLE>
+
+	<TITLE>Loan Calculator</TITLE>
+</HEAD>
+
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT>
+<hr>
+
+<BODY>
+
+<OBJECT ID="Calc" WIDTH=0 HEIGHT=0 CODEBASE="AmortControl.ocx"
+ CLASSID="CLSID:EC5F3021-FA37-11D1-8B80-00C04F86F194">
+    <PARAM NAME="_ExtentX" VALUE="3360">
+    <PARAM NAME="_ExtentY" VALUE="1799">
+</OBJECT>
+
+<H2>Loan Calculator</H2>
+<HR>
+
+<TABLE BORDER="1" WIDTH="100%" RULES="none" FRAME="void">
+<TR>
+<TD ALIGN="left" VALIGN="top" WIDTH="40%">
+	<P>Loan Amount: $<input datasrc="#Calc" datafld="Amount" type="text" size="20" id="Amount"> </P>
+
+	<P>Interest Rate (in Percent): <input datasrc="#Calc" datafld="Interest" type="text" size="20" ID="Interest">% </P>
+
+	<P>Duration (in months): <input datasrc="#Calc" datafld="Duration" type="text" size="20" id="Duration"> </P>
+	<BUTTON ID="calcButton" onClick="showStats()">Calculate</BUTTON>
+
+	<BR><BR><BR><BR>
+
+
+	<DIV id=Stats class=collapsed>
+		<P>Monthly Payment: $<span datasrc="#Calc" datafld="Payment"></span> </P>
+		<P>Total Payment: $<SPAN DATASRC="#Calc.Total" DATAFLD="Total"></SPAN> </P>
+		<P>Total Interest Payment: $<SPAN DATASRC="#Calc.Interest" DATAFLD="TotalInt"></SPAN> </P>
+
+		<INPUT NAME="tableSelect" TYPE="radio" onClick="disp(1);">Display Monthly Payment Table</INPUT>
+		<BR>
+		<INPUT NAME="tableSelect" TYPE="radio" onClick="disp(2);">Display Yearly Payment Table</INPUT>
+		<BR>
+		<INPUT NAME="tableSelect" TYPE="radio" onClick="disp(3);" CHECKED>Hide Payment Tables</INPUT>
+
+
+	</DIV>
+</TD>
+
+<TD ALIGN="left" VALIGN="top" WIDTH="45%">
+	<DIV id=MonthlyPayments class=collapsed>
+
+		<H3>Monthly Payments</H3>
+		<P>Each page represents a year.</P>
+		<BUTTON id="firstM" onClick="firstM()" DISABLED="true">First Page</BUTTON>
+		<BUTTON id="prevM" onClick="prevM()" DISABLED="true">Previous Page</BUTTON>
+		<BUTTON id="nextM" onClick="nextM()" DISABLED="true">Next Page</BUTTON>
+		<BUTTON id="lastM" onClick="lastM()" DISABLED="true">Last Page</BUTTON>
+
+		<H3>Year <SPAN ID="YearNumber"></SPAN></H3>
+		<TABLE ID="schedMTable" border="1" datasrc="#Calc.Schedule" DATAPAGESIZE="12">
+		  <THEAD>	 
+			<tr>
+			  <th>Month</th>
+			  <th>Principal Payment</th>
+			  <th>Interest Payment</th>
+			  <th>Running Total </th>
+			</tr>
+		  </THEAD> 
+		  <TBODY> 
+			<tr>
+			  <td><SPAN DATAFLD="PaymentNumber"></SPAN></td>
+			  <td><SPAN DATAFLD="Principal"></SPAN></td>
+			  <td><SPAN DATAFLD="Interest"></SPAN></td>
+			  <td><SPAN DATAFLD="Total"></SPAN></td>
+			</tr>
+		  </TBODY>
+		</TABLE>
+
+		<BR>
+		<P>Total payment this year: $<SPAN DATASRC="#Calc.YearTotal" DATAFLD="YearTotal"></SPAN></P>
+
+	</DIV>
+
+	<DIV id=YearlyPayments class=collapsed>
+
+		<H3>Yearly Payments</H3>
+		<P>Each page represents a decade.</P>
+
+		<BUTTON id="firstY" onClick="firstY()" DISABLED="true">First Page</BUTTON>
+		<BUTTON id="prevY" onClick="prevY()" DISABLED="true">Previous Page</BUTTON>
+		<BUTTON id="nextY" onClick="nextY()" DISABLED="true">Next Page</BUTTON>
+		<BUTTON id="lastY" onClick="lastY()" DISABLED="true">Last Page</BUTTON>
+
+		<TABLE ID="schedYTable" border="1" datasrc="#Calc.Annual" DATAPAGESIZE="10" onreadystatechange="processYTable()">
+		  <THEAD>	 
+			<tr>
+			  <th>Year</th>
+			  <th>Principal Payment</th>
+			  <th>Interest Payment</th>
+			  <th>Running Total </th>
+			</tr>
+		  </THEAD> 
+		  <TBODY> 
+			<tr>
+			  <td><SPAN DATAFLD="Year"></SPAN></td>
+			  <td><SPAN DATAFLD="Principal"></SPAN></td>
+			  <td><SPAN DATAFLD="Interest"></SPAN></td>
+			  <td><SPAN DATAFLD="Total"></SPAN></td>
+			</tr>
+		  </TBODY>
+		</TABLE>
+
+	</DIV>
+</TD>
+</TR>
+</TABLE>
+
+<SCRIPT LANGUAGE="JScript">
+
+// *************  Yearly Display Functions **********************************
+
+	function firstY() {
+		schedYTable.firstPage();
+
+	//	checkLimitsY();
+	}
+
+	function prevY() {
+		schedYTable.previousPage();
+
+	//	checkLimitsY();
+	}
+
+	function nextY() {
+		schedYTable.nextPage();
+
+	//	checkLimitsY();
+	}
+
+	function lastY() {
+		schedYTable.lastPage();
+
+	//	checkLimitsY();
+	}
+
+	function processYTable() {
+
+		if ((schedYTable.readyState == "complete") && (Calc.namedRecordset("Annual", null).recordCount > 0)) {
+			checkLimitsY();
+		}
+
+	}
+
+	function checkLimitsY() {
+
+		var rs = Calc.namedRecordset("Annual", null);
+
+        //determine where the position of the first row is within the data set
+
+        if (schedYTable.rows[1].recordNumber > 1) {
+          document.all.firstY.disabled = false;
+		  document.all.prevY.disabled = false;
+		}
+        else {
+          document.all.firstY.disabled = true;
+		  document.all.prevY.disabled = true;
+		}
+
+        //determine where the position of the last row is within the data set
+
+        if (schedYTable.rows[schedYTable.rows.length - 1].recordNumber < rs.RecordCount) {
+          document.all.lastY.disabled = false;
+		  document.all.nextY.disabled = false;
+		}
+        else {
+          document.all.lastY.disabled = true;
+		  document.all.nextY.disabled = true;
+		}
+	}
+
+// *************  Monthly Display functions **********************************
+
+	function firstM() {
+		schedMTable.firstPage();
+		Calc.namedRecordset("YearTotal", null).MoveFirst();
+
+		checkLimitsM();
+	}
+
+	function prevM() {
+		schedMTable.previousPage();
+		Calc.namedRecordset("YearTotal", null).MovePrevious();
+
+		checkLimitsM();
+	}
+
+	function nextM() {
+		schedMTable.nextPage();
+		Calc.namedRecordset("YearTotal", null).MoveNext();
+
+		checkLimitsM();
+	}
+
+	function lastM() {
+		schedMTable.lastPage();
+		Calc.namedRecordset("YearTotal", null).Movelast();
+
+		checkLimitsM();
+	}
+
+	function checkLimitsM() {
+
+		var rs = Calc.namedRecordset("YearTotal", null);
+
+		if (rs.AbsolutePosition == 1) {
+			document.all.firstM.disabled = true;
+			document.all.prevM.disabled = true;
+		}
+		else {
+			document.all.firstM.disabled = false;
+			document.all.prevM.disabled = false;
+		}			
+
+		if (rs.AbsolutePosition == rs.RecordCount) {
+			document.all.lastM.disabled = true;
+			document.all.nextM.disabled = true;
+		}
+		else {
+			document.all.lastM.disabled = false;
+			document.all.nextM.disabled = false;
+		}			
+
+		document.all.YearNumber.innerText = Calc.namedRecordset("YearTotal", null).AbsolutePosition;
+
+	}
+
+
+// ***********************  Common Functions *****************************
+
+	function disp(display) {
+
+		if (display == 1) {
+			document.all.MonthlyPayments.className = "expanded";
+			document.all.YearlyPayments.className = "collapsed";
+		}
+		else if (display == 2) {
+			document.all.MonthlyPayments.className = "collapsed";
+			document.all.YearlyPayments.className = "expanded";
+		}
+		else {
+			document.all.MonthlyPayments.className = "collapsed";
+			document.all.YearlyPayments.className = "collapsed";
+		}
+	}
+
+	function update_list()
+	{
+
+		MortList.InterestRate = Interest.value;
+	
+		MortList.LoanTerm = Duration.value;
+		MortList.LoanAmount = Amount.value;
+		document.all("MortList").Reset();
+
+	}
+
+	function durationChange() {
+
+		var rs1 = Calc.namedRecordset("YearTotal", null);
+
+		if (rs1.recordCount > 1) {
+			checkLimitsM();
+		}
+		else {
+			document.all.firstM.disabled = true;
+			document.all.prevM.disabled = true;
+			document.all.nextM.disabled = true;
+			document.all.lastM.disabled = true;
+
+			document.all.YearNumber.innerText = Calc.namedRecordset("YearTotal", null).AbsolutePosition;
+
+		}
+	}
+
+	function showStats() {
+			document.all.Stats.className = "expanded";
+			document.all.calcButton.value = "Recalculate";
+	}
+
+</SCRIPT>
+
+<SCRIPT LANGUAGE="JScript" FOR="Calc" EVENT="ondatasetchanged">
+
+
+	if (event.qualifier == "YearTotal") {
+		durationChange();
+	}
+
+</SCRIPT>
+
+</BODY>
+</HTML>

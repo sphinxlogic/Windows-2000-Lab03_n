@@ -1,0 +1,52 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\monitor.res \
+    $(_OBJ_DIR)\alpha\mem.obj \
+    $(_OBJ_DIR)\alpha\map.obj \
+    $(_OBJ_DIR)\alpha\mapcf.obj \
+    $(_OBJ_DIR)\alpha\mappsx.obj \
+    $(_OBJ_DIR)\alpha\monitor.obj \
+    $(_OBJ_DIR)\alpha\pnp.obj \
+    $(_OBJ_DIR)\alpha\assert.obj \
+    $(_OBJ_DIR)\alpha\common.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\monitor.res \
+    $(_OBJ_DIR)\axp64\mem.obj \
+    $(_OBJ_DIR)\axp64\map.obj \
+    $(_OBJ_DIR)\axp64\mapcf.obj \
+    $(_OBJ_DIR)\axp64\mappsx.obj \
+    $(_OBJ_DIR)\axp64\monitor.obj \
+    $(_OBJ_DIR)\axp64\pnp.obj \
+    $(_OBJ_DIR)\axp64\assert.obj \
+    $(_OBJ_DIR)\axp64\common.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\monitor.res \
+    $(_OBJ_DIR)\i386\mem.obj \
+    $(_OBJ_DIR)\i386\map.obj \
+    $(_OBJ_DIR)\i386\mapcf.obj \
+    $(_OBJ_DIR)\i386\mappsx.obj \
+    $(_OBJ_DIR)\i386\monitor.obj \
+    $(_OBJ_DIR)\i386\pnp.obj \
+    $(_OBJ_DIR)\i386\assert.obj \
+    $(_OBJ_DIR)\i386\common.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\monitor.res \
+    $(_OBJ_DIR)\ia64\mem.obj \
+    $(_OBJ_DIR)\ia64\map.obj \
+    $(_OBJ_DIR)\ia64\mapcf.obj \
+    $(_OBJ_DIR)\ia64\mappsx.obj \
+    $(_OBJ_DIR)\ia64\monitor.obj \
+    $(_OBJ_DIR)\ia64\pnp.obj \
+    $(_OBJ_DIR)\ia64\assert.obj \
+    $(_OBJ_DIR)\ia64\common.obj
+
+PASS0_IA64_OBJECTS=
+

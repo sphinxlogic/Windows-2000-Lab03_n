@@ -1,0 +1,39 @@
+Permission INI File Editor (piniedit)
+ 
+piniedit [inifilename]
+ 
+Creates and edits .ini files for use with the signcode tool.
+ 
+The Permission INI File Editor tool provides a quick way to create .ini files that are used with the signcode tool. The signcode tool uses .ini files to provide descriptions of the permission settings that Java applets need. Using an .ini file with the signcode tool enables you to digitally sign your applet with the permissions encoded within the digital signature. The other way to create .ini files requires manually creating the file and setting the value of each variable in the file. The Permission INI File Editor creates and edits .ini files quickly and easily by enabling you to specify the permissions using a graphical user interface.
+ 
+To start the Permission INI File Editor, type piniedit on the command line, optionally followed by the name of the .ini file that you want to edit. 
+
+To edit the .ini file, choose a Tab that corresponds to a permission that you want to specify. You can then edit the permission by selecting appropriate check boxes and entering parameters in the text boxes. 
+
+The following table lists the Tabs and the permissions that can be edited in each Tab. 
+
+Tab Name	Permission Description	
+
+File	        The ability to read, write, or delete files.	
+Registry	The ability to read, write, delete, create, or open keys in the registry.	
+Network	        The ability to connect or bind to various hosts or ports on the network.	
+Client Services	The ability to access client storage, perform user-directed file I/O, access user interface functionality, print, use multimedia libraries, and access security classes.	
+System	        The ability to run programs, access system properties, manipulate threads, and redirect system streams.	
+Reflection	The ability to access public or declared members of a class, based on the class loader.	
+Custom	        The ability to use a non-system permission designed by the user.
+ 	
+If you need more detailed information about these permissions and how to edit them, see the Editing Permission Sets section of the documentation for the cprmedit tool. (The cprmedit tool uses the same user interface as piniedit, but instead of editing .ini files, cprmedit sets Java permissions for security zones.)
+ 
+You can select the High or the Medium button to set all permissions to a High or Medium security level, respectively. These buttons are useful if you want to save time by adding to or removing permissions from a preset group of permissions. Be aware that selecting High or Medium erases any permission editing that you have done previously and then resets the permissions to High or Medium. To clear the settings for all permissions, select the Clear button. To create an .ini file with a Low security level, select the Full Permissions button. This setting allows all permissions. 
+
+You can also load the permissions from a specific zone by choosing Load from Zone from the Zone menu. This action will allow you to edit the .ini file using a set of permissions that are identical to the permissions for the specified zone. 
+
+To add ActiveX permissions to the .ini file, select the ActiveX permissions button.
+ 
+When editing the File, Registry, Network, property access, or execution access permissions, you can use the asterisk (*) and the question mark (?) as wildcard characters in the text boxes. You can use semicolons (;) to delimit multiple entries in the property access and execution access text boxes. Multiple ports in the Network permission should be separated by commas. 
+
+If you are using an asterisk, a question mark, or a semicolon as a literal in an expression, you need to precede the literal character with a backslash and put the whole expression in double quotes. Each literal backslash must also be preceded by a backslash. For example, if you want to specify all files in the c:\windows directory whose second character is the asterisk, you should enter "c:\\windows\\?\**". 
+
+When you have finished editing the permissions, you should save the file. To save the permissions as an .ini file, choose Save from the File menu. To save the edited permissions to a zone, choose Save to Zone from the Zone menu, which will modify the permissions that are recognized by Internet Explorer 4.0 and later for the specified zone.
+ 
+For more information on .ini files, see the Sample Permissions INI File and the Java Permissions INI Values Reference. To learn how .ini files are used with the signcode tool, see the Signing a Cabinet File with Java Permissions Using Signcode article. 

@@ -1,0 +1,36 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\localui.res \
+    $(_OBJ_DIR)\alpha\localui.obj \
+    $(_OBJ_DIR)\alpha\util.obj \
+    $(_OBJ_DIR)\alpha\dialogs.obj \
+    $(_OBJ_DIR)\alpha\config.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\localui.res \
+    $(_OBJ_DIR)\axp64\localui.obj \
+    $(_OBJ_DIR)\axp64\util.obj \
+    $(_OBJ_DIR)\axp64\dialogs.obj \
+    $(_OBJ_DIR)\axp64\config.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\localui.res \
+    $(_OBJ_DIR)\i386\localui.obj \
+    $(_OBJ_DIR)\i386\util.obj \
+    $(_OBJ_DIR)\i386\dialogs.obj \
+    $(_OBJ_DIR)\i386\config.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\localui.res \
+    $(_OBJ_DIR)\ia64\localui.obj \
+    $(_OBJ_DIR)\ia64\util.obj \
+    $(_OBJ_DIR)\ia64\dialogs.obj \
+    $(_OBJ_DIR)\ia64\config.obj
+
+PASS0_IA64_OBJECTS=
+

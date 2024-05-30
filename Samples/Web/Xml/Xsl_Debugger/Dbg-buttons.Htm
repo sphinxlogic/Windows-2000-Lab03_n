@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<HTML>
+<HEAD>
+	<TITLE>Debug Controls</TITLE>
+<SCRIPT>
+function doStep(a) {
+	window.returnValue = a;
+	window.close();
+}
+
+function init() {
+	parms = window.dialogArguments;
+	if (parms[0].breakPoint) {
+		clear.value = "Clear";
+	}
+	else
+		clear.value = "Set";
+}
+
+//I hate doing this from this module, but it is nicer from an event
+//management perspective.
+function toggleBreak() {
+	//Clear or set the breakpoint
+	obj = parms[0];
+	if (!obj.breakPoint) {
+		clear.value = "Clear";
+		obj.breakPoint = true;
+		obj.children(0).className = "xslNodeDebug";
+	}
+	else {
+		clear.value = "Set";
+		obj.breakPoint = null;
+		obj.children(0).className = "xslNode";
+	}
+
+}
+</SCRIPT>
+</HEAD>
+
+<BODY onload="init()" STYLE="margin-top:16px; text-align:right">
+<input type=button value="Step" onclick="doStep(1)" style="width:40px">
+<input type=button value="Go" onclick="doStep(2)" style="width:40px">
+<input type=button value="Clear" onclick="toggleBreak()" id="clear" style="width:40px">
+<input type=button value="Stop" onclick="doStep(3)" style="width:40px">
+</BODY>
+</HTML>

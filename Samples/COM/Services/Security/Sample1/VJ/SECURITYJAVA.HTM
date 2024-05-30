@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+	<TITLE>Security Java</TITLE>
+</HEAD>
+
+
+<STYLE TYPE="text/css">
+<!--
+  A:link {text-decoration: none;
+	font: 10pt Verdana, Arial, Helvetica;
+	font-weight: bold;
+	color: #003399}
+  A:visited {text-decoration: none;
+	font: 10pt Verdana, Arial, Helvetica;
+	font-weight: bold;
+	color: #0080ff}
+BODY { 
+     font-family: Verdana, Arial, Helvetica;
+    line-height: 1;
+    color: #000000; 
+    font-size:  9pt;
+	
+  H1, H2, H3, H4, H5, H6, P, UL, OL, DIR, MENU, DIV, 
+  DT, DD, ADDRESS, BLOCKQUOTE, PRE, BR { display: block }
+
+  B, STRONG, I, EM, CITE, VAR, TT, CODE, KBD, SAMP, 
+  IMG, SPAN { display: inline }
+	
+  H1, H2, H3, H4 { margin-top: 1em; margin-bottom: 1em }
+  H5, H6 { margin-top: 1em }
+  H1 { text-align: center }
+  H1, H2, H4, H6 { font-weight: bold }
+  H3, H5 { font-style: italic }
+
+  H1 { font-size: xx-large }
+  H2 { font-size: x-large }
+  H3 { font-size: large }
+	
+  }
+-->
+</STYLE>
+
+
+<BODY BGCOLOR="#ffffff" TOPMARGIN="20" LEFTMARGIN="10">
+
+<h2><A NAME="H2_2185687282"></A>Security Java</h2>
+
+
+<PRE>
+<CODE>
+
+//
+//
+// VJSecuritySampleClass
+//
+//
+
+//import mtxas.*;
+import com.ms.mtx.*;
+
+import vjsecuritysampleclasslib.*;
+
+public class VJSecuritySampleClass
+   implements vjsecuritysampleclasslib.IVJSecuritySampleClass, vjsecuritysampleclasslib.IVJSecuritySampleClass
+{
+   private static final String CLSID = 
+      "8cccc630-14f0-11d1-824c-00aa00a3f13e";
+  
+public int AmIAnAdministrator()
+{
+	try
+	{
+		IObjectContext objCtx = MTx.GetObjectContext();
+
+	if(null == objCtx)
+		//return error code
+		return 2;
+
+	if(!objCtx.IsSecurityEnabled())
+		//Return Error code
+		return 2;
+
+	// This Function Call will cause an exception if the Administrator role does
+	// not exist.  The catch block will run and error code 2 will be returned.
+	// If the Administrator role exists, then we have find out if the caller is in 
+	// this role.
+	if(objCtx.IsCallerInRole("Administrator"))
+		return 1;
+	else
+		return 0;
+	}
+
+catch(Exception e)
+{
+	return 2;
+}
+
+}
+
+
+}
+
+</CODE>
+</PRE>
+
+<HR>
+<CENTER>
+<FONT FACE="VERDANA,ARIAL,HELVETICA" size=1>
+&copy; 1997 Microsoft Corporation. All rights reserved. 
+</FONT>
+</CENTER>
+
+</BODY>
+</HTML>

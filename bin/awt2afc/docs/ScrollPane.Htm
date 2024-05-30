@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>ScrollPane -> UIScrollViewer</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">ScrollPane to UIScrollViewer</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.ScrollPane should be transformed into instances of
+com.ms.UI.UIScrollViewer.</p>
+
+<p align="left">ScrollPane extends <a href="Container.htm"
+target="descriptions">Container</a>: be sure to see its changes.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">UIScrollViewer gives you more control over
+scrollable areas. First, besides setting the increments of
+scrollbars, you can also position the scrollbars on whichever
+side you choose, like</p>
+
+<p align="left"><font face="Courier">new UIScrollViewer(myList,
+15, 15, UIScrollViewer.SCROLL_TOP);</font></p>
+
+<p align="left">As in AWT, you can also decide to always display
+the scroll bar (NOHIDE) or always hide it (NOSHOW). You can also
+make it so that the size of the scroll bar's thumb component is
+not proportional to the scroll bar's range (NONPROPORTIONAL).
+This can be done separately for each scrollbar: the construction</p>
+
+<p align="left"><font face="Courier">new UIScrollViewer(myTree,
+15, 15, UIScrollViewer.SCROLL_TOP, UIScroll.NOHIDE,
+UIScroll.NOSHOW);</font></p>
+
+<p align="left">always displays the horizontal scrollbar and
+never displays the vertical scrollbar.</p>
+
+<p align="left">Finally, you can move the header bar to the
+bottom or the right, rather than the default left or top. </p>
+
+<p align="left">&nbsp;</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">This is the set of changes you need to make to
+port all ScrollPane methods to UIScrollViewer methods. Any method
+not listed here or below does not need to be changed.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial"><strong>AWT Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">ScrollPane() or<br>
+        ScrollPane(int)</font></td>
+        <td nowrap><font size="2" face="Courier">UIScrollViewer()
+        or<br>
+        UIScrollViewer(Component) or<br>
+        UIScrollViewer(Component, int)</font></td>
+        <td><font size="2">You cannot specify a scrollbar with
+        just a style: if you include a style, you must also
+        include the component kept in the UIScrollViewer. There
+        are other constructors to include more styles: see the
+        documentation for more information.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">SCROLLBARS_AS_NEEDED</font></td>
+        <td nowrap><font size="2" face="Courier">0</font></td>
+        <td><font size="2">Default setting</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">SCROLLBARS_NEVER</font></td>
+        <td><font size="2" face="Courier">UIScroll.NOSHOW</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">SCROLLBARS_ALWAYS</font></td>
+        <td><font size="2" face="Courier">UIScroll.NOHIDE</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">addImpl(Component,
+        Object, int)</font></td>
+        <td><font size="2" face="Courier">setContent(UIComponent)</font></td>
+        <td><font size="2">addImpl ignores the Object and uses an
+        integer for placement, which plays no role in ScrollPane:
+        setContent does the same thing, changing the component
+        and returning the old one.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getScrollPosition()</font></td>
+        <td><font size="2" face="Courier">getPosition()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">layout()</font></td>
+        <td><font size="2" face="Courier">doLayout()</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">printComponents(Graphics)</font></td>
+        <td><font size="2" face="Courier">printAll(Graphics)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setScrollPosition(int,
+        int)</font></td>
+        <td><font size="2" face="Courier">setPosition(int, int)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setScrollPosition(point)</font></td>
+        <td><font size="2" face="Courier">setPosition(point)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h3>Unsupported Methods</h3>
+
+<p>Some methods in java.awt.ScrollPane are not directly supported
+in com.ms.ui.UIScrollViewer. Those methods and suggested changes
+are described here.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial">AWT Code<strong>/Suggested
+        AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">getHAdjustable()</font><p><font
+        size="2" face="Courier"><strong>getXPosition()</strong></font></p>
+        </td>
+        <td><font size="2">AWT returns an adjustable object, and
+        AFC returns an int.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2"><br>
+        </font><font size="2" face="Courier">getHScrollbarHeight()</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">getScrollbarDisplayPolicy()</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getViewportSize()</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getVScrollbarWidth()</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">paramString()</font><p><font
+        size="2" face="Courier"><strong>getName(), etc.</strong></font></p>
+        </td>
+        <td><font size="2">Use the appropriate getXXX function to
+        get the information you need.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setLayout(LayoutManager)</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td><font size="2">You can't change a scrollbar's layout
+        manager.</font></td>
+    </tr>
+</table>
+</body>
+</html>

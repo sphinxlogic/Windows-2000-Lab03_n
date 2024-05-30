@@ -1,0 +1,96 @@
+/*****************************************************************************
+* Wipe.idl *
+*----------*
+*
+*   Description:
+*       This is the IDL file for DirectX installable transform coclass,
+*   interface, and type definitions.
+*
+*-----------------------------------------------------------------------------
+*   Created by: EDC                                  Date: 01/06/98
+*
+*   Copyright Microsoft Corporation 1998
+*   All rights reserved.
+*
+*-----------------------------------------------------------------------------
+*   Revision History:
+*
+*   Date ------ Person ------------ Notes ------------------------------------
+*
+*****************************************************************************/
+//--- Import base idl
+import "dxtrans.idl";
+
+//=== Forward References ====================================================
+
+//=== Constants =============================================================
+
+//=== Interface definitions =================================================
+
+typedef enum DXWIPEDIRECTION
+{
+    DXWD_RIGHT,
+    DXWD_LEFT,
+    DXWD_DOWN,
+    DXWD_UP
+} DXWIPEDIRECTION;
+
+typedef enum DXWIPEDISPID
+{
+    DISPID_DXW_GradientSize = DISPID_DXE_NEXT_ID,
+    DISPID_DXW_WipeStyle,
+    DISPID_DXW_Copyright
+} DXWIPEDISPID;
+
+[
+    object,
+    uuid(A5781BB9-E54B-11d1-9A72-0000F8756A10),
+    dual,
+    helpstring("IDXTWipeSample Interface"),
+    pointer_default(unique)
+]
+interface IDXTWipeSample : IDXEffect
+{
+    [propget, id(DISPID_DXW_GradientSize)]
+        HRESULT GradientSize( [out, retval]float *pPercentSize );
+    [propput, id(DISPID_DXW_GradientSize)]
+        HRESULT GradientSize( [in]float PercentSize );
+    [propget, id(DISPID_DXW_WipeStyle)]
+        HRESULT WipeStyle( [out, retval]DXWIPEDIRECTION *pVal );
+    [propput, id(DISPID_DXW_WipeStyle)]
+        HRESULT WipeStyle( [in]DXWIPEDIRECTION newVal );
+    [propget, id(DISPID_DXW_Copyright)]
+        HRESULT Copyright( [out, retval]BSTR *pVal );
+    [propput, id(DISPID_DXW_Copyright)]
+        HRESULT Copyright( [in]BSTR newVal );
+};
+
+//=== CoClass definitions =================================================
+[
+    uuid(AF279B22-86EB-11D1-81BF-0000F87557DB),
+    version(1.0),
+    helpstring("Wipe 1.0 Type Library")
+]
+library WIPELib
+{
+    importlib("stdole32.tlb");
+    importlib("stdole2.tlb");
+
+    [
+	uuid(A5781BB8-E54B-11d1-9A72-0000F8756A10),
+	helpstring("DXTWipeSample Class")
+    ]
+    coclass DXTWipeSample
+    {
+	[default] interface IDXTWipeSample;
+    };
+
+    [
+	uuid(54CCEC1B-87A9-11D1-81C0-0000F87557DB),
+	helpstring("DXTWipePropPage Class")
+    ]
+    coclass DXTWipePropPage
+    {
+	interface IUnknown;
+    };
+};

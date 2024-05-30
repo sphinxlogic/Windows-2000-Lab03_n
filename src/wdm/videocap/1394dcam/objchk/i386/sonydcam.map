@@ -1,0 +1,182 @@
+ sonydcam
+
+ Timestamp is 65665605 (Tue Nov 28 16:05:09 2023)
+
+ Preferred load address is 00010000
+
+ Start         Length     Name                   Class
+ 0001:00000000 00007306H .text                   CODE
+ 0002:00000000 000000a0H .idata$5                DATA
+ 0002:000000a0 00000380H .rdata                  DATA
+ 0003:00000000 00000b10H .data                   DATA
+ 0003:00000b10 00000008H .bss                    DATA
+ 0004:00000000 000049b4H PAGE                    CODE
+ 0005:00000000 00000050H PAGECONST               DATA
+ 0006:00000000 0000003cH .idata$2                CODE
+ 0006:0000003c 00000014H .idata$3                CODE
+ 0006:00000050 000000a0H .idata$4                CODE
+ 0006:000000f0 0000032eH .idata$6                CODE
+ 0007:00000000 00000058H .rsrc$01                DATA
+ 0007:00000060 00000368H .rsrc$02                DATA
+
+  Address         Publics by Value              Rva+Base     Lib:Object
+
+ 0001:000000f4       _DCamToInitializeStateCompletionRoutine@12 00010414 f   callback.obj
+ 0001:0000028a       _DCamSetKSStateInitialize@4 000105aa f   callback.obj
+ 0001:000006d4       _DCamBusResetNotification@4 000109f4 f   callback.obj
+ 0001:00000b23       _DCamDetachBufferCR@12     00010e43 f   callback.obj
+ 0001:0000105c       _DCamIsochCallback@8       0001137c f   callback.obj
+ 0001:000013c9       _DCamGetProperty@24        000116e9 f   capprop.obj
+ 0001:00001579       _DCamSetProperty@20        00011899 f   capprop.obj
+ 0001:0000173b       _DCamSetAutoMode@16        00011a5b f   capprop.obj
+ 0001:000018b0       _AdapterGetVideoProcAmpProperty@4 00011bd0 f   capprop.obj
+ 0001:00001a48       _AdapterGetCameraControlProperty@4 00011d68 f   capprop.obj
+ 0001:00001b0e       _AdapterGetProperty@4      00011e2e f   capprop.obj
+ 0001:00001bb5       _AdapterSetVideoProcAmpProperty@4 00011ed5 f   capprop.obj
+ 0001:00001daa       _AdapterSetCameraControlProperty@4 000120ca f   capprop.obj
+ 0001:00001e8a       _AdapterSetProperty@4      000121aa f   capprop.obj
+ 0001:00001ee6       _CreateRegistryKeySingle@16 00012206 f   capprop.obj
+ 0001:00001f34       _CreateRegistrySubKey@16   00012254 f   capprop.obj
+ 0001:00001ffc       _GetRegistryKeyValue@20    0001231c f   capprop.obj
+ 0001:000020aa       _SetRegistryKeyValue@12    000123ca f   capprop.obj
+ 0001:000023d3       _GetPropertyValuesFromRegistry@4 000126f3 f   capprop.obj
+ 0001:000028b5       _SetPropertyValuesToRegistry@4 00012bd5 f   capprop.obj
+ 0001:00002adc       _SetCurrentDevicePropertyValues@8 00012dfc f   capprop.obj
+ 0001:00002bfc       _InitializePropertyArray@4 00012f1c f   capprop.obj
+ 0001:00002ed2       _DCamReadRegister@16       000131f2 f   device.obj
+ 0001:000030be       _DCamWriteRegister@16      000133de f   device.obj
+ 0001:00003254       _DriverEntry@8             00013574 f   sonydcam.obj
+ 0001:00003405       _DCamSubmitIrpSynch@12     00013725 f   sonydcam.obj
+ 0001:0000355e       _DCamSynchCR@12            0001387e f   sonydcam.obj
+ 0001:0000373a       _DCamToStopStateCR@12      00013a5a f   ctrlpkt.obj
+ 0001:00003a3c       _DCamToPauseStateCR@12     00013d5c f   ctrlpkt.obj
+ 0001:00003dc2       _DCamToRunStateCR@12       000140e2 f   ctrlpkt.obj
+ 0001:0000416e       _DCamSetKSStateRUN@8       0001448e f   ctrlpkt.obj
+ 0001:00004395       _DCamCancelOnePacketCR@12  000146b5 f   datapkt.obj
+ 0001:0000452d       _DCamDetachAndCancelOnePacket@16 0001484d f   datapkt.obj
+ 0001:000047c0       _DCamCancelOnePacket@4     00014ae0 f   datapkt.obj
+ 0001:00004a49       _DCamCancelAllPackets@12   00014d69 f   datapkt.obj
+ 0001:00004e39       _DCamAttachBufferCR@12     00015159 f   datapkt.obj
+ 0001:00005219       _DCamReSubmitPacketCR@12   00015539 f   datapkt.obj
+ 0001:000055ca       _DCamReSubmitPacket@16     000158ea f   datapkt.obj
+ 0001:000058c7       _DCamReadStreamWorker@8    00015be7 f   datapkt.obj
+ 0001:00005cc6       _DCamReadStream@4          00015fe6 f   datapkt.obj
+ 0001:00006018       _tmGetStreamTime@12        00016338 f   dcampkt.obj
+ 0001:00006087       _DCamAllocateIrbAndIrp@12  000163a7 f   dcampkt.obj
+ 0001:0000614f       _DCamAllocateIrbIrpAndContext@16 0001646f f   dcampkt.obj
+ 0001:0000622c       _DCamFreeIrbIrpAndContext@12 0001654c f   dcampkt.obj
+ 0001:0000683c       _DCamAllocateIsochResource@12 00016b5c f   dcampkt.obj
+ 0001:00006d85       _DCamDeviceInUse@8         000170a5 f   dcampkt.obj
+ 0001:00006f60       _DCamTimeoutHandler@4      00017280 f   dcampkt.obj
+ 0001:00007153       _DCamStartListenCR@12      00017473 f   dcampkt.obj
+ 0001:00007256       _Debug_Assert@16           00017576 f   dbg.obj
+ 0001:0000726c       _DbgPrint                  0001758c f   wdm:NTOSKRNL.EXE
+ 0001:00007280       __aulldiv                  000175a0 f   wdm:ulldiv.obj
+ 0001:000072e8       _DbgBreakPoint@0           00017608 f   wdm:NTOSKRNL.EXE
+ 0001:000072ee       _StreamClassStreamNotification 0001760e f   stream:STREAM.SYS
+ 0001:000072f4       _StreamClassRegisterAdapter@12 00017614 f   stream:STREAM.SYS
+ 0001:000072fa       _StreamClassDeviceNotification 0001761a f   stream:STREAM.SYS
+ 0001:00007300       _StreamClassQueryMasterClockSync@8 00017620 f   stream:STREAM.SYS
+ 0002:00000000       __imp_@KfAcquireSpinLock@4 00017640     wdm:HAL.DLL
+ 0002:00000004       __imp_@KfReleaseSpinLock@8 00017644     wdm:HAL.DLL
+ 0002:00000008       __imp__KeGetCurrentIrql@0  00017648     wdm:HAL.DLL
+ 0002:0000000c       __imp__KeStallExecutionProcessor@4 0001764c     wdm:HAL.DLL
+ 0002:00000010       \177HAL_NULL_THUNK_DATA    00017650     wdm:HAL.DLL
+ 0002:00000014       __imp_@ExfInterlockedRemoveHeadList@8 00017654     wdm:NTOSKRNL.EXE
+ 0002:00000018       __imp_@InterlockedDecrement@4 00017658     wdm:NTOSKRNL.EXE
+ 0002:0000001c       __imp__ExFreePool@4        0001765c     wdm:NTOSKRNL.EXE
+ 0002:00000020       __imp__IoAllocateMdl@20    00017660     wdm:NTOSKRNL.EXE
+ 0002:00000024       __imp_@IofCallDriver@8     00017664     wdm:NTOSKRNL.EXE
+ 0002:00000028       __imp__MmBuildMdlForNonPagedPool@4 00017668     wdm:NTOSKRNL.EXE
+ 0002:0000002c       __imp__DbgPrint            0001766c     wdm:NTOSKRNL.EXE
+ 0002:00000030       __imp__ZwCreateKey@28      00017670     wdm:NTOSKRNL.EXE
+ 0002:00000034       __imp__RtlInitUnicodeString@8 00017674     wdm:NTOSKRNL.EXE
+ 0002:00000038       __imp__RtlAssert@16        00017678     wdm:NTOSKRNL.EXE
+ 0002:0000003c       __imp__ZwQueryValueKey@24  0001767c     wdm:NTOSKRNL.EXE
+ 0002:00000040       __imp__ExAllocatePoolWithTag@12 00017680     wdm:NTOSKRNL.EXE
+ 0002:00000044       __imp__IoFreeIrp@4         00017684     wdm:NTOSKRNL.EXE
+ 0002:00000048       __imp__IoOpenDeviceRegistryKey@16 00017688     wdm:NTOSKRNL.EXE
+ 0002:0000004c       __imp__RtlCompareMemory@12 0001768c     wdm:NTOSKRNL.EXE
+ 0002:00000050       __imp__IoFreeMdl@4         00017690     wdm:NTOSKRNL.EXE
+ 0002:00000054       __imp__ZwClose@4           00017694     wdm:NTOSKRNL.EXE
+ 0002:00000058       __imp__IoAllocateIrp@8     00017698     wdm:NTOSKRNL.EXE
+ 0002:0000005c       __imp__KeInitializeSpinLock@4 0001769c     wdm:NTOSKRNL.EXE
+ 0002:00000060       __imp__KeWaitForSingleObject@20 000176a0     wdm:NTOSKRNL.EXE
+ 0002:00000064       __imp__KeInitializeEvent@12 000176a4     wdm:NTOSKRNL.EXE
+ 0002:00000068       __imp__KeSetEvent@12       000176a8     wdm:NTOSKRNL.EXE
+ 0002:0000006c       __imp__KeReleaseMutex@8    000176ac     wdm:NTOSKRNL.EXE
+ 0002:00000070       __imp__ZwSetValueKey@24    000176b0     wdm:NTOSKRNL.EXE
+ 0002:00000074       __imp_@ExfInterlockedInsertTailList@12 000176b4     wdm:NTOSKRNL.EXE
+ 0002:00000078       __imp_@InterlockedIncrement@4 000176b8     wdm:NTOSKRNL.EXE
+ 0002:0000007c       __imp__KeInitializeMutex@8 000176bc     wdm:NTOSKRNL.EXE
+ 0002:00000080       __imp__DbgBreakPoint@0     000176c0     wdm:NTOSKRNL.EXE
+ 0002:00000084       __imp__KeDelayExecutionThread@12 000176c4     wdm:NTOSKRNL.EXE
+ 0002:00000088       \177NTOSKRNL_NULL_THUNK_DATA 000176c8     wdm:NTOSKRNL.EXE
+ 0002:0000008c       __imp__StreamClassRegisterAdapter@12 000176cc     stream:STREAM.SYS
+ 0002:00000090       __imp__StreamClassDeviceNotification 000176d0     stream:STREAM.SYS
+ 0002:00000094       __imp__StreamClassQueryMasterClockSync@8 000176d4     stream:STREAM.SYS
+ 0002:00000098       __imp__StreamClassStreamNotification 000176d8     stream:STREAM.SYS
+ 0002:0000009c       \177STREAM_NULL_THUNK_DATA 000176dc     stream:STREAM.SYS
+ 0002:00000118       _VideoProcAmpProperties    00017758     capprop.obj
+ 0002:000001e0       _CameraControlProperties   00017820     capprop.obj
+ 0002:00000230       _AdapterPropertyTable      00017870     capprop.obj
+ 0002:00000268       _VideoProcAmpProperties2   000178a8     capprop.obj
+ 0002:00000330       _CameraControlProperties2  00017970     capprop.obj
+ 0002:00000380       _AdapterPropertyTable2     000179c0     capprop.obj
+ 0002:000003a8       _VideoStreamConnectionProperties 000179e8     dcampkt.obj
+ 0002:000003d0       _VideoStreamDroppedFramesProperties 00017a10     dcampkt.obj
+ 0002:000003f8       _VideoStreamProperties     00017a38     dcampkt.obj
+ 0003:000004e8       _wszSettings               00017f48     capprop.obj
+ 0003:00000500       _wszBrightness             00017f60     capprop.obj
+ 0003:00000518       _wszHue                    00017f78     capprop.obj
+ 0003:00000520       _wszSaturation             00017f80     capprop.obj
+ 0003:00000538       _wszSharpness              00017f98     capprop.obj
+ 0003:00000550       _wszWhiteBalance           00017fb0     capprop.obj
+ 0003:00000570       _wszZoom                   00017fd0     capprop.obj
+ 0003:00000580       _wszFocus                  00017fe0     capprop.obj
+ 0003:00000590       _szUnknownVendorName       00017ff0     sonydcam.obj
+ 0003:000005a0       _IsochInfoTable            00018000     dcampkt.obj
+ 0003:00000750       _DCAM_StreamFormat_1       000181b0     dcampkt.obj
+ 0003:00000878       _DCAM_StreamFormat_3       000182d8     dcampkt.obj
+ 0003:000009a0       _DCAM_StreamFormat_4       00018400     dcampkt.obj
+ 0003:00000ac8       _DCAM_StreamFormats        00018528     dcampkt.obj
+ 0003:00000b10       _LogStart                  00018570     dbg.obj
+ 0003:00000b14       _DCamDebugLevel            00018574     <common>
+ 0004:0000016e       _DCamHwUnInitialize@4      000186ee f   sonydcam.obj
+ 0004:000002f3       _InitializeDeviceExtension@4 00018873 f   sonydcam.obj
+ 0004:000007d2       _DCamHwInitialize@4        00018d52 f   sonydcam.obj
+ 0004:00000c69       _DCamSetKSStateSTOP@4      000191e9 f   ctrlpkt.obj
+ 0004:00000f62       _DCamSetKSStatePAUSE@4     000194e2 f   ctrlpkt.obj
+ 0004:000012cf       _DCamReceiveCtrlPacket@4   0001984f f   ctrlpkt.obj
+ 0004:00001618       _DCamSurpriseRemoval@4     00019b98 f   datapkt.obj
+ 0004:0000189e       _DCamReceiveDataPacket@4   00019e1e f   datapkt.obj
+ 0004:00001cd0       _DCamProcessPnpIrp@12      0001a250 f   dcampkt.obj
+ 0004:000021b4       _DCamChangePower@4         0001a734 f   dcampkt.obj
+ 0004:0000241a       _DCamGetStreamInfo@4       0001a99a f   dcampkt.obj
+ 0004:00002848       _DCamFreeIsochResource@12  0001adc8 f   dcampkt.obj
+ 0004:00002ab8       _InitializeStreamExtension@12 0001b038 f   dcampkt.obj
+ 0004:00002e65       _DCamOpenStream@4          0001b3e5 f   dcampkt.obj
+ 0004:000031b4       _DCamCloseStream@4         0001b734 f   dcampkt.obj
+ 0004:00003304       _AdapterCompareGUIDsAndFormatSize@8 0001b884 f   dcampkt.obj
+ 0004:0000364a       _AdapterVerifyFormat@8     0001bbca f   dcampkt.obj
+ 0004:00003b13       _AdapterFormatFromRange@4  0001c093 f   dcampkt.obj
+ 0004:00003e36       _VideoGetProperty@4        0001c3b6 f   dcampkt.obj
+ 0004:00003f02       _VideoGetState@4           0001c482 f   dcampkt.obj
+ 0004:00004112       _VideoStreamGetConnectionProperty@4 0001c692 f   dcampkt.obj
+ 0004:0000431c       _VideoStreamGetDroppedFramesProperty@4 0001c89c f   dcampkt.obj
+ 0004:00004592       _VideoIndicateMasterClock@4 0001cb12 f   dcampkt.obj
+ 0004:000047e8       _DCamReceivePacket@4       0001cd68 f   dcampkt.obj
+ 0005:00000000       _PROPSETID_VIDCAP_DROPPEDFRAMES 0001cf40     ksguid:ksguid.obj
+ 0005:00000010       _PROPSETID_VIDCAP_CAMERACONTROL 0001cf50     ksguid:ksguid.obj
+ 0005:00000020       _PROPSETID_VIDCAP_VIDEOPROCAMP 0001cf60     ksguid:ksguid.obj
+ 0005:00000030       _PINNAME_VIDEO_CAPTURE     0001cf70     ksguid:ksguid.obj
+ 0005:00000040       _KSPROPSETID_Connection    0001cf80     ksguid:ksguid.obj
+ 0006:00000000       __IMPORT_DESCRIPTOR_NTOSKRNL 0001cfa0     wdm:NTOSKRNL.EXE
+ 0006:00000014       __IMPORT_DESCRIPTOR_HAL    0001cfb4     wdm:HAL.DLL
+ 0006:00000028       __IMPORT_DESCRIPTOR_STREAM 0001cfc8     stream:STREAM.SYS
+ 0006:0000003c       __NULL_IMPORT_DESCRIPTOR   0001cfdc     wdm:NTOSKRNL.EXE
+
+ entry point at        0001:00003254
+
+ Static symbols
+

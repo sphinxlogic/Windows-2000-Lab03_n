@@ -1,0 +1,1391 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Active Directory Service Interfaces 2.5 - Resource Tool Kits</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+</head>
+
+<body topmargin="0" leftmargin="0">
+
+<table border="0" height="86" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="77%" valign="top" height="58"><img src="banner.gif"
+    alt="banner.gif (5982 bytes)" width="250" height="60"></td>
+    <td width="3%" height="58"></td>
+    <td width="21%" height="58" valign="bottom"><p align="right"><img src="mslogo.gif"
+    alt="mslogo.gif (666 bytes)" width="112" height="40"></td>
+  </tr>
+  <tr>
+    <td valign="top" align="left" height="28"><map name="FPMap0">
+      <area href="rtk.htm" shape="rect" coords="420, 1, 515, 18">
+      <area href="interopt.htm" shape="rect" coords="350, 1, 415, 19">
+      <area href="ad.htm" shape="rect" coords="233, 1, 345, 19">
+      <area href="winnt.htm" shape="rect" coords="165, 1, 223, 19">
+      <area href="dev.htm" shape="rect" coords="67, 1, 165, 19">
+      <area href="default.htm" shape="rect" coords="13, 1, 65, 20"></map><img rectangle="(233,1) (345, 19)  ad.htm" rectangle="(165,1) (223, 19)  winnt.htm" rectangle="(67,1) (165, 19)  dev.htm" rectangle="(13,1) (65, 20)  default.htm" src="router.gif" alt="router.gif (3874 bytes)" border="0" usemap="#FPMap0" width="536" height="26"></td>
+    <td width="3%" height="28"></td>
+    <td width="21%" height="28"></td>
+  </tr>
+</table>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0" height="183">
+  <tr>
+    <td width="3%" height="162"></td>
+    <td width="97%" height="162"><img src="rtk.gif" width="183" height="118"
+    alt="rtk.gif (9440 bytes)"></td>
+  </tr>
+  <tr>
+    <td width="3%" height="21"></td>
+    <td width="97%" height="21"><font face="Verdana"><small>The ADSI Resource Tool Kit is a
+    collection of ADSI components that may be useful to solve difficult tasks,
+      or to resolve tasks that are
+    impossible in the </small><small>current implementation of ADSI.</small> </font><p><font face="Verdana"><small>These components are
+      unsupported and should be treated as samples. You may ,however, use and redistributed them.<br>
+      </small></font></p>
+      <p class="Code">THE ADSI RESOURCE KIT IS PROVIDED &quot;AS IS&quot;
+      WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT
+      NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS
+      FOR A PARTICULAR PURPOSE.</p>
+      <p><br>
+    <strong><font face="Verdana" color="#0080C0"><small>ADSI Resource Kit
+    Components</small></font></strong></p>
+      <ul>
+        <li><strong><small><a href="#adsfactory"><font face="Verdana" color="#0080C0">ADsFactory</font></a></small></strong><font face="Verdana"><br>
+          <small><font color="#000000">A</font>llows you to write a script on the
+          Internet Explorer client script
+          environment.</small></font></li>
+      </ul>
+      <ul>
+        <li><strong><small><a href="#adssecurity"><font face="Verdana" color="#0080C0">ADsSecurity and ADsSID</font></a></small><font face="Verdana" color="#0080C0"><br>
+          </font>
+          </strong><font face="Verdana" color="#000000"><small>Allows you to retrieve and
+          modify a security descriptor on Exchange, File, FileShare, or Registry.</small></font></li>
+      </ul>
+      <ul>
+        <li><strong><small><a href="#ras"><font face="Verdana" color="#0080C0">ADsRas
+          (WinNT ADSI Extension) for RAS Permission
+          </font></a></small><font face="Verdana" color="#0080C0"><br>
+          </font></strong><font face="Verdana" color="#000000"><small>Allows you to set the RAS
+          user's permission.<br>
+          <br>
+          </small></font></li>
+        <li><small><b><a href="#adsversion"><font face="Verdana" color="#0080C0">ADsVersion</font></a></b><font face="Verdana" color="#000000"><br>
+          Allows you to check the </small><small>current version of ADSI on a local or remote
+          machine.</small></font></li>
+      </ul>
+      <ul>
+        <li><strong><small><a href="#adserror"><font face="Verdana" color="#0080C0">ADsError</font></a></small><font face="Verdana" color="#0080C0"><br>
+          </font></strong><font face="Verdana" color="#000000"><small>Allows you
+          to display both standard Win32 errors and ADSI extended errors.<br>
+          </small></font></li>
+      </ul>
+      <p>&nbsp;</p>
+      <hr color="#0080C0">
+    <p>&nbsp;</p>
+      <p><strong><font face="Verdana" color="#0080C0"><small><a name="adsfactory"></a></small><font size="4">IADsFactory
+      - Creating ADSI Objects in Internet Explorer Scripting</font></font></strong></p>
+    <font SIZE="2" COLOR="#0000ff"><p></font><font face="Verdana" size="2" color="#000000">Since
+    the VB <b> GetObject</b> function is not allowed in Internet Explorer clients because of security reasons,
+    <b>
+    IADsFactory</b> is designed to solve this problem.&nbsp; The component
+    allows you to create ADSI objects in Internet Explorer clients. You must, however, install this
+    component on every client. You may have to create a signed CAB file which includes this
+    component.</font></p>
+    <p><span style="font-size:10.0pt;font-family:Verdana;
+mso-bidi-font-family:Arial"><font color="#0080C0"><b>Location:</b></font> <u><span style="color:blue"><a href="ResourceKit/ADsFactr.dll">/ResourceKit/ADsFactory.dll</a></span></u><o:p>
+</o:p><br>
+    <br>
+    <font color="#0080C0"><b>Installation:</b></font> regsvr32 adsfactory.dll<o:p>
+</o:p><br>
+    <br>
+    <font color="#0080C0"><b>Requirement:</b></font> ADSI 2.5 must be installed first.</span></p>
+      <p><b><span style="font-size:17.0pt;font-family:&quot;Arial Narrow&quot;;
+mso-bidi-font-family:Tahoma">IADsFactory</span></b><font face="Verdana" color="#0080C0"><small><br>
+      Interface Specification</small></font></p>
+      <blockquote>
+    <p><font SIZE="2" face="Verdana">interface IADsFactory : IDispatch</font><br>
+    <font face="Verdana" SIZE="2">{</font><br>
+    <font face="Verdana" SIZE="2">&nbsp; HRESULT
+    GetObject(BSTR bstrADsPath, [out,retval] IDispatch **pDisp);</font><br>
+    <font face="Verdana" SIZE="2">&nbsp; HRESULT
+    OpenDSObject(BSTR bstrADsPath, BSTR bstrUser, BSTR bstrPassword, LONG lFlag,
+    &nbsp; [out,retval] IDispatch **pDisp );</font><br>
+    <font face="Verdana" SIZE="2">};</font></p>
+    <p><font face="Verdana" size="2"><font color="#0080C0">Program ID:</font> ADsFactory</font></p>
+    <p><font face="Verdana" size="2"><font color="#0080C0">HRESULT IADsFactory::GetObject(
+    BSTR bstrADsPath, IDispatch **pDisp )</font><br>
+    This is similar to GetObject in Visual Basic, or ADsGetObject in Visual C++. </font></p>
+      </blockquote>
+    <p><font face="Verdana" size="2">Example:
+    </font></p>
+      <blockquote>
+    <p><font face="Verdana" size="2">&lt;SCRIPT language=&quot;VBScript&quot;&gt;
+    </font></p>
+    <font size="2"><p><font face="Verdana">Dim oGetObj<br>
+    Dim oCont<br>
+    <br>
+    Set oGetObj = CreateObject(&quot;ADsFactory&quot;)<br>
+    Set oCont = oGetObj.GetObject(&quot;WinNT://ARCADIABAY&quot;)<br>
+    <br>
+    document.write &quot;Container name = &quot; &amp; oCont.Name
+    &amp; &quot; &lt;P&gt;&quot;<br>
+    document.write &quot;Container path = &quot; &amp; oCont.ADsPath
+    &amp; &quot; &lt;P&gt;&amp;nbsp;&lt;P&gt;&quot;<br>
+    <br>
+    for each obj in oCont<br>
+    </font></font>&nbsp; <font face="Verdana">
+    <font size="2">document.write &quot;Object name = &quot; &amp;
+    obj.Name &amp; &quot; &lt;P&gt;&quot;<br>
+    </font></font>&nbsp;
+    <font size="2"><font face="Verdana">document.write &quot;Object path = &quot; &amp;
+    obj.ADsPath &amp; &quot; &lt;P&gt;<br>
+    Next</font></p>
+    <p><font face="Verdana">Set oGetObj = Nothing<br>
+    Set oCont = Nothing</font></p>
+    <p><font face="Verdana">&lt;/SCRIPT&gt;</font></font></p>
+    </blockquote>
+    <p><font face="Verdana" size="2">&nbsp;</font></p>
+    <blockquote>
+    <p><font face="Verdana" size="2" color="#0080C0">HRESULT IADsFactory::OpenDSObject( BSTR
+    bstrADsPath, BSTR bstrUser, BSTR bstrPassword, LONG lFlag, IDispatch **pDisp )<br>
+    </font><small><font face="Verdana">This is similar to IADsOpenDSObject::OpenDSObject or
+    ADsOpenObject in Visual C++.</font></small></p>
+    </blockquote>
+    <p><font face="Verdana" size="2">Example:</font></p>
+    <blockquote>
+    <p><font face="Verdana" size="2">&lt;SCRIPT language=&quot;VBScript&quot;&gt; </font></p>
+    <font size="2"><p><font face="Verdana">Set dso = CreateObject(&quot;ADsFactory&quot;)<br>
+    Set oProv = dso.OpenDSObject(&quot;LDAP://arcadiabay.com&quot;,
+    &quot;ARCADIABAY\JSmith&quot;, &quot;password&quot;, 1)<br>
+    document.write &quot;Provider path = &quot; &amp; oProv.ADsPath
+    &amp; &quot; &lt;P&gt;&amp;nbsp;&lt;P&gt;&quot;<br>
+    Set dso = Nothing<br>
+    Set oProv = Nothing</font></p>
+    <p><font face="Verdana">&lt;/SCRIPT&gt;</font></font></p>
+  </blockquote>
+    <p><small><font face="Verdana">&nbsp;</font></small></p>
+    <p><strong><font face="Verdana" color="#0080C0"><small><a name="adssecurity"></a></small></font><a name="adssecurity"><font size="4" color="#0080C0" face="Verdana">I</font></a><font size="4" color="#0080C0" face="Verdana">ADsSecurity and
+    IADsSID - Setting Permissions on File, Registry, Exchange<br>
+    </font><font face="Verdana" color="#0080C0"><small><br>
+    </small></font></strong><span style="font-size:10.0pt;font-family:Verdana;
+mso-bidi-font-family:Arial"><font color="#0080C0"><b>Location:</b></font> <u><span style="color:blue"><a href="ResourceKit/ADsSecurity.dll">/ResourceKit/ADsSecurity.dll</a></span></u><o:p>
+</o:p><br>
+    <br>
+    <font color="#0080C0"><b>Platforms:</b></font>  Windows NT 4.0, Windows 2000<o:p>
+</o:p></span></p>
+    <p><span style="font-size:10.0pt;font-family:Verdana;
+mso-bidi-font-family:Arial"><font color="#0080C0"><b>Installation:</b></font> regsvr32 adssecurity.dll<o:p>
+</o:p><br>
+    <br>
+    <font color="#0080C0"><b>Requirement:</b></font> ADSI 2.5 must be installed first.</span></p>
+    <p><br>
+    <b><span style="font-size:17.0pt;font-family:&quot;Arial Narrow&quot;;
+mso-bidi-font-family:Tahoma">IADsSecurity</span></b><span style="font-size:10.0pt;font-family:Verdana;
+mso-bidi-font-family:Arial"><o:p>
+    &nbsp;</span></p>
+  <blockquote>
+    <p><font face="Verdana" size="2">interface IADsSecurity<br>
+    {<span style="mso-bidi-font-family: Arial"><o:p>
+</o:p><br>
+    HRESULT GetSecurityDescriptor( [in, optional] VARIANT varPath, [out, retval] VARIANT
+    *pVariant);<o:p><br>
+    HRESULT SetSecurityDescriptor([in] VARIANT varData, [in, optional] VARIANT
+    varPath);<o:p><br>
+    HRESULT GetSID([in] VARIANT varPath, [out, retval] VARIANT *pRet);<br>
+    HRESULT GetSecurityDescriptorAs( long lFormat, [optional][in]&nbsp; VARIANT
+    varPath,[retval,out] VARIANT *pRet);<br>
+    }</span></font><span style="font-size:10.0pt;font-family:Verdana;
+mso-bidi-font-family:Arial"><o:p>
+    &nbsp;<br>
+    <br>
+    <font color="#0080C0">Program ID:</font> ADsSecurity<br>
+    <font color="#0080C0">Include</font>: ADsSecurity.h<br>
+    <font color="#0080C0">CLISID &amp; IIDs</font> : ADsSecurity_i.c</span></p>
+  </blockquote>
+    <p><font face="Verdana" size="2"><span style="mso-bidi-font-family: Arial"><br>
+    <font color="#0080C0">
+    HRESULT GetSecurityDescriptor( [in, optional] VARIANT varPath, [out, retval] VARIANT
+    *pVariant);<o:p></font><br>
+    Getting Security Descriptor (<b>IADsSecurityDescriptor</b>) for a given
+    path. Valid Paths are Exchange LDAP Path, Active Directory LDAP Path,
+    Registry Path, File System Path, IFile and IADs. More detailed information
+    below. If no path is specified, the <b>IADsSecurity</b> creates a new
+    security descriptor.&nbsp;&nbsp;</span></font></p>
+    <p><span style="mso-bidi-font-family: Arial"><font face="Verdana" size="2" color="#0080C0">
+    HRESULT SetSecurityDescriptor([in] VARIANT varData, [in, optional] VARIANT
+    varPath);<o:p><br>
+    </font><font face="Verdana" size="2">Setting the security descriptor (<b>IADsSecurityDescriptor</b>)
+    to a specified path. Valid paths are the same as in <b>GetSecurityDescriptor</b>.
+    If no path is specified, <b>IADsSecurity</b> uses the path specified in <b>GetSecurityDescriptor</b>.</font></span></p>
+    <p><font face="Verdana" size="2"><span style="mso-bidi-font-family: Arial"><font color="#0080C0">HRESULT
+    GetSID([in] VARIANT varPath, [out, retval] VARIANT *pRet);<br>
+    </font>Get the IADsSID pointer for a given path. Valid Paths are WinNT, LDAP
+    (Active Directory and Exchange) ADsPaths.&nbsp;</span></font></p>
+    <p><span style="mso-bidi-font-family: Arial"><font face="Verdana" size="2" color="#0080C0">HRESULT
+    GetSecurityDescriptorAs( long lFormat, [optional][in]&nbsp; VARIANT
+    varPath,[retval,out] VARIANT *pRet);<br>
+    </font><font face="Verdana" size="2">Similar to GetSecurityDescriptor. Only
+    you can also specify the format you want to get back.&nbsp;<br>
+    The valid lFormat are:</font></span></p>
+    <blockquote>
+      <p><font face="Verdana" size="2"><font color="#0080C0">ADS_SD_RAW</font>
+      -&nbsp; Returns as a variant array of bytes (VT_ARRAY | VT_I1 )<br>
+      <br>
+      <font color="#0080C0">ADS_SD_HEXSTRING</font> - Return as a security
+      descriptor hex string. Example:<br>
+      FFF36040000FFFFFFFF37040000FFFFFFFF38040000FFFFFFFF39040000FF0<br>
+      <br>
+      <font color="#0080C0">ADS_SD_SDDL</font> (<font color="#FF0000">Windows
+      2000 Only</font>)&nbsp; - Returns as a security descriptor description
+      languange.&nbsp; Example:
+      D:(A;;RPWPCRCCDCLCLORCWOWDSDDTSW;;;DA)(A;;RPWPCRCCDCLCLORCWOWDSDDTSW;;;SY)(A;;RPLCLORC;;;AU)<br>
+      <br>
+      <font color="#0080C0">	   ADS_SD_IID</font> - Return the <b>IADsSecurityDescritor</b>&nbsp;<br>
+      </font></p>
+    </blockquote>
+    <p><span style="font-size:10.0pt;font-family:Verdana;
+mso-bidi-font-family:Arial"><br>
+    The primary objective of this interface is to give
+you one common interface which allows you to retrieve and modify ADSI's <b>
+IADsSecurityDescriptor</b> on a given resource.<span style="mso-spacerun: yes">&nbsp;
+</span>A resource can be either NTFS File, Registry, Exchange
+Directory, or Active Directory.<span style="mso-spacerun: yes">&nbsp; </span><o:p>
+</o:p><br>
+    <br>
+    </span><span style="font-size:
+10.0pt;font-family:Verdana;mso-bidi-font-family:Arial">It gives you the
+following benefits:</span></p>
+  <ul>
+    <li><span style="font-size:10.0pt;font-family:Verdana;
+mso-bidi-font-family:Arial">You don't need to deal with many different forms of
+security descriptor anymore (such as raw SD, Exchange's Hex String, SDDL, Variant
+Array of VT_I1, and so on).</span></li>
+    <li><span style="font-size: 10.0pt; font-family: Verdana; mso-bidi-font-family: Arial">You don't </span><span style="font-size:10.0pt;font-family:Verdana;
+mso-bidi-font-family:Arial">need to remember the security descriptor
+attribute name, such as &quot;ntSecurityDescriptor&quot; for Active Directory,
+      or
+&quot;NT-Security-Descriptor&quot; for Exchange.&nbsp;</span></li>
+    <li><span style="font-size:10.0pt;font-family:Verdana;
+mso-bidi-font-family:Arial">You don't need to know APIs for retrieving and
+setting the security descriptor for a given resource (that is, <b>GetFileSecurity</b>,
+      <b>RegGetKeySecurity</b>, <b>NetSharexxx</b>, and so on ).</span><span style="font-size:
+10.0pt;font-family:Verdana;mso-bidi-font-family:Arial">&nbsp;
+</span></li>
+  </ul>
+    <p><span style="font-size:10.0pt;font-family:Verdana;
+mso-bidi-font-family:Arial">All you need to know is how to use ADSI's <b>IADsSecurityDescriptor</b>,
+    <b>IADsAccessControlList</b>, <b> IADsAccessControlEntry</b> whether you need to manipulate Exchange's, File's, File Share's and other's security
+descriptor. The same programming model, same security descriptor object.</span><span style="font-size:
+10.0pt;font-family:Verdana;mso-bidi-font-family:Arial"></o:p></span></p>
+  <p><span style="font-size:10.0pt;font-family:Verdana;
+mso-bidi-font-family:Arial"><font color="#0080C0">Setting file permission
+  examples</font></span></p>
+    <p style="margin-left: 0"><span style="font-size: 10.0pt; font-family: Courier New"><a href="FILE://[//serverName/]FilePath">FILE</a></span><a href="FILE://[//serverName/]FilePath"><span style="font-size:10.0pt;
+font-family:&quot;Courier New&quot;">://[\\serverName\]FilePath</span></a></p>
+    <p class="MsoNormal" style="mso-pagination: none; mso-layout-grid-align: none; text-autospace: none; margin-left: 0"><span style="font-size:10.0pt;font-family:Verdana;
+mso-bidi-font-family:Arial">'----Visual Basic----</span></p>
+    <p style="mso-pagination: none; mso-layout-grid-align: none; text-autospace: none; margin-left: 0"><font face="Verdana" size="2"><span style="mso-bidi-font-family: Arial">Dim
+sec As New ADsSecurity<o:p><br>
+Dim sd
+As IADsSecurityDescriptor<o:p>
+</o:p><br>
+Dim
+dacl As IADsAccessControlList<o:p>
+</o:p><br>
+Dim
+ace As IADsAccessControlEntry<o:p>
+</o:p><br>
+Dim
+newAce As New AccessControlEntry<o:p>
+</o:p>
+</span></font></p>
+<p style="mso-pagination: none; mso-layout-grid-align: none; text-autospace: none; margin-left: 0"><font face="Verdana" size="2"><span style="mso-bidi-font-family: Arial">Set sd
+= sec.GetSecurityDescriptor(&quot;FILE://\\srv01\public&quot;)<o:p>
+</o:p><br>
+Set
+dacl = sd.DiscretionaryAcl<o:p>
+</o:p>
+</span></font></p>
+<p style="mso-pagination: none; mso-layout-grid-align: none; text-autospace: none; margin-left: 0"><font face="Verdana" size="2"><span style="mso-bidi-font-family: Arial">'----Show the ACEs in the DACL----<o:p>
+</o:p><br>
+For
+Each ace In dacl<o:p></o:p><br>
+</span>&nbsp; <span style="font-size:8.0pt;font-family:Verdana;
+mso-bidi-font-family:Arial">Debug.Print ace.Trustee<o:p>
+</o:p><br>
+</span>&nbsp; <span style="font-size:8.0pt;font-family:Verdana;
+mso-bidi-font-family:Arial">Debug.Print ace.AccessMask<o:p>
+</o:p><br>
+</span>&nbsp; <span style="font-size:8.0pt;font-family:Verdana;
+mso-bidi-font-family:Arial">Debug.Print
+ace.AceType<o:p>
+</o:p><br>
+Next<o:p>
+</o:p><br>
+<br>
+Debug.Print
+dacl.AceCount<o:p>
+</span></font></p>
+<p class="MsoNormal" style="mso-pagination: none; mso-layout-grid-align: none; text-autospace: none; margin-left: 0"><font face="Verdana" size="2"><span style="mso-bidi-font-family: Arial">'----Add a new ace for Jsmith----<o:p>
+</o:p><br>
+newAce.Trustee
+= &quot;ARCADIABAY\jsmith&quot;<o:p>
+</o:p><br>
+newAce.AccessMask
+= ADS_RIGHT_GENERIC_READ Or ADS_RIGHT_GENERIC_EXECUTE<o:p>
+</o:p><br>
+newAce.AceType
+= ADS_ACETYPE_ACCESS_ALLOWED<o:p>
+</o:p><br>
+<br>
+dacl.AddAce
+newAce<o:p>
+</o:p><br>
+sd.DiscretionaryAcl
+= dacl<o:p>
+</o:p><br>
+sec.SetSecurityDescriptor
+sd<o:p></o:p>
+</span></font></p>
+<p style="mso-pagination: none; mso-layout-grid-align: none; text-autospace: none; margin-left: 0; margin-bottom: 0"><span style="font-size:10.0pt;font-family:Verdana;
+mso-bidi-font-family:Arial">'----VBS<o:p></o:p>----
+</span></p>
+<p style="mso-pagination: none; mso-layout-grid-align: none; text-autospace: none; margin-left: 0"><font size="2" face="Verdana"><span style="mso-bidi-font-family: Arial">Const ADS_RIGHT_GENERIC_READ = &amp;H80000000<o:p>
+</o:p><br>
+Const ADS_RIGHT_GENERIC_EXECUTE = &amp;H20000000<o:p>
+</o:p><br>
+Const ADS_ACETYPE_ACCESS_ALLOWED = 0<o:p>
+</o:p>
+</span></font></p>
+<p style="mso-pagination: none; mso-layout-grid-align: none; text-autospace: none; margin-left: 0"><font size="2" face="Verdana"><span style="mso-bidi-font-family: Arial">Set sec = CreateObject(&quot;ADsSecurity&quot;)<o:p>
+</o:p><br>
+Set sd = sec.GetSecurityDescriptor(&quot;FILE://c:\public\specs&quot;)<o:p>
+</o:p><br>
+Set dacl = sd.DiscretionaryAcl<o:p>
+</o:p>
+</span></font></p>
+<p style="mso-pagination: none; mso-layout-grid-align: none; text-autospace: none; margin-left: 0"><font face="Verdana" size="2"><span style="mso-bidi-font-family: Arial">'-- Show the ACEs in the DACL ----<o:p>
+</o:p><br>
+For Each ace In dacl<o:p>
+</o:p><br>
+</span>&nbsp;&nbsp; <span style="mso-bidi-font-family: Arial">wscript.echo
+ace.Trustee<o:p><br>
+&nbsp;&nbsp; wscript.echo
+ace.AccessMask<o:p><br>
+</span>&nbsp;&nbsp; <span style="mso-bidi-font-family: Arial">wscript.echo
+ace.AceType<o:p>
+</o:p><br>
+Next<o:p>
+</o:p>
+</span></font></p>
+<p style="mso-pagination: none; mso-layout-grid-align: none; text-autospace: none; margin-left: 0"><font face="Verdana" size="2"><span style="mso-bidi-font-family: Arial">'--- Add a new ACE so that JSmith can read/execute
+this file<o:p>
+</o:p><br>
+Set ace = CreateObject(&quot;AccessControlEntry&quot;)<o:p>
+</o:p><br>
+ace.Trustee = &quot;ARCADIABAY\jsmith&quot;<o:p>
+</o:p><br>
+ace.AccessMask = ADS_RIGHT_GENERIC_READ Or
+ADS_RIGHT_GENERIC_EXECUTE<o:p>
+</o:p><br>
+ace.AceType = ADS_ACETYPE_ACCESS_ALLOWED<o:p>
+</o:p>
+</span></font></p>
+<p style="mso-pagination: none; mso-layout-grid-align: none; text-autospace: none; margin-left: 0"><font size="2" face="Verdana"><span style="mso-bidi-font-family: Arial">dacl.AddAce ace<o:p>
+</o:p><br>
+sd.DiscretionaryAcl = dacl<o:p>
+</o:p><br>
+sec.SetSecurityDescriptor sd<o:p></span></font><span style="font-size:10.0pt;font-family:Verdana;
+mso-bidi-font-family:Arial">
+</o:p>
+</span></p>
+<p class="MsoNormal" style="mso-pagination: none; mso-layout-grid-align: none; text-autospace: none; margin-left: 0"><span style="font-size:10.0pt;font-family:Verdana;
+mso-bidi-font-family:Arial">'----File System Object</span><span style="mso-spacerun: yes; font-size: 10.0pt; font-family: Verdana; mso-bidi-font-family: Arial">----</span><span style="font-size:10.0pt;font-family:Verdana;mso-bidi-font-family:Arial">
+<br>
+</span><span style="mso-bidi-font-family: Arial"><font face="Verdana" size="2">Const ADS_RIGHT_GENERIC_READ = &amp;H80000000<o:p>
+</o:p><br>
+Const ADS_RIGHT_GENERIC_EXECUTE = &amp;H20000000<o:p>
+</o:p><br>
+Const ADS_ACETYPE_ACCESS_ALLOWED = 0<o:p>
+</o:p><br>
+<br>
+Set sec = CreateObject(&quot;ADsSecurity&quot;)<o:p>
+</o:p><br>
+<br>
+‘Getting File System Security Descriptor from
+FSO<br>
+Set fso =
+CreateObject(&quot;Scripting.FileSystemObject&quot;)<br>
+Set fs =
+fso.GetFile(“c:\public\specs\movetree.doc”)<o:p>
+</o:p><br>
+<br>
+Set sd = sec.GetSecurityDescriptor(fs)<o:p><br>
+Set dacl = sd.DiscretionaryAcl<o:p>
+</o:p><br>
+<br>
+'----Show the ACEs in the DACL----<o:p>
+</o:p><br>
+For Each ace In dacl<o:p>
+</o:p><br>
+</font></span>&nbsp;&nbsp; <span style="mso-bidi-font-family: Arial"><font face="Verdana" size="2">wscript.echo
+ace.Trustee<o:p><br>
+&nbsp;&nbsp; </font></span><font face="Verdana" size="2"><span style="mso-bidi-font-family: Arial">wscript.echo
+ace.AccessMask<o:p><br>
+&nbsp;&nbsp; wscript.echo
+ace.AceType<o:p>
+</o:p><br>
+Next<o:p>
+</o:p><br>
+<br>
+'----Add a new ACE so that JSmith can read and execute
+this file----<o:p>
+</o:p><br>
+<br>
+Set ace = CreateObject(&quot;AccessControlEntry&quot;)<o:p>
+</o:p><br>
+</span></font><font face="Verdana" size="2"><span style="mso-bidi-font-family: Arial">ace.Trustee = &quot;ARCADIABAY\jsmith&quot;<o:p>
+</o:p><br>
+</span></font><font face="Verdana" size="2"><span style="mso-bidi-font-family: Arial">ace.AccessMask = ADS_RIGHT_GENERIC_READ Or
+ADS_RIGHT_GENERIC_EXECUTE<o:p>
+</o:p><br>
+</span></font><font face="Verdana" size="2"><span style="mso-bidi-font-family: Arial">ace.AceType = ADS_ACETYPE_ACCESS_ALLOWED<o:p>
+</o:p><br>
+<br>
+dacl.AddAce ace<o:p>
+</o:p><br>
+sd.DiscretionaryAcl = dacl<o:p>
+</o:p><br>
+sec.SetSecurityDescriptor sd<o:p>
+</o:p></span></font></p>
+<p style="mso-pagination: none; mso-layout-grid-align: none; text-autospace: none; margin-left: 0"><font color="#0080C0"><span style="font-size: 10.0pt; font-family: Tahoma">Setting</span></font><span style="font-size:10.0pt;font-family:Tahoma"><font color="#0080C0">
+Registry Permission Examples</font><o:p></span></p>
+<p style="mso-pagination: none; mso-layout-grid-align: none; text-autospace: none; margin-left: 0"><span style="font-size:10.0pt;
+font-family:&quot;Courier New&quot;">RGY://[serverName]/RegistryLocation</span><span style="font-size:10.0pt;font-family:Tahoma"><o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="mso-pagination: none; mso-layout-grid-align: none; text-autospace: none; margin-left: 0"><span style="font-size:10.0pt;font-family:Verdana;
+mso-bidi-font-family:Tahoma">----Modifying the Local Registry Key's ACL----<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="mso-pagination: none; mso-layout-grid-align: none; text-autospace: none; margin-left: 0"><font face="Verdana" size="2">Const
+ADS_RIGHTS_RGY_KEY_READ = &amp;H20019<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="mso-pagination: none; mso-layout-grid-align: none; text-autospace: none; margin-left: 0"><font face="Verdana" size="2">Set
+sec = CreateObject(&quot;ADsSecurity&quot;)<o:p>
+</o:p><br>
+Set
+sd = sec.GetSecurityDescriptor(&quot;RGY://HKEY_LOCAL_MACHINE\SOFTWARE\MICROSOFT\MyKey&quot;)<o:p>
+</o:p><br>
+<span style="mso-spacerun: yes"><br>
+</span>'Displaying the ACE in the DACL --- it's the same you way you display aces for File, FileShare,
+Registry, Exchange, and Active Directory's ACL.<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="mso-pagination: none; mso-layout-grid-align: none; text-autospace: none; margin-left: 0"><span style="mso-bidi-font-family: Tahoma"><font face="Verdana" size="2">Set dacl = sd.DiscretionaryAcl<o:p>
+</o:p><br>
+<br>
+For Each ace In dacl<o:p>
+</o:p><br>
+</font></span>&nbsp;&nbsp; <font face="Verdana" size="2"><span style="mso-bidi-font-family: Tahoma">Debug.Print ace.Trustee<o:p>
+</o:p><br>
+</span></font>&nbsp;&nbsp; <span style="mso-bidi-font-family: Tahoma"><font face="Verdana" size="2">Debug.Print ace.AccessMask<o:p>
+</o:p><br>
+</font></span>&nbsp;&nbsp; <span style="mso-bidi-font-family: Tahoma"><font face="Verdana" size="2">Debug.Print ace.AceType<o:p>
+</o:p><br>
+</font></span><font face="Verdana" size="2"><span style="mso-bidi-font-family: Tahoma">Next<o:p>
+</o:p>
+</span></font></p>
+<p class="MsoNormal" style="mso-pagination: none; mso-layout-grid-align: none; text-autospace: none; margin-left: 0"><font face="Verdana" size="2"><span style="mso-bidi-font-family: Tahoma">Debug.Print dacl.AceCount<o:p>
+</o:p>
+</span></font></p>
+<p class="MsoNormal" style="mso-pagination: none; mso-layout-grid-align: none; text-autospace: none; margin-left: 0; margin-bottom: 0"><font face="Verdana" size="2">&nbsp;<o:p>'----Allow
+James Smith to read this registry key: <o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="mso-pagination: none; mso-layout-grid-align: none; text-autospace: none; margin-left: 0; margin-top: 0"><font face="Verdana" size="2"><span style="mso-bidi-font-family: Tahoma">Set newAce = CreateObject(&quot;AccessControlEntry&quot;)<o:p>
+</o:p><br>
+</span></font><font face="Verdana" size="2"><span style="mso-bidi-font-family: Tahoma">newAce.Trustee = &quot;ARCADIABAY\jsmith&quot;<o:p>
+</o:p><br>
+newAce.AccessMask = ADS_RIGHTS_RGY_KEY_READ<o:p>
+</o:p><br>
+newAce.AceType = ADS_ACETYPE_ACCESS_ALLOWED<o:p>
+</o:p>
+</span></font></p>
+<p class="MsoNormal" style="mso-pagination: none; mso-layout-grid-align: none; text-autospace: none; margin-left: 0"><font face="Verdana" size="2"><span style="mso-bidi-font-family: Tahoma">dacl.AddAce newAce<o:p>
+</o:p><br>
+</span></font><font face="Verdana" size="2"><span style="mso-bidi-font-family: Tahoma">sd.DiscretionaryAcl = dacl<o:p>
+</o:p><br>
+sec.SetSecurityDescriptor sd<o:p>
+</o:p>
+</span></font></p>
+  <p class="MsoNormal" style="mso-pagination: none; mso-layout-grid-align: none; text-autospace: none; margin-left: 0"><font face="Verdana" size="2"><span style="mso-bidi-font-family: Tahoma"><br>
+  '----You can also connect to a remote registry----<o:p>
+ <b>
+</o:p><br>
+</b></span>Set
+sd = sec.GetSecurityDescriptor(&quot;RGY://mycomp03/HKEY_LOCAL_MACHINE\SOFTWARE\MICROSOFT\MyKey&quot;</font></p>
+<p class="MsoNormal" style="mso-pagination:none;tab-stops:.5in;mso-layout-grid-align:
+none;text-autospace:none">&nbsp;</p>
+<p class="MsoNormal" style="margin-top:9.0pt;margin-right:6.0pt;margin-bottom:
+9.0pt;margin-left:6.0pt;line-height:19.0pt;mso-pagination:none;mso-layout-grid-align:
+none;text-autospace:none"><b><span style="font-size:17.0pt;font-family:&quot;Arial Narrow&quot;;
+mso-bidi-font-family:Tahoma">IADsSID<o:p>
+</o:p>
+</span></b></p>
+<p class="MsoNormal" style="margin-top:0in;margin-right:6.0pt;margin-bottom:6.0pt;
+margin-left:6.0pt;line-height:12.0pt;mso-pagination:none;tab-stops:.25in 30.0pt 42.0pt;
+mso-layout-grid-align:none;text-autospace:none"><font face="Verdana" size="2"><b>IADsSID</b> allows you to retrieve a different type of security
+principal format. It’s useful for converting and searching a security
+principal. </o:p>
+</font></p>
+<p class="MsoNormal" style="margin-top:0in;margin-right:6.0pt;margin-bottom:6.0pt;
+margin-left:6.0pt;line-height:12.0pt;mso-pagination:none;tab-stops:.25in 30.0pt 42.0pt;
+mso-layout-grid-align:none;text-autospace:none"><font face="Verdana" size="2">&nbsp;<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="margin-top:0in;margin-right:6.0pt;margin-bottom:6.0pt;
+margin-left:6.0pt;line-height:12.0pt;mso-pagination:none;tab-stops:.25in 30.0pt 42.0pt;
+mso-layout-grid-align:none;text-autospace:none"><font face="Verdana" size="2"><i>Interface Definition:<br>
+</i><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;
+</span><o:p>
+</o:p>
+</font></p>
+  <blockquote>
+<p class="MsoNormal" style="margin-top:0in;margin-right:6.0pt;margin-bottom:6.0pt;
+margin-left:6.0pt;line-height:12.0pt;mso-pagination:none;tab-stops:.25in 30.0pt 42.0pt;
+mso-layout-grid-align:none;text-autospace:none"><font face="Verdana" size="2">interface IADsSID : IDispatch<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="margin-top:0in;margin-right:6.0pt;margin-bottom:6.0pt;
+margin-left:6.0pt;line-height:12.0pt;mso-pagination:none;tab-stops:.25in 30.0pt 42.0pt;
+mso-layout-grid-align:none;text-autospace:none"><font face="Verdana" size="2">{<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="margin-top:0in;margin-right:6.0pt;margin-bottom:6.0pt;
+margin-left:6.0pt;line-height:12.0pt;mso-pagination:none;tab-stops:.25in 30.0pt 42.0pt;
+mso-layout-grid-align:none;text-autospace:none"><font face="Verdana" size="2"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>HRESULT SetAs([in] long lFormat, [in] VARIANT varData);<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="margin-top:0in;margin-right:6.0pt;margin-bottom:6.0pt;
+margin-left:6.0pt;line-height:12.0pt;mso-pagination:none;tab-stops:.25in 30.0pt 42.0pt;
+mso-layout-grid-align:none;text-autospace:none"><font face="Verdana" size="2"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>HRESULT GetAs([in] long lFormat, [out, retval] VARIANT *pVar);<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="margin-top:0in;margin-right:6.0pt;margin-bottom:6.0pt;
+margin-left:6.0pt;line-height:12.0pt;mso-pagination:none;tab-stops:.25in 30.0pt 42.0pt;
+mso-layout-grid-align:none;text-autospace:none"><font face="Verdana" size="2">};<br>
+<br>
+<font color="#0080C0">
+Program ID: </font> ADsSID<br>
+</font><font face="Verdana" size="2" color="#0080C0">I</font><span style="font-size:10.0pt;font-family:Verdana;
+mso-bidi-font-family:Arial"><font color="#0080C0">nclude:</font> ADsSecurity.h<br>
+<font color="#0080C0">CLISID &amp; IIDs</font> : ADsSecurity_i.c</span><font face="Verdana" size="2"><o:p>
+</o:p>
+</font></p>
+  </blockquote>
+<p class="MsoNormal" style="margin-top:0in;margin-right:6.0pt;margin-bottom:6.0pt;
+margin-left:6.0pt;line-height:12.0pt;mso-pagination:none;tab-stops:.25in 30.0pt 42.0pt;
+mso-layout-grid-align:none;text-autospace:none"><i><font face="Verdana" size="2">&nbsp;<o:p>
+</o:p>
+</font></i></p>
+<p class="MsoNormal" style="margin-top:7.0pt;margin-right:6.0pt;margin-bottom:
+7.0pt;margin-left:0in;line-height:14.0pt;mso-pagination:none;mso-layout-grid-align:
+none;text-autospace:none"><b><span style="mso-bidi-font-family: Arial"><font face="Verdana" size="2">HRESULT GetAs([in] long lFormat, [out, retval]
+VARIANT *pVar)<o:p>
+</o:p>
+</font>
+</span></b></p>
+<p class="MsoNormal" style="margin-top:0in;margin-right:6.0pt;margin-bottom:6.0pt;
+margin-left:0in;line-height:12.0pt;mso-pagination:none;tab-stops:.25in 30.0pt 42.0pt;
+mso-layout-grid-align:none;text-autospace:none"><font face="Verdana" size="2">Get the SID as one of the supported
+formats. The return value
+depends on the specified format.<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="margin-top:0in;margin-right:6.0pt;margin-bottom:6.0pt;
+margin-left:0in;line-height:12.0pt;mso-pagination:none;tab-stops:.25in 30.0pt 42.0pt;
+mso-layout-grid-align:none;text-autospace:none"><i><font face="Verdana" size="2">Parameters:<o:p>
+</o:p>
+</font></i></p>
+<p class="MsoNormal" style="margin-top:0in;margin-right:6.0pt;margin-bottom:6.0pt;
+margin-left:0in;line-height:12.0pt;mso-pagination:none;tab-stops:.25in 30.0pt 42.0pt;
+mso-layout-grid-align:none;text-autospace:none"><b><font face="Verdana" size="2">[in] long lFormat<o:p>
+</o:p>
+</font></b></p>
+    <p class="MsoNormal" style="margin-top:0in;margin-right:6.0pt;margin-bottom:6.0pt;
+margin-left:0in;line-height:12.0pt;mso-pagination:none;tab-stops:.25in 30.0pt 42.0pt;
+mso-layout-grid-align:none;text-autospace:none"><font face="Verdana" size="2"><b>lFormat</b> it can be one of the
+    following:</font></p>
+    <ul>
+      <li>
+        <p class="MsoNormal" style="margin-top:0in;margin-right:6.0pt;margin-bottom:6.0pt;
+margin-left:0in;line-height:12.0pt;mso-pagination:none;tab-stops:.25in 30.0pt 42.0pt;
+mso-layout-grid-align:none;text-autospace:none"><font face="Verdana" size="2">ADS_SID_RAW (
+VT_ARRAY | VT_U1 )<o:p>
+</o:p></font></li>
+      <li>
+        <p class="MsoNormal" style="margin-top:0in;margin-right:6.0pt;margin-bottom:6.0pt;
+margin-left:0in;line-height:12.0pt;mso-pagination:none;tab-stops:.25in 30.0pt 42.0pt;
+mso-layout-grid-align:none;text-autospace:none"><font face="Verdana" size="2">ADS_SID_HEXSTRING
+        (VT_BSTR), for example, 010500000000000515000000093A2A24358A021ADBEB0C508E040000<o:p>
+</o:p></font></li>
+      <li>
+        <p class="MsoNormal" style="margin-top:0in;margin-right:6.0pt;margin-bottom:6.0pt;
+margin-left:0in;line-height:12.0pt;mso-pagination:none;tab-stops:.25in 30.0pt 42.0pt;
+mso-layout-grid-align:none;text-autospace:none"><font face="Verdana" size="2">ADS_SID_SAM (VT_BSTR
+), for example, ARCADIABAY\jsmith<o:p>
+</o:p></font></li>
+      <li>
+        <p class="MsoNormal" style="margin-top:0in;margin-right:6.0pt;margin-bottom:6.0pt;
+margin-left:0in;line-height:12.0pt;mso-pagination:none;tab-stops:.25in 30.0pt 42.0pt;
+mso-layout-grid-align:none;text-autospace:none"><font face="Verdana" size="2">ADS_SID_UPN
+        (VT_BSTR), for example, jsmith@arcadiabay.com <b><span style="color:red">( Windows 2000 Only )<o:p>
+</o:p></span></b></font></li>
+      <li>
+        <p class="MsoNormal" style="margin-top:0in;margin-right:6.0pt;margin-bottom:6.0pt;
+margin-left:0in;line-height:12.0pt;mso-pagination:none;tab-stops:.25in 30.0pt 42.0pt;
+mso-layout-grid-align:none;text-autospace:none"><font face="Verdana" size="2">ADS_SID_SDDL
+        (VT_BSTR), for example, S-1-5-21-606747145-436374069-1343024091-1166 <u><span style="mso-spacerun: yes">&nbsp;</span></u><b><span style="color:red">(Windows
+2000 Only)<o:p></span></b></font></li>
+      <li>
+        <p class="MsoNormal" style="margin-top:0in;margin-right:6.0pt;margin-bottom:6.0pt;
+margin-left:0in;line-height:12.0pt;mso-pagination:none;tab-stops:.25in 30.0pt 42.0pt;
+mso-layout-grid-align:none;text-autospace:none"><font face="Verdana" size="2">ADS_SID_WINNT_PATH
+        (VT_BSTR), for example, WinNT://ARCADIABAY/jsmith<o:p>
+</o:p></font></li>
+      <li>
+        <p class="MsoNormal" style="margin-top:0in;margin-right:6.0pt;margin-bottom:6.0pt;
+margin-left:0in;line-height:12.0pt;mso-pagination:none;tab-stops:.25in 30.0pt 42.0pt;
+mso-layout-grid-align:none;text-autospace:none"><font face="Verdana" size="2">ADS_SID_ACTIVE_DIRECTORY_PATH
+        (VT_BSTR), for example, LDAP://CN=John Smith,OU=NTDSys,DC=ArcadiaBay,DC=com<o:p></font></li>
+      <li>
+        <p class="MsoNormal" style="margin-top:0in;margin-right:6.0pt;margin-bottom:6.0pt;
+margin-left:0in;line-height:12.0pt;mso-pagination:none;tab-stops:.25in 30.0pt 42.0pt;
+mso-layout-grid-align:none;text-autospace:none"><font face="Verdana" size="2">ADS_SID_SID_BINDING
+        (VT_BSTR), for example, GC://&lt;SID=010500000000000515000000093A2A24358A021ADBEB0C508E040000&gt;<o:p>
+</o:p>
+        </font></li>
+    </ul>
+<p class="MsoNormal" style="margin-top:0in;margin-right:6.0pt;margin-bottom:6.0pt;
+margin-left:0in;line-height:12.0pt;mso-pagination:none;tab-stops:.25in 30.0pt 42.0pt;
+mso-layout-grid-align:none;text-autospace:none"><font face="Verdana" size="2">&nbsp;<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="margin-top:0in;margin-right:6.0pt;margin-bottom:6.0pt;
+margin-left:0in;line-height:12.0pt;mso-pagination:none;tab-stops:.25in 30.0pt 42.0pt;
+mso-layout-grid-align:none;text-autospace:none"><b><font face="Verdana" size="2">[out,
+retval] VARIANT *pVar<o:p>
+</o:p>
+</font></b></p>
+<p class="MsoNormal" style="margin-top:0in;margin-right:6.0pt;margin-bottom:6.0pt;
+margin-left:0in;line-height:12.0pt;mso-pagination:none;tab-stops:.25in 30.0pt 42.0pt;
+mso-layout-grid-align:none;text-autospace:none"><font face="Verdana" size="2">Return value, its variant type depends on the specified
+format.<br style="mso-special-character:line-break">
+<br style="mso-special-character:line-break">
+<o:p></o:p>
+</font></p>
+  <p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><span style="font-size:10.0pt;font-family:Tahoma"><font color="#0080C0">Exchange
+    Mailbox Creation<o:p>  Sample</font></span><span style="font-size:10.0pt;font-family:Tahoma;color:blue"><o:p>
+</o:p>
+</span><span style="font-size:10.0pt;font-family:Tahoma;
+color:blue">
+</o:p>
+</span></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2">'--------------------------------------------------------<o:p>
+</o:p><br>
+</font>' <font face="Verdana" size="2">Security object for SD manipulation<o:p>
+</o:p><br>
+</font>'<font face="Verdana" size="2">(REQUIRED ADSI TOOL KIT - REGSVR32 ADSSECURITY.DLL )<o:p>
+</o:p><br>
+'---------------------------------------------------------<o:p>
+&nbsp;
+</font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2">
+</o:p>
+Dim sid
+As New ADsSID<span style="mso-spacerun: yes">&nbsp; </span>'You can also use --
+Set sid = CreateObject(&quot;ADsSID&quot;) for late binding<o:p>
+</o:p><br>
+Dim sec
+As New ADsSecurity 'You can also use -- Set sec = CreateObject(&quot;ADsSecurity&quot;)
+for late binding<o:p>
+</font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2">
+'-------------------------------------<o:p>
+</o:p><br>
+'- The
+rest uses ADSI Interfaces<o:p>
+</o:p><br>
+'-------------------------------------<o:p>
+</o:p><br>
+<br>
+Dim sd As
+IADsSecurityDescriptor<o:p>
+</o:p><br>
+Dim dacl
+As IADsAccessControlList<o:p>
+</o:p><br>
+Dim ace
+As New AccessControlEntry<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2">'----------------------------------------------------------------------------<o:p>
+</o:p><br>
+'--- If
+you don't include the ADSI 2.5 Security Type Library as you reference<o:p>
+</o:p><br>
+'--- you
+must manually declare the following constants<o:p>
+</o:p><br>
+'-----------------------------------------------------------------------------<o:p>
+</o:p><br>
+Const
+ADS_SID_HEXSTRING = 1<o:p>
+</o:p><br>
+Const
+ADS_SID_WINNT_PATH = 5<o:p>
+</o:p><br>
+Const
+ADS_RIGHT_EXCH_MODIFY_USER_ATT = &amp;H2<o:p>
+</o:p><br>
+Const ADS_RIGHT_EXCH_MAIL_SEND_AS = &amp;H8<o:p>
+</o:p><br>
+Const
+ADS_RIGHT_EXCH_MAIL_RECEIVE_AS = &amp;H10<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2">'-------------------------------------------------------<o:p>
+</o:p><br>
+'-----CREATING
+A MAILBOX<span style="mso-spacerun: yes">&nbsp; </span>----------------------<o:p>
+</o:p><br>
+'--------------------------------------------------------<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2">'----
+Server, Org and Site information<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2">server =
+&quot;jsmith11&quot;<o:p>
+</o:p><br>
+Org =
+&quot;ARCADIABAY&quot;<o:p>
+</o:p><br>
+Site =
+&quot;INDEPENDENCE&quot;<o:p>
+</o:p><br>
+domain =
+&quot;INDEPENDENCE&quot;<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2">userName
+= &quot;jsmith&quot;<o:p>
+</o:p><br>
+password
+= &quot;passwordHere&quot;<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2">'---
+MailBox Parameters -----<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2">strDisplayName
+= &quot;John Smith&quot;<o:p>
+</o:p><br>
+</font><font face="Verdana" size="2">strFirstName
+= &quot;John&quot;<o:p>
+</o:p><br>
+strLastName
+= &quot;Smith&quot;<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2">strAlias
+= userName<o:p>
+</o:p><br>
+strMTA =
+&quot;cn=Microsoft MTA,cn=&quot; &amp; server &amp; &quot;,cn=Servers,cn=Configuration,ou=&quot;
+&amp; Site &amp; &quot;,o=&quot; &amp; Org<o:p>
+</o:p><br>
+strMDB =
+&quot;cn=Microsoft Private MDB,cn=&quot; &amp; server &amp; &quot;,cn=Servers,cn=Configuration,ou=&quot;
+&amp; Site &amp; &quot;,o=&quot; &amp; Org<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2">strSMTPAddr
+= &quot;jsmith@microsoft.com&quot;<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2">'------
+Creating an NT user to be associated with the mail box<o:p>
+</o:p><br>
+Set dom =
+GetObject(&quot;WinNT://&quot; &amp; domain)<o:p>
+</o:p><br>
+Set usr =
+dom.Create(&quot;user&quot;, userName)<o:p>
+</o:p><br>
+</font><font face="Verdana" size="2">usr.SetInfo<o:p>
+</o:p><br>
+</font><font face="Verdana" size="2">usr.SetPassword
+password<o:p>
+</o:p>&nbsp;<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2">'---
+Build Recipient container's adsPath that looks like this: LDAP://myserver/CN=Recipients,
+OU=Site, O=Org<o:p>
+</o:p><br>
+<br>
+ADsPath =
+&quot;LDAP://&quot; + server<o:p>
+</o:p><br>
+ADsPath =
+ADsPath + &quot;/cn=Recipients,OU=&quot;<o:p>
+</o:p><br>
+ADsPath =
+ADsPath + Site<o:p>
+</o:p><br>
+ADsPath =
+ADsPath + &quot;,O=&quot;<o:p>
+</o:p><br>
+ADsPath =
+ADsPath + Org<o:p>
+</o:p>&nbsp;<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2">Set
+objCont = GetObject(ADsPath)<o:p>
+</o:p><br>
+<br>
+'Create a
+new MailBox<o:p>
+</o:p><br>
+Set
+mailBox = objCont.Create(&quot;organizationalPerson&quot;, &quot;cn=&quot; &amp;
+strAlias)<o:p>
+</o:p><br>
+</font><font face="Verdana" size="2">mailBox.Put
+&quot;mailPreferenceOption&quot;, 0<o:p>
+</o:p><br>
+</font><font face="Verdana" size="2">mailBox.Put
+&quot;givenName&quot;, strFirstName<o:p>
+</o:p><br>
+</font><font face="Verdana" size="2">mailBox.Put
+&quot;sn&quot;, strLastName<o:p>
+</o:p><br>
+</font><font face="Verdana" size="2">mailBox.Put
+&quot;cn&quot;, strDisplayName<o:p>
+</o:p><br>
+</font><font face="Verdana" size="2">mailBox.Put
+&quot;uid&quot;, strAlias<o:p>
+</o:p><br>
+</font><font face="Verdana" size="2">mailBox.Put
+&quot;Home-MTA&quot;, strMTA<o:p>
+</o:p><br>
+mailBox.Put
+&quot;Home-MDB&quot;, strMDB<o:p>
+</o:p><br>
+mailBox.Put
+&quot;mail&quot;, strSMTPAddr<o:p>
+</o:p><br>
+mailBox.Put
+&quot;MAPI-Recipient&quot;, True<o:p>
+</o:p><br>
+mailBox.Put
+&quot;rfc822Mailbox&quot;, strSMTPAddr<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2">'--------------------------------------------------------<o:p>
+</o:p><br>
+'<span style="mso-spacerun: yes">&nbsp;
+</span>ASSOCIATING TO NT PRIMARY ACCOUNT<o:p>
+</o:p><br>
+'
+(REQUIRED ADSI TOOL KIT - REGSVR32 ADSSECURITY.DLL )<o:p>
+</o:p><br>
+'---------------------------------------------------------<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2">sid.SetAs
+ADS_SID_WINNT_PATH, &quot;WinNT://&quot; &amp; domain &amp; &quot;/&quot; &amp;
+strAlias &amp; &quot;,user&quot;<o:p>
+</o:p><br>
+</font><font face="Verdana" size="2">sidHex =
+sid.GetAs(ADS_SID_HEXSTRING)<o:p>
+</o:p><br>
+mailBox.Put
+&quot;Assoc-NT-Account&quot;, sidHex<o:p>
+</o:p><br>
+<br>
+' Commit
+the property cache to the directory service<o:p>
+</o:p><br>
+</font><font face="Verdana" size="2">mailBox.SetInfo<o:p>
+</o:p><br>
+<br>
+'-------------------------------------------------<o:p>
+</o:p><br>
+'--- SET
+THE MAIL BOX SECURITY ------------------<o:p>
+</o:p></font><br>
+<font face="Verdana" size="2">'-- To
+allow the user to modify user attribute, send mail and receive mail<o:p>
+</o:p><br>
+'-------------------------------------------------<o:p>
+</o:p><br>
+Set sd = sec.GetSecurityDescriptor(mailBox.ADsPath)<o:p>
+</o:p><br>
+Set dacl
+= sd.DiscretionaryAcl<o:p>
+</o:p><br>
+</font><font face="Verdana" size="2">ace.Trustee
+= domain &amp; &quot;\&quot; &amp; strAlias<o:p>
+</o:p><br>
+</font><font face="Verdana" size="2">ace.AccessMask
+= ADS_RIGHT_EXCH_MODIFY_USER_ATT Or ADS_RIGHT_EXCH_MAIL_SEND_AS Or
+ADS_RIGHT_EXCH_MAIL_RECEIVE_AS<o:p>
+</o:p><br>
+ace.AceType
+= ADS_ACETYPE_ACCESS_ALLOWED<o:p>
+</o:p><br>
+dacl.AddAce
+ace<o:p>
+</o:p><br>
+</font><font face="Verdana" size="2">sd.DiscretionaryAcl
+= dacl<o:p>
+</o:p><br>
+</font><font face="Verdana" size="2">sec.SetSecurityDescriptor
+sd<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2">&nbsp;<o:p>
+</o:p>
+</font></p>
+    <p><small><font face="Verdana" color="#0080C0"><strong>&nbsp;</strong></font></small></p>
+    <p><strong><font face="Verdana" color="#0080C0"><small><a name="ras"></a> </small><font size="4">IADsRas-WinNT ADSI Extension: RAS
+    Permission</font></font></strong></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2">IADsRas is an WinNT Extension
+on a user object. You need to install ADSI 2.5 first, before installing this
+component.<o:p>
+</o:p>
+<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font color="#0080C0" face="Verdana" size="2"><b>Location</b></font><font face="Verdana" size="2"><font color="#0080C0"><b>:</b></font>
+ <a href="resourcekit/adsras.dll"><font color="#0080C0">/resourcekit/adsras.dll<o:p></o:p>
+ </font></a></font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2"><font color="#0080C0"><b>Installation:</b></font><span style="mso-spacerun: yes">&nbsp;
+</span>regsvr32 adsras.dll<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2"><font color="#0080C0"><b>Sample
+Client:</b></font>  <a href="resourcekit/adsras">/resourcekit/adsras</a>
+</font></p>
+    <p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><b><span style="font-size:17.0pt;font-family:&quot;Arial Narrow&quot;;
+mso-bidi-font-family:Tahoma">IADsRas</span></b><font face="Verdana" size="2"><o:p>
+</o:p>
+<o:p>
+</o:p>
+<o:p>
+</o:p>
+</font></p>
+  <p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2"><font color="#0080C0"><b>Interface
+  definition</b></font></font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2">interface IADsRas : IDispatch<o:p>
+</o:p>
+<br>
+{<o:p>
+</o:p>
+<br>
+&nbsp;&nbsp; HRESULT DialinPrivilege([out, retval] BOOL *pVal);<o:p>
+</o:p>
+<br>
+</font>&nbsp;&nbsp;&nbsp; <font face="Verdana" size="2">HRESULT
+DialinPrivilege([in] BOOL newVal);<o:p>
+</o:p>
+<br>
+</font>&nbsp;&nbsp;&nbsp; <font face="Verdana" size="2">HRESULT
+SetRasCallBack([in] long lCallBack, [in, optional] BSTR szPhoneNumber);<o:p>
+</o:p>
+<br>
+</font>&nbsp;&nbsp;&nbsp; <font face="Verdana" size="2">HRESULT
+GetRasCallBack([out,retval] long *lPrivilege);<o:p>
+</o:p>
+<br>
+</font>&nbsp;&nbsp;&nbsp; <font face="Verdana" size="2">HRESULT
+GetRasPhoneNumber([out,retval] BSTR *pszPhoneNumber);<o:p>
+</o:p>
+<br>
+}; <o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2">&nbsp;<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2" color="#0080C0"><b>Enumeration
+definition<o:p>
+</o:p>
+</b></font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2"><span style="mso-spacerun: yes">&nbsp;
+</span>enum ADS_RAS_CALLBACK_ENUM<o:p>
+</o:p>
+<br>
+<span style="mso-spacerun: yes">&nbsp; </span>{<o:p>
+</o:p>
+<br>
+<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>ADS_RAS_NOCALLBACK = 0x01,<o:p>
+</o:p>
+<br>
+<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>ADS_RAS_ADMIN_SETCALLBACK = 0x2,<o:p>
+</o:p>
+<br>
+<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>ADS_RAS_CALLER_SETCALLBACK = 0x4<o:p>
+</o:p>
+<br>
+<span style="mso-spacerun: yes">&nbsp; </span>};<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2">&nbsp;<o:p>
+</o:p>
+<o:p>
+</o:p>
+</font></p>
+  <p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2"><b><font color="#0080C0">Examples</font></b></font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2">'-------------------------------<o:p>
+</o:p>
+<br>
+'----Viewing Ras Permissions----<o:p>
+</o:p>
+<br>
+'-------------------------------<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2">&nbsp;<o:p>
+</o:p>
+Set x = GetObject(&quot;WinNT://REDMOND/jsmith,user&quot;)<o:p>
+</o:p>
+<br>
+<span style="mso-spacerun: yes">&nbsp;</span>if (<span style="mso-spacerun: yes">&nbsp;
+</span>x.DialinPrivilege = True ) then<o:p>
+</o:p>
+<br>
+<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>Debug.Print &quot;Grant
+Dialin Permission&quot;<o:p>
+</o:p>
+<br>
+<span style="mso-spacerun: yes">&nbsp;</span>end if <o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2">&nbsp;<o:p>
+</o:p>
+<span style="mso-spacerun: yes">&nbsp;</span>lFlag = x.GetRasCallBack<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none">&nbsp; <font face="Verdana" size="2">If (lFlag And
+ADS_RAS_NOCALLBACK) Then<o:p>
+</o:p>
+<br>
+</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font face="Verdana" size="2">Debug.Print
+&quot;No Callback&quot;<o:p>
+</o:p>
+<br>
+</font>&nbsp; <font face="Verdana" size="2">ElseIf (lFlag And
+ADS_RAS_CALLER_SETCALLBACK) Then<o:p>
+</o:p>
+<br>
+</font>&nbsp;&nbsp;&nbsp;&nbsp; <font face="Verdana" size="2">Debug.Print &quot;Ras
+Caller SetCallback&quot;<o:p>
+</o:p>
+<br>
+</font><font face="Verdana" size="2"><span style="mso-spacerun: yes">&nbsp;</span>ElseIf
+(lFlag And ADS_RAS_ADMIN_SETCALLBACK) Then<o:p>
+</o:p>
+<br>
+</font>&nbsp;&nbsp;&nbsp;&nbsp; <font face="Verdana" size="2">Debug.Print
+&quot;Admin SetCallBack&quot;<o:p>
+</o:p>
+<br>
+</font>&nbsp;&nbsp;&nbsp;&nbsp; <font face="Verdana" size="2">Debug.Print<span style="mso-spacerun: yes">&nbsp;
+</span>x.GetRasPhoneNumber<o:p>
+</o:p>
+<span style="mso-spacerun: yes">&nbsp;&nbsp;<br>
+</span>End If<o:p>
+</o:p>
+&nbsp;<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2">'-------------------------------<o:p>
+</o:p>
+<br>
+'----Setting Ras Permissions----<o:p>
+</o:p>
+<br>
+'-------------------------------<o:p>
+</o:p>
+<br>
+</font><font face="Verdana" size="2">'--Enabled Ras Permission <o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2"><span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>Set x = GetObject(&quot;WinNT://REDMOND/jsmith,user&quot;)<o:p>
+</o:p>
+<br>
+</font>&nbsp;&nbsp;&nbsp; <font face="Verdana" size="2">x.DialinPrivilege = True<o:p>
+</o:p>
+<br>
+<br>
+</font>&nbsp;&nbsp;&nbsp; <font face="Verdana" size="2">'---- Choose one of
+three settings ( optional)<o:p>
+</o:p>
+<br>
+</font>&nbsp;&nbsp;&nbsp; <font face="Verdana" size="2">x.SetRasCallBack
+ADS_RAS_NOCALLBACK<span style="mso-spacerun: yes">&nbsp; </span>'-- For setting
+no callback<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2"><span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>'---- OR -----<o:p>
+</o:p>
+<br>
+</font>&nbsp;&nbsp;&nbsp; <font face="Verdana" size="2">x.SetRasCallBack
+ADS_RAS_CALLER_SETCALLBACK<span style="mso-spacerun: yes">&nbsp; </span>'-- For
+setting caller setcallback<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2"><span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>'---- OR -----<o:p>
+</o:p>
+<br>
+</font>&nbsp;&nbsp; <font face="Verdana" size="2">x.SetRasCallBack
+ADS_RAS_ADMIN_SETCALLBACK, phoneNumber '--- For setting Admin Call back<o:p>
+</o:p>
+</font></p>
+    <p><font face="Verdana" size="2">&nbsp;</font></p>
+    <p><b><font face="Verdana" size="2" color="#0080C0"><a name="adsversion"></a></font><font face="Verdana" color="#0080C0" size="4">IA</font><font face="Verdana" color="#0080C0" size="4">DsVersion
+    - Checking ADSI version number</font></b></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><span style="font-size: 10.0pt; font-family: Tahoma">You can
+check the
+ADSI version number both locally or remotely.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><b><span style="font-size:17.0pt;font-family:&quot;Arial Narrow&quot;;
+mso-bidi-font-family:Tahoma">IADsVersion</span></b><span style="font-size:10.0pt;font-family:Tahoma;
+color:blue">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><span style="font-size: 10.0pt; font-family: Tahoma"><font color="#0080C0">ProgID:</font><span style="mso-spacerun: yes">&nbsp; </span>ADsVersion<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><span style="font-size: 10.0pt; font-family: Tahoma"><font color="#0080C0">interface</font> IADsVersion : IDispatch<o:p>
+</o:p><br>
+{<o:p>
+</o:p><br>
+&nbsp;&nbsp; HRESULT GetVersion([retval,out] BSTR *pbstrVersion );<o:p>
+</o:p><br>
+</span>&nbsp;&nbsp; <span style="font-size: 10.0pt; font-family: Tahoma">HRESULT
+GetMajorVersion([out,retval] LONG *plMajor);<o:p>
+</o:p><br>
+</span>&nbsp;&nbsp; <span style="font-size: 10.0pt; font-family: Tahoma">HRESULT
+GetMinorVersion([out,retval] LONG *plMinor);<o:p>
+</o:p><br>
+</span>&nbsp;&nbsp; <span style="font-size: 10.0pt; font-family: Tahoma">HRESULT
+GetLocale([out,retval] BSTR *pbstrLocale);<o:p>
+</o:p><br>
+</span>&nbsp; <span style="font-size: 10.0pt; font-family: Tahoma">HRESULT
+Connect([in] BSTR bstrComputer);<o:p>
+</o:p><br>
+};<o:p>
+</o:p></span><font face="Verdana" size="2">&nbsp;<o:p>
+&nbsp;<br>
+</o:p></o:p>
+</font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2">---VBScript example</font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><span style="font-size: 10.0pt; font-family: Tahoma"><span style="mso-spacerun: yes">&nbsp; </span>Set oArgs =
+wscript.Arguments<o:p>
+</o:p><br>
+</span>&nbsp; <span style="font-size: 10.0pt; font-family: Tahoma">Set vs =
+CreateObject(&quot;ADsVersion&quot;)<o:p>
+</o:p><br>
+<br>
+'-------------------------------------------------------------------<o:p>
+</o:p><br>
+'You can also connect
+remotely to find out the ADSI version number<o:p>
+</o:p><br>
+'vs.Connect &quot;mycomputer&quot;<o:p>
+</o:p><br>
+'-------------------------------------------------------------------<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><span style="font-size: 10.0pt; font-family: Tahoma">if oArgs.Count = 1
+Then<o:p>
+</o:p><br>
+</span>&nbsp;&nbsp; <span style="font-size: 10.0pt; font-family: Tahoma">wscript.echo
+&quot;Connecting to &quot; &amp; oArgs(0) &amp; &quot;...&quot;<o:p>
+</o:p><br>
+</span>&nbsp;&nbsp; <span style="font-size: 10.0pt; font-family: Tahoma">vs.Connect
+oArgs(0)<o:p>
+</o:p><br>
+end if <o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><span style="font-size: 10.0pt; font-family: Tahoma">'--- Get the version
+number<o:p>
+</o:p><br>
+wscript.echo &quot;ADSI
+Version : &quot; &amp; vs.GetVersion<o:p>
+</o:p><br>
+wscript.echo
+&quot;Major Version: &quot; &amp; vs.GetMajorVersion<o:p>
+</o:p><br>
+wscript.echo
+&quot;Minor Version: &quot; &amp; vs.GetMinorVersion<o:p>
+</o:p><br>
+wscript.echo
+&quot;Locale:<span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>&quot; &amp; vs.GetLocale<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><span style="font-size: 10.0pt; font-family: Tahoma">----VB
+example&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><span style="font-size: 10.0pt; font-family: Tahoma">Sub Main()<o:p>
+</o:p><br>
+</span>&nbsp;&nbsp; <span style="font-size: 10.0pt; font-family: Tahoma">Set vs =
+CreateObject(&quot;ADsVersion&quot;)<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><span style="font-size: 10.0pt; font-family: Tahoma"><span style="mso-spacerun: yes">&nbsp; </span>'-------------------------------------------------------------------<o:p>
+</o:p><br>
+</span>&nbsp; <span style="font-size: 10.0pt; font-family: Tahoma">'You can also connect
+remotely to find out the ADSI version number<o:p>
+</o:p><br>
+</span>&nbsp; <span style="font-size: 10.0pt; font-family: Tahoma">'vs.Connect &quot;mycomputer&quot;<o:p>
+</o:p><br>
+&nbsp; '-------------------------------------------------------------------<o:p>
+</o:p><br>
+&nbsp; Debug.Print
+vs.GetVersion<o:p>
+</o:p><br>
+</span>&nbsp; <span style="font-size: 10.0pt; font-family: Tahoma">Debug.Print
+vs.GetMajorVersion<o:p>
+</o:p><br>
+</span>&nbsp; <span style="font-size: 10.0pt; font-family: Tahoma">Debug.Print
+vs.GetMinorVersion<o:p>
+</o:p><br>
+</span>&nbsp; <span style="font-size: 10.0pt; font-family: Tahoma">Debug.Print
+vs.GetLocale<o:p>
+</o:p><br>
+End Sub<o:p>
+</o:p><br>
+<br>
+</span><font face="Verdana" size="2">&nbsp;</font></p>
+    <p><font face="Verdana" color="#0080C0"><strong><small><a name="adserror"></a></small></strong><font size="4"><b>IADsError
+    - Getting ADSI Error Messages</b></font></font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font color="#0080C0" face="Verdana" size="2"><b>Location</b></font><font face="Verdana" size="2"><font color="#0080C0"><b>:</b></font>
+ <a href="resourcekit/adserror.dll"><font color="#0080C0">/resourcekit/adserror.dll<o:p></o:p>
+ </font></a></font></p>
+<p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2"><font color="#0080C0"><b>Installation:</b></font><span style="mso-spacerun: yes">&nbsp;
+</span>regsvr32 adserror.dll<o:p>
+</o:p>
+</font></p>
+    <p class="MsoNormal" style="mso-pagination:none;mso-layout-grid-align:none;
+text-autospace:none"><font face="Verdana" size="2"><font color="#0080C0"><b>Sample
+Client:</b></font>  <a href="resourcekit/adserror">/resourcekit/adserror</a></font></p>
+    <p><b><span style="font-size:17.0pt;font-family:&quot;Arial Narrow&quot;;
+mso-bidi-font-family:Tahoma">IADsError</span></b></p>
+    <p><font color="#0080C0" face="Verdana" size="2">Interface definition:</font></p>
+    <p><font face="Verdana" size="2">    IADsError : public IDispatch<br>
+    {<br>
+    public:<br>
+    &nbsp; HRESULT GetErrorMessage(&nbsp; /* [in] */ long hResult, /* [retval][out] */ BSTR __RPC_FAR *pbMsg) = 0;<br>
+    };<br>
+    <br>
+    <font color="#0080C0">Program ID</font>: ADsError</font></p>
+    <p><font face="Verdana" size="2">Example:</font></p>
+    <p><font size="2" face="Verdana">Set adsErr = CreateObject(&quot;ADsError&quot;)<br>
+    On Error GoTo ReportErr<br>
+    Set rec = GetObject("LDAP://DC=ArcadiaBay, DC=Com")<br>
+    <br>
+    '.... more code here....'<br>
+    <br>
+    Exit Sub<br>
+    <br>
+    ReportErr:<br>
+  Debug.Print Err.Number<br>
+  MsgBox adsErr.GetErrorMessage(Err.Number)<br>
+    </font></p>
+    <p><font face="Verdana" size="2"><br>
+    </font></p>
+    <p>&nbsp;</p>
+</td>
+  </tr>
+  <tr>
+    <td width="3%" height="21"></td>
+    <td width="97%" height="21"></td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,25 @@
+HKCR
+{
+	DX3DTransform.Microsoft.RippleSample.1 = s 'Ripple Sample'
+	{
+		CLSID = s '{F0A1EC22-EF2F-11D1-B5E0-00AA003B6061}'
+	}
+	DX3DTransform.Microsoft.RippleSample = s 'Ripple Sample'
+	{
+		CurVer = s 'DX3DTransform.Microsoft.RippleSample.1'
+		CLSID = s '{F0A1EC22-EF2F-11D1-B5E0-00AA003B6061}'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {F0A1EC22-EF2F-11D1-B5E0-00AA003B6061} = s 'Ripple Sample'
+		{
+			ProgID = s 'DX3DTransform.Microsoft.RippleSample.1'
+			VersionIndependentProgID = s 'DX3DTransform.Microsoft.RippleSample'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+		}
+	}
+}

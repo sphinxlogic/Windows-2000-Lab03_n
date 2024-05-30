@@ -1,0 +1,24 @@
+HKCR
+{
+	MtsUserEventData.MtsUserEventData.1 = s 'MtsUserEventData Class'
+	{
+		CLSID = s '{F523E425-8485-11D0-B170-00AA00BA3258}'
+	}
+	MtsUserEventData.MtsUserEventData = s 'MtsUserEventData Class'
+	{
+		CurVer = s 'MtsUserEventData.MtsUserEventData.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {F523E425-8485-11D0-B170-00AA00BA3258} = s 'MtsUserEventData Class'
+		{
+			ProgID = s 'MtsUserEventData.MtsUserEventData.1'
+			VersionIndependentProgID = s 'MtsUserEventData.MtsUserEventData'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+		}
+	}
+}

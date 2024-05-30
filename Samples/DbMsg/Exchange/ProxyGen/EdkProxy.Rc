@@ -1,0 +1,6 @@
+#include <windows.h>
+#include <winver.h>
+
+#include "proxymsg.rc"
+
+#include "proxyver.rc"

@@ -1,0 +1,89 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>Running the sample on multiple machines</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>Running the sample on multiple machines</h2>
+<p>
+In this step, we will distribute the queued component sample application over
+several machines. When an application calls a COM+ application on a remote machine,
+it does so via an application proxy. The steps below describe how to create and
+install an application proxy.
+
+<h3>
+Running QC Sample #1
+</h3>
+<ol>
+    <li>On machine A, create and configure the COM+ application
+        QCOrder per the instructions documented in <a
+        href="running.htm">Running the sample</a>.</li>
+    <li>On machine B, create and configure the COM+ application
+        QCShip.</li>
+    <li>On machine C, create and configure the COM+ application
+        QCNotify.</li>
+    <li>On machine B, export an application proxy for QCShip (see below).</li>
+    <li>On machine C, export an application proxy for QCNotify.</li>
+    <li>On machine A, import the application proxy created in step 4 (see below).</li>
+    <li>On machine B, import the application export created in step 5.</li>
+    <li>On machine A, run driver.exe.</li>
+    <li>Experiment with running this configuration with QCShip
+        and/or QCNotify not running.</li>
+</ol>
+
+<h3>
+Running QC Sample #2
+</h3>
+<ol>
+    <li>On machine A, create and configure the COM+ application
+        QCOrder per the instructions documented in <a
+        href="running.htm">Running the sample</a>.</li>
+    <li>On machine B, create and configure the COM+ application
+        QCShip.</li>
+    <li>On machine C, create and configure the COM+ application
+        QCNotify.</li>
+    <li>On machine B, export an application proxy for QCShip2 (see below).</li>
+    <li>On machine C, export an application proxy for QCNotify.</li>
+    <li>On machine A, import the application proxies created in steps 4 & 5 (see below).</li>
+    <li>On machine A, run driver.exe.</li>
+    <li>Experiment with running this configuration with QCShip2
+        and/or QCNotify not running.</li>
+</ol>
+
+<h2>Exporting an application proxy</h2>
+<ol>
+<LI>If not already started, start the Component Services Explorer by selecting Start-&gt;Programs-&gt;Administrative Tools-&gt; Component Services.</LI>
+<LI>Navigate to and highlight Console Root\Component Services Explorer\Computers\My Computer\COM+ Applications</LI>
+<LI>In the right pane you will see the icons for the COM+ applications, for example, QCShip.</LI>
+<LI>Right click on the application and select "Export...". This will start the COM Application Export Wizard</LI>
+<LI>Click Next.</LI>
+<LI>Enter the full path for the application file (.MSI file) you wish to create.</li>
+<li>Click the "Export as an Application Proxy" button.</li>
+<li>Click Next.</li>
+<li>Click Finish.</li>
+<li>This will create a .MSI file with the filename you specified. This file should be made available to the
+machine that is going to import and use the COM+ application.
+</li>
+</ol>
+
+<h2>Importing an application proxy</h2>
+<ol>
+<LI>If not already started, start the Component Services Explorer by selecting Start-&gt;Programs-&gt;Administrative Tools-&gt; Component Services.</LI>
+<LI>Navigate to Console Root\Component Services Explorer\Computers\My Computer\COM+ Applications</LI>
+<li>Right click on the COM+ Applications folder and select New->Application. This will start the COM Application Install Wizard.</li>
+<li>Click Next.</li>
+<li>Click the "Install pre-built application(s)" button.</li>
+<li>Navigate to and select the .MSI file created by exporting the application (see Creating a proxy application above).</li>
+<li>Click Open.
+<li>Click Next.
+<li>This will install the application into the directory shown.</li>
+<li>Click Next.</li>
+<li>Click Finish.</li>
+</ol>
+</body>
+</html>

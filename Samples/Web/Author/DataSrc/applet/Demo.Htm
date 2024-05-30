@@ -1,0 +1,165 @@
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<HTML>
+<HEAD>
+<TITLE>Calendar Data Source Applet Demo</TITLE>
+<META NAME="FILENAME" CONTENT="demo.HTM">
+    <style>
+      td    {width:80px; height:50px; font-size:60%;}
+    </style>
+
+    <script for=window event=onload>
+
+      // Set the language when loading
+      var e = document.all.item("language");
+
+      e.options[0] = new Option("Chinese","zh.");
+      e.options[1] = new Option("English","en.USA");
+      e.options[2] = new Option("French","fr.",true,true);
+      e.options[3] = new Option("German","de.");
+      e.options[4] = new Option("Greek","el.");
+      e.options[5] = new Option("Hebrew","iw.");
+      e.options[6] = new Option("Japanese","ja.");
+      e.options[7] = new Option("Lithuanian","lt.");
+      e.options[8] = new Option("Russian","ru.");
+      setLabels();
+
+    </script>
+
+    <script language=javascript>
+
+      function setLabels()
+      {
+          var i;
+          var id;
+          var e;
+          var label;
+          for (i = 0; i < 7; i++) {
+             var j = i + 1;
+             id = "col" + j;
+             label = Calendar.getDayLabel(i);
+             e = document.all.item(id);
+             e.innerText = label;
+          }
+          document.all.item("date").innerText = Calendar.getDate();
+      }
+
+      function changeLocale()
+      {
+        var e = document.all.item("language");
+        var i = e.selectedIndex;
+        Calendar.setLocale(e.options[i].value);
+        setLabels();
+      }
+      
+      function getLanguage()
+      {
+        var s = Calendar.getLocale();
+        var e = document.all.item("language");
+        var i;        
+        for (i = 0; i < e.length; i++) {
+            if (e.options[i].value == s)
+                return i;
+        }
+        return -1;
+      }
+
+      function changeMonth(which)
+      {
+        if (which == "previous")
+          Calendar.ChangeMonth(-1);
+        else if (which == "next")
+          Calendar.ChangeMonth(1);
+
+        document.all.item("date").innerText = Calendar.getDate();
+      }
+
+      function mousemove(which)
+      {
+        var e;
+        var color = ((which == "over") ? "yellow" : "");
+
+        e = window.event.srcElement;
+
+        while (e.tagName != "TD" && e.tagName != "TABLE")
+          e = e.parentElement;
+
+        if (e.tagName == "TD")
+          e.style.backgroundColor = color;
+      }
+
+    </script>
+  </head>
+  
+  <BODY TOPMARGIN=20 LEFTMARGIN=40 BGCOLOR="#FFFFFF" LINK="#000066" VLINK="#666666" TEXT="#000000">
+
+
+    <h2> Calendar Data Source Applet</h2>
+	<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT>
+<P>
+<P>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+<hr>
+    The applet implements a JavaBeans-compliant interface to expose its data
+    to the page. The data set the applet provides consists of rows representing
+    weeks in the month and columns representing the days of the week.
+    <p>
+    You can change the month the applet displays by clicking on the buttons
+    and the language by selecting one of the languages from the drop down list.
+    These buttons use script code to invoke methods on the data source applet.
+    The data source applet then displays a data set corresponding to the month
+    and year specified.
+    <p>
+    <div>
+      <input type=button value="Previous Month" onclick=changeMonth("previous") language=javascript>
+      <input type=button value="  Next Month  " onclick=changeMonth("next") language=javascript>
+     Language: 
+      <select id=language onchange=changeLocale() language=javascript>
+      <option>Loading...
+      </select>
+    </div>
+
+	<applet id=Calendar width=0 height=0 code=CalendarApplet.class >
+	  <PARAM NAME="cabbase" VALUE="calendar.cab">
+	</applet>
+
+	<h2 id=date>&nbsp;</h2>
+
+	<table id=table onMouseOver=mousemove("over") onMouseOut=mousemove("out")
+		   border bgcolor="white" datasrc=#Calendar cellpadding=3>
+	  <thead>
+		<tr>
+		  <th id=col1>1</th>
+		  <th id=col2>2</th>
+		  <th id=col3>3</th>
+		  <th id=col4>4</th>
+		  <th id=col5>5</th>
+		  <th id=col6>6</th>
+		  <th id=col7>7</th>
+		</tr>
+	  </thead>
+	  <tbody>
+		  <tr>
+			<td valign=top><div datafld=1 dataformatas=HTML></td>
+			<td valign=top><div datafld=2 dataformatas=HTML></td>
+			<td valign=top><div datafld=3 dataformatas=HTML></td>
+			<td valign=top><div datafld=4 dataformatas=HTML></td>
+			<td valign=top><div datafld=5 dataformatas=HTML></td>
+			<td valign=top><div datafld=6 dataformatas=HTML></td>
+			<td valign=top><div datafld=7 dataformatas=HTML></td>
+		  </tr>
+	  </tbody>
+	</table>
+
+    <br><br>
+<P>
+<BR>
+
+<FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">&copy; <A HREF="/misc/cpyright.htm" TARGET="_top">1999 Microsoft Corporation. All rights reserved. Terms of use</A>.<P></FONT>
+
+
+  </body>
+</html>

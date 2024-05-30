@@ -1,0 +1,60 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\winprint.res \
+    $(_OBJ_DIR)\alpha\parsparm.obj \
+    $(_OBJ_DIR)\alpha\support.obj \
+    $(_OBJ_DIR)\alpha\winprint.obj \
+    $(_OBJ_DIR)\alpha\emf.obj \
+    $(_OBJ_DIR)\alpha\local.obj \
+    $(_OBJ_DIR)\alpha\util.obj \
+    $(_OBJ_DIR)\alpha\text.obj \
+    $(_OBJ_DIR)\alpha\raw.obj
+
+PASS0_ALPHA_OBJECTS= \
+    $(PASS0_HEADERDIR)\messages.h \
+    $(MC_SOURCEDIR)\messages.rc
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\winprint.res \
+    $(_OBJ_DIR)\axp64\parsparm.obj \
+    $(_OBJ_DIR)\axp64\support.obj \
+    $(_OBJ_DIR)\axp64\winprint.obj \
+    $(_OBJ_DIR)\axp64\emf.obj \
+    $(_OBJ_DIR)\axp64\local.obj \
+    $(_OBJ_DIR)\axp64\util.obj \
+    $(_OBJ_DIR)\axp64\text.obj \
+    $(_OBJ_DIR)\axp64\raw.obj
+
+PASS0_AXP64_OBJECTS= \
+    $(PASS0_HEADERDIR)\messages.h \
+    $(MC_SOURCEDIR)\messages.rc
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\winprint.res \
+    $(_OBJ_DIR)\i386\parsparm.obj \
+    $(_OBJ_DIR)\i386\support.obj \
+    $(_OBJ_DIR)\i386\winprint.obj \
+    $(_OBJ_DIR)\i386\emf.obj \
+    $(_OBJ_DIR)\i386\local.obj \
+    $(_OBJ_DIR)\i386\util.obj \
+    $(_OBJ_DIR)\i386\text.obj \
+    $(_OBJ_DIR)\i386\raw.obj
+
+PASS0_386_OBJECTS= \
+    $(PASS0_HEADERDIR)\messages.h \
+    $(MC_SOURCEDIR)\messages.rc
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\winprint.res \
+    $(_OBJ_DIR)\ia64\parsparm.obj \
+    $(_OBJ_DIR)\ia64\support.obj \
+    $(_OBJ_DIR)\ia64\winprint.obj \
+    $(_OBJ_DIR)\ia64\emf.obj \
+    $(_OBJ_DIR)\ia64\local.obj \
+    $(_OBJ_DIR)\ia64\util.obj \
+    $(_OBJ_DIR)\ia64\text.obj \
+    $(_OBJ_DIR)\ia64\raw.obj
+
+PASS0_IA64_OBJECTS= \
+    $(PASS0_HEADERDIR)\messages.h \
+    $(MC_SOURCEDIR)\messages.rc
+

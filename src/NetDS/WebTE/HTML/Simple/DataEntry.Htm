@@ -1,0 +1,111 @@
+<HTML>
+<!-- 
+/**************************************************************************
+ *
+ * Copyright (c) 1998 Microsoft Corporation.  All rights reserved.
+ *
+ * This is prerelease software and is provided as is and Microsoft
+ * makes no warranties, either express or implied.  The entire risk of
+ * the use or the results of the use of this prerelease software
+ * remains with the user.
+ **************************************************************************/
+
+-->
+<HEAD>
+            <TITLE>Part Order</TITLE>
+</HEAD>
+<!-- Style Sheet for the links -->
+<STYLE>
+	a:link 
+		{
+			color:green;
+			font-family:verdana;
+			font-size:14pt;
+			text-decoration:none;
+			cursor:hand;
+		}
+	a:vlink
+		{
+			color:green;
+			font-family:verdana;
+			font-size:14pt;
+			text-decoration:none;
+			cursor:hand;
+		}
+	a:hover
+		{
+			color:forstgreen;
+			font-family:verdana;
+			font-size:14pt;
+			font-weight:bold;
+			text-decoration:none;
+			cursor:hand;
+		}
+	a:alink
+		{
+			color:green;
+			font-family:verdana;
+			font-size:14pt;
+			text-decoration:underline;
+			font-weight:bold;
+			cursor:hand;
+		}
+	P	
+		{
+			color:black;
+			font-family:arial;
+			font-size:10pt;
+		}
+
+
+</STYLE>
+<!-- End of stylesheet -->
+
+<BODY STYLE="background:MOCCASIN">
+
+<!-- The logo -->
+<CENTER>
+	<IMG SRC="ivrdemo.gif" HEIGHT=46 WIDTH=465>
+</CENTER>
+<!-- End of Logo -->
+
+<IMG SRC="disk.gif" WIDTH=54 HEIGHT=54>
+
+            <H1>Data Entry Demo</H1>
+
+
+
+<A NAME = "ORDER"></A>
+
+<FORM method=post action=Answer.asp ID=MyForm>
+
+    <a VoiceFile="Waves\PartNumber.wav"> Enter the part number:</a><br><br>
+    <INPUT TYPE="text" NAME="part number" SIZE="1" MAXLENGTH="1"><br><br>
+
+ 
+    <a VoiceFile="Waves\DesiredQuantity.wav"> Quantity</a><br><br>
+    <SELECT NAME="radio"><br><br>
+    <OPTION VALUE="1"> 1<br>
+    <OPTION VALUE="2"> 2<br>
+    <OPTION VALUE="3"> 3<br>
+    <OPTION VALUE="4"> 4<br>
+    <OPTION VALUE="5"> 5<br>
+    <OPTION VALUE="6"> 6<br>
+    <OPTION VALUE="7"> 7<br>
+    <OPTION VALUE="8"> 8<br>
+    <OPTION VALUE="9"> 9<br>
+    </SELECT>
+<br><br>
+ <a VoiceFile="Waves\ExpressShip.wav">Express shipping:</a>
+    <INPUT TYPE="checkbox" NAME="checked"><br><br>
+
+    <INPUT TYPE="Submit" NAME="sub" VALUE="Order">
+
+
+</FORM>
+
+
+
+</BODY>
+
+</HTML>

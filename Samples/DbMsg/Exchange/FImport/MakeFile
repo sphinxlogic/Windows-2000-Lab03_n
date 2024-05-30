@@ -1,0 +1,21 @@
+#---------------------------------------------------------------------------
+# Description:
+#   Make file to generate FImport.exe
+#
+# Copyright (C) Microsoft Corporation 1986 - 1998.  All Rights Reserved.
+#---------------------------------------------------------------------------
+
+USE_EXCHANGE=1
+console=1
+
+Proj = FImport
+
+LibList = PropTag.Lib
+
+!Include <BkOffice.Mak>
+
+ObjList = $(ObjDir)\FImportM.Res $(@R).Obj
+
+all:  $(ObjDir)\$(Proj).Exe
+
+$(ObjDir)\$(Proj).Exe: $(ObjList)

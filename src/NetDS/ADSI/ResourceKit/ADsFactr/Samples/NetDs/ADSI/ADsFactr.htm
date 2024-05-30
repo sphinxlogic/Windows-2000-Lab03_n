@@ -1,0 +1,70 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" Content="Microsoft Visual Studio 6.0">
+<TITLE></TITLE>
+</HEAD>
+<BODY>
+<B>Here is an example of using 
+ADsFact to get a provider and walk down the DS using OpenDSObject and 
+IADs.GetObject:</B>
+<P>&nbsp;<P>&nbsp;<P>
+<SCRIPT language="VBScript">
+	Dim oFactr
+	Dim oDom
+	Dim oUser
+                Dim domainDNS
+                Dim usrName
+                Dim password
+
+               '---- REPLACE THESE PARAMETERS ACCORDINGLY-------
+                domainDNS = "arcadiabay.com"  'Active Directory Domain DNS Name
+                usrName = "Administrator"
+                password = "waldoishere"
+	
+               '----- OPENDSOBJECT------------------------------------
+	Set oFactr = CreateObject("ADsFactory")
+	Set oDom = oFactr.OpenDSObject("LDAP:// " & domainDNS , usrName, password, 1)
+	document.write "Domain name = " & oDom.Name & " <P>"
+	document.write "Domain path = " & oDom.ADsPath & " <P>&nbsp;<P>"
+	Set oCont = oDom.GetObject("Container", "CN=Users")
+	document.write "Container name = " & oCont.Name & " <P>"
+	document.write "Container path = " & oCont.ADsPath & " <P>&nbsp;<P>"
+	Set oUser = oCont.GetObject("User", "CN=Guest")
+	document.write "User name = " & oUser.Name & " <P>"
+	document.write "User path = " & oUser.ADsPath & " <P>"
+	document.write "User description = " & oUser.Get("Description") & " <P>&nbsp;<P>"
+	Set oFactr = Nothing
+	Set oDom = Nothing
+	Set oCont = Nothing
+	Set oUser = Nothing
+</SCRIPT>
+<P>&nbsp;<P>&nbsp;<P>
+<B>Here is an example of using 
+ADsFactr to get an ADsPath and walk down the DS using Enumerator</B>
+<P>&nbsp;<P>&nbsp;<P>
+<SCRIPT language="VBScript">
+	Dim oFactr
+	Dim oCont
+	Dim oUser
+	Dim domainName 
+
+               '---- REPLACE THIS PARAMETER ACCORDINGLY
+                domainName = "ARCADIABAY"
+
+               '----------- GETOBJECT----------------------
+	Set oFactr = CreateObject("ADsFactory")
+	Set oCont = oFactr.GetObject("WinNT://" & domainName )
+	document.write "Container name = " & oCont.Name & " <P>"
+	document.write "Container path = " & oCont.ADsPath & " <P>&nbsp;<P>"
+               for each obj in oCont
+		document.write "Object name = " & obj.Name & " <P>"
+		document.write "Object path = " & obj.ADsPath & " <P>"
+               Next
+	Set oFactr = Nothing
+	Set oCont = Nothing
+	Set oUser = Nothing
+	
+</SCRIPT></P>
+
+</BODY>
+</HTML>

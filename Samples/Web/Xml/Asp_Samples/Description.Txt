@@ -1,0 +1,39 @@
+Server-Side XML Demos:
+
+Files:
+ping.asp
+save.asp
+shared.htm
+get.asp
+put.asp
+global.asa
+simple.asp
+simple.xml
+simple.xsl
+
+Description:
+The MSXML component has been designed to also work on the server. The following are some 
+simple examples that demonstrate this.
+
+Ping
+This demo round-trips an XML document using the XMLHTTP component to post it to 
+an ASP script on the server.  The ASP loads the document, and simply writes it back to the client.
+
+Save
+This demo posts an XML document to the server and saves it as a file on the server.  You 
+can then navigate to the saved file directly.
+
+Shared
+This demo posts an XML document to the server and saves it in shared Application state so 
+that multiple clients can read and write the document simultaneously without going into 
+the file system on the server.
+
+Simple
+This demo uses an ASP file to transform XML into HTML on the server, and the HTML returned to 
+the browser. This method of displaying XML can be extremely useful to those wanting to deliver 
+data encoded in XML to downlevel clients.
+
+Compatibility/Platform Compatibility:
+To view these demos, all you need is a browser that supports HTML.  To run the ASP page you need
+to have the Internet Explorer 5 MSXML.DLL installed on your server.
+

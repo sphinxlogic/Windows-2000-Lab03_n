@@ -1,0 +1,243 @@
+#include "..\\resource.h"
+
+//#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+//#undef APSTUDIO_HIDDEN_SYMBOLS
+#include "..\\resource.h"
+
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDM_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "E&xit (Ctrl+E)",              IDM_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Clear (Ctrl+R)",             IDM_CLEAR
+        MENUITEM "Change &Font (Ctrl+H)",       IDM_CHANGEFONT
+        MENUITEM "Toggle Reading &Order",       IDM_TOGGLEREADINGORDER
+        MENUITEM "Toggle &Alignment",           IDM_TOGGLEALIGNMENT
+        MENUITEM "Use &Edit Control",           IDM_USEEDITCONTROL
+    END
+    POPUP "&Options"
+    BEGIN
+        MENUITEM "Interface &Language (Ctrl+L)", IDM_INTERFACE
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About ...",                  IDM_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDA_MULTILING ACCELERATORS MOVEABLE PURE 
+BEGIN
+    "/",            IDM_ABOUT,              ASCII,  ALT, NOINVERT
+    "?",            IDM_ABOUT,              ASCII,  ALT, NOINVERT
+    "R",            IDM_CLEAR,              VIRTKEY, CONTROL, NOINVERT
+    "H",            IDM_CHANGEFONT,         VIRTKEY, CONTROL, NOINVERT
+    "L",            IDM_INTERFACE,          VIRTKEY, CONTROL, NOINVERT
+    "E",            IDM_EXIT,               VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  22, 17, 230, 75
+STYLE DS_MODALFRAME | WS_CAPTION | WS_SYSMENU
+CAPTION "About"
+FONT 8, "System"
+BEGIN
+    ICON            107,IDC_MYICON,14,9,16,16
+    LTEXT           "World Ready Version 1.0",IDC_STATIC,49,10,119,8,
+                    SS_NOPREFIX
+    LTEXT           "Copyright (C) 1998",IDC_STATIC,49,20,119,8
+    DEFPUSHBUTTON   "OK",IDOK,195,6,30,11,WS_GROUP
+END
+
+IDD_USEEDITCONTROL DIALOGEX 0, 0, 306, 138
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Sample Text Processing"
+FONT 12, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    EDITTEXT        ID_EDITCONTROL,7,50,286,46,ES_MULTILINE | ES_AUTOHSCROLL
+    PUSHBUTTON      "Clos&e",IDE_CLOSE,237,106,50,18
+    PUSHBUTTON      "&Clear Text",IDE_CLEAR,7,106,49,18,0
+    PUSHBUTTON      "Change &Font",IDE_EDIT_FONT,63,106,56,19
+    CTEXT           "Right click in the edit control to enter Unicode control characters and see other options",
+                    IDC_TYPE,7,0,285,36,SS_CENTERIMAGE | SS_SUNKEN | 
+                    WS_BORDER
+    PUSHBUTTON      "&Reading Order",IDE_READINGORDER,127,106,50,18
+    PUSHBUTTON      "&Alignment",IDE_TOGGLEALIGN,188,106,40,18
+END
+
+IDD_SELECTUI DIALOGEX 0, 0, 190, 106
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Choose User Interface Language"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,38,85,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,101,85,50,14
+    COMBOBOX        IDC_UILANGLIST,26,41,144,106,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Available User Interface Languages",IDC_STATIC,26,14,
+                    141,15,SS_CENTERIMAGE
+END
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""resource.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "Microsoft\0"
+            VALUE "FileDescription", "World Ready\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "World Ready\0"
+            VALUE "LegalCopyright", "Copyright © 1998\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "WorldR.exe\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "Microsoft World Ready\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_SELECTUI, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 183
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 99
+    END
+
+    IDD_TESTNLS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 111
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 62
+    END
+
+    IDD_QUERYDIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 268
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 283
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_APP_TITLE           "Global Dev (US English)    "
+    IDS_LOADLIBRARYFAILED   "Unable to load file %s."
+    IDS_MULTILING           "Global Dev (US English)    "
+    IDS_INITFAILED          "Intialization failed in application %s. Aborting ..."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_UILANGCHANGED       "User interface language changed to %s."
+END
+
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

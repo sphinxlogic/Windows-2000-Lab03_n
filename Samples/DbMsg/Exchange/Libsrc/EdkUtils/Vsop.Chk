@@ -1,0 +1,406 @@
+//--vsop.chk---------------------------------------------------------------
+//
+// Parameter checking for vsop.cpp
+//
+// Copyright (C) Microsoft Corp, 1986-1996.  All rights reserved.
+//
+//-----------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_HrOpenVirtualStreamOnProperty(a, b, c, d)		NOERROR
+#define CHK_CEDKVirtualStreamOnProperty_HrInitialize(a, b, c)	NOERROR
+#define CHK_CEDKVirtualStreamOnProperty_HrComputeCurrentSize(a)	NOERROR
+#define CHK_CEDKVirtualStreamOnProperty_QueryInterface(a, b)	NOERROR
+#define CHK_CEDKVirtualStreamOnProperty_Read(a, b, c)			NOERROR
+#define CHK_CEDKVirtualStreamOnProperty_Write(a, b, c)			NOERROR
+#define CHK_CEDKVirtualStreamOnProperty_CopyTo(a, b, c, d)		NOERROR
+#define CHK_CEDKVirtualStreamOnProperty_Stat(a, b)				NOERROR
+#define CHK_CEDKVirtualStreamOnProperty_Seek(a, b, c)			NOERROR
+
+#else
+
+//$--CHK_HrOpenVirtualStreamOnProperty-----------------------------------------------------------
+//
+// DESCRIPTION: Parameter checking for HrOpenVirtualStreamOnProperty
+//
+// INPUT:   pPropObject	--	MAPI object pointer
+//          ulPropTag	--	property tag
+//			ulFlags		--	MAPI property tags 
+//              
+// OUTPUT:      ppVirtualStreamOnProperty   --  pointer to buffered stream instance
+//
+// RETURNS:     HRESULT --  NOERROR if successful,
+//                          E_INVALIDARG if bad input,
+//
+//-----------------------------------------------------------------------------
+static inline HRESULT CHK_HrOpenVirtualStreamOnProperty(
+    IN LPMAPIPROP pPropObject,	// MAPI property object pointer
+	IN ULONG ulPropTag,			// property tag
+	IN ULONG ulFlags,			// MAPI property flags    
+    OUT PVIRTUALSTREAMONPROPERTY * ppVirtualStreamOnProperty)   // pointer to stream wrapper object
+{
+    HRESULT             hr              =   NOERROR;
+
+	if ( ! TEST_IUNKNOWN_PTR(pPropObject) )
+	{
+		hr = HR_LOG(E_INVALIDARG);
+
+		goto cleanup;
+	}
+
+	if ( ! VALID_PROP_ID(ulPropTag) )
+	{
+		hr = HR_LOG(E_INVALIDARG);
+
+		goto cleanup;
+	}
+
+	// check to make sure that MAPI_MODIFY is set if MAPI_CREATE is set
+	if ( (ulFlags & MAPI_CREATE) && !(ulFlags & MAPI_MODIFY) )
+	{
+		hr = HR_LOG(E_INVALIDARG);
+
+		goto cleanup;
+	}
+
+    if ( ! TEST_WRITE_PTR(ppVirtualStreamOnProperty, sizeof(PVIRTUALSTREAMONPROPERTY)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return hr;
+
+}
+
+//$--CHK_CEDKVirtualStreamOnProperty_HrInitialize-------------------------------------------
+//
+// DESCRIPTION:  Parameter checking for CEDKVirtualStreamOnProperty::HrInitialize
+//
+// INPUT:   pPropObject	--	MAPI object pointer
+//          ulPropTag	--	property tag
+//			ulFlags		--	MAPI property tags 
+//
+// RETURNS: HRESULT --  NOERROR if successful,
+//                      E_INVALIDARG if bad input.
+//
+//-----------------------------------------------------------------------------
+static inline HRESULT CHK_CEDKVirtualStreamOnProperty_HrInitialize(
+    IN LPMAPIPROP pPropObject,	// MAPI property object pointer
+	IN ULONG ulPropTag,			// property tag
+	IN ULONG ulFlags)			// MAPI property flags
+{
+    HRESULT hr  =   NOERROR;
+
+	if ( ! TEST_IUNKNOWN_PTR(pPropObject) )
+	{
+		hr = HR_LOG(E_INVALIDARG);
+
+		goto cleanup;
+	}
+
+	if ( ! VALID_PROP_ID(ulPropTag) )
+	{
+		hr = HR_LOG(E_INVALIDARG);
+
+		goto cleanup;
+	}
+
+	// Virtual streams are only used for binary and string properties.
+	if ( (PROP_TYPE(ulPropTag) != PT_TSTRING) && 
+	     (PROP_TYPE(ulPropTag) != PT_BINARY) )
+	{
+		hr = HR_LOG(E_INVALIDARG);
+
+		goto cleanup;
+	}
+
+	// check to make sure that MAPI_MODIFY is set if MAPI_CREATE is set
+	if ( (ulFlags & MAPI_CREATE) && !(ulFlags & MAPI_MODIFY) )
+	{
+		hr = HR_LOG(E_INVALIDARG);
+
+		goto cleanup;
+	}
+
+cleanup:
+
+    return hr;
+
+}
+
+//$--CHK_CEDKVirtualStreamOnProperty_HrComputeCurrentSize--------------------------
+//
+// DESCRIPTION:	Calculates current stream size
+//
+// IN:			pcbSize	--	unsigned large integer structure pointer
+//
+// RETURNS:		HRESULT	--	NOERROR if successful,
+//							STG_E_INVALIDPARAMETER if bad input.
+//
+//-----------------------------------------------------------------------------
+static inline HRESULT CHK_CEDKVirtualStreamOnProperty_HrComputeCurrentSize(
+		IN ULARGE_INTEGER * pcbSize)	// unsigned large integer pointer
+{
+	HRESULT			hr			=	NOERROR;
+
+	if ( ! TEST_WRITE_PTR(pcbSize, sizeof(ULARGE_INTEGER)) )
+	{
+		hr = HR_LOG(STG_E_INVALIDPARAMETER);
+
+		goto cleanup;
+	}
+
+cleanup:
+
+	return hr;
+
+}
+
+//---------------------------------------------------------------------
+//                        IUnknown methods
+//---------------------------------------------------------------------
+
+//$--CHK_CEDKVirtualStreamOnProperty_QueryInterface------------------------------------------
+//
+// DESCRIPTION:	Parameter checking
+//
+// INPUT:
+//
+//  [riid]	-- Reference to interface identifier of desired interface.
+//
+//  [ppv]	-- Ptr to object which supports interface.  NULL if none.
+//
+// RETURNS:     NOERROR if successful;
+//				E_INVALIDARG if bad input.
+//
+//---------------------------------------------------------------------------
+
+static inline HRESULT CHK_CEDKVirtualStreamOnProperty_QueryInterface(
+	IN REFIID riid,   // interface ID reference
+	OUT	VOID **	ppvObj)    // pointer to interface pointer
+{
+    HRESULT hr =	NOERROR;
+
+    if ( ! TEST_WRITE_PTR(ppvObj, sizeof(VOID *)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return hr;
+}
+
+//$--CHK_CEDKVirtualStreamOnProperty_Read---------------------------------------------------
+//
+// DESCRIPTION: Parameter checking
+//
+// INPUT:       pv  --  pointer to output buffer
+//              cb  --  maximum number of bytes to read
+//
+// OUTPUT:      pcb --  number of bytes actually read -- may be NULL
+//
+// RETURNS:     HRESULT --  NOERROR if successful,
+//                          STG_E_INVALIDPARAMETER if bad input.
+//
+//-----------------------------------------------------------------------------
+static inline HRESULT CHK_CEDKVirtualStreamOnProperty_Read(
+        IN VOID * pv,       // output buffer pointer
+        IN ULONG cb,        // maximum # of bytes to read
+        OUT ULONG * pcb)    // # of bytes read
+{
+    HRESULT hr      =   NOERROR;
+
+    if ( (cb > 0) && ( ! TEST_WRITE_PTR(pv, cb) ) )
+    {
+        hr = HR_LOG(STG_E_INVALIDPARAMETER);
+
+        goto cleanup;
+    }
+
+    if ( (pcb != NULL) && (! TEST_WRITE_PTR(pcb, sizeof(ULONG))) )
+    {
+        hr = HR_LOG(STG_E_INVALIDPARAMETER);
+
+        goto cleanup;
+    }
+
+cleanup:
+        
+    return hr;
+
+}
+
+//$--CHK_CEDKVirtualStreamOnProperty_Write---------------------------------------------------
+//
+// DESCRIPTION: Write the number of bytes requested from the buffer to the
+//              "stream".
+//
+// INPUT:       pv  --  pointer to buffer
+//              cb  --  number of bytes to write
+//
+// OUTPUT:      pcb --  number of bytes written -- may be NULL.
+//
+// RETURNS:     HRESULT --  NOERROR if successful,
+//                          STG_E_INVALIDPARAMETER if bad input,
+//
+//-----------------------------------------------------------------------------
+static inline HRESULT CHK_CEDKVirtualStreamOnProperty_Write(
+        IN VOID const * pv, // data to write
+        IN ULONG cb,        // # bytes to write
+        OUT ULONG *pcb)     // # bytes written
+{
+	HRESULT hr	=	NOERROR;
+
+    if ( (cb > 0) && ( ! TEST_READ_PTR(pv, cb) ) )
+    {
+        hr = HR_LOG(STG_E_INVALIDPARAMETER);
+
+        goto cleanup;
+    }
+
+    if ( (pcb != NULL) && (! TEST_WRITE_PTR(pcb, sizeof(ULONG))) )
+    {
+        hr = HR_LOG(STG_E_INVALIDPARAMETER);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+	return hr;
+
+}
+
+//$--CHK_CEDKVirtualStreamOnProperty_Stat---------------------------------------------------
+//
+// DESCRIPTION: Parameter checking for CEDKVirtualStreamOnProperty::Stat()
+//
+// INPUT:       
+//              dwFlags --  flags
+//
+// OUTPUT:      pStatStg    --  statistics buffer pointer
+//
+// RETURNS:     HRESULT --  NOERROR if successful,
+//                          STG_E_INVALIDPARAMETER if bad input,
+//
+//-----------------------------------------------------------------------------
+static inline HRESULT CHK_CEDKVirtualStreamOnProperty_Stat(
+        OUT STATSTG * pStatStg,     // stream statistic pointer
+        IN DWORD dwFlags)           // flags
+{   
+    HRESULT hr  =   NOERROR;
+
+    if ( ! TEST_WRITE_PTR(pStatStg, sizeof(STATSTG)) )
+    {
+        hr = HR_LOG(STG_E_INVALIDPARAMETER);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return hr;
+
+}
+
+//$--CHK_CEDKVirtualStreamOnProperty_CopyTo--------------------------------------
+//
+// DESCRIPTION: Copy the number of bytes requested from the "source" stream to the
+//              destination stream.
+//
+// INPUT:       pStrm  --  destination stream pointer
+//              cb  --  number of bytes to copy
+//
+// OUTPUT:      pcbRead --  number of bytes read -- may be NULL
+//              pcbWritten  --  number of bytes written -- may be NULL
+//
+// RETURNS:     HRESULT --  NOERROR if successful,
+//                          STG_E_INVALIDPARAMETER if bad input,
+//
+//-----------------------------------------------------------------------------
+static inline HRESULT CHK_CEDKVirtualStreamOnProperty_CopyTo(
+        IN LPSTREAM pStrm,              // destination stream pointer
+        IN ULARGE_INTEGER cb,           // # bytes to copy
+        OUT ULARGE_INTEGER * pcbRead,   // # bytes read
+        OUT ULARGE_INTEGER * pcbWritten)// # bytes written
+{
+    HRESULT hr          =   NOERROR;
+
+	if ( ! TEST_IUNKNOWN_PTR(pStrm) )
+	{
+		hr = HR_LOG(STG_E_INVALIDPARAMETER);
+
+		goto cleanup;
+	}
+
+	if ( (pcbRead != NULL ) && (! TEST_WRITE_PTR(pcbRead, sizeof(ULARGE_INTEGER))) )
+	{
+		hr = HR_LOG(STG_E_INVALIDPARAMETER);
+
+		goto cleanup;
+	}
+
+	if ( (pcbWritten != NULL) && (! TEST_WRITE_PTR(pcbWritten, sizeof(ULARGE_INTEGER))) )
+	{
+		hr = HR_LOG(STG_E_INVALIDPARAMETER);
+
+		goto cleanup;
+	}
+
+cleanup:
+
+	return hr;
+
+}
+
+//$--CHK_CEDKVirtualStreamOnProperty_Seek---------------------------------------------------
+//
+// DESCRIPTION: Go to the specified position in the "stream".
+//
+// INPUT:       cbOffset    --  offset
+//              dwOrigin    --  origin
+//                  
+// OUTPUT:      pcbPos  --  new position pointer	-- may be NULL
+//
+// RETURNS:     HRESULT --  NOERROR if successful,
+//                          STG_E_INVALIDPOINTER bad pcbPos,
+//                          STG_E_INVALIDPARAMETER if bad dwOrigin,
+//
+//-----------------------------------------------------------------------------
+static inline HRESULT CHK_CEDKVirtualStreamOnProperty_Seek(
+        IN LARGE_INTEGER cbOffset,      // byte offset
+        IN DWORD dwOrigin,              // origin
+        OUT ULARGE_INTEGER * pcbPos)    // new position
+{
+    HRESULT         hr      =   NOERROR;
+
+	if ( (pcbPos != NULL) && (! TEST_WRITE_PTR(pcbPos, sizeof(ULARGE_INTEGER))) )
+	{
+		hr = HR_LOG(STG_E_INVALIDPOINTER);
+
+		goto cleanup;
+	}
+
+	if ( ! ( (dwOrigin == STREAM_SEEK_CUR) || (dwOrigin == STREAM_SEEK_END) ||
+		     (dwOrigin == STREAM_SEEK_SET) ) )
+	{
+		hr = HR_LOG(STG_E_INVALIDPARAMETER);
+
+		goto cleanup;
+	}
+
+cleanup:
+
+	return hr;
+
+}
+
+#endif

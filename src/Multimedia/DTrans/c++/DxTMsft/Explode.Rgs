@@ -1,0 +1,26 @@
+HKCR
+{
+	DX3DTransform.Microsoft.Explode.1 = s 'Explode'
+	{
+		CLSID = s '{141DBAF1-55FB-11D1-B83E-00A0C933BE86}'
+	}
+	DX3DTransform.Microsoft.Explode = s 'Explode'
+	{
+		CurVer = s 'DX3DTransform.Microsoft.Explode.1'
+		CLSID = s '{141DBAF1-55FB-11D1-B83E-00A0C933BE86}'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {141DBAF1-55FB-11D1-B83E-00A0C933BE86} = s 'Explode'
+		{
+			ProgID = s 'DX3DTransform.Microsoft.Explode.1'
+			VersionIndependentProgID = s 'DX3DTransform.Microsoft.Explode'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+                        ToolBoxBitmap32 = s '%MODULE%,235'
+		}
+	}
+}

@@ -1,0 +1,143 @@
+// --convcls.chk--------------------------------------------------------------
+//
+// Parameter checking for convcls.cpp
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All rights reserved.
+//
+// ---------------------------------------------------------------------------
+
+#ifndef DEBUG
+#define CHK_CIPMConvert_HrInitialize(a,b,c,d,e)  NOERROR
+#define CHK_CIPMConvert_HrSetMsgType(a)          NOERROR
+#define CHK_CIPMConvert_HrRetrieveProps(a,b,c)   NOERROR
+
+#else
+// $--CHK_CIPMConvert_HrInitialize--------------------------------------------------------
+//
+// DESCRIPTION: Parameter checking for CIPMConvert::HrInitialize
+//
+// INPUT:       lpwszClass  --  message class
+//              lpAddrBook  --  address book pointer
+//              lpMessage   --  Pointer to MAPI message.
+//              bTNEFEncode --  Do TNEF encoding of message attachment flag
+//              lpStream    --  Stream to write to
+//
+// RETURNS:     HRESULT     --  NOERROR if successful,
+//                              E_INVALIDARG if invalid parameter,
+//
+// ---------------------------------------------------------------------------
+
+static inline HRESULT CHK_CIPMConvert_HrInitialize( 
+        IN LPCWSTR     lpwszClass,          // message class
+        IN BOOL        bTNEFEnc,            // TRUE if should TNEF encode attachments
+        IN LPADRBOOK   lpAddrBook,          // address book pointer
+        IN LPMESSAGE   lpMsg,               // message to convert
+        IN LPSTREAM    lpStrm)              // stream to write to
+{
+    HRESULT hr  =   NOERROR;    // return code
+
+    if ( ! TEST_STRINGW_PTR(lpwszClass) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_IUNKNOWN_PTR(lpAddrBook) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_IUNKNOWN_PTR(lpMsg) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_IUNKNOWN_PTR(lpStrm) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return hr;
+}
+
+// $--CHK_CIPMConvert_HrSetMsgType-------------------------------
+//
+// DESCRIPTION: Parameter checking for CIPMConvert::HrSetMsgType
+//
+// INPUT:   lpwszReportClass    --  message class
+//
+// RETURNS: HRESULT --  NOERROR if successful & is a message
+//                      E_INVALIDARG if bad input
+//                            
+// -------------------------------------------------------------
+static inline HRESULT CHK_CIPMConvert_HrSetMsgType(
+        IN LPCWSTR lpwszMessageClass)           // message class
+{
+    HRESULT         hr                  =   NOERROR;
+
+    if (  ! TEST_STRINGW_PTR(lpwszMessageClass) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+
+}
+
+// $--CHK_CIPMConvert_HrRetrieveProps--------------------------------
+//
+// DESCRIPTION: Parameter checking for CIPMConvert::HrRetrieveProps
+//
+// INPUT:       lpObject    --  pointer to message object
+//              lpPropTags  --  property tag array pointer
+//
+//
+// OUTPUT:      lppPropVals --  pointer to property value array pointer
+//
+// RETURNS:     HRESULT --  NOERROR if successful,
+//                          E_INVALIDARG if bad input,
+//
+// -------------------------------------------------------------
+static inline HRESULT CHK_CIPMConvert_HrRetrieveProps(       // RETURNS: HRESULT
+    IN LPMAPIPROP lpObj,                    // MAPI object pointer
+    IN LPSPropTagArray lpPropTags,          // counted property tag array pointer
+    OUT LPSPropValue * lppPropVals)     // pointer to property value array pointer
+{
+    HRESULT hr      =   NOERROR;
+
+    if ( ! TEST_IUNKNOWN_PTR(lpObj) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_READ_PTR(lpPropTags, sizeof(SPropTagArray)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_WRITE_PTR(lppPropVals, sizeof(LPSPropValue)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return hr;
+
+}
+#endif

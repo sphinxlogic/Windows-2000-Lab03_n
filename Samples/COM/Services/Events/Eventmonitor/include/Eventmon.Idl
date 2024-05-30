@@ -1,0 +1,48 @@
+// EventMonitor.idl	
+
+import "oaidl.idl";
+import "ocidl.idl";
+import "eventsys.idl";
+
+// IDiskEvents interface
+[
+	uuid(E80112FC-C833-11d2-BEA1-00C04F72EB9B),
+	helpstring("IDiskEvents Interface"),
+	oleautomation,
+	pointer_default(unique)
+]
+interface IDiskEvents : IDispatch
+{
+	[helpstring ("method DiskFull")] HRESULT DiskFull (BSTR szDriveName);
+}
+
+// IFileSystemEvents interface
+[
+	uuid(E80C7F00-C832-11d2-BEA1-00C04F72EB9B),
+	helpstring("IFileSystemEvents Interface"),
+	oleautomation,
+	pointer_default(unique)
+]
+interface IFileSystemEvents : IUnknown
+{
+	[helpstring("method FileCreated")] HRESULT FileCreated(BSTR szFileName);
+	[helpstring("method FileDeleted")] HRESULT FileDeleted(BSTR szFileName);
+	[helpstring("method FileRenamed")] HRESULT FileRenamed(BSTR szFileName);
+	[helpstring("method FileUpdated")] HRESULT FileUpdated(BSTR szFileName);
+};
+
+// ISystemEvents interface
+[
+	uuid(6DBAC91E-D1E2-11d2-9A34-00C04F72EB9B),
+	helpstring("ISystemEvents Interface"),
+	oleautomation,
+	pointer_default(unique)
+]
+interface ISystemEvents : IUnknown
+{
+	[helpstring("method ProcessCreated")] HRESULT ProcessCreated(BSTR szProcessName);
+	[helpstring("method ProcessTerminated")] HRESULT ProcessTerminated(BSTR szProcessName);
+	[helpstring("method PNPDeviceAdded")] HRESULT PNPDeviceAdded(BSTR szDeviceName);
+}
+
+

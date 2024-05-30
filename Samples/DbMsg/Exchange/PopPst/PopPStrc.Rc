@@ -1,0 +1,32 @@
+// --poppstrc.rc---------------------------------------------------------------
+//
+// Contains resource strings for POPPST utility.
+//
+// Copyright (C) Microsoft Corporation 1986-1996,  All Rights Reserved
+//
+// ---------------------------------------------------------------------------
+
+#include <windows.h>
+#include "popstrs.h"
+
+// Strings used by gwclean.
+
+// U.S. English table
+STRINGTABLE
+BEGIN
+    IDS_PROCESSING,		"Processing %s.  Please wait.\n"
+	IDS_USAGE,			"USAGE: POPPST IniFileName [/?]\n"
+    IDS_NEWLINE,		"\n"
+    IDS_USAGEFILE,		"   IniFileName   Fully-pathed name of INI message file\n"
+    IDS_USAGEHELP,		"   /?            Displays help screen\n"
+	IDS_HELP,			"PST message population program\n"
+    IDS_HELPDOC,      	"                 See program documentation for INI file format.\n"
+	IDS_SUCCESS,		"PST populated successfully.\n"
+	IDS_1ERROR,			"ERROR:  1 error written to the event log.\n"
+	IDS_1WARNING,		"WARNING: 1 warning written to the event log.\n"
+	IDS_ERRORS,			"ERROR:  %n errors written to the event log.\n"
+	IDS_WARNINGS,		"WARNING: %n warnings written to the event log.\n"
+	IDS_EVENT_LOG,		"ERROR:  Can't open the event log; error code = 0x%lx.\n"
+	IDS_PARAM_NUMBER,	"ERROR:  POPPST takes exactly one argument.  Type POPPST /? for help.\n"
+	IDS_BAD_ARGV,		"ERROR:  argv[] passed to main() is bad.\n"
+END

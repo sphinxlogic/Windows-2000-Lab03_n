@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD><TITLE>AFC Detection Sample</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=iso8859-1">
+<META NAME="MS.LOCALE" CONTENT="EN-US">
+<META NAME="ROBOTS" CONTENT="all">
+</HEAD>
+<BODY BGCOLOR="White" TOPMARGIN=0 LEFTMARGIN=0 VLINK="Gray">
+<A NAME="top"></A>
+<!--TOOLBAR_START-->
+<TABLE WIDTH="100%" CELLPADDING=0 CELLSPACING=0 BORDER=0>
+<TR><TD WIDTH=500 ROWSPAN=2 VALIGN=TOP><NOBR><FONT FACE="VERDANA,ARIAL,Helvetica" SIZE=1>
+<!--TOOLBAR_FRAMES_START-->
+
+<!--MS home button-->
+<A HREF="http://www.microsoft.com" TARGET="_top"><IMG SRC="../../images/home.gif" WIDTH="103" HEIGHT="21"  BORDER=0 ALT="Microsoft Home"></A><A HREF="http://www.microsoft.com/products/default.asp" TARGET="_top"><IMG SRC="../../images/prod.gif" WIDTH="81" HEIGHT="21"  BORDER=0 ALT="Products"></A><A HREF="http://www.microsoft.com/search/default.asp" TARGET="_top"><IMG SRC="../../images/search.gif" WIDTH="68" HEIGHT="21"  BORDER=0 ALT="Search"></A><A HREF="http://www.microsoft.com/support/" TARGET="_top"><IMG SRC="../../images/support.gif" WIDTH="74" HEIGHT="21"  BORDER=0 ALT="Support"></A><A HREF="http://www.microsoft.com/referral/default.asp" TARGET="_top"><IMG SRC="../../images/shop.gif" WIDTH="55" HEIGHT="21"  BORDER=0 ALT="Shop"></A><A HREF="http://www.microsoft.com/regwiz/regwiz.asp" TARGET="_top"><IMG SRC="../../images/write.gif" WIDTH="78" HEIGHT="21"  BORDER=0 ALT="Write Us"></A><IMG SRC="../../images/spacer.gif" WIDTH="49" HEIGHT="21"  BORDER=0 ALT="spacer.gif"></FONT></NOBR></TD><TD BGCOLOR="#000000" WIDTH="100%" HEIGHT=20></TD><TD WIDTH=91 ROWSPAN=2 ALIGN=RIGHT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,Helvetica" SIZE=1>
+<A HREF="http://www.microsoft.com" TARGET="_top"><IMG SRC="../../images/msft.gif" WIDTH="91" HEIGHT="21"  BORDER=0 ALT="Microsoft Home"></A></FONT></TD></TR><TR><TD BGCOLOR="#FFFFFF" WIDTH="100%" HEIGHT=1></TD></TR></TABLE>
+<!--TOOLBAR_END-->
+<TABLE BORDER=0 CELLPADDING=0 CELLSPACING=0 WIDTH="98%">
+<TR>
+<TD ROWSPAN=2 WIDTH=162 ALIGN="LEFT" VALIGN="TOP">
+<IMG SRC="../../images/titleAFC.gif" WIDTH="160" HEIGHT="108"  BORDER=0 ALT="AFC Samples"><TABLE CELLPADDING=0 CELLSPACING=0 BORDER=0 WIDTH="100%">
+<TR><TD WIDTH=10>&nbsp;</TD><TD VALIGN="top"><FONT FACE="Verdana,Arial,Helvetica" SIZE=1><B STYLE="color:#006699">In this topic</B><P><IMG SRC="../../images/linkbull.gif" WIDTH="10" HEIGHT="8"  BORDER=0 ALT="*"><A STYLE="color: #333366;text-decoration:none" HREF="afcsamp.htm#autoinstall_000000010d010000">AFC Setup Autoinstall</A>
+<P><IMG SRC="../../images/linkbull.gif" WIDTH="10" HEIGHT="8"  BORDER=0 ALT="*"><A STYLE="color: #333366;text-decoration:none" HREF="afcsamp.htm#detectinfo_000000010d020000">Using the AFC Detect Applet</A>
+<P><IMG SRC="../../images/linkbull.gif" WIDTH="10" HEIGHT="8"  BORDER=0 ALT="*"><A STYLE="color: #333366;text-decoration:none" HREF="afcsamp.htm#detectinfo_000000010d030000">Advanced AFC Detection - Obtaining the Current AFC Version</A>
+</FONT></TD></TR></TABLE>
+</TD>
+<TD WIDTH=20>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP">
+<P>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR>
+<TD WIDTH="355" VALIGN="bottom"><IMG SRC="../../images/afcsamp1.gif" WIDTH="355" HEIGHT="27"  BORDER=0 ALT="AFC Samples"></TD>
+<TD WIDTH=20>&nbsp;</TD>
+<TD ALIGN="center" VALIGN="bottom"><A HREF="../../JNotepad/docs/afcsamp.htm"><IMG SRC="../../images/prevnrm.gif" WIDTH="51" HEIGHT="38"  BORDER=0 ALT="Previous"></A></TD><TD ALIGN="center" VALIGN="bottom"><A HREF="../../afcsamp.htm#afcsamp_0000000100000000"><IMG SRC="../../images/butt_gen.gif" WIDTH="51" HEIGHT="38"  BORDER=0 ALT="AFC Samples"></A></TD></TR>
+<TR>
+<TD WIDTH="355" ALIGN="right" VALIGN="top">&nbsp;</TD>
+<TD WIDTH=20>&nbsp;</TD>
+<TD ALIGN="center" VALIGN="top"><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="1">Previous</FONT></TD>
+<TD ALIGN="center" VALIGN="top"><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="1">AFC<BR>Samples</FONT></TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD WIDTH=20>&nbsp;</TD>
+<TD>
+<BR>
+<FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2">
+<BR><BR><H2 STYLE="color:#333366">AFC Detection Sample</H2>
+<P>AFC Detection provides an easy way for developers to determine whether
+a AFC is installed on a user's computer. Using this applet and a small amount
+of JavaScript on a web page, the presence of AFC on a computer can be detected, and then the right
+actions taken. This allows one to avoid running applets that aren't supported
+on the user's computer.
+
+<p><input type="button" name="button1" value="Is AFC Installed on your computer?" onClick="detectAFC()"></p>
+<!-- AFC detect applet. Won't display -->
+<applet 
+	code=AFCDetect.class 
+	name=AFCDetect
+	width=0 
+	height=0>
+</applet>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+	// this is where we do version detection
+
+	// the "current" version of AFC as best known by this web page.
+	ourAFCVersionMajor = 2
+	ourAFCVersionMinor = 0
+
+	// detects if AFC is installed. Returns 1 if so, 0 if not. Pops up message boxes
+	// which tell the user whether they have an old version of AFC installed, a 
+	// current version, or if it is not installed at all.
+    	function detectAFC()
+    	{	   	    	   		
+	    // check if AFC is installed at all.
+	    if (document.AFCDetect.doesSupportAFC() == 0)
+		{
+			alert("You don't have AFC installed on your machine.");
+			return 0
+		}
+	    else
+		{			
+			alert("You currently have AFC version " + document.AFCDetect.getAFCVersionString());
+
+			// grab AFC version numbers from the system
+			afcVerMajor = document.AFCDetect.getAFCMajorVersion();
+			afcVerMinor = document.AFCDetect.getAFCMinorVersion();
+			isOld = 0;
+
+			// checks version numbers
+			isOld = ourAFCVersionMajor - afcVerMajor;
+
+			if (isOld == 0)
+				{
+					isOld = ourAFCVersionMinor - afcVerMinor;					
+				}		
+
+			// if isOld <= 0, AFC is the same as or newer than the version this page knows about. If
+			// isOld > 0, AFC is too old here.
+			if (isOld <= 0)     
+				{
+					alert("A current version of AFC is installed on your computer.");
+					return 1;
+				}
+			else
+				{
+					alert("An old version of AFC is installed on your computer. You should install AFC again.");
+					return 0;
+				}	
+		}
+    	}
+
+
+//-->
+</SCRIPT>
+<BR CLEAR=ALL><H3 STYLE="color:#333366"><A NAME="autoinstall_000000010d010000">AFC Setup Autoinstall</A></H3><P>Autoinstall is a useful feature that allows one to run AFC Setup from 
+a web page automatically, but only if necessary. The system checks for an 
+installed version on the user's hard disk and runs the AFC Setup program, but only if necessary.<P>
+
+<P>To use AFC Setup Autoinstall, add the following tag to your HTML page:<P>
+<PRE><FONT FACE="Courier" SIZE="2">
+&lt;OBJECT CLASSID="clsid:9C06B801-F217-11d0-AA9B-0000F8052E95" 
+CODEBASE="afcsetup.exe#Version=1,0,0,2223"
+WIDTH=0 HEIGHT=0&gt;
+&lt;/OBJECT&gt;
+</FONT></PRE>
+<P>The <B>OBJECT</B> tag specifies a Microsoft&#174; ActiveX&#153; control; 
+here, we are using the ActiveX control
+registration mechanism for AFC Setup. 
+<P>
+The <B>CLASSID</B> parameter specifies the GUID
+for AFC Setup; this is a unique identifier in the registry that is checked when the page loads.
+<P>
+<B>CODEBASE</B> is the name of the program to run, followed by a # and a version number.
+This version number is compared to the one stored in the registry with the GUID. If the
+version on the page is newer, the program is downloaded and runs automatically. If the
+page's version is older, nothing happens. There is no download unless it is necessary.
+<P>
+The <B>WIDTH</B> and <B>HEIGHT</B> tags are set to 0 because we don't want any space
+on the page allocated for this control.
+
+
+<H3 STYLE="color:#333366"><A NAME="detectinfo_000000010d020000">Using the AFC Detect Applet</A></H3><P>Using the AFC Detect applet in your own scripts and web pages is easy.<P>
+
+<P>First, include some JavaScript that prompts the applet to check if AFC
+is installed. Use a script similar to:<PRE><FONT FACE="Courier" SIZE="2">
+&lt;SCRIPT LANGUAGE="JavaScript"&gt;
+&lt;!--
+
+    function detectAFC()
+    {&#009;   
+&#009;    if (document.AFCDetect.doesSupportAFC() == 0)
+&#009;&#009;{
+&#009;&#009; alert("You don't have AFC installed on your machine.");
+&#009;&#009; return 0
+&#009;&#009;}
+&#009;    else
+&#009;&#009;{
+&#009;&#009; alert("AFC is installed on your computer.");
+&#009;&#009; return 1
+&#009;&#009;}
+    }
+
+    document.writeln("&lt;applet code=AFCDetect.class name=AFCDetect 
+                     width=0 height=0&gt;&lt;/applet&gt;");
+
+//--&gt;
+&lt;/SCRIPT&gt;
+</FONT></PRE>
+<P>The script first loads the applet by writing the applet tag to the document. When this
+is loaded, you can call the detectAFC function to detect AFC. This calls the doesSupportAFC()
+function in the AFC Detect applet. Based on what that function returns, you can determine
+whether AFC is on the computer. You may want to customize this script, perhaps by sending the user to a different
+page if AFC is not installed.
+
+<P>Now you need some way to run this script. If you would like it to be run
+as soon as someone loads the page, put the following tag in the top of
+your HTML file:
+
+<PRE><FONT FACE="Courier" SIZE="2">
+&lt;body onLoad="detectAFC()"&gt;
+</FONT></PRE>
+<P>This runs the JavaScript detectAFC() function as soon as the page is loaded.
+
+<P>The AFC Detect applet works by trying to dynamically load an AFC class (UIComponent) and
+trapping any exceptions that are thrown. If a ClassNotFoundException is caught,
+AFC is not installed, and the function returns the appropriate value. If the class
+could be loaded, AFC is installed. <H3 STYLE="color:#333366"><A NAME="detectinfo_000000010d030000">Advanced AFC Detection - Obtaining the Current AFC Version</A></H3><P>AFC Detect also supports obtaining the current version of AFC and comparing to a given
+version number. The AFC Detect applet supports the following functions:
+<UL><LI>public String getAFCVersionString()
+<LI>public int getAFCMajorVersion()
+<LI>public int getAFCMinorVersion()
+</UL>
+<P>You can call them from JavaScript with a line similar to:
+<PRE><FONT FACE="Courier" SIZE="2">
+&#009;iMajorVersionNumber = document.AFCDetect.getAFCMajorVersion()
+</FONT></PRE>
+<P>The getAFCVersionString() method returns the dot-separated major and minor version numbers. 
+The other functions simply return the integer corresponding to that field. See the source AFCDetectInfo.htm 
+for more details. 
+
+
+<P>
+</FONT>
+</TD>
+</TR>
+</TABLE>
+<CENTER>
+<P><TABLE WIDTH="95%"><TR><TD HEIGHT=1 BGCOLOR="RED"></TD></TR></TABLE>
+<TABLE WIDTH="100%"><TR>
+<TD ALIGN="left"><A HREF="#top"><IMG SRC="../../images/upnrm.gif" WIDTH="51" HEIGHT="38"  BORDER=0 ALT="Top"></A></TD>
+<TD ALIGN="right">
+<FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="1"></FONT></TD></TR></TABLE>
+</CENTER>
+</BODY></HTML>

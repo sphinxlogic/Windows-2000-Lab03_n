@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>GridBagLayout -> UIGridBagLayout</title>
+<base target="descriptions">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">GridBagLayout to UIGridBagLayout</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.GridBagLayout should be transformed into instances of
+com.ms.ui.UIGridBagLayout.</p>
+
+<p align="left">GridBagLayout implements <a
+href="LayoutManager2.htm" target="descriptions">LayoutManager2</a>:
+be sure to see its changes.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">AFC provides UIGridBagLayout, a new version of
+AWT's GridBagLayout based on the improved UILayoutManager. One
+advantage is that you can add and remove layout components from
+multiple containers in one method.</p>
+
+<p align="left">&nbsp;</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">This is the set of changes you need to make to
+port all GridBagLayout methods to UIGridBagLayout methods. Any
+method not listed here or below does not need to be changed.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial"><strong>AWT Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>AFC Code</strong></font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">GridBagLayout()</font></td>
+        <td><font size="2" face="Courier">UIGridBagLayout()</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">invalidateLayout(Container)</font></td>
+        <td nowrap><font size="2" face="Courier">(Container).invalidateAll()</font></td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h3>Unsupported Methods</h3>
+
+<p>Some methods in java.awt.GridBagLayout are not directly
+supported in com.ms.ui.UIGridBagLayout. Those methods and
+suggested changes are described here.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial">AWT Code<strong>/Suggested
+        AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">addLayoutComponent(Component,
+        Object)</font><p><font size="2" face="Courier"><strong>addLayoutComponent(IUIContainer,
+        IUIComponent, Object)</strong></font></p>
+        </td>
+        <td><font size="2">You need to specify a container for
+        the component.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">addLayoutComponent(String,
+        Object)</font><p><font size="2" face="Courier"><strong>addLayoutComponent(IUIContainer,
+        IUIComponent, Object)</strong></font></p>
+        </td>
+        <td><font size="2">You need to specify a container for
+        the component, and Strings need to be associated with
+        objects.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">maximumLayoutSize(Container)</font><p><font
+        size="2" face="Courier"><strong>preferredLayoutSize(IUIContainer)</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">removeLayoutComponent(Component)</font><p><font
+        size="2" face="Courier"><strong>(UIContainer).remove(UIComponent)</strong></font></p>
+        </td>
+        <td><font size="2">Use this method on the Container that
+        has this LayoutManager.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">getLayoutDimensions()
+        <br>
+        getLayoutOrigin() <br>
+        getLayoutWeights() <br>
+        GetMinSize(Container, GridBagLayoutInfo)<br>
+        location(int, int)<br>
+        AdjustForGravity(GridBagConstraints, Rectangle)<br>
+        ArrangeGrid(Container)<br>
+        columnWeights <br>
+        columnWidths <br>
+        comptable <br>
+        defaultConstraints <br>
+        layoutInfo <br>
+        MAXGRIDSIZE <br>
+        MINSIZE <br>
+        PREFERREDSIZE <br>
+        rowHeights <br>
+        rowWeights <br>
+        getLayoutAlignmentX(Container)<br>
+        getLayoutAlignmentY(Container)</font><p><font size="2"
+        face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+</body>
+</html>

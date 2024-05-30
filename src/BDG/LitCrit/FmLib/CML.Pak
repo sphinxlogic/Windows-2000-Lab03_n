@@ -1,0 +1,132 @@
+[{3E0C98E0-9E9E-11D2-ABD6-0080C7665CC0} - I1]
+Roles=0
+InterfaceID={3E0C98DF-9E9E-11D2-ABD6-0080C7665CC0}
+Description=
+AuthLevel=4
+ProxyStubDLL=
+[{7DB8F3EE-01C6-11D3-B6DC-0008C7093BE3} - C1]
+Role1={7DB8F3F6-01C6-11D3-B6DC-0008C7093BE3}
+Roles=1
+Clsid={3E0C98E0-9E9E-11D2-ABD6-0080C7665CC0}
+Description=
+ProgID=CML.Admin
+Transaction=Required
+RunInASP=Y
+InProc=N
+Local=Y
+Remote=N
+Internet=N
+Security=Y
+AuthLevel=4
+System=N
+Origin=Install
+Wrapped=Y
+CompDLL=CML.dll
+TypeLib=CML.dll
+Interfaces=1
+[{3E0C98E2-9E9E-11D2-ABD6-0080C7665CC0} - I1]
+Roles=0
+InterfaceID={4D792A22-F911-11D2-B6D7-0008C7093BE3}
+Description=
+AuthLevel=4
+ProxyStubDLL=
+[{7DB8F3EE-01C6-11D3-B6DC-0008C7093BE3} - C2]
+Role1={7DB8F3F6-01C6-11D3-B6DC-0008C7093BE3}
+Role2={7DB8F3F9-01C6-11D3-B6DC-0008C7093BE3}
+Roles=2
+Clsid={3E0C98E2-9E9E-11D2-ABD6-0080C7665CC0}
+Description=
+ProgID=CML.Search
+Transaction=Not supported
+RunInASP=Y
+InProc=N
+Local=Y
+Remote=N
+Internet=N
+Security=Y
+AuthLevel=4
+System=N
+Origin=Install
+Wrapped=Y
+CompDLL=CML.dll
+TypeLib=CML.dll
+Interfaces=1
+[{3E0C98E6-9E9E-11D2-ABD6-0080C7665CC0} - I1]
+Roles=0
+InterfaceID={3E0C98E5-9E9E-11D2-ABD6-0080C7665CC0}
+Description=
+AuthLevel=4
+ProxyStubDLL=
+[{7DB8F3EE-01C6-11D3-B6DC-0008C7093BE3} - C3]
+Role1={7DB8F3F6-01C6-11D3-B6DC-0008C7093BE3}
+Role2={7DB8F3F9-01C6-11D3-B6DC-0008C7093BE3}
+Roles=2
+Clsid={3E0C98E6-9E9E-11D2-ABD6-0080C7665CC0}
+Description=
+ProgID=CML.User
+Transaction=Supported
+RunInASP=Y
+InProc=N
+Local=Y
+Remote=N
+Internet=N
+Security=Y
+AuthLevel=4
+System=N
+Origin=Install
+Wrapped=Y
+CompDLL=CML.dll
+TypeLib=CML.dll
+Interfaces=1
+[{BB36884B-0275-11D3-BA70-0060B0EDEDB6} - I1]
+Roles=0
+InterfaceID={BB36884A-0275-11D3-BA70-0060B0EDEDB6}
+Description=
+AuthLevel=4
+ProxyStubDLL=
+[{7DB8F3EE-01C6-11D3-B6DC-0008C7093BE3} - C4]
+Role1={7DB8F3F6-01C6-11D3-B6DC-0008C7093BE3}
+Roles=1
+Clsid={BB36884B-0275-11D3-BA70-0060B0EDEDB6}
+Description=
+ProgID=LitCrit.Critique
+Transaction=Supported
+RunInASP=Y
+InProc=N
+Local=Y
+Remote=N
+Internet=N
+Security=Y
+AuthLevel=4
+System=N
+Origin=Install
+Wrapped=Y
+CompDLL=LitCrit.dll
+TypeLib=LitCrit.dll
+Interfaces=1
+[{7DB8F3EE-01C6-11D3-B6DC-0008C7093BE3} - R1]
+RoleID={7DB8F3F6-01C6-11D3-B6DC-0008C7093BE3}
+Description= 
+Name=Admin
+[{7DB8F3EE-01C6-11D3-B6DC-0008C7093BE3} - R2]
+RoleID={7DB8F3F9-01C6-11D3-B6DC-0008C7093BE3}
+Description= 
+Name=User
+[{7DB8F3EE-01C6-11D3-B6DC-0008C7093BE3}]
+Name=Corporate Media Library
+Description= 
+System=N
+Latency=3
+Shutdown=N
+Security=N
+AuthLevel=4
+Components=4
+Roles=2
+Activation=Local
+Changeable=Y
+Deleteable=Y
+[Packages]
+Package1={7DB8F3EE-01C6-11D3-B6DC-0008C7093BE3}
+Packages=1
+Version=2.01
+ExtendedVersion=2.01

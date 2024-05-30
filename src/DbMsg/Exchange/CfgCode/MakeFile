@@ -1,0 +1,21 @@
+#---------------------------------------------------------------------------
+# Description:
+#   Make file to generate CfgCode.exe
+#
+# Copyright (c) 1986-1998 Microsoft Corporation.  All Rights Reserved.
+#---------------------------------------------------------------------------
+
+USE_EXCHANGE=1
+console=1
+
+Proj = CfgCode
+
+!include <BkOffice.Mak>
+
+ObjList= $(@R).Obj $(ObjDir)\CfgCodeM.Res
+
+all:    $(ObjDir)\$(Proj).Exe
+
+$(ObjDir)\$(Proj).Exe: $(ObjList)
+
+$(ObjDir)\$(Proj).Obj: $(@B).c $(ObjDir)\CfgCodeM.Res

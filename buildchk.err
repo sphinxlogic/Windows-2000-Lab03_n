@@ -1,0 +1,139 @@
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+src\debugging\kanalyze\plugins\director\viewcmd\viewcmd.c(21) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\debugging\kanalyze\plugins\director\viewcmd\vcmddll.c(20) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\debugging\kanalyze\plugins\director\viewcmd\util.c(21) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\debugging\kanalyze\plugins\director\viewcmd\lib() : error LNK1181: cannot open input file "objchk\i386\viewcmd.obj"
+src\debugging\kanalyze\plugins\director\viewcmd\link() : error LNK1181: cannot open input file "objchk\i386\precomp.obj"
+NMAKE :  U1073: don't know how to make '..\agplib\objchk\i386\agplib.lib'
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+src\network\config\filter\dllmain.cpp(2) : error C1083: Cannot open precompiled header file: 'objchk\i386\pch.pch': No such file or directory
+src\network\config\filter\implinc.cpp(1) : error C1083: Cannot open precompiled header file: 'objchk\i386\pch.pch': No such file or directory
+src\network\config\filter\sfilter.cpp(14) : error C1083: Cannot open precompiled header file: 'objchk\i386\pch.pch': No such file or directory
+src\network\config\filter\lib() : error LNK1181: cannot open input file "objchk\i386\dllmain.obj"
+src\network\config\filter\link() : error LNK1181: cannot open input file "objchk\i386\pch.obj"
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+src\network\config\netcfg\main.cpp(20) : error C1083: Cannot open precompiled header file: 'objchk\i386\pch.pch': No such file or directory
+src\network\config\netcfg\snetcfg.cpp(21) : error C1083: Cannot open precompiled header file: 'objchk\i386\pch.pch': No such file or directory
+src\network\config\netcfg\implinc.cpp(1) : error C1083: Cannot open precompiled header file: 'objchk\i386\pch.pch': No such file or directory
+src\network\config\netcfg\link() : error LNK1181: cannot open input file "objchk\i386\pch.obj"
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+src\network\config\oemupg\oemupg.cpp(14) : error C1083: Cannot open precompiled header file: 'objchk\i386\pch.pch': No such file or directory
+src\network\config\oemupg\lib() : error LNK1181: cannot open input file "objchk\i386\oemupg.obj"
+src\network\config\oemupg\link() : error LNK1181: cannot open input file "objchk\i386\pch.obj"
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+src\network\irda\dll\irclass\lib() : error LNK1181: cannot open input file "objchk\i386\irclass.obj"
+src\network\irda\dll\irclass\link() : error LNK1181: cannot open input file ".\i386\irclass.exp"
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+src\network\wshsmple\lib() : error LNK1181: cannot open input file "objchk\i386\wshsmple.obj"
+src\network\wshsmple\link() : error LNK1181: cannot open input file "objchk\i386\wshsmple.exp"
+inc\atlbase.h(604) : error C2787: 'IConnectionPointContainer' : no GUID has been associated with this object
+inc\atlbase.h(612) : error C2787: 'IConnectionPointContainer' : no GUID has been associated with this object
+inc\atlbase.h(604) : error C2787: 'IConnectionPoint' : no GUID has been associated with this object
+inc\atlbase.h(612) : error C2787: 'IConnectionPoint' : no GUID has been associated with this object
+inc\atlbase.h(604) : error C2787: 'IConnectionPointContainer' : no GUID has been associated with this object
+inc\atlbase.h(612) : error C2787: 'IConnectionPointContainer' : no GUID has been associated with this object
+inc\atlbase.h(604) : error C2787: 'IConnectionPoint' : no GUID has been associated with this object
+inc\atlbase.h(612) : error C2787: 'IConnectionPoint' : no GUID has been associated with this object
+src\preview\wdm\wia\extend\shellext.cpp(9) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\preview\wdm\wia\extend\extend.cpp(8) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\preview\wdm\wia\extend\stdafx.cpp(5) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\preview\wdm\wia\extend\lib() : error LNK1181: cannot open input file "objchk\i386\shellext.obj"
+src\preview\wdm\wia\extend\link() : error LNK1181: cannot open input file "objchk\i386\precomp.obj"
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+src\print\genprint\lib() : error LNK1181: cannot open input file "objchk\i386\parsparm.obj"
+src\print\genprint\link() : error LNK1181: cannot open input file "objchk\i386\genprint.exp"
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+src\print\monitors\localmon\localmon.c(12) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\monitors\localmon\winspool.c(16) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\monitors\localmon\util.c(12) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\monitors\localmon\config.c(17) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\monitors\localmon\dialogs.c(14) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\monitors\localmon\xcv.c(16) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\monitors\localmon\irda.c(16) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\monitors\localmon\lib() : error LNK1181: cannot open input file "objchk\i386\localmon.obj"
+src\print\monitors\localmon\link() : error LNK1181: cannot open input file "objchk\i386\precomp.obj"
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+src\print\monitors\localui\localui.c(11) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\monitors\localui\util.c(16) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\monitors\localui\dialogs.c(12) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\monitors\localui\config.c(16) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\monitors\localui\lib() : error LNK1181: cannot open input file "objchk\i386\localui.obj"
+src\print\monitors\localui\link() : error LNK1181: cannot open input file "objchk\i386\precomp.obj"
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+src\print\oemdll\oemps\dllentry.cpp(23) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\oemdll\oemps\intrface.cpp(23) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\oemdll\oemps\command.cpp(23) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\oemdll\oemps\ddihook.cpp(23) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\oemdll\oemps\debug.cpp(22) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\oemdll\oemps\devmode.cpp(23) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\oemdll\oemps\enable.cpp(23) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\oemdll\oemps\umode\lib() : error LNK1181: cannot open input file "objchk\i386\dllentry.obj"
+src\print\oemdll\oemps\umode\link() : error LNK1181: cannot open input file "objchk\i386\precomp.obj"
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+src\print\oemdll\oemui\intrface.cpp(24) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\oemdll\oemui\dllentry.cpp(23) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\oemdll\oemui\debug.cpp(22) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\oemdll\oemui\devmode.cpp(23) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\oemdll\oemui\globals.cpp(24) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\oemdll\oemui\oemui.cpp(23) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\oemdll\oemui\lib() : error LNK1181: cannot open input file "objchk\i386\intrface.obj"
+src\print\oemdll\oemui\link() : error LNK1181: cannot open input file "objchk\i386\precomp.obj"
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+src\print\oemdll\oemuni\dllentry.cpp(23) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\oemdll\oemuni\intrface.cpp(23) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\oemdll\oemuni\ddihook.cpp(23) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\oemdll\oemuni\debug.cpp(22) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\oemdll\oemuni\devmode.cpp(23) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\oemdll\oemuni\enable.cpp(23) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\oemdll\oemuni\umode\lib() : error LNK1181: cannot open input file "objchk\i386\dllentry.obj"
+src\print\oemdll\oemuni\umode\link() : error LNK1181: cannot open input file "objchk\i386\precomp.obj"
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+src\print\oemdll\watermark\wmarkps\dllentry.cpp(23) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\oemdll\watermark\wmarkps\intrface.cpp(23) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\oemdll\watermark\wmarkps\command.cpp(23) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\oemdll\watermark\wmarkps\fdebug.cpp(25) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\oemdll\watermark\wmarkps\fdevmode.cpp(22) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\oemdll\watermark\wmarkps\umode\lib() : error LNK1181: cannot open input file "objchk\i386\dllentry.obj"
+src\print\oemdll\watermark\wmarkps\umode\link() : error LNK1181: cannot open input file "objchk\i386\precomp.obj"
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+src\print\oemdll\watermark\wmarkui\intrface.cpp(24) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\oemdll\watermark\wmarkui\dllentry.cpp(23) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\oemdll\watermark\wmarkui\fdebug.cpp(25) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\oemdll\watermark\wmarkui\fdevmode.cpp(22) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\oemdll\watermark\wmarkui\globals.cpp(24) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\oemdll\watermark\wmarkui\wmarkui.cpp(23) : error C1083: Cannot open precompiled header file: 'objchk\i386\precomp.pch': No such file or directory
+src\print\oemdll\watermark\wmarkui\lib() : error LNK1181: cannot open input file "objchk\i386\intrface.obj"
+src\print\oemdll\watermark\wmarkui\link() : error LNK1181: cannot open input file "objchk\i386\precomp.obj"
+NMAKE :  U1073: don't know how to make 'c:\NTDDK\libchk\i386\classpnp.lib'
+NMAKE :  U1073: don't know how to make 'c:\NTDDK\libchk\i386\classpnp.lib'
+NMAKE :  U1073: don't know how to make 'c:\NTDDK\libchk\i386\classpnp.lib'
+NMAKE :  U1073: don't know how to make 'c:\NTDDK\libchk\i386\classpnp.lib'
+NMAKE :  U1073: don't know how to make 'c:\NTDDK\libchk\i386\classpnp.lib'
+NMAKE :  U1073: don't know how to make 'c:\NTDDK\libchk\i386\classpnp.lib'
+NMAKE :  U1073: don't know how to make 'c:\NTDDK\libchk\i386\classpnp.lib'
+NMAKE :  U1073: don't know how to make 'c:\NTDDK\libchk\i386\classpnp.lib'
+NMAKE :  U1073: don't know how to make '..\..\lib\i386\stdunk.lib'
+NMAKE :  U1073: don't know how to make '..\lib\i386\stdunk.lib'
+NMAKE :  U1073: don't know how to make '..\lib\i386\stdunk.lib'
+NMAKE :  U1073: don't know how to make '..\lib\i386\stdunk.lib'
+inc\wchar.h(203) : error C2373: '__p__pctype' : redefinition; different type modifiers
+src\wdm\wmi\cdmprov\lib() : error LNK1181: cannot open input file "objchk\i386\wbemmisc.obj"
+src\wdm\wmi\cdmprov\link() : error LNK1181: cannot open input file "objchk\i386\cdmprov.exp"

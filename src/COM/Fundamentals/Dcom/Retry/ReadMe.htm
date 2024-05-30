@@ -1,0 +1,72 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>DCOM Retry Client Sample</title>
+</head>
+
+<body>
+
+<p><font size="6" face="Tahoma" color="#000080">DCOM Retry Client Sample</font></p>
+<hr>
+<p><font face="Tahoma">The purpose of this sample is to illustrate how to code a
+retry logic when calling a COM+ Application running on a Server DCOM Retry, and how to use it.</font></p>
+<p><font face="Tahoma">When receiving the &quot;RPC server is unavailable&quot;
+error back, the supporting code will re-try 5 times to call the method with 2
+seconds between each retry. These are the values by default and can be changed
+when calling the method.</font></p>
+<p><font face="Tahoma">If the method still fails for the same reason, you'll get
+the following message box:</font></p>
+<p align="center"><font face="Tahoma"><img border="0" src="ReadMe.gif" width="596" height="165"></font></p>
+<p>&nbsp;</p>
+<p><font face="Tahoma"><b>Prerequisites</b></font></p>
+<p><font face="Tahoma">As it uses the COM class whose ProgID is &quot;Bank.Account.VC&quot;,
+you'll need to install the Bank sample on your DCOM Retry to successfully run this
+sample.</font></p>
+<p><font face="Tahoma">You'll also need to copy the Vcacct.dll file (from the
+Bank sample) to this sample directory, or modify the DCOM_Retry_Client.cpp file to
+point to the location of this file on your hard-disk (see <a href="http://msdn.microsoft.com/library/devprods/vs6/vc++/vccore/_predir_the_.23.import_directive.htm">#import</a>)</font></p>
+<p><font face="Tahoma"><b>Comment on template code</b></font></p>
+<p><font face="Tahoma">Thanks to <a href="http://msdn.microsoft.com/library/devprods/vs6/vc++/vccore/_core_template_topics.htm"> C++
+templates</a>, the calling code comes close to
+a program that would use straight <a href="http://msdn.microsoft.com/library/devprods/vs6/vc++/vclang/_pluslang__com_ptr_t.htm"> COM smart interface pointer</a> (see
+<a href="http://msdn.microsoft.com/library/conf/tech97htm/ent406ef.htm"> VC++ native
+COM support</a>)</font></p>
+<p><font face="Tahoma">The code provided has support for method with as much as
+4 parameters. If you want to extend the code to support more parameters, it
+should be fairly easy to guess what needs to be done by having a look at the
+CComMethodCaller.h file, and comparing the code to support 3 parameters with the
+one to support 4 parameters.</font></p>
+<p><font face="Tahoma"><b>If you don't use the VC++ native COM support</b>&nbsp;</font></p>
+<p><font face="Tahoma">Changing this code to support direct COM method calls
+returning <a href="http://msdn.microsoft.com/library/sdkdoc/automat/gloss_4obs.htm">HRESULT</a>
+(instead of throwing a <a href="http://msdn.microsoft.com/library/devprods/vs6/vc++/vclang/_pluslang__com_error.htm">_com_error</a>
+exception) should not be a problem.</font></p>
+<p><font face="Tahoma">You'll want to keep the reference to the IID in the CCOMMethodCallerBase
+class. The CCOMMethodCaller class would contain the interface pointer. The
+prototypes of the GetComMethodCaller template functions would also change. The
+one that support one parameter might look like this:</font></p>
+<table border="0" width="100%">
+  <tr>
+    <td width="22%" valign="top">
+      <pre><font face="Tahoma"><font color="#0000FF">template</font>&lt; <font color="#0000FF">class</font> IP, <font color="#0000FF">typename</font> P &gt;
+CCOMMethodCaller1&lt;IP,P&gt; GetComMethodCaller( </font></pre>
+    </td>
+    <td width="78%"><pre><font face="Tahoma"><font color="#0000FF">
+const</font> CLSID &amp; clsid,
+<font color="#0000FF">const</font> IID &amp; iid, IP * ip,
+HRESULT ( <font color="#0000FF"><a href="http://msdn.microsoft.com/library/devprods/vs6/vc++/vccore/Html/_core___stdcall.htm">__stdcall</a></font> IP::* pM) (P),
+DWORD dwTimeDelay = CCOMMethodCallerBase::sm_dwDefaultTimeDelay,
+WORD wMaxRetries = CCOMMethodCallerBase::sm_wDefaulMaxRetries ) <font color="#0000FF">throw</font>()
+</font></pre>
+      <pre>&nbsp;</pre>
+    </td>
+  </tr>
+</table>
+
+</body>
+
+</html>

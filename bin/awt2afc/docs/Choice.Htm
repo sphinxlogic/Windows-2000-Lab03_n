@@ -1,0 +1,163 @@
+ <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>Choice -> UIChoice</title>
+<base href="choice.htm" target="descriptions">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">Choice to UIChoice</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.Choice should be transformed into instances of
+com.ms.ui.UIChoice. </p>
+
+
+<p align="left">Choice extends <a href="Component.htm"
+target="descriptions">Component</a>: be sure to see its changes.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">In AWT, all items in a Choice component must be
+strings. AFC allows you to do this: however, it also allows you
+to enter UIComponents as Choice components. In this manner, not
+only can you have text components in your choice bar, but you can
+have images and even canvasses. You also have more control over
+the look of the components. </p>
+
+<p align="left">The transformation of AWT to AFC components is
+simple: to add text components, for example, you would replace</p>
+
+<p align="left"><font face="Courier New">add(&quot;foo&quot;);</font></p>
+
+<p align="left">by</p>
+
+<p align="left"><font face="Courier New">add(new
+UIText(&quot;Foo&quot;));</font></p>
+
+<p align="left">In AFC, you cannot remove or select (by name)
+individual items when added as Strings to the Choice component:
+however, you can do so when added as UIComponents.</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">This is the set of changes you need to make to
+port all Choice methods to UIChoice methods. Any method not
+listed here or below does not need to be changed.</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial"><strong>AWT Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">add(String)</font></td>
+        <td><font size="2" face="Courier">addString(String)</font></td>
+        <td><font size="2">better to add UIComponents--see above</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">addItem(String)</font></td>
+        <td><font size="2" face="Courier">addString(String)</font></td>
+        <td><font size="2" face="Times New Roman">better to add
+        UIComponents--see above</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">countItems()</font></td>
+        <td><font size="2" face="Courier">(getMenu()).getComponentCount()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getItem(int)</font></td>
+        <td><font size="2" face="Courier">((getMenu()).getComponent(int)).getName()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getItemCount()</font></td>
+        <td><font size="2" face="Courier">(getMenu()).getComponentCount()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getSelectedIndex()</font></td>
+        <td><font size="2" face="Courier">(getMenu()).getSelectedIndex()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getSelectedItem()</font></td>
+        <td><font size="2" face="Courier">((getMenu()).getSelectedItem()).getName()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">insert(String, int)</font></td>
+        <td><font size="2" face="Courier">(getMenu()).add(String,
+        int)</font></td>
+        <td><font size="2" face="Times New Roman">better to add
+        UIComponents--see above</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">removeAll()</font></td>
+        <td><font size="2" face="Courier">(getMenu()).removeAll()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">select(int)</font></td>
+        <td><font size="2" face="Courier">(getMenu()).setSelectedIndex(int)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+
+<h3>Unsupported Methods</h3>
+
+<p>Some methods in java.awt.Choice are not directly supported in
+com.ms.ui.UIChoice. Those methods and suggested changes are
+described here.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial">AWT Code<strong>/Suggested
+        AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getSelectedObjects()</font><p><font
+        size="2" face="Courier"><strong>(getMenu()).getSelectedItems()</strong></font></p>
+        </td>
+        <td><font size="2">The AWT code returns a single-item
+        array containing an Object with the labels (as Strings)
+        of the choice items. The AFC suggestion returns the items
+        as UIComponents: to get the labels, you will have to
+        invoke getName() on the components.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">paramString()</font><p><font
+        size="2" face="Courier"><strong>getName()</strong></font></p>
+        </td>
+        <td><font size="2">The AFC code cannot return the whole
+        string of current settings.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">remove(String)</font><p><font
+        size="2" face="Courier"><strong>(getMenu()).remove(UIComponent)</strong></font></p>
+        </td>
+        <td><font size="2">Entries in the Choice component added
+        as Strings cannot be removed individually: add them as
+        UIComponents instead.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">select(String)</font><p><font
+        size="2" face="Courier"><strong>(getMenu()).getSelectedItem(UIComponent)</strong></font></p>
+        </td>
+        <td><font size="2">Entries in the Choice component added
+        as strings cannot be selected by name: add them as
+        UIComponents instead.</font></td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<HTML>
+<HEAD>
+<TITLE>XML Book Finder</TITLE>
+</HEAD>
+
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT><hr>
+
+<BODY onload="WaitToFillBoxes()">
+<P style="FONT-SIZE: 24pt; FONT-WEIGHT: bold">XML Book Finder</P>
+
+<!-- XML Data Island for the selected books -->
+<XML id=selBooks></XML>
+
+<!-- XML Data Island for the XSL stylesheet -->
+<XML id=bookSS SRC = "booksTable.xsl"></XML>
+
+<DIV ID=selectDIVs>
+<SPAN style="FONT-WEIGHT: bold">Select Title: </SPAN><SPAN ID=choices2></SPAN>
+<BR>
+<SPAN style="FONT-WEIGHT: bold">Select Author: </SPAN><SPAN ID=choices3></SPAN>
+</DIV>
+
+<SCRIPT>
+var retNodes;
+var patternString;
+
+
+function fillBoxes(){
+  makeBox("title","titles",1);
+  makeBox("author","authors",4);
+  }
+ 
+//match patterns to retrieve the contents of the select boxes
+function makeBox(elementName,boxName,divIndex){
+  var pattern = "//" + elementName;
+  //retrieve nodes by matching pattern
+  var selNodes = booksDoc.documentElement.selectNodes(pattern);
+  //create a node to act as parent of the nodelist returned
+  var holderNode = booksDoc.createNode(1,"holder","");
+  //clone first of returned nodes and insert as first child
+  //this preserves the state of the returned nodelist and 
+  //provides an initial node for comparison
+  holderNode.insertBefore(selNodes.item(0).cloneNode(true), null);
+  //loop through the two node lists and compare to avoid
+  //duplicates in the select box choices.  If a match is found
+  //or the element is empty the counter is set to 1
+  for (var j=1;j< selNodes.length;j++){
+    counter = 0;
+    for (var k=0; k< holderNode.childNodes.length;k++){
+      if (selNodes.item(j).text == holderNode.childNodes.item(k).text || selNodes.item(j).text == ""){
+        counter=1;
+        break;
+        }
+      else counter = 0;
+      }
+    if (counter == 0){
+      holderNode.insertBefore(selNodes.item(j).cloneNode(true), null);
+      }
+    }
+  buildSelect(boxName,holderNode.childNodes,divIndex);
+  }
+ 
+//build the select boxes using the nodelist built in makeBox
+function buildSelect(boxName, selNodes, divIndex){
+  var str = "<SELECT NAME='" + boxName + "' SIZE=1><OPTION VALUE='' SELECTED>All";
+       for (var i=0; i < selNodes.length; i++){
+        str += "<OPTION VALUE='" + selNodes.item(i).text + "'>" + selNodes.item(i).text;
+        }
+      str += "</SELECT>";
+      //divIndex indicates which SPAN element to fill with a
+      //select box
+      selectDIVs.children.item(divIndex).innerHTML = str;
+  }
+
+
+//construct a pattern based on select box choices
+//and retrieve a nodelist against which to apply 
+//the XSL stylesheet
+function getSamples(){
+  //construct the pattern
+  var patternString = "//book[";
+  if (titles.value != "")
+    patternString += "title='" + titles.value + "'";
+  if (authors.value != ""){
+    if (titles.value != "")
+      patternString += " $and$ author='" + authors.value + "'";
+    else patternString += "author='" + authors.value + "'";
+    }
+  patternString += "]"
+  if (patternString == "//book[]")
+    patternString = "//book";
+  //return the matching nodes
+  var selectedNodes = booksDoc.selectNodes(patternString);
+  var bookHolder = booksDoc.createNode(1,"books","");
+  for (var n=0; n< selectedNodes.length; n++)
+    bookHolder.insertBefore(selectedNodes.item(n).cloneNode(true),null);
+  //insert the HTML string returned by transformNode into a DIV element
+  insertTable.innerHTML = bookHolder.transformNode(bookSS.documentElement);
+  }
+
+//Calls fillboxes() only after the entire XML document has been
+//loaded
+function getState(){
+  if (booksDoc.readyState == "complete")
+    fillBoxes();
+  }
+
+//Calls fillboxes() only after the entire XML document has been
+//loaded
+function WaitToFillBoxes(){
+  window.status = "waiting...";
+  if (booksDoc.readyState != "complete")
+    window.setTimeout("WaitToFillBoxes()",100);
+  if (bookSS.readyState != "complete")
+    window.setTimeout("WaitToFillBoxes()",100);
+
+  window.status = "ok !!!";
+  fillBoxes();
+}
+
+</SCRIPT>
+
+<!-- XML Data Island for the bookstore data -->
+<XML ID="booksDoc" SRC = "bookStore.xml" ></XML>
+
+<BR>
+<INPUT TYPE=button NAME="Find Books" VALUE="Find Books" onclick="getSamples()">
+<BR>
+<HR>
+
+<!-- DIV that will hold the HTML string returned by the transformNode -->
+<DIV id="insertTable"></DIV>
+
+
+</BODY>
+</HTML>

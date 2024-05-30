@@ -1,0 +1,36 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\sfilter.res \
+    $(_OBJ_DIR)\alpha\dllmain.obj \
+    $(_OBJ_DIR)\alpha\implinc.obj \
+    $(_OBJ_DIR)\alpha\sfilter.obj
+
+PASS0_ALPHA_OBJECTS= \
+    $(PASS0_HEADERDIR)\sfiltern.h
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\sfilter.res \
+    $(_OBJ_DIR)\axp64\dllmain.obj \
+    $(_OBJ_DIR)\axp64\implinc.obj \
+    $(_OBJ_DIR)\axp64\sfilter.obj
+
+PASS0_AXP64_OBJECTS= \
+    $(PASS0_HEADERDIR)\sfiltern.h
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\sfilter.res \
+    $(_OBJ_DIR)\i386\dllmain.obj \
+    $(_OBJ_DIR)\i386\implinc.obj \
+    $(_OBJ_DIR)\i386\sfilter.obj
+
+PASS0_386_OBJECTS= \
+    $(PASS0_HEADERDIR)\sfiltern.h
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\sfilter.res \
+    $(_OBJ_DIR)\ia64\dllmain.obj \
+    $(_OBJ_DIR)\ia64\implinc.obj \
+    $(_OBJ_DIR)\ia64\sfilter.obj
+
+PASS0_IA64_OBJECTS= \
+    $(PASS0_HEADERDIR)\sfiltern.h
+

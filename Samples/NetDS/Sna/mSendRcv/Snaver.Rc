@@ -1,0 +1,79 @@
+/*****************************************************************************/
+/* Copyright info                                                            */
+/*****************************************************************************/
+#ifndef SNA_VER_COPYRIGHT
+  #ifdef SNA_VER_DCL_COPYRIGHT
+    #define SNA_VER_COPYRIGHT "Copyright 1997 - 1998 Microsoft Corporation 1993-1996\nCopyright \251 Data Connection Ltd. 1993-1996\0"
+  #else
+    #ifdef SNA_VER_BOTH_COPYRIGHT
+      #define SNA_VER_COPYRIGHT "Copyright 1997 - 1998 Microsoft Corporation 1993-1996\nCopyright \251 Data Connection Ltd. 1993-1996\0"
+    #else
+      #define	SNA_VER_COPYRIGHT "Copyright 1997 - 1998 Microsoft Corporation 1993-1996\0"
+    #endif
+  #endif
+#endif
+
+#ifdef	WIN32
+  #ifdef i386
+    #define	SNA_VER_STRING	"V3.0 SAMPLE IBMSDLC\0"
+  #else
+    #ifdef MIPS
+      #define	SNA_VER_STRING	"V3.0 SAMPLE IBMSDLC\0"
+    #else
+      #ifdef ALPHA
+        #define	SNA_VER_STRING	"V3.0 SAMPLE IBMSDLC\0"
+      #else
+        #define	SNA_VER_STRING	"V3.0 SAMPLE IBMSDLC\0"
+      #endif
+    #endif
+  #endif
+#else
+  #define	SNA_VER_STRING	"V3.0 SAMPLE IBMSDLC\0"
+#endif
+
+/*****************************************************************************/
+/* This structure creates the version info section in the binary             */
+/*****************************************************************************/
+
+VS_VERSION_INFO 	VERSIONINFO
+FILEVERSION    	    rmj,rmm,0,rup
+PRODUCTVERSION 	    rmj,rmm,0,rup
+FILEFLAGSMASK  	    VS_FFI_FILEFLAGSMASK
+FILEFLAGS      	    VS_FF_PRERELEASE
+#ifdef	WIN32
+FILEOS	     	    VOS_NT_WINDOWS32
+#else
+FILEOS	     	    VOS_DOS_WINDOWS16
+#endif
+FILETYPE       	    SNA_VER_FILE_TYPE
+FILESUBTYPE    	    SNA_VER_FILE_SUBTYPE
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904E4"
+    BEGIN
+      VALUE "CompanyName",      "Microsoft Corporation\0"
+      VALUE "FileDescription",  SNA_VER_FILEDESC
+      VALUE "FileVersion",      SNA_VER_STRING
+      VALUE "InternalName",     SNA_VER_INTERNALNAME
+      VALUE "LegalCopyright",   SNA_VER_COPYRIGHT
+      VALUE "LegalTrademarks",  "Microsoft\256 SNA Server is a trademark of Microsoft Corporation\0"
+      VALUE "OriginalFilename", SNA_VER_ORIGINALNAME
+      VALUE "ProductName",      "Microsoft\256 SNA Server\0"
+      VALUE "ProductVersion",   SNA_VER_STRING
+    END
+  END
+
+  BLOCK "VarFileInfo"
+  BEGIN
+      /* The following line should only be modified for localized versions.     */
+      /* It consists of any number of WORD,WORD pairs, with each pair           */
+      /* describing a language,codepage combination supported by the file.      */
+      /*                                                                        */
+      /* For example, a file might have values "0x409,1252" indicating that it  */
+      /* supports English language (0x409) in the Windows ANSI codepage (1252). */
+
+      VALUE "Translation", 0x409, 1252
+
+  END
+END

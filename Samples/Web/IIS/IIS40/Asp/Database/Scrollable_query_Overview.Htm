@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Scrollable Query</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_scrollable_query"></a>  Scrollable Query</h3>
+<p>
+When you design application for an Internet environment, you will often want to limit the amount of information that a database query returns to a client browser. This example demonstrates how a script, using ASP and ADO, can limit the number of rows passed to the client browser in any one chunk, but still allow the user to browse through all the results of their query.</p>
+<p>
+The script consists of several code sections that all work together to accomplish this task. First, the database is accessed as usual, creating a <b>Connection </b>object and <b>Recordset</b> object. The <b>Recordset</b> object's <b>PageSize</b> property is set to 4, and the recordset is opened and populated with the query results from the database table Authors. The first logical page of 4 result records are displayed in a table, and two buttons, PgUp and PgDn are provided so that the user may view other pages of the recordset. </p>
+<p>
+If a user clicks on a button, the page is accessed again, this time using the <b>POST</b> method to pass some variables to the next copy of itself. The variable <i>PageNo</i> is used to store what page the user is currently viewing, while the <i>Mv</i> variable is used to pass the scrolling direction to the next form. If a user clicks on PgDn, for instance, the page is accessed again, with <i>Mv</i> set to PgDn and <i>PageNo</i> set to 1. The script would use that information to add 1 to the current page number, and <b>AbsolutePage</b> could then be used to display the next page of results. </p>
+<p>
+<b>Note</b>&nbsp;&nbsp;ODBC must be properly configured on the server before this sample will run properly. </p>
+</BODY>
+</HTML>

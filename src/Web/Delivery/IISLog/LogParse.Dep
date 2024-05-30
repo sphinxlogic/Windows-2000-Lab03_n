@@ -1,0 +1,15 @@
+# Microsoft Developer Studio Generated Dependency File, included by LogParse.mak
+
+.\LogParse.cpp : \
+	".\LogParse.h"\
+	".\Resource.h"\
+	".\StdAfx.h"\
+	
+
+.\LogParse.rc : \
+	".\Resource.h"\
+	
+
+.\StdAfx.cpp : \
+	".\StdAfx.h"\
+	

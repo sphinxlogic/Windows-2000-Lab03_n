@@ -1,0 +1,103 @@
+<HTML>
+<HEAD>
+<TITLE>Win32 Resource Loading Sample</TITLE>
+</HEAD>
+
+<BODY BGPROPERTIES="FIXED" BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="#0000FF" ALINK="#0000FF" TOPMARGIN=0 LEFTMARGIN=0>
+
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE="2">
+
+<A NAME="pagetop"></A>
+
+
+<!--margin-->
+<TD WIDTH=23><IMG SRC="/art/1pixel.gif" WIDTH=23 HEIGHT=1></TD>
+<!--margin ENDS-->
+
+
+
+<!--main title (fixed coloured cell type)-->
+<BR>
+<TABLE BORDER=0 WIDTH=100%>
+<TR><TD BGCOLOR=BLUE WIDTH=200><FONT FACE="HELVETICA, ARIAL" SIZE=4 COLOR=WHITE>
+&nbsp;<NOBR>Internationalization/AFC</NOBR></FONT></TD>
+<!--main title ENDS-->
+
+
+
+<!--main title (fixed textured cell type)>
+<BR>
+<TABLE BORDER=0 WIDTH=100%>
+<TR><TD BACKGROUND="../../art/Stex_4.gif" WIDTH=200>
+<FONT FACE="HELVETICA, ARIAL" SIZE=4 COLOR=WHITE>&nbsp;
+Sample One</FONT>
+</TD>
+<main title ENDS-->
+
+
+<!--main page navigation-->
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP></TD>
+
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP><FONT FACE="ARIAL,HELVETICA" SIZE=1 COLOR=BLACK>
+<A HREF="../../i18n/sampleime/sample.html"><IMG SRC="../../art/butt_pre.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Previous"></A><BR><B>
+Previous</B></FONT></TD>
+
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP><FONT FACE="ARIAL,HELVETICA" SIZE=1 COLOR=BLACK>
+<A HREF="../../art/start.htm"><IMG SRC="../../art/butt_.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Welcome"></A><BR><B>
+Welcome</B></FONT></TD>
+
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP><FONT FACE="ARIAL,HELVETICA" SIZE=1 COLOR=BLACK>
+<A HREF="../../script debugger/sample.html"><IMG SRC="../../art/butt_nex.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Next"></A><BR><B>
+Next</B></FONT></TD>
+</TABLE>
+<!--main page navigation ENDS-->
+
+<!--this odd little break must accompany .gif filled cell title-->
+<BR>
+
+<TABLE BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<TR VALIGN=TOP>
+
+
+<!--main page sub-title-->
+<TD><FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=4>
+<B>Win32 Resource Loading Sample</B></A>
+</FONT><BR><BR>
+</TABLE>
+
+<!--main contents (NEW TABLE required in this scenario)-->
+<TABLE BORDER=0>
+<TR><TD ALIGN=LEFT VALIGN=TOP>
+
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=2>
+<P>To help developers worldwide create multilingual Java business applications, the Microsoft Virtual Machine (VM) for Java supports the Win32 resource file (.res) format. You can use existing Win32 programming and localization tools to rapidly develop and globalize Java applications. By separating resource files from Java source code, it is much easier to localize and run software applications on multiple localized systems (Java sources do not need to be recompiled for each country). 
+ 
+<P>This example demonstrates the use of the supported Win32 resource styles and controls included with the <b>com.ms.ui.resource.Win32ResourceDecoder</b> class. For futher information on the use this class, please refer to the Internationalization article and the SDK for Java API reference documentation. 
+
+<P>This is a example of using a single, merged, multilingual resource file -- the same type of file developers use to create multilingual applications. The merged resource file contains English, German, and Japanese resources. Other language resources can be easily added with the use of the resmerge.exe utility, which is found in the <b>\bin</b> directory of the SDK for Java. The Win32ResourceDecoder object automatically detects and downloads the correct language resource based on the default system locale, and displays dialogs using default system fonts. 
+
+<p>English(strtable_en.res), Japanese(strtable_ja.res) and German(strtable_de.res) resource files are also provided with this sample. Merge.bat shows you how to merge the files together. If you want to use one language .res file instead of the merged version, you can rename the selected .res file to strtable.res which is required by the source code.       
+
+<P>To use this sample, type <b>'jview GuiApp'</b> from the Win32ResSupport directory. If you run the sample with a localized version (Japanese or German) of the Windows platform, dialogs in the appropriate language will be displayed. 
+
+<TR><TD>
+<!--remarks 1-->
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=2>
+<BR><B><I>Remarks:</I></B>
+<BR>
+<I>This sample created with Microsoft AFC, and is found in the <b>Samples/Win32ResSupport</b> directory. </I>
+
+<BR>
+
+<!--rule-->
+<TABLE WIDTH=95%><TD HEIGHT=2 BGCOLOR=BLUE></TD></TABLE>
+<BR>
+
+<!--page top button-->
+<TABLE WIDTH=100%><TR><TD ALIGN=LEFT><A HREF="#pagetop"><IMG SRC="../../art/butt_up.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Top"></A></TD>
+
+<!--MS copyright-->
+<TD ALIGN=RIGHT><FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK"><A HREF="../../art/cpyright.htm">&#169; 1996-1997 Microsoft Corporation. All rights reserved.</A></FONT></TD></TR></TABLE>
+</FONT>
+</BODY>
+</HTML>

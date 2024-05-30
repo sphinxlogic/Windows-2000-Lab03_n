@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Session Management</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_session_management"></a>  Session Management</h3>
+<p>
+The built-in <b>Session</b> object provides several methods and properties that you can use to manage an application session. This sample demonstrates the use of one of these, the <b>Timeout</b> property.</p>
+<p>
+ASP creates and maintains one <b>Session</b> object for each client browser connected to the server. The object holds session-state information, and it remains in memory until the connection is either properly terminated or inactive for a certain amount of time. You can set this by using the <b>Session.Timeout</b> property.</p>
+<p>
+This sample very simply sets the <b>Timeout</b> property of the session to 25 minutes. Once a client browser accesses this script, if 25 minutes elapse in which the browser makes no requests on the server, the session will be terminated, and the associated <b>Session</b> object will be destroyed.</p>
+</BODY>
+</HTML>

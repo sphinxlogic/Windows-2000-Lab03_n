@@ -1,0 +1,110 @@
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<HTML>
+<HEAD>
+<TITLE>Array Data Source Control Demo 2</TITLE>
+<META NAME="FILENAME" CONTENT="demo2.HTM">
+
+    <style>
+      TD { font-size: 24; font-weight: bold }
+    </style>
+  </head>
+  
+  <BODY TOPMARGIN=20 LEFTMARGIN=40 BGCOLOR="#FFFFFF" LINK="#000066" VLINK="#666666" TEXT="#000000">
+
+    <h2> Array Data Source Control </h2>
+	<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT>
+
+<P>
+<P>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+<hr>
+
+<!--    <h2> Array Data Source Control</h2> -->
+    This example shows how a user can modify the data exposed by the sample
+	array Data Source Control.
+	<p>
+	Click on any of the fields and type a new value. The new value will be
+	stored in the data source control. Then click the Transform button. The
+	value is maintained within the array and is consistently displayed within
+	the table in the HTML page.
+
+	<hr>
+
+    <object id="DSC1"
+			classid="clsid:7473DD44-3A50-11D1-9C26-0080C74E5396"
+            align="baseline" border="0" width="0" height="0"
+			codebase="ArrayControl.cab#version1,0,0,0">
+    </object>
+
+    <button onclick=transform()>Transform </button>
+    <hr>
+    <p>
+
+    <table border="1" datasrc="#DSC1">
+      <TBODY> 
+        <tr>
+          <td width=50><INPUT TYPE=text DATAFLD="col1" SIZE=4></td>
+          <td width=50><INPUT TYPE=text DATAFLD="col2" SIZE=4></td>
+          <td width=50><INPUT TYPE=text DATAFLD="col3" SIZE=4></td>
+          <td width=50><INPUT TYPE=text DATAFLD="col4" SIZE=4></td>
+        </tr>
+      </TBODY>
+    </table>
+
+    <hr>
+
+    <FONT SIZE=14>First Row Elements: <SPAN DATASRC=#DSC1 DATAFLD="col1"></SPAN>,
+                        <SPAN DATASRC=#DSC1 DATAFLD="col2"></SPAN>,
+                        <SPAN DATASRC=#DSC1 DATAFLD="col3"></SPAN>,
+                        <SPAN DATASRC=#DSC1 DATAFLD="col4"></SPAN></FONT>
+
+	<hr>
+	<br>
+
+	<p>
+  <FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">&copy; <A HREF="/misc/cpyright.htm" TARGET="_top">1999 Microsoft Corporation. All rights reserved. Terms of use</A>.<P></FONT>
+
+  </body>
+
+  <script language=javascript>
+    function transform()
+    {
+      document.all["DSC1"].transform();
+    }
+
+    function grow()
+    {
+      table1.dataSrc="";                // remove binding
+
+      document.all["DSC1"].moredata();
+    }
+
+    function buildtable()
+    {
+
+      table1.dataSrc="";                // remove binding
+
+      var newtable;
+      
+      newtable ="<table id=table1 border=1 datasrc=#DSC1>\n<tbody>\n<tr>";
+
+      for (i = 0 ; i < DSC1.recordset.Fields.count ; i++)
+      {
+
+        newtable = newtable + "<td width=50><SPAN DATAFLD=\"col" +
+                              //DSC1.recordset.Fields[i].name +
+                              (i + 1) +
+                              "\"></SPAN></td>";
+      }
+
+      newtable = newtable + "</tr>\n</tbody>\n</table>";
+
+      table1.outerHTML=newtable;
+    }
+  </script>
+
+</html>

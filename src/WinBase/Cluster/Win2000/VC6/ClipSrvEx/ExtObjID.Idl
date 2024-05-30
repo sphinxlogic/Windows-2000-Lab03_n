@@ -1,0 +1,44 @@
+/////////////////////////////////////////////////////////////////////////////
+//
+//	Copyright (c) 1999 <company name>
+//
+//	Module Name:
+//		ExtObjID.idl
+//
+//	Description:
+//		Definition of COM interfaces for the Cluster Administrator
+//		ClipSrvEx Extension DLL.
+//
+//	Author:
+//		<name> (<e-mail name>) Mmmm DD, 1999
+//
+//	Revision History:
+//
+//	Notes:
+//
+/////////////////////////////////////////////////////////////////////////////
+
+// This file will be processed by the MIDL tool to
+// produce the type library (ExtObj.tlb) and marshalling code.
+
+[
+	uuid(C1C93990-F871-11D2-B32B-009027345F82),
+	version(1.0),
+	helpstring("ClipSrvEx 1.0 Type Library")
+]
+library CLUADMEXLib
+{
+	importlib("stdole2.tlb");
+	import "CluAdmEx.idl";
+
+	[
+		uuid(C1C93991-F871-11D2-B32B-009027345F82),
+		helpstring("CoClipSrvEx Class")
+	]
+	coclass CoClipSrvEx
+	{
+		interface IWEExtendPropertySheet;
+		interface IWEExtendWizard;
+	};
+
+};

@@ -1,0 +1,80 @@
+<html>
+
+<title>QC JAVA</title>
+<link rel="stylesheet" href="../../../styles.css" type="text/css">
+<style>
+A:link {color: Olive}
+A:visited {color: 336666}
+A:hover {background:Olive; color: White}
+</style>
+</head>
+<h2>QC JAVA</h2>
+
+<hr>
+<body>
+   <p>Queued Components is a Component Services feature that leverages MSMQ to allow server components to logically participate in transactions while unavailable or offline. The method calls issued by a client against a Queued Component are transparently recorded, queued, and played back at a later time when the server component becomes available.<br><br>
+
+The Queued Components samples depict an order entry application using asynchronous queued transactions to submit an order, process/ship the order, and notify the requestor that the order has been processed. Queued Components enable a business transaction, such as the sample order entry application, to be split into several smaller transactions that can be separated in time and connected by reliable message queues. Once the transaction is committed to the queue, the requester is free to do other tasks including committing the transaction. Later, when the server resources become available, the messages are moved from the queue and processed to complete the business transaction.
+</P>
+  
+
+<h4>Build Notes</H4>
+
+
+<ol>
+<li>Set User environment Variable<br>
+	- Name: CLASSPATH<br>
+	- Value: (Path to: Queued_Components\QCJAVA\Components folder)<br>
+<li>From the Components folder open and build QCSample1.vjp<br>
+<li>From the Client folder open and build QCClient.vjp<br>
+<li>Create SQL Database<br>
+- Name: Order<br>
+- Add tables:<br>
+	- QCSampleOrder<br>
+	- QCSampleShip<br>
+- Add these fields to both tables<br>
+	order_id - int<br>
+	cust_id - int<br>
+	line_no - int<br>
+	item_id - int<br>
+	quantity - int<br>
+	Ship_Status - varChar<br>
+<li>Create an ODBC datasource<br>
+	- System DSN<br>
+	- Name: QCSample<br>
+	- Server: <name of SQL Server being connected to><br>
+	- Username: sa (Hard coded in sample at: components\helper\DatabaseSettings.java)<br>
+	- Password: <none> (Hard coded in sample at: components\helper\DatabaseSettings.java)<br>
+	- Change default database to: Order<br>
+<li>Install MSMQ Client<br>
+<li>Create COM+ application<br>
+- Name: QCSample<br>
+- Go to properties of the QCSample Application and select the Queuing Tab and check the "Queued" & "Listen" checkboxes<br>
+- Install QCSample1.dll from Queued_Components\QCJAVA\Components into the QCSample application<br>
+</LI></OL>
+
+<h4>To Run</H4>
+
+
+<ol>
+<li>Run QCClient.exe<br>
+<li>Enter values into:<br>
+	- Customer Number<br>
+	- Order Number<br>
+	- Item Number<br>
+	- Quantity<br>
+<li>Click "Process Order"<br>
+<li>Click "Check Shipment Status" to see results of process<br>
+</LI></OL>
+
+<h4>Note:</H4>
+If client does not run on the first attempt, Rebuild the QCSample1.vjp project and try Client application again
+
+<p>&nbsp;</P>
+
+<hr>
+
+
+<p>&nbsp;</P>
+</body>
+</html>

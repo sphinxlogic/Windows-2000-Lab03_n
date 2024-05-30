@@ -1,0 +1,32 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\scsicdrm.res \
+    $(_OBJ_DIR)\alpha\cdrom.obj \
+    $(_OBJ_DIR)\alpha\ioctl.obj \
+    $(_OBJ_DIR)\alpha\sec.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\scsicdrm.res \
+    $(_OBJ_DIR)\axp64\cdrom.obj \
+    $(_OBJ_DIR)\axp64\ioctl.obj \
+    $(_OBJ_DIR)\axp64\sec.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\scsicdrm.res \
+    $(_OBJ_DIR)\i386\cdrom.obj \
+    $(_OBJ_DIR)\i386\ioctl.obj \
+    $(_OBJ_DIR)\i386\sec.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\scsicdrm.res \
+    $(_OBJ_DIR)\ia64\cdrom.obj \
+    $(_OBJ_DIR)\ia64\ioctl.obj \
+    $(_OBJ_DIR)\ia64\sec.obj
+
+PASS0_IA64_OBJECTS=
+

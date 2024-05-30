@@ -1,0 +1,32 @@
+// EventMonSubscriber.idl : IDL source for EventMonSubscriber.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (EventMonSubscriber.tlb) and marshalling code.
+
+import "..\include\EventMon.idl";
+
+
+[
+	uuid(E195C7DD-D26C-11D2-9A34-00C04F72EB9B),
+	version(1.0),
+	helpstring("EventMonSubscriber 1.0 Type Library")
+]
+library EventMonSUBSCRIBERLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(14DF7DE8-D26D-11D2-9A34-00C04F72EB9B),
+		helpstring("EventMonSubscriber Class")
+	]
+	coclass EventMonSubscriber
+	{
+		[default] interface IDiskEvents;
+		interface IFileSystemEvents;
+		interface ISystemEvents;
+	};
+};
+
+

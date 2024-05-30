@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD><TITLE>Puzzle15 Sample Applet</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=iso8859-1">
+<META NAME="MS.LOCALE" CONTENT="EN-US">
+<META NAME="ROBOTS" CONTENT="all">
+</HEAD>
+<BODY BGCOLOR="White" TOPMARGIN=0 LEFTMARGIN=0 VLINK="Gray">
+<A NAME="top"></A>
+<!--TOOLBAR_START-->
+<TABLE WIDTH="100%" CELLPADDING=0 CELLSPACING=0 BORDER=0>
+<TR><TD WIDTH=500 ROWSPAN=2 VALIGN=TOP><NOBR><FONT FACE="VERDANA,ARIAL,Helvetica" SIZE=1>
+<!--TOOLBAR_FRAMES_START-->
+
+<!--MS home button-->
+<A HREF="http://www.microsoft.com" TARGET="_top"><IMG SRC="../../images/home.gif" WIDTH="103" HEIGHT="21"  BORDER=0 ALT="Microsoft Home"></A><A HREF="http://www.microsoft.com/products/default.asp" TARGET="_top"><IMG SRC="../../images/prod.gif" WIDTH="81" HEIGHT="21"  BORDER=0 ALT="Products"></A><A HREF="http://www.microsoft.com/search/default.asp" TARGET="_top"><IMG SRC="../../images/search.gif" WIDTH="68" HEIGHT="21"  BORDER=0 ALT="Search"></A><A HREF="http://www.microsoft.com/support/" TARGET="_top"><IMG SRC="../../images/support.gif" WIDTH="74" HEIGHT="21"  BORDER=0 ALT="Support"></A><A HREF="http://www.microsoft.com/referral/default.asp" TARGET="_top"><IMG SRC="../../images/shop.gif" WIDTH="55" HEIGHT="21"  BORDER=0 ALT="Shop"></A><A HREF="http://www.microsoft.com/regwiz/regwiz.asp" TARGET="_top"><IMG SRC="../../images/write.gif" WIDTH="78" HEIGHT="21"  BORDER=0 ALT="Write Us"></A><IMG SRC="../../images/spacer.gif" WIDTH="49" HEIGHT="21"  BORDER=0 ALT="spacer.gif"></FONT></NOBR></TD><TD BGCOLOR="#000000" WIDTH="100%" HEIGHT=20></TD><TD WIDTH=91 ROWSPAN=2 ALIGN=RIGHT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,Helvetica" SIZE=1>
+<A HREF="http://www.microsoft.com" TARGET="_top"><IMG SRC="../../images/msft.gif" WIDTH="91" HEIGHT="21"  BORDER=0 ALT="Microsoft Home"></A></FONT></TD></TR><TR><TD BGCOLOR="#FFFFFF" WIDTH="100%" HEIGHT=1></TD></TR></TABLE>
+<!--TOOLBAR_END-->
+<TABLE BORDER=0 CELLPADDING=0 CELLSPACING=0 WIDTH="98%">
+<TR>
+<TD ROWSPAN=2 WIDTH=162 ALIGN="LEFT" VALIGN="TOP">
+<IMG SRC="../../images/titleAFC.gif" WIDTH="160" HEIGHT="108"  BORDER=0 ALT="AFC Samples"><TABLE CELLPADDING=0 CELLSPACING=0 BORDER=0 WIDTH="100%">
+<TR><TD WIDTH=10>&nbsp;</TD><TD VALIGN="top"><FONT FACE="Verdana,Arial,Helvetica" SIZE=1><B STYLE="color:#006699">In this topic</B><P><IMG SRC="../../images/linkbull.gif" WIDTH="10" HEIGHT="8"  BORDER=0 ALT="*"><A STYLE="color: #333366;text-decoration:none" HREF="afcsamp.htm#afcsamp_0000000109010000">Description</A>
+<P><IMG SRC="../../images/linkbull.gif" WIDTH="10" HEIGHT="8"  BORDER=0 ALT="*"><A STYLE="color: #333366;text-decoration:none" HREF="afcsamp.htm#afcsamp_0000000109020000">Sources</A>
+</FONT></TD></TR></TABLE>
+</TD>
+<TD WIDTH=20>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP">
+<P>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR>
+<TD WIDTH="355" VALIGN="bottom"><IMG SRC="../../images/afcsamp1.gif" WIDTH="355" HEIGHT="27"  BORDER=0 ALT="AFC Samples"></TD>
+<TD WIDTH=20>&nbsp;</TD>
+<TD ALIGN="center" VALIGN="bottom"><A HREF="../../FxTextures/classes/afcsamp.htm"><IMG SRC="../../images/prevnrm.gif" WIDTH="51" HEIGHT="38"  BORDER=0 ALT="Previous"></A></TD><TD ALIGN="center" VALIGN="bottom"><A HREF="../../afcsamp.htm#afcsamp_0000000100000000"><IMG SRC="../../images/butt_gen.gif" WIDTH="51" HEIGHT="38"  BORDER=0 ALT="AFC Samples"></A></TD><TD ALIGN="center" VALIGN="bottom"><A HREF="../../LoanCalc/classes/afcsamp.htm"><IMG SRC="../../images/nextnrm.gif" WIDTH="51" HEIGHT="38"  BORDER=0 ALT="Next"></A></TD></TR>
+<TR>
+<TD WIDTH="355" ALIGN="right" VALIGN="top">&nbsp;</TD>
+<TD WIDTH=20>&nbsp;</TD>
+<TD ALIGN="center" VALIGN="top"><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="1">Previous</FONT></TD>
+<TD ALIGN="center" VALIGN="top"><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="1">AFC<BR>Samples</FONT></TD>
+<TD ALIGN="center" VALIGN="top"><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="1">Next</FONT></TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD WIDTH=20>&nbsp;</TD>
+<TD>
+<BR>
+<FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2">
+<BR><BR><H2 STYLE="color:#333366">Puzzle15 Sample Applet</H2>
+<P>The Puzzle15 sample is a fun and challenging demonstration of property sheets, marquees, and other controls.
+ 
+<P>
+
+<applet code=Puzzle15.class id=Puzzle15 width=340 height=450 ></applet>
+<H3 STYLE="color:#333366"><A NAME="afcsamp_0000000109010000">Description</A></H3><P>When the applet first loads, a Property dialog box is displayed showing the game options. The Scrambling Spinner edit control is used to enter the number of moves the puzzle will be scrambled. The Competition check box control determines whether a separate puzzle solver thread will be started.
+
+<P>The Navigation property page determines the effect on the puzzle when the arrow keys are pressed.
+<OL><LI>The first option will cause a button to occupy the area where the blank space currently is, if possible (that is, pressing the LEFT ARROW key will have no effect when the blank is on the right side of the puzzle).
+<LI>The second option will cause the blank space to move in the direction specified, if possible (that is, pressing the LEFT ARROW key will have no effect when the blank is on the left side of the puzzle).
+<LI>The third option causes the arrow keys to move the focus between buttons (the blank piece cannot accept focus).
+</OL>
+<P>When a button is adjacent to (or in the same row or column) the blank space, pressing the SPACEBAR or the ENTER key will cause the button with the focus to move in the direction of the blank (as if the button had been pressed by the mouse).
+
+<P>The Marquee provides status on the solver thread, as well as the user's status relative to the solver thread.
+
+<P>The Statistics panel informs the user on the number of moves he or she has made so far, and the minimum number of moves from the current position that will be required to reach the goal. This is the cumulative distance of each button to its goal position. For example, if the "1" button is in the bottom right corner, it will take at least six moves: up three rows, and then left three columns, to get it to its goal position, which is the top left corner. The Statistics panel also displays the number of moves in the optimum solution, as determined by the solver thread. The solver thread uses an iteratively deepening, depth-first search algorithm to determine the optimum solution. When the solver has found the optimum solution, the optimum solution text changes from At Least X Moves to Exactly X Moves. 
+
+<P>The Puzzle15 application and applet demonstrate the use of property sheets (UIPropertyDialog, UIPropertyPage), message boxes (UIMessageBox), menus (UIBandBox, UIBand, UIMenuButton, UIMenuList, UIMenuItem, UILine), buttons (UICheckButton, UIRadioButton, UIPushButton), and various other UI controls and classes (AWTUIApplet, UIApplet, UIFrame, UIPanel, UIGroup, UIViewer, UIGraphic, UIText, UIButtonBar, UISpinnerEdit, UIGridLayout, UIBorderLayout, UIVerticalFlowLayout, UISplitLayout).
+
+<P>Menu Options:
+
+<TABLE BORDER=0>
+<TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2">F2 </FONT></TD><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2">Starts a new puzzle. A new puzzle is created by scrambling the goal puzzle the specified number of moves.
+</FONT></TD></TR><TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2">F4 </FONT></TD><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2">Restarts current puzzle. The puzzle currently displayed is restored to its original state.
+</FONT></TD></TR><TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2">F3 </FONT></TD><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2">If the solver has found an optimum solution, a dialog box will come up and display the solution as a list of arrow key moves (U = up, L = left, D = down, R = right).
+</FONT></TD></TR><TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2">F7 </FONT></TD><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2">Game options. Displays property pages that allows the user to change the game parameters.
+</FONT></TD></TR><TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2">Ctrl-Z </FONT></TD><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2">Undo move. Undo last move: disabled when no moves are on the move stack.
+</FONT></TD></TR><TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2">Ctrl-X </FONT></TD><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2">Terminate Application: Disabled when the game is run as an applet.
+</FONT></TD></TR></TABLE>
+<H3 STYLE="color:#333366"><A NAME="afcsamp_0000000109020000">Sources</A></H3><P>This sample applet consists of the following sources:
+
+<TABLE BORDER=0>
+<TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2"><A HREF="..\src\Puzzle15.java">Puzzle15.java</A>
+</FONT></TD><TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2"><A HREF="..\src\Pz15AccGrfxBtn.java">Pz15AccGrfxBtn.java</A>
+</FONT></TD><TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2"><A HREF="..\src\Pz15Callbacks.java">Pz15Callbacks.java</A>
+</FONT></TD><TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2"><A HREF="..\src\Pz15Consts.java">Pz15Consts.java</A>
+</FONT></TD><TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2"><A HREF="..\src\Pz15ControlPanel.java">Pz15ControlPanel.java</A>
+</FONT></TD><TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2"><A HREF="..\src\Pz15Data.java">Pz15Data.java</A>
+</FONT></TD><TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2"><A HREF="..\src\Pz15GamePanel.java">Pz15GamePanel.java</A>
+</FONT></TD><TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2"><A HREF="..\src\Pz15Images.java">Pz15Images.java</A>
+</FONT></TD><TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2"><A HREF="..\src\Pz15InfoPanel.java">Pz15InfoPanel.java</A>
+</FONT></TD><TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2"><A HREF="..\src\Pz15Marquee.java">Pz15Marquee.java</A>
+</FONT></TD><TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2"><A HREF="..\src\Pz15Menu.java">Pz15Menu.java</A>
+</FONT></TD><TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2"><A HREF="..\src\Pz15Options.java">Pz15Options.java</A>
+</FONT></TD><TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2"><A HREF="..\src\Pz15PropGame.java">Pz15PropGame.java</A>
+</FONT></TD><TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2"><A HREF="..\src\Pz15PropNav.java">Pz15PropNav.java</A>
+</FONT></TD><TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2"><A HREF="..\src\Pz15Solver.java">Pz15Solver.java</A>
+</FONT></TD><TR><TD ALIGN=LEFT VALIGN=TOP><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="2"><A HREF="..\src\SDKInsetPanel.java">SDKInsetPanel.java</A>
+</FONT></TD></TABLE>
+<P>
+</FONT>
+</TD>
+</TR>
+</TABLE>
+<CENTER>
+<P><TABLE WIDTH="95%"><TR><TD HEIGHT=1 BGCOLOR="RED"></TD></TR></TABLE>
+<TABLE WIDTH="100%"><TR>
+<TD ALIGN="left"><A HREF="#top"><IMG SRC="../../images/upnrm.gif" WIDTH="51" HEIGHT="38"  BORDER=0 ALT="Top"></A></TD>
+<TD ALIGN="right">
+<FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE="1"></FONT></TD></TR></TABLE>
+</CENTER>
+</BODY></HTML>

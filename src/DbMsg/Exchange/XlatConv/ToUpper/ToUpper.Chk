@@ -1,0 +1,227 @@
+// --toupper.chk------------------------------------------------------------------
+//
+//  Parameter checking for toupper.c
+// 
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+//
+// -----------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_HrCnvQueryCapability(a,b,c,d,e)     NOERROR
+#define CHK_HrConvertStreamToUpperCase(a,b)     NOERROR
+#define CHK_HrWriteToStreamA(a,b)               NOERROR
+#define CHK_HrWriteToStreamW(a,b)               NOERROR
+#define CHK_HrCnvConvert(a,b,c,d,e,f)           NOERROR
+#define CHK_HrGetExportVector(a,b)              NOERROR
+
+#else
+
+//$--CHK_HrCnvQueryCapability-------------------------------------------------------
+// Parameter checking for HrCnvQueryCapability
+// -----------------------------------------------------------------------------
+static __inline HRESULT CHK_HrCnvQueryCapability(     
+    IN LPCWSTR pszOptions,                  // options passed from conversion engine
+    IN LPCWSTR pszClass,                    // class of object to be converted.
+    IN PVOID pContent,                      // object to be covnerted.
+    IN PEDKCNVENV pEnv,                     // environment for conversion.
+    OUT BOOL * pfAmCandidate)               // can convert?
+{
+    HRESULT hr  =   NOERROR;    // return code
+
+    // Note:  Options may be null.
+    if ( ! TEST_STRINGW_PTR(pszClass) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_IUNKNOWN_PTR((LPUNKNOWN) pContent) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_WRITE_PTR(pfAmCandidate, sizeof(BOOL)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_READ_PTR(pEnv, sizeof(EDKCNVENV)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return hr;
+
+}
+
+// $--CHK_HrConvertStreamToUpperCase-----------------------------------------------
+// Parameter checking for HrConvertStreamToUpperCase
+// -----------------------------------------------------------------------------
+static __inline HRESULT CHK_HrConvertStreamToUpperCase(
+        IN LPSTREAM lpStreamIn,         // input stream
+        IN LPSTREAM lpStreamOut)        // output stream
+{
+    HRESULT hr      =   NOERROR;
+
+    if ( ! TEST_IUNKNOWN_PTR(lpStreamIn) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_IUNKNOWN_PTR(lpStreamOut) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return hr;
+
+}
+
+//$--CHK_HrWriteToStreamA-----------------------------------------------------------
+//  Parameter checking for HrWriteToStreamA
+// -----------------------------------------------------------------------------
+static __inline HRESULT CHK_HrWriteToStreamA(  // RETURNS: HRESULT
+    IN LPSTREAM lpStream,                   // stream to write to.    
+    IN LPSTR lpsz)                          // ANSI string to write.
+{
+    HRESULT hr  =   NOERROR;        // return code
+
+    if ( ! TEST_IUNKNOWN_PTR(lpStream) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_STRINGA_PTR(lpsz) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return hr;
+
+}
+
+//$--CHK_HrWriteToStreamW-----------------------------------------------------------
+//  Parameter checking for HrWriteToStreamW
+// -----------------------------------------------------------------------------
+static __inline HRESULT CHK_HrWriteToStreamW(     // RETURNS: HRESULT
+    IN LPSTREAM lpStream,                   // stream to write to.    
+    IN LPWSTR lpsz)                         // wide string to write.
+{
+    HRESULT hr  =   NOERROR;        // return code
+
+    if ( ! TEST_IUNKNOWN_PTR(lpStream) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_STRINGW_PTR(lpsz) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+        
+    return hr;
+
+}
+
+//$--CHK_HrCnvConvert---------------------------------------------------------------
+//  Parameter checkinf for HrCnvConvert
+// -----------------------------------------------------------------------------
+static __inline HRESULT CHK_HrCnvConvert(       
+    IN LPCWSTR pszOptions,                  // options.
+    IN LPCWSTR pszClass,                    // object class to be converted.
+    IN PVOID pContent,                      // object to be converted.
+    IN PVOID pContentOut,                   // where to put the result.
+    IN PEDKCNVENV pEnv,                     // environment for conversion.
+    OUT EDKCNVRES * pcr)                    // result of conversion
+{
+    HRESULT hr  =   NOERROR;        // return code
+
+    // Options can be NULL.
+    if ( ! TEST_STRINGW_PTR(pszClass) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_IUNKNOWN_PTR((LPUNKNOWN) pContent) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_IUNKNOWN_PTR((LPUNKNOWN) pContentOut) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_WRITE_PTR(pcr, sizeof(EDKCNVRES)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_READ_PTR(pEnv, sizeof(EDKCNVENV)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return hr ;
+
+}
+
+//$--CHK_HrGetExportVector---------------------------------------------------------
+// Parameter checking for HrGetExportVector
+// -----------------------------------------------------------------------------
+static __inline HRESULT CHK_HrGetExportVector(        // RETURNS: HRESULT
+    IN DWORD dwVersionRequired,             // desired version number
+    OUT PCONVDLLVECT FAR * ppConvDLLVect)  // pointer to export vector structure
+{
+    HRESULT hr  =   NOERROR;    // return code
+
+    if ( ! TEST_WRITE_PTR(ppConvDLLVect, sizeof(PCONVDLLVECT)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+
+}
+
+#endif /* DEBUG */

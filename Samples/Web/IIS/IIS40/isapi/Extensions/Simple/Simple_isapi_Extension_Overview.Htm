@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Simple ISAPI Extension</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_simple_isapi_extension"></a>Simple ISAPI Extension</h3>
+<p>
+This sample demonstrates how easily you can create your own ISAPI extensions, and even though this particular example is quite simple, the general form of an extension is the same, no matter how complex. </p>
+<p>
+This sample demonstrates several entry-point functions that all ISAPI extensions must expose to IIS. The first entry-point function needed, <b>GetExtensionVersion</b>, is called by IIS when the DLL is first loaded into memory. This function, as demonstrated in this example, simply provides IIS with a brief description of the extension, along with some version information. </p>
+<p>
+The main entry-point function, <b>HttpExtensionProc</b>, forms the core, or at least the gateway to the core, of an ISAPI extension. IIS calls this method after processing the version and descriptive information gathered using the previous method, and passes to the extension one parameter, a pointer to an Extension Control Block (ECB). </p>
+<p>
+In this sample, <b>HttpExtensionProc</b> uses the ECB pointer provided by IIS to access the <b>WriteClient </b>call-back function, which is supplied with the ECB structure. Notice that the last parameter for <b>WriteClient</b> indicates that the writes to the client browser are to be performed synchronously. <b>WriteClient</b> is called multiple times, creating a simple HTML page, and <b>HttpExtensionProc</b> returns a success code to the server and caller. The connection with the client browser is then terminated. </p>
+<p>
+This sample is provided for educational purposes only. It has not been tested in a production environment, and Microsoft&reg; will not provide technical support for it. </p>
+</BODY>
+</HTML>

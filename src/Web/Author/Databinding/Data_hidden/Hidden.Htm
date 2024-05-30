@@ -1,0 +1,119 @@
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<HTML>
+<HEAD>
+<TITLE>The HIDDEN Tag</TITLE>
+<META NAME="FILENAME" CONTENT="hidden.HTM">
+
+<script language="JavaScript">
+
+function forward() {
+
+//This function increments the data bound record after checking to confirm 
+//you are not already at the end of the recordset. If you are, the program 
+//alerts you that it cant go any further. 
+
+  if (StockList.recordset.AbsolutePosition != StockList.recordset.RecordCount) {
+    StockList.recordset.MoveNext();
+    }
+    else {
+    alert("Already at last element");
+    }
+}
+
+function reverse() {
+
+//This function decrements the data bound record after checking to confirm 
+//you are not already at the end of the recordset. If you are, the program 
+//alerts you that it cant go any further. 
+
+  if (StockList.recordset.AbsolutePosition != 1) {
+    StockList.recordset.MovePrevious();
+    }
+    else {
+    alert("Already at first element");
+    }
+}
+
+</SCRIPT>
+</head>
+
+
+<body topmargin=20 leftmargin=40 bgcolor="#ffffff" link="#000066"
+    vlink="#666666 text="#000000" >
+
+
+<H2>The HIDDEN Tag</H2>
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT>
+<P>
+<P>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+<hr>
+<br>
+Although they are not visible, the input hidden element can be data bound. Binding is to the VALUE attribute of the hidden element.
+<p>
+Click on the button below to display the value of the hidden element. It is bound to the Symbol column in the data set.<P>
+
+<center>
+
+<input id=hid_elem type=hidden datasrc="#StockList" datafld="Symbol">
+
+<input type="button" value="Show Value"
+       onclick="alert(&quot;Hidden value=&quot; + hid_elem.value);">
+<p>
+
+</center>
+
+Clicking on the arrow buttons will move the current record. This results in the
+hidden changing to display the values from the current record. After pressing
+the arrow buttons, click on the Show Value button again. Notice that the value
+now matches the value from the current record.
+
+<center>
+<hr width=100>
+<input name=nono type="button" value="  <  " onClick="reverse();">
+<input name=nono type="button" value="  >  " onClick="forward();">
+<hr width=100>
+</center>
+<p>
+Hiddens can also be used in repeated tables. Click on the buttons in the table
+to get the value of the HIDDEN tag.
+<p>
+
+<object id="StockList" classid="clsid:333C7BC4-460F-11D0-BC04-0080C7055A83"
+    width=0 height=0>
+<param name="UseHeader" value="True">
+<param name="DataURL" value="quotes.txt">
+</object>
+
+<center>
+<table datasrc="#StockList" border=1>
+  <TBODY>
+	<tr>
+	  <td align=center>
+		<input type="button" value="Show Value"
+			   onclick="alert(&quot;Hidden value=&quot; +
+			                      hid_table[this.recordNumber - 1].value);">
+		<input id=hid_table type=Hidden datafld="Symbol"> </input>
+	  </td>
+  </TBODY>
+</table>
+</center>
+<p>
+
+Click on <a href="quotes.txt">quotes.txt</a> to see the data file
+used by this page.<P>
+<P>
+<P>
+<P>
+<P>
+<P>
+<P>
+<FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">
+&copy; <A HREF="/misc/cpyright.htm" TARGET="_top">1999 Microsoft Corporation. All rights reserved. Terms of use</A>.
+</FONT>
+</body>
+</html>

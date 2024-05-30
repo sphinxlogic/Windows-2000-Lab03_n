@@ -1,0 +1,146 @@
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<HTML>
+<HEAD>
+<TITLE>The OBJECT Tag</TITLE>
+<META NAME="FILENAME" CONTENT="object.HTM">
+
+
+
+<script language="JavaScript">
+
+function gettext()
+{
+	t = label0.Caption;
+	tryme.value = t;
+}
+
+function settext()
+{
+	var t;
+	label0.Caption = tryme.value;
+}
+
+function forward() {
+
+//This function increments the data bound record after checking to confirm 
+//you are not already at the end of the recordset. If you are, the program 
+//alerts you that it cant go any further. 
+
+  if (StockList.recordset.AbsolutePosition != StockList.recordset.RecordCount) {
+	StockList.recordset.MoveNext();
+	}
+	else {
+	alert("Already at last element");
+	}
+}
+
+function reverse() {
+
+//This function decrements the data bound record after checking to confirm  
+//you are not already at the end of the recordset. If you are, the program 
+//alerts you that it cant go any further.  
+
+  if (StockList.recordset.AbsolutePosition != 1) {
+	StockList.recordset.MovePrevious();
+	}
+	else {
+	alert("Already at first element");
+	}
+}
+
+</script>
+</head>
+
+
+<body topmargin=20 leftmargin=40 bgcolor="#ffffff" link="#000066" vlink="#666666" text="#000000">
+
+<H2>The OBJECT Tag</H2>
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT>
+<P>
+<P>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+<hr>
+
+<p>
+Properties of an object (ActiveX&trade; controls) can be bound using data binding. 
+The property corresponding to the NAME attribute on the PARAM tag is
+bound.  The controls <B>need not implement</B> the OLE bindable typeinfo flag
+for the property to be bound.
+<p>
+An example of an ActiveX control with a property bound to the current record of the
+data set is shown below. Click on the arrow buttons to change the current
+record. Notice that the value displayed in the control changes to match the
+value in the current record.
+<P>
+<center>
+<OBJECT ID="label0" CLASSID="clsid:40F07A91-8E6F-11D0-8A0A-00A0C90C9B67"
+        CODEBASE="mcsilabl.cab#version 1,0,0,45">
+        TYPE="application/x-oleobject
+    	WIDTH=150 HEIGHT=60>
+	<PARAM NAME="Angle" VALUE="0">
+	<PARAM NAME="Alignment" VALUE="4" >
+	<PARAM NAME="BackStyle" VALUE="1" >
+	<PARAM NAME="Text" datasrc="#StockList" datafld="Symbol">
+	<PARAM NAME="Font" VALUE="Times New Roman">
+	<PARAM NAME="ForeColor" VALUE="#f000f0" >
+	<PARAM NAME="BackColor" VALUE="8421440">
+	<PARAM NAME="BorderStyle" VALUE="4">
+</OBJECT>
+<p>
+<hr width=100>
+<input type="button" value="  <  " onClick="reverse();">
+<input type="button" value="  >  " onClick="forward();">
+<hr width=100>
+</center>
+<p>
+Objects can also be used inside a repeated table. Here's an example:
+<p>
+
+<object id="StockList" classid="clsid:333C7BC4-460F-11D0-BC04-0080C7055A83"
+	width=0 height=0>
+<param name="UseHeader" value="True">
+<param name="DataURL" value="quotes.txt">
+</object>
+
+<center>
+<table datasrc="#StockList" border=1>
+	<TBODY>
+		<td align=center>
+			<OBJECT ID="label0" CODEBASE="mcsilabl.cab"
+			        CLASSID="clsid:40F07A91-8E6F-11D0-8A0A-00A0C90C9B67"
+                    TYPE="application/x-oleobject" WIDTH=150 HEIGHT=60>
+			  <PARAM NAME="Angle" VALUE="0">
+			  <PARAM NAME="Alignment" VALUE="4" >
+			  <PARAM NAME="BackStyle" VALUE="1" >
+			  <PARAM NAME="Text" datafld="Symbol">
+			  <PARAM NAME="Font" VALUE="Times New Roman">
+			  <PARAM NAME="ForeColor" VALUE="#f000f0" >
+			  <PARAM NAME="BackColor" VALUE="8421440">
+  			  <PARAM NAME="BorderStyle" VALUE="4">
+			</OBJECT>
+		</td>
+	</TBODY>
+</table>
+</center>
+<p>
+Finally, it's possible to bind the default property of an object. This is
+dependent upon the ActiveX control implementation. If the control has the
+DefaultBind typeinfo flag set on one of its properties, binding can be specified
+on the OBJECT tag itself (rather than on the PARAM). When this syntax is used
+and no property is marked DefaultBind, an attempt is made to bind the default
+property of the control (dispID 0). If this fails, the binding fails. Examples are left to the reader.
+<p>
+Click on <a href="quotes.txt">quotes.txt</a> to see the data file used by this page.
+<P>
+<P>
+<P>
+<P>
+<FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">
+&copy; <A HREF="/misc/cpyright.htm" TARGET="_top">1999 Microsoft Corporation. All rights reserved. Terms of use</A>.
+</FONT>
+</body>
+</html>

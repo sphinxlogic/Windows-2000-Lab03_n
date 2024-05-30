@@ -1,0 +1,48 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\localmon.res \
+    $(_OBJ_DIR)\alpha\localmon.obj \
+    $(_OBJ_DIR)\alpha\winspool.obj \
+    $(_OBJ_DIR)\alpha\util.obj \
+    $(_OBJ_DIR)\alpha\config.obj \
+    $(_OBJ_DIR)\alpha\dialogs.obj \
+    $(_OBJ_DIR)\alpha\xcv.obj \
+    $(_OBJ_DIR)\alpha\irda.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\localmon.res \
+    $(_OBJ_DIR)\axp64\localmon.obj \
+    $(_OBJ_DIR)\axp64\winspool.obj \
+    $(_OBJ_DIR)\axp64\util.obj \
+    $(_OBJ_DIR)\axp64\config.obj \
+    $(_OBJ_DIR)\axp64\dialogs.obj \
+    $(_OBJ_DIR)\axp64\xcv.obj \
+    $(_OBJ_DIR)\axp64\irda.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\localmon.res \
+    $(_OBJ_DIR)\i386\localmon.obj \
+    $(_OBJ_DIR)\i386\winspool.obj \
+    $(_OBJ_DIR)\i386\util.obj \
+    $(_OBJ_DIR)\i386\config.obj \
+    $(_OBJ_DIR)\i386\dialogs.obj \
+    $(_OBJ_DIR)\i386\xcv.obj \
+    $(_OBJ_DIR)\i386\irda.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\localmon.res \
+    $(_OBJ_DIR)\ia64\localmon.obj \
+    $(_OBJ_DIR)\ia64\winspool.obj \
+    $(_OBJ_DIR)\ia64\util.obj \
+    $(_OBJ_DIR)\ia64\config.obj \
+    $(_OBJ_DIR)\ia64\dialogs.obj \
+    $(_OBJ_DIR)\ia64\xcv.obj \
+    $(_OBJ_DIR)\ia64\irda.obj
+
+PASS0_IA64_OBJECTS=
+

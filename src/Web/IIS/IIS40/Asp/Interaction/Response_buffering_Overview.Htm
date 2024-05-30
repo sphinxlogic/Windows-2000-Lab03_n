@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Response Buffering</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_response_buffering"></a>  Response Buffering</h3>
+<p>
+This example demonstrates how you can manipulate the output buffer of the <b>Response</b> object using ASP. Unbuffered output written to the <b>Response</b> object is sent to the client browser as quickly as possible. If buffering is enabled, all output is allowed to accumulate in the buffer until it is either cleared or flushed (with the <b>Clear</b> and <b>Flush </b>methods respectively) or the script ends. </p>
+<p>
+This sample script contains all the HTML elements required for two complete Web pages. If this script were run without any buffer management, both HTML pages would be sent to the client browser, causing an error. But for this sample, buffering is enabled at the very beginning of the script with the <b>Response.Buffer</b> property. ASP writes the first group of HTML elements it finds to the buffer, but then encounters the <b>Response.Clear </b>method, which instructs ASP to clear the <b>Response</b> object's buffer. The scripting engine continues through the file, writing the remaining, second, HTML page to the buffer. The entire buffer is then sent to the client browser with the <b>Response.Flush</b> method. </p>
+</BODY>
+</HTML>

@@ -1,0 +1,36 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\aha154x.res \
+    $(_OBJ_DIR)\alpha\aha154x.obj \
+    $(_OBJ_DIR)\alpha\wmi.obj \
+    $(_OBJ_DIR)\alpha\support.obj
+
+PASS0_ALPHA_OBJECTS= \
+    .\aha154x.bmf
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\aha154x.res \
+    $(_OBJ_DIR)\axp64\aha154x.obj \
+    $(_OBJ_DIR)\axp64\wmi.obj \
+    $(_OBJ_DIR)\axp64\support.obj
+
+PASS0_AXP64_OBJECTS= \
+    .\aha154x.bmf
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\aha154x.res \
+    $(_OBJ_DIR)\i386\aha154x.obj \
+    $(_OBJ_DIR)\i386\wmi.obj \
+    $(_OBJ_DIR)\i386\support.obj
+
+PASS0_386_OBJECTS= \
+    .\aha154x.bmf
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\aha154x.res \
+    $(_OBJ_DIR)\ia64\aha154x.obj \
+    $(_OBJ_DIR)\ia64\wmi.obj \
+    $(_OBJ_DIR)\ia64\support.obj
+
+PASS0_IA64_OBJECTS= \
+    .\aha154x.bmf
+

@@ -1,0 +1,53 @@
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<HTML>
+<HEAD>
+<TITLE>Dynamic Styles</TITLE>
+<META NAME="FILENAME" CONTENT="dynamic.HTM">
+
+
+<STYLE>
+  .bigChange {color:blue; font-weight:bolder; font-size:175%; letter-spacing:4px;  text-transform: uppercase; background:yellow}
+  .start {color:yellow; background:navy}
+</STYLE>
+<SCRIPT LANGUAGE=JAVASCRIPT>
+  function highlightButton(s) {
+    if ("INPUT"==event.srcElement.tagName)
+      event.srcElement.className=s
+  }
+</SCRIPT>
+</HEAD>
+<BODY TOPMARGIN=20 LEFTMARGIN=40 BGCOLOR="#FFFFFF" LINK="#000066" VLINK="#666666" TEXT="#000000">
+<h2>Dynamic Styles</h2>
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT>
+<P>
+<P>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+<hr>
+<P>
+  
+
+
+<FONT SIZE=4>Move the mouse over "Make this text bigger."</FONT>
+  <P>Text can change in size and style at any time! 
+    <span onmouseover = "this.style.fontSize = 'larger'"
+          onmouseout = "this.style.fontSize =''" style="color:red">Make this text bigger.</span> Notice how the text automatically reflows.
+  </P>
+  <P>And one more time but use the class attribute: <SPAN onmouseover = "this.className = 'bigChange'"
+   onmouseout = "this.className='start'" class=start>Make this text bigger.</SPAN>
+  </p>
+This page demonstrates how the style can be changed through interactions with the user. This technique makes the Web page more lively and interactive.
+  
+<P>
+<P>
+<P>
+<P>
+<FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">
+&copy; <A HREF="/misc/cpyright.htm" TARGET="_top">1999 Microsoft Corporation. All rights reserved. Terms of use</A>.
+</FONT>
+<P>  
+</HTML>
+

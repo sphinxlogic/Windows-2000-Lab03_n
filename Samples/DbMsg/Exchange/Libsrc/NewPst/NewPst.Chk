@@ -1,0 +1,57 @@
+// --newpst.chk--------------------------------------------------------------
+//
+// Parameter checking for newpst.cpp.
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All rights reserved.
+//
+// ---------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_HrCreatePersonalStore(a,b,c,d,e,f)     NOERROR
+#define CHK_HrCleanupPSTGlobals(a)              NOERROR
+
+#else
+
+// $--CHK_HrCreatePersonalStore----------------------------------------------------------------
+//  Check parameters for HrCreatePersonalStore().
+// ---------------------------------------------------------------------------
+static inline HRESULT CHK_HrCreatePersonalStore(                   // RETURNS HRESULT
+	IN	LPSTR	lpszPSTPath,            // new PST fully-pathed name
+	IN	DWORD	dwEncryption,           // encryption level
+	IN	LPSTR	lpszPSTDisplayName,     // PR_DISPLAY_NAME value
+	IN	LPSTR	lpszPSTPassword,        // new PST password
+	OUT	LPSTR *	lppszProfileName,       // temporary profile name
+	OUT	LPSTR *	lppszProfilePassword)   // temporary profile password
+{
+    HRESULT hr  =   NOERROR;
+
+    if( !TEST_STRINGA_PTR(lpszPSTPath) ||
+        !TEST_STRINGA_PTR(lpszPSTDisplayName) ||
+        !TEST_STRINGA_PTR(lpszPSTPassword) ||
+        !TEST_WRITE_PTR(lppszProfileName, sizeof(LPSTR)) ||
+        !TEST_WRITE_PTR(lppszProfilePassword, sizeof(LPSTR)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+}
+
+// $--CHK_HrCleanupPSTGlobals-----------------------------------------------------------
+//  Check parameters for HrCleanupPSTGlobals().
+//---------------------------------------------------------------------------
+static inline HRESULT CHK_HrCleanupPSTGlobals(         // RETURNS: HRESULT
+    IN LPSTR lpszProfileName)   // temporary profile name
+{
+	HRESULT		hr  =   NOERROR;    // return code
+
+    if( !TEST_STRINGA_PTR(lpszProfileName) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+}
+
+#endif /* DEBUG */

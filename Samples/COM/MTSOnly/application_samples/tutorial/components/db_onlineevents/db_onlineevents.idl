@@ -1,0 +1,69 @@
+// db_OnlineEvents.idl : IDL source for db_OnlineEvents.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (db_OnlineEvents.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+import "eventsys.idl";
+	
+	[
+		object,
+		uuid(273392C9-F64C-11D1-9734-00805F31E0AF),
+		dual,
+		helpstring("IUsersOnline Interface"),
+		pointer_default(unique)
+	]
+	interface IUsersOnline : IDispatch
+	{
+		[id(1), helpstring("method Update")] HRESULT Update([in] BSTR strCustomerID);
+	};
+	
+	[
+		object,
+		uuid(273392CC-F64C-11D1-9734-00805F31E0AF),
+		dual,
+		helpstring("IChatStuff Interface"),
+		pointer_default(unique)
+	]
+	interface IChatStuff : IDispatch
+	{
+	};
+
+
+
+
+
+[
+	uuid(273392BA-F64C-11D1-9734-00805F31E0AF),
+	version(1.0),
+	helpstring("db_OnlineEvents 1.0 Type Library")
+]
+library DB_ONLINEEVENTSLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	
+	[
+		uuid(273392CA-F64C-11D1-9734-00805F31E0AF),
+		helpstring("UsersOnline Class")
+	]
+	coclass UsersOnline
+	{
+		[default] interface IUsersOnline;
+		interface ISubscriberControl;
+	};
+
+	
+	[
+		uuid(273392CD-F64C-11D1-9734-00805F31E0AF),
+		helpstring("ChatStuff Class")
+	]
+	coclass ChatStuff
+	{
+		[default] interface IChatStuff;
+	};
+
+};

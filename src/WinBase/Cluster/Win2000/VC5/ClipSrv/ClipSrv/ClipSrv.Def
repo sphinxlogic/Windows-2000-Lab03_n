@@ -1,0 +1,6 @@
+; ClipSrv.def : Declares the module parameters for the DLL.
+
+LIBRARY      "CLIPSRV"
+
+EXPORTS
+    Startup

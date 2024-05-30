@@ -1,0 +1,111 @@
+<HTML>
+<HEAD>
+<TITLE>Java/COM custom marshaling for user-defined data types</TITLE>
+</HEAD>
+
+<BODY BGPROPERTIES="FIXED" BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="#0000FF" ALINK="#0000FF" TOPMARGIN=0 LEFTMARGIN=0>
+
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE="2">
+
+<A NAME="pagetop"></A>
+
+<!--margin-->
+<TD WIDTH=23><IMG SRC="../art/1pixel.gif" WIDTH=23 HEIGHT=1></TD>
+<!--margin ENDS-->
+
+<!--main title (fixed coloured cell type)-->
+<BR>
+<TABLE BORDER=0 WIDTH=100%>
+<TR><TD BGCOLOR=BLUE WIDTH=200><FONT FACE="HELVETICA, ARIAL" SIZE=4 COLOR=WHITE>
+&nbsp;
+Applications</FONT>
+</TD>
+<!--main title ENDS-->
+
+<!--main page navigation-->
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP></TD>
+
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP><FONT FACE="ARIAL,HELVETICA" SIZE=1 COLOR=BLACK>
+<A HREF="../jdirect/sample.html" ><IMG SRC="../art/butt_pre.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Previous"></A><BR><B>
+Previous</B></FONT></TD>
+
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP><FONT FACE="ARIAL,HELVETICA" SIZE=1 COLOR=BLACK>
+<A HREF="../art/start.htm" ><IMG SRC="../art/butt_.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Welcome"></A><BR><B>
+Welcome</B></FONT></TD>
+
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP><FONT FACE="ARIAL,HELVETICA" SIZE=1 COLOR=BLACK>
+<A HREF="../native_com/sample.html" ><IMG SRC="../art/butt_nex.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Next"></A><BR><B>
+Next</B></FONT></TD>
+</TABLE>
+<!--main page navigation ENDS-->
+
+
+<!--this odd little break must accompany .gif filled cell title-->
+<BR>
+
+
+<TABLE BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<TR VALIGN=TOP>
+
+
+<!--main page sub-title-->
+<TD><FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=4>
+<B>Java/COM custom marshaling for user-defined data types</B></A>
+</FONT><BR>
+
+<!--main contents (NEW TABLE required in this scenario)-->
+<TABLE BORDER=0>
+<TR><TD ALIGN=LEFT VALIGN=TOP>
+
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=2>
+<BR>
+<p>This document introduces custom marshaling which is
+implemented between Java and COM. Basically, this involves the
+writing of a HOOK CLASS to do the marshaling, and the use of the
+JActiveX tool to create a Java type library file that describes the
+custom interface. </p>
+
+<p>Suppose you have a COM library that uses various data types as
+parameters and return values for its methods. For these methods
+to be callable from Java, the data types need to be converted
+between the COM types and Java types. For some types, like
+integers, floats, booleans, and strings, the Microsoft VM for
+Java provides intrinsic marshaling support that does the type
+conversion for you. </p>
+
+<p>Besides the conversion work, the COM types must be represented
+as Java types in order to be callable from Java. This requires a
+Java class file that contains type declarations in Java format.
+This class file is usually created by running a type-conversion
+tool such as JActiveX or JavaTLB on the typelib of the COM server.
+These conversion tools generate the proper type mappings for all
+types that that are supported by the intrinsic marshaling of the
+VM.</p>
+
+<p>However, the VM does not have intrinsic support for complex
+COM library data types such as C structures. In such cases, you
+will need to create a user-defined Java type and write a HOOK
+CLASS that does the marshaling. </p>
+
+<p>Also, JActiveX cannot automatically create type mappings that will
+work for user-defined types. You will need to tell JActiveX how to
+generate the Java type declarations. You do this by creating a
+Java Information (.JNF) file that describes your custom data
+types, and passing this extra file to JActiveX when it creates the
+COM library class header file. </p>
+
+<p>Please view the <a HREF="CUSTOMMARSHAL.TXT" >CustomMarshal.txt</A> file contained within the directory for additional information.</p>
+<BR>
+
+<!--rule-->
+<TABLE WIDTH=95%><TD HEIGHT=2 BGCOLOR=BLUE></TD></TABLE>
+<BR>
+
+<!--page top button-->
+<TABLE WIDTH=100%><TR><TD ALIGN=LEFT><A HREF="#pagetop"><IMG SRC="../art/butt_up.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Top"></A></TD>
+
+<!--MS copyright-->
+<TD ALIGN=RIGHT><FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK"><A HREF="../art/cpyright.htm" >&#169; 1996-1997 Microsoft Corporation. All rights reserved.</A></FONT></TD></TR></TABLE>
+</FONT>
+</BODY>
+</HTML>

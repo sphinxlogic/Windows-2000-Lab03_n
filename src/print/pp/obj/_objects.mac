@@ -1,0 +1,24 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\pp.obj \
+    $(_OBJ_DIR)\alpha\port.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\pp.obj \
+    $(_OBJ_DIR)\axp64\port.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\pp.obj \
+    $(_OBJ_DIR)\i386\port.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\pp.obj \
+    $(_OBJ_DIR)\ia64\port.obj
+
+PASS0_IA64_OBJECTS=
+

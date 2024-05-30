@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>Window -> UIWindow</title>
+<base target="descriptions">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">Window to UIWindow</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.Window should be transformed into instances of
+com.ms.ui.UIWindow.</p>
+
+<p align="left">Window extends <a href="Container.htm"
+target="descriptions">Container</a>: be sure to see its changes.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">The conversion from Window to UIWindow is
+minimal: the advantages come from UIComponent's advantages. One
+advantage of UIWindow is that you can specify an edge style for
+the window: those styles are listed in <a href="Container.htm"
+target="descriptions">Container</a>.</p>
+
+<p align="left">&nbsp;</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">This is the set of changes you need to make to
+port all Window methods to UIWindow methods. Any method not
+listed here or below does not need to be changed.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial"><strong>AWT Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">Window(Frame)</font></td>
+        <td nowrap><font size="2" face="Courier">UIWindow(Frame)
+        or<br>
+        UIWindow(Frame, int)</font></td>
+        <td><font size="2">UIWindows can also be instantiated
+        with a specific edge style: see above.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getFocusOwner()</font></td>
+        <td><font size="2" face="Courier">getFocusComponent()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h3>Unsupported Methods</h3>
+
+<p>Some methods in java.awt.Window are not directly supported in
+com.ms.ui.UIWindow. Those methods and suggested changes are
+listed below.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial">AWT Code<strong>/Suggested
+        AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">dispose() </font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getLocale()</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getWarningString() </font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">isShowing()</font><p><font
+        size="2" face="Courier"><strong>isVisible(false)</strong></font></p>
+        </td>
+        <td><font size="2">The false input is needed because
+        windows do not have parents.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">toBack()</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">toFront()</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+</body>
+</html>

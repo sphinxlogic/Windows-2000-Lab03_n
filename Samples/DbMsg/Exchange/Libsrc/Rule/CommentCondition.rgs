@@ -1,0 +1,25 @@
+HKCR
+{
+	MSExchange.CommentCondition.1 = s 'CommentCondition Class'
+	{
+		CLSID = s '{D61B2A8A-07A1-11D2-BC0D-00C04F8C92F7}'
+	}
+	MSExchange.CommentCondition = s 'CommentCondition Class'
+	{
+		CLSID = s '{D61B2A8A-07A1-11D2-BC0D-00C04F8C92F7}'
+		CurVer = s 'MSExchange.CommentCondition.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {D61B2A8A-07A1-11D2-BC0D-00C04F8C92F7} = s 'CommentCondition Class'
+		{
+			ProgID = s 'MSExchange.CommentCondition.1'
+			VersionIndependentProgID = s 'MSExchange.CommentCondition'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+		}
+	}
+}

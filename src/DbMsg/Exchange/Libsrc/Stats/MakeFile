@@ -1,0 +1,16 @@
+#---------------------------------------------------------------------------
+# Description:
+#   Make file to generate Stats.Lib
+#
+# Copyright (C) Microsoft Corporation 1986 - 1998.  All Rights Reserved.
+#---------------------------------------------------------------------------
+
+USE_EXCHANGE=1
+
+Proj = Stats
+
+!Include <BkOffice.Mak>
+
+all: $(ObjDir)\$(Proj).Lib
+
+$(ObjDir)\$(Proj).Lib: $(@R).Obj $(@D)\Fifo.Obj $(@D)\JsWindow.Obj $(@D)\FldMtrc.Obj

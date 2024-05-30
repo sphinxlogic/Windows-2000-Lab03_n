@@ -1,0 +1,8 @@
+LIBRARY	     CkyMunge
+
+DESCRIPTION 'Active Server Pages ISAPI filter for munging ASPSESSIONID cookies'
+
+EXPORTS
+    DllMain
+    HttpFilterProc
+    GetFilterVersion

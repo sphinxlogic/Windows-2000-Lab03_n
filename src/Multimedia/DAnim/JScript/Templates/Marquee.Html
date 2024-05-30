@@ -1,0 +1,109 @@
+<HTML> 
+<HEAD>
+<TITLE>DirectAnimation SDK, JScript sample</TITLE>
+<SCRIPT LANGUAGE="JScript">
+<!--
+if (window.top.frames.length!=0 && window.top.frames[0].ShowNoButtons!=null)
+    window.top.frames[0].ShowNoButtons();
+//-->
+</SCRIPT>
+</HEAD>	 
+
+<BODY BGCOLOR=WHITE TOPMARGIN=15 LEFTMARGIN=20>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=2> 
+<CENTER>
+<H1>DirectAnimation Marquee</H1>
+</CENTER>
+ 
+<CENTER>          
+<OBJECT ID="DAControl"
+  STYLE="position:relative;top:10%; width:800;height:50" 
+  CLASSID="CLSID:69AD90EF-1C20-11d1-8801-00C04FC29D46">
+</OBJECT>
+</CENTER>
+
+<SCRIPT LANGUAGE="JScript">
+<!--
+  // The DirectAnimation library
+  m = DAControl.MeterLibrary;
+
+  // Set of number behaviors
+  zero = m.DANumber(0);
+  half = m.DANumber(0.5);
+  one = m.DANumber(1);
+  two = m.DANumber(2);
+
+  oscillatingNumber = m.Sin(m.LocalTime);
+
+  // Create a time varying color
+  txtCol = m.ColorHslAnim(m.Abs(oscillatingNumber), m.DANumber(0.5), m.DANumber(0.5));
+
+  fontStyle = m.Font("Arial",-24, txtCol );
+
+  textImg =  m.StringImage("DirectAnimation - Unleash Your Imagination Now !!!", fontStyle);
+
+  // Get the height and width of the text.
+  scrollingTextBounds = textImg.BoundingBox;
+
+  scrollingTextLength = m.Sub(scrollingTextBounds.Max.X,scrollingTextBounds.Min.X);
+  scrollingTextWidth = m.Sub(scrollingTextBounds.Max.Y,scrollingTextBounds.Min.Y);
+
+  // Get the control width and hegiht.
+  controlWidth = m.Mul(m.DANumber(DAControl.style.pixelWidth),m.Pixel);
+  controlHeight = m.Mul(m.DANumber(DAControl.style.pixelHeight),m.Pixel);
+
+
+  // first we move the text off the right hand side of the control
+  // remember that text comes up centered, so we first move the left portion to the right of center
+  // and then move by half the width of the control to the right.  Also center the text vertically
+  // across the control
+
+  horizontalOffset = m.Add(m.Neg(scrollingTextBounds.Min.X),m.Div(controlWidth,m.DANumber(2)));
+  verticalOffset = m.Neg(m.Div(scrollingTextWidth,m.DANumber(4)));
+
+  scrollingTextImage = textImg.Transform(m.Translate2Anim(horizontalOffset,verticalOffset));
+
+  // Number of scrolling steps
+  scrollingSteps = m.DANumber(400);
+
+  // how fast to scroll
+  scrollingSpeed = m.Mod( m.Mul(m.LocalTime,m.DANumber(9)), scrollingSteps);
+
+  // we need to scroll the width of the control plus the length of the string
+  scrollWidth = m.Add(controlWidth,scrollingTextLength);
+
+  // this defines the translation
+  scrollingRate = m.Mul(m.Neg(scrollingSpeed),m.Div(scrollWidth,scrollingSteps));
+
+  scrollingTextTranslation = m.Translate2Anim(scrollingRate, zero);
+
+  scrollingTextImage = scrollingTextImage.transform(scrollingTextTranslation);
+
+  // Let's make some blinking text to inform the user that they can click on the page
+
+  // let's make a shade of green that ranges from 0.55 to 0.75
+  greenShade = m.Add(half, m.Add(m.DANumber(0.15), m.Mul(m.DANumber(0.1), oscillatingNumber)));
+
+  blinkingColor = m.ColorRgbAnim(half, greenShade, half);
+
+  blinkingStyle = fontStyle.Color(blinkingColor);
+
+  clickMeText = m.StringImage("Click Me", blinkingStyle);
+  clickMeText = clickMeText.Transform(m.Translate2Anim(zero,verticalOffset));
+
+  // once the user clicks, we switch to the marquee
+  scrollingTextImage = m.Until(clickMeText,m.LeftButtonDown,scrollingTextImage);
+
+  DAControl.TimerSource=1;
+
+  // set the image to be displayed
+  DAControl.Image = m.Overlay(scrollingTextImage,m.SolidColorImage(m.Black));
+
+  DAControl.Sound = m.Silence;
+    
+  // start the animation       
+  DAControl.Start()
+//-->
+</SCRIPT>
+</BODY>
+</HTML>

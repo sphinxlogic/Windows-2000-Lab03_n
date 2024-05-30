@@ -1,0 +1,79 @@
+<html>
+<head>
+<title>Runtimestyle Demo</title>
+
+<style>
+#aDiv {border-style: solid; border-color:blue;font-size:14}
+</style>
+
+<script>
+function toggle(property,value,element) {
+	if (aDiv.runtimeStyle[property]==value) {
+	   aDiv.runtimeStyle[property]='';
+	   element.value=value; 
+	} else {
+	   aDiv.runtimeStyle[property]=value;
+	   element.value='blank';
+	}
+	showValues();
+}
+
+function showProp (varX,whichElement)  {
+     varCell = "<td>"+varX+"&nbsp</td>";
+	 ruleCell = "<td>"+cssStyle[varX]+  "</td>";
+     styleCell = "<td>"+aDiv.style.getAttribute(varX)+"&nbsp</td>";
+     cstyleCell = "<td>"+eval("aDiv.currentStyle."+varX)+"&nbsp</td>";
+     rstyleCell = "<td>"+eval("aDiv.runtimeStyle."+varX)+"&nbsp</td>";
+     row = "<tr>"+varCell+ruleCell+styleCell+rstyleCell+cstyleCell+"</tr>";
+	 return row;
+}
+function showValues() {
+	rCount=1;
+	while (rCount < output.rows.length) {
+		r=output.rows(rCount);
+		cCount=0;
+		while ((++cCount)<5) {
+			c=r.cells(cCount);
+			c.innerText=eval("aDiv."+output.cells(cCount).innerText + '["' + output.cells(rCount*5).innerText + '"]');
+		}
+		rCount++;
+	}
+}
+</script>
+</head>
+
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT><hr>
+
+<body onload=showValues()>
+<h3>CSS Rules/Style/RuntimeStyle/CurrentStyle for a Div</h3>
+
+<DIV id=aDiv style="border-Color: navy;color:white;background: blue; width: 75%; left:50; height: 40">
+runtimeStyle.x overrides style.x overrides css rules for x
+</div><br>
+
+<table id=output border=1 style='font-size: 14; font-family: verdana'>
+<tr style='font-style: bold; color: white; background-color: blue;'>
+<td>CSS Property</td><td>document.styleSheets(0).rules(0).style</td><td>style</td>
+<td>runtimeStyle</td><td>currentStyle</td></tr>
+<tr><td>backgroundColor</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>borderColor</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>borderStyle</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>color</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>fontSize</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>width</td><td></td><td></td><td></td><td></td></tr>
+</table>
+
+<br>
+<table>
+<tr style="font-Weight:bold"><td>Property</td><td>Change value to</td></tr>
+<tr><td>runtimeStyle.backgroundColor:</td>
+<td><input type=button id=iBGColor value=red onclick="toggle('backgroundColor','red',iBGColor)"></td></tr>
+<tr><td>runtimeStyle.borderColor:</td>
+<td><input type=button id=iBorColor value=tan onclick="toggle('borderColor','tan',iBorColor)"></td></tr>
+<tr><td>runtimeStyle.fontSize:</td>
+<td><input id=iFSize onpropertychange="aDiv.runtimeStyle.fontSize=iFSize.value;showValues();"></td></tr>
+</table>
+</body>
+</html>

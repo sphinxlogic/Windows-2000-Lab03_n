@@ -1,0 +1,59 @@
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<HTML>
+<HEAD>
+<TITLE>Visibility Versus Display</TITLE>
+<META NAME="FILENAME" CONTENT="visibility.HTM">
+
+
+<STYLE>
+  .bigChange {color:blue; font-weight:bolder; font-size:175%; letter-spacing:4px;  text-transform: uppercase; background:yellow}
+  .start {color:yellow; background:navy}
+</STYLE>
+<SCRIPT LANGUAGE=JAVASCRIPT>
+  function highlightButton(s) {
+    if ("INPUT"==event.srcElement.tagName)
+      event.srcElement.className=s
+  }
+</SCRIPT>
+
+<BODY TOPMARGIN=20 LEFTMARGIN=40 BGCOLOR="#FFFFFF" LINK="#000066" VLINK="#666666" TEXT="#000000">
+  
+<H2>Visibility Versus Display</H2>
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT>
+<P>
+<P>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+<hr>
+
+
+<B>Click on the blue text below. Notice the difference between visibility and display.</B><P>
+
+
+  <TABLE><TR><TH>Visibility</TH><TH>Display</TD></TR>
+  <TBODY VALIGN=TOP>
+    <TR><TD width=50%><P style="color:blue" onclick="document.all.v.style.visibility= document.all.v.style.visibility=='hidden' ? '' : 'hidden'">Click here to see more data:</P>
+         <P id=v style="visibility:hidden">This is <EM>sample data</EM> that is being displayed. The space for this content is already taken up, even though the content is invisible.</P>
+         <P>This is more information that follows the hidden data.</P>
+        </TD>
+        <TD width=50%><P style="color:blue" onclick="document.all.d.style.display= document.all.d.style.display=='none' ? '' : 'none'" title="A tooltip can even be added to very element using the title attribute!">Click here to see more data:</P>
+         <P id=d style="display:none">This is <EM>sample data</EM> that is being displayed. The space for this content is not taken up until the content is displayed.
+            Notice how the line following this data automatically moves down.</P>
+         <P>This is more information that follows the hidden data.</P><P>
+        </TD>
+   </TR>
+  </TBODY>
+ </TABLE>
+  <P>There are two properties in CSS to hide and show data: the display and visibility attributes. The visibility attribute allows content to be hidden, with the content still taking up space in the flow. The display attribute 
+     allows the content to be removed from the flow, allowing creation of dynamic and interactive content such as outlines. Of course both are supported by Dynamic HTML in Internet Explorer 4.x and 5. The example below demonstrates the difference between dynamically 
+     changing the visibility and changing the display of CSS properties.
+<P> 
+<FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">
+&copy; <A HREF="/misc/cpyright.htm" TARGET="_top">1999 Microsoft Corporation. All rights reserved. Terms of use</A>.
+</FONT>
+<P>
+</HTML>
+

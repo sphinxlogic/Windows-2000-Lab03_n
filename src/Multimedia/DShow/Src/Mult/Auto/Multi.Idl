@@ -1,0 +1,109 @@
+//==========================================================================;
+//
+//  THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+//  KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+//  IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+//  PURPOSE.
+//
+//  Copyright (c) 1997 - 1998  Microsoft Corporation.  All Rights Reserved.
+//
+//--------------------------------------------------------------------------;
+
+// multi.idl : IDL source for multi.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (multi.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+    typedef [
+        uuid(a15c2370-001a-11d2-abe9-00a0c905f375),
+        helpstring("Setfile flags")
+    ] enum tagSetFileFlags
+    {
+        [helpstring("Last file")] sffLast = 2,
+        [helpstring("Flush previous file")] sffFlush = 4
+    } SetFileFlags;
+
+    [
+        object,
+        uuid(e8880590-f3f1-11d1-abe9-00a0c905f375),
+        dual,
+        helpstring("IMultiF Interface"),
+        pointer_default(unique)
+    ]
+    interface IMultiF : IDispatch
+    {
+        [id(1), helpstring("method SetFile")]
+        HRESULT SetFile(
+            [in] BSTR FileName,
+            [in] long lStartLow,
+            [in] long lStartHigh,
+            [in] long lLengthLow,
+            [in] long lLengthHigh,
+            [in] long lTimeOffset,    // Time offset in 100ns units
+            [in] long lFileId,
+            [in] SetFileFlags lFlags);
+
+        //  Returns IMediaControl
+        [id(2), helpstring("method getgraph")]
+        HRESULT GetGraph([out, retval] IUnknown **ppGraph);
+
+        [id(3), helpstring("Get audio stream")]
+        HRESULT GetAudioStream([in] long lIndex,
+                               [out] long *plSelected,
+                               [out, retval] BSTR *StreamName);
+
+        [id(4), helpstring("Set audio stream")]
+        HRESULT SetAudioStream([in] long lIndex);
+
+        [id(5), helpstring("Set timer")]         //  Same id cancels previous
+        HRESULT SetTimer([in] long lSeconds, 
+                         [in] long lMilliseconds,
+                         [in] long lTimerId);
+
+        [id(6), helpstring("Cancel timer")]
+        HRESULT CancelTimer([in] long lTimerId); // 0 cancels all
+    };
+[
+    uuid(E864AD81-D0C2-11D1-B30B-249710C1AA07),
+    version(1.0),
+    helpstring("DirectShow MultiFile 1.0 Type Library")
+]
+library MULTILib
+{
+    importlib("stdole32.tlb");
+    importlib("stdole2.tlb");
+
+
+    [
+        uuid(a725d260-d0ca-11d1-b30b-249710c1aa07)
+    ]
+    dispinterface IMultiEvent
+    {
+        properties:
+        methods:
+            [id(1), helpstring("method OnComplete")]
+            HRESULT OnComplete([in] long lFileId);
+            [id(2), helpstring("method OnPlaybackComplete")]
+            HRESULT OnPlaybackComplete(void);
+            [id(3), helpstring("method OnFileStart")]
+            HRESULT OnFileStart([in] long lFileId, 
+                                [in] long lSeconds,
+                                [in] long lMilliseconds);
+            [id(4), helpstring("timer")]
+            HRESULT OnTimer([in] long lTimerId);
+    };
+
+    [
+        uuid(E864AD8F-D0C2-11D1-B30B-249710C1AA07),
+        helpstring("MultiF Class")
+    ]
+    coclass MultiF
+    {
+        [default] interface IMultiF;
+        [default, source] dispinterface IMultiEvent;
+    };
+};

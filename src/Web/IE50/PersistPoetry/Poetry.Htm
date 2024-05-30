@@ -1,0 +1,202 @@
+<HTML>
+
+<HEAD>
+<TITLE>Magnetic Poetry</TITLE>
+<LINK REL="STYLESHEET" TYPE="text/css" HREF="./css/poetry.css"></STYLE>
+
+<STYLE>
+.userData {BEHAVIOR: url(#default#userdata)}
+.uiText {
+	filter:			alpha(opacity = 50);
+	font-family:	'arial black';
+	font-size:		12;
+}
+</STYLE>
+
+<SCRIPT SRC="./script/poetry.js" LANGUAGE="JScript"></SCRIPT>
+<SCRIPT SRC="./script/loadstore.js" LANGUAGE="JScript"></SCRIPT>
+<SCRIPT SRC="./script/fillmagnets.js" LANGUAGE="JScript"></SCRIPT>
+
+</HEAD>
+
+<BODY id="mybody" background="images/fridge.gif"
+  onload="loadLocations();"
+  onunload="saveLocations();">
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Odiferous
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+The
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Licked
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+My
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Dog
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Has
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Fleas
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Extrapolating
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Glorious
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Thunder
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Deftly
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Lifts
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Shakespeare
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Rattlesnake
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Pitch
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Cow
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Under
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Tang
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Iching
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Huge
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+A
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Subversive
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Shady
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Pickled
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Maven
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Fianc&#233;e
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Divorcee
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Chairman
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Near
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+The
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Fantastic
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Artichoke
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Marketed
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Windows
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Dug
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Grocked
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Hammered
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Attends
+</DIV>
+
+<DIV ID='magnet' CLASS='magnet' STYLE="visibility:hidden">
+Flew
+</DIV>
+
+<SPAN id="btnReset"
+  STYLE="position: absolute;
+  left: expression(document.body.clientWidth - document.body.style.border - 150);
+  top: expression(document.body.clientHeight - document.body.style.border - 50);
+  cursor: hand;"
+  CLASS="uiText"
+  onclick="resetMagnets();"
+  onmouseover="this.style.color='blue';"
+  onmouseout="this.style.color='black'" >
+<U>
+  Randomize Words
+</U>
+</SPAN>
+
+<!-- element used in userData -->
+<DIV id=sltChooseData name=sltChooseData onchange="chooseDataset();"
+  CLASS="userData" style="display:none;"></DIV>
+
+</BODY>
+
+</HTML>

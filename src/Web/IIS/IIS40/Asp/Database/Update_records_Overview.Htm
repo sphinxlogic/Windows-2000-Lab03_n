@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Update Records</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_update_records"></a>  Update Records</h3>
+<p>
+This example demonstrates how your application can update existing records using ADO. <b>CreateObject</b> is used to create an instance of the <b>Connection</b> object, which in turn is used to open a connection to the ODBC data source. <b>CreateObject</b> is used again, this time to create an empty <b>Recordset</b> object. The <b>ActiveConnection</b> property is set to refer to the new <b>Connection</b> object. </p>
+<p>
+The new recordset is then configured. The <b>Recordset.Source</b> property specifies the SQL string to be used, and the new recordset is opened. For the purposes of this sample, it is assumed that the very first record found is the record that needs to be updated. The strings Author and Yearborn are used as indexes into the <b>Recordset</b> object, and the <b>Value</b> property is used to set the values of each of those fields to a new value. The <b>Recordset.Update</b> method is then called to write the new information back to the database. </p>
+<p>
+<b>Note</b>&nbsp;&nbsp;ODBC must be properly configured on the server before this sample will run properly. </p>
+</BODY>
+</HTML>

@@ -1,0 +1,72 @@
+**********************************************************************
+                Microsoft(R) Web Telephony Engine
+                            August 1999            
+**********************************************************************
+              (c) Copyright Microsoft Corporation, 1999
+
+
+This document describes how to install Microsoft Web Telephony Engine.
+It also describes how to import the Web Telephony Engine schema.
+
+
+======================================================================
+HOW TO USE THIS DOCUMENT
+======================================================================
+
+To view WebTEIns.txt on the screen in Notepad, maximize the Notepad 
+window. For best viewing, click Format, and then click Word Wrap.
+
+To print WebTEIns.txt, open it in Notepad or another word processor.
+Click the File menu, and then click Print. For best printing results, 
+set the font size to 9.
+
+
+======================================================================
+CONTENTS
+======================================================================
+
+1.0  WEBTE.EXE OVERVIEW
+2.0  WEBTEIMP.EXE OVERVIEW
+
+
+======================================================================
+1.0  WEBTE.EXE OVERVIEW
+======================================================================
+
+WEBTE.EXE is a self-extracting executable that installs Microsoft Web 
+Telephony Engine (WTE).
+
+To run unattended setup, set the environment variable 
+WEBTE_INSTALL_FLAGS to one of the following:
+   * /q, to suppress all dialog boxes except the exit dialog box.
+   * /q1, to suppress all dialog boxes, including the exit dialog box.
+   * /qt, to suppress dialog boxes for the entire setup process, 
+     including the blue background and the copy gauge.
+            
+If you run unattended setup, Web Telephony Engine will be installed to 
+the "%ProgramFiles%\Web Telephony Engine" directory. The WebTE service 
+will be set to use the local system account. 
+
+To change the default installation directory for unattended setup, 
+create a file named "webte.ini" in the %WINNT% directory, with the 
+following lines:
+
+   [WebTE Setup Install]
+   ; The installation directory
+   Install Dir=Directory_Name
+
+Directory_Name is the directory in which the Web Telephony Engine
+will be installed.
+
+
+======================================================================
+2.0  WEBTEIMP.EXE OVERVIEW
+======================================================================
+
+You can store Microsoft Web Telephony Engine configuration information
+in the registry or in the Active Directory. If you use the Active
+Directory to store configuration information, you must first import 
+the Microsoft Web Telephony Engine schema. 
+
+WEBTEIMP.EXE is a self-extracting executable that imports Microsoft 
+Web Telephony Engine schema to the Active Directory.

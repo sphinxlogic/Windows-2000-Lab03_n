@@ -1,0 +1,138 @@
+// --tnefenc.chk------------------------------------------------------------------
+//
+//  Parameter checking for tnefenc.c
+// 
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+//
+// -----------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_HrCnvQueryCapability(a,b,c,d,e)     NOERROR
+#define CHK_HrCnvConvert(a,b,c,d,e,f)           NOERROR
+#define CHK_HrGetExportVector(a,b)              NOERROR
+
+#else
+
+//$--CHK_HrCnvQueryCapability-------------------------------------------------------
+// Parameter checking for HrCnvQueryCapability
+// -----------------------------------------------------------------------------
+static _inline HRESULT CHK_HrCnvQueryCapability(     
+    IN LPCWSTR pszOptions,                  // options passed from conversion engine
+    IN LPCWSTR pszClass,                    // class of object to be converted.
+    IN PVOID pContent,                      // object to be covnerted.
+    IN PEDKCNVENV pEnv,                     // environment for conversion.
+    OUT BOOL * pfAmCandidate)               // can convert?
+{
+    HRESULT hr  =   NOERROR;    // return code
+
+    // Note:  Options may be null
+    if ( ! TEST_STRINGW_PTR(pszClass) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_IUNKNOWN_PTR((LPUNKNOWN) pContent) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_WRITE_PTR(pfAmCandidate, sizeof(BOOL)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_READ_PTR(pEnv, sizeof(EDKCNVENV)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return hr;
+
+}
+
+
+//$--CHK_HrCnvConvert---------------------------------------------------------------
+//  Parameter checking for HrCnvConvert
+// -----------------------------------------------------------------------------
+static _inline HRESULT CHK_HrCnvConvert(    
+    IN LPCWSTR pszOptions,                  // options.
+    IN LPCWSTR pszClass,                    // object class to be converted.
+    IN PVOID pContent,                      // object to be converted.
+    IN PVOID pContentOut,                   // where to put the result.
+    IN PEDKCNVENV pEnv,                     // environment for conversion.
+    OUT EDKCNVRES * pcr)                    // result of conversion
+{
+    HRESULT hr  =   NOERROR;        // return code
+
+    // Options can be NULL.
+    if ( ! TEST_STRINGW_PTR(pszClass) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_IUNKNOWN_PTR((LPUNKNOWN) pContent) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_IUNKNOWN_PTR((LPUNKNOWN) pContentOut) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_WRITE_PTR(pcr, sizeof(EDKCNVRES)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_READ_PTR(pEnv, sizeof(EDKCNVENV)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return hr ;
+
+}
+
+//$--CHK_HrGetExportVector---------------------------------------------------------
+// Parameter checking for HrGetExportVector
+// -----------------------------------------------------------------------------
+static _inline HRESULT CHK_HrGetExportVector(        // RETURNS: HRESULT
+    IN DWORD dwVersionRequired,             // desired version number
+    OUT PCONVDLLVECT FAR * ppConvDLLVect)  // pointer to export vector structure
+{
+    HRESULT hr  =   NOERROR;    // return code
+
+    if ( ! TEST_WRITE_PTR(ppConvDLLVect, sizeof(PCONVDLLVECT)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+
+}
+
+#endif /* DEBUG */

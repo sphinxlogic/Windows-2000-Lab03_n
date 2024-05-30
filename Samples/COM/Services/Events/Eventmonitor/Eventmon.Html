@@ -1,0 +1,361 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" Content="Microsoft Visual Studio 6.0">
+<TITLE></TITLE>
+</HEAD>
+<BODY>
+
+<P><FONT size=5><STRONG><U>OVERVIEW</U></STRONG></FONT></P>
+
+<P>      This sample 
+introduces the COM+ EventSystem aka Loosely Coupled Events. This sample shows how 
+to build EventClasses, Subscriptions, PublisherFilter and also how to&nbsp;fire 
+Events using them.</P>
+
+<P>The events of our interest happening are dispatched using COM+ EventSystem to 
+the registered subscribers. These are the following events we simulate and 
+dispatch through COM+ EventSystem,</P>
+
+<P>          
+    - DiskFull event when the the diskspace 
+hits a threshold value</P>
+
+<P>      - FileCreated, FileDeleted, 
+FileRemoved, FileUpdated events from the FileSystem</P>
+
+<P>     - ProcessCreated, ProcessTerminated and 
+PNPDeviceAdded from the Operating System</P>
+
+<P><STRONG>"EventMonitor" </STRONG>consists of four 
+programs, <STRONG>EventMonPublisher</STRONG>, a publisher application that 
+publishes these events, <STRONG>EventMonEventClass</STRONG>, an EventClass dll, 
+<STRONG>EventMonFilter</STRONG>, a publisher filter and 
+<STRONG>EventMonSubscriber</STRONG>       
+         
+        
+          
+           
+           
+         
+         
+        , a subscriber 
+for these events.</P>
+
+<P>       
+         
+        
+          
+           
+           
+   EventMonPublisher.exe is a dialog based application 
+to administer the the EventMonitor system. It does registration/unregistration 
+of EventClasses and Subscription. This can also be used to simulate 
+firing of events.</P>
+
+<P>       
+         
+        
+          
+           
+           
+         
+         
+    EventMonEventClass.dll is registered as a COM+ configured 
+component, using EventMonEventPublisher.</P>
+
+<P>       
+         
+        
+          
+           
+           
+         
+ EventMonFilter.dll is a COM server which implements all 
+necessary interfaces and methods to act as&nbsp;a PublisherFilter for all the 
+above mentioned interfaces/methods.</P>
+
+<P>       
+         
+        
+          
+           
+           
+         
+       EventMonSubscriber is 
+also registered as a COM+ configured component, using EventMonPublisher, which acts 
+as the subscriber.</P>
+
+<P>Note: This sample creates eventclasses, subscriptions 
+programmatically "<STRONG>Component Services</STRONG>"&nbsp;snapin. 
+To launch this,Start=&gt;Programs=&gt;Administrative Tools=&gt;Component Services. 
+[Wherever it is applicable, instructions are provided on how to use the snapin. 
+Please check <FONT color=navy><FONT color=black>for </FONT><FONT color=white 
+style="BACKGROUND-COLOR: #7b68ee">[Using the Snapin] </FONT>.]</FONT></P>
+
+<P><FONT size=5><STRONG><U>BUILDING THE 
+SAMPLE</U></STRONG></FONT></P>
+
+<P>Open the workspace <FONT color=red>EventMonitor.dsw </FONT>in 
+the VC++6.0. Make sure that <b>"EventMonPublisher Classes"</b> is set as the active project. Press F7. This builds the following four projects.</P>
+
+<P><EM>EventMonPublisher.dsp,&nbsp;EventMonEventClass.dsp, 
+EventMonFilter.dsp, EventMonSubscriber.dsp.</EM> The output files are 
+EventMonPublisher.exe, EventMonEventClass.dll, EventMonFilter.dll, EventMonSubscriber.dll. By default, the build 
+process, registers all the three dlls. (You can also register these three dlls 
+using regsvr32.ex from your system32 directory)</P>
+
+<P><U>EventMonPublisher</U></P>
+
+<P>This is a dialog based application. This dialog is used 
+to administer EventMonitor. EventClasses and Subscriptions are registered using ths UI, 
+which makes use of COM+ Admin APIs. This UI is also used 
+to fire events.</P>
+
+<P><U>EventMonEventClass</U></P>
+
+<P>This is a COM+ configured component which exports 
+DllRegisterServer, DllUnregisterServer, DllCanUnloadNow, DllGetClassObject<FONT 
+color=red>.&nbsp; [Note</FONT><FONT color=red>: Only DllUnregisterServer needs 
+to have an implementation and other exported API's can just return a S_OK. Also 
+this dll doesn't need to implement the firing interfaces]. </FONT><FONT 
+color=black>The CLSID and the ProgID of this component is used as EventClassID 
+and EventClassName of the EventMonEventClass</FONT>         
+           
+            
+     </P>
+
+<P><U>EventMonFilter</U></P>
+
+<P>This is the PublisherFilter, a COM server, that can be 
+set declaratively (when a EventClass is registerd )as well as during 
+runtime(when a EventClass is instantiated). This is used&nbsp;alongwith the 
+EventClass. This component&nbsp;implements interfaces IDiskEvents, IFileSystemEvents, ISystemEvents, and 
+IMultiInterfacePublisherFilter</P>
+
+<P><U>EventMonSubscriber</U></P>
+
+<P>Subscriber of the events. This is also a COM+ 
+configured component. This component implements the following interfaces IDiskEvents, 
+IFileSystemEvents and ISystemEvents.</P>
+
+<P><FONT 
+size=5><U><STRONG>OPERATION</STRONG></U></FONT></P>
+
+<P>  - Make sure EventMonFilter.dll is 
+registered. </P>
+
+<P>- Launch EventMonPublisher.exe. On its startup, 
+EventMonPublisher.exe creates two application one called EventMonPublisherApp and the 
+other called EventMonSubscriberApp. It also installs the EventMonSubscriber component 
+under the EventMonSubscriberApp. </P>
+
+<P><FONT color=navy><FONT color=white 
+style="BACKGROUND-COLOR: #7b68ee">[Using the Snapin] </FONT>  </FONT><FONT 
+color=black> <STRONG>Creating Application</STRONG></FONT></P>
+
+<P><FONT color=red>[Note: Please don't execute these steps 
+for the currnet sample. EventMonPublisherApp and EventMonSubscriberApp are created using 
+COM+Admin APIs. The steps are provided here for general help]</FONT></P>
+
+<P>- Right click COM+ Applications and select 
+New=&gt;Application</P>
+
+<P>- Click on "Create Empty Application" button and press 
+Next.</P>
+
+<P>- Choose whichever activation model you want and also 
+enter a Name for this applicaion</P>
+
+<P><EM><U><STRONG>Step #1 Registering an 
+EventClass</STRONG></U></EM></P>
+<UL>
+
+<LI>In the "EventClass" group box, check the "PublisherID" and the "AllowInprocActivation" checkboxes then click the "Register" button. 
+  
+
+<LI>If the registration is successful, the text on the 
+  "Register" button would have changed to"Unregister"</LI></UL>
+
+<P> This creates a "EventClass" component under 
+the EventMonPublisherApp application. This makes use 
+of ICOMAdminCatalog::InstallEventClass(....) to install a "EventClass" under 
+the EventMonPublisherApp application. [Note: Thorough this procedure, we've 
+just defined the meta-data of our eventclass. The implementation of the EventClass 
+is provided by the COM+ EventSystem based on the meta-data]. The 
+InstallEventClass( ) function which we discussed above takes the EventClass dll path name and the path of the typelibrary 
+name. The typelibrary specifies all the 
+interfaces that are to be implemented by this 
+EventClass component.</P>
+<P>Note: The EventClass dll in this project is created using ATL wizard. The 
+wizard generates a coclass by default which is not required for EventClass 
+registration. Since the wizard the coclass by default, the class is retained and 
+does not have any implementation. But this dll does have DllRegisterServer 
+implementation and dummy implementation for other exports and this dll also 
+contains the tlb file that firing interface details. You could choose any tool 
+to write a dll that does this. Though this dll gets registered as the COM server 
+implementation for this EventClass object (CLSID) in the registry, in reality 
+when an EventClass object is instantiated using COM activation APIs, the runtime 
+interprets the call and loads an eventsystem provided dll instead.</P>
+
+<P><FONT color=maroon><FONT 
+color=white style="BACKGROUND-COLOR: #7b68ee">[Using the Snapin] 
+</FONT>  </FONT><FONT 
+color=black> <STRONG>Creating EventClass</STRONG></FONT>       
+      
+        
+ </P>
+<UL>
+
+<LI>Under the EventMonPublisherApp application, right click on 
+  the Components and select New=&gt;Component. 
+  
+
+<LI>From the UI thrown, clcik the "Install New 
+  EventClass(es)" button. 
+  
+
+<LI>Select the "EventMonEventClass.dll" using the browse button 
+  and click Next. 
+  
+
+<LI>Dismiss the wizard by clicking Finish. 
+  
+
+<LI>Right click on the newly created EventClass and set 
+  the property "PublihserID" as ZooPublisher and&nbsp; check "Allow in-process 
+  subscribers" checkbox.</LI></UL>
+
+<P><EM><U><STRONG>Step #2 Register a Persistent 
+Subscription</STRONG></U></EM></P>
+<UL>
+
+<LI>In the "Subscription" group box, check the "All the Interfaces" checkbox then check either the "PublisherID" or the 
+  "EventClassID" checkbox. 
+  
+
+<LI> In the "Type" group box, check the "Persistent" radio button and click the "Register" button. </LI></UL>
+
+<P>       
+  This installs a subscription named EventMonSubscription under 
+the EventMonSubscriber component.</P>
+
+<P><FONT color=darkred><FONT 
+color=white style="BACKGROUND-COLOR: #7b68ee">[Using the 
+Snapin]&nbsp;</FONT>  </FONT><FONT 
+color=black> <STRONG>Creating Subscription</STRONG></FONT></P>
+<UL>
+
+<LI><FONT color=black>Under the EventMonSubscriberApp 
+  application, right click on the Components and select New=&gt;Component. 
+  </FONT>
+
+<LI><FONT color=black>From the UI thrown, click on the 
+  "Install new Component(s)" button. </FONT>
+
+<LI><FONT color=black>Select the "EventMonSubscriber.dll" 
+  using the browse button and click Next. </FONT>
+
+<LI><FONT color=black>Dismiss the wizard by clicking 
+  Finish. </FONT>
+
+<LI><FONT color=black>Expand the&nbsp;newly created 
+  component by clicking on the plus sign. </FONT>
+
+<LI><FONT color=black>Right click Subscriptions and 
+  select New=&gt;Subscription. </FONT>
+
+<LI><FONT color=black>From the UI thrown, click on the 
+  check box "Select all the Interfaces"&nbsp; </FONT><FONT color=black>and click Next. </FONT>
+
+<LI><FONT color=black>In the next screen, either select 
+  "EventMonEventClass.EventMonEventClass.1" or click the check box "Use all event classes 
+  that implement the specified interface" and cliick Next. </FONT>
+
+<LI><FONT color=black>Depending on what you've selected 
+  in the previous screen, "PublisherID" would be available or greyed out. Enter 
+  "EventMonPublisher" if applicable. Enter the name of the new subscription as 
+  "EventMonSubscription" and also select the check box "Enable this subscription 
+  immediately" and click on Next. </FONT>
+
+<LI><FONT color=black>Click Finish to dismiss the 
+  wizard.</FONT></LI></UL>
+
+<P><EM><U><STRONG>Step #3 Firing Events</STRONG></U></EM></P>
+<UL>
+
+<LI>In the "Firing" group box, select any interface and its appropriate methods using the "Interface" and "Method" combo boxes. 
+  
+
+<LI>Enter a value in the "MethodArgument" exit box 
+  
+
+<LI>Click on "Fire" button</LI></UL>
+
+<P>You should see a message box from the subscriber 
+indicating which method call was made and with what paramter. If there are 
+multiple subscriptions for this EventClass then all the subscriber components 
+corresponding to these individual subscriptions will get called. </P>
+
+<P> A subscription cannot have both EventClassID 
+and PublisherID property set. Also, a subscription cannot have all the following 
+properties EventClassID, PublisherID and InterfaceID set to be NULL. A 
+subscription will be called when the following criteria is met,</P>
+
+<P>- If only EventClassID is set, then this subscription 
+can be called from different publishers who can instantiate this eventclass and make 
+a method call on it (provided the method matches)</P>
+
+<P>- If&nbsp;only PublisherID is set, then this 
+subscription can be called for all eventclasses having that PublisherID 
+(provided the method matches)</P>
+
+<P>- If InterfaceID is set to NULL (either EventClassID or 
+PublisherID should be set in this case), then all method calls for all the 
+interfaces (implemented by the eventclass) will be called provided the component 
+implements them. </P>
+
+<P><STRONG><EM><U>Step #4 Register Transient Subscription</U></EM></STRONG></P>
+<UL>
+
+<LI>In the "Subscription" group box, click the "UnRegister" button
+<LI>In the "Type" group box, Check the "Transient" radio button
+<LI>Also, click on "Out of Proc Subscriber App" check box.
+<LI>Click the "Register" button.
+<LI>In the "Firing" group box, select any interface and its appropriate methods using the "Interface" and "Method" combo boxes. 
+<LI>Enter a value in the "MethodArgument" exit box 
+<LI>Click on "Fire" button
+
+</LI></UL>
+
+<P>You should see a same message box but this time from a 
+transient subscriber.</P>
+
+<P><FONT color=red>[NOTE: Transient subscription cannot be 
+created using the COM+ Services Snapin. It can be created only through COM+ 
+Admin APIs]</FONT></P>
+
+<P><U><EM><STRONG>Step #5 Parameterized Filtering</STRONG></EM></U></P>
+
+<P>Instead of setting up a separate publisher filter, for 
+all simple straightforward filtering we can go for parameterized filtering. This 
+is associated with the subscription.</P>
+
+<UL>
+<LI>In the "Subscription" group box, click the "UnRegister" button
+<LI>Check the "Filter Criteria" checkbox
+<LI>Click the "Register" button
+<LI>In the "Firing" group box, in the "Interface" dropdown box select the "IDiskEvents"
+<LI>In the "Method" dropdown box select "DiskFull"
+<LI>In the "Method Argument" textbox type "Dummy"
+<LI>Click the "Fire" button
+</LI></UL>
+
+<p>
+[When FilterCriteria is set, COM+ EventSystem, before firing the 
+subscription evaluates the FilterCriteria and decides if the subscription needs 
+to be fired or not]. Now, you should see a messagebox. Now change the argument 
+to "Smart" and then click on Fire. You shouldn't get a message box.
+</P>
+
+</BODY>
+</HTML>

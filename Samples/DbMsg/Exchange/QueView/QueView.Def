@@ -1,0 +1,7 @@
+; queview.def : Declares the module parameters for the DLL.
+
+LIBRARY      QUEVIEW
+DESCRIPTION  'Gateway message queue viewer DLL'
+
+EXPORTS
+    ADMIN_Initialize    @2

@@ -1,0 +1,28 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\scsiscan.res \
+    $(_OBJ_DIR)\alpha\class.obj \
+    $(_OBJ_DIR)\alpha\scsiscan.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\scsiscan.res \
+    $(_OBJ_DIR)\axp64\class.obj \
+    $(_OBJ_DIR)\axp64\scsiscan.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\scsiscan.res \
+    $(_OBJ_DIR)\i386\class.obj \
+    $(_OBJ_DIR)\i386\scsiscan.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\scsiscan.res \
+    $(_OBJ_DIR)\ia64\class.obj \
+    $(_OBJ_DIR)\ia64\scsiscan.obj
+
+PASS0_IA64_OBJECTS=
+

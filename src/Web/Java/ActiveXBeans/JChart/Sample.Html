@@ -1,0 +1,141 @@
+<HTML>
+<HEAD>
+<TITLE>JChart Demo</TITLE>
+</HEAD>
+
+<BODY BGPROPERTIES="FIXED" BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="#0000FF" ALINK="#0000FF" TOPMARGIN=0 LEFTMARGIN=0>
+
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE="2">
+
+<A NAME="pagetop"></A>
+
+<!--margin-->
+<TD WIDTH=23><IMG SRC="/art/1pixel.gif" WIDTH=23 HEIGHT=1></TD>
+<!--margin ENDS-->
+
+<!--main title (fixed coloured cell type)-->
+<BR>
+<TABLE BORDER=0 WIDTH=100%>
+<TR><TD BGCOLOR=BLUE WIDTH=200><FONT FACE="HELVETICA, ARIAL" SIZE=4 COLOR=WHITE>
+&nbsp;<NOBR>ActiveX and Beans</NOBR></FONT>
+</TD>
+<!--main title ENDS-->
+
+<!--main page navigation-->
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP></TD>
+
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP><FONT FACE="ARIAL,HELVETICA" SIZE=1 COLOR=BLACK>
+<A HREF="../jcalendar/sample.html"><IMG SRC="../../art/butt_pre.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Previous"></A><BR><B>
+Previous</B></FONT></TD>
+
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP><FONT FACE="ARIAL,HELVETICA" SIZE=1 COLOR=BLACK>
+<A HREF="../../art/start.htm"><IMG SRC="../../art/butt_.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Welcome"></A><BR><B>
+Welcome</B></FONT></TD>
+
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP><FONT FACE="ARIAL,HELVETICA" SIZE=1 COLOR=BLACK>
+<A HREF="../jbrowser/sample.html"><IMG SRC="../../art/butt_nex.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Next"></A><BR><B>
+Next</B></FONT></TD>
+</TABLE>
+<!--main page navigation ENDS-->
+
+
+<!--this odd little break must accompany .gif filled cell title-->
+<BR>
+
+
+<TABLE BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<TR VALIGN=TOP>
+
+
+<!--main page sub-title-->
+<TD><FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=4>
+<B>JChart Demo</B></A>
+</FONT><BR>
+
+<!--main contents (NEW TABLE required in this scenario)-->
+<TABLE BORDER=0>
+<TR><TD ALIGN=LEFT VALIGN=TOP>
+
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=2>
+<p>This is a bean which brings up a chart. You can customize the chart type (Bar chart, Line graph, Column chart, Pie chart) specify the
+various titles and enter the data rows and columns.</p>
+<p> This bean has its own customizer which is not supported by Visual Basic 
+currently but will soon be.
+<p><b>Note:</b> Beans are a new to the 1.1 Java specification and are not 
+supported in the IE 3.0 scripting model; please install IE 4.0 to see the full functionality of this sample.
+<b><p> To edit the bean in Visual Basic, perform the following steps:</p></b>
+
+<ol>
+<li> Type "register.bat" in the JChart directory to register the bean.</li>
+<li> Start Visual Basic, find the component JChart and put it in a form.</li>
+<li> Make the rowCount and columnCount some positive number </li>
+<li> Now set the row to 1 and column to 1, then enter something in the data field.</li>
+<li> Add data to other rows and columns and observe barcharts sprouting up</li>
+<li> Now set the chart type to 3 and observe a Pie Chart instead </li>
+</ol>
+
+<!--rule-->
+<TABLE WIDTH=95%><TD HEIGHT=1 BGCOLOR=BLUE></TD></TABLE>
+
+
+
+<!--rule tex back type>
+<TABLE WIDTH=95%><TD HEIGHT=1 BACKGROUND="../../art/Stex_4.gif" BGCOLOR="WHITE"></TD></TABLE>
+<BR-->
+
+
+<TR><TD>
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=4>
+<B></A></B></FONT><BR>
+<!--Two instances of the same applet, one using VBScript, the other using JavaScript -->
+
+<script language=vbscript>
+sub startapp_onClick
+JChartApp.columnCount = 3
+JChartApp.rowCount = 2
+JChartApp.chartType = 3
+JChartApp.row = 1
+JChartApp.setData 1,1,10
+JChartApp.setData 1,2,20
+JChartApp.setData 1,3,15
+end sub
+</script>
+
+<table align=center> <tr> <td>
+<applet
+name=JChartApp
+code=JChart.class
+width=400
+height=400>
+</applet>
+
+</td></tr>
+<tr> <td align=center>
+<input type=button name=startapp value="Enter Data">
+</td></tr></table>
+
+<BR><BR>
+
+<FONT FACE="HELVETICA, ARIAL" SIZE=2>
+<B></B><BR>
+
+<!--remarks 1-->
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=2>
+<B><I>Remarks:</I></B>
+<BR>
+<I>This sample requires Internet Explorer 4.0</I>
+
+<BR>
+
+<!--rule-->
+<TABLE WIDTH=95%><TD HEIGHT=2 BGCOLOR=BLUE></TD></TABLE>
+<BR>
+
+<!--page top button-->
+<TABLE WIDTH=100%><TR><TD ALIGN=LEFT><A HREF="#pagetop"><IMG SRC="../../art/butt_up.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Top"></A></TD>
+
+<!--MS copyright-->
+<TD ALIGN=RIGHT><FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK"><A HREF="../../art/cpyright.htm">&#169; 1996-1997 Microsoft Corporation. All rights reserved.</A></FONT></TD></TR></TABLE>
+</FONT>
+</BODY>
+</HTML>

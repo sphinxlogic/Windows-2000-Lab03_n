@@ -1,0 +1,85 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+NAME CLASSPNP.SYS
+
+EXPORTS
+    ClassInitialize
+    ClassGetDescriptor
+    ClassReadDriveCapacity
+    ClassReleaseQueue
+    ClassAsynchronousCompletion
+    ClassSplitRequest
+    ClassDeviceControl
+    ClassIoComplete
+    ClassIoCompleteAssociated
+    ClassInterpretSenseInfo
+    ClassSendDeviceIoControlSynchronous
+    ClassSendIrpSynchronous
+    ClassForwardIrpSynchronous
+    ClassSendSrbSynchronous
+    ClassSendSrbAsynchronous
+    ClassBuildRequest
+    ClassModeSense
+    ClassFindModePage
+    ClassClaimDevice
+    ClassInternalIoControl
+    ClassCreateDeviceObject
+    ClassRemoveDevice
+    ClassInitializeSrbLookasideList
+    ClassDeleteSrbLookasideList
+    ClassQueryTimeOutRegistryValue
+    ClassInvalidateBusRelations
+    ClassMarkChildrenMissing
+    ClassMarkChildMissing
+    ClassDebugPrint
+    ClassGetDriverExtension
+    ClassCompleteRequest
+    ClassReleaseRemoveLock
+    ClassAcquireRemoveLockEx
+    ClassUpdateInformationInRegistry
+    ClassWmiCompleteRequest
+    ClassWmiFireEvent
+    ClassGetVpb
+    ClassSetFailurePredictionPoll
+    ClassNotifyFailurePredicted
+    ClassInitializeTestUnitPolling
+    ClassSignalCompletion
+    ClassSendStartUnit
+
+
+
+
+    ClassSetMediaChangeState
+    ClassResetMediaChangeTimer
+    ClassCheckMediaState
+    ClassInitializeMediaChangeDetection
+    ClassCleanupMediaChangeDetection
+    ClassEnableMediaChangeDetection
+    ClassDisableMediaChangeDetection
+
+
+
+
+
+    ClassSpinDownPowerHandler
+    ClassStopUnitPowerHandler
+
+
+
+
+
+    ClassAcquireChildLock
+    ClassReleaseChildLock
+
+

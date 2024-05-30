@@ -1,0 +1,28 @@
+<%
+    '***********************************************************
+    ' Sub to add a value to multivalued attribute using AUO.
+    Sub AddToAttribute(AttrName, AttrValue)
+        On Error Resume Next
+	    Dim MayContainArr
+	    MayContainArr = Session("AUO").Get(AttrName)
+	    if (Err<>0) then
+		    Err = 0
+		    REM Add the first value to the thing
+		    Session("AUO").Put AttrName,Array(AttrValue)
+	    else
+		    TopNum = UBound(MayContainArr)
+		    if Err <> 0 then
+			    Err = 0	
+			    REM Add a second value to the thing
+			    Session("AUO").Put AttrName,Array(MayContainArr, AttrValue)
+		    else
+			    REM Add a new value to the list of values
+			    ReDim Preserve MayContainArr(TopNum+1)
+			    MayContainArr(TopNum+1) = AttrValue			
+			    Session("AUO").Put AttrName,(MayContainArr)
+		    end if
+	    end if
+    end sub
+%>
+
+

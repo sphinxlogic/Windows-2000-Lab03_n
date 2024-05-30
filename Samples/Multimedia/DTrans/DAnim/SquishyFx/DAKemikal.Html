@@ -1,0 +1,230 @@
+<HTML>
+<HEAD>
+<TITLE>Kemikal Direct Animation Sample</TITLE>
+
+
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+//------------------------------------------------------------
+function t3dLoad() 
+{
+	// Initialize global T3D object variables at load time
+		
+
+	//Direct Animation library (DAL) 
+	DAL = DAControl.PixelLibrary;
+	
+	//load the kemikal transform 
+	kemikal = new ActiveXObject("DXSurface.SquishyFX.Kemikal");
+			
+
+	avar = DAL.interpolate( 0, 1, 10).RepeatForever();	
+	result = DAL.ApplyDXTransform(kemikal, null, avar);
+	result.PutBvrAsProperty("kemikalTime", avar);
+	
+	finalImage = result.OutputBvr;
+	
+        finalImage = finalImage.Transform(DAL.Scale2Uniform(2))
+
+  fpsImg = DAL.StringImageAnim(DAL.ViewFrameRate.ToString(1),
+                            DAL.DefaultFont.Color(DAL.Red));
+  fpsImg = fpsImg.Transform(DAL.Scale2Uniform(2))
+		 .Transform(DAL.Translate2(0, 100));
+
+  fpsImg = DAL.Cond(DAL.LeftButtonState, fpsImg, DAL.EmptyImage);
+
+	DAControl.Image = DAL.Overlay(fpsImg, finalImage);
+    
+	//start
+	DAControl.Start();
+	updatinputboxes();
+}
+
+
+//------------------------------------------------------------
+function add_chema()
+{
+
+	kemikal.command=addchema.value;
+ 
+}
+
+
+function add_chemb()
+{
+
+	kemikal.command=addchemb.value;
+	
+}
+
+//------------------------------------------------------------
+function update()
+{
+	kemikal.Da=DA_Input.value;
+	kemikal.Db=DB_Input.value;
+	kemikal.dt=dt_Input.value;
+	kemikal.K=K_Input.value;
+
+	
+	kemikal.redA=redA_Input.value;
+	kemikal.greenA=greenA_Input.value;
+	kemikal.blueA=blueA_Input.value;
+	kemikal.redB=redB_Input.value;
+	kemikal.greenB=greenB_Input.value;
+	kemikal.blueB=blueB_Input.value;
+	
+	
+}	
+
+function updatinputboxes(){
+
+				
+DA_Input.value=kemikal.Da;
+DB_Input.value=kemikal.Db;
+dt_Input.value=kemikal.dt;
+K_Input.value=kemikal.K;
+
+	
+redA_Input.value=kemikal.redA;
+greenA_Input.value=kemikal.greenA;
+blueA_Input.value=kemikal.blueA;
+redB_Input.value=kemikal.redB;
+greenB_Input.value=kemikal.greenB;
+blueB_Input.value=kemikal.blueB;
+				
+				
+			
+
+
+}
+
+
+function reset()
+{
+
+	kemikal.command="reset";
+
+
+	
+}
+
+
+
+function preset(num){
+
+kemikal.preset=num;
+updatinputboxes();
+
+}
+-->
+</SCRIPT>
+
+
+
+
+
+</HEAD>
+<BODY bgcolor="black" text="orange"	onload="t3dLoad();">
+<center>
+<H1>Kemikal Direct Animation Sample</H1>
+<br>
+	<OBJECT ID="DAControl"
+	  STYLE="width:256;height:256"
+	  CLASSID="CLSID:B6FFC24C-7E13-11D0-9B47-00C04FC2F51D">
+	</OBJECT>
+
+<!-- kemikal accessors-->
+
+<table BORDER=2>
+<TR>
+<td><INPUT ID="preset1" TYPE="button" ONCLICK="preset(1);" STYLE="width:60" VALUE="preset 1" TITLE="preset"></td>
+<td><INPUT ID="preset2" TYPE="button" ONCLICK="preset(2);" STYLE="width:60" VALUE="preset 2" TITLE="preset"></td>
+<td><INPUT ID="preset3" TYPE="button" ONCLICK="preset(3);" STYLE="width:60" VALUE="preset 3" TITLE="preset"></td>
+<td><INPUT ID="preset4" TYPE="button" ONCLICK="preset(4);" STYLE="width:60" VALUE="preset 4" TITLE="preset"></td>
+<td><INPUT ID="preset5" TYPE="button" ONCLICK="preset(5);" STYLE="width:60" VALUE="preset 5" TITLE="preset"></td>
+
+</TR>
+</table>
+
+<table BORDER=2>
+<tr>
+<td colspan=2>
+Kemikal Properties
+
+<table BORDER=2>
+<tr>
+
+<td>DA     </td><td>DB   </td><td>Dt</td><td>K    </td>
+
+</tr>
+<tr>
+<td><INPUT ID="DA_Input" TYPE="TEXT" STYLE="width:60" VALUE=".035125" TITLE="Change the diffusion rate of A."></td>
+
+<td><INPUT ID="DB_Input" TYPE="TEXT" STYLE="width:60" VALUE=".38" TITLE="Change the diffusion rate of B."></td>
+
+<td><INPUT ID="dt_Input" TYPE="TEXT" STYLE="width:60" VALUE=".57" TITLE="Change the simulation time step."></td>
+
+<td><INPUT ID="K_Input" TYPE="TEXT" STYLE="width:60" VALUE=".12" TITLE="Change the simulation Speed Konstant."></td>
+
+</tr>
+
+</table>
+
+</td>
+<td>
+Color balance
+
+
+<table BORDER=2>
+<tr>
+
+
+<td>red A</td><td>green A</td><td>blue A</td>
+</tr>
+<tr>
+<td><INPUT ID="redA_Input" TYPE="TEXT" STYLE="width:60" VALUE="2.5" TITLE="Change the colorbalance."></td>
+<td><INPUT ID="greenA_Input" TYPE="TEXT" STYLE="width:60" VALUE="2.5" TITLE="Change the colorbalance."></td>
+<td><INPUT ID="blueA_Input" TYPE="TEXT" STYLE="width:60" VALUE="10" TITLE="Change the colorbalance."></td>
+</tr>
+<tr>
+
+<td>red B</td><td>green B</td><td>blue B</td>
+</tr>
+
+<tr>
+<td><INPUT ID="redB_Input" TYPE="TEXT" STYLE="width:60" VALUE="25" TITLE="Change the colorbalance."></td>
+<td><INPUT ID="greenB_Input" TYPE="TEXT" STYLE="width:60" VALUE="11" TITLE="Change the colorbalance."></td>
+<td><INPUT ID="blueB_Input" TYPE="TEXT" STYLE="width:60" VALUE="0" TITLE="Change the colorbalance."></td>
+</tr>
+
+</table>
+</TD>
+</tr>
+
+<tr>
+<td><INPUT ID="update" TYPE="BUTTON" ONCLICK="update();" STYLE="width:60" VALUE="update" TITLE="update button"></td>
+<td><INPUT ID="reset" TYPE="BUTTON" ONCLICK="reset();" STYLE="width:60" VALUE="reset" TITLE="reset button"></td>
+</tr>
+</table>
+
+<br>
+<table BORDER=2>
+
+<tr>
+<td><INPUT ID="addchema" TYPE="TEXT" STYLE="width:110" VALUE="addAatXY 0 0" TITLE="add chem A"></td>
+<td><INPUT ID="add_a" TYPE="BUTTON" ONCLICK="add_chema();" STYLE="width:260" VALUE="add chem a at locatation 0-128" TITLE="add a"></td>
+</tr>
+<tr>
+<td><INPUT ID="addchemb" TYPE="TEXT" STYLE="width:110" VALUE="addBatXY 0 0" TITLE="add chem B"></td>
+<td><INPUT ID="add_b" TYPE="BUTTON" ONCLICK="add_chemb();" STYLE="width:260" VALUE="add chem b at locatation 0-128" TITLE="add b"></td>
+
+</TR>
+</table>
+</center>
+</BODY>
+</HTML>
+
+
+
+

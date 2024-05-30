@@ -1,0 +1,64 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\d100.res \
+    $(_OBJ_DIR)\alpha\d100.obj \
+    $(_OBJ_DIR)\alpha\send.obj \
+    $(_OBJ_DIR)\alpha\interrup.obj \
+    $(_OBJ_DIR)\alpha\routines.obj \
+    $(_OBJ_DIR)\alpha\request.obj \
+    $(_OBJ_DIR)\alpha\init.obj \
+    $(_OBJ_DIR)\alpha\pci.obj \
+    $(_OBJ_DIR)\alpha\parse.obj \
+    $(_OBJ_DIR)\alpha\physet.obj \
+    $(_OBJ_DIR)\alpha\eeprom.obj
+
+PASS0_ALPHA_OBJECTS= \
+    .\e100b.bmf
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\d100.res \
+    $(_OBJ_DIR)\axp64\d100.obj \
+    $(_OBJ_DIR)\axp64\send.obj \
+    $(_OBJ_DIR)\axp64\interrup.obj \
+    $(_OBJ_DIR)\axp64\routines.obj \
+    $(_OBJ_DIR)\axp64\request.obj \
+    $(_OBJ_DIR)\axp64\init.obj \
+    $(_OBJ_DIR)\axp64\pci.obj \
+    $(_OBJ_DIR)\axp64\parse.obj \
+    $(_OBJ_DIR)\axp64\physet.obj \
+    $(_OBJ_DIR)\axp64\eeprom.obj
+
+PASS0_AXP64_OBJECTS= \
+    .\e100b.bmf
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\d100.res \
+    $(_OBJ_DIR)\i386\d100.obj \
+    $(_OBJ_DIR)\i386\send.obj \
+    $(_OBJ_DIR)\i386\interrup.obj \
+    $(_OBJ_DIR)\i386\routines.obj \
+    $(_OBJ_DIR)\i386\request.obj \
+    $(_OBJ_DIR)\i386\init.obj \
+    $(_OBJ_DIR)\i386\pci.obj \
+    $(_OBJ_DIR)\i386\parse.obj \
+    $(_OBJ_DIR)\i386\physet.obj \
+    $(_OBJ_DIR)\i386\eeprom.obj
+
+PASS0_386_OBJECTS= \
+    .\e100b.bmf
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\d100.res \
+    $(_OBJ_DIR)\ia64\d100.obj \
+    $(_OBJ_DIR)\ia64\send.obj \
+    $(_OBJ_DIR)\ia64\interrup.obj \
+    $(_OBJ_DIR)\ia64\routines.obj \
+    $(_OBJ_DIR)\ia64\request.obj \
+    $(_OBJ_DIR)\ia64\init.obj \
+    $(_OBJ_DIR)\ia64\pci.obj \
+    $(_OBJ_DIR)\ia64\parse.obj \
+    $(_OBJ_DIR)\ia64\physet.obj \
+    $(_OBJ_DIR)\ia64\eeprom.obj
+
+PASS0_IA64_OBJECTS= \
+    .\e100b.bmf
+

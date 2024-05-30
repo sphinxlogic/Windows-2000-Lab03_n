@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>EventObject -> UIBaseEvent</title>
+<base target="descriptions">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">EventObject to UIBaseEvent</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.util.EventObject should be transformed into instances of
+com.ms.ui.event.UIBaseEvent.</p>
+
+<p align="left">&nbsp;</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">Both of these classes serve as the bases for JDK
+1.1 events.</p>
+
+<p align="left">&nbsp;</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">This is the set of changes you need to make to
+port all EventObject methods to UIBaseEvent methods. Any method
+not listed here or below does not need to be changed.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial"><strong>AWT Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">EventObject(Object)</font></td>
+        <td nowrap><font size="2" face="Courier">UIBaseEvent(Object,
+        int)</font></td>
+        <td><font size="2">UIBaseEvent needs the base event on
+        specification as well.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">source</font></td>
+        <td nowrap><font size="2" face="Courier">getSource()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+</body>
+</html>

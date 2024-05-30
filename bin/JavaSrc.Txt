@@ -1,0 +1,29 @@
+========================================================================
+                   Microsoft Visual J++ : JAVASRC
+========================================================================
+
+JavaSrc is a utility for extracting .JAVA files from a .ZIP file. You can 
+use it to extract the source files for the Java class libraries from the
+Microsoft version of CLASSES.ZIP. This allows you to perform source-level 
+debugging into the Java class libraries. 
+
+To extract the .JAVA files from CLASSES.ZIP, use the following command:
+
+    javasrc classes.zip
+
+This creates a directory tree below the directory that CLASSES.ZIP resides
+in, containing the source files for the Java class libraries. Note that
+these files require approximately four megabytes of disk space.
+
+To remove the .JAVA files that were extracted from CLASSES.ZIP, use the 
+following command:
+
+    javasrc -classes.zip
+
+You can also extract the .JAVA files by running the Visual J++ Setup 
+program and choosing a Custom installation. Select "Java Class Library 
+Source Code," clear the check boxes for everything else, and then continue. 
+
+If you get an updated version of CLASSES.ZIP, you must re-run JavaSrc to 
+update the .JAVA files.
+

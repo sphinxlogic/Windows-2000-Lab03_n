@@ -1,0 +1,24 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\acpimof.res
+
+PASS0_ALPHA_OBJECTS= \
+    .\acpimof.bmf
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\acpimof.res
+
+PASS0_AXP64_OBJECTS= \
+    .\acpimof.bmf
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\acpimof.res
+
+PASS0_386_OBJECTS= \
+    .\acpimof.bmf
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\acpimof.res
+
+PASS0_IA64_OBJECTS= \
+    .\acpimof.bmf
+

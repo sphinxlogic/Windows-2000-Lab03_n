@@ -1,0 +1,24 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\imeeudc.res \
+    $(_OBJ_DIR)\alpha\imeeudc.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\imeeudc.res \
+    $(_OBJ_DIR)\axp64\imeeudc.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\imeeudc.res \
+    $(_OBJ_DIR)\i386\imeeudc.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\imeeudc.res \
+    $(_OBJ_DIR)\ia64\imeeudc.obj
+
+PASS0_IA64_OBJECTS=
+

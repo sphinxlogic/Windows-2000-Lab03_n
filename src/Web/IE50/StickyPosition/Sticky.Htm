@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>Positioning with Dynamic Expressions</title>
+<style>
+   DIV { position: absolute; width: 80px; height: 80px; font-family: arial; font-size: 18pt; font-weight: bold }
+</style>
+</head>
+<body>
+<div id=Blue style="left:expression(document.body.clientLeft + 10); 
+                    top: expression(document.body.clientTop + 10); 
+                    background: blue">
+<center>Top Left</center>
+</div>
+
+<div id=Yellow style="left: expression(document.body.clientWidth - 90); 
+                      top: expression(document.body.clientHeight - document.body.style.border - 90); 
+                      background: yellow">
+<center>Bottom Right</center>
+</div>
+
+<div id=Red style="left: expression(document.body.clientLeft + 10); 
+		   top:expression(document.body.clientHeight - document.body.style.border - 90); 
+                   background: red">
+<center>Bottom Left </center>
+</div>
+
+<div id=Green style="left: expression(document.body.clientWidth - 90); 
+                     top:expression(document.body.clientTop + 10); 
+                     background: green">
+<center>Top Right</center>
+</div>
+
+<div id=Purple style="left: expression((document.body.clientWidth - 80)/2); 
+		      top:expression((document.body.clientHeight - 80)/2); 
+                      background: purple">
+<center>Center</center>
+</div>
+
+</body>
+</html>

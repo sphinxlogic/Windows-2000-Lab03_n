@@ -1,0 +1,43 @@
+/*++
+
+Copyright (c) 1995 Intel Corp
+Copyright (c) 1996 - 1998 Microsoft Corporation
+
+Module Name:
+
+    dt_dll.rc
+
+Abstract:
+
+    Resource script for the debug/trace auxiliary DLL.
+
+--*/
+
+
+#include <windows.h>
+#include "dt.h"
+
+IDD_DIALOG1 DIALOG DISCARDABLE  0, 0, 220, 155
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "Debug Choices"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,130,110,50,14
+    LTEXT           "Please choose where your debugging output will go...",
+                    IDC_STATIC,10,14,169,12
+    PUSHBUTTON      "Cancel",IDCANCEL,130,85,50,14,WS_DISABLED | WS_GROUP
+    CONTROL         "None",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON |
+                    WS_GROUP | WS_TABSTOP,10,35,35,10
+    CONTROL         "File Only",IDC_RADIO5,"Button",BS_AUTORADIOBUTTON,
+                    10,55,35,10
+    CONTROL         "Window Only",IDC_RADIO6,"Button",BS_AUTORADIOBUTTON,10,
+                    75,60,10
+    CONTROL         "File and Window",IDC_RADIO7,"Button",BS_AUTORADIOBUTTON,
+                    10,95,65,10
+    CONTROL         "Debugger",IDC_RADIO8,"Button",BS_AUTORADIOBUTTON,10,115,
+                    45,10
+    CONTROL         "Save this application's settings in the registry",IDC_CHECK,"Button",BS_AUTOCHECKBOX,10,135,
+                    169,10
+END
+
+

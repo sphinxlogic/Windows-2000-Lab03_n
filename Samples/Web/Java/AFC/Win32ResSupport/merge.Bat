@@ -1,0 +1,1 @@
+resmerge strtable.res strtable_en.res strtable_ja.res strtable_de.res

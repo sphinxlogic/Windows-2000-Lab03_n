@@ -1,0 +1,10 @@
+DESCRIPTION 'Test DLL'
+
+EXPORTS
+        DllMain
+        RNIGetCompatibleVersion
+        AnsiMarshaler_toJava
+        AnsiMarshaler_toExternal
+        AnsiMarshaler_releaseExternal
+
+

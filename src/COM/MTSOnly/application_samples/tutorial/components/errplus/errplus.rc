@@ -1,0 +1,78 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    1                       "*** Do *NOT* Localize any string that starts with '***'.  They are comments to be used by localizers to identify sections.  They also mark the beginning of a new 'section' within the String Table."
+    2                       "There is a Problem"
+    3                       "Disk full, logging turned off."
+    4                       "Writing Temporary log file."
+    5                       "Logger"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    29                      "*** Font information for all forms.  Index 30 is the Character set, Index 31 is Font name, Index 32 is Font Size"
+    30                      "0"
+    31                      "Tahoma"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    32                      "10"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

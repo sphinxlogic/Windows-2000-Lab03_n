@@ -1,0 +1,21 @@
+HKCR
+{
+	MtsSink.MtsSink.1 = s 'MtsSink Class'
+	{
+		CLSID = s '{32E1C9D6-7A1E-11D0-B16D-00AA00BA3258}'
+	}
+	MtsSink.MtsSink = s 'MtsSink Class'
+	{
+		CurVer = s 'MtsSink.MtsSink.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {32E1C9D6-7A1E-11D0-B16D-00AA00BA3258} = s 'MtsSink Class'
+		{
+			ProgID = s 'MtsSink.MtsSink.1'
+			VersionIndependentProgID = s 'MtsSink.MtsSink'
+			LocalServer32 = s '%MODULE%'
+			val AppID = s '{C2202E8A-773D-11D0-B167-00AA00BA3258}'
+		}
+	}
+}

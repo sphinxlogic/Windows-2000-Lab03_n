@@ -1,0 +1,21 @@
+Stock Sorter
+
+Files:
+stock-sorter.xml
+stock-sorter.xsl
+portfolio-schema.xml
+
+Description:
+This demo is an example of using Internet Explorer 5 to browse XML.  The XML file
+has an XSL stylesheet associated with it ("stock-sorter.xsl").  The HTML generated
+by this stylesheet can rerun portions of the stylesheet to update the display in
+response to user requests for different sorting criteria.
+
+Compatibility/Platform Compatibility:
+You must be running Internet Explorer 5 or greater on Win32 platforms to view this demo.
+
+Usage:
+Internet Explorer 5 can be used to view XML documents with XSL.  The XMLDocument
+and XSLDocument properties of the document object can be used to simulate refreshes
+to the display when the XML data or stylesheet changes.
+

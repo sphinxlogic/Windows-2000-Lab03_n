@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Setting PICS Ratings</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_setting_pics_ratings"></a>  Setting PICS Ratings</h3>
+<p>
+ASP allows you to easily specify content type ratings for your Web pages, as specified by the World Wide Web Consortium's (W3C) Platform for Internet Content Selection (PICS). These ratings can then be used by client-side ratings software to determine what type of content your site provides. Though PICS was designed originally to enable adults to regulate what children access over the Internet, the standard has since become more flexible and now includes provisions for services as diverse as code signing, privacy, and intellectual property rights management. </p>
+<p>
+This sample demonstrates how you can quickly set a PICS ratings label for a document or a site This is accomplished by setting the <b>Response</b> object's <b>PICS</b> property. There are many different kinds of PICS labels, and they are passed between the client browser and server in several different ways; by using the <b>PICS</b> property. You don't need to worry about any of that. All you need to do is create, or collect from one of the ratings agencies, an appropriately formatted PICS label, and ASP will include it in the HTTP response header.</p>
+<p>
+The PICS rating label for this example gives information about the PICS version number, what ratings service did the rating, a range of dates during which the rating is valid, and the ratings. The key values provided in the <b>ratings</b> entry for this sample correspond to separate ratings for sex, violence, and so on, but really any keys can be included. This sample at least claims to have some violence and nasty language, so it's been given a value of 1 (out of 4) for violence, and 2 for language.</p>
+<p>
+For more information on PICS, including ratings services, software, and label formats, see the W3C web site at http://www.w3.org. </p>
+<p>
+<b>Note</b>&nbsp;&nbsp;IIS sends all HTTP headers required for a given Web page or script before any HTML is sent to the client browser. Therefore, all statements and methods that modify the HTTP headers of the response, including methods that set the PICS ratings label, must be located before the &lt;HTML&gt; tag in your script. If your script attempts to modify the HTTP headers after the server has begun sending HTML content back to the client browser, the script will generate an error. </p>
+</BODY>
+</HTML>

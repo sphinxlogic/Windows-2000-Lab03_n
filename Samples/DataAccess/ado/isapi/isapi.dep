@@ -1,0 +1,6 @@
+# Microsoft Developer Studio Generated Dependency File, included by isapi.mak
+
+.\ADOISAPI.CPP : \
+	"..\..\..\..\program files\common files\system\ado\msado15.dll"\
+	"..\..\..\..\tools\vc98\include\basetsd.h"\
+	

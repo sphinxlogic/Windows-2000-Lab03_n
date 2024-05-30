@@ -1,0 +1,103 @@
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<HTML>
+<HEAD>
+<TITLE>Array Data Source Control Demo</TITLE>
+<META NAME="FILENAME" CONTENT="demo.HTM">
+
+    <style>
+      TD { font-size: 24; font-weight: bold }
+    </style>
+  </head>
+  
+  <BODY TOPMARGIN=20 LEFTMARGIN=40 BGCOLOR="#FFFFFF" LINK="#000066" VLINK="#666666" TEXT="#000000">
+
+    <h2> Array Data Source Control </h2>
+	<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT>
+<P>
+<P>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+<hr>
+
+    <input type=hidden DATASRC=#DSC1 DATAFLD=col1>
+
+    <object id="DSC1"
+            classid="clsid:7473DD44-3A50-11D1-9C26-0080C74E5396"
+            align="baseline" border="0" width="0" height="0"
+            codebase="ArrayControl.cab#version1,0,0,0"
+            ondatasetcomplete="buildtable()">
+    </object>
+
+    <table border=0>
+      <tr>
+        <td><button onclick=transform()>Transform </button>
+        <td><button onclick=grow()>Grow </button>
+    </table>
+    <hr>
+    <p>
+
+    <table id=table1 border="1">
+      <TBODY> 
+        <tr>
+          <td width=50><span datafld=col1></span></td>
+          <td width=50><span datafld=col2></span></td>
+          <td width=50><span datafld=col3></span></td>
+          <td width=50><span datafld=col4></span></td>
+        </tr>
+      </TBODY>
+    </table>
+
+    <hr>
+<P>
+    <a href="demo2.htm">Another example</a> is available to show how
+    the control can be used bound
+    to HTML textboxes. This allows the user to modify the data exposed by the
+    control. 
+
+
+	<p>
+  <FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">&copy; <A HREF="/misc/cpyright.htm" TARGET="_top">1999 Microsoft Corporation. All rights reserved. Terms of use</A>.<P></FONT>
+
+  </body>
+
+  <script language=javascript>
+    function transform()
+    {
+      document.all["DSC1"].transform();
+    }
+
+    function grow()
+    {
+      table1.dataSrc="";                // remove binding
+
+      document.all["DSC1"].moredata();
+    }
+
+    function buildtable()
+    {
+
+      table1.dataSrc="";                // remove binding
+
+      var newtable;
+      
+      newtable ="<table id=table1 border=1 datasrc=#DSC1>\n<tbody>\n<tr>";
+
+      for (i = 0 ; i < DSC1.recordset.Fields.count ; i++)
+      {
+
+        newtable = newtable + "<td width=50><SPAN DATAFLD=\"col" +
+                              //DSC1.recordset.Fields[i].name +
+                              (i + 1) +
+                              "\"></SPAN></td>";
+      }
+
+      newtable = newtable + "</tr>\n</tbody>\n</table>";
+
+      table1.outerHTML=newtable;
+    }
+  </script>
+
+</html>

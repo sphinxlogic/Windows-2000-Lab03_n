@@ -1,0 +1,37 @@
+// --Suggest.idl------------------------------------------------------------
+//
+// Copyright (C) Microsoft Corp. 1986-1998.  All Rights Reserved.
+// -----------------------------------------------------------------------------
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+	[
+		object,
+		uuid(00C47254-379A-11D2-BBCB-00C04FB9DC0D),
+		dual,
+		helpstring("Microsoft Exchange 5.5 SDK Custom Agent Class Interface"),
+		pointer_default(unique)
+	]
+	interface IExEvHandler : IDispatch
+	{
+	};
+[
+	uuid(00C47247-379A-11D2-BBCB-00C04FB9DC0D),
+	version(1.0),
+	helpstring("Microsoft Exchange 5.5 SDK Custom Agent Class Type Library")
+]
+library SUGGESTLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(00C47255-379A-11D2-BBCB-00C04FB9DC0D),
+		helpstring("ExEvHandler Class")
+	]
+	coclass ExEvHandler
+	{
+		[default] interface IExEvHandler;
+	};
+};

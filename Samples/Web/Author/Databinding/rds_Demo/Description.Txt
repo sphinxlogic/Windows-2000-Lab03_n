@@ -1,0 +1,27 @@
+RDS Conflicting Records Demo:
+
+Files:
+employeeRDS.htm
+employeeSchema.xml
+employees.mdb
+direct_reports.asp
+
+Description:
+Within this demo, the Remote Data Service (RDS) is used to access and download data from an Access table.
+This data is then bound to HTML elements on the client.  From the client, the user can alter the 
+data and send an update to the server.
+
+Because multiple clients may be accessing the same data, the RDS must be able to manage conflicting
+updates (for example, if one user tries to update data that has just been updated by another).  These
+conflicts are resolved and the client is notified of the records on which the conflicts occurred.
+
+Through the ADO api, these records can now be retrieved and the user made aware of their 
+failed update.
+
+More Details:
+Because of server considerations, this demo cannot be run on this site and is available for download 
+only.  Remember, you must also register the Access table as a DSN on the server where it resides.
+
+Compatibility/Platform Compatibility:
+You must be running Microsoft Internet Explorer 5 or greater to show this demo.  You must
+also have access to a server that supports Active Server Pages.

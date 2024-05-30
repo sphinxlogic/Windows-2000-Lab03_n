@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Redirection</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_redirection"></a>  Redirection</h3>
+<p>
+Redirection is a powerful feature that you can use to efficiently structure and control access to your applications. For instance, if you have created an Intranet application for your company and wish to restrict access so that only your employees can access it, you could use the <b>Response.Redirect</b> method to divert unwanted visitors back to the public pages of your Intranet site. This example demonstrates how you could implement this feature. </p>
+<p>
+The sample script first fetches the specific server variable, HTTP_REFERER, from the collection <b>ServerVariables</b> provided by the built-in <b>Request</b> object, and checks to see if the request comes from a client browser's site that is considered safe. If the client browser is considered safe, the user is in luck and is allowed view to the contents of the page. If HTTP_REFERER doesn't match, however, <b>Response.Redirect</b> is called, and the client browser is sent to another site, www.microsoft.com in this case.</p>
+<p>
+<b>Note</b>&nbsp;&nbsp;<b>Response.Redirect</b>, like several other methods, uses the HTTP headers of the response to communicate with the client browser. For this reason, it is generally required that methods such as these do their header changes before any HTML is sent, which means the statements must occur in the .asp file before the &lt;HTML&gt; tags. In this example, however, an alternative method is used. If buffering is enabled, as is the case in this example, the entire response should be accumulated in the response buffer before anything is sent. Therefore, <b>Response.Redirect</b> still works properly, even though it is in the middle of the file, because no HTTP headers have yet been sent to the client browser when the redirection is requested. </p>
+</BODY>
+</HTML>

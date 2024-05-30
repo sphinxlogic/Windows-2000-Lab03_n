@@ -1,0 +1,25 @@
+#makefile for mssdk_samples_dbmsg_exchange_acctcrt
+
+Proj= AcctCrt
+
+libs=$(libs) netapi32.lib -def:$(Proj).Def
+
+dll=1
+Use_MFC=1
+
+ObjList =  $(ObjDir)\$(Proj).Obj  \
+           $(ObjDir)\AcctMgmt.Obj \
+           $(ObjDir)\StdAfx.Obj
+
+!include <BkOffice.Mak>
+
+all: $(ObjDir)\$(Proj).dll 
+
+$(ObjDir)\$(Proj).dll: $(ObjList) 
+
+$(ObjDir)\$(Proj).Obj: $(ObjDir)\$(Proj).h
+
+$(ObjDir)\$(Proj).h: $(Proj).Idl
+
+
+

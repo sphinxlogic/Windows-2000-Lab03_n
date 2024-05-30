@@ -1,0 +1,718 @@
+    [
+    uuid(1028D1C0-7D0E-11cf-BB47-0020AF70A574),
+    version(1.0),
+    helpfile("smssdk.hlp"),
+    helpcontext(0),
+    helpstring("VB4SMS32 Type Library"),
+    lcid(0x0409)
+    ]
+library VB4SMS32
+{
+    typedef [public] unsigned char BYTE;
+
+    typedef [public] unsigned long DWORD;
+
+    typedef [public] unsigned long UINT;
+
+    typedef [public] long HWND;
+
+    typedef [public] long time_t;
+
+    typedef [public] long BOOL;
+
+    typedef [public] long HANDLE;
+
+    typedef [public] DWORD SMS_STATUS;
+
+    typedef struct
+    {
+        long                    Enum;
+    } DATASOURCE_TYPE;
+
+    typedef struct
+    {
+        long                    Enum;
+    } BASETYPE;
+
+    typedef struct
+    {
+        DATASOURCE_TYPE         ds;
+        BSTR                    pszServer;
+        BSTR                    pszUserName;
+        BSTR                    pszPasswd;
+        BSTR                    pszDbName;
+        BSTR                    pszKey;
+        DWORD                   pFunc;
+    } SQL_CONNECT_PARAMS;
+
+    typedef struct
+    {
+        DWORD                   pFunc;
+    } CRAP;
+
+    typedef struct
+    {
+        long                    Enum;
+    } SCALARTYPE;
+
+    typedef struct
+    {
+        BSTR                    szName;
+        SCALARTYPE              scType;
+        DWORD                   fAccess;
+    } SCALAR_INFO;
+
+    typedef struct
+    {
+        BASETYPE                tObjectity;
+        BSTR                    pszTag;
+        DWORD                   dwTag;
+        DWORD                   ctFolders;
+        SAFEARRAY(DWORD)        pFolderTags;
+        DWORD                   ctFilters;
+        SAFEARRAY(DWORD)        pFilterTags;
+        DWORD                   ctScalars;
+        SAFEARRAY(SCALAR_INFO)  pScalars;
+        DWORD                   pNewFunc;
+    } FOLDER_INFO;
+
+    typedef struct
+    {
+        BSTR                    szTag;
+        DWORD                   filterType;
+        BSTR                    szName;
+        BSTR                    szValue;
+        BSTR                    szOperator;
+        BSTR                    szArchitecture;
+        BSTR                    szGroupClass;
+        BSTR                    szAttributeName;
+    } FILTER_INFO;
+
+    typedef struct
+    {
+        DWORD                   dwFreq;
+        HANDLE                  hEvent;
+        HWND                    hwnd;
+        UINT                    uiMsg;
+    } NOTIFY;
+
+    typedef struct
+    {
+        SCALARTYPE              scType;
+        BSTR                    pszName;
+        BSTR                    pszValue;
+        DWORD                   dwValue;
+        time_t                  tValue;
+        SAFEARRAY(BYTE)         pValue;
+        DWORD                   dwLen;
+        BOOL                    bStringEquivalence;
+        DWORD                   fAccess;
+    } SCALAR;
+
+    typedef struct
+    {
+        UINT                    tokenType;
+        BSTR                    szName;
+        BSTR                    szValue;
+        DWORD                   dwOp;
+        BSTR                    szArchitecture;
+        BSTR                    szGroupClass;
+        BSTR                    szAttributeName;
+        BSTR                    szTokenString;
+        BOOL                    bIndent;
+    } TOKEN;
+
+    typedef struct
+    {
+        long                    Enum;
+    } ANDOR;
+
+    typedef struct {
+        DWORD objType;
+        BSTR szName;
+        BSTR szFriendlyName;
+        BOOL bGotFriendlyName;
+        DWORD dwRelopMin;
+        DWORD dwRelopMax;
+        BOOL bGotRelops;
+    } OBJDESCRIPTOR;
+
+
+        [
+        uuid(1028D1C1-7D0E-11cf-BB47-0020AF70A574),
+        version(1.0),
+        helpcontext(0),
+        helpstring("This is the SMSAPI wrapper DLL for Visual Basic 4.0"),
+        dllname("vb4sms32.olb")
+        ]
+    module VB4SMS32
+    {
+        //===================================================================
+        //  0.  Version API.
+        //===================================================================
+            [
+            entry("SmsAPIVerVB"),
+            helpstring("Returns a string to identify the SMS API version."),
+            helpcontext(1)
+            ]
+        SMS_STATUS pascal SmsAPIVer
+        (
+            [out] BSTR* Version
+        );
+
+
+        //===================================================================
+        //  1.  Connection APIs.
+        //===================================================================
+            [
+            entry("SmsDataSourceConnectVB"),
+            helpstring("Connects to the SMS database and returns a connection handle."),
+            helpcontext(10001)
+            ]
+        SMS_STATUS pascal SmsDataSourceConnect
+        (
+            [in ] SQL_CONNECT_PARAMS* SqlCP,
+            [out] HANDLE* Connection
+        );
+
+
+            [
+            entry("SmsDataSourceDisconnectVB"),
+            helpstring("Releases a SMS database connection established by DataSourceConnect."),
+            helpcontext(20001)
+            ]
+        SMS_STATUS pascal SmsDataSourceDisconnect
+        (
+            [in ] HANDLE Connection
+        );
+
+
+        //===================================================================
+        //  2.  Engine APIs.
+        //===================================================================
+            [
+            entry("SmsDescribeFolderVB"),
+            helpstring("Retrieves information about a container or folder."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsDescribeFolder
+        (
+            [in ] BASETYPE* ContainerOrFolder,
+            [in ] DWORD ContainerOrFolderType,
+            [out] FOLDER_INFO* FolderInfo
+        );
+
+
+            [
+            entry("SmsEnumContainersVB"),
+            helpstring("Returns a description of all the known containers."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsEnumContainers
+        (
+            [out] SAFEARRAY(FOLDER_INFO)* ContainerInfos,
+            [out] DWORD* Count
+        );
+
+
+            [
+            entry("SmsEnumFoldersVB"),
+            helpstring("Returns a description of all the known folders."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsEnumFolders
+        (
+            [out] SAFEARRAY(FOLDER_INFO)** FolderInfos,
+            [out] DWORD *Count
+        );
+
+
+            [
+            entry("SmsEnumFiltersVB"),
+            helpstring("Returns a description of all the known filter."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsEnumFilters
+        (
+            [out] SAFEARRAY(FILTER_INFO)* FilterInfos,
+            [out] DWORD *Count
+        );
+
+
+        //===================================================================
+        //  3.  Container APIs.
+        //===================================================================
+            [
+            entry("SmsOpenContainerVB"),
+            helpstring("Opens a container of the specified type."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsOpenContainer
+        (
+            [in ] DWORD ContainerType,
+            [in ] HANDLE Connection,
+            [out] HANDLE *Container
+        );
+
+
+            [
+            entry("SmsSetFilterVB"),
+            helpstring("Applies a filter to the container."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsSetFilter
+        (
+            [in ] HANDLE Container,
+            [in ] HANDLE Filter
+        );
+
+
+            [
+            entry("SmsPopulateVB"),
+            helpstring("Populates a container with folders according to its applied filters."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsPopulate
+        (
+            [in ] HANDLE Container,
+            [in ] DWORD Options,
+            [in ] NOTIFY* Notify
+        );
+
+
+            [
+            entry("SmsGetNextFolderVB"),
+            helpstring("Retrieves the next sub-folder in a parent container or folder."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsGetNextFolder
+        (
+            [in ] HANDLE Folder,
+            [in ] DWORD SubFolderType,
+            [out] HANDLE* SubFolder
+        );
+
+
+            [
+            entry("SmsCloseContainerVB"),
+            helpstring("Closes an open container and frees its resources."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsCloseContainer
+        (
+            [in ] HANDLE Container
+        );
+
+
+        //===================================================================
+        //  4.  Folder APIs.
+        //===================================================================
+            [
+            entry("SmsCreateFolderVB"),
+            helpstring("Creates a sub-folder (initally empty) of the given folder."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsCreateFolder
+        (
+            [in ] HANDLE Folder,
+            [in ] DWORD SubFolderType,
+            [in ] LPSTR SubFolderID,
+            [out] HANDLE* SubFolder
+        );
+
+
+            [
+            entry("SmsGetFolderIDVB"),
+            helpstring("Retrives the name (ID) of the given folder."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsGetFolderID
+        (
+            [in ] HANDLE Folder,
+            [out] BSTR* FolderID
+        );
+
+
+            [
+            entry("SmsGetFolderTypeVB"),
+            helpstring("Retrieves the type (both value and string) of the given folder."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsGetFolderType
+        (
+            [in ] HANDLE Folder,
+            [out] DWORD* TypeValue,
+            [out] BSTR* TypeString
+        );
+
+
+            [
+            entry("SmsEnumFolderTypesVB"),
+            helpstring("Returns the sub-folder types that can be in the given folder."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsEnumFolderTypes
+        (
+            [in ] HANDLE Folder,
+            [out] SAFEARRAY(DWORD)* SubFolderTypes,
+            [out] DWORD* Count
+        );
+
+
+            [
+            entry("SmsGetFolderCountVB"),
+            helpstring("Returns how many sub-folders of the specified type are in the given folder."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsGetFolderCount
+        (
+            [in ] HANDLE Folder,
+            [in ] DWORD SubFolderType,
+            [out] DWORD* Count
+        );
+
+
+            [
+            entry("SmsGetFolderByIDVB"),
+            helpstring("Retrieves the specified sub-folder from the given folder."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsGetFolderByID
+        (
+            [in ] HANDLE Folder,
+            [in ] DWORD SubFolderType,
+            [in ] LPSTR SubFolderID,
+            [out] HANDLE* SubFolder
+        );
+
+
+            [
+            entry("SmsRewindVB"),
+            helpstring("Restarts the enumeration of either a container, folder, or filter."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsRewind
+        (
+            [in ] HANDLE Folder,
+            [in ] DWORD Options
+        );
+
+
+            [
+            entry("SmsCloseFolderVB"),
+            helpstring("Closes an open folder and frees its resources."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsCloseFolder
+        (
+            [in ] HANDLE Folder
+        );
+
+
+            [
+            entry("SmsLinkFolderVB"),
+            helpstring("Adds the specified folder to its open parent folder."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsLinkFolder
+        (
+            [in ] HANDLE Folder
+        );
+
+
+            [
+            entry("SmsUnlinkFolderVB"),
+            helpstring("Removes the specified folder from its open parent folder."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsUnlinkFolder
+        (
+            [in ] HANDLE Folder
+        );
+
+
+            [
+            entry("SmsCommitFolderVB"),
+            helpstring("Makes permanent the addition or removal of the given folder."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsCommitFolder
+        (
+            [in ] HANDLE Folder
+        );
+
+
+            [
+            entry("SmsDupFolderVB"),
+            helpstring("Duplicates the given folder."),
+            helpcontext(0)
+            ]
+        SMS_STATUS SmsDupFolder(
+            [in ] HANDLE Parent,
+            [in ] HANDLE Folder,
+            [out] HANDLE* NewFolder
+        );
+
+
+        //===================================================================
+        //  5.  Scalar APIs.
+        //===================================================================
+            [
+            entry("SmsGetScalarCountVB"),
+            helpstring("Returns the count of scalars in the given folder."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsGetScalarCount
+        (
+            [in ] HANDLE Folder,
+            [out] DWORD* Count
+        );
+
+
+            [
+            entry("SmsGetNextScalarVB"),
+            helpstring("Retrieves the next scalar in the given folder."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsGetNextScalar
+        (
+            [in ] HANDLE Folder,
+            [out] SCALAR* Scalar
+        );
+
+
+            [
+            entry("SmsGetScalarByNameVB"),
+            helpstring("Retrieves the scalar having the specified name in the given folder."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsGetScalarByName
+        (
+            [in ] HANDLE Folder,
+            [in ] LPSTR ScalarName,
+            [out] SCALAR* Scalar
+        );
+
+
+            [
+            entry("SmsSetScalarVB"),
+            helpstring("Sets the value of a scalar in the given folder."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsSetScalar
+        (
+            [in ] HANDLE Folder,
+            [in ] SCALAR* Scalar
+        );
+
+
+        //===================================================================
+        //  6.  Filter container APIs.
+        //===================================================================
+            [
+            entry("SmsOpenFilterContainerVB"),
+            helpstring("Opens the specified filter container and populates it with persistent filters."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsOpenFilterContainer
+        (
+            [in ] HANDLE Connection,
+            [out] HANDLE* FilterContainer
+        );
+
+
+            [
+            entry("SmsCloseFilterContainerVB"),
+            helpstring("Closes the specified filter container."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsCloseFilterContainer
+        (
+            [in ] HANDLE FilterContainer
+        );
+
+
+            [
+            entry("SmsGetNextFilterVB"),
+            helpstring("Retrieves the handle to the next persistent filter of the specified type from the specified filter container."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsGetNextFilter
+        (
+            [in ] HANDLE FilterContainer,
+            [in ] DWORD FilterType,
+            [out] HANDLE* Filter
+        );
+
+
+            [
+            entry("SmsGetFilterByIDVB"),
+            helpstring("Retrieves the handle to the persistent filter of the specified filter type and with the specified identifier."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsGetFilterByID
+        (
+            [in ] HANDLE FilterContainer,
+            [in ] DWORD FilterType,
+            [in ] LPSTR FilterID,
+            [out] HANDLE* Filter
+        );
+
+
+            [
+            entry("SmsGetFilterIDVB"),
+            helpstring("Retrieves the identifier of the persistent filter specified by the filter handle."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsGetFilterID
+        (
+            [in ] HANDLE Filter,
+            [out] BSTR* FilterID
+        );
+
+
+            [
+            entry("SmsCommitFilterVB"),
+            helpstring("Causes the specified transient filter to be written to the site database."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsCommitFilter
+        (
+            [in ] HANDLE Filter,
+            [in ] HANDLE FilterContainer
+        );
+
+
+        //===================================================================
+        //  7.  Filter APIs.
+        //===================================================================
+            [
+            entry("SmsCreateFilterVB"),
+            helpstring("Creates a filter of the specified type."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsCreateFilter
+        (
+            [in ] DWORD FilterType,
+            [in ] HANDLE Connection,
+            [out] HANDLE* Filter
+        );
+
+
+            [
+            entry("SmsCloseFilterVB"),
+            helpstring("Closes the specified filter."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsCloseFilter
+        (
+            [in ] HANDLE Filter
+        );
+
+
+            [
+            entry("SmsGetFilterTypeVB"),
+            helpstring("Retrieves the filter type and tag for the specified filter."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsGetFilterType
+        (
+            [in ] HANDLE Filter,
+            [out] DWORD* FilterType,
+            [out] BSTR* FilterTag
+        );
+
+
+            [
+            entry("SmsGetTokenVB"),
+            helpstring("Retrieves a token at the specified index from the specified filter or inventory rules folder."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsGetToken
+        (
+            [in ] HANDLE Filter,
+            [in ] long Index,
+            [out] TOKEN* Token
+        );
+
+
+            [
+            entry("SmsAddTokenVB"),
+            helpstring("Adds a token at the specified position in the specified filter or inventory rules folder."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsAddToken
+        (
+            [in ] HANDLE Filter,
+            [in ] ANDOR* Operator,
+            [in ] TOKEN* Token,
+            [in ] long Position
+        );
+
+
+            [
+            entry("SmsGetTokenCountVB"),
+            helpstring("Retrieves the number of tokens set in the specified filter or inventory rules folder."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsGetTokenCount
+        (
+            [in ] HANDLE Filter,
+            [out] DWORD* TokenCount
+        );
+
+
+            [
+            entry("SmsManipulateTokensVB"),
+            helpstring("Deletes, excludes, groups, or ungroups tokens within the specified filter or inventory rules folder."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsManipulateTokens
+        (
+            [in ] HANDLE Filter,
+            [in ] DWORD Action,
+            [in ] long Start,
+            [in ] long End
+        );
+
+
+            [
+            entry("SmsGetAllFiltersVB"),
+            helpstring("Retrieves a list of handles to all filters that have been applied to the specified container."),
+            helpcontext(0)
+            ]
+        SMS_STATUS pascal SmsGetAllFilters
+        (
+            [in ] HANDLE Container,
+            [out] SAFEARRAY(HANDLE)* Filters,
+            [out] DWORD* Count
+        );
+
+
+            [
+            entry("SmsEnumObjectTypesVB"),
+            helpstring("Returns a list of first-class objects known to the API."),
+            helpcontext(0)
+            ]
+        SMS_STATUS SmsEnumObjectTypes(
+            [in ] HANDLE Connection,
+            [out] SAFEARRAY(BSTR)* Objects,
+            [out] DWORD* Count
+        );
+
+
+            [
+            entry("SmsEnumObjectsVB"),
+            helpstring("Enumerates objects of the specified object type."),
+            helpcontext(0)
+            ]
+        SMS_STATUS SmsEnumObjects(
+            [in ] HANDLE Connection,
+            [in ] BSTR ObjectType,
+            [in ] SAFEARRAY(BSTR)* Predecessors,
+            [in ] DWORD CountPredecessors,
+            [out] SAFEARRAY(OBJDESCRIPTOR)* Objects,
+            [out] DWORD* CountObjects
+        );
+    }
+}

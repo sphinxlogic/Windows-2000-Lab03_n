@@ -1,0 +1,65 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>Object Pooling</TITLE>
+<META NAME="Template" CONTENT="C:\Program Files\Microsoft Office\Office\html.dot">
+<LINK rel="stylesheet" href="../../styles.css" type="text/css">
+
+<STYLE>
+A:link {color: Olive} 
+A:visited {color: 336666} 
+A:hover {background:Olive; color: White}
+</Style>
+</HEAD>
+
+<BODY LINK="#0000ff" VLINK="#800080">
+
+<H2>Object Pooling</H2>
+<P><HR></P>
+<H4>Overview</H4>
+<P>Object pooling is an automatic service provided by COM+ that enables you to configure a component to have instances of it kept active in a pool, ready to be used by any client that requests the component. You can administratively configure and monitor the pool maintained for a given component, specifying characteristics such as pool size and creation request timeout values. Once the application is running, COM+ manages the pool for you, handling the details of object activation and reuse according to the criteria you have specified. You can achieve very significant performance and scaling benefits by reusing objects in this manner. See the COM Services documentation for more information on  the benefits of Object Pooling.
+<P>In this sample, we illustrate how to use COM+ Object Pooling and Object Construction by implementing them in the sample bank application's Account and Update Receipt components.  </P>
+<H4>Project Files</H4>
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=623>
+<TR>
+	<TD WIDTH="26%" VALIGN="MIDDLE"> 
+		<STRONG>Sub-directory</STRONG>
+	</TD>
+	<TD WIDTH="74%" VALIGN="MIDDLE">
+		<STRONG><P>Description</STRONG>
+	</TD>
+</TR>
+<TR><TD WIDTH="26%" VALIGN="TOP">
+<P>sample1\OPBank</TD>
+<TD WIDTH="74%" VALIGN="MIDDLE">
+<P>The OPBank client is a client that is used to look up an account, do a debit or credit, and then issue a receipt, using the components in the account.vc directory. The first time the OPBank client is launched, it will attempt to connect to the database and create the tables it uses. In addition, it is set to use the MoveMoney component by default, which was not written with Object Pooling enabled. To remedy this and exercise the pooled objects, choose Test/Account/Debit from the menu. Set the number of iterations to 1, and then choose Action/Go to start the test. This will start 5 threads that randomly post money into an account using the pooled Account component. &nbsp;</TD>
+</TR>
+<TR><TD WIDTH="26%" VALIGN="TOP">
+<P>sample1\account.vc&nbsp; </TD>
+<TD WIDTH="74%" VALIGN="MIDDLE">
+<P>This directory contains the Account, MoveMoney, GetReceipt, and UpdateReceipt components.  Only the Account and Update Receipt components have been written to take specific advantage of COM+ Object Pooling.</TD>
+</TR>
+</TABLE>
+
+<H4>Build Notes</H4>
+<P>Build both the <STRONG>account.vc</STRONG> and <STRONG>OPBank</STRONG> projects.&nbsp; <P>To run Object Pooling Sample:
+<OL>
+<LI><A HREF="EmptyApp.htm">Create a new empty COM+ Application</A> in the Component Services Manager.
+<LI><A HREF="InstComp.htm">Install the new components</A> you just built.
+<LI><A HREF="PoolProps.htm">Set the Object Pooling</A> and Object Custruction properties on the components.
+<LI>Finally, the ODBC data source needs to be configured. Copy over the OPBankSamples.dsn from the ..\Services\Object_Pooling directory to <System Drive>\Program Files\Common Files\ODBC\Data Sources (or your default ODBC Data Source directory). Since the local machine is used by default, you must have SQL Server 6.5 (or later) installed. If you want to use a SQL Server installation on another machine, use the Data Source (ODBC) service icon in Administrative Tools to modify your data source as follows:
+<UL>
+<LI>In the Data Sources dialog box, click the File DSN tab, and select the OPBankSamples data source. 
+<LI>Click Configure and enter the name of the server you want to use. 
+<LI>Note that the Login ID and Password specified in the OPBankSamples DSN are not used by Object Pooling Sample Bank. The source for the sample bank components "sa" user and an empty (null) password. If your system administrator password is non-null or you want to specify a different login ID, it will be necessary to modify the ODBC connection string in the Object Pooling Sample Bank source code.
+</UL>
+</OL>
+
+
+<H4>Remarks</H4>
+<P>&nbsp;</P>
+<P><HR></P>
+<P>&nbsp;</P></BODY>
+</HTML>

@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>User Form Input with POST</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_user_form_input_with_post"></a>  User Form Input with POST</h3>
+<p>
+The most basic form of interactivity on the Web has been, and probably will continue to be for some time to come, the HTML form. It is important to note that ASP does not replace forms, but rather enhances them, and makes them easier for you to implement and manage. </p>
+<p>
+The HTML &lt;FORM&gt; tag specifies what method the form will use to convey information to the processing script. The <b>POST</b> method attribute indicates that information from the form will be passed to the processing script or program through a separate HTTP connection. The processing script or program can parse the information and do whatever task is required, and return output to the client browser. </p>
+<p>
+This example demonstrates how to implement a simple form using the HTML <b>POST</b> method attribute, as well as one key benefit of creating forms with ASP: the ability to combine the form and the actual processing code into the same file. This sample creates a small form with two text input boxes, one for the user's first name (<i>fname</i>) and one for his or her last name (<i>lname</i>). The <b>Request.Forms</b> collection is accessed to get the value of the <i>fname</i> and <i>lname</i> variables from the request, and the results are displayed at the bottom of the page.</p>
+<p>
+The first time you run this script, no text will be displayed below the horizontal line. This is because no form information was available to pass to this script when it started, and ASP ignores searches of <b>Request.Forms</b> for information that does not exist. However, if you press the Submit button, the page is reloaded and the information you entered into the text boxes is available to the script. </p>
+</BODY>
+</HTML>

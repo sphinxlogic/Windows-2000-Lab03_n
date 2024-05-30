@@ -1,0 +1,47 @@
+<books>
+  <book>
+    <title>Pierre: The Ambiguities</title>
+    <author>Herman Melville</author>
+    <price>9.99</price>
+  </book>
+  <book>
+    <title>Heart of Darkness</title>
+    <author>Joseph Conrad</author>
+    <price>12.99</price>
+  </book>
+  <book>
+    <title>Arrowsmith</title>
+    <author>Sinclair Lewis</author>
+    <price>8.99</price>
+  </book>
+  <book>
+    <title>Oedipus Rex</title>
+    <author>Sophocles</author>
+    <price>8.99</price>
+  </book>
+  <book>
+    <title>The Secret Sharer and Other Stories</title>
+    <author>Joseph Conrad</author>
+    <price>13.99</price>
+  </book>
+  <book>
+    <title>The Republic</title>
+    <author>Plato</author>
+    <price>12.99</price>
+  </book>
+  <book>
+    <title>The Republic</title>
+    <author>Plato</author>
+    <price>15.99</price>
+  </book>
+  <book>
+    <title>Inside Microsoft Windows CE</title>
+    <author>John Murray</author>
+    <price>29.99</price>
+  </book>
+  <book>
+    <title>Pragmatism</title>
+    <author>William James</author>
+    <price>15.99</price>
+  </book>
+</books>

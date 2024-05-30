@@ -1,0 +1,104 @@
+!IF 0
+
+Copyright (c) 1989-1996 Microsoft Corporation
+
+Module Name:
+
+    sources.
+
+Abstract:
+
+    This file specifies the target component being built and the list of
+    sources files needed to build that component.  Also specifies optional
+    compiler switches and libraries that are unique for the component being
+    built.
+
+
+History:
+    Derived from WebCheck Makefile RamuM July 22 96
+    Common ccshell makefile and cleanup 15-Apr-96 Scott Hysom (scotth)
+    Created 27-Sep-94 by Bob Day (bobday)
+    from template created 12-Apr-1990 by Steve Wood (stevewo)
+
+NOTE:   Commented description of this file is in \nt\public\oak\bin\sources.tpl
+
+!ENDIF
+
+COMMONINC_DIR     = ..\..\..\..\..\..
+
+#
+# Defines for common.inc
+#
+
+NOT_UNICODE     = 1
+!if $(386)
+CPUTYPE = i386
+386_STDCALL = 0
+!else
+CPUTYPE = alpha
+C_DEFINES=$(C_DEFINES) -D_NOT_X86
+!endif
+UMENTRY=winmain
+
+#
+# Include our common Sources
+#
+
+!include $(COMMONINC_DIR)\dtrans.inc
+
+#
+# Other directives
+#
+
+DBGFLAGS = /Zi /Od
+MSC_OPTIMIZATION = 
+NTDEBUGTYPE=windbg
+
+USE_ATL=1
+USE_PDB = 1
+USE_INCREMENTAL_COMPILING = 1
+
+#
+# Common settings required by build.exe and makefile.def
+#
+
+TARGETNAME      = WipeDlg
+TARGETPATH      = obj
+TARGETTYPE      = PROGRAM
+
+USE_MSVCRT = 1
+
+#
+# Precompiled specs
+#
+
+TARGETLIBS      =  \
+		  $(LIBRARY_PATH)\kernel32.lib    \
+		  $(LIBRARY_PATH)\gdi32.lib    \
+		  $(LIBRARY_PATH)\ole32.lib       \
+		  $(LIBRARY_PATH)\oleaut32.lib    \
+		  $(LIBRARY_PATH)\user32.lib      \
+		  $(LIBRARY_PATH)\advapi32.lib    \
+!if $(386)
+		  $(COMMONINC_DIR)\lib\$(CPUTYPE)\comsupp.lib   \
+!endif
+		  $(COMMONINC_DIR)\lib\$(CPUTYPE)\dxtrans.lib   \
+           	  $(LIBRARY_PATH)\uuid.lib \
+		  $(LIBRARY_PATH)\comdlg32.lib \
+		  $(LIBRARY_PATH)\winmm.lib \
+		  $(LIBRARY_PATH)\winspool.lib \
+		  $(LIBRARY_PATH)\comctl32.lib 
+
+
+#
+# List of sources
+#
+
+SOURCES= \
+    commdlg.cpp \
+	globals.cpp \
+    guids.c \
+    wipedlg.cpp \
+	wipedlg.rc
+
+

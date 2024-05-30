@@ -1,0 +1,21 @@
+#makefile for mssdk_samples_dbmsg_exchange_icsagentwizard_icsdemo
+
+Proj= ICSDemo
+
+libs=$(libs) mapi32.lib edkmapi.lib edkdebug.lib edkutils.lib 
+Use_MFC=1
+CL= $(CL) -D_WIN32_IE=0x500
+  
+ObjList =  $(ObjDir)\StdAfx.Obj              \
+		   $(ObjDir)\$(Proj)Collector.Obj    \
+           $(ObjDir)\$(Proj)Dlg.Obj          \
+           $(ObjDir)\MAPIApp.Obj             \
+		   $(ObjDir)\$(Proj).Obj             \
+           $(ObjDir)\TraceBox.Obj            \
+           $(ObjDir)\$(Proj).Res 
+
+!include <BkOffice.Mak>
+
+all: $(ObjDir)\$(Proj).exe
+
+$(ObjDir)\$(Proj).exe: $(ObjList) 

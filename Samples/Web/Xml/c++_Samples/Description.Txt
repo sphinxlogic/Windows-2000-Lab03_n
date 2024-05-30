@@ -1,0 +1,22 @@
+C++ Samples
+
+Files:
+sample1.cpp
+filestream.h
+StdAfx.cpp
+StdAfx.h
+sample1.dsp
+
+Description:
+These sample files contain a collection of snippets showing how to use
+the MSXML parser from C++ (VC 6.0).  The sample program demonstrates:
+- Loading an XML document from disk,
+- Loading an XML document from a URL,
+- Building an XML document in memory,
+- Walking a loaded XML document tree,
+- Saving an XML document to disk.
+
+Compatibility/Platform Compatibility:
+These samples use the MSXML parser that ships with the Microsoft Internet Explorer 5.
+
+

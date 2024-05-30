@@ -1,0 +1,28 @@
+HKCR
+{
+	DX3DTransform.Microsoft.Ruffle.1 = s 'Ruffle'
+	{
+		CLSID = s '{69EE49C5-6268-11D1-B83E-00A0C933BE86}'
+	}
+	DX3DTransform.Microsoft.Ruffle = s 'Ruffle'
+	{
+		CurVer = s 'DX3DTransform.Microsoft.Ruffle.1'
+		CLSID = s '{69EE49C5-6268-11D1-B83E-00A0C933BE86}'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {69EE49C5-6268-11D1-B83E-00A0C933BE86} = s 'Ruffle'
+		{
+			ProgID = s 'DX3DTransform.Microsoft.Ruffle.1'
+			VersionIndependentProgID = s 'DX3DTransform.Microsoft.Ruffle'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+                        ToolBoxBitmap32 = s '%MODULE%,235'
+		}
+	}
+}
+
+

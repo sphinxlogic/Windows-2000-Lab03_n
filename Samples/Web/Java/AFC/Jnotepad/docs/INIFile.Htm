@@ -1,0 +1,187 @@
+<HTML>
+<HEAD>
+<TITLE>JNotepad Sample</TITLE>
+</HEAD>
+
+<BODY BGPROPERTIES="FIXED" BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="#0000FF" ALINK="#0000FF" TOPMARGIN=0 LEFTMARGIN=0>
+
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE="2">
+
+<A NAME="pagetop"></A>
+
+
+<!--margin-->
+<TD WIDTH=23><IMG SRC="/art/1pixel.gif" WIDTH=23 HEIGHT=1></TD>
+<!--margin ENDS-->
+
+
+
+<!--main title (fixed coloured cell type)-->
+<BR>
+<TABLE BORDER=0 WIDTH=100%>
+<TR><TD BGCOLOR=BLUE WIDTH=200><FONT FACE="HELVETICA, ARIAL" SIZE=4 COLOR=WHITE>
+&nbsp;
+AFC</FONT>
+</TD>
+</table>
+<!--main title ENDS-->
+
+<p>
+
+<TABLE BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<TR VALIGN=TOP>
+
+
+<!--main page sub-title-->
+<TD><FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=4>
+<B>JNotepad INI File Layout</B></A>
+</FONT>
+
+<p>
+
+<!--main contents (NEW TABLE required in this scenario)-->
+<TABLE BORDER=0>
+<TR><TD ALIGN=LEFT VALIGN=TOP>
+
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=2>
+
+JNotepad is a highly customizable program; it was designed for expandability in mind. The
+core of its customization is the JNOTEPAD.INI file. This allows you to set colors and settings
+for the application.<p>
+
+JNotepad tries to read the JNOTEPAD.INI file upon startup. If it does not exist, an internal
+set of settings is used instead. The JNOTEPAD.INI file is written when the program exits. 
+This allows you to obtain a clean default JNOTEPAD.INI simply by erasing the current
+JNOTEPAD.INI and running JNotepad.<p>
+
+JNOTEPAD.INI has a format very similar to Windows INI files. There are several section names,
+enclosed in brackets, containing key-value pairs. All values are case sensative. A sample section may look like:<br>
+<xmp>
+[Colors]
+Bright Green=0 255 0
+Yellow=255 255 0
+Bright Red=255 0 0
+Red=128 0 0
+</xmp>
+
+Each line contains a key associated with a value. For example, Yellow is associated with the string "255 255 0". All
+keys and values are strings.<p>
+
+JNotepad contains several sections:<p>
+
+<h3>[Colors]</h3>
+Defines colors for the JNotepad system. Each key in this section is the name of a color,
+and each value is the RGB definition for it. Each field in the RGB definition is separated 
+by a space. <br>
+<i>Example:</i>
+<xmp>
+Blue=0 0 128
+</xmp>
+Blue is associated with the RGB value 0 0 128 (0 red, 0 green 128 blue).
+<br>
+Color names are used in other sections of the INI file.
+
+<p>
+<h3>[Accelerators]</h3>
+Defines accelerator keys. These keys are shortcut keys for menu and toolbar commands in 
+JNotepad. Each key is the name of the accelerator key and the menu command it will perform. 
+Example:
+<xmp>
+ctrl-s=Save
+</xmp>
+Ctrl-S is the shortcut key, and it runs the command Save. The section key must start with 
+<i>ctrl</i> and be followed by the key to act as the accelerator. The command to run must
+be identical to the name of the menu item which runs it. <p>
+
+Control keys must be a single character. The only exception is the TAB key, which must be
+spelled out:
+<xmp>
+ctrl-tab=Next Window
+</xmp>
+
+Control-shift key combinations are also supported using the <i>ctrlshift</i> keyword:
+<xmp>
+ctrlshift-tab=Previous Window
+</xmp>
+
+<h3>[Toolbar]</h3>
+The toolbar section allows you to customize the toolbar. All keys in this section start
+with a number, which corresponds to the position of the button in the
+toolbar. 0 is the leftmost button. Each key has a value which identifies
+what command is executed when that button is pressed. This string identifies a
+separate section in the INI file which describes the command. A sample
+[Toolbar] entry looks like this:<br>
+<xmp>
+[Toolbar]
+0=CMD_New
+1=CMD_Cut
+</xmp>
+This key identifies the leftmost toolbar button, button 0, as having the
+command described by the section [CMD_New], and a button in position 1
+which has the command CMD_Cut.<p>
+
+The sections that describe commands look similar to:<br>
+<xmp>
+[CMD_New]
+Image=Images\new.gif
+CMD=4021
+Tip=101
+</xmp>
+The <i>Image</i> key identifies the relative path of the GIF used on the
+toolbar button. The <i>CMD</i> key specifies the menu ID of the command
+which the toolbar button will activate. The <i>Tip</i> key contains the
+string ID number of the text on the tooltip. The menu ID and string ID 
+numbers refer to values found in the jnotepad.res resource file's Menu 
+section and String table section, respectively.
+<p>
+
+<h3>File Format Sections</h3>
+JNotepad allows customization by file type. This is done by including a section in the
+INF containing the extension of the file type. This section name must be in all uppercase.
+Example:<br>
+<xmp>
+[JAVA]
+</xmp>
+corresponds to .java files. <br>
+<xmp>
+[TXT]
+</xmp>
+corresponds to .txt files. A special section named <b>[DEFAULT]</b> stores settings for
+files that are created in JNotepad.<p>
+
+These sections can have one of two keys:<p>
+<b>Foreground</b><br>
+Specifies the foreground color. This is the name of a color from the <b>[Colors]</b> section.<br>
+<b>Background</b><br>
+Specifies the background color. This is the name of a color from the <b>[Colors]</b> section.<br>
+<p>
+For example:
+<xmp>
+[JAVA]
+Foreground=White
+Background=Blue
+</xmp>
+sets the foreground color of .java files to White and the background color to Blue. These
+colors must have been defined in a [Colors] section.<p>
+
+
+
+
+
+
+
+<p>
+
+
+<!--rule-->
+<TABLE WIDTH=95%><TD HEIGHT=2 BGCOLOR=BLUE></TD></TABLE>
+<BR>
+
+<!--page top button-->
+<TABLE WIDTH=100%><TR><TD ALIGN=LEFT><A HREF="#pagetop"><IMG SRC="../../art/butt_up.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Top"></A></TD>
+
+<!--MS copyright-->
+<TD ALIGN=RIGHT><FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK"><A HREF="../../art/cpyright.htm">&#169; 1996 Microsoft Corporation. All rights reserved.</A></FONT></TD></TR></TABLE>
+</FONT>
+</BODY>
+</HTML>

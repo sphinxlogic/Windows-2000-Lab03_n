@@ -1,0 +1,110 @@
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<HTML>
+<HEAD>
+<TITLE>The IFRAME Tag</TITLE>
+<META NAME="FILENAME" CONTENT="iframe.HTM">
+
+
+
+<SCRIPT LANGUAGE="JavaScript">
+
+function forward() {
+
+// This function increments the data bound record after checking to confirm 
+// you are not already at the end of the recordset. If you are, the program 
+// alerts you that it cant go any further. -->
+
+  if (StockList.recordset.AbsolutePosition != StockList.recordset.RecordCount) {
+	StockList.recordset.MoveNext();
+	}
+	else {
+	alert("Already at last element");
+	}
+}
+
+function reverse() {
+
+// This function decrements the data bound record after checking to confirm 
+// you are not already at the end of the recordset. If you are, the program 
+// alerts you that it cant go any further.  -->
+
+  if (StockList.recordset.AbsolutePosition != 1) {
+	StockList.recordset.MovePrevious();
+	}
+	else {
+	alert("Already at first element");
+	}
+}
+
+</SCRIPT>
+</HEAD>
+
+<BODY TOPMARGIN=20 LEFTMARGIN=40 BGCOLOR="#ffffff" LINK="#000066"
+	VLINK="#666666 text="#000000">
+
+
+<H2>The IFRAME Tag</H2>
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT>
+<P>
+<P>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+<hr>
+<BR>
+
+You can bind the SRC attribute of an IFRAME to a URL in the column of a data
+set. The page at the URL specified will be displayed within the IFRAME.
+<P>
+An example of IFRAME used with current record binding is shown below.
+Click on the arrow buttons to change the current record. Notice that the
+page displayed in the IFRAME changes to match the value in the current record.
+<P>
+
+<CENTER>
+<IFRAME FRAMEBORDER=1 WIDTH=60% DATASRC="#StockList" DATAFLD="url"></IFRAME>
+<HR WIDTH=100>
+<INPUT TYPE="button" VALUE="  <  " ONCLICK="reverse();">
+<INPUT TYPE="button" VALUE="  >  " onClick="forward();">
+<HR WIDTH=100>
+</CENTER>
+<P>
+IFRAMEs can also be used within a repeated table. An example follows.
+<P>
+
+<OBJECT ID="StockList" CLASSID="clsid:333C7BC4-460F-11D0-BC04-0080C7055A83"
+	WIDTH=0 HEIGHT=0>
+<PARAM NAME="UseHeader" VALUE="True">
+<PARAM NAME="TextQualifier" VALUE="&quot;">
+<PARAM NAME="FieldDelim" VALUE=",">
+<PARAM NAME="DataURL" VALUE="quotes.txt">
+</OBJECT>
+
+<CENTER>
+<TABLE BORDER=1 DATASRC="#StockList">
+	<THEAD>
+	<TH>
+		<STRONG> IFrame </STRONG>
+	</TH>
+	</THEAD>
+	<TBODY>
+	<TD>
+		<IFRAME WIDTH=490 HEIGHT=75 DATAFLD="url"></IFRAME>
+	</TD>
+	</TBODY>		
+</TABLE>
+</CENTER>
+<P>
+Click on <A HREF="quotes.txt">quotes.txt</A> to see the data file
+used by this page.
+<P>
+<P>
+<P>
+<P>
+<FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">
+&copy; <A HREF="/misc/cpyright.htm" TARGET="_top">1999 Microsoft Corporation. All rights reserved. Terms of use</A>.
+</FONT>
+</BODY>
+</HTML>

@@ -1,0 +1,21 @@
+Loan Calculator
+
+Files:
+LoanCalc.htm
+AmortControl.ocx
+
+Description:
+This web application uses a custom Data Source Object (DSO) authored in Visual Basic to process
+user-entered data and display that data using data binding.  The data binding feature highlighted
+by this demo is the use of Multiple Data Sets from a single DSO.  From a single OBJECT tag
+within the XML page a number of different data sets can be spawned and used to bind data to
+HTML.
+
+To run the demo, enter in the loan amount, interest rate, and duration of the loan.  Then
+press the "Calculate" button.
+
+More Details:
+Using the Multiple Data Sets feature requires a DSO that allows for multiple data sets.  
+
+Compatibility/Platform Compatibility:
+You must be running Internet Explorer 5 or greater to view this demo.

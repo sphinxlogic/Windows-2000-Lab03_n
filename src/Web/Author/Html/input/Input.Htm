@@ -1,0 +1,49 @@
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<HTML>
+<HEAD>
+<TITLE>Entry Box</TITLE>
+<META NAME="FILENAME" CONTENT="input.HTM">
+
+
+</HEAD>
+<BODY TOPMARGIN=20 LEFTMARGIN=40 BGCOLOR="#FFFFFF" LINK="#000066" VLINK="#666666" TEXT="#000000">
+
+<H2>Entry Box</H2>
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT>
+<P>
+<P>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+<hr>
+
+<DIV ID=ReplaceMe >What you type in below will replace this HTML</DIV>
+<BR>
+<INPUT ID=T1 TYPE=TEXT STYLE="width: 400"><P><INPUT TYPE=BUTTON VALUE="Click me to change" ONCLICK="ReplaceMe.innerHTML = T1.value">
+
+
+<UL>
+	<LI>Type in your name and click the button to 
+	replace page text with your name.</LI>
+	<LI>Notice how Dynamic HTML replaces text 
+	with user-defined content, and the page is able 
+	to respond to user input without a server round 
+	trip or reloading the page.</LI>
+</UL>
+
+<P>This sample shows how text can be replaced dynamically by 
+user-defined content, through the innerHTML property. The author 
+need not know in advance what the user will type; Dynamic HTML 
+lets users freely choose how to update this element on the fly.
+<P>
+<P>
+<P>
+<P>
+<FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">
+&copy; <A HREF="/misc/cpyright.htm" TARGET="_top">1999 Microsoft Corporation. All rights reserved. Terms of use</A>.
+</FONT>
+<P>
+</BODY>
+</HTML>

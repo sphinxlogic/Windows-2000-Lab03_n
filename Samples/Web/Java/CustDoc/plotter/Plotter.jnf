@@ -1,0 +1,4 @@
+[Custom]
+POINT=java.awt.Point, PointMarshaler
+
+

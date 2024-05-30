@@ -1,0 +1,341 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// German (Germany) (unknown sub-lang: 0x0) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
+#ifdef _WIN32
+LANGUAGE LANG_GERMAN, 0x0
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_SGW DIALOG DISCARDABLE  0, 0, 291, 226
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            6031,IDC_ADMINICON,6,6,18,20,WS_GROUP
+    LTEXT           "",IDC_TITLE,35,8,254,18
+    LTEXT           "Add&ress Type: (GER)",IDC_STATIC,6,35,79,8
+    EDITTEXT        IDC_EDIT_ADDR_TYPE,90,33,196,13,ES_AUTOHSCROLL
+    GROUPBOX        "System Administrator(GER)",IDC_STATIC,6,48,280,50
+    LTEXT           "Display &Name:(GER)",IDC_STATIC,11,65,74,8
+    EDITTEXT        IDC_EDIT_DISP_NAME,90,63,191,13,ES_AUTOHSCROLL
+    LTEXT           "&Email Address:(GER)",IDC_STATIC,11,80,74,8
+    EDITTEXT        IDC_EDIT_EMAIL_ADDR,90,79,191,13,ES_AUTOHSCROLL
+    GROUPBOX        "Messages to Process(GER)",IDC_STATIC,6,100,280,23
+    CONTROL         "&In Bound(GER)",IDC_CHECK_IN_BOUND,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,102,109,73,10
+    CONTROL         "&Out Bound(GER)",IDC_CHECK_OUT_BOUND,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,180,109,95,10
+    LTEXT           "&Threads:(GER)",IDC_STATIC,6,134,69,8
+    EDITTEXT        IDC_EDIT_THREADS_IN,100,129,63,13,ES_AUTOHSCROLL
+    LTEXT           "&Messages Per Thread:(GER)",IDC_STATIC,6,149,94,8
+    EDITTEXT        IDC_EDIT_MSGS_IN,100,145,63,13,ES_AUTOHSCROLL
+    LTEXT           "&Sleep per Msg (ms):(GER)",IDC_STATIC,6,164,94,10
+    EDITTEXT        IDC_EDIT_SLEEP_IN,100,161,63,13,ES_AUTOHSCROLL
+    LTEXT           "&Polling Interval:(GER)",IDC_STATIC,6,179,89,8
+    EDITTEXT        IDC_EDIT_POLLING_IN,100,177,63,13,ES_AUTOHSCROLL
+    LTEXT           "&Directory:(GER)",IDC_STATIC,6,194,54,8
+    EDITTEXT        IDC_EDIT_DIR_IN,65,192,98,13,ES_AUTOHSCROLL
+    LTEXT           "&Converter:(GER)",IDC_STATIC,6,208,54,8
+    EDITTEXT        IDC_EDIT_CONVERTER_IN,65,207,98,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_THREADS_OUT,168,129,62,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_MSGS_OUT,168,145,62,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_SLEEP_OUT,168,161,62,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_POLLING_OUT,168,177,62,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_DIR_OUT,168,192,107,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_CONVERTER_OUT,168,207,107,13,ES_AUTOHSCROLL
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SGW                 "Options (GER)"
+    IDS_INVALID_STRING      "Data field must not be blank. (GER)"
+    IDS_INVALID_MSGS_PER_THREAD 
+                            "There must be at least one message per thread. (GER)"
+    IDS_INVALID_SLEEP_BETWEEN_MSGS 
+                            "The sleep interval must be five minutes or less. (GER)"
+    IDS_INVALID_THREAD_CNT  "Thread count must be between 1 and 20. (GER)"
+    IDS_RESTARTGATEWAY      "Your changes will not take affect until you restart the gateway.(GER)"
+END
+
+#endif    // German (Germany) (unknown sub-lang: 0x0) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) (unknown sub-lang: 0x0) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, 0x0
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_SGW DIALOG DISCARDABLE  0, 0, 291, 226
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            6031,IDC_ADMINICON,6,6,18,20,WS_GROUP
+    LTEXT           "",IDC_TITLE,35,8,254,18
+    LTEXT           "Add&ress Type:",IDC_STATIC,6,35,49,8
+    EDITTEXT        IDC_EDIT_ADDR_TYPE,61,33,225,13,ES_AUTOHSCROLL
+    GROUPBOX        "System Administrator",IDC_STATIC,6,48,280,50
+    LTEXT           "Display &Name:",IDC_STATIC,11,65,50,8
+    EDITTEXT        IDC_EDIT_DISP_NAME,61,63,220,13,ES_AUTOHSCROLL
+    LTEXT           "&Email Address:",IDC_STATIC,11,80,49,8
+    EDITTEXT        IDC_EDIT_EMAIL_ADDR,61,79,220,13,ES_AUTOHSCROLL
+    GROUPBOX        "Messages to Process",IDC_STATIC,6,100,280,23
+    CONTROL         "&In Bound",IDC_CHECK_IN_BOUND,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,102,109,44,10
+    CONTROL         "&Out Bound",IDC_CHECK_OUT_BOUND,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,180,109,47,10
+    LTEXT           "&Threads:",IDC_STATIC,6,134,30,8
+    EDITTEXT        IDC_EDIT_THREADS_IN,89,129,74,13,ES_AUTOHSCROLL
+    LTEXT           "&Messages Per Thread:",IDC_STATIC,6,149,75,8
+    EDITTEXT        IDC_EDIT_MSGS_IN,89,145,74,13,ES_AUTOHSCROLL
+    LTEXT           "&Sleep per Msg (ms):",IDC_STATIC,6,164,77,10
+    EDITTEXT        IDC_EDIT_SLEEP_IN,89,161,74,13,ES_AUTOHSCROLL
+    LTEXT           "&Polling Interval:",IDC_STATIC,6,179,54,8
+    EDITTEXT        IDC_EDIT_POLLING_IN,89,177,74,13,ES_AUTOHSCROLL
+    LTEXT           "&Directory:",IDC_STATIC,6,194,35,8
+    EDITTEXT        IDC_EDIT_DIR_IN,45,192,118,13,ES_AUTOHSCROLL
+    LTEXT           "&Converter:",IDC_STATIC,6,208,35,8
+    EDITTEXT        IDC_EDIT_CONVERTER_IN,45,207,118,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_THREADS_OUT,168,129,74,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_MSGS_OUT,168,145,74,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_SLEEP_OUT,168,161,74,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_POLLING_OUT,168,177,74,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_DIR_OUT,168,192,118,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_CONVERTER_OUT,168,207,118,13,ES_AUTOHSCROLL
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SGW                 "Options"
+    IDS_INVALID_STRING      "Data field must not be blank."
+    IDS_INVALID_MSGS_PER_THREAD 
+                            "There must be at least one message per thread."
+    IDS_INVALID_SLEEP_BETWEEN_MSGS 
+                            "The sleep interval must be five minutes or less."
+    IDS_INVALID_THREAD_CNT  "Thread count must be between 1 and 20."
+    IDS_RESTARTGATEWAY      "Your changes will not take affect until you restart the gateway."
+END
+
+#endif    // English (U.S.) (unknown sub-lang: 0x0) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// French (France) (unknown sub-lang: 0x0) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE LANG_FRENCH, 0x0
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_SGW DIALOG DISCARDABLE  0, 0, 291, 226
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            6031,IDC_ADMINICON,6,6,18,20,WS_GROUP
+    LTEXT           "",IDC_TITLE,35,8,254,18
+    LTEXT           "Add&ress Type: (FRN)",IDC_STATIC,6,35,74,8
+    EDITTEXT        IDC_EDIT_ADDR_TYPE,85,33,195,13,ES_AUTOHSCROLL
+    GROUPBOX        "System Administrator(FRN)",IDC_STATIC,6,48,280,50
+    LTEXT           "Display &Name:(FRN)",IDC_STATIC,11,65,69,8
+    EDITTEXT        IDC_EDIT_DISP_NAME,85,63,196,13,ES_AUTOHSCROLL
+    LTEXT           "&Email Address:(FRN)",IDC_STATIC,11,80,74,8
+    EDITTEXT        IDC_EDIT_EMAIL_ADDR,85,79,196,13,ES_AUTOHSCROLL
+    GROUPBOX        "Messages to Process(FRN)",IDC_STATIC,6,100,280,23
+    CONTROL         "&In Bound(FRN)",IDC_CHECK_IN_BOUND,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,102,109,68,10
+    CONTROL         "&Out Bound(FRN)",IDC_CHECK_OUT_BOUND,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,180,109,70,10
+    LTEXT           "&Threads:(FRN)",IDC_STATIC,6,134,64,8
+    EDITTEXT        IDC_EDIT_THREADS_IN,105,129,58,13,ES_AUTOHSCROLL
+    LTEXT           "&Messages Per Thread:(FRN)",IDC_STATIC,6,149,94,8
+    EDITTEXT        IDC_EDIT_MSGS_IN,105,145,58,13,ES_AUTOHSCROLL
+    LTEXT           "&Sleep per Msg (ms):(FRN)",IDC_STATIC,6,164,84,10
+    EDITTEXT        IDC_EDIT_SLEEP_IN,105,161,58,13,ES_AUTOHSCROLL
+    LTEXT           "&Polling Interval:(FRN)",IDC_STATIC,6,179,74,8
+    EDITTEXT        IDC_EDIT_POLLING_IN,105,177,58,13,ES_AUTOHSCROLL
+    LTEXT           "&Directory:(FRN)",IDC_STATIC,6,194,49,8
+    EDITTEXT        IDC_EDIT_DIR_IN,65,192,98,13,ES_AUTOHSCROLL
+    LTEXT           "&Converter:(FRN)",IDC_STATIC,6,208,54,8
+    EDITTEXT        IDC_EDIT_CONVERTER_IN,65,207,98,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_THREADS_OUT,168,129,57,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_MSGS_OUT,168,145,57,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_SLEEP_OUT,168,161,57,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_POLLING_OUT,168,177,57,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_DIR_OUT,168,192,97,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_CONVERTER_OUT,168,207,97,13,ES_AUTOHSCROLL
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "#include ""afxres.rc""  // Standard components\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "SGWADMIN MFC Extension DLL\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "SGWADMIN\0"
+            VALUE "LegalCopyright", "Copyright© Microsoft Corp. 1986-1996.  All Rights Reserved.\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "SGWADMIN.DLL\0"
+            VALUE "ProductName", "SGWADMIN Dynamic Link Library\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SGW                 "Options (FRN)"
+    IDS_INVALID_STRING      "Data field must not be blank. (FRN)"
+    IDS_INVALID_MSGS_PER_THREAD 
+                            "There must be at least one message per thread. (FRN)"
+    IDS_INVALID_SLEEP_BETWEEN_MSGS 
+                            "The sleep interval must be five minutes or less. (FRN)"
+    IDS_INVALID_THREAD_CNT  "Thread count must be between 1 and 20. (FRN)"
+    IDS_RESTARTGATEWAY      "Your changes will not take affect until you restart the gateway.(FRN)"
+END
+
+#endif    // French (France) (unknown sub-lang: 0x0) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.K.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
+#pragma code_page(1252)
+#endif //_WIN32
+#endif    // English (U.K.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+#include "afxres.rc"  // Standard components
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,138 @@
+<HTML>
+<HEAD>
+<TITLE>SampleIME Applet Demo</TITLE>
+</HEAD>
+
+<BODY BGPROPERTIES="FIXED" BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="#0000FF" ALINK="#0000FF" TOPMARGIN=0 LEFTMARGIN=0>
+
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE="2">
+
+<A NAME="pagetop"></A>
+
+
+<!--margin-->
+<TD WIDTH=23><IMG SRC="/art/1pixel.gif" WIDTH=23 HEIGHT=1></TD>
+<!--margin ENDS-->
+
+
+
+<!--main title (fixed coloured cell type)-->
+<BR>
+<TABLE BORDER=0 WIDTH=100%>
+<TR><TD BGCOLOR=BLUE WIDTH=200><FONT FACE="HELVETICA, ARIAL" SIZE=4 COLOR=WHITE>
+&nbsp;
+Internationalization</FONT>
+</TD>
+<!--main title ENDS-->
+
+<!--main page navigation-->
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP></TD>
+
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP><FONT FACE="ARIAL,HELVETICA" SIZE=1 COLOR=BLACK>
+<A HREF="../../activexbeans/safearray/sample.html"><IMG SRC="../../art/butt_pre.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Previous"></A><BR><B>
+Previous</B></FONT></TD>
+
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP><FONT FACE="ARIAL,HELVETICA" SIZE=1 COLOR=BLACK>
+<A HREF="../../art/start.htm"><IMG SRC="../../art/butt_.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Welcome"></A><BR><B>
+Welcome</B></FONT></TD>
+
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP><FONT FACE="ARIAL,HELVETICA" SIZE=1 COLOR=BLACK>
+<A HREF="../../AFC/Win32ResSupport/SAMPLE.HTML"><IMG SRC="../../art/butt_nex.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Next"></A><BR><B>
+Next</B></FONT></TD>
+</TABLE>
+<!--main page navigation ENDS-->
+
+
+<!--this odd little break must accompany .gif filled cell title-->
+<BR>
+
+
+<TABLE BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<TR VALIGN=TOP>
+
+
+<!--main page sub-title-->
+<TD><FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=4>
+<B>SampleIME Applet Demo</B></A>
+</FONT><BR>
+
+<!--main contents (NEW TABLE required in this scenario)-->
+<TABLE BORDER=0>
+<TR><TD ALIGN=LEFT VALIGN=TOP>
+
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=2>
+<P>
+SampleIME is a class used in this sample which demonstrates how to use the DefaultInputManager and InputMethodListener interfaces to implement an Input Method Editor (IME) using the Microsoft VM. The sample IME provided in this sample allows users to input Unicode characters by typing the hexadecimal value of the characters. It is a language-independent IME to be used on top of any localized systems that has the Microsoft VM installed.
+<P>
+In this sample, you can use the TextArea and TextField fields to input characters. 
+When you want to activate the Sample IME, click the button which reads "Click here to activate Sample IME."
+
+<P>
+Type in any Unicode value that matches the default font provided on your system. For example, if you type '41' and press Enter, you should see an 'A' appear in
+the TextField field. In this case, 0x41( hexadecimal value ) is the Unicode
+represenation of 'A'. If you are using a CJK(Chinese, Japanese and Korean) version of Microsoft Windows, you could input CJK characters by typing their Unicode value.
+For example, if you type '4e00', you should see the Chinese character "yi". You can find the table mapping characters to Unicode values in the Unicode Specification 2.0.
+<P>
+BackSpace can be used for any corrections needed.
+<P>
+If no characters appear in the TextField, please make sure that the input focus is on the TextField. You can do so by clicking on the TextField.
+<P>
+Use the button on the left of the IME to activate and deactivate the IME. You can use the mouse on the area around the button to click and drag the IME composition window around.
+<P>
+You can use Ctrl-Alt to change between different Java-based IMEs. In this 
+example, there is only one Java IME; therefore, pressing Ctrl-Alt will 
+activate or deactivate the Sample IME. If you are running this under CJK 
+versions of Windows, pressing Ctrl-Alt the first time will switch to the 
+system IME, and pressing it again will deactivate both the system IME and
+Sample IME. If you press Ctrl-Alt again, the Sample IME will be activated.
+
+<!--rule-->
+<TABLE WIDTH=95%><TD HEIGHT=1 BGCOLOR=BLUE></TD></TABLE>
+
+
+
+<!--rule tex back type>
+<TABLE WIDTH=95%><TD HEIGHT=1 BACKGROUND="../../art/Stex_4.gif" BGCOLOR="WHITE"></TD></TABLE>
+<BR-->
+
+
+<TR><TD>
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=4>
+<B></A></B></FONT><BR>
+<applet
+    code=SampleIMETest.class
+    id=SampleIMETest
+    width=400
+    height=300 >
+</applet>
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=2>
+<P>
+In order to use this sample, please disable or turn off your Windows system IME. 
+For example, under Japanese Windows, please select 'Direct Input' mode. 
+Under Chinese Windows, please turn off the system IME. After you click the "click here to
+activate Sample IME" button, you must make sure the caret is on the TextField or TextArea to start using Sample IME. Please see descriptions above for more information.
+</p><BR>
+
+<FONT FACE="HELVETICA, ARIAL" SIZE=2>
+<B></B><BR>
+
+<!--remarks 1-->
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=2>
+<B><I>Source:</I></B>
+<BR>
+<I><a href="SampleIMETest.java">SampleIMETest.java</a></I>
+
+<BR>
+
+<!--rule-->
+<TABLE WIDTH=95%><TD HEIGHT=2 BGCOLOR=BLUE></TD></TABLE>
+<BR>
+
+<!--page top button-->
+<TABLE WIDTH=100%><TR><TD ALIGN=LEFT><A HREF="#pagetop"><IMG SRC="../../art/butt_up.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Top"></A></TD>
+
+<!--MS copyright-->
+<TD ALIGN=RIGHT><FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK"><A HREF="../../cpyright.htm" >&#169; 1996-1997 Microsoft Corporation. All rights reserved.</A></FONT></TD></TR></TABLE>
+</FONT>
+</BODY>
+</HTML>

@@ -1,0 +1,26 @@
+<SCRIPT LANGUAGE=JScript RUNAT=Server>
+// This script executes when the first user comes to the site.
+function Application_OnStart()
+{
+}
+</SCRIPT>
+
+<SCRIPT LANGUAGE=JScript RUNAT=Server>
+// This script executes when the server shuts down or when global.asa changes.
+function Application_OnEnd() {
+}
+</SCRIPT>
+
+
+<SCRIPT LANGUAGE=JScript RUNAT=Server>
+// Executed each time a new session is started
+function Session_OnStart()
+{
+}
+</SCRIPT>
+
+<SCRIPT LANGUAGE=JScript RUNAT=Server>
+// Executed each time a new session is ended
+function Session_OnEnd() {
+}
+</SCRIPT>

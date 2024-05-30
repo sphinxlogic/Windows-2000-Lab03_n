@@ -1,0 +1,97 @@
+<html>
+
+<head>
+<title>Role-based Programmatic Security</title>
+<link rel="stylesheet" href="../../../styles.css" type="text/css">
+<style>
+A:link {color: Olive}
+A:visited {color: 336666}
+A:hover {background:Olive; color: White}
+</style>
+</head>
+
+<body>
+
+<h2>Role-based Programmatic Security</h2>
+
+<hr>
+
+<h4>Overview</h4>
+
+<p>The COM+ role-based security model consists of declarative security and programmatic
+security. Developers can build both declarative and programmatic security into their
+components prior to deploying them on a Windows NT security domain. Roles are central to
+the COM+ security model. A role is an abstraction that defines a logical group of users.
+At development time, you use roles to define declarative authorization and programmatic
+security logic. At deployment time, you bind these roles to specific groups and users. You
+can administer package security with the COM+ Component Services Explorer. This is a form of declarative
+security, which does not require any component programming is based on standard Windows NT
+security.</p>
+
+<p>The role-based security samples show how to use the COM+ security API to perform two
+tasks: 
+
+<ul>
+  <li>Discover if a client is in a particular role. This task is demonstrated with the
+    AmIAnAdminstrator object, which checks whether or not the client is in the Administrator
+    role, and then returns 1 if the client is an administrator, 0 if he is not, or 2 if an
+    error occurred. </li>
+  <li>Discover who the client is. This is demonstrated in the WhoAmI method, which returns a
+    string containing the domain and username of the direct caller, e.g. DOMAIN\USER. If there
+    is an error, WhoAmI returns an empty string. </li>
+</ul>
+
+<p>These methods are both implemented in Visual Basic, Visual C++, and Visual J++
+components. (With the exception that the Visual J++ component does not have a WhoAmI
+method, because this interface is not supported for Java. </p>
+
+<p>Each of these objects may be called from a Visual Basic client using the following
+code. (The Dim statement will need to be slightly altered to use the VC and VJ samples.)</p>
+<font face="courier">
+
+<p>Dim obj As New VBSecuritySample.VBSecuritySampleClass<br>
+MsgBox obj.AmIAnAdministrator<br>
+MsgBox obj.WhoAmI<br>
+</font></p>
+
+<h4>Project Files</h4>
+
+<table border="0" width="75%">
+  <tr>
+    <td width="26%"><strong>Sub-directory</strong></td>
+    <td width="74%"><strong>Description</strong></td>
+  </tr>
+  <tr>
+    <td width="26%">VB</td>
+    <td width="74%">Demonstrates programmatic security using Visual Basic 5.0</td>
+  </tr>
+  <tr>
+    <td width="26%">VJ</td>
+    <td width="74%">Demonstrates programmatic security using Visual J++ 5.0</td>
+  </tr>
+  <tr>
+    <td width="26%">VC</td>
+    <td width="74%">Demonstrates programmatic security using Visual C++ 5.0</td>
+  </tr>
+  <tr>
+    <td width="26%"><a href="SecurityTester/ReadMe.htm">SecurityTester</a></td>
+    <td width="74%">VB application using Security Sample methods</td>
+  </tr>
+</table>
+
+<h4>Build Notes</h4>
+
+<p>To build these samples, you need version 5.0 or later of Microsoft Visual C++,
+Microsoft Visual Basic, and Microsoft Visual J++.</p>
+
+<h4>Remarks</h4>
+
+<p>Role-based security is not supported in COM+ on Windows 95. </p>
+
+<p>&nbsp;</p>
+
+<hr>
+
+<p>&nbsp;</p>
+</body>
+</html>

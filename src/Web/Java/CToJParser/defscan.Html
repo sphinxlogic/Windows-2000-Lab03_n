@@ -1,0 +1,216 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD><TITLE>defscan</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="#0000FF" ALINK="#0000FF">
+<H1>Class defscan</H1>
+<PRE>public class defscan
+{
+  // Fields
+  public int <A HREF="#skippedMacros">skippedMacros</A>;
+  public int <A HREF="#skippedAliases">skippedAliases</A>;
+  public int <A HREF="#skippedSymbols">skippedSymbols</A>;
+  public int <A HREF="#skippedNoValue">skippedNoValue</A>;
+  public int <A HREF="#skippedRedefined">skippedRedefined</A>;
+  public int <A HREF="#skippedStrings">skippedStrings</A>;
+  public int <A HREF="#skippedUnterminatedExpressions">skippedUnterminatedExpressions</A>;
+  public int <A HREF="#skippedUnparsible">skippedUnparsible</A>;
+  public int <A HREF="#resolvedLater">resolvedLater</A>;
+  public int <A HREF="#unifiedSymbols">unifiedSymbols</A>;
+  public int <A HREF="#outputted">outputted</A>;
+  public int <A HREF="#total">total</A>;
+  protected Vector <A HREF="#Files">Files</A>;
+  protected Vector <A HREF="#UnrecognizedSymbols">UnrecognizedSymbols</A>;
+
+  // Constructors
+  public <A HREF="#defscan()">defscan</A>();
+
+  // Methods
+  public void <A HREF="#finalizer()">finalizer</A>();
+  protected void <A HREF="#SetupInterfaceFiles()">SetupInterfaceFiles</A>();
+  protected void <A HREF="#CloseInterfaceFiles()">CloseInterfaceFiles</A>();
+  protected void <A HREF="#HandleUnrecognizedSymbols()">HandleUnrecognizedSymbols</A>() throws IOException;
+  public boolean <A HREF="#jitParse(symbol)">jitParse</A>(symbol sym);
+  protected symbol <A HREF="#parseNum(StreamTokenizer)">parseNum</A>(StreamTokenizer st) throws IOException;
+  protected symbol <A HREF="#parseWords(StreamTokenizer,char,boolean,boolean,String,String,String)">parseWords</A>(StreamTokenizer st, char terminator,
+        boolean moreThanOneWord, boolean nested, String name, String pretext,
+        String posttext) throws IOException;
+}
+</PRE>
+
+
+<!-- ******************** -->
+<A NAME="constructors"></A><H2>Constructors</H2>
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="defscan()">defscan</A></H3>
+<BLOCKQUOTE><PRE>public defscan();
+</PRE>
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- ******************** -->
+<A NAME="methods"></A><H2>Methods</H2>
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="CloseInterfaceFiles"></A><A NAME="CloseInterfaceFiles()">CloseInterfaceFiles</A></H3><BLOCKQUOTE>
+<PRE>protected void CloseInterfaceFiles();
+</PRE>
+<P>Close win*.java after writing out all terminating info necessary. 
+
+<P><B>Return Value</B><P>No return value. 
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="finalizer"></A><A NAME="finalizer()">finalizer</A></H3><BLOCKQUOTE>
+<PRE>public void finalizer();
+</PRE>
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="HandleUnrecognizedSymbols"></A><A NAME="HandleUnrecognizedSymbols()">HandleUnrecognizedSymbols</A></H3><BLOCKQUOTE>
+<PRE>protected void HandleUnrecognizedSymbols() throws IOException;
+</PRE>
+<P>Mainly useful if you scan the header files in the wrong order or if you have circular dependencies in your headers. Resolves all unresolved symbols, or at least as much as it can. 
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="jitParse"></A><A NAME="jitParse(symbol)">jitParse</A></H3><BLOCKQUOTE>
+<PRE>public boolean jitParse(symbol sym);
+</PRE>
+<P>jitParse is a magic last-minute attempt at parsing complex symbol expressions, looking for undefined symbols that might be defined now. Employ whatever algorithms you want here, this is your last chance. Changes sym. 
+
+<P><B>Return Value</B><P>Returns true if it fixed the problem, else false 
+<P><TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD">
+<TD><B>Parameter</B><TD><B>Description</B></TR>
+
+<TR VALIGN=TOP><TD><I>symbol</I><TD>to fix up. 
+</TR>
+</TABLE>
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="parseNum"></A><A NAME="parseNum(StreamTokenizer)">parseNum</A></H3><BLOCKQUOTE>
+<PRE>protected symbol parseNum(StreamTokenizer st) throws IOException;
+</PRE>
+<P>Parses a C number and returns a symbol containing it. Don't try editing without a spatula. 
+
+<P><B>Return Value</B><P>Returns symbol holding the int, long, or double. 
+<P><TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD">
+<TD><B>Parameter</B><TD><B>Description</B></TR>
+
+<TR VALIGN=TOP><TD><I>st</I><TD>StreamTokenizer positioned on a number or a '-'. 
+</TR>
+</TABLE>
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="parseWords"></A><A NAME="parseWords(StreamTokenizer,char,boolean,boolean,String,String,String)">parseWords</A></H3><BLOCKQUOTE>
+<PRE>protected symbol parseWords(StreamTokenizer st, char terminator,
+        boolean moreThanOneWord, boolean nested, String name, String pretext,
+        String posttext) throws IOException;
+</PRE>
+<P>Parse a string of words, trying to unroll known symbols if possible. terminator should usually be StreamTokenizer.TT_EOL or ')'. 
+<P>Ideally, parseWords will leave st on the terminator, but occasionally it will be on the EOL character. It will add the symbol to UnrecognizedSymbols if appropriate, but not Symbols table.
+ 
+<P>Currently it puts undefined symbols into the symbol once per occurrence! So something like: #define foo (x+x) contains x twice. JIT test takes slightly longer. Not very serious.
+ 
+<P>BUGBUG: Casting doesn't work.
+ 
+
+<P><B>Return Value</B><P>Returns symbol containing the parsed expression 
+<P><TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD">
+<TD><B>Parameter</B><TD><B>Description</B></TR>
+
+<TR VALIGN=TOP><TD><I>st</I><TD>StreamTokenizer positioned at the start of a word or expression [like a '(']. 
+</TR>
+
+<TR VALIGN=TOP><TD><I>terminator</I><TD>char to use as a token to end this expression (often ';' or ')') 
+</TR>
+
+<TR VALIGN=TOP><TD><I>moreThanOneWord</I><TD>whether this expression can be longer than one word 
+</TR>
+
+<TR VALIGN=TOP><TD><I>nested</I><TD>true if this is a recursive call to parseWords, else false. 
+</TR>
+
+<TR VALIGN=TOP><TD><I>name</I><TD>Name of the symbol to return (ie, #define FOO 1 would have FOO as the name) 
+</TR>
+
+<TR VALIGN=TOP><TD><I>pretext</I><TD>String to append before symbol text (used for casting) 
+</TR>
+
+<TR VALIGN=TOP><TD><I>posttext</I><TD>String to append after symbol text (used for casting) 
+</TR>
+</TABLE>
+
+<P><B>Exceptions</B>
+
+<P>IOException
+ if st hits a problem 
+
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="SetupInterfaceFiles"></A><A NAME="SetupInterfaceFiles()">SetupInterfaceFiles</A></H3><BLOCKQUOTE>
+<PRE>protected void SetupInterfaceFiles();
+</PRE>
+<P>Create FileWrappers for all of the interface files. Depends heavily on the magic numbers for global, misc, and string output from above. 
+
+<P><B>Return Value</B><P>No return value. 
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- ******************** -->
+<A NAME="fields"></A><H2>Fields</H2>
+<DL>
+<DT><B><A NAME="Files">Files</A></B>
+<DD>
+<DT><B><A NAME="outputted">outputted</A></B>
+<DD>
+<DT><B><A NAME="resolvedLater">resolvedLater</A></B>
+<DD>
+<DT><B><A NAME="skippedAliases">skippedAliases</A></B>
+<DD>
+<DT><B><A NAME="skippedMacros">skippedMacros</A></B>
+<DD>
+<DT><B><A NAME="skippedNoValue">skippedNoValue</A></B>
+<DD>
+<DT><B><A NAME="skippedRedefined">skippedRedefined</A></B>
+<DD>
+<DT><B><A NAME="skippedStrings">skippedStrings</A></B>
+<DD>
+<DT><B><A NAME="skippedSymbols">skippedSymbols</A></B>
+<DD>
+<DT><B><A NAME="skippedUnparsible">skippedUnparsible</A></B>
+<DD>
+<DT><B><A NAME="skippedUnterminatedExpressions">skippedUnterminatedExpressions</A></B>
+<DD>
+<DT><B><A NAME="total">total</A></B>
+<DD>
+<DT><B><A NAME="unifiedSymbols">unifiedSymbols</A></B>
+<DD>
+<DT><B><A NAME="UnrecognizedSymbols">UnrecognizedSymbols</A></B>
+<DD>
+</DL>
+
+</BODY></HTML>

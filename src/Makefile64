@@ -1,0 +1,264 @@
+#The following list of samples were ported to Win64. Therefore these samples will
+#	Run on a Win64 operating system
+#	Compile without the following list of warnings
+
+#warning C4305: 'return' : truncation from 'unsigned __int64 ' to 'long ' 
+#warning C4311: 'type cast' : pointer truncation from 'int *__ptr64 ' to 'int ' 
+#warning C4312: 'type cast' : conversion from 'int ' to 'int *__ptr64 ' of greater size 
+#warning C4313: 'printf' : '%p' in format string conflicts with argument 2 of type '__int64 ' 
+#warning C4318: passing constant zero as the length to memset 
+#warning C4319: '~' : zero extending 'unsigned long ' to 'unsigned __int64 ' of greater size 
+#warning C4242: '=' : conversion from 'unsigned int' to 'unsigned short', possible loss of data 
+#warning C4244: 'return' : conversion from '__int64' to 'unsigned int', possible loss of data 
+
+#See the comment below for samples that didn't run on a Win64 OS,
+#but compiled without the above Win64 warnings
+
+DIRS = \
+     Begin\simple\~   \
+     MultiMedia\GDI\Fonts\fontview\~   \
+     MultiMedia\GDI\Fonts\gridfont\~   \
+     MultiMedia\GDI\Fonts\gridfont\~   \
+     MultiMedia\GDI\gdidemo\~   \
+     MultiMedia\GDI\metafile\mfedit\~   \
+     MultiMedia\GDI\printer\~   \
+     MultiMedia\GDI\reversi\~   \
+     MultiMedia\GDI\setdisp\~   \
+     MultiMedia\GDI\showdib\~   \
+     MultiMedia\GDI\Textfx\~   \
+     MultiMedia\GDI\WinNT\plgblt\~   \
+     MultiMedia\GDI\WinNT\wxform\~   \
+     MultiMedia\OpenGL\book\~   \
+     MultiMedia\OpenGL\demos\auxdemo\~   \
+     MultiMedia\OpenGL\demos\pgonoffs\~   \
+     MultiMedia\OpenGL\samples\~   \
+     MultiMedia\OpenGL\scrsave\~   \
+     MultiMedia\OpenGL\scrsave\~   \
+     MultiMedia\OpenGL\scrsave\~   \
+     MultiMedia\OpenGL\scrsave\~   \
+     MultiMedia\OpenGL\scrsave\~   \
+     NetDS\gqos\qosevent\~   \
+     netds\IPHelp\IPArp\~   \
+     netds\IPHelp\IPChange\~   \
+     netds\IPHelp\IPConfig\~   \
+     netds\IPHelp\IPRenew\~   \
+     netds\IPHelp\IPRoute\~   \
+     netds\IPHelp\IPStat\~   \
+     NetDS\Ras\RasBerry\~   \
+     NetDS\Ras\Rasdial\c\~   \
+     NetDS\Ras\RasEnumEntries\c\~   \
+     NetDS\Ras\rasgetctryinfo\c\~   \
+     NetDS\RPC\mazelord\~   \
+     NetDS\winsock\appletalk\~   \
+     NetDS\winsock\iocp\~   \
+     NetDS\winsock\rnr\~   \
+     NetDS\winsock\rnr\~   \
+     NetDS\winsock\wsock\~   \
+     WinBase\Fibers\~   \
+     WinBase\IO\AsyncIO\~   \
+     WinBase\IO\Filer\~   \
+     WinBase\IO\fWatch\~   \
+     WinBase\IO\WinNT\unbufcpy\~   \
+     WinBase\Registry\~   \
+     WinBase\Security\CertSvr\RequestCert\~   \
+     WinBase\Security\WinNT\AclApi\~   \
+     WinBase\Security\WinNT\Audit\~   \
+     WinBase\Security\WinNT\Check_sd\~   \
+     WinBase\Security\WinNT\domTrust\~   \
+     WinBase\Security\WinNT\HttpAuth\~   \
+     WinBase\Security\WinNT\lsaPrivs\~   \
+     WinBase\Security\WinNT\rcmd\~   \
+     WinBase\Security\WinNT\sd_flppy\~   \
+     WinBase\Security\WinNT\secPerf\~   \
+     WinBase\Security\WinNT\secprint\~   \
+     WinBase\Security\WinNT\securobj\~   \
+     WinBase\Security\WinNT\sidcln\~   \
+     WinBase\Security\WinNT\SockAuth\~   \
+     WinBase\Security\WinNT\TakeOwn\~   \
+     WinBase\Security\WinNT\textsid\~   \
+     WinBase\Sparsmem\~   \
+     WinBase\WinNT\enummount\~   \
+     WinBase\WinNT\mount\~   \
+     WinBase\WinNT\Perftool\PerfDlls\Leakybin\~   \
+     WinUI\cliptext\~   \
+     WinUI\CmdDlg\cdtest\~   \
+     WinUI\CmdDlg\comdlg32\~   \
+     WinUI\congui\~   \
+     WinUI\Input\MouseInfo\~   \
+     WinUI\Menu\~   \
+     WinUI\Resource\Iconpro\~   \
+     WinUI\Shell\Traynot\~   \
+#The following samples didn't run on a Win64 OS
+     Begin\dll\~   \
+     Begin\generic\~   \
+     DbMsg\mapi\simplemapi\~   \
+     Internet\Index\CatQ\~   \
+     MultiMedia\GDI\Fonts\ttfonts\~   \
+     MultiMedia\GDI\wincap32\~   \
+     MultiMedia\OpenGL\demos\backtrce\~   \
+     MultiMedia\OpenGL\demos\gengl\~   \
+     MultiMedia\OpenGL\demos\stonehng\~   \
+     MultiMedia\OpenGL\demos\vasphere\~   \
+     MultiMedia\OpenGL\glaux\~   \
+     MultiMedia\OpenGL\scrsave\~   \
+     NetDS\Dlc\~   \
+     NetDS\IAS\dialin\~   \
+     NetDS\Ras\PhoneEntry\~   \
+     NetDS\Ras\Rasdialasync\~   \
+     NetDS\Ras\RasEnumDevices\c\~   \
+     NetDS\Ras\WinNT\RasHost\~   \
+     NetDS\Ras\WinNT\Rassapi\~   \
+     NetDS\RPC\callback\~   \
+     NetDS\RPC\cluuid\~   \
+     NetDS\RPC\data\dunion\~   \
+     NetDS\RPC\data\inout\~   \
+     NetDS\RPC\data\repas\~   \
+     NetDS\RPC\data\xmit\~   \
+     NetDS\RPC\doctor\~   \
+     NetDS\RPC\dynept\~   \
+     NetDS\RPC\dynout\~   \
+     NetDS\RPC\handles\auto\~   \
+     NetDS\RPC\handles\cxhndl\~   \
+     NetDS\RPC\handles\usrdef\~   \
+     NetDS\RPC\hello\~   \
+     NetDS\RPC\interop\~   \
+     NetDS\RPC\mandel\~   \
+     NetDS\RPC\ns\nhello\~   \
+     NetDS\RPC\pickle\picklp\~   \
+     NetDS\RPC\pickle\picklt\~   \
+     NetDS\RPC\pipes\~   \
+     NetDS\RPC\rpcssm\~   \
+     NetDS\RPC\rpcsvc\~   \
+     NetDS\RPC\strout\~   \
+     NetDS\RPC\whello\~   \
+     NetDS\RPC\wintyp\~   \
+     NetDS\RPC\yield\~   \
+     netds\snmp\wsnmp\~   \
+     NetDS\TAPI\TAPI2\acd\acdclnt\~   \
+     NetDS\TAPI\TAPI2\atsp32\~   \
+     NetDS\TAPI\TAPI2\dialer\~   \
+     NetDS\TAPI\TAPI2\tapicomm\~   \
+     NetDS\WinNT\netapi\alert\~   \
+     NetDS\WinNT\netapi\apibuffer\~   \
+     NetDS\WinNT\netapi\chngpass\~   \
+     NetDS\WinNT\netapi\connection\~   \
+     NetDS\WinNT\netapi\netmsg\~   \
+     NetDS\WinNT\netapi\netshare\~   \
+     NetDS\WinNT\netapi\netsmple\~   \
+     NetDS\WinNT\netapi\nullsess\~   \
+     NetDS\WinNT\netapi\query\~   \
+     NetDS\WinNT\netapi\remote\~   \
+     NetDS\WinNT\netapi\server\~   \
+     NetDS\WinNT\netapi\session\~   \
+     NetDS\WinNT\netapi\share\~   \
+     NetDS\WinNT\netapi\user\~   \
+     NetDS\WinNT\netapi\wksta\~   \
+     NetDS\winsock\bcast\~   \
+     NetDS\winsock\dt_dll\~   \
+     NetDS\winsock\ipxchat\~   \
+     NetDS\winsock\nullprov\~   \
+     NetDS\winsock\nwlink\connect\~   \
+     NetDS\winsock\nwlink\dgrecv\~   \
+     NetDS\winsock\nwlink\dgsend\~   \
+     NetDS\winsock\nwlink\listen\~   \
+     NetDS\winsock\nwlink\listen\block\~   \
+     NetDS\winsock\nwlink\listen\nonblock\~   \
+     NetDS\winsock\nwlink\ping\~   \
+     NetDS\winsock\nwlink\testlib\~   \
+     NetDS\winsock\ping\~   \
+     NetDS\winsock\rnr\~   \
+     NetDS\winsock\rnr\~   \
+     NetDS\winsock\simple\~   \
+     NetDS\winsock\sockdup\~   \
+     NetDS\winsock\sockspx\~   \
+     NetDS\winsock\ws2chat\~   \
+     SysMgmt\Setup\infinst\~   \
+     WinBase\Debug\Deb\~   \
+     WinBase\Debug\WDbgExts\~   \
+     WinBase\IO\floppy\~   \
+     WinBase\IO\Serial\~   \
+     WinBase\IPC\DdeML\Clock\~   \
+     WinBase\IPC\DdeML\DdeInst\~   \
+     WinBase\IPC\DdeML\Ddemo\~   \
+     WinBase\IPC\DdeML\DdeProg\~   \
+     WinBase\IPC\DdeML\Server\~   \
+     WinBase\IPC\NamePipe\Console\~   \
+     WinBase\IPC\NamePipe\npClient\~   \
+     WinBase\IPC\NamePipe\npServer\~   \
+     WinBase\NTMS\NTMSApi\~   \
+     WinBase\NTMS\NTMSMll\~   \
+     winbase\SCard\SCIntro\~   \
+     winbase\SCard\SCQuery\~   \
+     WinBase\Security\Crypto\cFiler\~   \
+     WinBase\Security\Crypto\Encrypt\~   \
+     WinBase\Security\Crypto\EnumAlgs\~   \
+     WinBase\Security\Crypto\InitUser\~   \
+     WinBase\Security\Crypto\Sign\~   \
+     WinBase\Security\WinNT\DispTrus\~   \
+     WinBase\Security\WinNT\Gina\~   \
+     WinBase\Security\WinNT\Ginastub\~   \
+     WinBase\Security\WinNT\logonnp\~   \
+     WinBase\Security\WinNT\MachAcct\~   \
+     WinBase\Security\WinNT\SampSSP\~   \
+     WinBase\Security\WinNT\secFile\c\~   \
+     WinBase\Security\WinNT\subAuth\~   \
+     WinBase\Security\WinNT\SuperUsr\~   \
+     WinBase\WinNT\4gt\~   \
+     WinBase\WinNT\Perftool\Pdh\ProcList\~   \
+     WinBase\WinNT\Perftool\Pdh\StatList\~   \
+     WinBase\WinNT\Perftool\Pdh\TypePerf\~   \
+     WinBase\WinNT\Perftool\PerfDlls\AppMem\~   \
+     WinBase\WinNT\Perftool\PerfDlls\AppMem\appDll\~   \
+     WinBase\WinNT\Perftool\PerfDlls\AppMem\PerfDll\~   \
+     WinBase\WinNT\Perftool\PerfDlls\Perfgen\~   \
+     WinBase\WinNT\pop3\~   \
+     WinBase\WinNT\Service\~   \
+     WinUI\Console\~   \
+     WinUI\Controls\SpinCube\~   \
+     WinUI\Resource\Dyndlg\~   \
+     WinUI\Resource\msgtable\~   \
+     WinUI\Shell\DropExt\~   \
+     WinUI\Shell\FileView\~   \
+     WinUI\Shell\fParser\~   \
+     WinUI\Shell\ShellExt\~   \    
+
+SDKPROJ =Samples
+
+
+#
+# This is a Platform SDK non-leaf-node makefile.  It is used to allow NMAKE, 
+#  or a similar tool, to recursively build all of the samples in a directory 
+#  tree.  To add or remove a directory from the build process, modify the 
+#  DIRS list above.  
+#
+# The SDKPROJ macro (above) is defined solely for the purpose of echoing
+#  the current directory location to the screen.  
+#
+# Do not modify this makefile except for the DIRS and SDKPROJ macros above.
+#
+
+#
+# Include sdkpropbld.mak in order to get standard build options, environment
+#  variables, and macros.  The sdkpropbld.mak file is installed with the SDK 
+#  in the include directory.
+# 
+
+!include <sdkpropbld.mak>
+
+# 
+# In order to build "all," process each of the entries in the DIRS list.
+#
+
+all: $(DIRS)
+
+
+#
+# In order to build each of the entries in the DIRS list, change dir into the
+#  directory in question, echo the current location, run nmake recursively, 
+#  and change dir back to the original directory level.  This four step process 
+#  is encapsulated in sdkbld.mak which is installed with the SDK in the include
+#  directory.
+#
+
+$(DIRS):
+!include <sdkbld.mak>

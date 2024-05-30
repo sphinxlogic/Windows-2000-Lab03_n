@@ -1,0 +1,27 @@
+// (C) Copyright 1996-1997 Microsoft Corporation.  
+#ifndef _SAMPLE_RC_
+#define _SAMPLE_RC_
+
+#include <msapcdlg.h>
+
+//
+//  Defines the bitmap to be used
+//
+SIGNIN			BITMAP					blank.bmp
+
+//
+//  Defines all resource strings to be used
+//
+STRINGTABLE
+BEGIN
+    IDS_FRIENDLY_NAME       "Membership Service Name"
+	IDS_ENTERNORP  		    "Please type your member ID and password to connect to this Internet site."
+    IDS_USERNAME_LABEL      "&Member ID:"
+    IDS_PASSWORD_LABEL      "&Password:"
+    IDS_SAVEPWD_LABEL       "&Remember my password"
+	IDS_NOUSERNAME			"Please type your member ID."
+	IDS_NOPASSWORD			"Please type your password."
+    IDS_PWDTOOSHORT         "The password you have entered is too short!"
+END
+
+#endif  // _SAMPLE_RC_

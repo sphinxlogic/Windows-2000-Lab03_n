@@ -1,0 +1,8 @@
+[Custom]
+FIXED=     const double,             FixedPtMarshaler
+MYVARIANT= const String,             VarStrMarshaler
+POINT=           java.awt.Point,     PointMarshaler
+RECT=      const java.awt.Rectangle, RectMarshaler
+MYCHAR=    const String,             AnsiMarshaler
+
+

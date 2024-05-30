@@ -1,0 +1,7 @@
+VBGROUP 5.0
+StartupProject=..\LoginControl\LoginTest.vbp
+Project=..\LoginControl\LoginControl.vbp
+Project=bus_Customer\bus_Customer.vbp
+Project=db_Customer\db_Customer.vbp
+Project=db_CustOnline\db_CustOnline.vbp
+Project=db_CustPreferences\db_CustPreferences.vbp

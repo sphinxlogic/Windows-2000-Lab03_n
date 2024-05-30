@@ -1,0 +1,40 @@
+# Microsoft Developer Studio Generated Dependency File, included by AtlBrowser.mak
+
+.\AboutBox.cpp : \
+	".\AboutBox.h"\
+	".\StdAfx.h"\
+	
+
+.\AtlBrCon.cpp : \
+	".\AboutBox.h"\
+	".\AtlBrCon.h"\
+	".\AtlBrowser.h"\
+	".\DispIds.h"\
+	".\StdAfx.h"\
+	".\WBCmdGroup.h"\
+	
+
+.\AtlBrowser.cpp : \
+	".\AboutBox.h"\
+	".\AtlBrCon.h"\
+	".\AtlBrowser.h"\
+	".\AtlBrowser_i.c"\
+	".\StdAfx.h"\
+	
+
+!IF  "$(CFG)" == "AtlBrowser - Win32 Debug"
+
+!ELSEIF  "$(CFG)" == "AtlBrowser - Win32 Release MinSize"
+
+!ELSEIF  "$(CFG)" == "AtlBrowser - Win32 Release MinDependency"
+
+!ENDIF 
+
+.\AtlBrowser.rc : \
+	".\AtlBrCon.rgs"\
+	".\AtlBrowser.rgs"\
+	
+
+.\StdAfx.cpp : \
+	".\StdAfx.h"\
+	

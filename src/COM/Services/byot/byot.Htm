@@ -1,0 +1,318 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 3.0">
+<title>BYOT</title>
+<link rel="stylesheet" href="../styles.css" type="text/css">
+<style>
+A:link {color: Olive} A:visited {color: 336666} A:hover
+{background:Olive; color: White} UL {
+list-style-image:&quot;url('../images/BLACKARROW.GIF')&quot;} </style>
+</head>
+<body>
+
+<h2>BYOT ("Bring Own Transaction") Sample</h2>
+
+<hr>
+
+<h4>Overview</h4>
+
+<p>This sample demonstrates the concepts and feature set exposed by the new COM+ <em>BYOT
+technology</em> ("Bring Your Own Transaction"). BYOT will enable a
+"down-stream" COM+ component to participate in a transaction that was initiated
+by an external system. </p>
+
+<p>The following sample is simple and yet, somewhat contrived. This is due to the fact
+that we have to simulate the initiation of an external transaction using a separate COM+
+machine rather than a "truly" external system. </p>
+
+<p>The BYOT sample is a three-tier web-based example that demonstrates the ability of COM+
+to participate in transactions that are intiated remotely.</p>
+<b>
+
+<h4>Requirements</b><font SIZE="2"></H4>
+
+<p></font>Create a sample that will demonstrate the feature set exposed by the new COM+
+technology called <em>Bring Your Own Transaction</em> (BYOT). The sample should use the Transaction Internet 
+Protocol (TIP) to initiate a TIP transaction on an originating machine (client). 
+Once the BYOT/TIP transaction has been established, the client should then 
+contact a remote machine to perform some work under the protection of the 
+previously created transaction. The communication protocol used to propagate the 
+transaction to the remote machine should not be DCOM. The absence of DCOM will 
+clearly demonstrate the ability of BYOT to provide developers with transactional 
+protection without relying on DCOM and/or OLE Transactions. </P>
+
+<h4><u><b>Overview</b></u><font SIZE="2"></h4></FONT>
+
+<p>The following sample application is a minimal three-tier web-based application composed
+of various client and server side technologies such as IE, COM+, IIS, ADO, and SQL Server.
+Development Tools used to build this sample included Visual Basic 6.0 SP3, Visual C++ 6.0
+SP3, Microsoft FrontPage 2000 and Microsoft Visual InterDev 6.0 SP3.</p>
+
+<h4><b><font SIZE="3"><u>Logical View</h4>
+
+<blockquote></U></FONT><font SIZE="2"><h5>UI Layer</h5>
+  <blockquote>
+    <h6>User Interface</h6></B><p></font>The user interface will consist of a 
+    rudimentary set of web pages. The initial screen will provide the user with 
+    a list of employees. Two command buttons will be provided to allow the user 
+    to add an employee or cancel the current action.</P>
+    <blockquote>
+      <b><p>Add</p>
+      </b><p>Selecting Add will cause the user to be presented with an "Add Employee"
+      web-page that allows information about a new employee to be entered. Selecting Add causes
+      a new transaction to be created. From here, the user can choose to Commit or Abort the
+      transaction.</p>
+      <blockquote>
+        <b><p>Commit</p>
+        </b><p>Choosing Commit here causes the transaction to commit.</p>
+        <b><p>Abort</p>
+        </b><p>Choosing Abort here causes the transaction to abort.</p>
+      </blockquote>
+      <b><p>Cancel</p>
+      </b><p>Choosing Cancel will take the user back to the start page and abort the
+      transaction.</p>
+    </blockquote>
+  </blockquote>
+  <b><p>Business Layer </p>
+  <blockquote>
+    <i><p><big>BYOT Transaction Object</big></p>
+    </i></b><p>One of the key interfaces needed to make this sample work is a raw COM
+    interface. At the time of writing this sample, there are currently no
+    automation-compatible interfaces implemented by the BYOT infrastructure that will allow us
+    to safely use VB and/or VJ to access a transaction's TIP URL. Therefore, we need to
+    encapsulate access to the raw COM interface (IObjectContextTip). The proposed object
+    exposes the BYOT/TIP transaction's URL to any automation-enabled programming environment.
+    This object will reside on the client machine (representing the external transaction) This
+    object is a managed component (registered in the COM+ Explorer) and it needs to be marked
+    as "Requires New Transaction". </p>
+    <p>The object exposes the following methods/properties.</p>
+    <b><p>Function: </b>HRESULT 
+    ByotTransactionObject::BeginTransaction (void);</P>
+    <b><p>Description:</b> This method will initiate a BYOT 
+    transaction. Internally, the act of creating the BYOT Transaction Object 
+    will be sufficient to create the transaction (i.e the object is marked as 
+    "Requires New Transaction" in the COM+ Explorer). However, the 
+    BeginTransaction method provides the developer with an explicit means of 
+    specifying that a BYOT transaction should begin and it also provides 
+    symmetry and synchronization.</P>
+    <b><p>Function: </b>HRESULT 
+    ByotTransactionObject::CommitTransaction (void);</P>
+    <b><p>Description: </b>This method will commit the BYOT 
+    transaction. This will be accomplished by calling 
+    IObjectContext::SetComplete. Since this object will be the root of the 
+    transaction, it will cause the COM+ infrastructure to commit the 
+    transaction. (IObjectContext::SetComplete)</P>
+    <b><p>Function: </b>HRESULT 
+    ByotTransactionObject::AbortTransaction (void);</P>
+    <b><p>Description: </b>This method will abort the BYOT 
+    transaction. (IObjectContext::SetAbort)</P>
+    <b><p>Function: </b>HRESULT 
+    ByotTransactionObject::get_TipURL([out,retval] BSTR* bstrTipURL);</P>
+    <b><p>Description: </b>This method will return the TIP URL 
+    associated with the current transaction. Internally, we will QueryInterface 
+    the IObjectContext interface for IObjectContextWithTip and call it's 
+    GetTipUrl method. This method will be used by the client to retrieve the URL 
+    in order to pass it to the server in an HTTP request.</P>
+    <p><big><i><b>ByotTxEnlister Object</b></i></big></p>
+    <p>The ByotTxEnlister object provides us with the ability to join an external transaction.
+    This is accomplished by enlisting in the transaction using a Transaction Internet Protocol
+    (TIP) URL. In our example, the TIP URL will be provided as a parameter to a web query
+    which our ASP script will use to pass to the EnlistTransaction method of the
+    ByotTxEnlister object. The ByotTxEnlister object needs to be marked as "Does Not
+    Support" transactions. </p>
+    <b><p>Function: </b>HRESULT 
+    ByotTxEnlister::EnlistTransaction([in] BSTR bstrTipUrl);</P>
+    <b><p>Description: </b>This method accepts a TIP URL as 
+    it's only parameter. This function will enlist the object in the specified 
+    transaction.</P>
+    <p><b>Function: </b>HRESULT ByotTxEnlister::::CreateInstance([in] BSTR bstrProgID, [out]
+    IDispatch** ppDispatch);</p>
+    <b><p>Description: </b>This method will create an instance 
+    of the requested object. The newly created object will inherit the BYOT/TIP 
+    transaction specified in bstrTipUrl. Due to the fact that VBScript and 
+    JScript do not support a GUID datatype, this method only accepts a 
+    Programmatic Identifier (bstrProgId). Additionally, since VBScript and 
+    JScript only supports objects that expose IDispatch, the following function 
+    will fail if the requested object does not support the IDispatch interface 
+    (ppDispatch).</P>
+    <i><b><p><big>Employee Object</big></p>
+    </b></i><p>The Employee object will expose the ability to add, update and delete employee
+    information stored in a back-end database (SQL Server, in this example). In our sample,
+    this object will execute under the protection of the BYOT/TIP transaction. It will use ADO
+    to insert, update and delete records from an associated SQL Server table.</p></BLOCKQUOTE>
+  <p><strong>Data Layer</strong></p>
+  <blockquote>
+    <p>Employee Database</p>
+    <p>Employee Table</p>
+  </blockquote></BLOCKQUOTE>
+
+<p><u><b>&nbsp;</p>
+
+<p>Physical View</B></U></p>
+
+<blockquote>
+  <b><p>Client</p>
+  <blockquote>
+    </b><p>Windows 2000 (any flavor)</p>
+    <p>Internet Explorer 5.0</p>
+    <p>COM+ 1.0</p>
+  </blockquote>
+  <b><p>Server</p>
+  <blockquote>
+    </b><p>Windows 2000 (any flavor) (MDAC included by default)</p>
+    <p>IIS 5.0</p>
+    <p>COM+ 1.0</p>
+    <p>SQL Server 7.0</p></BLOCKQUOTE></BLOCKQUOTE>
+
+<h4>Project Files</h4>
+
+<table border="0" width="622">
+  <tr>
+    <td width="221" bgcolor="#000000"><font color="#ffffff"><strong>Sub-Directory</strong></font></td>
+    <td width="393" bgcolor="#000000"><font color="#ffffff"><strong>Description</strong></font></td>
+  </tr>
+  <tr>
+    <td width="221">\ByotSampleWeb</td>
+    <td width="393">IIS application</td>
+  </tr>
+  <tr>
+    <td width="221">\CLIENT</td>
+    <td width="393">Parent directory for client files</td>
+  </tr>
+  <tr>
+    <td width="221">\CLIENT\ByotTransaction</td>
+    <td width="393">ByotTransaction COM+ component</td>
+  </tr>
+  <tr>
+    <td width="221">\CLIENT\Byot\CLIENTUI</td>
+    <td width="393">VB User interface</td>
+  </tr>
+  <tr>
+    <td width="221">\SERVER</td>
+    <td width="393">Parent directory for server files</td>
+  </tr>
+  <tr>
+    <td width="221">\SERVER\ByotTxEnlister</td>
+    <td width="393">ByotTxEnlister COM+ component</td>
+  </tr>
+  <tr>
+    <td width="221">\SERVER\Db</td>
+    <td width="393">T-SQL script to create database table.</td>
+  </tr>
+  <tr>
+    <td width="221">\SERVER\employee</td>
+    <td width="393">VB employee object</td>
+  </tr>
+</table>
+
+<h4><big><big><u><b>Build, Configure, &amp; Run</b></u></big></big></h4>
+<b>
+
+<p><big>To Build the Sample:</big></b></P>
+
+<p><STRONG>NOTE: All projects that comprise this sample 
+assume the statements below are true. If any of the assumptions below are not 
+true, you will need to modify the code in the&nbsp;designated place to ensure 
+that the sample will run correctly.</p></STRONG>
+<UL>
+  <LI>The SQL Server System Administrator account has an empty (NULL) password. 
+  (i.e. ""). If your System Administrator account is not null,&nbsp;modify the 
+  password value for the lines of code located in the following source 
+files.<BR>
+  <P>\BYOTSampleWeb\default.asp - line 39<BR><STRONG>adoRs.Open "Select * from 
+  employee", 
+  "Provider=SQLOLEDB;server=(local);Database=employee;UID=sa;PWD="<BR><BR></STRONG>\SERVER\employee\employee.cls 
+  - line 12<BR><STRONG>conn.Open sConnect, "sa", ""</STRONG></P></LI>
+  <LI>The SQL Server database is installed on the local machine (i.e. (local)). 
+  To change to code that depends on the database being located on the local 
+  machine, change the&nbsp;reference to "(local)" in the source files to the 
+  appropriate name of&nbsp;your database server.<BR><BR>
+  <P>\BYOTSampleWeb\default.asp - line 39<BR><STRONG>adoRs.Open "Select * from 
+  employee", 
+  "Provider=SQLOLEDB;server=(local);Database=employee;UID=sa;PWD="<BR><BR></STRONG>\SERVER\employee\employee.cls 
+  - line 11<BR><STRONG>sConnect = 
+  "Provider=SQLOLEDB;server=(local);Database=employee"</STRONG></P></LI></UL>
+<P><STRONG>Visual C++</STRONG></P>
+
+<p>Use Microsoft Visual C++ 6.0 or later to build the ByotTransaction and ByotTxEnlister
+projects. The aforementioned projects are part of a single project. To open the Visual C++
+projects, select the byot.dsw file in the "\byot" parent directory. </p>
+
+<p><b>Visual Basic</b></p>
+
+<p>Use Microsoft Visual Basic 6.0 or later to build the CLIENTUI and EMPLOYEE projects.
+The CLIENTUI project is located in the CLIENTUI subdirectory. The EMPLOYEE project is
+located in the EMPLOYEE subdirectory. </p>
+
+<p><b>Visual InterDev</b></p>
+
+<p>The ByotSampleWeb directory contains the Visual InterDev web application. Use IIS to
+create a virtual directory (see To Configure" section below) and access the project
+via Visual InterDev.</p>
+
+<p><big><b>To Configure:</b><br>
+</big><br>
+<b>Client</b><br>
+Create a COM+ application using the COM+ Explorer. <br>
+- Name: "BYOT Sample - Client Application"<br>
+- Install the ByotTransaction.dll into the application<br>
+- Configure to "Requires New" transaction.<br>
+<br>
+<b>Server</b><br>
+Create a COM+ application using the COM+ Explorer.<br>
+- Name: "BYOT Sample - Server Application"<br>
+- Install the TxEnlister.dll into the application<br>
+- Configure to "Not Supported" for it's transaction attribute<br>
+- Install the employee.dll into the application<br>
+- Configure for "Required" a transaction.<br>
+<br>
+<b>SQL Server</b> (Instructions for SQL 7.0)<br>
+Create a database called "employee"<br>
+- Start the SQL Server Enterprise Manager<br>
+- In the Left pane, expand the tree to: "Databases"<br>
+- Right click on "Databases" and select: "New Database..."<br>
+- In the "Name" texbox type: "employee"<br>
+- Click "OK"<br>
+Create employee table<br>
+- Open Microsoft Query Analyzer.<br>
+- Open the file "...\BYOT\SERVER\Db\tables.sql"<br>
+- Execute the T-SQL script</p>
+
+<p><strong>NOTE</strong>:<strong> </strong>All samples projects assume that the
+"sa" account password to be set to an empty string.<br>
+<br>
+<b>ByotSampleWeb</b><br>
+Create an IIS Application.<br>
+- Go to: Internet Services Manager<br>
+- In the Left Pane expand <MACHINE Name> - "Default Web Site"<br>
+- Right Click on "Default Web Site" and select "New" - "Virtual
+Directory"<br>
+- Click "Next"<br>
+- In the "Alias" textbox type: BYOTSampleWeb<br>
+- Click "Next"<br>
+- Click the "Browse" button and browse to the BYOT\BYOTSampleWeb\ folder<br>
+- Click "Next"<br>
+- Make sure the following Checkboxes are checked:<br>
+- Read<br>
+- Run scripts<br>
+- Write<br>
+- Click "Next"<br>
+- Click "Finish"<br>
+<br>
+<b>Run the Sample</b><br>
+- Run clientui.exe<br>
+- The default URL is <a href="http://localhost/BYOTSampleWeb">http://localhost/BYOTSampleWeb</a>.
+Click the command button labeled "Go".<br>
+- A web page will be displayed that contains a table of employees. This table will be
+empty if this is the first time you are executing the application. Click the "Click
+here to add an employee" button.<br>
+- Enter the new employee's first and last name and click "Add Employee" button.<br>
+- A web page will be displayed asking you to Commit or Abort the current transaction. Make
+the appropriate selection.
+</p>
+
+<hr>
+</body>
+</html>

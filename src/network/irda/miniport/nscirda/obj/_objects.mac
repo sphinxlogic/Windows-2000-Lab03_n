@@ -1,0 +1,64 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\nscirda.res \
+    $(_OBJ_DIR)\alpha\comm.obj \
+    $(_OBJ_DIR)\alpha\fcs.obj \
+    $(_OBJ_DIR)\alpha\nsc.obj \
+    $(_OBJ_DIR)\alpha\request.obj \
+    $(_OBJ_DIR)\alpha\resource.obj \
+    $(_OBJ_DIR)\alpha\settings.obj \
+    $(_OBJ_DIR)\alpha\convert.obj \
+    $(_OBJ_DIR)\alpha\init.obj \
+    $(_OBJ_DIR)\alpha\nscfir.obj \
+    $(_OBJ_DIR)\alpha\sync.obj \
+    $(_OBJ_DIR)\alpha\dongle.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\nscirda.res \
+    $(_OBJ_DIR)\axp64\comm.obj \
+    $(_OBJ_DIR)\axp64\fcs.obj \
+    $(_OBJ_DIR)\axp64\nsc.obj \
+    $(_OBJ_DIR)\axp64\request.obj \
+    $(_OBJ_DIR)\axp64\resource.obj \
+    $(_OBJ_DIR)\axp64\settings.obj \
+    $(_OBJ_DIR)\axp64\convert.obj \
+    $(_OBJ_DIR)\axp64\init.obj \
+    $(_OBJ_DIR)\axp64\nscfir.obj \
+    $(_OBJ_DIR)\axp64\sync.obj \
+    $(_OBJ_DIR)\axp64\dongle.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\nscirda.res \
+    $(_OBJ_DIR)\i386\comm.obj \
+    $(_OBJ_DIR)\i386\fcs.obj \
+    $(_OBJ_DIR)\i386\nsc.obj \
+    $(_OBJ_DIR)\i386\request.obj \
+    $(_OBJ_DIR)\i386\resource.obj \
+    $(_OBJ_DIR)\i386\settings.obj \
+    $(_OBJ_DIR)\i386\convert.obj \
+    $(_OBJ_DIR)\i386\init.obj \
+    $(_OBJ_DIR)\i386\nscfir.obj \
+    $(_OBJ_DIR)\i386\sync.obj \
+    $(_OBJ_DIR)\i386\dongle.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\nscirda.res \
+    $(_OBJ_DIR)\ia64\comm.obj \
+    $(_OBJ_DIR)\ia64\fcs.obj \
+    $(_OBJ_DIR)\ia64\nsc.obj \
+    $(_OBJ_DIR)\ia64\request.obj \
+    $(_OBJ_DIR)\ia64\resource.obj \
+    $(_OBJ_DIR)\ia64\settings.obj \
+    $(_OBJ_DIR)\ia64\convert.obj \
+    $(_OBJ_DIR)\ia64\init.obj \
+    $(_OBJ_DIR)\ia64\nscfir.obj \
+    $(_OBJ_DIR)\ia64\sync.obj \
+    $(_OBJ_DIR)\ia64\dongle.obj
+
+PASS0_IA64_OBJECTS=
+

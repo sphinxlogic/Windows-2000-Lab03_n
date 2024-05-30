@@ -1,0 +1,80 @@
+// --cfgcode.chk----------------------------------------------------------------
+//
+//  File containing parameter checking functions for cfgcode.c.
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+// -----------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_HrReadPropsFromINIFile(a,b,c,d)     NOERROR
+#define CHK_HrParsePropValue(a,b,c,d,e)         NOERROR
+#define CHK_HrCreateBinaryDataFile(a,b,c)       NOERROR
+
+#else
+
+//$--CHK_HrReadPropsFromINIFile-------------------------------------------------
+//  Check the parameters for HrReadPropsFromINIFile().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrReadPropsFromINIFile(
+	IN	LPSTR			pszInputFile,	// name of file to read properties from
+	IN	LPSTR			pszSection,		// name of section in file
+	OUT	ULONG *			pcProps,		// number of properties read from file
+	OUT	LPSPropValue *	ppProps)		// array of properties read from file
+{
+	HRESULT		hr		= NOERROR;
+
+	if( !TEST_STRINGA_PTR(pszInputFile) ||
+        !TEST_STRINGA_PTR(pszSection) ||
+        !TEST_WRITE_PTR(pcProps, sizeof(*pcProps)) ||
+        !TEST_WRITE_PTR(ppProps, sizeof(*ppProps)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+	}
+
+	return(hr);
+}
+
+//$--CHK_HrParsePropValue-------------------------------------------------------
+//  Check the parameters for HrParsePropValue().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrParsePropValue(
+    IN  LPSTR           pszFullLine,    // the full line (for error logging)
+	IN	ULONG			ulPropTag,		// property tag of this property
+	IN	LPSTR			pszValueText,	// text of property value to parse
+	IN	LPVOID			pBaseObject,	// base object for MAPIAllocateMore()
+	OUT	LPSPropValue	pProp)			// structure to write results
+{
+	HRESULT		hr		= NOERROR;
+
+	if (!TEST_STRINGA_PTR(pszFullLine) ||
+        !TEST_STRINGA_PTR(pszValueText) ||
+        !TEST_WRITE_PTR(pBaseObject, 1) ||
+        !TEST_WRITE_PTR(pProp, sizeof(*pProp)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+	}
+
+	return(hr);
+}
+
+//$--CHK_HrCreateBinaryDataFile-------------------------------------------------
+//  Check the parameters for HrCreateBinaryDataFile().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrCreateBinaryDataFile(
+	IN	LPSTR	pszOutputFile,			// name of file to create
+	IN	ULONG	cbData,					// number of bytes to write to file
+	IN	LPBYTE	pbData)					// binary data to write to file
+{
+	HRESULT		hr		= NOERROR;
+
+	if (!TEST_STRINGA_PTR(pszOutputFile) ||
+        !TEST_WRITE_PTR(pbData, cbData))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+	}
+
+	return(hr);
+}
+
+#endif /* DEBUG */

@@ -1,0 +1,123 @@
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<HTML>
+<HEAD>
+<TITLE>The CHECKBOX Tag</TITLE>
+<META NAME="FILENAME" CONTENT="checkbox.HTM">
+
+<script language="JavaScript">
+
+function forward() {
+
+//This function increments the data bound record after checking to confirm 
+//you are not already at the end of the recordset. If you are, the program 
+//alerts you that it cant go any further. 
+
+  if (StockList.recordset.AbsolutePosition != StockList.recordset.RecordCount) {
+	StockList.recordset.MoveNext();
+	}
+	else {
+	alert("Already at last element");
+	}
+}
+
+function reverse() {
+
+//This function decrements the data bound record after checking to confirm  
+//you are not already at the end of the recordset. If you are, the program 
+//alerts you that it cant go any further.  
+
+  if (StockList.recordset.AbsolutePosition != 1) {
+	StockList.recordset.MovePrevious();
+	}
+	else {
+	alert("Already at first element");
+	}
+}
+
+
+</SCRIPT>
+</head>
+
+<body TOPMARGIN=20 leftmargin=40 bgcolor="#ffffff" link="#000066"
+	vlink="#666666 text="#000000">
+
+<H2>The CHECKBOX Tag</H2>
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT>
+<P>
+<P>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+<hr>
+<br>
+
+Check boxes are traditionally used in HTML to determine whether a value is
+returned to the server on submit. Data binding uses the check box slightly
+differently. With data binding, the check box binds a boolean value from the
+data set. This is equivalent to binding the CHECKED attribute rather than the
+VALUE attribute.
+<p>
+Check boxes can be used with current record binding. An example is shown below.
+Click on the arrow buttons to change the current record. Notice that the
+value displayed in the check box changes to match the boolean value of the bound
+column in the the current record of the data set. A SPAN is also shown bound
+to the company name in the current record for clarity.
+<P>
+<center>
+<span datasrc=#StockList datafld=Company></span>:&nbsp;
+<input type="checkbox" ID="choices2" datasrc="#StockList" datafld="Ex_div"> Ex- Dividend
+
+<hr width=100>
+<input type="button" value="  <  " onClick="reverse();">
+<input type="button" value="  >  " onClick="forward();">
+<hr width=100>
+<p>
+
+</center>
+
+Check boxes can also be used inside repeated tables. The following example
+illustrates this.
+<p>
+<object id="StockList" classid="clsid:333C7BC4-460F-11D0-BC04-0080C7055A83"
+	width=0 height=0>
+  <param name="UseHeader" value="True">
+  <param name="TextQualifier" value="&quot;">
+  <param name="FieldDelim" value=",">
+  <param name="DataURL" value="quotes.txt">
+</object>
+<center>
+<table datasrc="#StockList" border=1 id=tbl>
+	<THEAD>
+		<tr>
+		<th>
+			<DIV> Company  </DIV>
+		</th>
+		<th>
+			<DIV> Ex-Dividend </DIV>
+		</th> 
+		</tr>
+	</THEAD>
+	<TBODY>
+		<td align=center>
+			<span datafld="Company">  </span>	
+		</td>
+		<td align=center>
+			<input type="checkbox" ID="choices2" datafld="Ex_div">		
+		</td>
+	</TBODY>
+</Table>
+</center>
+<p>
+
+Click on <a href="quotes.txt">quotes.txt</a> to see the data file used by this page.<P>
+
+<P>
+<P>
+<P>
+<FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">
+&copy; <A HREF="/misc/cpyright.htm" TARGET="_top">1999 Microsoft Corporation. All rights reserved. Terms of use</A>.
+</font>
+</body>
+</html>

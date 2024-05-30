@@ -1,0 +1,14 @@
+DESCRIPTION 'Test DLL'
+
+EXPORTS
+        DllMain
+        RNIGetCompatibleVersion
+        
+        PointMarshaler_toJava
+        PointMarshaler_copyToExternal
+
+        PointMarshaler_copyToJava
+        PointMarshaler_toUninitJava
+
+        PointMarshaler_classInit
+

@@ -1,0 +1,32 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\kbdclass.res \
+    $(_OBJ_DIR)\alpha\kbdclass.obj
+
+PASS0_ALPHA_OBJECTS= \
+    $(PASS0_HEADERDIR)\kbdlog.h \
+    $(MC_SOURCEDIR)\kbdlog.rc
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\kbdclass.res \
+    $(_OBJ_DIR)\axp64\kbdclass.obj
+
+PASS0_AXP64_OBJECTS= \
+    $(PASS0_HEADERDIR)\kbdlog.h \
+    $(MC_SOURCEDIR)\kbdlog.rc
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\kbdclass.res \
+    $(_OBJ_DIR)\i386\kbdclass.obj
+
+PASS0_386_OBJECTS= \
+    $(PASS0_HEADERDIR)\kbdlog.h \
+    $(MC_SOURCEDIR)\kbdlog.rc
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\kbdclass.res \
+    $(_OBJ_DIR)\ia64\kbdclass.obj
+
+PASS0_IA64_OBJECTS= \
+    $(PASS0_HEADERDIR)\kbdlog.h \
+    $(MC_SOURCEDIR)\kbdlog.rc
+

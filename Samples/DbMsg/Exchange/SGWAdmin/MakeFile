@@ -1,0 +1,31 @@
+#---------------------------------------------------------------------------
+# Description:
+#   Make file to generate SGwAdmin.Dll
+#
+# Copyright (C) Microsoft Corporation 1986 - 1998.  All Rights Reserved.
+#---------------------------------------------------------------------------
+Proj = SGwAdmin
+
+USE_EXCHANGE=1
+Use_MFC = 1
+dll=1
+
+LibList =  Shell32.Lib
+
+ObjList =  $(@R).Obj $(@R).Res $(@D)\Global.Obj $(@D)\Format.Obj $(@D)\EditExt.Obj
+
+!Include <BkOffice.Mak>
+
+!if "$(CPU)" == "ALPHA"
+LINK = $(LINK) /FORCE:MULTIPLE
+!endif
+
+all: $(ObjDir)\$(Proj).Dll $(ObjDir)\$(Proj).Hlp
+
+$(ObjDir)\$(Proj).Dll: $(ObjList)
+
+#---------------------------------------------------------------------------
+# Help Files
+#---------------------------------------------------------------------------
+
+$(ObjDir)\$(Proj).Hlp: $(@B).Hpj $(@B).Rtf

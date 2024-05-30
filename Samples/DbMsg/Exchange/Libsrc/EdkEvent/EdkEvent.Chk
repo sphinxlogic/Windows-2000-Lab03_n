@@ -1,0 +1,93 @@
+// --edkevent.chk---------------------------------------------------------------
+//
+//  File containing parameter checking routines for edkevent.c.
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+// -----------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_HrEventOpenLog(a,b,c,d,e,f)      NOERROR
+#define CHK_HrEventUseExisting(a)         NOERROR
+#define CHK_HrEventGetCounts(a)              NOERROR
+#define CHK_HrEventGetHandle(a)              NOERROR
+
+#else
+
+//$--CHK_HrEventOpenLog------------------------------------------------------
+//  Check the parameters for HrEventOpenLog().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrEventOpenLog(	// RETURNS: HRESULT
+	IN LPSTR pszApplicationName,		// name of this application
+	IN LPSTR pszExecutableName,		    // [path of file containing messages]
+    IN LPSTR pszEventMessageFile,       // name of event message file
+    IN LPSTR pszParameterMessageFile,   // name of parameter message file
+    IN LPSTR pszCategoryMessageFile,    // name of category message file
+	OUT LPHANDLE phEventSourceOut)		// [returns event logging handle]
+{
+    HRESULT hr = NOERROR;
+
+	if( !TEST_STRINGA_PTR(pszApplicationName) ||
+        !TEST_STRINGA_PTR_OR_NULL(pszExecutableName) ||
+        !TEST_STRINGA_PTR_OR_NULL(pszEventMessageFile) ||
+        !TEST_STRINGA_PTR_OR_NULL(pszParameterMessageFile) ||
+        !TEST_STRINGA_PTR_OR_NULL(pszCategoryMessageFile) ||
+        !TEST_WRITE_PTR_OR_NULL(phEventSourceOut, sizeof(*phEventSourceOut)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+	}
+
+	return(hr);
+}
+
+
+//$--CHK_HrEventUseExisting-----------------------------------------------
+//  Check the parameters for HrEventUseExisting().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrEventUseExisting(
+	IN HANDLE hExistingEventSource)		// previously opened event log handle
+{
+	HRESULT hr = NOERROR;
+
+	if (hExistingEventSource == NULL)
+	{
+		hr = HR_LOG(E_INVALIDARG);
+	}
+
+	return(hr);
+}
+
+
+//$--CHK_HrEventGetCounts----------------------------------------------------
+//  Check the parameters for HrEventGetCounts().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrEventGetCounts(
+	OUT LPEDKEVENTCOUNT lpsEventCount)	// structure to return event counts
+{
+	HRESULT hr = NOERROR;
+
+	if (!TEST_WRITE_PTR(lpsEventCount, sizeof(*lpsEventCount)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+	}
+
+	return(hr);
+}
+
+// $--CHK_HrEventGetHandle------------------------------------------------------
+//  Check the parameters for HrEventGetHandle().
+// ----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrEventGetHandle(
+        IN HANDLE * phEventLog)       // event log handle pointer
+{
+    HRESULT hr  =   NOERROR;    
+
+    if ( ! TEST_WRITE_PTR(phEventLog, sizeof(HANDLE)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+}
+
+#endif /* DEBUG */

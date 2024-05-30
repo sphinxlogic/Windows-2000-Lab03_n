@@ -1,0 +1,68 @@
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<HTML>
+<HEAD>
+<TITLE>Filter Effect</TITLE>
+<META NAME="FILENAME" CONTENT="filter.HTM">
+
+</head>
+<BODY TOPMARGIN=20 LEFTMARGIN=40 BGCOLOR="#FFFFFF" LINK="#000066" VLINK="#666666" TEXT="#000000">
+
+
+<h2>Filter Effect</h2>
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT>
+<P>
+<P>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+<hr>
+
+<p><strong>To run this sample, </strong> <span id="Text4"
+onclick="curObj = Inner3; toggleMultimedia()">click on the word <i><B>here</i></B> once to fade out. Click again to fade in.<br>
+<br>
+<font style="font-size: 25; face=Times"></p>
+<div id="Inner3" style="width: 100%; filter:blendTrans(duration=3)"><i>
+
+<p>Apply multimedia fade effect to this text.</i><br>
+</span></font></p>
+</div><script language="JavaScript">
+ var curObj;
+ function toggleMultimedia() {
+	 //First, halt the transition if it is currently playing
+	 if (curObj.filters(0).status == 2) {
+		 curObj.filters(0).Stop();
+		 if (curObj.style.visibility == "hidden")
+			 curObj.style.visibility = "visible";
+		 else
+			 curObj.style.visibility = "hidden";
+		window.setTimeout("toggleMultimedia()", 1);
+	}
+	 //Now apply the transition
+	 curObj.filters(0).Apply();
+	 //Toggle visibility
+	 if (curObj.style.visibility == "hidden")
+		 curObj.style.visibility = "visible";
+	 else
+		 curObj.style.visibility = "hidden";
+	 //Play the transition
+	 curObj.filters(0).Play();
+ }
+
+ </script>
+
+
+<p><br>
+</p>
+
+
+</body>
+
+<P>
+<P>
+<P>
+<FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">
+&copy; <A HREF="/misc/cpyright.htm" TARGET="_top">1999 Microsoft Corporation. All rights reserved. Terms of use</A>.
+</FONT>
+</html>

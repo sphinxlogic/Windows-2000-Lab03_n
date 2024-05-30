@@ -1,0 +1,36 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\packet.res \
+    $(_OBJ_DIR)\alpha\packet.obj \
+    $(_OBJ_DIR)\alpha\openclos.obj \
+    $(_OBJ_DIR)\alpha\read.obj \
+    $(_OBJ_DIR)\alpha\write.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\packet.res \
+    $(_OBJ_DIR)\axp64\packet.obj \
+    $(_OBJ_DIR)\axp64\openclos.obj \
+    $(_OBJ_DIR)\axp64\read.obj \
+    $(_OBJ_DIR)\axp64\write.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\packet.res \
+    $(_OBJ_DIR)\i386\packet.obj \
+    $(_OBJ_DIR)\i386\openclos.obj \
+    $(_OBJ_DIR)\i386\read.obj \
+    $(_OBJ_DIR)\i386\write.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\packet.res \
+    $(_OBJ_DIR)\ia64\packet.obj \
+    $(_OBJ_DIR)\ia64\openclos.obj \
+    $(_OBJ_DIR)\ia64\read.obj \
+    $(_OBJ_DIR)\ia64\write.obj
+
+PASS0_IA64_OBJECTS=
+

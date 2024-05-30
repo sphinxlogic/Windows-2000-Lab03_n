@@ -1,0 +1,55 @@
+BODY
+{
+    BACKGROUND-IMAGE: url(images/bluefade.jpg)
+}
+TABLE
+{
+    BACKGROUND-COLOR: transparent;
+    COLOR: black;
+    TEXT-ALIGN: left
+}
+FORM
+{
+    BACKGROUND-COLOR: transparent;
+    COLOR: black
+}
+SELECT
+{
+    BACKGROUND-COLOR: transparent;
+    COLOR: black
+}
+DIV
+{
+    BACKGROUND-COLOR: transparent;
+    COLOR: maroon;
+    FONT-SIZE: medium;
+    FONT-WEIGHT: bolder;
+    TEXT-ALIGN: left
+}
+INPUT
+{
+    FONT-WEIGHT: bolder
+}
+A:link
+{
+    COLOR: red
+}
+A:active
+{
+    COLOR: yellow
+}
+A
+{
+    BACKGROUND-COLOR: transparent;
+    BORDER-BOTTOM: white solid;
+    BORDER-LEFT: white solid;
+    BORDER-RIGHT: white solid;
+    BORDER-TOP: white solid;
+    COLOR: white;
+    FONT-SIZE: small;
+    FONT-WEIGHT: bolder;
+    MARGIN-RIGHT: 1px;
+    TEXT-ALIGN: center;
+    TEXT-DECORATION: none;
+    TEXT-TRANSFORM: uppercase
+}

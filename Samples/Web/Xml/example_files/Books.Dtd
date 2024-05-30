@@ -1,0 +1,9 @@
+<!ELEMENT bookstore (book)*> 
+<!ELEMENT book (title,author*,price)>
+<!ATTLIST book genre CDATA #REQUIRED>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT author (name | (first-name,last-name))>
+<!ELEMENT price (#PCDATA)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT first-name (#PCDATA)>
+<!ELEMENT last-name (#PCDATA)>

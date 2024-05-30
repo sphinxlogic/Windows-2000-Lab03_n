@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>GridLayout -> UIGridLayout</title>
+<base target="descriptions">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">GridLayout to UIGridLayout</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.GridLayout should be transformed into instances of
+com.ms.ui.UIGridLayout.</p>
+
+<p align="left">GridLayout implements <a href="LayoutManager.htm"
+target="descriptions">LayoutManager</a>: be sure to see its
+changes.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">AFC provides UIGridLayout as a replacement for
+AWT's GridLayout in the improved UILayoutManager. The changes
+here are minimal--the advantages come from the better layout
+manager. One advantage is that you can add and remove layout
+components from multiple containers in one method.</p>
+
+<p align="left">&nbsp;</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">All methods (except those discussed below) in
+GridLayout are supported in UIGridLayout. The constructors <font
+size="2" face="Courier">GridLayout()</font> need to be changed to
+<font size="2" face="Courier">UIGridLayout()</font>.</p>
+
+<p>&nbsp;</p>
+
+<h3>Unsupported Methods</h3>
+
+<p>Some methods in java.awt.GridLayout are not directly supported
+in com.ms.ui.UIGridLayout. Those methods and suggested changes
+are described here.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial">AWT Code<strong>/Suggested
+        AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">addLayoutComponent(String,
+        Component)</font><p><font size="2" face="Courier"><strong>addLayoutComponent(IUIContainer,
+        IUIComponent, Object)</strong></font></p>
+        </td>
+        <td><font size="2">You need to specify a container for
+        the component.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">removeLayoutComponent(Component)</font><p><font
+        size="2" face="Courier"><strong>(Container).remove(UIComponent)</strong></font></p>
+        </td>
+        <td><font size="2">Use this method on the container that
+        is using this layout manager.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getColumns()</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getRows()</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setColumns(int)</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setRows(int)</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+</body>
+</html>

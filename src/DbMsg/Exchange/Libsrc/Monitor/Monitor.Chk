@@ -1,0 +1,915 @@
+// --monitor.chk----------------------------------------------------------------
+//
+//  File containing parameter checking functions for monitor.c.
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+// -----------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_HrMonInit(a,b,c,d,e,f,g,h)          NOERROR
+#define CHK_HrMonCollectNDRStats(a,b)           NOERROR
+#define CHK_HrMonCollectMessageXferStats(a,b,c) NOERROR
+#define CHK_HrMonCollectAssociationStats(a,b)   NOERROR
+#define CHK_HrAllocateContext(a)                NOERROR
+#define CHK_HrGetCurrentTime(a)                 NOERROR
+#define CHK_HrReadRegistryInfo(a)               NOERROR
+#define CHK_HrReadObjectClass(a)                NOERROR
+#define CHK_HrReadRegistryDWORD(a,b,c)          NOERROR
+#define CHK_HrCreateSharedMemory(a)             NOERROR
+#define CHK_HrFillInSharedMemory(a,b,c)         NOERROR
+#define CHK_HrBuildStructures(a,b,c)            NOERROR
+#define CHK_HrMonFindFolder(a,b,c)              NOERROR
+#define CHK_HrStartUpdateThread(a)              NOERROR
+#define CHK_UpdateThread(a)                     NOERROR
+#define CHK_HrFreeEverything(a)                 NOERROR
+#define CHK_HrFreeCounterList(a)                NOERROR
+#define CHK_HrFreeFolderList(a)                 NOERROR
+#define CHK_HrAddToCounters(a,b,c)              NOERROR
+#define CHK_HrSetCounters(a,b)                  NOERROR
+#define CHK_HrComputeCounterType(a,b,c,d)       NOERROR
+#define CHK_HrAlignPointer(a,b)                 NOERROR
+#define CHK_FolderNotification(a,b,c)           NOERROR
+#define CHK_HrWakeUpdateThread(a)               NOERROR
+#define CHK_HrRegisterNotification(a)           NOERROR
+#define CHK_HrLinkCounterIntoList(a,b,c,d)      NOERROR
+#define CHK_HrVerifyLinkage(a)                  NOERROR
+#define CHK_HrSaveSharedMemoryInRegistry(a)     NOERROR
+
+#else
+
+//$--CHK_HrMonInit----------------------------------------------------------
+//  Check the parameters for HrMonInit().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrMonInit( 
+	IN DWORD dwFlags,					// for future use--must be zero
+	IN LPSTR lpszObjectClass,			// class of monitored object, or NULL
+	IN LPSTR lpszObjectName, 			// gateway instance name
+	IN DWORD dwObjectTitleOffset,		// index number of object name in 
+										// the registry database (offset from
+										// First Counter)
+	IN DWORD dwObjectDetailLevel,		// complexity of object (see winperf.h)
+	IN LONG dwDefaultCounter,			// zero-based number of default counter 
+										// for this object
+	IN DWORD ccdNumberOfCounters,		// number of counter structures
+										// being passed in
+	IN LPCOUNTERDEF lpcdCounters)		// pointer to array of counter
+										// structures
+{
+	HRESULT		hr 			= NOERROR;
+	DWORD		iCounter	= 0;
+
+	if (dwFlags)
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_STRINGA_PTR_OR_NULL(lpszObjectClass))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_STRINGA_PTR(lpszObjectName))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (ccdNumberOfCounters == 0)
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_READ_PTR(lpcdCounters, ccdNumberOfCounters * sizeof(COUNTERDEF)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (dwDefaultCounter < -1 || 
+		dwDefaultCounter > (LONG)(ccdNumberOfCounters * 2))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_DETAIL_LEVEL(dwObjectDetailLevel))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	// Loop for each structure in the COUNTERDEF array.
+
+	for (iCounter = 0; iCounter < ccdNumberOfCounters; iCounter++)
+	{
+		LPCOUNTERDEF	lpcd	= &lpcdCounters[iCounter];
+
+		// Make sure counter type is valid.
+
+		if (lpcd->ctStatistic < 0 || lpcd->ctStatistic >= COUNTERTYPE_LAST)
+		{
+			hr = HR_LOG(E_INVALIDARG);
+			goto cleanup;
+		}
+
+		// If this is a folder-oriented counter, then a folder must be given.
+		// Otherwise, the folder parameter must be NULL.
+
+		if (lpcd->ctStatistic == COUNTERTYPE_MESSAGES_IN_FOLDER || 
+			lpcd->ctStatistic == COUNTERTYPE_BYTES_IN_FOLDER || 
+			lpcd->ctStatistic == COUNTERTYPE_MESSAGES_ENTERING_FOLDER || 
+			lpcd->ctStatistic == COUNTERTYPE_BYTES_ENTERING_FOLDER || 
+			lpcd->ctStatistic == COUNTERTYPE_MESSAGES_LEAVING_FOLDER || 
+			lpcd->ctStatistic == COUNTERTYPE_BYTES_LEAVING_FOLDER)
+		{
+			if (!TEST_IUNKNOWN_PTR(lpcd->lpFolder))
+			{
+				hr = HR_LOG(E_INVALIDARG);
+				goto cleanup;
+			}
+		}
+		else
+		{
+			if (lpcd->lpFolder != NULL)
+			{
+				hr = HR_LOG(E_INVALIDARG);
+				goto cleanup;
+			}
+		}
+
+		// If this is a period-orinted statistic there must be a period 
+		// type given, otherwise period type must be "none".
+
+		if (lpcd->ctStatistic == COUNTERTYPE_MESSAGES_IN_FOLDER || 
+			lpcd->ctStatistic == COUNTERTYPE_BYTES_IN_FOLDER || 
+			lpcd->ctStatistic == COUNTERTYPE_ASSOCIATIONS || 
+			lpcd->ctStatistic == COUNTERTYPE_USER_DEFINED)
+		{
+			if (lpcd->perPeriod != PERIODTYPE_NONE)
+			{
+				hr = HR_LOG(E_INVALIDARG);
+				goto cleanup;
+			}
+		}
+		else
+		{
+			if (lpcd->perPeriod < 0 || 
+				lpcd->perPeriod == PERIODTYPE_NONE || 
+				lpcd->perPeriod >= PERIODTYPE_LAST)
+			{
+				hr = HR_LOG(E_INVALIDARG);
+				goto cleanup;
+			}
+		}
+
+		// If this is a "last N minutes" period type, then N must be at least 
+		// one minute.  Otherwise, N must be zero.
+
+		if (lpcd->perPeriod == PERIODTYPE_LAST_N_MINUTES)
+		{
+			if (lpcd->cMinutes == 0)
+			{
+				hr = HR_LOG(E_INVALIDARG);
+				goto cleanup;
+			}
+		}
+		else
+		{
+			if (lpcd->cMinutes != 0)
+			{
+				hr = HR_LOG(E_INVALIDARG);
+				goto cleanup;
+			}
+		}
+
+		// If the counter is user-defined then a pointer to where to put the 
+		// pointer to the counter must be given, along with the winperf.h 
+		// counter type.  If counter is not user-defined, both must be NULL.
+
+		if (lpcd->ctStatistic == COUNTERTYPE_USER_DEFINED)
+		{
+			if (!TEST_WRITE_PTR(lpcd->lppcntUserCounter, 
+				sizeof(*lpcd->lppcntUserCounter)))
+			{
+				hr = HR_LOG(E_INVALIDARG);
+				goto cleanup;
+			}
+			if (lpcd->dwUserCounterType == 0)
+			{
+				hr = HR_LOG(E_INVALIDARG);
+				goto cleanup;
+			}
+		}
+		else
+		{
+			if (lpcd->lppcntUserCounter != NULL)
+			{
+				hr = HR_LOG(E_INVALIDARG);
+				goto cleanup;
+			}
+			if (lpcd->dwUserCounterType != 0)
+			{
+				hr = HR_LOG(E_INVALIDARG);
+				goto cleanup;
+			}
+		}
+
+		// Make sure winperf.h detail lever is valid.
+
+		if (!TEST_DETAIL_LEVEL(lpcd->dwDetailLevel))
+		{
+			hr = HR_LOG(E_INVALIDARG);
+			goto cleanup;
+		}
+	}
+
+cleanup:
+	return(hr);
+}
+
+ 
+//$--CHK_HrMonCollectNDRStats------------------------------------------------
+//  Check the parameters for HrMonCollectNDRStats().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrMonCollectNDRStats(
+	IN DWORD cNDRs,						// number of NDR's processed
+	IN DIRECTIONTYPE dir)				// direction of NDR's
+{
+	HRESULT		hr 			= NOERROR;
+
+	if (dir >= DIRECTIONTYPE_LAST || dir < 0)
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (cNDRs < 0)
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+
+//$--CHK_HrMonCollectMessageXferStats---------------------------------
+//  Check the parameters for HrMonCollectMessageXferStats().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrMonCollectMessageXferStats(
+	IN DWORD cMessages, 				// number of messages transferred
+	IN DWORD cBytes, 					// number of bytes transferred
+	IN DIRECTIONTYPE dir)				// direction of message transfer
+{
+	HRESULT		hr 			= NOERROR;
+
+	if (dir >= DIRECTIONTYPE_LAST || dir < 0)
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (cMessages < 0)
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (cBytes < 0)
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if ((cMessages == 0 && cBytes != 0) || 
+		(cMessages != 0 && cBytes == 0))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+
+//$--CHK_HrMonCollectAssociationStats----------------------------------------
+//  Check the parameters for HrMonCollectAssociationStats().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrMonCollectAssociationStats(
+	IN BOOL fSetNewTotal,				// if TRUE, iAssociations becomes 
+										// the new total of associations.
+										// if FALSE, iAssociations is added 
+										// to the number of associations.
+
+	IN LONG cAssociations)				// number of associations to add to
+										// total (can be negative), or new 
+										// total if fSetNewTotal == TRUE
+{
+	HRESULT		hr 			= NOERROR;
+
+	if (fSetNewTotal && cAssociations < 0)
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+
+//$--CHK_HrAllocateContext------------------------------------------------------
+//  Check the parameters for HrAllocateContext().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrAllocateContext(
+	OUT LPMONCONTEXT *lppmcx)			// pointer to address variable for
+										// performance monitor context ptr
+{
+	HRESULT		hr 			= NOERROR;
+
+	if (!TEST_WRITE_PTR(lppmcx, sizeof(*lppmcx)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+
+//$--CHK_HrGetCurrentTime-------------------------------------------------------
+//  Check the parameters for HrGetCurrentTime().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrGetCurrentTime(
+	OUT __int64 * lpdwlTime)			// current time
+{
+	HRESULT		hr 			= NOERROR;
+
+	if (!TEST_WRITE_PTR(lpdwlTime, sizeof(*lpdwlTime)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+
+//$--CHK_HrReadRegistryInfo-----------------------------------------------------
+//  Check the parameters for HrReadRegistryInfo().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrReadRegistryInfo(
+	IN LPMONCONTEXT lpmcx)				// pointer to perf mon context
+{
+	HRESULT		hr 			= NOERROR;
+
+	if (!TEST_WRITE_PTR(lpmcx, sizeof(*lpmcx)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+
+//$--CHK_HrReadObjectClass------------------------------------------------------
+//  Check the parameters for HrReadObjectClass().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrReadObjectClass(
+	IN LPMONCONTEXT lpmcx)				// pointer to perf mon context
+{
+	HRESULT		hr 			= NOERROR;
+
+	if (!TEST_WRITE_PTR(lpmcx, sizeof(*lpmcx)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+
+//$--CHK_HrReadRegistryDWORD----------------------------------------------------
+//  Check the parameters for HrReadRegistryDWORD().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrReadRegistryDWORD(
+	IN HKEY hKey,						// open key handle
+	IN LPSTR lpszValueName,			// name of value to get
+	OUT LPDWORD lpdwValue)				// address of DWORD to return value
+{
+	HRESULT		hr 			= NOERROR;
+
+	if (hKey == NULL)
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_STRINGA_PTR(lpszValueName))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(lpdwValue, sizeof(*lpdwValue)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+
+
+//$--CHK_HrCreateSharedMemory---------------------------------------------------
+//  Check the parameters for HrCreateSharedMemory().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrCreateSharedMemory(
+	IN LPMONCONTEXT lpmcx)				// pointer to performance monitoring
+										// context
+{
+	HRESULT		hr 			= NOERROR;
+
+	if (!TEST_WRITE_PTR(lpmcx, sizeof(*lpmcx)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+
+
+//$--CHK_HrFillInSharedMemory---------------------------------------------------
+//  Check the parameters for HrFillInSharedMemory().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrFillInSharedMemory(
+	IN LPMONCONTEXT lpmcx, 				// pointer to perf mon context
+	IN DWORD ccdCounters,				// number of COUNTERDEF structures
+	IN LPCOUNTERDEF lpcdCounters)		// array of COUNTERDEF structures
+{
+	HRESULT		hr 			= NOERROR;
+
+	if (!TEST_WRITE_PTR(lpmcx, sizeof(*lpmcx)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_READ_PTR(lpcdCounters, ccdCounters * sizeof(*lpcdCounters)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+
+//$--CHK_HrBuildStructures------------------------------------------------------
+//  Check the parameters for HrBuildStructures().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrBuildStructures(
+	IN LPMONCONTEXT lpmcx,				// pointer to perf mon context
+	IN DWORD ccdCounters,				// number of COUNTERDEF structures
+	IN LPCOUNTERDEF lpcdCounters)		// array of COUNTERDEF structures
+{
+	HRESULT		hr 			= NOERROR;
+
+	if (!TEST_WRITE_PTR(lpmcx, sizeof(*lpmcx)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_READ_PTR(lpcdCounters, ccdCounters * sizeof(*lpcdCounters)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+
+
+//$--CHK_HrMonFindFolder--------------------------------------------------------
+//  Check the parameters for HrMonFindFolder().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrMonFindFolder(
+	IN  LPMONFOLDER   lpmfFolderList,	// list of folder structs to search
+	IN  LPMAPIFOLDER  lpFolder,			// folder to search for
+	OUT LPMONFOLDER * lppmfFolder)		// folder found
+{
+	HRESULT		hr 			= NOERROR;
+
+	if (!TEST_IUNKNOWN_PTR(lpFolder))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_READ_PTR_OR_NULL(lpmfFolderList, sizeof(*lpmfFolderList)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+
+
+//$--CHK_HrStartUpdateThread----------------------------------------------------
+//  Check the parameters for HrStartUpdateThread().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrStartUpdateThread(
+	IN LPMONCONTEXT lpmcx)
+{
+	HRESULT		hr 			= NOERROR;
+
+	if (!TEST_WRITE_PTR(lpmcx, sizeof(*lpmcx)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+
+
+//$--CHK_UpdateThread-----------------------------------------------------------
+//  Check the parameters for UpdateThread().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_UpdateThread(
+	IN LPVOID lpThreadParameter)		// pointer to perf mon context
+{
+	HRESULT			hr 			= NOERROR;
+	LPMONCONTEXT	lpmcx		= lpThreadParameter;
+
+	if (!TEST_WRITE_PTR(lpmcx, sizeof(*lpmcx)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+
+//$--CHK_HrFreeEverything-------------------------------------------------------
+//  Check the parameters for HrFreeEverything().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrFreeEverything(
+	IN LPMONCONTEXT *lppmcx)			// the address of the pointer to the 
+										// performance monitoring context (the 
+										// pointer will be set to NULL)
+{
+	HRESULT		hr 			= NOERROR;
+
+	if (!TEST_WRITE_PTR(lppmcx, sizeof(*lppmcx)) || 
+		!TEST_WRITE_PTR_OR_NULL(*lppmcx, sizeof(**lppmcx)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+
+
+//$--CHK_HrFreeCounterList------------------------------------------------------
+//  Check the parameters for HrFreeCounterList().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrFreeCounterList(
+	IN LPMONCOUNTER *lppmcCounterList)	// address of pointer to first element
+										// of counter list to be freed
+{
+	HRESULT		hr 			= NOERROR;
+
+	if (!TEST_WRITE_PTR(lppmcCounterList, sizeof(*lppmcCounterList)) || 
+		!TEST_WRITE_PTR_OR_NULL(*lppmcCounterList, sizeof(**lppmcCounterList)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+
+
+//$--CHK_HrFreeFolderList-------------------------------------------------------
+//  Check the parameters for HrFreeFolderList().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrFreeFolderList(
+	IN LPMONFOLDER *lppmfFolderList)	// address of pointer to first element
+										// of folder list to be freed
+{
+	HRESULT		hr 			= NOERROR;
+
+	if (!TEST_WRITE_PTR(lppmfFolderList, sizeof(*lppmfFolderList)) || 
+		!TEST_WRITE_PTR_OR_NULL(*lppmfFolderList, sizeof(**lppmfFolderList)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+
+
+//$--CHK_HrAddToCounters--------------------------------------------------------
+//  Check the parameters for HrAddToCounters().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrAddToCounters(
+	IN LPMONCONTEXT lpmcx,				// pointer to perf mon context
+	IN LPMONCOUNTER lpmcList,			// pointer to list of counters
+	IN LONG dwAmount)					// amount to add to each one
+{
+	HRESULT		hr 			= NOERROR;
+
+	if (!TEST_WRITE_PTR(lpmcx, sizeof(*lpmcx)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_READ_PTR_OR_NULL(lpmcList, sizeof(*lpmcList)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+
+
+//$--CHK_HrSetCounters----------------------------------------------------------
+//  Check the parameters for HrSetCounters().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrSetCounters(
+	IN LPMONCOUNTER lpmcList,			// pointer to list of counters
+	IN DWORD dwAmount)					// amount to set each one to
+{
+	HRESULT		hr 			= NOERROR;
+
+	if (!TEST_READ_PTR_OR_NULL(lpmcList, sizeof(*lpmcList)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+
+
+//$--CHK_HrComputeCounterType---------------------------------------------------
+//  Check the parameters for HrComputeCounterType().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrComputeCounterType(
+	IN  COUNTERTYPE ctStatistic,		// the statistic this counter monitors
+	IN  PERIODTYPE perPeriod,			// the period of this counter
+	IN  DWORD dwUserCounterType,		// the CounterType (if ctStatistic is 
+										// COUNTERTYPE_USER_DEFINED)
+	OUT DWORD * lpdwCounterType)		// returned counter type
+{
+	HRESULT		hr 			= NOERROR;
+
+	if (ctStatistic >= COUNTERTYPE_LAST)
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (perPeriod >= PERIODTYPE_LAST)
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+
+
+//$--CHK_HrAlignPointer---------------------------------------------------------
+//  Check the parameters for HrAlignPointer().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrAlignPointer(
+	IN     DWORD cbAlignment,			// the alignment desired
+	IN OUT LPVOID * lppvPointer)		// the pointer to be aligned
+{
+	HRESULT		hr 			= NOERROR;
+
+	if (cbAlignment == 0 || (cbAlignment & (cbAlignment - 1)) != 0)
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+
+
+//$--CHK_FolderNotification-----------------------------------------------------
+//  Check the parameters for FolderNotification().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_FolderNotification(
+	IN LPVOID lpvContext,				// pointer to MONFOLDER structure
+	IN DWORD cNotification,				// number of elements in following array
+	IN LPNOTIFICATION lpNotifications)	// array of notification structures
+{
+	HRESULT			hr 			= NOERROR;
+	LPMONFOLDER		lpmf		= lpvContext;
+
+	if (!TEST_READ_PTR(lpmf, sizeof(*lpmf)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_READ_PTR(lpNotifications, 
+		cNotification * sizeof(*lpNotifications)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+
+
+//$--CHK_HrWakeUpdateThread-----------------------------------------------------
+//  Check the parameters for HrWakeUpdateThread().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrWakeUpdateThread(
+	IN LPMONCONTEXT lpmcx)
+{
+	HRESULT		hr 			= NOERROR;
+
+	if (!TEST_WRITE_PTR(lpmcx, sizeof(*lpmcx)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+
+
+//$--CHK_HrRegisterNotification-------------------------------------------------
+//  Check the parameters for HrRegisterNotification().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrRegisterNotification(
+	IN LPMONCONTEXT lpmcx)
+{
+	HRESULT		hr 			= NOERROR;
+
+	if (!TEST_WRITE_PTR(lpmcx, sizeof(*lpmcx)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+    return(hr);
+}
+
+
+
+//$--CHK_HrLinkCounterIntoList--------------------------------------------------
+//  Check the parameters for HrLinkCounterIntoList().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrLinkCounterIntoList(
+	IN LPMONCONTEXT lpmcx,				// pointer to perf mon context
+	IN LPMONFOLDER lpmf,				// for folder-specific counters
+	IN LPMONCOUNTER lpmc,				// counter structure to add to list
+	IN COUNTERTYPE ctCounterType)		// type of counter this is
+{
+	HRESULT		hr 			= NOERROR;
+
+	if (ctCounterType >= COUNTERTYPE_LAST)
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(lpmcx, sizeof(*lpmcx)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+    switch(ctCounterType)
+    {
+       case COUNTERTYPE_MESSAGES_IN_FOLDER:
+       case COUNTERTYPE_BYTES_IN_FOLDER:
+       case COUNTERTYPE_MESSAGES_ENTERING_FOLDER:
+       case COUNTERTYPE_BYTES_ENTERING_FOLDER: 
+       case COUNTERTYPE_MESSAGES_LEAVING_FOLDER:
+       case COUNTERTYPE_BYTES_LEAVING_FOLDER:
+            if (!TEST_WRITE_PTR(lpmf, sizeof(*lpmf)))
+            {
+                 hr = HR_LOG(E_INVALIDARG);
+                 goto cleanup;
+            }
+            break;
+       default:
+            if (!TEST_WRITE_PTR_OR_NULL(lpmf, sizeof(*lpmf)))
+            {
+                 hr = HR_LOG(E_INVALIDARG);
+                 goto cleanup;
+            }
+            break;
+    }
+
+	if (!TEST_WRITE_PTR(lpmc, sizeof(*lpmc)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+
+
+//$--CHK_HrVerifyLinkage--------------------------------------------------------
+//  Check the parameters for HrVerifyLinkage().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrVerifyLinkage(
+	IN LPMONCONTEXT lpmcx)				// pointer to perf mon context
+{
+	HRESULT		hr 			= NOERROR;
+
+	if (!TEST_WRITE_PTR(lpmcx, sizeof(*lpmcx)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+
+
+//$--CHK_HrSaveSharedMemoryInRegistry-------------------------------------------
+//  Check the parameters for HrSaveSharedMemoryInRegistry().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrSaveSharedMemoryInRegistry(
+	IN LPMONCONTEXT lpmcx)				// pointer to perf mon context
+{
+	HRESULT		hr 			= NOERROR;
+
+	if (!TEST_WRITE_PTR(lpmcx, sizeof(*lpmcx)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+	return(hr);
+}
+
+#endif /* DEBUG */

@@ -1,0 +1,133 @@
+Error	Message
+i2	L255
+1252	Error	Error
+0	{{Error fatal: }}
+1	{{Error [1]. }}
+2	Advertencia [1]. 
+3	
+4	Información [1]. 
+5	Error interno [1]. [2]{, [3]}{, [4]}
+6	
+7	{{Disco lleno: }}
+8	Acción [Time]: [1]. [2]
+9	[ProductName]
+10	{[2]}{, [3]}{, [4]}
+11	Tipo de mensaje: [1], argumento: [2]
+12	=== Registro iniciado: [Date]  [Time] ===
+13	=== Registro detenido: [Date]  [Time] ===
+14	La acción se inició a las [Time]: [1].
+15	La acción terminó a las [Time]: [1]. Valor devuelto: [2].
+16	Tiempo restante: {[1] minutos }{[2] segundos}
+17	Memoria insuficiente. Cierre otras aplicaciones antes de intentarlo de nuevo.
+18	El instalador no responde.
+19	El instalador se detuvo antes de tiempo.
+20	Espere mientras Windows configura [ProductName]
+21	Recopilando la información necesaria...
+22	Quitando las versiones anteriores de esta aplicación...
+23	Preparando la eliminación de las versiones anteriores de esta aplicación...
+32	La instalación de {[ProductName] } finalizó correctamente.
+33	Fallo en la instalación de {[ProductName]}.
+1101	Error al leer el archivo [2]. {{ Error del sistema [3].}} Compruebe que el archivo existe y que puede obtener acceso a él.
+1301	No se puede crear el archivo '[2]'. Ya existe un directorio con ese nombre. Cancele la instalación y pruebe a instalar en una ubicación distinta.
+1302	Inserte el disco [2].
+1303	El instalador no dispone de privilegios suficientes para obtener acceso al directorio [2] y no se puede continuar con la instalación. Inicie la sesión como administrador o póngase en contacto con el administrador del sistema.
+1304	Error al escribir en el archivo [2]. Compruebe que dispone de acceso a ese directorio.
+1305	Error al leer el archivo [2]. {{ Error del sistema [3].}} Compruebe que el archivo existe y que puede obtener acceso a él.
+1306	Otra aplicación tiene acceso exclusivo al archivo '[2]'. Cierre todas las demás aplicaciones y haga clic en Reintentar.
+1307	No hay espacio en disco suficiente para instalar el archivo [2]. Libere espacio en disco y haga clic en Reintentar, o bien, haga clic en Cancelar para salir.
+1308	No se encuentra el archivo de origen [2]. Compruebe que el archivo existe y que puede obtener acceso a él.
+1309	Error al leer el archivo [3]. {{ Error del sistema [2].}} Compruebe que el archivo existe y que puede obtener acceso a él.
+1310	Error al escribir en el archivo [3]. {{ Error del sistema [2].}} Compruebe que dispone de acceso a ese directorio.
+1311	No se ha encontrado el archivo de origen {{(.CAB)}} [2]. Compruebe que el archivo existe y que puede obtener acceso a él.
+1312	No se puede crear el directorio '[2]'. Ya existe un archivo con este nombre. Cambie el nombre al archivo o quítelo y haga clic en Reintentar, o bien haga clic en Cancelar para salir.
+1313	El volumen [2] no está disponible en este momento. Seleccione otro volumen.
+1314	La ruta de acceso especificada, '[2]', no está disponible.
+1315	No se puede escribir en la carpeta especificada, '[2]'.
+1316	Se produjo un error de red al intentar leer el archivo [2].
+1317	Se produjo un error al intentar crear el directorio [2].
+1318	Se produjo un error de red al intentar crear el directorio [2].
+1319	Se produjo un error de red al intentar abrir el archivo .CAB de origen [2].
+1320	La ruta de acceso especificada es demasiado larga: [2]
+1321	El instalador no tiene suficientes privilegios para modificar el archivo [2].
+1322	Una parte de la ruta de acceso a la carpeta '[2]'no es válida porque está vacía o supera la longitud permitida por el sistema.
+1323	La ruta de acceso a la carpeta '[2]' contiene palabras no válidas para rutas de acceso a carpetas.
+1324	La ruta de acceso a la carpeta '[2]' contiene un carácter no válido.
+1325	'[2]' no es un nombre corto de archivo válido.
+1326	Error al obtener la seguridad del archivo: [3]. GetLastError: [2].
+1327	Unidad no válida: [2]
+1328	Error al aplicar la revisión al archivo [2].  Probablemente el archivo ya se ha actualizado por otros medios y esta revisión no puede modificarlo.  Para obtener más información, consulte al proveedor de la revisión.  {{Error del sistema: [3]}}
+1401	No se puede crear la clave [2]. {{ Error del sistema [3].}} Compruebe que dispone de suficientes derechos de acceso a esa clave o póngase en contacto con el personal de soporte técnico. 
+1402	No se puede abrir la clave [2]. {{ Error del sistema [3].}} Compruebe que dispone de suficientes derechos de acceso a esa clave o póngase en contacto con el personal de soporte técnico. 
+1403	No se puede eliminar el valor [2] de la clave [3]. {{Error del sistema [4].}} Compruebe que dispone de suficientes derechos de acceso a esa clave o póngase en contacto con el personal de soporte técnico. 
+1404	No se puede eliminar la clave [2]. {{Error del sistema [3].}} Compruebe que dispone de suficientes derechos de acceso a esa clave o póngase en contacto con el personal de soporte técnico. 
+1405	No se puede leer el valor [2] de la clave [3]. {{Error del sistema [4].}} Compruebe que dispone de suficientes derechos de acceso a esa clave o póngase en contacto con el personal de soporte técnico. 
+1406	No se puede escribir el valor [2] en la clave [3]. {{Error del sistema [4].}} Compruebe que dispone de suficientes derechos de acceso a esa clave o póngase en contacto con el personal de soporte técnico.
+1407	No se pueden obtener los nombres de los valores para la clave [2]. {{Error del sistema [3].}} Compruebe que dispone de suficientes derechos de acceso a esa clave o póngase en contacto con el personal de soporte técnico.
+1408	No se pueden obtener los nombres de las subclaves de la clave [2]. {{Error del sistema [3].}} Compruebe que dispone de suficientes derechos de acceso a esa clave o póngase en contacto con el personal de soporte técnico.
+1409	No se puede leer la información de seguridad de la clave [2]. {{Error del sistema [3].}} Compruebe que dispone de suficientes derechos de acceso a esa clave o póngase en contacto con el personal de soporte técnico.
+1410	No se puede aumentar el espacio disponible en el registro de configuraciones. Para instalar esta aplicación se requieren [2] KB de espacio en el registro.
+1500	Ya hay otra instalación en curso. Termine esa instalación antes de continuar con ésta.
+1501	Error al obtener acceso a los datos protegidos. Asegúrese de que Windows Installer está configurado correctamente y vuelva a intentar realizar la instalación.
+1502	El usuario '[2]' ya inició previamente una instalación del producto '[3]', pero deberá ejecutar la instalación de nuevo para poder utilizar el producto. La instalación actual de este producto continuará.
+1503	El usuario '[2]' ya inició previamente una instalación del producto '[3]', pero deberá ejecutar la instalación de nuevo para poder utilizarlo.
+1601	Espacio en disco insuficiente -- Volumen: '[2]'; espacio requerido: [3] KB; espacio disponible: [4] KB. Libere espacio en disco e inténtelo de nuevo.
+1602	¿Está seguro de que desea cancelar la operación?
+1603	El archivo [2][3] está en uso{ por el proceso siguiente: Nombre: [4], Id.: [5], Título de ventana: '[6]'}. Cierre esa aplicación e inténtelo de nuevo.
+1604	El producto '[2]' ya está instalado, lo que impide que se instale este producto porque ambos productos son incompatibles entre sí.
+1605	Espacio en disco insuficiente -- Volumen: '[2]'; espacio requerido: [3] KB; espacio disponible: [4] KB. Si la función de restauración está deshabilitada, el espacio disponible es suficiente. Haga clic en 'Cancelar' para salir, en 'Reintentar' para volver a comprobar el espacio en disco disponible, o bien, en 'Omitir' para continuar sin habilitar la función de restauración.
+1606	No se puede obtener acceso a la ubicación de red [2].
+1607	Deben cerrarse las aplicaciones siguientes antes de continuar con la instalación:
+1608	No se encuentra ningún producto compatible instalado en el equipo para instalar este producto.
+1701	La clave [2] no es válida. Compruebe que escribió la clave correcta.
+1702	El instalador debe reiniciar el sistema para que pueda continuar la configuración de [2]. Haga clic en Sí para reiniciar el sistema ahora o elija No si tiene previsto reiniciarlo manualmente más tarde.
+1703	Debe reiniciar el sistema para que los cambios de configuración efectuados en [2] surtan efecto. Haga clic en Sí para reiniciar el sistema ahora o elija No si tiene previsto reiniciarlo manualmente más tarde.
+1704	Actualmente hay una instalación de [2] en suspenso. Debe deshacer los cambios realizados por dicha instalación para poder continuar. ¿Desea deshacer esos cambios?
+1705	Ya hay en curso una instalación anterior de este producto. Debe deshacer los cambios realizados por dicha instalación para poder continuar. ¿Desea deshacer esos cambios?
+1706	No se encuentra ningún paquete de instalación para el producto [2]. Vuelva a intentar la instalación utilizando una copia válida del paquete de instalación '[3]'.
+1707	La operación de instalación finalizó satisfactoriamente.
+1708	Fallo en la operación de instalación.
+1709	Producto: [2] -- [3]
+1710	Puede restaurar el equipo a su estado anterior o continuar con la instalación más tarde. ¿Desea restaurar el equipo?
+1711	Se produjo un error mientras se escribía la información de instalación en el disco. Compruebe que hay suficiente espacio en disco disponible y haga clic en Reintentar, o bien haga clic en Cancelar para terminar la instalación.
+1712	No se encuentran uno o varios archivos necesarios para restaurar el equipo a su estado anterior. La restauración no podrá realizarse.
+1713	[2] no puede instalar los productos requeridos. Póngase en contacto con su grupo de soporte técnico.  {{Error del sistema: [3].}}
+1714	No se puede quitar la versión anterior de [2]. Póngase en contacto con su grupo de soporte técnico.  {{Error del sistema: [3].}}
+1801	La ruta de acceso [2] no es válida. Especifique una ruta de acceso válida.
+1802	Memoria insuficiente. Cierre otras aplicaciones antes de intentarlo de nuevo.
+1803	No hay ningún disco en la unidad [2]. Inserte uno y haga clic en Reintentar, o bien haga clic en Cancelar para volver al volumen previamente seleccionado.
+1804	No hay ningún disco en la unidad [2]. Inserte uno y haga clic en Reintentar, o bien haga clic en Cancelar para volver al cuadro de diálogo de examinar y seleccionar un volumen distinto.
+1805	La carpeta [2] no existe. Escriba una ruta de acceso a una carpeta existente.
+1806	No dispone de privilegios para leer esta carpeta.
+1807	No se puede determinar una carpeta de destino válida para la instalación.
+1901	Error al intentar leer la base de datos de instalación de origen: [2].
+1902	Programando la operación de reinicio: cambiando el nombre del archivo [2] a [3]. Para completar la operación se debe reiniciar el equipo.
+1903	Programando la operación de reinicio: eliminando el archivo [2]. Para completar la operación se debe reiniciar el equipo.
+1904	Error al registrar el módulo [2]. HRESULT [3].  Póngase en contacto con el personal de soporte técnico.
+1905	Error al eliminar el módulo [2] del registro. HRESULT [3]. Póngase en contacto con el personal de soporte técnico.
+1906	Fallo al almacenar el paquete [2] en la memoria caché. Error: [3]. Póngase en contacto con el personal de soporte técnico.
+1907	No se puede registrar la fuente [2]. Compruebe que dispone de suficientes permisos para instalar fuentes y que el sistema admite esta fuente.
+1908	No se puede eliminar del registro la fuente [2]. Compruebe que dispone de suficientes permisos para quitar fuentes.
+1909	No se puede crear el acceso directo [2]. Compruebe que la carpeta de destino existe y que puede obtener acceso a ella.
+1910	No se puede crear el acceso directo [2]. Compruebe que el archivo de acceso directo existe y que puede obtener acceso a él.
+1911	No se puede registrar la biblioteca de tipos para el archivo [2]. Póngase en contacto con el personal de soporte técnico.
+1912	No se puede quitar del registro la biblioteca de tipos del archivo [2]. Póngase en contacto con el personal de soporte técnico.
+1913	No se puede actualizar el archivo .ini [2][3]. Compruebe que el archivo existe y que puede obtener acceso a él.
+1914	No se puede programar el archivo [2] para que reemplace a [3] cuando se reinicie el sistema. Compruebe que dispone de permisos de escritura para el archivo [3].
+1915	Error al quitar el administrador de controladores ODBC; error de ODBC [2]: [3]. Póngase en contacto con el personal de soporte técnico.
+1916	Error al instalar el administrador de controladores ODBC; error de ODBC [2]: [3]. Póngase en contacto con el personal de soporte técnico.
+1917	Error al quitar el controlador ODBC [4]; error de ODBC [2]: [3]. Compruebe que dispone de suficientes privilegios para quitar controladores ODBC.
+1918	Error al instalar el controlador ODBC [4]; error de ODBC [2]: [3]. Compruebe que el archivo [4] existe y que puede obtener acceso a él.
+1919	Error al configurar el origen de datos de ODBC [4]; error de ODBC [2]: [3]. Compruebe que el archivo [4] y que puede obtener acceso a él.
+1920	Fallo al iniciar el servicio '[2]' ([3]). Compruebe que dispone de suficientes privilegios para iniciar servicios del sistema.
+1921	No se puede detener el servicio '[2]' ([3]). Compruebe que dispone de suficientes privilegios para detener servicios del sistema.
+1922	No se puede eliminar el servicio '[2]' ([3]). Compruebe que dispone de suficientes privilegios para quitar servicios del sistema.
+1923	No se puede instalar el servicio '[2]' ([3]). Compruebe que dispone de suficientes privilegios para instalar servicios del sistema.
+1924	No se puede actualizar la variable de entorno '[2]'. Compruebe que dispone de suficientes privilegios para modificar variables de entorno.
+1925	No tiene suficientes privilegios para completar esta instalación para todos los usuarios del equipo. Inicie la sesión como administrador y vuelva a realizar la instalación.
+1926	No se puede establecer la seguridad para el archivo '[3]'. Error: [2]. Compruebe que dispone de suficientes privilegios para modificar los permisos de seguridad para este archivo.
+1927	Los Servicios de componente (COM+ 1.0) no están instalados en este sistema.  Para realizar esta instalación, es necesario que los Servicios de componente estén instalados. Encontrará los Servicios de componente en Windows 2000.
+1928	Error al registrar la aplicación COM+.  Póngase en contacto con el personal de soporte para obtener más información.
+1929	Error al quitar la aplicación COM+ del registro. Póngase en contacto con el personal de soporte para obtener más información.
+1930	No se pudo cambiar la descripción del servicio '[2]' ([3]).
+1931	El servicio Windows Installer no pudo actualizar el archivo del sistema [2] porque está protegido por Windows. Es posible que tenga que actualizar el sistema operativo para que este programa funcione correctamente. {{Versión del paquete: [3], Versión protegida del SO: [4]}}
+1932	El servicio Windows Installer no pudo actualizar el archivo protegido de Windows [2]. {{Versión del paquete: [3], Versión protegida del SO: [4], Error SFP: [5]}}

@@ -1,0 +1,4 @@
+Line 36: Class TabDlg.SSTab of control tsSearch was not a loaded control class.
+Line 148: Class ComctlLib.ListView of control lvContainer was not a loaded control class.
+Line 186: Class ComctlLib.ImageList of control ilSmall was not a loaded control class.
+Line 228: Class ComctlLib.ImageList of control ilLarge was not a loaded control class.

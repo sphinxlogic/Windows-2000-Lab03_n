@@ -1,0 +1,34 @@
+///////////////////////////////////////////////////////////////////////////
+// Package.mof  
+//
+// Version 1.0
+//
+//  Below is one instance of SMS_Package in text format. When this mof is 
+// compiled you will have 1 new package added to your SMS Site.
+//
+//  Using mofcomp.exe which comes with the WBEM SDK and SMS you 
+// can create instances of SMS_Package from the command prompt.  
+// You can perform this kind of action with most of the simple classes 
+// in the SMS_Provider.
+//
+//    To compile this file use the following command line:
+//
+//  mofcomp -N:root\sms\site_xxx package.mof
+//
+//  This assumes that mofcomp is in your path, xxx is your sitecode, 
+//     and you are running this on the machine that has the SMS Provider on it.
+//
+//  NOTE: SMS_Package has many properties, however only the key is 
+//        required (PackageId), and in this case the SMS Provider will fill 
+//        this in for you automatically at creation time.  That is why we 
+//        don't have to specify every property below.
+//        For more information about valid properties refer to the SMS SDK.
+//
+
+instance of SMS_Package {
+	Name = "Sample Package (Stand Alone)";		// string
+	Language = "English";				// string
+	Manufacturer = "Microsoft";				// string
+	Version = "1.0";					// string
+	Description = "This is a sample package";		// string
+};

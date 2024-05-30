@@ -1,0 +1,36 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\init.obj \
+    $(_OBJ_DIR)\alpha\dispatch.obj \
+    $(_OBJ_DIR)\alpha\resource.obj \
+    $(_OBJ_DIR)\alpha\intrface.obj \
+    $(_OBJ_DIR)\alpha\config.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\init.obj \
+    $(_OBJ_DIR)\axp64\dispatch.obj \
+    $(_OBJ_DIR)\axp64\resource.obj \
+    $(_OBJ_DIR)\axp64\intrface.obj \
+    $(_OBJ_DIR)\axp64\config.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\init.obj \
+    $(_OBJ_DIR)\i386\dispatch.obj \
+    $(_OBJ_DIR)\i386\resource.obj \
+    $(_OBJ_DIR)\i386\intrface.obj \
+    $(_OBJ_DIR)\i386\config.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\init.obj \
+    $(_OBJ_DIR)\ia64\dispatch.obj \
+    $(_OBJ_DIR)\ia64\resource.obj \
+    $(_OBJ_DIR)\ia64\intrface.obj \
+    $(_OBJ_DIR)\ia64\config.obj
+
+PASS0_IA64_OBJECTS=
+

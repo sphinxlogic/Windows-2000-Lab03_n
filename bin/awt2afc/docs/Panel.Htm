@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>Panel -> UIPanel</title>
+<base target="descriptions">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">Panel to UIPanel</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.Panel should be transformed into instances of
+com.ms.ui.UIPanel.</p>
+
+<p align="left">Panel extends <a href="Container.htm"
+target="descriptions">Container</a>: be sure to see its changes.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">AFC's UIPanel class is largely similar to AWT's
+Panel class, with one advantage: panels can be created with a
+number of different edge styles, either by using <font size="2"
+face="Courier">setEdge() </font>or by including the style in the
+constructor. The edge types are explained in Container.</p>
+
+<p align="left">&nbsp;</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">This is the set of changes you need to make to
+port all Panel methods to UIPanel methods. Any method not listed
+here or below does not need to be changed.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial"><strong>AWT Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">Panel()</font></td>
+        <td nowrap><font size="2" face="Courier">UIPanel() or<br>
+        UIPanel(int)</font></td>
+        <td><font size="2">The int refers to the style--see
+        above.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">Panel(LayoutManager)</font></td>
+        <td nowrap><font size="2" face="Courier">myPanel = new
+        Panel();<br>
+        myPanel.setLayout(LayoutManager)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+</body>
+</html>

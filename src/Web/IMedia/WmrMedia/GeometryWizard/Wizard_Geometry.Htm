@@ -1,0 +1,411 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE>Interactive Geometry Demo</TITLE>
+    <SCRIPT LANGUAGE="JSCRIPT">
+	  function window_load(){
+		  winLoad();
+	  }
+	  window.onload = window_load;
+    </SCRIPT>
+<SCRIPT DEFER LANGUAGE="JSCRIPT">
+// Declare Globals
+var chromeBrowser = "false";
+var textObj;
+var rotateObj;
+var colorObj;
+var playRotate = "onclick";
+var playColor = "onmouseover";
+var stopRotate = "ondblclick";
+var stopColor = "onmouseout";
+
+function toggleNotes() {
+	if (notes.style.display == "none") {
+		notes.style.display = "";
+		noteTitle.innerText = "Hide information"
+	}
+	else {
+		notes.style.display = "none";
+		noteTitle.innerText = "Show more information."
+	}
+}
+</SCRIPT>
+ <SCRIPT LANGUAGE="JScript">
+<!--
+// Declare Globals
+
+var cubeTexture;
+var cubeShadow;
+var shadowGeo;
+var cubeTransScale;
+var cubeTransRot;
+var cubeTransTrans;
+var cubeOpacity;
+var movieSound;
+var movieSnd;
+
+var Rotating = false;
+var Translating = false;
+var Shadows = false;
+
+function rotate()
+{
+  if(Rotating == false)  {
+    Rotating = true;
+    cubeTransRot = "m.Rotate3RateDegrees(" + selectRotAxis.value + ",60)";
+    CubeTransRot.innerHTML = "<B>"+cubeTransRot+"</B>";
+    cubeTransF.SwitchTo(m.Compose3Array(new Array( eval(cubeTransScale), 
+      eval(cubeTransRot), eval(cubeTransTrans))));
+    Rotate.style.backgroundColor = "red";
+    Rotate.innerText = "Stop";
+    selectRotAxis.disabled = true;
+  }
+  else {
+    Rotating = false;
+    cubeTransRot = "m.Rotate3Degrees(m.XVector3,60)";
+    CubeTransRot.innerText = cubeTransRot;
+    cubeTransF.SwitchTo(m.Compose3Array(new Array( eval(cubeTransScale), 
+      eval(cubeTransRot), eval(cubeTransTrans))));
+    Rotate.style.backgroundColor = "";
+    Rotate.innerText = "Rotate";
+    selectRotAxis.disabled = false;
+  }
+}
+
+function translate()
+{
+  if(Translating == false)  {
+    Translating = true;
+    cubeTransTrans = "m.Translate3Anim(" + selectTransAxis.value + ")";
+    CubeTransTrans.innerHTML = "<B>"+cubeTransTrans+"</B>";
+    cubeTransF.SwitchTo(m.Compose3Array(new Array( eval(cubeTransScale), 
+      eval(cubeTransRot), eval(cubeTransTrans))));
+    Translate.style.backgroundColor = "red";
+    Translate.innerText = "Stop";
+    selectTransAxis.disabled = true;
+  }
+  else {
+    Translating = false;
+    cubeTransTrans = "m.Translate3(0,0,0)";
+    CubeTransTrans.innerText = cubeTransTrans;
+    cubeTransF.SwitchTo(m.Compose3Array(new Array( eval(cubeTransScale), 
+      eval(cubeTransRot), eval(cubeTransTrans))));
+    Translate.style.backgroundColor = "";
+    Translate.innerText = "Translate";
+    selectTransAxis.disabled = false;
+  }
+}
+
+
+function applytex()
+{
+  if(selectTexture.value == "Movie")  {
+    movieImport = 'm.ImportMovie(movieBase + "video.avi")'
+    MovieImport.innerHTML = "<B>" + "movieImport = " + movieImport + ";" + "</B>";
+    cubeTexture.SwitchTo(eval(movieImport + ".Image.MapToUnitSquare()"));
+    CubeTexture.innerHTML = "<B>" + "movieImport.Image.MapToUnitSquare()" +"</B>";
+    movieSound =  movieImport + ".Sound";
+    movieSnd.SwitchTo(eval(movieSound));
+    MovieSound.innerHTML = "<B>" + "finalSnd = " + "movieImport.Sound;" + "</B>";
+  }
+  else  {
+    MovieImport.innerText = "";
+    MovieSound.innerText = "";
+    cubeTexture.SwitchTo(eval(selectTexture.value));
+    CubeTexture.innerHTML = "<B>"+selectTexture.value+"</B>";
+    MovieSound.innerText = "finalSnd = m.Silence" + ";";
+    movieSnd.SwitchTo(eval('m.Silence'));
+  }
+}	
+
+function applyshadow()
+{
+
+  if(Shadows == false)  {
+    Shadows = true;
+	cubeShadow = "lightAndGeo.Shadow(lightAndGeo,m.Point3(0, -0.021, 0),m.Vector3(0,1,0))";
+	shadowGeo.SwitchTo(eval(cubeShadow));
+    ApplyShadow.innerText = "Turn Shadow Off";
+  }
+  else  {
+    Shadows = false;
+    cubeShadow = "m.EmptyGeometry";
+	shadowGeo.SwitchTo(eval(cubeShadow));
+    ApplyShadow.innerText = "Turn Shadow On";
+  }
+  CubeShadow.innerHTML = "<B>"+cubeShadow+"</B>";
+}
+-->
+</SCRIPT>
+ <SCRIPT LANGUAGE="VBS">
+<!--
+sub OpacityScrollGeo_Change()
+ cubeOpacity.SwitchToNumber((OpacityScrollGeo.value)/100)
+ update_opactiy()
+end sub
+-->
+</SCRIPT>
+ <SCRIPT LANGUAGE="JScript">
+<!--
+function update_opactiy()  {
+ CubeOpacity.innerHTML = "<B>" + OpacityScrollGeo.value/100 + "</B>";
+}
+-->
+</SCRIPT>
+ <SCRIPT LANGUAGE="JScript">
+<!--
+function winLoad()  {
+  m = DAControl.MeterLibrary;
+if( m.VersionString != "5.01.15.1106" && m.VersionString != "6.00.03.0518" && m.VersionString != "5.01.17.0825" && m.VersionString != "5.01.15.0828")  {
+  
+  mediaBase = "";
+  geoBase = mediaBase + "";
+  imageBase = mediaBase + "";
+  movieBase = mediaBase + "";
+  
+  // a rotating cube
+  cubeGeo = m.ImportGeometry(geoBase + "cube.x");
+  imgBackground = m.ImportImage(imageBase + "grid3d1.gif");
+
+  MovieImport.innerText = "";
+
+  cubeTexture = m.ModifiableBehavior(eval(selectTexture.value));
+
+  cubeTransScale = "m.Scale3Uniform(0.0125)";
+  cubeGeo = cubeGeo.TextureImage(cubeTexture);
+  cubeTransRot = "m.Rotate3Degrees(" + selectRotAxis.value + ",60)";
+  cubeTransTrans = "m.IdentityTransform3"
+
+  cubeTransF = m.ModifiableBehavior(m.Compose3Array(new Array( eval(cubeTransScale), 
+    eval(cubeTransRot), eval(cubeTransTrans))));
+
+  CubeTransScale.innerText = cubeTransScale;
+  CubeTransRot.innerText = cubeTransRot;
+  CubeTransTrans.innerText = cubeTransTrans;
+  CubeTexture.innerText = selectTexture.value;
+
+  cubeGeo = cubeGeo.Transform(cubeTransF);
+
+  cubeOpacity = m.ModifiableNumber(eval(OpacityScrollGeo.value/100));
+  CubeOpacity.innerText = OpacityScrollGeo.value/100;
+
+  cubeGeo = cubeGeo.OpacityAnim(cubeOpacity);
+
+  camera = m.PerspectiveCamera(0.06, 0.033);
+  light = m.UnionGeometry(m.AmbientLight,m.DirectionalLight.Transform(m.Rotate3Degrees(m.XVector3,-90)));
+
+  lightAndGeo = m.UnionGeometry(cubeGeo, light);
+
+  cubeShadow = "m.EmptyGeometry";
+  CubeShadow.innerText = cubeShadow;
+
+  shadowGeo = m.ModifiableBehavior(eval(cubeShadow));
+
+  finalImg = m.UnionGeometry(lightAndGeo, shadowGeo).render(camera);
+  DAControl.Image = m.Overlay(finalImg, imgBackground.Tile());
+  
+  //DAControl.Image = finalImg;
+
+  movieSound = "m.Silence";
+  MovieSound.innerText = "finalSnd = m.Silence" + ";";
+
+  movieSnd = m.ModifiableBehavior(eval(movieSound));
+  
+  DAControl.Sound = movieSnd;
+     
+  // start the animation       
+  DAControl.Start();
+  }
+  else
+    window.top.location.replace("demo_downlevel.htm");
+}
+-->
+</SCRIPT>
+<LINK REL="stylesheet" HREF="sample.css">
+
+</HEAD>
+
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT><hr>
+
+<BODY BGCOLOR="#FFFFFF">        
+
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" Width="100%">
+  <TR>
+    <TD>
+		<TABLE BORDER="1" CELLPADDING="0" CELLSPACING="0" WIDTH="300">
+		<TR><TD ALIGN="LEFT" HEIGHT="300">
+			<OBJECT ID="DAControl"
+			  STYLE="width:300;height:300; background-color: #F1F1F1; 	border-width : 1; border-color : Gray; border-style : inset;" 
+			  CLASSID="CLSID:B6FFC24C-7E13-11D0-9B47-00C04FC2F51D">
+			</OBJECT>
+		
+		</TD></TR>
+		<TR><TD>
+		
+<TABLE BORDER="1" CELLPADDING="0" CELLSPACING="0" WIDTH="100%">
+<TR>
+			<TD HEIGHT="45">
+			<BUTTON ID="Rotate" style="width:110" 
+			TITLE="Click this button to toggle rotation." 
+			onclick="rotate()">Rotate
+			</BUTTON>
+			</TD>
+			<TD>
+			Rotate Along:<BR>
+			<SELECT ID="selectRotAxis" STYLE="width:150" TITLE="Change the rotation axis.">
+			<OPTION SELECTED VALUE="m.XVector3">X-AXIS</OPTION>
+			<OPTION VALUE="m.YVector3">Y-AXIS</OPTION>
+			<OPTION VALUE="m.ZVector3">Z-AXIS</OPTION>
+			</SELECT>
+			</TD>
+			
+</TR>
+
+<TR>
+			<TD HEIGHT="45">
+			<BUTTON ID="Translate" style="width:110" 
+			TITLE="Click this button to toggle translation." 
+			onclick="translate()">Translate
+			</BUTTON>
+			</TD>
+			<TD>
+			Translate Along:<BR>
+			<SELECT ID="selectTransAxis" STYLE="width:150" TITLE="Change the translation axis.">
+			<OPTION SELECTED VALUE="m.Sin(m.LocalTime),m.DANumber(0),m.DANumber(0)">X-AXIS</OPTION>
+			<OPTION VALUE="m.DANumber(0),m.Sin(m.LocalTime),m.DANumber(0)">Y-AXIS</OPTION>
+			<OPTION VALUE="m.DANumber(0),m.DANumber(0),m.Sin(m.LocalTime)">Z-AXIS</OPTION>
+			<OPTION VALUE="m.Cos(m.LocalTime),m.Sin(m.LocalTime),m.DANumber(0)">X AND Y-AXIS</OPTION>
+			<OPTION VALUE="m.Cos(m.LocalTime),m.DANumber(0),m.Sin(m.LocalTime)">X AND Z-AXIS</OPTION>
+			<OPTION VALUE="m.DANumber(0),m.Cos(m.LocalTime),m.Sin(m.LocalTime)">Y AND Z-AXIS</OPTION>			
+			<OPTION VALUE="m.Sin(m.LocalTime),m.Cos(m.LocalTime),m.Sin(m.LocalTime)">X, Y AND Z-AXIS</OPTION>						
+			</SELECT>
+			</TD>
+</TR>
+
+<TR>
+			<!-- <TD>
+			<BUTTON ID="ApplyTex" style="width:120" 
+			TITLE="Click this button to apply the texture." 
+			onclick="applytex()">Apply Texture
+			</BUTTON>
+			</TD> -->
+			<TD HEIGHT="45">
+			Texture:
+			</TD>
+			<TD>
+			<SELECT id="selectTexture" STYLE="width:150" TITLE="Change the texture." onchange="applytex()">
+			<OPTION SELECTED VALUE="m.SolidColorImage(m.blue)">SOLID COLOR</option>
+			<OPTION VALUE="m.ImportImage(imageBase + 'mndscp2.jpg').MapToUnitSquare()">IMAGE</option>
+			<OPTION VALUE="Movie">MOVIE</option>
+			<OPTION VALUE="m.gradientSquare(m.Red, m.Black, m.Blue, m.White).MapToUnitSquare()">GRADIENT</option>
+			<OPTION VALUE="m.StringImage('DA',m.Font('Arial',8,m.Blue)).MapToUnitSquare()">TEXT</option>
+			<OPTION VALUE="m.Oval(0.01, 0.01).Fill(m.DefaultLineStyle, m.SolidColorImage(m.Red)).MapToUnitSquare()">VCTR GRAPHICS</option>
+			</SELECT>
+			</TD>
+</TR>
+			
+<TR>
+			<TD HEIGHT="45">
+			Opacity:
+			</TD>
+			<TD>
+			<OBJECT ID="OpacityScrollGeo" 
+			STYLE="position:relative; left:0; top:0; width:145; height:16" STYLE="border:1px inset #696969; color:white"
+			CLASSID="CLSID:DFD181E0-5E2F-11CE-A449-00AA004A803D">
+			<PARAM NAME="Max" VALUE="100">
+			<PARAM NAME="Position" VALUE="100">
+			<PARAM NAME="LargeChange" VALUE="10">
+			<PARAM NAME="Orientation" VALUE="1">
+			</OBJECT>
+</TD>
+</TR>
+<TR>
+			<TD COLSPAN="2" HEIGHT="45">
+			<BUTTON ID="ApplyShadow" style="width:120" 
+			TITLE="Click this button to apply a shadow." 
+			onclick="applyshadow()">Turn Shadow On
+			</BUTTON>
+			</TD>
+</TR>	
+</TABLE>
+		
+		
+		
+		
+		
+		
+		</TD>
+		</TR>
+	</TABLE>
+	</TD>
+	<TD>
+	<!--insert table 1 here -->
+	<TABLE BORDERCOLOR="#000000" bgcolor="#FFFFFF" HEIGHT="100%">
+	<TR>
+	<TD STYLE="border-width:1; border-style:inset;">
+		<CENTER><H3><A NAME="Geo_Demo" IDX_CONCEPT="noindex; Geometry Demo; Demo, geometry">Geometries</A></H3></CENTER>
+		Use the controls on the left to add animation, apply textures, turn shadowing on and off, and set the opacity. The JScript code used to generate the 
+        animation appears below. Note that in order to use <A HREF="http://www.microsoft.com/directx/dxm/help/da/ref_script/class/DAGeometryClass.htm#Shadowv_g">shadows</A> you must have Microsoft&reg; DirectX&reg; 6.x or later installed. You will not get an error if you turn on shadows without DirectX 6.x. It will simply have no effect.
+        
+		<P><SPAN ID="noteTitle" STYLE="text-decoration:underline;" 
+        onmouseover='this.style.cursor = "hand"' onclick="toggleNotes()">Show more 
+        information. </SPAN><SPAN ID="notes" STYLE="display:none">
+		<BR><BR>You can construct or import 3-D graphics (<B>DAGeometry</B> objects), and perform sequences of operations on them in any order. The simplest way to construct a geometry behavior is to import a geometry from an .X formatted file. You can import geometries synchronously or asynchronously. You can augment geometry with lights, including ambient, directional, point, and spot lights. You can attach a sound source to a geometry, which is used to give 3-D spatial characteristics to a sound by embedding it in other geometric models. You can also set a shadow for a geometry.
+		<p>To set shadows correctly, you must create a visible object and the light to cast shadows. Also, you must set the shadow plane and light position 
+		correctly. You need a point and a vector to define the shadow plane. The point is a point on the plane, and the vector defines the normal (a vector perpendicular to the plane) at the point that points toward the object. This is the syntax for shadow: <Code>geometryObj.Shadow( geoContainingLights, planePoint, planeNormal)</code>. Thus, setting the vector to (0 0 1) means the plane is directly behind the object and the normal points ahead toward the object, while setting the vector to (0 0 -1) means the plane is in front of the object and the normal points back to it. Note that changing the position of the light or the shadow plane changes the shadow's location. &nbsp;
+		</SPAN>
+	</TD>
+	</TR>
+	<TR>
+	<TD bgcolor="#FFFFFF" VALIGN="top">
+							<SPAN STYLE="font-size:11; font:Courier-New">
+					&lt;HTML&gt;<BR>
+					&lt;HEAD&gt;<BR>
+					&lt;/HEAD&gt;<BR>
+					&lt;BODY&gt;<BR>
+
+					&lt;OBJECT ID="DAControl" STYLE="width:300;height:350"<BR>
+					CLASSID="CLSID:B6FFC24C-7E13-11D0-9B47-00C04FC2F51D"&gt;<BR>
+					&lt;/OBJECT&gt;<BR>
+        		  	&lt;SCRIPT LANGUAGE="JScript"&gt;<BR>
+		          	m = DAControl.MeterLibrary;<BR><BR>
+	       			mediaBase = "";<BR>
+          			imageBase = mediaBase + "";<BR>
+          			geoBase = mediaBase + "";<BR>
+          			movieBase = mediaBase + "";<BR>
+					imgBackground = m.ImportImage(imageBase + "grid3d1.gif");<BR>
+          			cubeGeo = m.ImportGeometry(geoBase + "cube.x");<BR>
+          			<SPAN id="MovieImport"></SPAN><BR>
+          			cubeTexture = <SPAN id="CubeTexture"></SPAN>;<BR>
+          			cubeGeo = cubeGeo.TextureImage(cubeTexture);<BR><BR>
+          			cubeTransScale = <SPAN id="CubeTransScale"></SPAN>;<BR>
+          			cubeTransRot = <SPAN id="CubeTransRot"></SPAN>;<BR>
+          			cubeTransTrans = <SPAN id="CubeTransTrans"></SPAN>;<BR>
+          			cubeTransF = m.Compose3Array(new Array( cubeTransScale, cubeTransRot, cubeTransTrans));<BR><BR>
+          			cubeGeo = cubeGeo.Transform(cubeTransF);<BR><BR>
+          			cubeGeo = cubeGeo.Opacity(<SPAN id="CubeOpacity"></SPAN>);<BR><BR>
+          			camera = m.PerspectiveCamera(0.06, 0.033);<BR>
+          			light = m.UnionGeometry(m.AmbientLight, m.DirectionalLight.Transform(m.Rotate3Degrees(m.XVector3,-90)));<BR>
+          			lightAndGeo = m.UnionGeometry(cubeGeo, light);<BR>
+          			shadowGeo = <SPAN id="CubeShadow"></SPAN>;<BR><BR>
+          			finalImg = m.UnionGeometry(lightAndGeo, shadowGeo).render(camera);<BR>
+          			<SPAN id="MovieSound"></SPAN><BR><BR>
+					DAControl.Image = m.Overlay(finalImg, imgBackground.Tile());<BR>
+          			DAControl.Sound = finalSnd;<BR>
+          			DAControl.Start();<BR>
+          			&lt;/SCRIPT&gt;<BR>
+					&lt;/BODY&gt;<BR>
+					&lt;/HTML&gt;<BR>
+					</SPAN>
+		</TD>
+		</TR>
+		</TABLE>
+		</TD>
+	</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

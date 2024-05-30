@@ -1,0 +1,25 @@
+HKCR
+{
+    DXImageTransform.Microsoft.WipeSample.1 = s 'WipeSample Transition'
+    {
+	CLSID = s '{A5781BB8-E54B-11d1-9A72-0000F8756A10}'
+    }
+    DXImageTransform.Microsoft.WipeSample = s 'WipeSample Transition'
+    {
+	CurVer = s 'DXImageTransform.Microsoft.WipeSample.1'
+	CLSID = s '{A5781BB8-E54B-11d1-9A72-0000F8756A10}'
+    }
+    NoRemove CLSID
+    {
+	ForceRemove {A5781BB8-E54B-11d1-9A72-0000F8756A10} = s 'Microsoft WipeSample Transition'
+	{
+	    ProgID = s 'DXImageTransform.Microsoft.WipeSample.1'
+	    VersionIndependentProgID = s 'DXImageTransform.Microsoft.WipeSample'
+	    ForceRemove 'Programmable'
+	    InprocServer32 = s '%MODULE%'
+	    {
+		val ThreadingModel = s 'Both'
+	    }
+	}
+    }
+}

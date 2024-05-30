@@ -1,0 +1,18 @@
+#----------------------------------------------------------------------------
+# Description:
+#   Makefile for MsgEmit.Lib
+#
+# Copyright (C) Microsoft Corporation 1986 - 1998.  All Rights Reserved.
+#----------------------------------------------------------------------------
+
+USE_EXCHANGE=1
+crtdll=1
+dll=1
+
+Proj = MsgEmit
+
+!Include <BkOffice.Mak>
+
+all:     $(ObjDir)\$(Proj).Lib
+
+$(ObjDir)\$(Proj).Lib: $(@R).Obj $(@D)\MsgParse.Obj

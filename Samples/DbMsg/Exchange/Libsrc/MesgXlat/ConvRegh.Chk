@@ -1,0 +1,80 @@
+// --convregh.chk---------------------------------------------------------------
+// 
+// Parameter checking for convregh.cpp
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+//
+// -----------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_HrGetArbSizeValue(a,b,c,d,e) NOERROR
+
+#else
+
+//$--CHK_HrGetArbSizeValue---------------------------------------------------------
+//
+//  DESCRIPTION: Parameter checking for HrGetArbSizeValue
+//
+//  INPUT:  hk  --  key that contains value
+//          lpszValueName   --  name of value
+//       
+//  OUTPUT: pValue  --  pointer to key's value
+//          cbSize  --  size of value (including null)
+//          nType   --  type of value
+//
+//  RETURNS:    HRESULT -   NOERROR if successful,
+//                          E_INVALIDARG if bad input,
+//
+//------------------------------------------------------------------------------
+static inline HRESULT CHK_HrGetArbSizeValue(       // RETURNS: HRESULT
+    IN HKEY hk,                 // key that contains the value
+    IN LPWSTR lpszValueName,    // name of the value
+    OUT PVOID & pValue,         // pointer to its value
+    OUT DWORD & cbSize,         // how big is it (including trailing null(s)
+    OUT DWORD & nType)          // what type
+{
+    HRESULT hr  =   NOERROR;    // return code
+
+    if ( (hk == NULL) || (hk == INVALID_HANDLE_VALUE) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( (lpszValueName == NULL) || IsBadStringPtrW(lpszValueName, INFINITE) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_WRITE_PTR(&pValue, sizeof(PVOID)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_WRITE_PTR(&cbSize, sizeof(DWORD)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_WRITE_PTR(&nType, sizeof(DWORD)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return hr;
+
+}
+
+#endif

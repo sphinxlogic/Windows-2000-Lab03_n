@@ -1,0 +1,30 @@
+<title>AFC Setup Autoinstall Documentation</title>
+
+<h1>AFC Setup Autoinstall</h1>
+
+Autoinstall is a useful feature which allows one to run AFC Setup from 
+a web page automatically, but only if necessary. The system checks for an 
+installed version on the user's hard disk and runs the AFC Setup program only
+if necessary.<p>
+
+To use AFC Setup Autoinstall, add the following tag to your HTML page:<p>
+<xmp>
+<OBJECT CLASSID="clsid:9C06B801-F217-11d0-AA9B-0000F8052E95" 
+CODEBASE="afcsetup.exe#Version=1,0,0,2223"
+WIDTH=0 HEIGHT=0>
+</OBJECT>
+</xmp>
+
+The <b>OBJECT</b> tag specifies an ActiveX control - here we are using the ActiveX control
+registration mechanism for AFC Setup. 
+<p>
+The <b>CLASSID</b> parameter specifies the GUID
+for AFC Setup; this is a unique identifier in the registry which is checked when the page loads.
+<p>
+<b>CODEBASE</b> is the name of the program to run, followed by a # and a version number.
+This version number is compared to the one stored in the registry with the GUID. If the
+version on the page is newer, the program is downloaded and run automatically. If the
+page's version is older, nothing happens. There is no download unless it is necessary.
+<p>
+The <B>WIDTH</b> and <b>HEIGHT</b> tags are set to 0 because we don't want any space
+on the page allocated for this control.

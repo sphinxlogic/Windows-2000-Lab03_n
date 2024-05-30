@@ -1,0 +1,152 @@
+<HTML>
+<!--
+/**************************************************************************
+ *
+ * Copyright (c) 1998 Microsoft Corporation.  All rights reserved.
+ *
+ * This is prerelease software and is provided as is and Microsoft
+ * makes no warranties, either express or implied.  The entire risk of
+ * the use or the results of the use of this prerelease software
+ * remains with the user.
+ **************************************************************************/
+
+-->
+<HEAD><Title>Microsoft Web Telephony Engine DEMO</Title></HEAD>
+<!-- Style Sheet for the links -->
+<STYLE>
+        a:link
+                {
+                        color:green;
+                        font-family:verdana;
+                        font-size:14pt;
+                        text-decoration:none;
+                        cursor:hand;
+                }
+        a:vlink
+                {
+                        color:green;
+                        font-family:verdana;
+                        font-size:14pt;
+                        text-decoration:none;
+                        cursor:hand;
+                }
+        a:hover
+                {
+                        color:forstgreen;
+                        font-family:verdana;
+                        font-size:14pt;
+                        font-weight:bold;
+                        text-decoration:none;
+                        cursor:hand;
+                }
+        a:alink
+                {
+                        color:green;
+                        font-family:verdana;
+                        font-size:14pt;
+                        text-decoration:underline;
+                        font-weight:bold;
+                        cursor:hand;
+                }
+        P       
+                {
+                        color:black;
+                        font-family:arial;
+                        font-size:10pt;
+                }
+
+
+</STYLE>
+<!-- End of stylesheet -->
+
+<BODY STYLE="background:MOCCASIN" onunload="CancelPageSettings()">
+<SCRIPT LANGUAGE="JavaScript">
+
+
+        function Log(data)
+        {
+                var temp;
+                temp = external.LogCustomField;
+                temp.DefaultValue = data;
+                external.log();
+                temp.DefaultValue = "";
+        }
+
+        function errortrap(msg,url,line){
+           //alert("Error " + msg + " Url = " + url +  " Line = " + line);
+           Log("Error " + msg + " Url = " + url +  " Line = " + line);
+            return true;
+        }
+        window.onerror=errortrap;
+
+        
+
+
+       var CallConfiguration;
+       if(window.external.hostName == "Microsoft Web Telephony Engine")
+       {
+           CallConfiguration=window.external.Configuration;
+           PreviousOfferItems = CallConfiguration.offeritems;
+           CallConfiguration.offeritems=false;
+           PreviousUseSR = CallConfiguration.UseSR;
+           CallConfiguration.confirmbefore="url(waves/IfYouSaid.wav)";
+           CallConfiguration.confirmafter="url(waves/press1.wav)";
+           CallConfiguration.RepeatMenuAnnouncement="url(waves/IfNotPress9.wav)";
+           CallConfiguration.RepeatMenuKey ="9";
+           CallConfiguration.UseSR = true;
+       }
+
+
+       function CancelPageSettings() {
+       if(window.external.hostName == "Microsoft Web Telephony Engine")
+        {
+         CallConfiguration.offeritems=PreviousOfferItems;
+         CallConfiguration.UseSR=PreviousUseSR;
+        }
+       }
+        
+      </script>
+
+<script LANGUAGE="JavaScript">
+function PresentSelection() {
+
+
+         ResultHolder.VoiceFile=Countries.options(Countries.selectedIndex).VoiceFile;
+         ResultHolder.innerText=Countries.options(Countries.selectedIndex).value;
+         if(window.external.hostName == "Microsoft Web Telephony Engine")
+          {
+           CallConfiguration.offeritems=true;
+           CallConfiguration.UseSR = false;
+          }
+
+}
+</script>
+
+<!-- The logo -->
+<CENTER>
+        <IMG SRC="ivrdemo.gif" HEIGHT=46 WIDTH=465>
+</CENTER>
+<!-- End of Logo -->
+
+<IMG SRC="speech.gif" WIDTH=80 HEIGHT=80>
+
+    <H2 VoiceFile=waves\SpeechRecognition.wav>This is the speech recognition demonstration page</H2>
+    <SELECT NAME=Countries SIZE=4 onchange="PresentSelection();" >
+           <OPTION value="Australia" VoiceFile="waves\Australia.wav" >Australia
+           <OPTION value="Austria" VoiceFile="waves\Austria.wav">Austria
+           <OPTION value="Finland" VoiceFile="waves\Finland.wav">Finland
+           <OPTION value="England" VoiceFile="waves\England.wav">England
+    </SELECT>
+
+    <br><br>You have selected the country:
+
+<p>
+    <A VoiceFile="waves\YouSaid.wav"></A>
+    <A NAME=ResultHolder></A><br>
+</p>
+<form>
+<input type=button VALUE="Home" STYLE = "Cut-Through : NO" OnClick="navigate('Demo.htm');">
+</form>
+</BODY>
+
+</HTML>

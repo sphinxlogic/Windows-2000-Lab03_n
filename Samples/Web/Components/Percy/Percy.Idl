@@ -1,0 +1,45 @@
+
+//=--------------------------------------------------------------------------=
+//  (C) Copyright 1996-1999 Microsoft Corporation. All Rights Reserved.
+//=--------------------------------------------------------------------------=
+#include <olectl.h>
+// Percy.idl : IDL source for Percy.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (Percy.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+	
+
+	[
+		object,
+		uuid(4912B21E-05B0-11D1-AF9A-00A0C909FE5F),
+		dual,
+		helpstring("Ipercyctl Interface"),
+		pointer_default(unique)
+	]
+	interface Ipercyctl : IDispatch
+	{
+	};
+[
+	uuid(4912B211-05B0-11D1-AF9A-00A0C909FE5F),
+	version(1.0),
+	helpstring("Percy 1.0 Type Library")
+]
+library PERCYLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(F1D8212E-059E-11D1-AF9A-00A0C909FE5F),
+		helpstring("percyctl Class")
+	]
+	coclass percyctl
+	{
+		[default] interface Ipercyctl;
+	};
+};

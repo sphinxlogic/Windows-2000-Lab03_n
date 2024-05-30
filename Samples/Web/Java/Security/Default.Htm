@@ -1,0 +1,91 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFFF" link="#003399" vlink="#808080" topmargin="8" leftmargin="12">
+<!-- (c) 1997 Microsoft Corporation.  All rights reserved. -->
+<P></P>
+<FONT SIZE=2><P>&nbsp;</FONT><B><FONT SIZE=4>SDK 2.0 Security Samples Index</P>
+
+</B></FONT>
+<DIR>
+<UL>
+<LI><A href="custom\Sample.html" target="MAIN">Custom Permission</A></LI><P>
+<LI><A href="com\Sample.html" target="MAIN">Securing COM Methods</A></LI><P>
+<LI><A href="rni\Sample.html" target="MAIN">Securing RNI Methods</A></LI><P>
+<LI><A href="loader\Sample.html" target="MAIN">Custom Class Loader</A></LI><P>
+<LI><A href="sign\ini.html" target="MAIN">Sample INI Files for Signing Java Code</A></LI><P>
+</UL>
+
+<font size="2" face="VERDANA, GEORGIA, ARIAL, HELVETICA">
+
+This sample demonstrates how to interact with the security system of 
+Microsoft's VM for Java.  The samples demonstrate three areas:
+<ol>
+<li>performing security checks to protect access to resources from native 
+code
+<li>implementing custom capabilities, to protect resources not described by the
+stock permissions in com.ms.security.permissions
+<li>assigning permissions to classes with custom class loaders
+</ol>
+
+<p>
+
+The 'com' and 'rni' samples demonstrate how to protect access to resources from
+native code.  There are two ways to do this:
+<ol>
+<li>initiating the check from the native code
+<li>initiating the check from java code before calling the native method
+</ol>
+The first mechanism has the advantage of always being safe regardless of who 
+declares the java wrapper for the native code.  It is easy for anyone to link 
+to native code, COM or RNI, regardless of who authored it.  If the native code 
+is installed on the system, it is free game to fully trusted code.  For this
+reason, initiating the security check from native code ensures complete safety.
+<br>
+However, calling a java method to perform a security check may incur a
+performance penalty, so some scenarios may prefer the second mechanism to
+prevent calls from normal native code from being penalized.  COM code not
+written specifically to be called from java will prefer the second mechanism.
+The second mechanism has the disadvantage of being slightly less safe for the 
+reason indicated above.
+<br>
+The 'com' sample demonstrates both mechanisms for COM calls, the 'rni' sample 
+for RNI calls.  J/Direct calls to native apis may have some measure of built-in
+security by optionally checking the stack for fully-trusted code at each
+invokation, but the same mechanisms demonstrated here may be applied to
+J/Direct as well to perform more specific types of security checks.
+
+<p>
+
+The 'custom' sample demonstrates custom capabilities.  There are five things
+that need to be done to implement custom capabilities:
+<ol>
+<li>define what the capability is to protect, and write an implementation of 
+IPermission
+<li>perform security checks for the custom capability in the code that accesses 
+the resources that the capability is to protect
+<li>if the capability is intended to be used for signing, write an 
+implementation of IEncodablePermission.
+<li>if a request object for access to the custom capability can provide 
+additional details that may be useful to an auditor, write an implementation of 
+ISecurityAuditInfo.  Additional registry keys need to be set when the library 
+is installed to indicate where the auditing messages are located.
+<li>sign and package the custom capability classes as system code to be 
+installed with the library.  (Only system classes may define capabilities.)
+</ol>
+
+<p>
+
+The 'loader' sample constructs a class loader that assigns permissions to 
+classes.  Four things are demonstrated:
+<ol>
+<li>decoding the permissions from pre-encoded form (.ini file or binary blob)
+<li>manually building a set of permissions
+<li>defining a class that has permissions
+<li>inspecting the permissions of a class
+
+</font>
+
+</BODY>
+</HTML>

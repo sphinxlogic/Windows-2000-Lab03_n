@@ -1,0 +1,7 @@
+REGEDIT4
+
+[HKEY_CLASSES_ROOT\CLSID\{776E4265-B45F-11d1-BC1E-0000F81F599C}] 
+@="Number to Text Sample"
+[HKEY_CLASSES_ROOT\CLSID\{776E4265-B45F-11d1-BC1E-0000F81F599C}\LocalServer32]
+@="D:\\MSSDK\\Samples\\com\\fundamentals\\ltwthandlr\\bin\\WithXData\\WithXData.exe"
+

@@ -1,0 +1,40 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\kdexts.res \
+    $(_OBJ_DIR)\alpha\help.obj \
+    $(_OBJ_DIR)\alpha\kdexts.obj \
+    $(_OBJ_DIR)\alpha\drvext.obj \
+    $(_OBJ_DIR)\alpha\extparse.obj \
+    $(_OBJ_DIR)\alpha\flags.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\kdexts.res \
+    $(_OBJ_DIR)\axp64\help.obj \
+    $(_OBJ_DIR)\axp64\kdexts.obj \
+    $(_OBJ_DIR)\axp64\drvext.obj \
+    $(_OBJ_DIR)\axp64\extparse.obj \
+    $(_OBJ_DIR)\axp64\flags.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\kdexts.res \
+    $(_OBJ_DIR)\i386\help.obj \
+    $(_OBJ_DIR)\i386\kdexts.obj \
+    $(_OBJ_DIR)\i386\drvext.obj \
+    $(_OBJ_DIR)\i386\extparse.obj \
+    $(_OBJ_DIR)\i386\flags.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\kdexts.res \
+    $(_OBJ_DIR)\ia64\help.obj \
+    $(_OBJ_DIR)\ia64\kdexts.obj \
+    $(_OBJ_DIR)\ia64\drvext.obj \
+    $(_OBJ_DIR)\ia64\extparse.obj \
+    $(_OBJ_DIR)\ia64\flags.obj
+
+PASS0_IA64_OBJECTS=
+

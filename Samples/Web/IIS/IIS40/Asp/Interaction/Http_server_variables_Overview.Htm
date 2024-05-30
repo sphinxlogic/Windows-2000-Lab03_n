@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>HTTP Server Variables</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_http_server_variables"></a>  HTTP Server Variables</h3>
+<p>
+Each HTTP transaction that takes place between a client browser and a server involves the exchange of a great deal of potentially useful information, much of which is not obvious to the casual user. This sample demonstrates one method by which you can access this information, by accessing server variables. Using server variables, you can, for instance, determine the server's name with the SERVER_NAME variable, or the HTTP headers with the ALL_HTTP variable.</p>
+<p>
+The sample's structure is simple: form a two-column table, and fill each table row with a <i>name, value</i> variable pair. Each individual server variable is retrieved by using the name as a key, such as <b>Request.ServerVariables(</b>&quot;ALL_HTTP&quot;<b>)</b>. In addition, since <b>ServerVariables</b> is a collection, you can use a <b>For Each ... Next</b> loop to iterate through all variables found in the collection. </p>
+</BODY>
+</HTML>

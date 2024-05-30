@@ -1,0 +1,11 @@
+AgentMapClass = 110, 110, 678, 554, C
+AEditorUI = 22, 22, 578, 466, C, 9, 8, 712, 541, Z
+AgentPicker = 176, 176, 732, 620, C, 154, 154, 623, 574, C
+FolderPicker = 88, 88, 644, 532, C, 66, 66, 622, 510, C
+LogonStatus = 44, 44, 621, 414, C, 66, 66, 657, 422, C
+NewAgentType = 44, 44, 612, 488, C, 132, 132, 700, 576, C
+CDOConstants = 119, 175, 710, 531, C
+MainModule = 77, 187, 633, 631, C
+AEditorClass = 44, 44, 600, 488, C
+AgentEditorModule = 44, 44, 697, 329, C
+MapTool = 132, 132, 791, 495, C

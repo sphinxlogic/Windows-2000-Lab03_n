@@ -1,0 +1,46 @@
+<HTML>
+<!-- 
+/**************************************************************************
+ *
+ * Copyright (c) 1998 Microsoft Corporation.  All rights reserved.
+ *
+ * This is prerelease software and is provided as is and Microsoft
+ * makes no warranties, either express or implied.  The entire risk of
+ * the use or the results of the use of this prerelease software
+ * remains with the user.
+ **************************************************************************/
+
+-->
+<HEAD>
+            <TITLE>Call Transfer</TITLE>
+
+
+<script language="VBScript">
+Sub PhoneNumber_onchange()
+     External.ITBasicCallControl.BlindTransfer PhoneNumber.value
+End Sub
+</script>
+</HEAD>
+
+<BODY STYLE="background:MOCCASIN">
+<!-- The logo -->
+<CENTER>
+	<IMG SRC="ivrdemo.gif" HEIGHT=46 WIDTH=465>
+</CENTER>
+<!-- End of Logo -->
+<IMG SRC="phone.gif" WIDTH=80 HEIGHT=80>
+
+
+    <H1 VoiceFile="waves\Transfer.wav">Call Transfer Demo</H1>
+
+    <A VoiceFile = "waves\Enter4Digits.wav"></A>
+
+
+
+
+    <P> Enter a four digits extenstion number </p><INPUT TYPE=TEXT id=PhoneNumber MAXLENGTH="4" SIZE=4><br>
+
+
+</BODY>
+
+</HTML>

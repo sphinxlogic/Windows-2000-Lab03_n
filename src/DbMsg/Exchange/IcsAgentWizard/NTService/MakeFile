@@ -1,0 +1,37 @@
+#makefile for mssdk_samples_dbmsg_exchange_icsagentwizard_ntservice
+
+BLDTYPE=Retail
+
+Proj= ICSAgentNTService
+
+libs=$(libs) mapi32.lib 
+
+Use_MFC=1
+dll=1
+#crtdll=1
+
+CL= $(CL:-O2=) -D_PSEUDO_DEBUG -D_AFXEXT -D_WIN32_IE=0x500
+
+  
+ObjList =  $(ObjDir)\$(Proj).Obj         \
+           $(ObjDir)\Chooser.Obj         \
+           $(ObjDir)\CMAPILogon.Obj      \
+           $(ObjDir)\Cstm1Dlg.Obj        \
+           $(ObjDir)\Cstm2Dlg.Obj        \
+           $(ObjDir)\Cstm3Dlg.Obj        \
+           $(ObjDir)\Cstm4Dlg.Obj        \
+           $(ObjDir)\Cstm5Dlg.Obj        \
+           $(ObjDir)\Debug.Obj           \
+           $(ObjDir)\ICSAgentNTService.Obj        \
+           $(ObjDir)\$(Proj)Aw.Obj       \
+           $(ObjDir)\StdAfx.Obj          \
+           $(ObjDir)\$(Proj).Res 
+
+!include <BkOffice.Mak>
+
+all: $(ObjDir)\$(Proj).awx
+
+$(ObjDir)\$(Proj).awx: $(ObjDir)\$(Proj).lib
+  copy $(ObjDir)\$(Proj).lib $(ObjDir)\$(Proj).awx
+
+$(ObjDir)\$(Proj).lib: $(ObjList) 

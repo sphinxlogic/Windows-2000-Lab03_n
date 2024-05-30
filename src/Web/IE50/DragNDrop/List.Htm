@@ -1,0 +1,154 @@
+<html><head>
+<title>Items to select</title>
+
+<script language="JavaScript">
+
+function fOnDragStart() {
+  obj = window.event.srcElement
+  if (obj.className == "product") {
+    if (!window.event.dataTransfer) {
+      alert("This version of IE does not support Drag n' Drop")
+      return
+    }
+    window.event.dataTransfer.setData("Text", getDesc(obj.product));
+    window.event.dataTransfer.clearData("HTML");
+    window.event.dataTransfer.clearData("Image");
+  }
+}
+
+function getDesc(product) {
+  if ( product == "win95" ) 
+    return "Item: Windows 95\n" +
+           "Manufacture: Microsoft\n" +
+           "Media: CD-ROM\n" +
+           "Price: 123.45";
+
+  if ( product == "win98" ) 
+    return "Item: Windows 98\n" +
+           "Manufacture: Microsoft\n" +
+           "Media: CD-ROM\n" +
+           "Price: 123.45";
+
+  if ( product == "winnt" ) 
+    return "Item: Windows NT\n" +
+           "Manufacture: Microsoft\n" +
+           "Media: CD-ROM\n" +
+           "Price: 123.45";
+
+  if ( product == "ntserver" ) 
+    return "Item: Windows NT Server\n" +
+           "Manufacture: Microsoft\n" +
+           "Media: CD-ROM\n" +
+           "Price: 123.45";
+
+  if ( product == "office97dev" ) 
+    return "Item: Office 97 Developer Edition\n" +
+           "Manufacture: Microsoft\n" +
+           "Media: CD-ROM\n" +
+           "Price: 123.45";
+
+  if ( product == "sourcesafe" ) 
+    return "Item: Visual SourceSafe\n" +
+           "Manufacture: Microsoft\n" +
+           "Media: CD-ROM\n" +
+           "Price: 123.45";
+
+  if ( product == "vid6" ) 
+    return "Item: Visual InterDev 6.0\n" +
+           "Manufacture: Microsoft\n" +
+           "Media: CD-ROM\n" +
+           "Price: 123.45";
+
+  if ( product == "visualbasic" ) 
+    return "Item: Visual Basic Pro\n" +
+           "Manufacture: Microsoft\n" +
+           "Media: CD-ROM\n" +
+           "Price: 123.45";
+
+  if ( product == "visualc" ) 
+    return "Item: Visual C++ Pro\n" +
+           "Manufacture: Microsoft\n" +
+           "Media: CD-ROM\n" +
+           "Price: 123.45";
+
+  if ( product == "visualstudio97" ) 
+    return "Item: Visual Studio 97\n" +
+           "Manufacture: Microsoft\n" +
+           "Media: CD-ROM\n" +
+           "Price: 123.45";
+
+  if ( product == "visualj" ) 
+    return "Item: Visual J++\n" +
+           "Manufacture: Microsoft\n" +
+           "Media: CD-ROM\n" +
+           "Price: 123.45";
+
+  if ( product == "cetoolkit" ) 
+    return "Item: Windows CE Toolkit\n" +
+           "Manufacture: Microsoft\n" +
+           "Media: CD-ROM\n" +
+           "Price: 123.45";
+}
+
+</script>
+
+<style>
+
+BODY	{	margin			:	0;
+	}
+
+.titleRow
+	{	color			:	white;
+		background-color	:	#003063;
+		padding-bottom		:	0;
+		text-align		:	center;
+	}
+.productRow
+	{	padding-top		:	5;
+		padding-bottom		:	10;
+		padding-left		:	10;
+		padding-right		:	10;
+	}
+</style>
+
+</head>
+<body onDragStart="fOnDragStart()">
+<h2>Drag &amp Drop Support</h2>
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="top.close();return false"Language="Javascript">Close This Sample</A>
+</FONT>
+<br>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+<hr>
+
+<center>
+
+<table width="100%">
+
+  <tr><td colspan=4 class=titleRow><h2>Operating Systems</h2></td></tr>
+  <tr class=productRow>
+     <td><img class=product src="win95.jpg"    product="win95"></td>
+     <td><img class=product src="win98.jpg"    product="win98"></td>
+     <td><img class=product src="winnt.jpg"    product="winnt"></td>
+     <td><img class=product src="ntserver.jpg" product="ntserver"></td>
+  </tr>
+
+  <tr><td colspan=4 class=titleRow><h2>Development Tools</h2></td></tr>
+  <tr class=productRow>
+     <td><img class=product src="office97dev.jpg"    product="office97dev">    </td>
+     <td><img class=product src="sourcesafe.jpg"     product="sourcesafe">     </td>
+     <td><img class=product src="vid6.jpg"           product="vid6">           </td>
+     <td><img class=product src="visualbasic.jpg"    product="visualbasic">    </td>
+  </tr><tr class=productRow>
+     <td><img class=product src="visualc.jpg"        product="visualc">        </td>
+     <td><img class=product src="visualstudio97.jpg" product="visualstudio97"> </td>
+     <td><img class=product src="visualj.jpg"        product="visualj">        </td>
+     <td><img class=product src="cetoolkit.jpg"      product="cetoolkit">      </td>
+  </tr>
+
+</table>
+
+</center>
+
+
+</body></html>

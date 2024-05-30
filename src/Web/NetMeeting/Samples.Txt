@@ -1,0 +1,113 @@
+------------------------------------------------------------------
+       Microsoft NetMeeting SDK 2.1 Samples Readme File
+                          November 1997            
+------------------------------------------------------------------
+
+             (c) Copyright Microsoft Corporation, 1997
+
+
+OVERVIEW OF THE NETMEETING SDK SAMPLES
+======================================
+
+The Samples directory consists of the following subdirectories, which  
+contain samples demonstrating the use of the NetMeeting ActiveX Control,
+NetMeeting COM objects, Internet Locator COM Objects, and Codec
+installation COM Objects.
+
+To build the samples from Visual C++, open the project makefile 
+(for example, sample.mak) as a Microsoft VC++ project, and build as usual.
+The NetMeeting SDK directories must be added to your VC++ environment
+(use the Directories tab under the Tools->Options menu item).
+
+
+NMCHAT
+------
+NMCHAT is a simple chat application that demonstrates the use of the new
+NetMeeting 2.1 INm* COM interfaces.  In particular, this sample illustrates
+the use of data channels to transmit information to peer applications in
+a NetMeeting conference, as well as the basics of detecting new calls and
+joining those calls.
+
+
+
+NMUI
+----
+NMUI is a large sample that demonstrates the use of most of the new COM
+interfaces.  A critical new feature demonstrated by NMUI is the ability
+for an application to replace NetMeeting's User Interface.
+
+In general you enable this sample to start its work by selecting the File,
+Monitor menu item.  This kicks off the sample's processing.
+
+Using this sample you can see how to replace NetMeeting's user interface
+with that of your own application.   To see this, go to the View,Options...
+dialog and select the NM_INIT_CONTROL *before* selecting Monitor.  This will
+cause the NMUI sample, via the NetMeeting 2.1 API, to "take over" all UI from
+NetMeeting.  Upon selecting Monitor, the NetMeeting UI will not appear and
+you can drive everything from within the NMUI sample.
+
+You can use the Call, User... menu to place calls, the Channel, Application
+Sharing... menu to manipulate shared applications, The Call, Accept... menu
+item to accept incoming calls, etc.
+
+
+
+SKIPPY
+------
+SKIPPY demonstrates the use of the ILS COM interface to gain access to
+the same LDAP directory services used in NetMeeting.  SKIPPY shows how to
+register with a server, retrieve information from a server, and filter that
+information for specific properties or content.
+
+See SKIPPY.TXT in the SKIPPY directory for more information.
+
+
+INSTCODC
+--------
+INSTCODC demonstrates the use of the codec installation APIs in NetMeeting
+2.1.  These APIs are of interest only to vendors of audio and video codecs
+who wish to add their codec to the set of codecs available during NetMeeting
+calls.
+
+See INSTCODC.TXT in the INSTCODC directory for more information.
+
+
+AVPHONE
+-------
+The AVPHONE sample demonstrates the use of the audio & video API 
+built into NetMeeting.  It shows how to establish an A/V call and 
+manipulate the video display.
+
+See the AVPHONE.TXT file in the HTML directory for more information.
+
+
+VBCARD
+------
+VBCARD is a data conferencing application that leverages the AcitveX Control.
+
+See the VBCARD.TXT file in the VBCARD directory for more information.
+
+
+NMSHARE
+-------
+The NMSHARE directory contains a sample which demonstrates the application
+sharing interfaces in the NetMeeting 2.1 COM API.  NMSHARE is particularly
+focused on new app sharing state notifications built into the new 2.1 COM APIs.
+Run NMSHARE, establish a call with NetMeeting, share an app using NetMeeting,
+and watch the various state changes as they are tracked in NMSHARE.  You can use
+the Share menu to set the collaboration state of application sharing.
+
+See the NMSHARE.TXT file in the NMSHARE directory for more information.
+
+
+NMFT
+----
+The NMFT directory contains a sample which demonstrates the file transfer
+related interfaces in the NetMeeting 2.1 COM API.
+
+To run the NMFT application you must already be in a NetMeeting call.
+Once in a call, running the application will result in a "pick a file" dialog
+box that allows you to choose the file to send.  A progress indicator is
+displayed during the send.
+
+See the NMFT.TXT file in the NMFT directory for more information.

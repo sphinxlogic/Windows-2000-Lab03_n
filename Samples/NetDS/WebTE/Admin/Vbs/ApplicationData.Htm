@@ -1,0 +1,25 @@
+<HTML>
+<BODY>
+<!--
+
+(C) 1998 Microsoft Corporation.  All rights reserved.
+This is prerelease software and is provided as is and Microsoft makes no
+warranties,  either express or implied. The entire risk of the use or the
+results of the use of this prerelease software remains with the user.
+
+-->
+<SCRIPT LANGUAGE=VBSCRIPT>
+        Set WebTE = CreateObject("WebTE.Root")
+        Set Admin = WebTE.Arrays.GetContainingArray
+        Set IvrApps = Admin.Applications
+
+        document.writeln "Installed IVR Applications: " + CStr(IvrApps.Count) + "<BR>"
+
+        For Each IvrApp in IvrApps
+                document.writeln "Application name: " + IvrApp.Name + ", Initial Page: " + IvrApp.HomePage + "<BR>"
+        Next
+
+
+</SCRIPT>
+</BODY>
+</HTML>

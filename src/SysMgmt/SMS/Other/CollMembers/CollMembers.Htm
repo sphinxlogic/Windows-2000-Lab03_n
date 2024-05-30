@@ -1,0 +1,270 @@
+<html>
+<head>
+<title>DHTML SMS Provider Query Example</title>
+
+<style TYPE="text/css">
+<!--
+	Div.Link	{Cursor: Hand;}
+-->
+</style>
+
+</head>
+
+<body>
+
+<div ID=Logon>
+<h3> Logon </h3>
+<table border="0">
+  <tr>
+    <td>Provider Location:</td>
+    <td><input type=text id=ProvLoc size="20" value=""> </td>
+  </tr>
+  <tr>
+    <td>Sitecode</td>
+    <td><input type=text id=Sitecode size="20" value=""></td>
+  </tr>
+  <tr>
+    <td>User</td>
+    <td><input type=text id=User size="20" value=""></td>
+  </tr>
+  <tr>
+    <td>Password</td>
+    <td><input type=password id=Password size="20" value=""></td>
+  </tr>
+</table>
+<br>
+<input type=button value="Connect" onclick="Connect()">
+<br>
+<div ID=Message></div>
+</div>
+
+
+
+<div ID="ListHeader" Style="Display:none">
+
+<h3>Default SMS Collections</h3>
+Click one to show it's members:
+<br>
+<br>
+<div ID=List></div>
+
+<br>
+<a onClick=ReConnect() onMouseOver="style.color=OnColor" onMouseOut="style.color=OffColor">Reconnect...</a>
+</div>
+
+<div ID=CollMembers>&nbsp;</div>
+
+<script Language="VBScript">
+<!-- 
+' **************************************************************
+'  Copyright (c)1999 Microsoft Corporation, All Rights Reserved
+' **************************************************************
+'
+' CollMembers - Version 1.0
+'
+'This DHTML example will let you connect to an arbitrary instance of the SMS Provider
+' and view the members of the SMS default Collections.
+'
+'This DHTML page is split up into 2 virtual pages.
+' The first page is referred to as the Connection Page.  
+'  - This page consists of the contents of the Logon div.
+' The second page is referred to as the Collection Page.  
+'  - This page consists of the contents of the ListHeader AND CollMembers div's.
+'
+'DHTML lets you hide or display sections of the page dynamically in one browser session without
+' making trips back to the server like with Active Server Pages. 
+'
+'For more information on DHTML check out http://www.microsoft.com/sitebuilder/
+'For more information on VBScript check out http://msdn.microsoft.com/scripting/
+'
+
+Option Explicit
+
+'set up the default colors for the onMouseOver event below
+Dim OnColor, OffColor
+OnColor="#990000"		'Red
+OffColor="#000000"	'Black
+
+'set gService as a Global Variable so we can get to it from all the subs
+Dim gService
+
+Sub Connect()
+'This Sub is used when first creating a connection.  
+' It will create the connection and then populate the collection list.
+	
+	On Error Resume Next	
+
+	'Update the status bar
+	Window.Status = "Connecting..."
+	
+	'If the Password field was left blank in the form, then be sure it really is passed as "blank" to Windows Management
+	'Without this code it would pass NULL in the ConnectServer below if I used Password.Value instead of sPass!
+	dim sPass
+	sPass = Password.Value
+
+	'Create Locator object to connect to remote CIM object manager
+	Dim lLocator
+	Set lLocator = CreateObject("WbemScripting.SWbemLocator")
+	
+	' Connect to the namespace which is either local or remote
+	' Note that gService has been previously defined as a global variable.
+	Set gService = lLocator.ConnectServer ( ProvLoc.value, "root\sms\site_" & Sitecode.Value , User.Value, sPass)
+	If Err.Number <> 0 then 
+		OnError
+		Exit Sub
+	End if
+
+	'Hide the logon section
+	Logon.Style.Display="none"
+	
+	'Get rid of any errormessages in case we come back to this page
+	Message.InnerHTML = ""
+
+	'Update the status bar
+	Window.Status = "Connected to \\" &  ProvLoc.value & "\root\sms\site_" & Sitecode.Value
+
+	'At this point we have a valid connection to Windows Management and have hidden all of the Connection page's HTML.
+	'We will now populate and display a collection list on the Collection Page
+
+	'Show the Collection header section of the page.
+	ListHeader.Style.Display=""
+
+	'Define some variables that to store results in.
+	Dim oCollectionSet, oCollection, sList
+
+	'Execute a query to get all the default SMS Collections
+	' Note that all of the default SMS collections, contain %SMS% in them, so we can use the LIKE keyword
+	' to restrict our query.
+	Set oCollectionSet = gService.ExecQuery ("Select * from SMS_Collection where Collectionid like '%SMS%' Order By CollectionID")
+	If Err.Number <> 0 then OnError
+
+	'Walk through the enumerated object set that was returned from the query above and   
+	' build a single long string of HTML to show all the collection names.
+	' Also include an OnClick event that will pass the MemberClassName to another sub 
+	' that will return the collection members.
+	For Each oCollection in oCollectionSet
+		sList = sList & "<div Class=""Link"" onClick=GetColMembers(""" & oCollection.MemberClassName & """) "
+		sList = sList & "onMouseOver=""style.color=OnColor"" onMouseOut=""style.color=OffColor"">" & oCollection.Name & "<br> </div>"
+	Next
+
+	'Put the html into the div to display it on the page.
+	List.InnerHTML = sList
+
+End Sub
+
+
+Sub GetColMembers(MemberClassName)
+'This sub will create and populate a table containing all the members of a given collection.
+
+	On Error Resume Next
+
+	'Show the top of the table on the page.
+	CollMembers.style.display=""
+	
+	'Get the instance of the Collection that we are working with.  
+	' We will use the name to create a title for the table
+	Dim oCurCollection	
+	Set oCurCollection = gService.Get ("sms_collection.Collectionid=""" & right(MemberClassName,8) & """")
+
+	'Add the name to a string that we will keep adding to and will become live html later.
+	Dim sCollMembers
+	sCollMembers = "<br><hr><br> <h3>" & oCurCollection.Name & "</hr>"
+	
+	'Set up the columns for the table we will put our results into.
+	sCollMembers = sCollMembers & "<br><table border=""1"" width=""100%""> <tr><td width=""25%"">Name</td><td width=""25%"">Resource Class</td><td width=""25%"">Agent Time</td><td width=""25%"">Site Information</td></tr> "
+
+	'Update the status bar
+	Window.Status = "Populating Collection Member List..."
+
+	'Here is where most of the work takes place to gather the collection member information.
+	' First we get back a collection that holds all the resource info that we'll need.
+	' Then we walk though this collection looking at each member.
+	' For each member we lookup the ResouceClassName from the SMS_ResourceMap class.
+	' We then use this to lookup the detailed resource information about each Resource and use it to populate the list.
+	
+	Dim oResourceIDSet, oResourceID, oResClsNameSet, oResClsName, oResourceSet, oResource, sResourceClassName 
+
+	'This query will retrieve the ResourceID and ResourceType information for each collection member
+	' of the collection that MemberClassName specifies.
+	'MemberClassName is the name of the class that contains the members of the collection. 
+	' The name of the class is of the form SMS_CM_RES_COLL_aaaxxxxx, where aaaxxxxx is the 
+	'collection ID. The MemberClassName class is derived from SMS_CollectionMember. 
+	Set oResourceIDSet = gService.ExecQuery ("Select ResourceID, ResourceType from " & MemberClassName )
+	If Err.Number <> 0 then OnError
+
+	For Each oResourceID in oResourceIDSet
+		
+		Set oResClsNameSet = gService.ExecQuery ("Select ResourceClassName from SMS_ResourceMap where ResourceType = " & oResourceID.ResourceType)
+		If Err.Number <> 0 then OnError
+		
+		'Extract the ResourceClassName from the collection, there should only be one member.
+		For Each oResClsName in oResClsNameSet
+			sResourceClassName = oResClsName.ResourceClassName
+		Next
+		
+		'Select the detailed resource information.
+		Set oResourceSet = gService.ExecQuery ("Select * from " & sResourceClassName & " where ResourceID = " & oResourceID.ResourceID )
+		If Err.Number <> 0 then OnError
+	
+		'Extract the Name, ClassName, NTDomain, and AgentSite information and build it into a string.
+		' Note: Some of these are array values, for the simplicity of this sample code we only print out the first element.
+		For Each oResource in oResourceSet
+			sCollMembers = sCollMembers & "<tr><td>" & oResource.Name & "&nbsp;</td><td>" & sResourceClassName & "&nbsp;</td> <td>" & oResource.AgentTime(0) & "&nbsp;</td> <td>" & oResource.AgentSite(0) & "&nbsp;</td></tr>"
+		Next
+
+	Next
+
+	'Close out the HTML string
+	sCollMembers = sCollMembers & "</table>"
+
+	'Update the status bar
+	Window.Status = "Connected to \\" &  ProvLoc.value & "\root\sms\site_" & Sitecode.Value
+
+	'Put the html into the div to show it on the page.
+	CollMembers.InnerHTML = sCollMembers
+	
+End Sub
+
+
+Sub Reconnect()    
+'This sub is used when you press "Reconnect..."
+' It will hide the Collection page and show the Connection Page.
+
+	'Update the status bar.
+	Window.Status = ""
+	
+	'Hide anything from the Collection Page
+	ListHeader.Style.Display="none"
+	CollMembers.Style.display="none"
+	
+	'Show the Logon Page
+	Logon.Style.Display=""
+
+End Sub
+
+
+Sub OnError()
+'This sub is used whenever an error is hit.  
+' It will display the Connection Page and any Error Messages.
+
+	'Hide anything from the Collection Page and clear the status bar
+	ListHeader.Style.Display="none"
+	CollMembers.Style.display="none"
+	Window.Status = ""
+	
+	'Show the Logon Page
+	Logon.style.display=""
+
+	'Put the Error Message onto the page.
+	Message.InnerHTML = "<br><b>ERROR: </b>" & Err.Description & " (" & Err.Number & ") <br> Most errors come from your server connection failing, try to reconnect."
+	
+End Sub
+
+
+-->
+</script>
+
+</body>
+
+</html>
+

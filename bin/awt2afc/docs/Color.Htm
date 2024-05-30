@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>Color->FxColor</title>
+<base target="descriptions">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">Color to FxColor</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.Color should be transformed into instances of
+com.ms.fx.FxColor.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">FxColor extends from Color, so none of your older
+work needs to change. However, using FxColor allows you to use
+extensible objects in place of a Color in a graphics context.
+Using FxColor allows you to take advantage of FxFill, FxTexture,
+FxPen, and other extended Color classes. This allows you to build
+fill objects, create drawing pens, use images to fill shapes and
+background effects, and develop other kinds of graphical objects.
+</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">FxColor extends Color, so no changes need to be
+made to create AFC applications. It is recommended, though, that
+you change Color instances to FxColor instances.</p>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<HTML>
+<HEAD>
+<TITLE>Loan Calculator Data Source Object Demo</TITLE>
+<META NAME="FILENAME" CONTENT="demo.HTM">
+
+  </head>
+  
+  <BODY TOPMARGIN=0 LEFTMARGIN=40 BGCOLOR="#FFFFFF" LINK="#000066" VLINK="#666666" TEXT="#000000">
+
+    <h2> Loan Calculator Data Source Control</h2>
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT>
+<P>
+<P>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+<hr>
+
+    Change the values and press the recalculate button to see the control in action.
+    <hr>
+
+    <object id="MortList"
+            classid="clsid:6B37DB55-3973-11D1-9C26-0080C74E5396"
+            width="0" height="0"
+            CODEBASE="AmortControl.CAB#version=1,0,0,0">
+    </object>
+
+    <table border=0>
+      <tr>
+        <td align=right><font size="2">Loan Amount:
+        <td align=right>$<font size="2"><input type="text" size="20" value="1000" id="Amount">
+        <td align=right><font size="2">Interest Rate (in Percent):
+        <td align=right><font size="2"><input type="text" size="20" value="10" id="Interest">%
+      <tr>
+        <td align=right><font size="2">Duration (in months):
+        <td align=right><font size="2"><input type="text" size="20" value="12" id="Duration">
+        <td colspan=2 align=center><font size="2"><button onclick="update_list()" width=500>Recalculate</button>
+
+    </table>
+
+    <hr>
+
+    <table>
+      <tr>
+        <td valign=top><font size="2">
+          <table id=table1 border="1"
+                 datasrc="#MortList" datapagesize=12
+                 onreadystatechange=set_page_button_state()>
+            <THEAD>    
+              <tr>
+                <th><font size="2">Month</th>
+                <th><font size="2">Principle Payment</th>
+                <th><font size="2">Interest Payment</th>
+                <th><font size="2">Running Total </th>
+              </tr>
+            </THEAD> 
+            <TBODY> 
+              <tr>
+                <td><font size="2"><SPAN DATAFLD="PaymentNumber"></SPAN></td>
+                <td><font size="2"><SPAN DATAFLD="Principle"></SPAN></td>
+                <td><font size="2"><SPAN DATAFLD="Interest"></SPAN></td>
+                <td><font size="2"><SPAN DATAFLD="Total"></SPAN></td>
+              </tr>
+            </TBODY>
+          </table>
+        </td>
+        <td valign=top>
+          <button id=prevpage onclick="move_prev()">Previous Year</button>
+          <p>
+          <button id=nextpage onclick="move_next()">Next Year</button>
+        </td>
+      </tr>
+    </table>
+
+    <hr>
+   
+
+  <FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">&copy; <A HREF="/misc/cpyright.htm" TARGET="_top">1999 Microsoft Corporation. All rights reserved. Terms of use</A>.<P></FONT>
+
+  </body>
+
+  <script language=javascript>
+    function move_prev()
+    {
+      table1.previousPage();
+    }
+
+    function move_next()
+    {
+      table1.nextPage();
+    }
+
+    function set_page_button_state()
+    {
+      //determine where the position of the first row is within the data set
+
+      if (table1.readyState == "complete")
+      {
+        if (table1.rows.length > 1)
+        {
+          // determine if there is a previous page
+
+          if (table1.rows[1].recordNumber > 1)
+            document.all.prevpage.disabled = false;
+          else
+            document.all.prevpage.disabled = true;
+
+          //determine where the position of the last row is within the data set
+
+          if (table1.rows[table1.rows.length - 1].recordNumber <
+                                                MortList.recordset.RecordCount)
+            document.all.nextpage.disabled = false;
+          else
+            document.all.nextpage.disabled = true;
+        }
+      }
+    }
+
+    function update_list()
+    {
+      MortList.InterestRate = Interest.value;
+      MortList.LoanTerm = Duration.value;
+      MortList.LoanAmount = Amount.value;
+
+      MortList.Reset();
+    }
+  </script>
+</html>

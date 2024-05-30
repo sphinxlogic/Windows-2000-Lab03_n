@@ -1,0 +1,182 @@
+<HTML> 
+<HEAD>
+<TITLE>DirectAnimation SDK, JScript sample</TITLE>
+<SCRIPT LANGUAGE="JScript">
+<!--
+if (window.top.frames.length!=0 && window.top.frames[0].ShowNoButtons!=null)
+    window.top.frames[0].ShowNoButtons();
+//-->
+</SCRIPT>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+//<!--
+var g_isIE = false, g_isNav = false, g_iMaj = 0, g_sPlat = "";
+// -->
+</SCRIPT>
+<SCRIPT SRC="../ver.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript">if((g_isIE == true) && (g_iMaj < 4)) window.location.href = '../../../../../help/da/demo/demo_downlevel.htm'</SCRIPT>
+</HEAD>	 
+
+<BODY BGCOLOR=WHITE LINK="#0033CC" TOPMARGIN=15 LEFTMARGIN=20>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=2>
+<CENTER>
+<H1>Video Wall
+</H1>
+</CENTER>
+<OBJECT ID="DAControl"
+  WIDTH=400
+  HEIGHT=400    
+  ALIGN=LEFT 
+  CLASSID="CLSID:B6FFC24C-7E13-11D0-9B47-00C04FC2F51D">
+</OBJECT>
+<SCRIPT language="JScript">  
+<!--
+  m = DAControl.MeterLibrary;
+if( m.VersionString != "5.01.15.1106" && m.VersionString != "6.00.03.0518" && m.VersionString != "5.01.17.0825" && m.VersionString != "5.01.15.0828")  {
+
+  function geometryImage( geo )  {
+    camera = ( m.PerspectiveCamera( 1, 0 )).Transform( m.Translate3( 0, 0, 4 ));
+    scaleFactor   = m.DANumber( Math.min( 0.05,0.05 ));  
+    return( ( geo.Render( camera )).Transform( m.Scale2UniformAnim( m.Mul( m.DANumber( 4.8 ), scaleFactor ))));
+  }
+
+
+  function sawtooth( t )  {
+    modNum1 = m.Mod( t, m.DANumber( 4 ) );
+    modNum =  m.Cond( m.LT( modNum1, m.DANumber( 1 )), modNum1, m.Sub( m.DANumber(2), modNum1 ));
+    return modNum;
+  }
+
+  function makeColorCube(unitFace, geosPerSide)  {
+    inc = m.Div(m.DANumber( 1.0 ), geosPerSide );
+    theWall = m.EmptyGeometry;
+    outSound = m.ImportSound( sndBase + "butnout.mp2" ).Sound;
+    inSound =  m.ImportSound( sndBase + "butin.wav").Sound;
+                
+    for( x=0; x<matrixSize; x++ )  {
+      for( y=0; y<matrixSize; y++ )  {
+        piece = smallFace.Transform( m.Translate3Anim( m.Mul( m.Div( m.DANumber( 1 ),
+		  geosPerSide), m.DANumber( x )), m.Mul( m.Div( m.DANumber( 1 ), geosPerSide ), m.DANumber( y ) ), m.DANumber( 0 )));
+
+        backPiece = smallBackFace.Transform( m.Translate3Anim( m.Mul( m.Div( m.DANumber( 1 ), geosPerSide ),
+		  m.DANumber( x )), m.Mul( m.Div( m.DANumber( 1 ), geosPerSide ),m.DANumber( y )),m.DANumber( 0 )));
+
+        tx = scaledTexture.Transform( m.Translate2Anim( m.Neg( m.Mul( m.DANumber( .99 ), m.DANumber( x ))),
+		  m.Neg( m.Mul( m.DANumber( .99 ), m.DANumber( y )))));
+
+        picPiece = ( piece.TextureImage( tx ) ).Pickable( );
+        picBack  = ( backPiece.texture( tx ) ).Pickable( );
+        completePiece = m.UnionGeometry( picPiece.Geometry, picBack.Geometry );
+
+        rotater = new ActiveXObject( "DirectAnimation.DANumber" );
+        rotater.Init( m.Until( m.DANumber( 0 ), m.OrEvent( picPiece.PickEvent, picBack.PickEvent ),
+          m.Until( m.Mul( m.LocalTime, factor ), m.Predicate( m.GT( m.Mul( m.LocalTime, factor ),
+		    m.Mul( m.DANumber( 2 ), m.DANumber( Math.PI )))), rotater )));
+
+        tSound = new ActiveXObject( "DirectAnimation.DASound" );
+        tSound.Init( m.Until( inSound, m.OrEvent( picPiece.PickEvent, picBack.PickEvent ),
+          m.Until( outSound, m.Predicate( m.GT ( m.Mul( m.LocalTime, factor), m.Mul( m.DANumber( 2 ), 
+		    m.DANumber( Math.PI )))), tSound )));
+
+        xf2 = m.Compose3( m.Rotate3Anim( m.XVector3, rotater ),
+          m.Compose3( m.Translate3Anim( halfScaleFactor,halfScaleFactor, m.DANumber(0) ),
+            m.Compose3( m.Rotate3Anim( m.YVector3, m.Mul( rotater, m.DANumber ( 1 ))),
+              m.Compose3( m.Rotate3Anim (m.ZVector3, rotater ),
+                m.Translate3Anim( m.Neg( halfScaleFactor ), m.Neg( halfScaleFactor ), m.DANumber( 0 ) )))));
+
+        theWall  = m.UnionGeometry( theWall, completePiece.Transform( xf2 ));
+        theSound = m.Mix( theSound,tSound );
+      }
+    }
+    return( theWall );
+  } 
+
+
+  matrixSize = 4;
+  geosOnASide = m.DANumber( matrixSize );
+  changeFactor = m.ModifiableBehavior( m.DANumber(2) );
+  factor = m.Add( m.Mul( m.DANumber(.25), changeFactor ), m.DANumber(0.5) );
+
+  scaleFactor = m.Div( m.DANumber(1), geosOnASide );
+  halfScaleFactor = m.Div( scaleFactor, m.DANumber(2) );
+
+  mediaBase = "..\\..\\..\\media\\";
+  movieBase = mediaBase + "movie\\";
+  imgBase = mediaBase + "image\\";
+  geoBase = mediaBase + "geometry\\";
+  sndBase = mediaBase + "sound\\";
+
+  theSound = m.Silence;
+
+  num = m.DAnumber( 0.4 );
+  bkgndR = m.DANumber( 0.808 );
+  bkgndG = m.DANumber( 0.886 );
+  bkgndB = m.DANumber( 0.969 );
+  viewSize = m.Mul( m.DANumber( 400 ), m.Pixel );
+  bkgndClr = m.ColorRgbAnim(bkgndR, bkgndG, bkgndB);
+
+  background = m.GradientSquare( m.ColorRgbAnim( m.Sub( bkgndR, num ), bkgndG, m.Sub( bkgndB, num ) ),
+    m.ColorRgbAnim( m.Sub( bkgndR, num ), bkgndG, bkgndB ),
+      m.ColorRgbAnim( m.Sub( bkgndR, num ), m.Sub( bkgndG, num ), bkgndB),
+        m.ColorRgbAnim( bkgndR, bkgndG, m.Sub( bkgndB, num ))).Transform(m.Scale2UniformAnim( viewSize ));
+
+  fontClr = m.ColorHslAnim( m.Abs( m.Sin( m.LocalTime )), m.DANumber( 0.5 ), m.DANumber( 0.5 ));
+  txtFont = m.Font( "Arial", -12, fontClr );
+  waitImg = m.StringImage( "Loading Movie...", txtFont );
+
+  quad = m.ImportGeometry( geoBase + "quad.x" );
+  movieImport = m.ImportMovieAsync( movieBase + "movie.avi", waitImg, m.Silence ),
+  movieLength = movieImport.Duration;
+  ImArr = movieImport.Image;
+
+  // HACK HACK HACK
+  movieBBox = ImArr.BoundingBox;
+  solidImg = m.SolidColorImage(m.White);
+  solidImg = solidImg.Crop(movieBBox.Min,movieBBox.Max);
+
+  ImArr = m.Overlay(ImArr,solidImg);
+
+  snd = movieImport.Sound.Loop();
+
+  moviePos = new ActiveXObject("DirectAnimation.DANumber");
+  moviePos.Init( m.Until ( m.LocalTime, m.TimerAnim( movieLength ), moviePos ) );
+  crayons = ImArr.SubstituteTime ( moviePos );
+  
+  unitFace = quad.Transform( m.Compose3( m.Translate3( 0.5,0.5,0 ), m.Scale3Uniform( 0.5 )));
+  unitBackFace= quad.Transform( m.Compose3( m.Translate3( 0.5,0.5,0 ), m.Compose3( m.Scale3Uniform( 0.5 ),
+   m.Rotate3( m.YVector3, Math.PI ))));
+
+  smallXf = m.Scale3UniformAnim( scaleFactor );
+  smallFace = unitFace.Transform( smallXf );
+  smallBackFace = unitBackFace.Transform( smallXf );
+
+  textureIm = crayons.mapToUnitSquare(); 
+  scaledTexture = textureIm.Transform( m.Scale2UniformAnim( geosOnASide ));
+
+  unitWall = makeColorCube( unitFace,geosOnASide );
+  centeredWall= unitWall.Transform( m.Translate3( -0.5,-0.5,0 ));
+
+  twister = m.Rotate3Anim(m.YVector3, m.Sub( m.Mul( sawtooth( m.Add( m.Div( m.Mul( m.LocalTime, factor ),
+    m.DANumber( 4.5 )), m.DANumber( 0.5 ))), m.Mul( m.DANumber( 2 ), m.Div( m.DANumber( Math.PI ), 
+	 m.DANumber( 2.2 )))), m.Div( m.DANumber( Math.PI ), m.DANumber( 2 ))));
+
+  initXf = m.Compose3( m.Compose3( m.Rotate3Anim( m.ZVector3, m.LocalTime ),
+    m.Rotate3Anim( m.YVector3, m.LocalTime )), m.Scale3Anim( m.Div( m.LocalTime, m.DANumber( 3 )), 
+	  m.Div( m.LocalTime, m.DANumber( 3 )), m.DANumber( 1 )));
+
+  geo = centeredWall.Transform( m.Until( initXf, m.Predicate( m.GT( m.LocalTime, m.DANumber( 3 ))), twister ));
+  
+  vidImage = m.Overlay( geometryImage( m.UnionGeometry( geo, m.AmbientLight )), background );
+
+  DAControl.Image = vidImage;
+  DAControl.Sound = m.Mix(theSound, snd);
+  DAControl.Start();
+}
+ else
+    window.top.location.href = "../../../../../help/da/demo/demo_downlevel.htm"
+
+//-->
+
+</SCRIPT>
+</FONT>
+</BODY>
+</HTML>

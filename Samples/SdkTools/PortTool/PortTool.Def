@@ -1,0 +1,18 @@
+NAME	    PortTool
+
+VERSION     2.2
+
+CODE	    READ SHARED EXECUTE
+DATA	    READ WRITE
+
+HEAPSIZE    40960 20480
+STACKSIZE   40960 20480
+
+EXPORTS
+	    MainWndProc
+	    AboutDlgProc
+	    CancelDlgProc
+	    AbortProc
+	    OptionsDlgProc
+	    PortDlgProc
+	    BkPortDlgProc

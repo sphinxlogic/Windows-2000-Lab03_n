@@ -1,0 +1,24 @@
+#---------------------------------------------------------------------------
+# Description:
+#   Make file to generate BackTest.exe and RestTest.exe
+#
+# Copyright (C) Microsoft Corp. 1986-1998. All Rights Reserved.
+#---------------------------------------------------------------------------
+
+USE_EXCHANGE=1
+console=1
+
+LibList = EDBBCli.lib
+
+Proj = BackTest
+
+!include <BkOffice.Mak>
+
+all:  $(ObjDir)\BackTest.Exe \
+      RestTest\~
+
+$(ObjDir)\BackTest.Exe: $(@R).Obj
+
+RestTest\~:
+     @cd RestTest
+     @$(MAKE) -$(MAKEOPTS)

@@ -1,0 +1,56 @@
+# Microsoft Developer Studio Generated Dependency File, included by AtlBehave.mak
+
+.\AtlBehave.cpp : \
+	".\AtlBehave.h"\
+	".\AtlBehave_i.c"\
+	".\Behavior.h"\
+	".\EventSink.h"\
+	".\Factory.h"\
+	".\StdAfx.h"\
+	
+
+!IF  "$(CFG)" == "AtlBehave - Win32 Debug"
+
+!ELSEIF  "$(CFG)" == "AtlBehave - Win32 Unicode Debug"
+
+!ELSEIF  "$(CFG)" == "AtlBehave - Win32 Release MinSize"
+
+!ELSEIF  "$(CFG)" == "AtlBehave - Win32 Release MinDependency"
+
+!ELSEIF  "$(CFG)" == "AtlBehave - Win32 Unicode Release MinSize"
+
+!ELSEIF  "$(CFG)" == "AtlBehave - Win32 Unicode Release MinDependency"
+
+!ENDIF 
+
+.\AtlBehave.rc : \
+	".\Behavior.rgs"\
+	".\EventSink.rgs"\
+	".\Factory.rgs"\
+	
+
+.\Behavior.cpp : \
+	".\AtlBehave.h"\
+	".\Behavior.h"\
+	".\EventSink.h"\
+	".\StdAfx.h"\
+	
+
+.\EventSink.cpp : \
+	".\AtlBehave.h"\
+	".\Behavior.h"\
+	".\EventSink.h"\
+	".\StdAfx.h"\
+	
+
+.\Factory.cpp : \
+	".\AtlBehave.h"\
+	".\Behavior.h"\
+	".\EventSink.h"\
+	".\Factory.h"\
+	".\StdAfx.h"\
+	
+
+.\StdAfx.cpp : \
+	".\StdAfx.h"\
+	

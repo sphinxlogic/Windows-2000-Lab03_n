@@ -1,0 +1,1306 @@
+/*++
+
+Copyright (c) 1996  Microsoft Corporation
+
+Module Name:
+
+    javadbg.idl
+
+Abstract:
+
+    Java debugging interface definitions.
+
+--*/
+
+
+import "oleidl.idl";
+
+interface IEnumLINEINFO;
+interface IEnumRemoteBooleanValue;
+interface IEnumRemoteByteValue;
+interface IEnumRemoteCharValue;
+interface IEnumRemoteDoubleValue;
+interface IEnumRemoteFloatValue;
+interface IEnumRemoteIntValue;
+interface IEnumRemoteLongValue;
+interface IEnumRemoteShortValue;
+interface IEnumRemoteField;
+interface IEnumRemoteObject;
+interface IEnumRemoteProcess;
+interface IEnumRemoteThread;
+interface IEnumRemoteThreadGroup;
+interface IEnumRemoteValue;
+interface IJavaDebugManager;
+interface IRemoteArrayField;
+interface IRemoteArrayObject;
+interface IRemoteBooleanObject;
+interface IRemoteByteObject;
+interface IRemoteCharObject;
+interface IRemoteClassField;
+interface IRemoteClassObject;
+interface IRemoteContainerField;
+interface IRemoteContainerObject;
+interface IRemoteDataField;
+interface IRemoteDebugManager;
+interface IRemoteDebugManagerCallback;
+interface IRemoteDoubleObject;
+interface IRemoteField;
+interface IRemoteFloatObject;
+interface IRemoteIntObject;
+interface IRemoteLongObject;
+interface IRemoteMethodField;
+interface IRemoteObject;
+interface IRemoteProcess;
+interface IRemoteProcessCallback;
+interface IRemoteShortObject;
+interface IRemoteStackFrame;
+interface IRemoteThread;
+interface IRemoteThreadGroup;
+
+//
+// error codes
+//
+cpp_quote("// error codes")
+cpp_quote("//")
+cpp_quote("// errors returned by IRemoteContainer::GetFieldObject")
+cpp_quote("static const int E_FIELDOUTOFSCOPE       = MAKE_HRESULT(1, FACILITY_ITF, 0x01);")
+cpp_quote("static const int E_FIELDNOTINOBJECT      = MAKE_HRESULT(1, FACILITY_ITF, 0x02);")
+cpp_quote("static const int E_NOFIELDS              = MAKE_HRESULT(1, FACILITY_ITF, 0x03);")
+cpp_quote("static const int E_NULLOBJECTREF         = MAKE_HRESULT(1, FACILITY_ITF, 0x04);")
+cpp_quote("// errors returned by IRemoteProcess::FindClass")
+cpp_quote("static const int E_CLASSNOTFOUND         = MAKE_HRESULT(1, FACILITY_ITF, 0x10);")
+cpp_quote("static const int E_BADMETHOD             = MAKE_HRESULT(1, FACILITY_ITF, 0x20);")
+
+[
+    object,
+    uuid(275d9da0-5ff5-11cf-a5e1-00aa006bbf16)
+]
+
+interface IEnumLINEINFO : IUnknown
+{
+    typedef IEnumLINEINFO *LPENUMLINEINFO;
+
+    typedef struct tagLINEINFO
+    {
+        USHORT offPC;
+        USHORT iLine;
+    }
+    LINEINFO, *LPLINEINFO;
+
+    HRESULT Next
+    (
+        [in] ULONG celt,
+        [out, size_is(celt), length_is(*pceltFetched)] LPLINEINFO rgelt,
+        [out] ULONG *pceltFetched
+    );
+
+    HRESULT Skip
+    (
+        [in] ULONG celt
+    );
+
+    HRESULT Reset
+    (
+    );
+
+    HRESULT Clone
+    (
+        [out] IEnumLINEINFO **ppEnum
+    );
+
+    HRESULT GetCount
+    (
+        [out] ULONG *pcelt
+    );
+}
+
+
+[
+    object,
+    uuid(275d9d80-5ff5-11cf-a5e1-00aa006bbf16)
+]
+
+interface IRemoteField : IUnknown
+{
+    typedef IRemoteField *LPREMOTEFIELD;
+
+    HRESULT GetName
+    (
+        [out] LPOLESTR *ppszName
+    );
+
+    //
+    // field kinds
+    //
+    enum
+    {
+        FIELD_KIND_DATA_OBJECT      = 0x0001,
+        FIELD_KIND_DATA_PRIMITIVE   = 0x0002,
+        FIELD_KIND_ARRAY            = 0x0004,
+        FIELD_KIND_CLASS            = 0x0008,
+        FIELD_KIND_METHOD           = 0x0010,
+        FIELD_KIND_LOCAL            = 0x1000,
+        FIELD_KIND_PARAM            = 0x2000,
+        FIELD_KIND_THIS             = 0x4000,
+    };
+    typedef ULONG FIELDKIND;
+
+    HRESULT GetKind
+    (
+        [out] FIELDKIND *pfk
+    );
+
+    HRESULT GetType
+    (
+        [out] IRemoteField **ppType
+    );
+
+    HRESULT GetContainer
+    (
+        [out] IRemoteContainerField **ppContainer
+    );
+
+    //
+    // Modifier flags
+    //
+    enum
+    {
+        FIELD_ACC_PUBLIC        = 0x0001,
+        FIELD_ACC_PRIVATE       = 0x0002,
+        FIELD_ACC_PROTECTED     = 0x0004,
+        FIELD_ACC_STATIC        = 0x0008,
+        FIELD_ACC_FINAL         = 0x0010,
+        FIELD_ACC_SYNCHRONIZED  = 0x0020,
+        FIELD_ACC_VOLATILE      = 0x0040,
+        FIELD_ACC_TRANSIENT     = 0x0080,
+        FIELD_ACC_NATIVE        = 0x0100,
+        FIELD_ACC_INTERFACE     = 0x0200,
+        FIELD_ACC_ABSTRACT      = 0x0400,
+    };
+    typedef ULONG FIELDMODIFIERS;
+
+    HRESULT GetModifiers
+    (
+        [out] FIELDMODIFIERS *pulModifiers
+    );
+}
+
+
+[
+    object,
+    uuid(275d9da1-5ff5-11cf-a5e1-00aa006bbf16)
+]
+
+interface IEnumRemoteField : IUnknown
+{
+    typedef IEnumRemoteField *LPENUMREMOTEFIELD;
+
+    HRESULT Next
+    (
+        [in] ULONG celt,
+        [out, size_is(celt), length_is(*pceltFetched)] IRemoteField *rgelt[],
+        [out] ULONG *pceltFetched
+    );
+
+    HRESULT Skip
+    (
+        [in] ULONG celt
+    );
+
+    HRESULT Reset
+    (
+    );
+
+    HRESULT Clone
+    (
+        [out] IEnumRemoteField **ppEnum
+    );
+
+    HRESULT GetCount
+    (
+        [out] ULONG *pcelt
+    );
+}
+
+
+[
+    object,
+    uuid(275d9d81-5ff5-11cf-a5e1-00aa006bbf16)
+]
+
+interface IRemoteDataField : IRemoteField
+{
+    typedef IRemoteDataField *LPREMOTEDATAFIELD;
+}
+
+
+[
+    object,
+    uuid(275d9d82-5ff5-11cf-a5e1-00aa006bbf16)
+]
+
+interface IRemoteArrayField : IRemoteDataField
+{
+    typedef IRemoteArrayField *LPREMOTEARRAYFIELD;
+
+    HRESULT GetSize
+    (
+        [out] ULONG *pcElements
+    );
+}
+
+
+[
+    object,
+    uuid(275d9d83-5ff5-11cf-a5e1-00aa006bbf16)
+]
+
+interface IRemoteContainerField : IRemoteField
+{
+    typedef IRemoteContainerField *LPREMOTECONTAINERFIELD;
+
+    HRESULT GetFields
+    (
+        [out] IEnumRemoteField **ppEnum,
+        [in] FIELDKIND ulKind,
+        [in] FIELDMODIFIERS ulModifiers,
+        [in, unique] LPCOLESTR lpcszName
+    );
+}
+
+
+[
+    object,
+    uuid(275d9d84-5ff5-11cf-a5e1-00aa006bbf16)
+]
+
+interface IRemoteMethodField : IRemoteContainerField
+{
+    typedef IRemoteMethodField *LPREMOTEMETHODFIELD;
+
+    HRESULT SetBreakpoint
+    (
+        [in] ULONG offPC
+    );
+
+    HRESULT ClearBreakpoint
+    (
+        [in] ULONG offPC
+    );
+
+    HRESULT GetLineInfo
+    (
+        [out] IEnumLINEINFO **ppEnum
+    );
+
+    HRESULT GetBytes
+    (
+        [out] ILockBytes **ppLockBytes
+    );
+
+    HRESULT GetScope
+    (
+        [in, unique] IRemoteField *pField,
+        [out] ULONG *poffStart,
+        [out] ULONG *pcbScope
+    );
+
+    HRESULT GetIndexedField
+    (
+        [in] ULONG slot,
+        [in] ULONG offPC,
+        [out] IRemoteField **ppField
+    );
+}
+
+
+[
+    object,
+    uuid(275d9d85-5ff5-11cf-a5e1-00aa006bbf16)
+]
+
+interface IRemoteClassField : IRemoteContainerField
+{
+    typedef IRemoteClassField *LPREMOTECLASSFIELD;
+
+    //
+    // Constant pool tags
+    //
+    enum
+    {
+        CP_CONSTANT_UTF8                = 1,
+        CP_CONSTANT_UNICODE             = 2,
+        CP_CONSTANT_INTEGER             = 3,
+        CP_CONSTANT_FLOAT               = 4,
+        CP_CONSTANT_LONG                = 5,
+        CP_CONSTANT_DOUBLE              = 6,
+        CP_CONSTANT_CLASS               = 7,
+        CP_CONSTANT_STRING              = 8,
+        CP_CONSTANT_FIELDREF            = 9,
+        CP_CONSTANT_METHODREF           = 10,
+        CP_CONSTANT_INTERFACEMETHODREF  = 11,
+        CP_CONSTANT_NAMEANDTYPE         = 12
+    };
+
+    HRESULT GetFileName
+    (
+        [out] LPOLESTR *ppszFileName
+    );
+
+    HRESULT GetSourceFileName
+    (
+        [out] LPOLESTR *ppszSourceFileName
+    );
+
+    HRESULT GetSuperclass
+    (
+        [out] IRemoteClassField **ppSuperclass
+    );
+
+    HRESULT GetInterfaces
+    (
+        [out] IEnumRemoteField **ppEnum
+    );
+
+    HRESULT GetConstantPoolItem
+    (
+        [in] ULONG indexCP,
+        [out, size_is(,*plength)] BYTE **ppCPBytes,
+        [out] ULONG *plength
+    );
+}
+
+
+[
+    object,
+    uuid(275d9db0-5ff5-11cf-a5e1-00aa006bbf16)
+]
+
+interface IRemoteObject : IUnknown
+{
+    typedef IRemoteObject *LPREMOTEOBJECT;
+
+    HRESULT GetType
+    (
+        [out] IRemoteField **ppType
+    );
+
+    HRESULT SetBreakpoint
+    (
+    );
+
+    HRESULT ClearBreakpoint
+    (
+    );
+
+    //
+    // JAVA built-int types
+    //
+    typedef BYTE JAVA_BOOLEAN;
+    typedef signed char JAVA_BYTE;
+    typedef USHORT JAVA_CHAR;
+    typedef double JAVA_DOUBLE;
+    typedef float JAVA_FLOAT;
+    typedef LONG JAVA_INT;
+    typedef LONGLONG JAVA_LONG;
+    typedef SHORT JAVA_SHORT;
+    typedef LPOLESTR JAVA_STRING;
+}
+
+
+[
+    object,
+    uuid(275d9da2-5ff5-11cf-a5e1-00aa006bbf16)
+]
+
+interface IEnumRemoteObject : IUnknown
+{
+    typedef IEnumRemoteObject *LPENUMREMOTEOBJECT;
+
+    HRESULT Next
+    (
+        [in] ULONG celt,
+        [out, size_is(celt), length_is(*pceltFetched)] IRemoteObject *rgelt[],
+        [out] ULONG *pceltFetched
+    );
+
+    HRESULT Skip
+    (
+        [in] ULONG celt
+    );
+
+    HRESULT Reset
+    (
+    );
+
+    HRESULT Clone
+    (
+        [out] IEnumRemoteObject **ppEnum
+    );
+
+    HRESULT GetCount
+    (
+        [out] ULONG *pcelt
+    );
+}
+
+
+[
+    object,
+    uuid(da0a7738-de8e-11cf-b3b3-00a0244a1dd2)
+]
+
+interface IEnumRemoteValue : IUnknown
+{
+    typedef IEnumRemoteValue *LPENUMREMOTEVALUE;
+
+    HRESULT Skip
+    (
+        [in] ULONG celt
+    );
+
+    HRESULT Reset
+    (
+    );
+
+    HRESULT Clone
+    (
+        [out] IEnumRemoteValue **ppEnum
+    );
+
+    HRESULT GetCount
+    (
+        [out] ULONG *pcelt
+    );
+}
+
+
+[
+    object,
+    uuid(282e2c9c-df62-11cf-b3b3-00a0244a1dd2)
+]
+
+interface IEnumRemoteBooleanValue : IEnumRemoteValue
+{
+    typedef IEnumRemoteBooleanValue *LPENUMREMOTEBOOLEANVALUE;
+
+    HRESULT Next
+    (
+        [in] ULONG celt,
+        [out, size_is(celt), length_is(*pceltFetched)] JAVA_BOOLEAN rgelt[],
+        [out] ULONG *pceltFetched
+    );
+}
+
+
+[
+    object,
+    uuid(29831ce2-df62-11cf-b3b3-00a0244a1dd2)
+]
+
+interface IEnumRemoteByteValue : IEnumRemoteValue
+{
+    typedef IEnumRemoteByteValue *LPENUMREMOTEBYTEVALUE;
+
+    HRESULT Next
+    (
+        [in] ULONG celt,
+        [out, size_is(celt), length_is(*pceltFetched)] JAVA_BYTE rgelt[],
+        [out] ULONG *pceltFetched
+    );
+}
+
+
+[
+    object,
+    uuid(c5d31048-de81-11cf-b3b3-00a0244a1dd2)
+]
+
+interface IEnumRemoteCharValue : IEnumRemoteValue
+{
+    typedef IEnumRemoteCharValue *LPENUMREMOTECHARVALUE;
+
+    HRESULT Next
+    (
+        [in] ULONG celt,
+        [out, size_is(celt), length_is(*pceltFetched)] JAVA_CHAR rgelt[],
+        [out] ULONG *pceltFetched
+    );
+}
+
+
+[
+    object,
+    uuid(9dc9ac24-df62-11cf-b3b3-00a0244a1dd2)
+]
+
+interface IEnumRemoteDoubleValue : IEnumRemoteValue
+{
+    typedef IEnumRemoteDoubleValue *LPENUMREMOTEDOUBLEVALUE;
+
+    HRESULT Next
+    (
+        [in] ULONG celt,
+        [out, size_is(celt), length_is(*pceltFetched)] JAVA_DOUBLE rgelt[],
+        [out] ULONG *pceltFetched
+    );
+}
+
+
+[
+    object,
+    uuid(a4c10b1c-df62-11cf-b3b3-00a0244a1dd2)
+]
+
+interface IEnumRemoteFloatValue : IEnumRemoteValue
+{
+    typedef IEnumRemoteFloatValue *LPENUMREMOTEFLOATVALUE;
+
+    HRESULT Next
+    (
+        [in] ULONG celt,
+        [out, size_is(celt), length_is(*pceltFetched)] JAVA_FLOAT rgelt[],
+        [out] ULONG *pceltFetched
+    );
+}
+
+
+[
+    object,
+    uuid(aa5eb51a-df62-11cf-b3b3-00a0244a1dd2)
+]
+
+interface IEnumRemoteIntValue : IEnumRemoteValue
+{
+    typedef IEnumRemoteIntValue *LPENUMREMOTEINTVALUE;
+
+    HRESULT Next
+    (
+        [in] ULONG celt,
+        [out, size_is(celt), length_is(*pceltFetched)] JAVA_INT rgelt[],
+        [out] ULONG *pceltFetched
+    );
+}
+
+
+[
+    object,
+    uuid(b208e470-df62-11cf-b3b3-00a0244a1dd2)
+]
+
+interface IEnumRemoteLongValue : IEnumRemoteValue
+{
+    typedef IEnumRemoteLongValue *LPENUMREMOTELONGVALUE;
+
+    HRESULT Next
+    (
+        [in] ULONG celt,
+        [out, size_is(celt), length_is(*pceltFetched)] JAVA_LONG rgelt[],
+        [out] ULONG *pceltFetched
+    );
+}
+
+
+[
+    object,
+    uuid(b74e576c-df62-11cf-b3b3-00a0244a1dd2)
+]
+
+interface IEnumRemoteShortValue : IEnumRemoteValue
+{
+    typedef IEnumRemoteShortValue *LPENUMREMOTESHORTVALUE;
+
+    HRESULT Next
+    (
+        [in] ULONG celt,
+        [out, size_is(celt), length_is(*pceltFetched)] JAVA_SHORT rgelt[],
+        [out] ULONG *pceltFetched
+    );
+}
+
+
+[
+    object,
+    uuid(275d9db1-5ff5-11cf-a5e1-00aa006bbf16)
+]
+
+interface IRemoteArrayObject : IRemoteObject
+{
+    typedef IRemoteArrayObject *LPREMOTEARRAYOBJECT;
+
+    HRESULT GetElementObjects
+    (
+        [out] IEnumRemoteObject **ppEnum
+    );
+
+    HRESULT GetSize
+    (
+        [out] ULONG *pcElements
+    );
+
+    HRESULT GetElementValues
+    (
+        [out] IEnumRemoteValue **ppEnum
+    );
+}
+
+
+[
+    object,
+    uuid(275d9db2-5ff5-11cf-a5e1-00aa006bbf16)
+]
+
+interface IRemoteBooleanObject : IRemoteObject
+{
+    typedef IRemoteBooleanObject *LPREMOTEBOOLEANOBJECT;
+
+    HRESULT GetValue
+    (
+        [out] JAVA_BOOLEAN *pvalue
+    );
+
+    HRESULT SetValue
+    (
+        [in] JAVA_BOOLEAN value
+    );
+}
+
+
+[
+    object,
+    uuid(275d9db3-5ff5-11cf-a5e1-00aa006bbf16)
+]
+
+interface IRemoteByteObject : IRemoteObject
+{
+    typedef IRemoteByteObject *LPREMOTEBYTEOBJECT;
+
+    HRESULT GetValue
+    (
+        [out] JAVA_BYTE *pvalue
+    );
+
+    HRESULT SetValue
+    (
+        [in] JAVA_BYTE value
+    );
+}
+
+
+[
+    object,
+    uuid(275d9db4-5ff5-11cf-a5e1-00aa006bbf16)
+]
+
+interface IRemoteCharObject : IRemoteObject
+{
+    typedef IRemoteCharObject *LPREMOTECHAROBJECT;
+
+    HRESULT GetValue
+    (
+        [out] JAVA_CHAR *pvalue
+    );
+
+    HRESULT SetValue
+    (
+        [in] JAVA_CHAR value
+    );
+}
+
+
+[
+    object,
+    uuid(275d9dbb-5ff5-11cf-a5e1-00aa006bbf16)
+]
+
+interface IRemoteClassObject : IRemoteContainerObject
+{
+    typedef IRemoteClassObject *LPREMOTECLASSOBJECT;
+
+    HRESULT GetDerivedMostType
+    (
+        [out] IRemoteClassField **ppDerivedMostField
+    );
+}
+
+
+[
+    object,
+    uuid(275d9db5-5ff5-11cf-a5e1-00aa006bbf16)
+]
+
+interface IRemoteContainerObject : IRemoteObject
+{
+    typedef IRemoteContainerObject *LPREMOTECONTAINEROBJECT;
+
+    HRESULT GetFieldObject
+    (
+        [in, unique] IRemoteField *pField,
+        [out] IRemoteObject **ppFieldObject
+    );
+}
+
+
+[
+    object,
+    uuid(275d9db6-5ff5-11cf-a5e1-00aa006bbf16)
+]
+
+interface IRemoteDoubleObject : IRemoteObject
+{
+    typedef IRemoteDoubleObject *LPREMOTEDOUBLEOBJECT;
+
+    HRESULT GetValue
+    (
+        [out] JAVA_DOUBLE *pvalue
+    );
+
+    HRESULT SetValue
+    (
+        [in] JAVA_DOUBLE *pvalue
+    );
+}
+
+
+[
+    object,
+    uuid(275d9db7-5ff5-11cf-a5e1-00aa006bbf16)
+]
+
+interface IRemoteFloatObject : IRemoteObject
+{
+    typedef IRemoteFloatObject *LPREMOTEFLOATOBJECT;
+
+    HRESULT GetValue
+    (
+        [out] JAVA_FLOAT *pvalue
+    );
+
+    HRESULT SetValue
+    (
+        [in] JAVA_FLOAT *pvalue
+    );
+}
+
+
+[
+    object,
+    uuid(275d9db8-5ff5-11cf-a5e1-00aa006bbf16)
+]
+
+interface IRemoteIntObject : IRemoteObject
+{
+    typedef IRemoteIntObject *LPREMOTEINTOBJECT;
+
+    HRESULT GetValue
+    (
+        [out] JAVA_INT *pvalue
+    );
+
+    HRESULT SetValue
+    (
+        [in] JAVA_INT value
+    );
+}
+
+
+[
+    object,
+    uuid(275d9db9-5ff5-11cf-a5e1-00aa006bbf16)
+]
+
+interface IRemoteLongObject : IRemoteObject
+{
+    typedef IRemoteLongObject *LPREMOTELONGOBJECT;
+
+    HRESULT GetValue
+    (
+        [out] JAVA_LONG *pvalue
+    );
+
+    HRESULT SetValue
+    (
+        [in] JAVA_LONG value
+    );
+}
+
+
+[
+    object,
+    uuid(275d9dba-5ff5-11cf-a5e1-00aa006bbf16)
+]
+
+interface IRemoteShortObject : IRemoteObject
+{
+    typedef IRemoteShortObject *LPREMOTESHORTOBJECT;
+
+    HRESULT GetValue
+    (
+        [out] JAVA_SHORT *pvalue
+    );
+
+    HRESULT SetValue
+    (
+        [in] JAVA_SHORT value
+    );
+}
+
+
+[
+    object,
+    uuid(275d9d90-5ff5-11cf-a5e1-00aa006bbf16)
+]
+
+interface IRemoteStackFrame : IUnknown
+{
+    typedef IRemoteStackFrame *LPREMOTESTACKOBJECT;
+
+    HRESULT GetCallingFrame
+    (
+        [out] IRemoteStackFrame **ppCallingFrame
+    );
+
+    HRESULT GetMethodObject
+    (
+        [out] IRemoteContainerObject **ppMethodObject
+    );
+
+    HRESULT GetPC
+    (
+        [out] ULONG *offPC
+    );
+
+    HRESULT SetPC
+    (
+        [in] ULONG offPC
+    );
+
+    //
+    // stack frame kinds
+    //
+    enum
+    {
+        FRAME_KIND_INVALID          = 0x00,
+        FRAME_KIND_INTERPRETED      = 0x01,
+        FRAME_KIND_NATIVE           = 0x02,
+        FRAME_KIND_JIT_COMPILED     = 0x03
+    };
+    typedef ULONG FRAMEKIND;
+
+    HRESULT GetKind
+    (
+        [out] FRAMEKIND *pfk
+    );
+}
+
+
+[
+    object,
+    uuid(275d9d92-5ff5-11cf-a5e1-00aa006bbf16)
+]
+
+interface IRemoteThreadGroup : IUnknown
+{
+    typedef IRemoteThreadGroup *LPREMOTETHREADGROUP;
+
+    HRESULT GetName
+    (
+        [out] LPOLESTR *ppszName
+    );
+
+    HRESULT GetThreads
+    (
+        [out] IEnumRemoteThread **ppEnum
+    );
+
+    HRESULT GetThreadGroups
+    (
+        [out] IEnumRemoteThreadGroup **ppEnum
+    );
+}
+
+
+[
+    object,
+    uuid(275d9da4-5ff5-11cf-a5e1-00aa006bbf16)
+]
+
+interface IEnumRemoteThreadGroup : IUnknown
+{
+    typedef IEnumRemoteThreadGroup *LPENUMREMOTETHREADGROUP;
+
+    HRESULT Next
+    (
+        [in] ULONG celt,
+        [out, size_is(celt), length_is(*pceltFetched)] IRemoteThreadGroup *rgelt[],
+        [out] ULONG *pceltFetched
+    );
+
+    HRESULT Skip
+    (
+        [in] ULONG celt
+    );
+
+    HRESULT Reset
+    (
+    );
+
+    HRESULT Clone
+    (
+        [out] IEnumRemoteThreadGroup **ppEnum
+    );
+}
+
+
+[
+    object,
+    uuid(275d9d91-5ff5-11cf-a5e1-00aa006bbf16)
+]
+
+interface IRemoteThread : IUnknown
+{
+    typedef IRemoteThread *LPREMOTETHREAD;
+
+    HRESULT GetName
+    (
+        [out] LPOLESTR *ppszName
+    );
+
+    HRESULT GetCurrentFrame
+    (
+        [out] IRemoteStackFrame **ppCurrentFrame
+    );
+
+    HRESULT GetThreadGroup
+    (
+        [out] IRemoteThreadGroup **ppThreadGroup
+    );
+
+    HRESULT Go
+    (
+    );
+
+    HRESULT Step
+    (
+    );
+
+    HRESULT StepIn
+    (
+    );
+
+    HRESULT StepOut
+    (
+    );
+
+    HRESULT RangeStep
+    (
+        [in] ULONG offStart,
+        [in] ULONG offEnd
+    );
+
+    HRESULT RangeStepIn
+    (
+        [in] ULONG offStart,
+        [in] ULONG offEnd
+    );
+
+    HRESULT Destroy
+    (
+    );
+
+    HRESULT Suspend
+    (
+    );
+
+    HRESULT Resume
+    (
+    );
+
+    HRESULT GetSuspendCount
+    (
+        [out] ULONG *pcSuspend
+    );
+}
+
+
+[
+    object,
+    uuid(275d9da3-5ff5-11cf-a5e1-00aa006bbf16)
+]
+
+interface IEnumRemoteThread : IUnknown
+{
+    typedef IEnumRemoteThread *LPENUMREMOTETHREAD;
+
+    HRESULT Next
+    (
+        [in] ULONG celt,
+        [out, size_is(celt), length_is(*pceltFetched)] IRemoteThread *rgelt[],
+        [out] ULONG *pceltFetched
+    );
+
+    HRESULT Skip
+    (
+        [in] ULONG celt
+    );
+
+    HRESULT Reset
+    (
+    );
+
+    HRESULT Clone
+    (
+        [out] IEnumRemoteThread **ppEnum
+    );
+}
+
+
+[
+    object,
+    uuid(275d9d94-5ff5-11cf-a5e1-00aa006bbf16)
+]
+
+interface IRemoteProcessCallback : IUnknown
+{
+    typedef IRemoteProcessCallback *LPREMOTEPROCESSCALLBACK;
+
+    enum
+    {
+        EXCEPTION_KIND_FIRST_CHANCE     = 0x0001,
+        EXCEPTION_KIND_LAST_CHANCE      = 0x0002,
+    };
+    typedef ULONG EXCEPTIONKIND;
+
+
+    HRESULT DebugStringEvent
+    (
+        [in, unique] IRemoteThread *pThread,
+        [in] LPCOLESTR pszDebugString
+    );
+
+    HRESULT CodeBreakpointEvent
+    (
+        [in, unique] IRemoteThread *pThread
+    );
+
+    HRESULT DataBreakpointEvent
+    (
+        [in, unique] IRemoteThread *pThread,
+        [in, unique] IRemoteObject *pObject
+    );
+
+    HRESULT ExceptionEvent
+    (
+        [in, unique] IRemoteThread *pThread,
+        [in, unique] IRemoteClassField *pExceptionClass,
+        [in] EXCEPTIONKIND exceptionKind
+    );
+
+    HRESULT StepEvent
+    (
+        [in, unique] IRemoteThread *pThread
+    );
+
+    HRESULT CanStopEvent
+    (
+        [in, unique] IRemoteThread *pThread
+    );
+
+    HRESULT BreakEvent
+    (
+        [in, unique] IRemoteThread *pThread
+    );
+
+    HRESULT ThreadCreateEvent
+    (
+        [in, unique] IRemoteThread *pThread
+    );
+
+    HRESULT ThreadDestroyEvent
+    (
+        [in, unique] IRemoteThread *pThread
+    );
+
+    HRESULT ThreadGroupCreateEvent
+    (
+        [in, unique] IRemoteThread *pThread,
+        [in, unique] IRemoteThreadGroup *pThreadGroup
+    );
+
+    HRESULT ThreadGroupDestroyEvent
+    (
+        [in, unique] IRemoteThread *pThread,
+        [in, unique] IRemoteThreadGroup *pThreadGroup
+    );
+
+    HRESULT ClassLoadEvent
+    (
+        [in, unique] IRemoteThread *pThread,
+        [in, unique] IRemoteClassField *pClassType
+    );
+
+    HRESULT ClassUnloadEvent
+    (
+        [in, unique] IRemoteThread *pThread,
+        [in, unique] IRemoteClassField *pClassType
+    );
+
+    HRESULT ProcessDestroyEvent
+    (
+        [in, unique] IRemoteThread *pThread
+    );
+
+    HRESULT TraceEvent
+    (
+        [in, unique] IRemoteThread *pThread
+    );
+
+    HRESULT LoadCompleteEvent
+    (
+        [in, unique] IRemoteThread *pThread
+    );
+}
+
+
+[
+    object,
+    uuid(275d9d93-5ff5-11cf-a5e1-00aa006bbf16)
+]
+
+interface IRemoteProcess : IUnknown
+{
+    typedef IRemoteProcess *LPREMOTEPROCESS;
+
+    HRESULT RegisterCallback
+    (
+        [in, unique] IRemoteProcessCallback *pCallback
+    );
+
+    HRESULT Detach
+    (
+    );
+
+    HRESULT Break
+    (
+    );
+
+    HRESULT GetGlobalContainerObject
+    (
+        [out] IRemoteContainerObject **ppGlobalContainerObject
+    );
+
+    HRESULT FindClass
+    (
+        [in] LPCOLESTR pszClassName,
+        [out] IRemoteClassField **ppClassType
+    );
+
+    HRESULT TraceMethods
+    (
+        [in] BOOL bTraceOn
+    );
+
+    HRESULT GetThreadGroups
+    (
+        [out] IEnumRemoteThreadGroup **ppEnum
+    );
+}
+
+
+[
+    object,
+    uuid(275d9da5-5ff5-11cf-a5e1-00aa006bbf16)
+]
+
+interface IEnumRemoteProcess : IUnknown
+{
+    typedef IEnumRemoteProcess *LPENUMREMOTEPROCESS;
+
+    HRESULT Next
+    (
+        [in] ULONG celt,
+        [out, size_is(celt), length_is(*pceltFetched)] IRemoteProcess *rgelt[],
+        [out] ULONG *pceltFetched
+    );
+
+    HRESULT Skip
+    (
+        [in] ULONG celt
+    );
+
+    HRESULT Reset
+    (
+    );
+
+    HRESULT Clone
+    (
+        [out] IEnumRemoteProcess **ppEnum
+    );
+}
+
+
+[
+    object,
+    uuid(275d9d61-5ff5-11cf-a5e1-00aa006bbf16)
+]
+
+interface IRemoteDebugManagerCallback : IUnknown
+{
+    typedef IRemoteDebugManagerCallback *LPREMOTEDEBUGMANAGERCALLBACK;
+
+    HRESULT ProcessCreateEvent
+    (
+        [in, unique] IRemoteProcess *pProcessNew,
+        [in, unique] IRemoteProcess *pProcessParent
+    );
+}
+
+
+[
+    object,
+    uuid(275d9d60-5ff5-11cf-a5e1-00aa006bbf16)
+]
+
+interface IRemoteDebugManager : IUnknown
+{
+    typedef IRemoteDebugManager *LPREMOTEDEBUGMANAGER;
+
+    HRESULT RegisterCallback
+    (
+        [in, unique] IRemoteDebugManagerCallback *pCallback
+    );
+
+    HRESULT Detach
+    (
+    );
+
+    HRESULT GetActiveProcesses
+    (
+        [out] IEnumRemoteProcess **ppEnum
+    );
+
+    HRESULT RequestCreateEvent
+    (
+        [in] LPCOLESTR pszProcessName,
+        [in] DWORD dwParentProcessId
+    );
+}
+
+[
+    object,
+    uuid(275d9dc0-5ff5-11cf-a5e1-00aa006bbf16)
+]
+
+interface IJavaDebugManager : IUnknown
+{
+    HRESULT RegisterRemoteDebugManager
+    (
+        [in, unique] IRemoteDebugManager *pirdm,
+        [in] DWORD dwProcessID
+    );
+
+    HRESULT Detach
+    (
+    );
+}
+

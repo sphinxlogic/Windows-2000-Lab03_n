@@ -1,0 +1,36 @@
+// TYPELIB FILENAME: crmfilesvj.dll
+
+#include "..\idl\ICrmFiles.idl"
+
+[
+  uuid(DBE637F8-F3B5-11d2-BA35-00A0CC3901C7),
+  version(1.0),
+  helpstring("crmfilesvj 1.0 Type Library")
+]
+library crmfilesvj
+	{
+	importlib("comsvcs.dll");
+	importlib("stdole2.tlb");
+
+	interface ICrmFilesWorker;
+
+	// Worker
+	[	uuid(6596BAAA-ED34-11d2-BA28-00A0CC3901C7),
+		helpstring("crmfilesvj.Worker Class"),
+		TRANSACTION_REQUIRED
+	]
+	coclass Worker
+		{
+		[default] interface ICrmFilesWorker;
+		interface IObjectControl;
+		};
+
+	// Compensator
+	[	uuid(E39660F2-ED34-11d2-BA28-00A0CC3901C7),
+		helpstring("crmfilesvj.Compensator Class")
+	]
+	coclass Compensator 
+		{
+		[default] interface ICrmCompensatorVariants;
+		};
+	};

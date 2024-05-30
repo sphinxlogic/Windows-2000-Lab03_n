@@ -1,0 +1,11 @@
+LIBRARY PROGHELP
+
+EXPORTS
+   ProgHelpDdeCallback
+   ConnectToProgman=ConnectToProgmanA
+   ConnectToProgmanA
+   ConnectToProgmanW
+   DisconnectFromProgman
+   ProgmanExecuteString=ProgmanExecuteStringA
+   ProgmanExecuteStringA
+   ProgmanExecuteStringW

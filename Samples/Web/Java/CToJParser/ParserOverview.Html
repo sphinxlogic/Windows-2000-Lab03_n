@@ -1,0 +1,198 @@
+<HTML>
+<HEAD>
+<TITLE>Parser docs</TITLE>
+</HEAD>
+<BODY>
+
+<H1 align=center>Parser docs</H1>
+
+<h2>Intro</h2>
+
+This parsing tool converts C function prototypes into Java wrappers 
+for those functions and converts structs and trivial C++ classes into 
+Java classes.  It was designed for exposing functions from DLLs and 
+providing access to them in Java using J/Direct.  It handles all of 
+J/Direct's rules for fixed arrays, 
+alignment issues, and string conversion for you.  
+
+<h3>How effective is it?</h3>
+
+<p>This tool was used to generate almost everything in com.ms.win32.*.
+Nontrivial issues this tool handles include:</p>
+
+<ul>
+<li>embedded fixed-length arrays in structures
+<li>alignment
+<li>ASCII vs. Unicode function & structure merging
+<li>simple initialization of structure members
+<li>keywords for modifying members of structures
+<li>Expanding nested structs to preserve the memory layout of structs
+</ul>
+
+<p>However there were many cases that had to be checked or totally
+redone by hand.  Some of the items this tool will not translate include:</p>
+<ul>
+<li>converting macros - For <code>#define foo(x) x</code>, <code>foo</code>
+will not be recognized as a function.
+<li>nontrivial C++ classes (any that use inheritance or member functions)
+<li>unions
+<li>structures with bitfields
+<li>16 bit code
+<li>passing structs by value (instead of passing a pointer to the struct)
+<LI>COM objects
+</ul>
+
+<p>The parser was written to parse C code reasonably well, build
+up an accurate representation of the C code, then apply
+some Java conversion heuristics.  While this works for simple types most
+of the time, there are cases developers may want to handle specially.
+For this reason, developers are encouraged to edit the program, adding
+conversion rules wherever appropriate.  For example, you could increase 
+Java performance by declaring some classes as <code>final</code>.  
+But since this was designed as a generalized tool, the author felt allowing
+customizability through subclassing would be more important than the 
+slight performance gain.</p>
+
+<p>Inheritance isn't supported - J/Direct currently has no way to 
+marshal the virtual function pointer correctly.</p>
+
+<h2>Requirements</h2>
+<ul>
+<li>A C preprocessor, such as <code>cl</code>, included with MS VC++.
+<li><code>dumpbin</code>, included with MS DevStudio (optional if you're only parsing one DLL).
+<li>Your DLL.
+<li>Header files for your DLL.
+<li>A Java compiler and VM that supports J/Direct, such as the 
+ones in the MS Java SDK v2.0.
+<li><code>grep</code> is strongly recommended.
+</UL>
+
+<H2>Steps</H2>
+
+<OL>
+<LI>Make sure your code is in acceptable format.  COM objects can't be parsed.
+Non-trivial classes are also unparsible, or at the very least problematic.
+All exported functions should have <code>WINAPI</code>,  
+<code>APIENTRY</code>, or <code>CALLBACK</code> (or another #define'd token that
+expands to <code>__stdcall</code> or <code>__cdecl</code>) between a 
+function's return type and the function name.  Example:
+
+<p><code>BOOL WINAPI SwitchDesktop(HDESK hDesktop);</code></p></LI>
+
+<LI><p>Create symbol files for your DLL.  If you only want to export one DLL, you 
+can ignore this step, but its still recommended since skipping it adds one more
+step and a decent amount of filtering.  Run this command on each DLL:</p>
+<p><code>dumpbin /exports <i>your_lib.dll</i> &gt; <i>your_lib.sym</i></code>.</P>
+<p>This list of symbols tells the parser which classes your
+functions belong in.  All functions that aren't listed in a symbol file
+are put in Misc.java and need special attention 
+(discussed <a href="#NoSymbolFile">below</a>).</P>
+
+<li><p>Create <b>symbolfiles.txt</b> in the same directory that the 
+parser will be run in, listing all the symbol files you generated.
+Format of the file is one file per line, comment character is <b>#</b>.</p></LI>
+
+<li><p>Create a header file that includes all necessary headers.  Make a file
+called (for example) <code>gen.h</code>, that includes everything you need.
+This is optional if you only have one header file to parse and/or you have one
+header file that includes all the other headers needed.  Also make sure that
+your headers are only included once each, or if they are included multiple times
+that you wrap the headers with #ifdef's.  Here's what your header should look like:</p>
+<pre><code>#ifdef __YOUR_HEADER_H__
+#define __YOUR_HEADER_H__
+
+&lt;all of your header file code&gt;
+
+#endif
+</code></pre>
+<p>(In addition to being necessary for running the parser, this may speed up compile
+time for your code.  The only time you don't want this is if you have a circular
+dependency in your header files, which is bad style.)</P></li>
+
+<li>Run the C preprocessor over your header.  Set up all the <code>#define</code>'s you
+need for your code to compile in the current environment, then run the C 
+preprocessor over your header files.  Example:
+<p><code>cl /I<i>include-path</i> [/D<i>your_symbol</i>] /E <i>gen.h</i> &gt; <i>gen.prep</i></code></p>
+After changing into an include directory, here's what I used:
+
+<p><code>cl /I. /E windows.h &gt; windows.prep</code></p>
+
+<p>This generates a C preprocessed version of your headers with all the 
+macros expanded, which is easier to parse.</p>
+
+<li>Edit the parser source for your files.  There need to be changes to a few places
+to set up output files and packages.
+	<ul>
+	<li>Change <code>Parser.PackageName</code> to be whatever you want.
+	<li>Set <code>Parser.ReadSymbols</code>, <code>Parser.Suppress_UnknownLib_Functions</code>, and 
+		<code>Parser.Suppress_Unused_Structures</code> to reasonable values.</li>
+	<li>In <code>Parser.SetupOutputClasses()</code>, add a PrintWriter for your class, output 
+		the name of the class to that file, and add the PrintWriter to the hash
+		table, associating it with the name of your symbol file.  This should be
+		very easy - just cut and paste the code already there, changing names around.
+		Note that this is useless without a symbol file (all of your
+		output will go into Misc.java).
+	<li>Edit <code>Parser.SetupFileFilters()</code>, adding in any header files you parse to either
+		the ExcludeHeaders or IncludeHeaders vectors as appropriate.  By default, 
+		any unknown header file should be parsed, but this gives you a reasonable 
+		amount of control.
+	</ul>
+</li>
+
+<li>Run the parser over your .prep file.  Check the output for errors - anything starting
+with "Ack!" is a pretty serious problem that will probably leave at least one function
+or structure out of the output.  Example:
+<p><code>jview Parser <i>gen.prep</i></code></p>
+
+<li>Check through <b>punt.txt</b>, which should have been generated by the 
+parser.  It should contain a (slightly convoluted) list of all functions or 
+structures the parser wouldn't translate or read in properly.</li>
+
+<li><a name="NoSymbolFile">If</a> you didn't generate a symbol file, 
+go back through Misc.java, pulling out all of your functions.  Change 
+"&lt;unknown_library&gt;" in every <code>@dll.import</code> line to your 
+DLL's name.  There may be other functions in this class that might not be in
+your DLL and if you erroneously say they are, you'll get linking errors.</li>
+
+<li>Test with jvc.  Other tests you could do include getting the size of the struct in
+Java and comparing that with the size of the struct in C.  And you could get the size
+of all the parameters passed to functions in Java and C.  These are reasonable first-step
+test passes, but they don't guarantee correctness.
+</OL>
+
+<a name="defscan"><h2>Define scanner</h2></a>
+
+<p>To process #define'd constants, use defscan, a separate tool for scanning 
+through files.  As input, it expects files containing only #defines that span
+only one line with no other text in between.  A good way to generate these is
+as follows:</p>
+
+<code>grep #define <i>your_header.h</i> &gt; <i>your_header.def</i></code>
+
+<p>After you do that, scan for C-style comments that span multiple lines.  If you
+don't do this, you may end up commenting out most of your constants!  For any lines
+that pop up from the following command, fix them up, usually by adding 
+a <code>*/</code> in the correct place.</p>
+
+<code>grep \/\* <i>your_header.def</i> | grep -v \*\/</code>
+
+<p>It cannot parse macros, although a few extremely simple ones 
+have been special cased into the code.  If you only have a handful of macros,
+you could add them into the code.  Casting is supported to a limited extend.
+Strings can be outputted into the file or suppressed, depending on the
+value of defscan.SuppressStrings.</p>
+
+<p>Run defscan with the following command if you have a small number of files:</p>
+
+<code>jview defscan <i>your_file.def</i></code>
+
+<p>If there are many files, then list them all in <b>files</b> and run defscan with no
+arguments.</p>
+
+<p>The output is a set of interface files containing all the constants.  Since this
+was written to handle the Win32 constants, the output files all start with win.
+They are broken down alphabetically into multiple interfaces (win[a-z].java), 
+plus there's one master interface file that contains them all (win.java).
+
+</FONT></BODY>
+</HTML>

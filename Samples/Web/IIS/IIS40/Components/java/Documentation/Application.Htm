@@ -1,0 +1,67 @@
+<html>
+
+<head>
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 3.0">
+<title>Application</title>
+<meta NAME="Version" CONTENT="8.0.3410">
+<meta NAME="Date" CONTENT="10/11/96">
+<meta NAME="Template" CONTENT="C:\Program Files\Office\Office\HTML.DOT">
+</head>
+
+<body TEXT="#000000" LINK="#0000ff" BGCOLOR="#ffffff">
+<font FACE="Arial" SIZE="4"><b>
+
+<p><a NAME="_Toc397403938">Application</a></p>
+</b></font>
+
+<p>You can use the <b>Application</b> object to share information among all users of a
+given application. Because the <b>Application</b> object can be shared by more than one
+user, there are <b>Lock</b> and <b>Unlock </b>methods to ensure that multiple users do not
+try to alter a property simultaneously.</p>
+
+<p>The <b>Application</b> object is an ObjectDictionary that contains all of the items
+that have been added to the <b>Application</b> object through scripts and components. The staticObjects
+dictionary contains all of the objects added to the session with the &lt;Object&gt; tag. <font
+FACE="Courier New" size="2">
+
+<dir>
+  public class Application extends ObjectDictionary<br>
+  {<br>
+  &nbsp;&nbsp;&nbsp; public ObjectDictionary <a HREF="#staticObjects">staticObjects</a>;<br>
+  &nbsp;&nbsp;&nbsp; public void <a HREF="#lock">lock</a>();<br>
+  &nbsp;&nbsp;&nbsp; public void <a HREF="#unlock">unlock</a>();<br>
+  }</font><font FACE="Courier New" SIZE="1"><br>
+</dir>
+</font>
+
+<hr>
+<b><font SIZE="3">
+
+<p></font><font color="#0000A0" face="Arial"><em>Application Properties</em></font><font
+SIZE="3"></p>
+</font></b>
+
+<p><font SIZE="3"><a NAME="staticObjects"><b>public ObjectDictionary staticObjects</b></font></p>
+
+<p>Returns the ObjectDictionary that contains all of the objects added to the <B>Application</B> object
+with the &lt;Object&gt; tag. </p>
+<b><font SIZE="3">
+
+<p></font><font color="#0000A0" face="Arial"><em>Application Methods</em></font><font
+SIZE="3"></p>
+</font></b>
+
+<p><b><font SIZE="3"><a NAME="lock"></a>public void lock( )</font></b></p>
+
+Prevents other clients from modifying <b>Application </b>object
+properties.</p>
+<font SIZE="3"><b>
+
+<p><a NAME="unlock"></a>public void unlock( )</p>
+</b></font>
+
+Allows other clients to modify <b>Application </b>object
+properties.</p>
+</body>
+</html>

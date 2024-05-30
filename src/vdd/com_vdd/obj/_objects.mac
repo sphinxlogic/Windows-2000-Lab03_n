@@ -1,0 +1,28 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\com_vdd.obj \
+    $(_OBJ_DIR)\alpha\pc_com.obj \
+    $(_OBJ_DIR)\alpha\nt_com.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\com_vdd.obj \
+    $(_OBJ_DIR)\axp64\pc_com.obj \
+    $(_OBJ_DIR)\axp64\nt_com.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\com_vdd.obj \
+    $(_OBJ_DIR)\i386\pc_com.obj \
+    $(_OBJ_DIR)\i386\nt_com.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\com_vdd.obj \
+    $(_OBJ_DIR)\ia64\pc_com.obj \
+    $(_OBJ_DIR)\ia64\nt_com.obj
+
+PASS0_IA64_OBJECTS=
+

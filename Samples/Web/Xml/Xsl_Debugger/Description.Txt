@@ -1,0 +1,19 @@
+XSL Debugger
+
+Files:
+xsl-debugger.htm
+dbg-buttons.htm
+dbg-copy-xml.xsl
+dbg-copy-xsl.xsl
+dbg-format.xsl
+dbg-format-xsl.xsl
+copy.xsl
+test.xml
+
+Description:
+The XSL Debugger is a simple HTML-based debugger that allows single-stepping through 
+the execution of an XSL stylesheet.  The current positions in both the stylesheet and the
+XML document are indicated, and breakpoints can be set and cleared.
+
+Compatibility/Platform Compatibility:
+You must be running Microsoft Internet Explorer 5 or greater on Win32 or Unix platforms to view this demo.

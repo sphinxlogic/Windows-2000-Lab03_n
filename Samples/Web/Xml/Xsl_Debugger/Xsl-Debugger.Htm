@@ -1,0 +1,315 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<HTML>
+<HEAD>
+	<TITLE>XSL Debugger</TITLE>
+<STYLE>
+	BODY {margin:0px; background-color:#7788dd}
+	.section {color:white; background-color:#220066}
+	H1 {font:18pt Arial Black; padding-left:10px; margin-bottom:6px}
+	H3 {font:14pt Arial Black; margin-bottom:2px}
+	TD {font:10pt Verdana; vertical-align:top}
+	.controls {padding-left:10px; font-weight:bold; color:white}
+	.cursor {position:relative; z-index:5; left:5; top:0; font-family:wingdings; font-weight:bold; visibility:hidden}
+	DIV.style1	{position:relative; left:16; margin-right:22; color:black}
+	DIV.xslNode {position:relative; left:16; margin-right:22; color:green}
+	DIV.srcView {position:relative; overflow:scroll; left:1%; top:-6px; width:99%; height:340px; background-color:white}
+	SPAN.style1	{position:relative; color:black}
+	SPAN.dataNode	{position:relative; color:black}
+	SPAN.dataNodeDebug	{position:relative; color:black; font-weight:bold; color:yellow; background-color:red}
+	SPAN.xslNode {position:relative; font-weight:bold; color:green}
+	SPAN.xslEndNode {position:relative; font-weight:bold; color:green}
+	SPAN.xslNodeDebug {position:relative; font-weight:bold; color:yellow; background-color:red}
+	SPAN.styleAttr {position:relative; font-weight:bold}
+	#results {margin:6px; background-color:white; color:black}
+	PRE {margin-top:0;margin-bottom:0}
+</STYLE>
+
+<SCRIPT>
+var xslSrc;
+var xmlSrc;
+var szRes = " ";
+//0 = single step
+//2 = run to end/breakpoint
+var nState = 0;
+var cursTop;
+var objParams = new Array();
+
+
+//Toggles the state of a breakpoint on an XSL keyword
+function toggleBreak() {
+	var obj;
+	obj = event.srcElement;
+	
+		
+	//This is here because of some very strange IE bug
+	if ((obj.tagName != "SPAN") || ((obj.className != "xslNode") && (obj.className != "xslNodeDebug")) ) {
+		return;
+	}
+	
+		
+	if (!obj.parentElement.breakPoint) {
+		obj.parentElement.breakPoint = true;
+		obj.className = "xslNodeDebug";
+	}
+	else {
+		obj.parentElement.breakPoint = null;
+		obj.className = "xslNode";
+	}
+	event.cancelBubble = true;
+	return false;
+}
+
+//Toggles the state of a breakpoint on a data element 
+function toggleDataBreak() {
+	var obj;
+	obj = event.srcElement;
+	
+	if (!obj.parentElement.breakPoint) {
+		obj.parentElement.breakPoint = true;
+		obj.className = "dataNodeDebug";
+	}
+	else {
+		obj.parentElement.breakPoint = null;
+		obj.className = "dataNode";
+	}
+	event.cancelBubble = true;
+	return false;
+}
+
+//Toggles the state of a breakpoint on an attribute
+function toggleDataBreakAt() {
+	var obj;
+	obj = event.srcElement;
+	
+	if (!obj.breakPoint) {
+		obj.breakPoint = true;
+		obj.className = "dataNodeDebug";
+	}
+	else {
+		obj.breakPoint = null;
+		obj.className = "dataNode";
+	}
+	event.cancelBubble = true;
+	return false;
+}
+
+//Calculate offsets for lining up the cursor
+function calcDivStart(obj) {
+	return obj.offsetTop - tb.offsetTop - obj.scrollTop;
+}
+
+//Start debugging
+function trace() {
+	nState = 0;
+	results.innerHTML = "";
+	cursor.style.visibility = "visible"
+	datacursor.style.visibility = "visible"
+	xmlSrc.ontransformnode=debug;
+	szRes = xmlSrc.transformNode(xslSrc.documentElement);
+	cursor.style.visibility = "hidden";
+	datacursor.style.visibility = "hidden";
+	showSource();
+}
+
+function showSource() {
+  if (source.checked)
+    results.innerHTML = "<XMP>" + szRes + "</XMP>";
+  else
+    results.innerHTML = szRes;
+}
+
+function debug(xslObj, xmlObj) {
+	var bData;
+	
+	//Is it an element or an attribute?
+	if (xmlObj && ((xmlObj.nodeType == 1) || (xmlObj.nodeType == 2)))
+		bData = true;
+	else
+		bData = false;
+	//Which element just executed?
+	pageItem = document.all.item(xslObj.getAttribute("xsl-debugger-id"));
+  results.innerHTML = xslObj.xml;	
+
+	//What is the data element?
+	if (bData) {
+		//Find an element or an attribute
+		if (xmlObj.nodeType == 1) {
+			//Element
+			dataItem = document.all.item(xmlObj.getAttribute("xsl-debugger-id"));
+		}
+		else {
+			//Attribute: find the parent
+			nodeParent = xmlObj.selectSingleNode("ancestor(*)");
+			//Did we just hit one of the hidden attributes?
+			if (xmlObj.nodeName == "xsl-debugger-id")
+				return true;
+			szName = nodeParent.getAttribute("xsl-debugger-id") + "_" + xmlObj.nodeName;
+			dataItem = document.all.item(szName);
+		}
+	}
+
+		
+	//Are we running until the end/a breakpoint?
+	if (nState == 2) {
+		//Are we at an xsl breakpoint?
+		if (!pageItem.breakPoint) {
+			//Is there data?
+			if (!bData)
+				return true;
+			//Are we at a data breakpoint?
+			if (!dataItem.breakPoint)
+				return true;
+		}
+	}
+	pageItem.scrollIntoView();
+	cursTop = calcDivStart(divXSLSrc);
+	if (bData) {
+		if (!dataItem)
+			bData = false;
+		else {
+			dataItem.scrollIntoView();
+			dcursTop = calcDivStart(divXSLSrc);
+		}
+	}
+	if (high.checked) {
+		pageItem.style.backgroundColor = "yellow"
+		if (bData)
+			dataItem.style.backgroundColor = "lightblue"
+	}
+	cursor.style.top = cursTop + pageItem.offsetTop;
+	if (bData)
+		datacursor.style.top = dcursTop + dataItem.offsetTop;
+	else
+		datacursor.style.top = -200;
+	
+	objParams[0] = pageItem;
+	retval = window.showModalDialog("dbg-buttons.htm", objParams, "dialogWidth:210px;dialogHeight:100px;dialogLeft:300px;dialogTop:50px;status: no; ");
+	//Was it a stop?
+	if (retval == 3)
+		return false;
+		
+	//Was it a go?	
+	if (retval == 2)
+		nState = 2;
+		
+	if (high.checked) {
+		pageItem.style.backgroundColor = ""
+		if (bData)
+			dataItem.style.backgroundColor = ""
+	}
+	return true;	
+	
+}
+
+function init() {
+	xslSrc = new ActiveXObject("Microsoft.XMLDOM");
+	xmlSrc = new ActiveXObject("Microsoft.XMLDOM");
+	onNewXSL();
+	onNewXML();
+}
+
+function onNewXSL() {
+	xslSrc.async = false;
+	xslSrc.load(inXSLSrc.value);
+	if (xslSrc.parseError.reason) {
+		alert("XSL: " + xslSrc.parseError.reason);
+		return false;
+	}
+	//Transform the style sheet to get the display window
+	szShow = xslSrc.transformNode(formatXSL.documentElement);
+	//Now transform to add the debug id's
+	szNew = xslSrc.transformNode(copyXSL.documentElement);
+	//Reload
+	xslSrc.loadXML(szNew);
+	if (xslSrc.parseError.reason) {
+		alert("XSL Debug: " + xslSrc.parseError.reason);
+		return false;
+	}
+	
+	divXSLSrc.innerHTML = szShow;
+}
+
+function onNewXML() {
+	xmlSrc.async = false;
+	xmlSrc.load(inXMLSrc.value);
+	if (xmlSrc.parseError.reason) {
+		alert("XML: " + xslSrc.parseError.reason);
+		return false;
+	}
+	//Transform the data to get the display window
+	szShow = xmlSrc.transformNode(formatXML.documentElement);
+	//Now transform to add the debug id's
+	//Note that there is a side effect from this on XSL sheets that copy all attributes for nodes.
+	szNew = xmlSrc.transformNode(copyXML.documentElement);
+	//Reload
+	xmlSrc.loadXML(szNew);
+	if (xmlSrc.parseError.reason) {
+		alert("XML Debug: " + xmlSrc.parseError.reason);
+		return false;
+	}
+	
+	divXMLSrc.innerHTML = szShow;
+}
+</SCRIPT>
+</HEAD>
+
+<FONT FACE="verdana,arial,helvetica" SIZE=1><A HREF="#" ONCLICK="self.close();return false">Close This Sample</A></FONT><hr>
+
+<BODY onload="init()">
+<TABLE width="100%" cellspacing="0">
+  <TR class=section>
+    <TD><H1>XSL Debugger</H1></TD>
+    <TD style="font-style:italic; font-size:8pt">
+      Click "Reload" to load stylesheet and source XML files.
+      Click on nodes in the stylesheet or data views to set breakpoints.
+      Click "Run" to begin execution.</TD>
+  </TR>
+  <TR>
+    <TD class="controls" STYLE="border-bottom: 2px solid #220066">
+      <I>Execute Stylesheet:</I> <INPUT type=button value="Run" onclick="trace()" id=button1 name=button1 STYLE="width:60px; font-weight:bold">
+    </TD>
+    <TD class="controls" STYLE="border-bottom: 2px solid #220066">
+      <I>Options:</I> <INPUT type=checkbox id=high checked> Highlight Current Node
+    </TD>
+  </TR>
+  <TR>
+  	<TD class="controls">
+  	  <H3>XSL Stylesheet</H3>
+  	  <INPUT id="inXSLSrc" value="copy.xsl" onchange="onNewXSL()"><INPUT type=button value="Reload" onclick="onNewXSL()">
+  	</TD>
+  	<TD class="controls">
+  	  <H3>XML Source</H3>
+  	  <INPUT id="inXMLSrc" value="test.xml" onchange="onNewXML()"><INPUT type=button value="Reload" onclick="onNewXML()">
+  	</TD>
+  </TR>
+  <TR id=tb>
+  	<TD width=50% valign=top>
+  		<DIV id=cursor class=cursor style="color:blue">à</DIV>
+  		<DIV id="divXSLSrc" class="srcView"></DIV>
+  	</TD>
+  	<TD width=50% valign=top>
+  		<DIV id=datacursor class=cursor style="color:green">à</DIV>
+  		<DIV id="divXMLSrc" class="srcView"></DIV>
+  	</TD>
+  </TR>
+  <TR>
+  	<TD class="controls" STYLE="border-top: 6px solid #220066; border-bottom: 2px solid #220066">
+  	  <H3>Transformation Result</H3>
+  	</TD>
+  	<TD class="controls" STYLE="border-top: 6px solid #220066; border-bottom: 2px solid #220066">
+      <I>Options:</I> <INPUT type=checkbox id=source onclick="showSource()"> Show Source
+    </TD>
+  </TR>
+  <TR>
+    <TD colspan="2"><DIV id=results>&nbsp;</DIV></TD>
+  </TR>
+</TABLE>
+
+<XML id="formatXML" src="dbg-format.xsl"></XML>
+<XML id="formatXSL" src="dbg-format-xsl.xsl"></XML>
+<XML id="copyXSL" src="dbg-copy-xsl.xsl"></XML>
+<XML id="copyXML" src="dbg-copy-xml.xsl"></XML>
+
+</BODY>
+</HTML>

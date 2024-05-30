@@ -1,0 +1,45 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>Optionally configure ADO DSNs</TITLE>
+<META NAME="Template" CONTENT="D:\Program Files\Microsoft Office\Office\html.dot">
+</HEAD>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+
+<H2>QCSamp2</H2>
+<P><HR></P>
+
+<P><A HREF="optional.htm">Optional ADO DSNs</A></P>
+
+<H3>Build Notes</H3>
+<P>The Queued Components samples provide both a generic makefile as well as a Microsoft
+Visual Studio project file. The generic makefile is intended to support command-line
+compilation in the context of the installed Microsoft Platform SDK.</P>
+<P>The supplied Platform SDK makefile (makefile) for the Queued Components samples are
+Microsoft NMAKE-compatible. To create a debug build of the sample, simply issue the NMAKE
+command in the Command Prompt window from the sample's main directory (QCSamp2).
+<B>The makefile assumes you have installed the Platform SDK and set the system environment
+paths as required for compilation with the </B><A HREF="../../../../readme.txt"><B>
+Platform SDK.</B></A></P>
+<P>If desired you may choose to use Visual Studio to build the sample. A workspace file is
+provided for this purpose. For example, to load all the projects for QCSamp2, you can run
+Visual Studio at the Command Prompt in the QCSamp2 directory using the following command:
+</P><P>c:\&gt; msdev QCSamp2.dsw</P>
+<P>You can also just double-click the QCSamp2.dsw file in the Windows Explorer to load the
+sample's workspace into Visual Studio. From within Visual Studio you can then browse the
+C++ classes of the sample's source and generally perform the other edit-compile-debug
+operations provided by Visual Studio. <B>Note: as part of the Platform SDK, the compilation
+of these samples from within Visual Studio requires the proper setting of the Platform SDK
+directory paths within Visual Studio. See the </B><A HREF="../../../../readme.txt"><B>
+Platform SDK installation notes.</B></A></P>
+
+<H3>Running the sample</H3>
+<P>Click <A HREF="running.htm">here</A> for detailed instructions on how to set up and run
+QCSamp2.</P>
+
+<H3>Running on multiple machines</H3>
+<P>Click <A HREF="multiple2.htm">here</A> for detailed instructions on how to set up and
+run QCSamp2 on multiple machines. It is in this configuration where you can begin to see
+the potential for building disconnected applications with Queued Components.</P>
+</body>

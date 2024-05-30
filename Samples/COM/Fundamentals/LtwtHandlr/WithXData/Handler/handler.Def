@@ -1,0 +1,8 @@
+LIBRARY     ServerHandler
+
+DESCRIPTION "Server lightweight Handler for INumberToText"
+
+EXPORTS
+   DllCanUnloadNow		private
+   DllGetClassObject	private
+   

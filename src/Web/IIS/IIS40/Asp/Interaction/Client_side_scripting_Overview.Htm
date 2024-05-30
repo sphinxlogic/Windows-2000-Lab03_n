@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Client-Side Scripting</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_client_side_scripting"></a>  Client-Side Scripting</h3>
+<p>
+ASP is a server-side scripting environment. Client-side scripting complements ASP nicely, allowing for a number of enhancements, such as ActiveX™ controls, that can make your application more powerful and user-friendly.</p>
+<p>
+This example demonstrates how you can include a client-side script in your language. This script defines a subroutine called <b>DoIt</b> within the &lt;SCRIPT&gt; tags. Notice that there is not a RUNAT=SERVER attribute present, which would indicate that the script is an ASP subroutine. The page provides one button for the user that, when clicked, executes the <b>DoIt</b> subroutine on the client browser. </p>
+<p>
+This sample demonstrates a very useful advantage to combining ASP scripts with client-side scripting. When ASP encounters the &lt;SCRIPT&gt; tags, it does not simply ignore everything within that block. It continues to search for, parse, and execute script elements, specified with delimiters (&lt;% ... %&gt;), that are meant for the server. This example, therefore, returns the session information returned from the <b>Session.SessionID</b> method within a client-side script. </p>
+</BODY>
+</HTML>

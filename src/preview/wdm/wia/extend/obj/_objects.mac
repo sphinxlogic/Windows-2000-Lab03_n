@@ -1,0 +1,32 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\extend.res \
+    $(_OBJ_DIR)\alpha\shellext.obj \
+    $(_OBJ_DIR)\alpha\extend.obj \
+    $(_OBJ_DIR)\alpha\stdafx.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\extend.res \
+    $(_OBJ_DIR)\axp64\shellext.obj \
+    $(_OBJ_DIR)\axp64\extend.obj \
+    $(_OBJ_DIR)\axp64\stdafx.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\extend.res \
+    $(_OBJ_DIR)\i386\shellext.obj \
+    $(_OBJ_DIR)\i386\extend.obj \
+    $(_OBJ_DIR)\i386\stdafx.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\extend.res \
+    $(_OBJ_DIR)\ia64\shellext.obj \
+    $(_OBJ_DIR)\ia64\extend.obj \
+    $(_OBJ_DIR)\ia64\stdafx.obj
+
+PASS0_IA64_OBJECTS=
+

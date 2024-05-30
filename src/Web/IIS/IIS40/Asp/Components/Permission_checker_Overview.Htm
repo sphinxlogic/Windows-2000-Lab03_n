@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Permission Checker</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_permission_checker"></a>  Permission Checker</h3>
+<p>
+The Permission Checker component provides you with an interface to the authentication and permissions services provided by IIS and Windows NT&reg;. You can use this component to easily determine whether a client browser has read-access to a particular file.</p>
+<p>
+This example demonstrates the use of the <b>PermissionChecker</b> object, provided by the Permission Checker component, and the sole method provided through that object, <b>HasAccess</b>. This method returns True if the current client browser is granted read access to the specified file, and returns False if the browser is denied access, or if the file doesn't exist. <b>HasAccess</b> can take as a parameter either a virtual path or a physical path. </p>
+<p>
+For this example, an instance of the object is created, and the variable <i>Check</i> is set to refer to that new instance. <i>Check</i> is then used to access <b>HasAccess</b>. </p>
+<p>
+<b>Note</b>&nbsp;&nbsp;This component is not installed with IIS. You can install it from the Microsoft Web site at <b>http://www.microsoft.com/iis/</b>, or from the CD included with the IIS Resource Kit. The ProgID declared by the component version installed from these sources specifies &quot;IISSamples&quot; in the vendor component of the ProgID, not &quot;MSWC.&quot; Therefore, the <b>Server.CreateObject</b> invocation in this sample script must be modified to reflect the proper component ProgID.</p>
+</BODY>
+</HTML>

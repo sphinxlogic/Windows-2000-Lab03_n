@@ -1,0 +1,9 @@
+LIBRARY admindll
+
+EXPORTS 
+MprAdminGetIpAddressForUser
+MprAdminReleaseIpAddress
+MprAdminAcceptNewConnection
+MprAdminConnectionHangupNotification
+MprAdminAcceptNewLink
+MprAdminLinkHangupNotification

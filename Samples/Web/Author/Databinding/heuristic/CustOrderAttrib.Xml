@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<ROOT>
+  <Customer>
+    <CustomerID AttribCustomer="Attribute: VINET"  >VINET</CustomerID>
+    <CompanyName>Vins et alcools Chevalier</CompanyName>
+    <Address>59 rue de l'Abbaye</Address>
+    <Fax>26.47.15.11</Fax>
+    <Order>
+      <OrderID AttribOrder ="Attribute: 10248" >10248</OrderID>
+      <OrderDate >8/4/94</OrderDate>
+      <ShipCountry>France</ShipCountry>
+    </Order>
+  </Customer>
+
+  <OuterCustomerID AttribCustomer="Attribute: BONAP"  >BONAP</OuterCustomerID>
+  <OuterCompanyName AttribCompany = "Attribute: Bon app"  >Bon app</OuterCompanyName>
+
+  <OuterCustomerID AttribCustomer="Attribute: RATTC"  >RATTC</OuterCustomerID>
+  <OuterCompanyName AttribCompany = "Attribute: Rattlesnake Canyon Grocery"  >Rattlesnake Canyon Grocery</OuterCompanyName>
+
+  <Customer>
+    <CustomerID AttribCustomer="Attribute: TOMSP"  >TOMSP</CustomerID>
+    <CompanyName >Toms Spezialitäten</CompanyName>
+    <Address>Luisenstr. 48</Address>
+    <Fax >0251-035695</Fax>
+    <Order>
+      <OrderID AttribOrder ="Attribute: 10249" >10249</OrderID>
+      <OrderDate>8/5/94</OrderDate>
+      <ShipCountry>Germany</ShipCountry>
+    </Order>
+  </Customer>
+</ROOT>

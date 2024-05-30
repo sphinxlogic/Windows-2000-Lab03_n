@@ -1,0 +1,1223 @@
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+$$IF(TARGET_INTEL || TARGET_MIPS || TARGET_ALPHA)
+$$IF(PROJTYPE_MDI)
+IDR_MAINFRAME MENU PRELOAD DISCARDABLE 
+BEGIN
+	POPUP "@@&Datei@@"
+	BEGIN
+$$IF(PROJTYPE_MDI || !NODOCVIEW)
+		MENUITEM "@@&Neu\tStrg+N@@",                ID_FILE_NEW
+$$ENDIF
+$$IF(!NODOCVIEW)
+		MENUITEM "@@Ö&ffnen...\tStrg+O@@",            ID_FILE_OPEN
+$$IF(PRINT)
+		MENUITEM SEPARATOR
+		MENUITEM "@@Drucker&einrichtung...@@",             ID_FILE_PRINT_SETUP
+$$ENDIF //PRINT
+$$IF(HAS_MRU)
+		MENUITEM SEPARATOR
+		MENUITEM "@@Letzte Datei@@",                 ID_FILE_MRU_FILE1,GRAYED
+$$ENDIF //HAS_MRU
+$$ENDIF
+$$IF(PROJTYPE_MDI || !NODOCVIEW)
+		MENUITEM SEPARATOR
+$$ENDIF
+		MENUITEM "@@&Beenden@@",                       ID_APP_EXIT
+	END
+$$IF(TOOLBAR || STATUSBAR)
+	POPUP "@@&Ansicht@@"
+	BEGIN
+$$IF(TOOLBAR)
+		MENUITEM "@@&Symbolleiste@@",                    ID_VIEW_TOOLBAR
+$$ENDIF //TOOLBAR
+$$IF(STATUSBAR)
+		MENUITEM "@@S&tatusleiste@@",                 ID_VIEW_STATUS_BAR
+$$ENDIF //STATUSBAR
+$$IF(PROJTYPE_EXPLORER)
+        MENUITEM "@@&Teilen@@",                      ID_WINDOW_SPLIT
+$$IF(CListView)
+        MENUITEM SEPARATOR
+        MENUITEM "@@&Große Symbole@@",                ID_VIEW_LARGEICON
+        MENUITEM "@@&Kleine Symbole@@",                ID_VIEW_SMALLICON
+        MENUITEM "@@&Liste@@",                       ID_VIEW_LIST
+        MENUITEM "@@&Details@@",                    ID_VIEW_DETAILS
+        MENUITEM SEPARATOR
+        POPUP "@@Sy&mbole anordnen@@"
+        BEGIN
+            MENUITEM "@@&Nach Name@@",                    ID_VIEW_BYNAME
+            MENUITEM SEPARATOR
+            MENUITEM "@@&Automatisch anordnen@@",               ID_VIEW_AUTOARRANGE
+        END
+        MENUITEM "@@Am Raster a&usrichten@@",              ID_VIEW_LINEUP
+$$ENDIF
+$$ENDIF
+	END
+$$ENDIF //TOOLBAR || STATUSBAR
+	POPUP "@@&?@@"
+	BEGIN
+$$IF(HELP)
+		MENUITEM "@@&Hilfethemen@@",                ID_HELP_FINDER
+		MENUITEM SEPARATOR
+$$ENDIF //HELP
+		MENUITEM "@@Inf&o über $$Root$$...@@",          ID_APP_ABOUT
+	END
+END
+IDR_$$DOC$$TYPE MENU PRELOAD DISCARDABLE 
+BEGIN
+	POPUP "@@&Datei@@"
+	BEGIN
+$$IF(PROJTYPE_MDI || !NODOCVIEW)
+		MENUITEM "@@&Neu\tStrg+N@@",                ID_FILE_NEW
+$$IF(!NODOCVIEW)
+		MENUITEM "@@Ö&ffnen...\tStrg+O@@",            ID_FILE_OPEN
+$$ENDIF //NODOCVIEW
+		MENUITEM "@@&Schließen@@",                      ID_FILE_CLOSE
+$$IF(!NODOCVIEW)
+		MENUITEM "@@S&peichern\tStrg+S@@",               ID_FILE_SAVE
+		MENUITEM "@@Speichern &unter...@@",                 ID_FILE_SAVE_AS
+$$IF(PRINT)
+		MENUITEM SEPARATOR
+		MENUITEM "@@&Drucken...\tStrg+P@@",           ID_FILE_PRINT
+$$IF(!CHtmlView)
+		MENUITEM "@@Sei&tenansicht@@",              ID_FILE_PRINT_PREVIEW
+$$ENDIF // CHtmlView
+		MENUITEM "@@Drucker&einrichtung...@@",             ID_FILE_PRINT_SETUP
+$$ENDIF //PRINT
+$$IF(MAPI)
+		MENUITEM SEPARATOR
+		MENUITEM "@@Na&chricht senden...@@",					ID_FILE_SEND_MAIL
+$$ENDIF //MAPI
+$$IF(HAS_MRU)
+		MENUITEM SEPARATOR
+		MENUITEM "@@Letzte Datei@@",                 ID_FILE_MRU_FILE1,GRAYED
+$$ENDIF //HAS_MRU
+$$ENDIF //NODOCVIEW
+		MENUITEM SEPARATOR
+$$ENDIF //NODOCVIEW
+		MENUITEM "@@&Beenden@@",                       ID_APP_EXIT
+	END
+	POPUP "@@&Bearbeiten@@"
+	BEGIN
+		MENUITEM "@@&Rückgängig\tStrg+Z@@",               ID_EDIT_UNDO
+		MENUITEM SEPARATOR
+		MENUITEM "@@&Ausschneiden\tStrg+X@@",                ID_EDIT_CUT
+		MENUITEM "@@&Kopieren\tStrg+C@@",               ID_EDIT_COPY
+		MENUITEM "@@E&infügen\tStrg+V@@",              ID_EDIT_PASTE
+$$IF(CONTAINER || CONTAINER_SERVER)
+        MENUITEM "@@In&halte einfügen...@@",           ID_EDIT_PASTE_SPECIAL
+$$IF(CRichEditView)
+        MENUITEM "@@Alles &markieren\tStrg+A@@",         ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "@@&Suchen...\tStrg+F@@",            ID_EDIT_FIND
+        MENUITEM "@@&Weitersuchen\tF3@@",              ID_EDIT_REPEAT
+        MENUITEM "@@&Ersetzen\tStrg+H@@",            ID_EDIT_REPLACE
+$$ENDIF //CRichEditView
+        MENUITEM SEPARATOR
+        MENUITEM "@@&Neues Objekt einfügen...@@",       ID_OLE_INSERT_NEW
+        MENUITEM "@@Verknü&pfungen...@@",                   ID_OLE_EDIT_LINKS
+$$IF(CRichEditView)
+        MENUITEM "@@&Objekteigenschaften\tAlt+Eingabetaste@@", ID_OLE_EDIT_PROPERTIES
+$$ENDIF //CRichEditView
+        MENUITEM "@@<<PLATZHALTER FÜR OLE-AUSDRÜCKE>>@@",       ID_OLE_VERB_FIRST
+$$ENDIF //CONTAINER || CONTAINER_SERVER
+	END
+$$IF(CRecordView || CDaoRecordView || COleDBRecordView)
+	POPUP "@@Daten&satz@@"
+	BEGIN
+		MENUITEM "@@&Erster Datensatz@@"				ID_RECORD_FIRST
+		MENUITEM "@@&Vorheriger Datensatz@@"				ID_RECORD_PREV
+		MENUITEM "@@&Nächster Datensatz@@"					ID_RECORD_NEXT
+		MENUITEM "@@&Letzter Datensatz@@"					ID_RECORD_LAST
+	END
+$$ENDIF //CRecordView || CDaoRecordView || COleDBRecordView
+$$IF(TOOLBAR || STATUSBAR)
+	POPUP "@@&Ansicht@@"
+	BEGIN
+$$IF(TOOLBAR)
+		MENUITEM "@@&Symbolleiste@@",                    ID_VIEW_TOOLBAR
+$$ENDIF //TOOLBAR
+$$IF(STATUSBAR)
+		MENUITEM "@@S&tatusleiste@@",                 ID_VIEW_STATUS_BAR
+$$ENDIF //STATUSBAR
+$$IF(PROJTYPE_EXPLORER)
+        MENUITEM "@@&Teilen@@",                      ID_WINDOW_SPLIT
+$$IF(CListView)
+        MENUITEM SEPARATOR
+        MENUITEM "@@&Große Symbole@@",                ID_VIEW_LARGEICON
+        MENUITEM "@@&Kleine Symbole@@",                ID_VIEW_SMALLICON
+        MENUITEM "@@&Liste@@",                       ID_VIEW_LIST
+        MENUITEM "@@&Details@@",                    ID_VIEW_DETAILS
+        MENUITEM SEPARATOR
+        POPUP "@@Sy&mbole anordnen@@"
+        BEGIN
+            MENUITEM "@@&Nach Name@@",                    ID_VIEW_BYNAME
+            MENUITEM SEPARATOR
+            MENUITEM "@@&Automatisch anordnen@@",               ID_VIEW_AUTOARRANGE
+        END
+        MENUITEM "@@Am Raster a&usrichten@@",              ID_VIEW_LINEUP
+$$ENDIF
+$$ENDIF
+	END
+$$ENDIF //TOOLBAR || STATUSBAR
+	POPUP "@@&Fenster@@"
+	BEGIN
+$$IF(!NODOCVIEW)
+		MENUITEM "@@Neues &Fenster@@",                 ID_WINDOW_NEW
+$$ENDIF //NODOCVIEW
+		MENUITEM "@@Über&lappend@@",                    ID_WINDOW_CASCADE
+		MENUITEM "@@&Nebeneinander@@",                       ID_WINDOW_TILE_HORZ
+		MENUITEM "@@&Symbole anordnen@@",              ID_WINDOW_ARRANGE
+$$IF(SPLITTER)
+		MENUITEM "@@&Teilen@@",                      ID_WINDOW_SPLIT
+$$ENDIF //SPLITTER
+	END
+	POPUP "@@&?@@"
+	BEGIN
+$$IF(HELP)
+		MENUITEM "@@&Hilfethemen@@",                ID_HELP_FINDER
+		MENUITEM SEPARATOR
+$$ENDIF //HELP
+		MENUITEM "@@Inf&o über $$Root$$...@@",          ID_APP_ABOUT
+	END
+END
+
+$$IF(CONTAINER || CONTAINER_SERVER)
+IDR_$$DOC$$TYPE_CNTR_IP MENU PRELOAD DISCARDABLE 
+BEGIN
+	POPUP "@@&Datei@@"
+	BEGIN
+$$IF(PROJTYPE_MDI || !NODOCVIEW)
+		MENUITEM "@@&Neu\tStrg+N@@",                ID_FILE_NEW
+$$IF(!NODOCVIEW)
+		MENUITEM "@@Ö&ffnen...\tStrg+O@@",            ID_FILE_OPEN
+		MENUITEM "@@&Schließen@@",                      ID_FILE_CLOSE
+		MENUITEM "@@S&peichern\tStrg+S@@",               ID_FILE_SAVE
+		MENUITEM "@@Speichern &unter...@@",                 ID_FILE_SAVE_AS
+$$IF(PRINT)
+		MENUITEM SEPARATOR
+		MENUITEM "@@&Drucken...\tStrg+P@@",           ID_FILE_PRINT
+$$IF(!CHtmlView)
+		MENUITEM "@@Sei&tenansicht@@",              ID_FILE_PRINT_PREVIEW
+$$ENDIF //CHtmlView
+		MENUITEM "@@Drucker&einrichtung...@@",             ID_FILE_PRINT_SETUP
+$$ENDIF //PRINT
+$$IF(MAPI)
+		MENUITEM SEPARATOR
+		MENUITEM "@@Na&chricht senden...@@",					ID_FILE_SEND_MAIL
+$$ENDIF //MAPI
+$$IF(HAS_MRU)
+		MENUITEM SEPARATOR
+		MENUITEM "@@Letzte Datei@@",                 ID_FILE_MRU_FILE1,GRAYED
+$$ENDIF //HAS_MRU
+$$ENDIF //NODOCVIEW
+		MENUITEM SEPARATOR
+$$ENDIF //!NODOCVIEW
+		MENUITEM "@@&Beenden@@",                       ID_APP_EXIT
+	END
+	MENUITEM SEPARATOR
+	MENUITEM SEPARATOR
+	POPUP "@@&Fenster@@"
+	BEGIN
+		MENUITEM "@@Neues &Fenster@@",                 ID_WINDOW_NEW
+		MENUITEM "@@Über&lappend@@",                    ID_WINDOW_CASCADE
+		MENUITEM "@@&Nebeneinander@@",                       ID_WINDOW_TILE_HORZ
+		MENUITEM "@@&Symbole anordnen@@",              ID_WINDOW_ARRANGE
+$$IF(SPLITTER)
+		MENUITEM "@@&Teilen@@",                      ID_WINDOW_SPLIT
+$$ENDIF //SPLITTER
+	END
+END
+$$ENDIF//CONTAINER || CONTAINER_SERVER
+
+$$IF(MINI_SERVER || FULL_SERVER || CONTAINER_SERVER)
+IDR_$$DOC$$TYPE_SRVR_EMB MENU PRELOAD DISCARDABLE 
+BEGIN
+	POPUP "@@&Datei@@"
+	BEGIN
+		MENUITEM "@@&Neu\tStrg+N@@",                ID_FILE_NEW
+$$IF(!NODOCVIEW)
+		MENUITEM "@@Ö&ffnen...\tStrg+O@@",            ID_FILE_OPEN
+		MENUITEM "@@&Schließen@@",                      ID_FILE_CLOSE
+		MENUITEM "@@&Aktualisieren\tStrg+S@@",        		ID_FILE_UPDATE
+$$IF(MINI_SERVER)
+$$ELSE		
+		MENUITEM "@@Kopie speichern &unter...@@",            ID_FILE_SAVE_COPY_AS
+$$ENDIF		
+$$IF(PRINT)
+		MENUITEM SEPARATOR
+		MENUITEM "@@&Drucken...\tStrg+P@@",           ID_FILE_PRINT
+$$IF(!CHtmlView)
+		MENUITEM "@@Sei&tenansicht@@",              ID_FILE_PRINT_PREVIEW
+$$ENDIF //CHtmlView
+		MENUITEM "@@Drucker&einrichtung...@@",             ID_FILE_PRINT_SETUP
+$$ENDIF //PRINT
+$$IF(MAPI)
+		MENUITEM SEPARATOR
+		MENUITEM "@@Na&chricht senden...@@",					ID_FILE_SEND_MAIL
+$$ENDIF //MAPI
+$$IF(HAS_MRU)
+		MENUITEM SEPARATOR
+		MENUITEM "@@Letzte Datei@@",                 ID_FILE_MRU_FILE1,GRAYED
+$$ENDIF //HAS_MRU
+$$ENDIF // NODOCVIEW
+		MENUITEM SEPARATOR
+		MENUITEM "@@&Beenden@@",                       ID_APP_EXIT
+	END
+	POPUP "@@&Bearbeiten@@"
+	BEGIN
+		MENUITEM "@@&Rückgängig\tStrg+Z@@",               ID_EDIT_UNDO
+		MENUITEM SEPARATOR
+		MENUITEM "@@&Ausschneiden\tStrg+X@@",                ID_EDIT_CUT
+		MENUITEM "@@&Kopieren\tStrg+C@@",               ID_EDIT_COPY
+		MENUITEM "@@E&infügen\tStrg+V@@",              ID_EDIT_PASTE
+$$IF(CONTAINER || CONTAINER_SERVER)
+        MENUITEM "@@In&halte einfügen...@@",           ID_EDIT_PASTE_SPECIAL
+$$IF(CRichEditView)
+        MENUITEM "@@Alles &markieren\tStrg+A@@",         ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "@@&Suchen...\tStrg+F@@",            ID_EDIT_FIND
+        MENUITEM "@@&Weitersuchen\tF3@@",              ID_EDIT_REPEAT
+        MENUITEM "@@&Ersetzen\tStrg+H@@",            ID_EDIT_REPLACE
+$$ENDIF //CRichEditView
+        MENUITEM SEPARATOR
+        MENUITEM "@@&Neues Objekt einfügen...@@",       ID_OLE_INSERT_NEW
+        MENUITEM "@@Verknü&pfungen...@@",                   ID_OLE_EDIT_LINKS
+$$IF(CRichEditView)
+        MENUITEM "@@&Objekteigenschaften\tAlt+Eingabetaste@@", ID_OLE_EDIT_PROPERTIES
+$$ENDIF //CRichEditView
+        MENUITEM "@@<<PLATZHALTER FÜR OLE-AUSDRÜCKE>>@@",       ID_OLE_VERB_FIRST
+$$ENDIF //CONTAINER || CONTAINER_SERVER
+	END
+$$IF(CRecordView || CDaoRecordView || COleDBRecordView)
+	POPUP "@@Daten&satz@@"
+	BEGIN
+		MENUITEM "@@&Erster Datensatz@@"				ID_RECORD_FIRST
+		MENUITEM "@@&Vorheriger Datensatz@@"				ID_RECORD_PREV
+		MENUITEM "@@&Nächster Datensatz@@"					ID_RECORD_NEXT
+		MENUITEM "@@&Letzter Datensatz@@"					ID_RECORD_LAST
+	END
+$$ENDIF //CRecordView || CDaoRecordView || COleDBRecordView
+$$IF(TOOLBAR || STATUSBAR)
+	POPUP "@@&Ansicht@@"
+	BEGIN
+$$IF(TOOLBAR)
+		MENUITEM "@@&Symbolleiste@@",                    ID_VIEW_TOOLBAR
+$$ENDIF //TOOLBAR
+$$IF(STATUSBAR)
+		MENUITEM "@@S&tatusleiste@@",                 ID_VIEW_STATUS_BAR
+$$ENDIF //STATUSBAR
+	END
+$$ENDIF //TOOLBAR || STATUSBAR
+	POPUP "@@&Fenster@@"
+	BEGIN
+		MENUITEM "@@Neues &Fenster@@",                 ID_WINDOW_NEW
+		MENUITEM "@@Über&lappend@@",                    ID_WINDOW_CASCADE
+		MENUITEM "@@&Nebeneinander@@",                       ID_WINDOW_TILE_HORZ
+		MENUITEM "@@&Symbole anordnen@@",              ID_WINDOW_ARRANGE
+$$IF(SPLITTER)
+		MENUITEM "@@&Teilen@@",                      ID_WINDOW_SPLIT
+$$ENDIF //SPLITTER
+	END
+	POPUP "@@&?@@"
+	BEGIN
+$$IF(HELP)
+		MENUITEM "@@&Hilfethemen@@",                ID_HELP_FINDER
+		MENUITEM SEPARATOR
+$$ENDIF //HELP
+		MENUITEM "@@Inf&o über $$Root$$...@@",          ID_APP_ABOUT
+	END
+END
+IDR_$$DOC$$TYPE_SRVR_IP MENU PRELOAD DISCARDABLE 
+BEGIN
+	POPUP "@@&Bearbeiten@@"
+	BEGIN
+		MENUITEM "@@&Rückgängig\tStrg+Z@@",               ID_EDIT_UNDO
+		MENUITEM SEPARATOR
+		MENUITEM "@@&Ausschneiden\tStrg+X@@",                ID_EDIT_CUT
+		MENUITEM "@@&Kopieren\tStrg+C@@",               ID_EDIT_COPY
+		MENUITEM "@@E&infügen\tStrg+V@@",              ID_EDIT_PASTE
+$$IF(CONTAINER || CONTAINER_SERVER)
+        MENUITEM "@@In&halte einfügen...@@",           ID_EDIT_PASTE_SPECIAL
+$$IF(CRichEditView)
+        MENUITEM "@@Alles &markieren\tStrg+A@@",         ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "@@&Suchen...\tStrg+F@@",            ID_EDIT_FIND
+        MENUITEM "@@&Weitersuchen\tF3@@",              ID_EDIT_REPEAT
+        MENUITEM "@@&Ersetzen\tStrg+H@@",            ID_EDIT_REPLACE
+$$ENDIF //CRichEditView
+        MENUITEM SEPARATOR
+        MENUITEM "@@&Neues Objekt einfügen...@@",       ID_OLE_INSERT_NEW
+        MENUITEM "@@Verknü&pfungen...@@",                   ID_OLE_EDIT_LINKS
+$$IF(CRichEditView)
+        MENUITEM "@@&Objekteigenschaften\tAlt+Eingabetaste@@", ID_OLE_EDIT_PROPERTIES
+$$ENDIF //CRichEditView
+        MENUITEM "@@<<PLATZHALTER FÜR OLE-AUSDRÜCKE>>@@",       ID_OLE_VERB_FIRST
+$$ENDIF //CONTAINER || CONTAINER_SERVER
+	END
+$$IF(CRecordView || CDaoRecordView || COleDBRecordView)
+	POPUP "@@Daten&satz@@"
+	BEGIN
+		MENUITEM "@@&Erster Datensatz@@"				ID_RECORD_FIRST
+		MENUITEM "@@&Vorheriger Datensatz@@"				ID_RECORD_PREV
+		MENUITEM "@@&Nächster Datensatz@@"					ID_RECORD_NEXT
+		MENUITEM "@@&Letzter Datensatz@@"					ID_RECORD_LAST
+	END
+$$ENDIF //CRecordView || CDaoRecordView || COleDBRecordView
+$$IF(TOOLBAR)
+	POPUP "@@&Ansicht@@"
+	BEGIN
+		MENUITEM "@@&Symbolleiste@@",                    ID_VIEW_TOOLBAR
+	END
+$$ENDIF //TOOLBAR
+	MENUITEM SEPARATOR
+	MENUITEM SEPARATOR
+	POPUP "@@&?@@"
+	BEGIN
+$$IF(HELP)
+		MENUITEM "@@&Hilfethemen@@",                ID_HELP_FINDER
+		MENUITEM SEPARATOR
+$$ENDIF //HELP
+		MENUITEM "@@Inf&o über $$Root$$...@@",          ID_APP_ABOUT
+	END
+END
+$$ENDIF//MINI_SERVER || FULL_SERVER || CONTAINER_SERVER
+
+$$ELSE // SDI
+IDR_MAINFRAME MENU PRELOAD DISCARDABLE 
+BEGIN
+$$IF(MINI_SERVER)
+	POPUP "@@&Datei@@"
+	BEGIN
+		MENUITEM "@@&Beenden@@",                       ID_APP_EXIT
+		MENUITEM SEPARATOR
+		MENUITEM "@@Inf&o über $$Root$$...@@",          ID_APP_ABOUT
+	END
+$$ELSE
+	POPUP "@@&Datei@@"
+	BEGIN
+$$IF(!NODOCVIEW)
+$$IF(!DB_NO_FILE)
+		MENUITEM "@@&Neu\tStrg+N@@",                ID_FILE_NEW
+		MENUITEM "@@Ö&ffnen...\tStrg+O@@",            ID_FILE_OPEN
+		MENUITEM "@@S&peichern\tStrg+S@@",               ID_FILE_SAVE
+		MENUITEM "@@Speichern &unter...@@",                 ID_FILE_SAVE_AS
+$$ENDIF //!DB_NO_FILE
+$$IF(PRINT)
+$$IF(!DB_NO_FILE)
+		MENUITEM SEPARATOR
+$$ENDIF //!DB_NO_FILE
+		MENUITEM "@@&Drucken...\tStrg+P@@",           ID_FILE_PRINT
+$$IF(!CHtmlView)
+		MENUITEM "@@Sei&tenansicht@@",              ID_FILE_PRINT_PREVIEW
+$$ENDIF //CHtmlView
+		MENUITEM "@@Drucker&einrichtung...@@",             ID_FILE_PRINT_SETUP
+$$ENDIF //PRINT
+$$IF(DB_NO_FILE)
+$$IF(PRINT)
+		MENUITEM SEPARATOR
+$$ENDIF //PRINT
+$$ELSE  //!DB_NO_FILE
+$$IF(MAPI)
+		MENUITEM SEPARATOR
+		MENUITEM "@@Na&chricht senden...@@",					ID_FILE_SEND_MAIL
+$$ENDIF //MAPI
+$$IF(HAS_MRU)
+		MENUITEM SEPARATOR
+		MENUITEM "@@Letzte Datei@@",                 ID_FILE_MRU_FILE1,GRAYED
+$$ENDIF //HAS_MRU
+		MENUITEM SEPARATOR
+$$ENDIF //DB_NO_FILE
+$$ENDIF //!NODOCVIEW
+		MENUITEM "@@&Beenden@@",                       ID_APP_EXIT
+	END
+	POPUP "@@&Bearbeiten@@"
+	BEGIN
+		MENUITEM "@@&Rückgängig\tStrg+Z@@",               ID_EDIT_UNDO
+		MENUITEM SEPARATOR
+		MENUITEM "@@&Ausschneiden\tStrg+X@@",                ID_EDIT_CUT
+		MENUITEM "@@&Kopieren\tStrg+C@@",               ID_EDIT_COPY
+		MENUITEM "@@E&infügen\tStrg+V@@",              ID_EDIT_PASTE
+$$IF(CONTAINER || CONTAINER_SERVER)
+        MENUITEM "@@In&halte einfügen...@@",           ID_EDIT_PASTE_SPECIAL
+$$IF(CRichEditView)
+        MENUITEM "@@Alles &markieren\tStrg+A@@",         ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "@@&Suchen...\tStrg+F@@",            ID_EDIT_FIND
+        MENUITEM "@@&Weitersuchen\tF3@@",              ID_EDIT_REPEAT
+        MENUITEM "@@&Ersetzen\tStrg+H@@",            ID_EDIT_REPLACE
+$$ENDIF //CRichEditView
+        MENUITEM SEPARATOR
+        MENUITEM "@@&Neues Objekt einfügen...@@",       ID_OLE_INSERT_NEW
+        MENUITEM "@@Verknü&pfungen...@@",                   ID_OLE_EDIT_LINKS
+$$IF(CRichEditView)
+        MENUITEM "@@&Objekteigenschaften\tAlt+Eingabetaste@@", ID_OLE_EDIT_PROPERTIES
+$$ENDIF //CRichEditView
+        MENUITEM "@@<<PLATZHALTER FÜR OLE-AUSDRÜCKE>>@@",       ID_OLE_VERB_FIRST
+$$ENDIF //CONTAINER || CONTAINER_SERVER
+	END
+$$IF(CRecordView || CDaoRecordView || COleDBRecordView)
+	POPUP "@@Daten&satz@@"
+	BEGIN
+		MENUITEM "@@&Erster Datensatz@@"				ID_RECORD_FIRST
+		MENUITEM "@@&Vorheriger Datensatz@@"				ID_RECORD_PREV
+		MENUITEM "@@&Nächster Datensatz@@"					ID_RECORD_NEXT
+		MENUITEM "@@&Letzter Datensatz@@"					ID_RECORD_LAST
+	END
+$$ENDIF //CRecordView || CDaoRecordView || COleDBRecordView
+$$IF(TOOLBAR || STATUSBAR || SPLITTER)
+	POPUP "@@&Ansicht@@"
+	BEGIN
+$$IF(TOOLBAR)
+		MENUITEM "@@&Symbolleiste@@",                    ID_VIEW_TOOLBAR
+$$ENDIF //TOOLBAR
+$$IF(STATUSBAR)
+		MENUITEM "@@S&tatusleiste@@",                 ID_VIEW_STATUS_BAR
+$$ENDIF //STATUSBAR
+$$IF(SPLITTER)
+		MENUITEM "@@&Teilen@@",                      ID_WINDOW_SPLIT
+$$ENDIF //SPLITTER
+	END
+$$ENDIF //TOOLBAR || STATUSBAR
+	POPUP "@@&?@@"
+	BEGIN
+$$IF(HELP)
+		MENUITEM "@@&Hilfethemen@@",                ID_HELP_FINDER
+		MENUITEM SEPARATOR
+$$ENDIF //HELP
+		MENUITEM "@@Inf&o über $$Root$$...@@",          ID_APP_ABOUT
+	END
+$$ENDIF//!MINI_SERVER
+END
+
+$$IF(CONTAINER || CONTAINER_SERVER)
+IDR_CNTR_INPLACE MENU PRELOAD DISCARDABLE 
+BEGIN
+	POPUP "@@&Datei@@"
+	BEGIN
+		MENUITEM "@@&Neu\tStrg+N@@",                ID_FILE_NEW
+		MENUITEM "@@Ö&ffnen...\tStrg+O@@",            ID_FILE_OPEN
+		MENUITEM "@@S&peichern\tStrg+S@@",               ID_FILE_SAVE
+		MENUITEM "@@Speichern &unter...@@",                 ID_FILE_SAVE_AS
+$$IF(PRINT)
+		MENUITEM SEPARATOR
+		MENUITEM "@@&Drucken...\tStrg+P@@",           ID_FILE_PRINT
+$$IF(!CHtmlView)
+		MENUITEM "@@Sei&tenansicht@@",              ID_FILE_PRINT_PREVIEW
+$$ENDIF // CHtmlView
+		MENUITEM "@@Drucker&einrichtung...@@",             ID_FILE_PRINT_SETUP
+$$ENDIF //PRINT
+$$IF(MAPI)
+		MENUITEM SEPARATOR
+		MENUITEM "@@Na&chricht senden...@@",					ID_FILE_SEND_MAIL
+$$ENDIF //MAPI
+$$IF(HAS_MRU)
+		MENUITEM SEPARATOR
+		MENUITEM "@@Letzte Datei@@",                 ID_FILE_MRU_FILE1,GRAYED
+$$ENDIF //HAS_MRU
+		MENUITEM SEPARATOR
+		MENUITEM "@@&Beenden@@",                       ID_APP_EXIT
+	END
+	MENUITEM SEPARATOR
+	MENUITEM SEPARATOR
+END
+$$ENDIF//CONTAINER || CONTAINER_SERVER
+
+$$IF(MINI_SERVER || FULL_SERVER || CONTAINER_SERVER)
+IDR_SRVR_INPLACE MENU PRELOAD DISCARDABLE 
+BEGIN
+	POPUP "@@&Bearbeiten@@"
+	BEGIN
+		MENUITEM "@@&Rückgängig\tStrg+Z@@",               ID_EDIT_UNDO
+		MENUITEM SEPARATOR
+		MENUITEM "@@&Ausschneiden\tStrg+X@@",                ID_EDIT_CUT
+		MENUITEM "@@&Kopieren\tStrg+C@@",               ID_EDIT_COPY
+		MENUITEM "@@E&infügen\tStrg+V@@",              ID_EDIT_PASTE
+$$IF(CONTAINER || CONTAINER_SERVER)
+        MENUITEM "@@In&halte einfügen...@@",           ID_EDIT_PASTE_SPECIAL
+$$IF(CRichEditView)
+        MENUITEM "@@Alles &markieren\tStrg+A@@",         ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "@@&Suchen...\tStrg+F@@",            ID_EDIT_FIND
+        MENUITEM "@@&Weitersuchen\tF3@@",              ID_EDIT_REPEAT
+        MENUITEM "@@&Ersetzen\tStrg+H@@",            ID_EDIT_REPLACE
+$$ENDIF //CRichEditView
+        MENUITEM SEPARATOR
+        MENUITEM "@@&Neues Objekt einfügen...@@",       ID_OLE_INSERT_NEW
+        MENUITEM "@@Verknü&pfungen...@@",                   ID_OLE_EDIT_LINKS
+$$IF(CRichEditView)
+        MENUITEM "@@&Objekteigenschaften\tAlt+Eingabetaste@@", ID_OLE_EDIT_PROPERTIES
+$$ENDIF //CRichEditView
+        MENUITEM "@@<<PLATZHALTER FÜR OLE-AUSDRÜCKE>>@@",       ID_OLE_VERB_FIRST
+$$ENDIF //CONTAINER || CONTAINER_SERVER
+	END
+$$IF(CRecordView || CDaoRecordView || COleDBRecordView)
+	POPUP "@@Daten&satz@@"
+	BEGIN
+		MENUITEM "@@&Erster Datensatz@@"				ID_RECORD_FIRST
+		MENUITEM "@@&Vorheriger Datensatz@@"				ID_RECORD_PREV
+		MENUITEM "@@&Nächster Datensatz@@"					ID_RECORD_NEXT
+		MENUITEM "@@&Letzter Datensatz@@"					ID_RECORD_LAST
+	END
+$$ENDIF //CRecordView || CDaoRecordView ||COleDBRecordView
+$$IF(TOOLBAR)
+	POPUP "@@&Ansicht@@"
+	BEGIN
+		MENUITEM "@@&Symbolleiste@@",                    ID_VIEW_TOOLBAR
+	END
+$$ENDIF //TOOLBAR
+	MENUITEM SEPARATOR
+	MENUITEM SEPARATOR
+	POPUP "@@&?@@"
+	BEGIN
+$$IF(HELP)
+		MENUITEM "@@&Hilfethemen@@",                ID_HELP_FINDER
+		MENUITEM SEPARATOR
+$$ENDIF //HELP
+		MENUITEM "@@Inf&o über $$Root$$...@@",          ID_APP_ABOUT
+	END
+END
+IDR_SRVR_EMBEDDED MENU PRELOAD DISCARDABLE 
+BEGIN
+	POPUP "@@&Datei@@"
+	BEGIN
+		MENUITEM "@@&Aktualisieren\tStrg+S@@",        		ID_FILE_UPDATE
+$$IF(!MINI_SERVER)
+		MENUITEM "@@Kopie speichern &unter...@@",            ID_FILE_SAVE_COPY_AS
+$$ENDIF		
+$$IF(PRINT)
+		MENUITEM SEPARATOR
+		MENUITEM "@@&Drucken...\tStrg+P@@",           ID_FILE_PRINT
+$$IF(!CHtmlView)
+		MENUITEM "@@Sei&tenansicht@@",              ID_FILE_PRINT_PREVIEW
+$$ENDIF //CHtmlView
+		MENUITEM "@@Drucker&einrichtung...@@",             ID_FILE_PRINT_SETUP
+$$ENDIF //PRINT
+$$IF(MAPI)
+		MENUITEM SEPARATOR
+		MENUITEM "@@Na&chricht senden...@@",					ID_FILE_SEND_MAIL
+$$ENDIF //MAPI
+		MENUITEM SEPARATOR
+		MENUITEM "@@&Beenden@@",                       ID_APP_EXIT
+	END
+	POPUP "@@&Bearbeiten@@"
+	BEGIN
+		MENUITEM "@@&Rückgängig\tStrg+Z@@",               ID_EDIT_UNDO
+		MENUITEM SEPARATOR
+		MENUITEM "@@&Ausschneiden\tStrg+X@@",                ID_EDIT_CUT
+		MENUITEM "@@&Kopieren\tStrg+C@@",               ID_EDIT_COPY
+		MENUITEM "@@E&infügen\tStrg+V@@",              ID_EDIT_PASTE
+$$IF(CONTAINER || CONTAINER_SERVER)
+        MENUITEM "@@In&halte einfügen...@@",           ID_EDIT_PASTE_SPECIAL
+$$IF(CRichEditView)
+        MENUITEM "@@Alles &markieren\tStrg+A@@",         ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "@@&Suchen...\tStrg+F@@",            ID_EDIT_FIND
+        MENUITEM "@@&Weitersuchen\tF3@@",              ID_EDIT_REPEAT
+        MENUITEM "@@&Ersetzen\tStrg+H@@",            ID_EDIT_REPLACE
+$$ENDIF //CRichEditView
+        MENUITEM SEPARATOR
+        MENUITEM "@@&Neues Objekt einfügen...@@",       ID_OLE_INSERT_NEW
+        MENUITEM "@@Verknü&pfungen...@@",                   ID_OLE_EDIT_LINKS
+$$IF(CRichEditView)
+        MENUITEM "@@&Objekteigenschaften\tAlt+Eingabetaste@@", ID_OLE_EDIT_PROPERTIES
+$$ENDIF //CRichEditView
+        MENUITEM "@@<<PLATZHALTER FÜR OLE-AUSDRÜCKE>>@@",       ID_OLE_VERB_FIRST
+$$ENDIF //CONTAINER || CONTAINER_SERVER
+	END
+$$IF(CRecordView || CDaoRecordView || COleDBRecordView)
+	POPUP "@@Daten&satz@@"
+	BEGIN
+		MENUITEM "@@&Erster Datensatz@@"				ID_RECORD_FIRST
+		MENUITEM "@@&Vorheriger Datensatz@@"				ID_RECORD_PREV
+		MENUITEM "@@&Nächster Datensatz@@"					ID_RECORD_NEXT
+		MENUITEM "@@&Letzter Datensatz@@"					ID_RECORD_LAST
+	END
+$$ENDIF //CRecordView || CDaoRecordView ||COleDBRecordView
+$$IF(TOOLBAR || STATUSBAR || SPLITTER)
+	POPUP "@@&Ansicht@@"
+	BEGIN
+$$IF(TOOLBAR)
+		MENUITEM "@@&Symbolleiste@@",                    ID_VIEW_TOOLBAR
+$$ENDIF //TOOLBAR
+$$IF(STATUSBAR)
+		MENUITEM "@@S&tatusleiste@@",                 ID_VIEW_STATUS_BAR
+$$ENDIF //STATUSBAR
+$$IF(SPLITTER)
+		MENUITEM "@@&Teilen@@",                      ID_WINDOW_SPLIT
+$$ENDIF //SPLITTER
+	END
+$$ENDIF //TOOLBAR || STATUSBAR
+	POPUP "@@&?@@"
+	BEGIN
+$$IF(HELP)
+		MENUITEM "@@&Hilfethemen@@",                ID_HELP_FINDER
+		MENUITEM SEPARATOR
+$$ENDIF //HELP
+		MENUITEM "@@Inf&o über $$Root$$...@@",          ID_APP_ABOUT
+	END
+END
+$$ENDIF(MINI_SERVER || FULL_SERVER || CONTAINER_SERVER)
+$$ENDIF //SDI
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+$$IF(NODOCVIEW)
+IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE
+BEGIN
+	"C",            ID_EDIT_COPY,           VIRTKEY,CONTROL,NOINVERT
+$$IF(PROJTYPE_MDI)
+	"N",            ID_FILE_NEW,            VIRTKEY,CONTROL,NOINVERT
+$$ENDIF // MDI
+	"V",            ID_EDIT_PASTE,          VIRTKEY,CONTROL,NOINVERT
+	VK_BACK,        ID_EDIT_UNDO,           VIRTKEY,ALT,NOINVERT
+	VK_DELETE,      ID_EDIT_CUT,            VIRTKEY,SHIFT,NOINVERT
+	VK_F6,          ID_NEXT_PANE,           VIRTKEY ,NOINVERT
+	VK_F6,          ID_PREV_PANE,           VIRTKEY,SHIFT,NOINVERT
+	VK_INSERT,      ID_EDIT_COPY,           VIRTKEY,CONTROL,NOINVERT
+	VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY,SHIFT,NOINVERT
+	"X",            ID_EDIT_CUT,            VIRTKEY,CONTROL,NOINVERT
+	"Z",            ID_EDIT_UNDO,           VIRTKEY,CONTROL,NOINVERT
+$$IF(HELP)
+	VK_F1,          ID_CONTEXT_HELP,        VIRTKEY,SHIFT,NOINVERT
+	VK_F1,          ID_HELP,                VIRTKEY,NOINVERT
+$$ENDIF //HELP
+END
+$$ELSE
+$$IF(!MINI_SERVER)
+IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE
+BEGIN
+$$IF(!DB_NO_FILE)
+	"N",            ID_FILE_NEW,            VIRTKEY,CONTROL
+	"O",            ID_FILE_OPEN,           VIRTKEY,CONTROL
+	"S",            ID_FILE_SAVE,           VIRTKEY,CONTROL
+$$ENDIF //!DB_NO_FILE
+$$IF(PRINT)
+	"P",            ID_FILE_PRINT,          VIRTKEY,CONTROL
+$$ENDIF //PRINT
+	"Z",            ID_EDIT_UNDO,           VIRTKEY,CONTROL
+	"X",            ID_EDIT_CUT,            VIRTKEY,CONTROL
+	"C",            ID_EDIT_COPY,           VIRTKEY,CONTROL
+	"V",            ID_EDIT_PASTE,          VIRTKEY,CONTROL
+$$IF(CRichEditView)
+	"A",            ID_EDIT_SELECT_ALL,     VIRTKEY,CONTROL
+	"F",            ID_EDIT_FIND,           VIRTKEY,CONTROL
+	VK_F3,          ID_EDIT_REPEAT,         VIRTKEY
+	"H",            ID_EDIT_REPLACE,        VIRTKEY,CONTROL
+    VK_RETURN,      ID_OLE_EDIT_PROPERTIES, VIRTKEY,ALT,NOINVERT
+$$ENDIF //CRichEditView
+	VK_BACK,        ID_EDIT_UNDO,           VIRTKEY,ALT
+	VK_DELETE,      ID_EDIT_CUT,            VIRTKEY,SHIFT
+	VK_INSERT,      ID_EDIT_COPY,           VIRTKEY,CONTROL
+	VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY,SHIFT
+	VK_F6,          ID_NEXT_PANE,           VIRTKEY 
+	VK_F6,          ID_PREV_PANE,           VIRTKEY,SHIFT
+$$IF(HELP)
+	VK_F1,          ID_CONTEXT_HELP,        VIRTKEY,SHIFT
+	VK_F1,          ID_HELP,                VIRTKEY
+$$ENDIF //HELP
+$$IF(CONTAINER || CONTAINER_SERVER)
+    VK_ESCAPE,      ID_CANCEL_EDIT_CNTR,   	VIRTKEY,NOINVERT
+$$ENDIF
+END
+$$ENDIF
+$$ENDIF // NODOC
+
+$$IF(PROJTYPE_MDI)
+$$IF(CONTAINER || CONTAINER_SERVER)
+IDR_$$DOC$$TYPE_CNTR_IP ACCELERATORS PRELOAD MOVEABLE 
+BEGIN
+	"N",            ID_FILE_NEW,            VIRTKEY,CONTROL
+	"O",            ID_FILE_OPEN,           VIRTKEY,CONTROL
+	"S",            ID_FILE_SAVE,           VIRTKEY,CONTROL
+$$IF(PRINT)
+	"P",            ID_FILE_PRINT,          VIRTKEY,CONTROL
+$$ENDIF //PRINT
+	VK_F6,          ID_NEXT_PANE,           VIRTKEY 
+	VK_F6,          ID_PREV_PANE,           VIRTKEY,SHIFT
+$$IF(HELP)
+	VK_F1,          ID_CONTEXT_HELP,        VIRTKEY,SHIFT
+	VK_F1,          ID_HELP,                VIRTKEY
+$$ENDIF //HELP
+$$IF(CONTAINER || CONTAINER_SERVER)
+    VK_ESCAPE,      ID_CANCEL_EDIT_CNTR,   	VIRTKEY,NOINVERT
+$$ENDIF    
+END
+$$ENDIF//CONTAINER || CONTAINER_SERVER
+
+$$IF(MINI_SERVER || FULL_SERVER || CONTAINER_SERVER)
+IDR_$$DOC$$TYPE_SRVR_IP ACCELERATORS PRELOAD MOVEABLE 
+BEGIN
+	"Z",            ID_EDIT_UNDO,           VIRTKEY,CONTROL
+	"X",            ID_EDIT_CUT,            VIRTKEY,CONTROL
+	"C",            ID_EDIT_COPY,           VIRTKEY,CONTROL
+	"V",            ID_EDIT_PASTE,          VIRTKEY,CONTROL
+$$IF(CRichEditView)
+	"A",            ID_EDIT_SELECT_ALL,     VIRTKEY,CONTROL
+	"F",            ID_EDIT_FIND,           VIRTKEY,CONTROL
+	VK_F3,          ID_EDIT_REPEAT,         VIRTKEY
+	"H",            ID_EDIT_REPLACE,        VIRTKEY,CONTROL
+    VK_RETURN,      ID_OLE_EDIT_PROPERTIES, VIRTKEY,ALT,NOINVERT
+$$ENDIF //CRichEditView
+	VK_BACK,        ID_EDIT_UNDO,           VIRTKEY,ALT
+	VK_DELETE,      ID_EDIT_CUT,            VIRTKEY,SHIFT
+	VK_INSERT,      ID_EDIT_COPY,           VIRTKEY,CONTROL
+	VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY,SHIFT
+$$IF(HELP)
+	VK_F1,          ID_CONTEXT_HELP,        VIRTKEY,SHIFT
+	VK_F1,          ID_HELP,                VIRTKEY
+$$ENDIF //HELP
+    VK_ESCAPE,      ID_CANCEL_EDIT_SRVR,   	VIRTKEY,NOINVERT
+END
+IDR_$$DOC$$TYPE_SRVR_EMB ACCELERATORS PRELOAD MOVEABLE 
+BEGIN
+	"N",            ID_FILE_NEW,            VIRTKEY,CONTROL
+	"O",            ID_FILE_OPEN,           VIRTKEY,CONTROL
+	"S",            ID_FILE_UPDATE,         VIRTKEY,CONTROL
+$$IF(PRINT)
+	"P",            ID_FILE_PRINT,          VIRTKEY,CONTROL
+$$ENDIF //PRINT
+	"Z",            ID_EDIT_UNDO,           VIRTKEY,CONTROL
+	"X",            ID_EDIT_CUT,            VIRTKEY,CONTROL
+	"C",            ID_EDIT_COPY,           VIRTKEY,CONTROL
+	"V",            ID_EDIT_PASTE,          VIRTKEY,CONTROL
+$$IF(CRichEditView)
+	"A",            ID_EDIT_SELECT_ALL,     VIRTKEY,CONTROL
+	"F",            ID_EDIT_FIND,           VIRTKEY,CONTROL
+	VK_F3,          ID_EDIT_REPEAT,         VIRTKEY
+	"H",            ID_EDIT_REPLACE,        VIRTKEY,CONTROL
+    VK_RETURN,      ID_OLE_EDIT_PROPERTIES, VIRTKEY,ALT,NOINVERT
+$$ENDIF //CRichEditView
+	VK_BACK,        ID_EDIT_UNDO,           VIRTKEY,ALT
+	VK_DELETE,      ID_EDIT_CUT,            VIRTKEY,SHIFT
+	VK_INSERT,      ID_EDIT_COPY,           VIRTKEY,CONTROL
+	VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY,SHIFT
+	VK_F6,          ID_NEXT_PANE,           VIRTKEY 
+	VK_F6,          ID_PREV_PANE,           VIRTKEY,SHIFT
+$$IF(HELP)
+	VK_F1,          ID_CONTEXT_HELP,        VIRTKEY,SHIFT
+	VK_F1,          ID_HELP,                VIRTKEY
+$$ENDIF //HELP
+$$IF(CONTAINER_SERVER)
+    VK_ESCAPE,      ID_CANCEL_EDIT_CNTR,   	VIRTKEY,NOINVERT
+$$ENDIF    
+END
+$$ENDIF//MINI_SERVER || FULL_SERVER || CONTAINER_SERVER
+
+$$ELSE
+$$IF(CONTAINER || CONTAINER_SERVER)
+IDR_CNTR_INPLACE ACCELERATORS PRELOAD MOVEABLE 
+BEGIN
+	"N",            ID_FILE_NEW,            VIRTKEY,CONTROL
+	"O",            ID_FILE_OPEN,           VIRTKEY,CONTROL
+	"S",            ID_FILE_SAVE,           VIRTKEY,CONTROL
+$$IF(PRINT)
+	"P",            ID_FILE_PRINT,          VIRTKEY,CONTROL
+$$ENDIF //PRINT
+	VK_F6,          ID_NEXT_PANE,           VIRTKEY 
+	VK_F6,          ID_PREV_PANE,           VIRTKEY,SHIFT
+$$IF(HELP)
+	VK_F1,          ID_CONTEXT_HELP,        VIRTKEY,SHIFT
+	VK_F1,          ID_HELP,                VIRTKEY
+$$ENDIF //HELP
+$$IF(CONTAINER || CONTAINER_SERVER)
+    VK_ESCAPE,      ID_CANCEL_EDIT_CNTR,   	VIRTKEY,NOINVERT
+$$ENDIF    
+END
+$$ENDIF//CONTAINER || CONTAINER_SERVER
+
+$$IF(MINI_SERVER || FULL_SERVER || CONTAINER_SERVER)
+IDR_SRVR_INPLACE ACCELERATORS PRELOAD MOVEABLE 
+BEGIN
+	"Z",            ID_EDIT_UNDO,           VIRTKEY,CONTROL
+	"X",            ID_EDIT_CUT,            VIRTKEY,CONTROL
+	"C",            ID_EDIT_COPY,           VIRTKEY,CONTROL
+	"V",            ID_EDIT_PASTE,          VIRTKEY,CONTROL
+$$IF(CRichEditView)
+	"A",            ID_EDIT_SELECT_ALL,     VIRTKEY,CONTROL
+	"F",            ID_EDIT_FIND,           VIRTKEY,CONTROL
+	VK_F3,          ID_EDIT_REPEAT,         VIRTKEY
+	"H",            ID_EDIT_REPLACE,        VIRTKEY,CONTROL
+    VK_RETURN,      ID_OLE_EDIT_PROPERTIES, VIRTKEY,ALT,NOINVERT
+$$ENDIF //CRichEditView
+	VK_BACK,        ID_EDIT_UNDO,           VIRTKEY,ALT
+	VK_DELETE,      ID_EDIT_CUT,            VIRTKEY,SHIFT
+	VK_INSERT,      ID_EDIT_COPY,           VIRTKEY,CONTROL
+	VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY,SHIFT
+$$IF(HELP)
+	VK_F1,          ID_CONTEXT_HELP,        VIRTKEY,SHIFT
+	VK_F1,          ID_HELP,                VIRTKEY
+$$ENDIF //HELP
+    VK_ESCAPE,      ID_CANCEL_EDIT_SRVR,   	VIRTKEY,NOINVERT
+END
+IDR_SRVR_EMBEDDED ACCELERATORS PRELOAD MOVEABLE 
+BEGIN
+	"S",            ID_FILE_UPDATE,         VIRTKEY,CONTROL
+$$IF(PRINT)
+	"P",            ID_FILE_PRINT,          VIRTKEY,CONTROL
+$$ENDIF //PRINT
+	"Z",            ID_EDIT_UNDO,           VIRTKEY,CONTROL
+	"X",            ID_EDIT_CUT,            VIRTKEY,CONTROL
+	"C",            ID_EDIT_COPY,           VIRTKEY,CONTROL
+	"V",            ID_EDIT_PASTE,          VIRTKEY,CONTROL
+$$IF(CRichEditView)
+	"A",            ID_EDIT_SELECT_ALL,     VIRTKEY,CONTROL
+	"F",            ID_EDIT_FIND,           VIRTKEY,CONTROL
+	VK_F3,          ID_EDIT_REPEAT,         VIRTKEY
+	"H",            ID_EDIT_REPLACE,        VIRTKEY,CONTROL
+    VK_RETURN,      ID_OLE_EDIT_PROPERTIES, VIRTKEY,ALT,NOINVERT
+$$ENDIF //CRichEditView
+	VK_BACK,        ID_EDIT_UNDO,           VIRTKEY,ALT
+	VK_DELETE,      ID_EDIT_CUT,            VIRTKEY,SHIFT
+	VK_INSERT,      ID_EDIT_COPY,           VIRTKEY,CONTROL
+	VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY,SHIFT
+	VK_F6,          ID_NEXT_PANE,           VIRTKEY 
+	VK_F6,          ID_PREV_PANE,           VIRTKEY,SHIFT
+$$IF(HELP)
+	VK_F1,          ID_CONTEXT_HELP,        VIRTKEY,SHIFT
+	VK_F1,          ID_HELP,                VIRTKEY
+$$ENDIF //HELP
+$$IF(CONTAINER_SERVER)
+    VK_ESCAPE,      ID_CANCEL_EDIT_CNTR,   	VIRTKEY,NOINVERT
+$$ENDIF    
+END
+$$ENDIF//MINI_SERVER || FULL_SERVER || CONTAINER_SERVER
+
+$$ENDIF
+$$ENDIF //TARGET_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 235, 55
+CAPTION "@@Info über $$Root$$@@"
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+FONT @@8@@, "@@MS Sans Serif@@"
+BEGIN
+	ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+	LTEXT           "@@$$Root$$ Version 1.0@@",IDC_STATIC,40,10,119,8,
+                    SS_NOPREFIX
+	LTEXT           "@@Copyright (C) $$YEAR$$@@",IDC_STATIC,40,25,119,8
+	DEFPUSHBUTTON   "@@OK@@",IDOK,178,7,50,14,WS_GROUP
+END
+
+$$IF(CFormView || CRecordView || CDaoRecordView || COleDBRecordView)
+IDD_$$SAFE_ROOT$$_FORM	DIALOG DISCARDABLE 0, 0, 320, 200
+STYLE WS_CHILD
+FONT @@8@@, "@@MS Sans Serif@@"
+BEGIN
+	LTEXT	"@@ZU ERLEDIGEN: Formular-Steuerelemente in diesem Dialog plazieren.@@",IDC_STATIC,24,42,
+		280,8
+END
+$$ENDIF //CFormView || CRecordView || CDaoRecordView || COleDBRecordView
+
+$$IF(REBAR)
+IDR_MAINFRAME	DIALOG DISCARDABLE 0, 0, 330, 16
+STYLE WS_CHILD
+FONT @@8@@, "@@MS Sans Serif@@"
+BEGIN
+	LTEXT	"@@ZU ERLEDIGEN: Layout der Dialogleiste @@",IDC_STATIC,12,4,
+		300,8
+END
+
+$$IF(MINI_SERVER || FULL_SERVER || CONTAINER_SERVER)
+IDR_$$DOC$$TYPE_SRVR_IP DIALOG DISCARDABLE 0, 0, 330, 16
+STYLE WS_CHILD
+FONT @@8@@, "@@MS Sans Serif@@"
+BEGIN
+	LTEXT	"@@ZU ERLEDIGEN: Layout der direkten Dialogleiste @@",IDC_STATIC,12,4,
+		300,8
+END
+$$ENDIF // ANY SERVER
+$$ENDIF // REBAR
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO     VERSIONINFO
+  FILEVERSION       1,0,0,1
+  PRODUCTVERSION    1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+	BLOCK "StringFileInfo"
+	BEGIN
+        BLOCK "@@040704B0@@"
+		BEGIN 
+			VALUE "CompanyName",     "\0"
+			VALUE "FileDescription", "@@MFC-Anwendung $$MIXED_CASE_ROOT$$\0@@"
+			VALUE "FileVersion",     "1, 0, 0, 1\0"
+			VALUE "InternalName",    "$$MIXED_CASE_ROOT$$\0"
+			VALUE "LegalCopyright",  "@@Copyright (C) $$YEAR$$\0@@"
+			VALUE "LegalTrademarks", "\0"
+			VALUE "OriginalFilename","$$MIXED_CASE_ROOT$$.EXE\0"
+			VALUE "ProductName",     "@@Anwendung $$MIXED_CASE_ROOT$$\0@@"
+			VALUE "ProductVersion",  "1, 0, 0, 1\0"
+		END
+	END
+	BLOCK "VarFileInfo" 
+	BEGIN 
+		VALUE "Translation", @@0x407@@, @@1200@@
+    END
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+$$IF(CFormView || CRecordView || CDaoRecordView || COleDBRecordView )
+    IDD_$$SAFE_ROOT$$_FORM, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 313
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 193
+    END
+$$ENDIF //CFormView || CRecordView || CDaoRecordView || COleDBRecordView
+END
+#endif    // APSTUDIO_INVOKED
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+$$IF(CONTAINER || MINI_SERVER || FULL_SERVER || CONTAINER_SERVER || AUTOMATION || CRecordView || CDaoRecordView || COleDBRecordView || SOCKETS)
+STRINGTABLE DISCARDABLE 
+BEGIN
+$$IF(CONTAINER || MINI_SERVER || FULL_SERVER || CONTAINER_SERVER || AUTOMATION)
+	IDP_OLE_INIT_FAILED   	"@@Fehler bei der OLE-Initialisierung. Überprüfen Sie, ob die OLE-Bibliotheken in der richtigen Version vorliegen.@@"
+$$ENDIF //CONTAINER || MINI_SERVER || FULL_SERVER || CONTAINER_SERVER || AUTOMATION
+$$IF(MINI_SERVER)
+	IDP_USE_INSERT_OBJECT	"@@Dieser Server kann nur von einer Container-Anwendung aufgerufen werden.@@"
+$$ENDIF
+$$IF(CONTAINER || CONTAINER_SERVER)
+	IDP_FAILED_TO_CREATE	"@@Fehler beim Erzeugen des Objekts. Stellen Sie sicher, daß das Objekt in der Systemregistrierung eingetragen ist.@@"
+$$ENDIF
+$$IF(CRecordView || CDaoRecordView || COleDBRecordView)
+	IDP_FAILED_OPEN_DATABASE	"@@Die Datenbank kann nicht geöffnet werden.@@"
+$$ENDIF
+$$IF(SOCKETS)
+	IDP_SOCKETS_INIT_FAILED	"@@Fehler beim Initialisieren der Windows-Sockets.@@"
+$$ENDIF //SOCKETS
+END
+$$ENDIF//CONTAINER || MINI_SERVER || FULL_SERVER || CONTAINER_SERVER || CRecordView || CDaoRecordView || COleDBRecordView || SOCKETS
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+$$// Non-mac-targeting apps remove the two extra substrings
+$$IF(PROJTYPE_MDI)
+	IDR_MAINFRAME           "$$TITLE$$"
+$$IF(HAS_SUFFIX)  // has a file suffix - shell file type too
+	IDR_$$DOC$$TYPE         "\n$$Doc$$\n$$DOC_FILENEW$$\n$$DOC_FILTER$$\n$$SUFFIX$$\n$$DOC_REGID$$\n$$DOC_REGNAME$$"
+$$ELSE //!HAS_SUFFIX
+$$IF(NODOCVIEW)
+	IDR_$$DOC$$TYPE         "\n$$Doc$$\n$$DOC_FILENEW$$"
+$$ELSE
+	IDR_$$DOC$$TYPE         "\n$$Doc$$\n$$DOC_FILENEW$$\n\n\n$$DOC_REGID$$\n$$DOC_REGNAME$$"
+$$ENDIF //NODOCVIEW
+$$ENDIF //!SUFFIX
+$$ELSE // SDI
+$$IF(NODOCVIEW)
+	IDR_MAINFRAME           "$$TITLE$$"
+$$ELIF(HAS_SUFFIX)  // has a file suffix
+	IDR_MAINFRAME           "$$TITLE$$\n\n$$DOC_FILENEW$$\n$$DOC_FILTER$$\n$$SUFFIX$$\n$$DOC_REGID$$\n$$DOC_REGNAME$$"
+$$ELSE //!HAS_SUFFIX
+	IDR_MAINFRAME           "$$TITLE$$\n\n$$DOC_FILENEW$$\n\n\n$$DOC_REGID$$\n$$DOC_REGNAME$$"
+$$ENDIF //HAS_SUFFIX
+
+$$ENDIF //SDI
+END
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+	AFX_IDS_APP_TITLE       "$$Root$$"
+$$IF(HELP)
+	AFX_IDS_IDLEMESSAGE     "@@Drücken Sie F1, um Hilfe zu erhalten.@@"
+	AFX_IDS_HELPMODEMESSAGE "@@Wählen Sie das Objekt, zu dem Sie Hilfe wünschen.@@"
+$$ELSE
+	AFX_IDS_IDLEMESSAGE     "@@Bereit@@"
+$$ENDIF //!HELP
+END
+STRINGTABLE DISCARDABLE 
+BEGIN
+	ID_INDICATOR_EXT        "@@ER@@"
+	ID_INDICATOR_CAPS       "@@UF@@"
+	ID_INDICATOR_NUM        "@@NUM@@"
+	ID_INDICATOR_SCRL       "@@RF@@"
+	ID_INDICATOR_OVR        "@@ÜB@@"
+	ID_INDICATOR_REC        "@@MA@@"
+$$IF(DO_KANA)
+	ID_INDICATOR_KANA		"@@KANA@@"
+$$ENDIF	// DO_KANA
+END
+STRINGTABLE DISCARDABLE 
+BEGIN
+$$IF(PROJTYPE_MDI || !NODOCVIEW)
+$$IF(!DB_NO_FILE)
+	ID_FILE_NEW             "@@Erstellt ein neues Dokument.\nNeu@@"
+$$IF(!NODOCVIEW)
+	ID_FILE_OPEN            "@@Öffnet ein bestehendes Dokument.\nÖffnen@@"
+$$ENDIF
+	ID_FILE_CLOSE           "@@Schließt das aktive Dokument.\nSchließen@@"
+$$ENDIF
+$$IF(!NODOCVIEW)
+	ID_FILE_SAVE            "@@Speichert das aktive Dokument.\nSpeichern@@"
+	ID_FILE_SAVE_AS         "@@Speichert das aktive Dokument unter neuem Namen.\nSpeichern unter@@"
+$$ENDIF
+$$ENDIF //!DB_NO_FILE
+$$IF(MINI_SERVER || FULL_SERVER || CONTAINER_SERVER)
+	ID_FILE_UPDATE			"@@Aktualisiert den Container zur Anzeige von Änderungen.\nAktualisieren@@"
+	ID_FILE_SAVE_COPY_AS	"@@Speichert eine Kopie des aktiven Dokuments unter neuem Namen.\nKopie speichern@@"
+$$ENDIF //SERVERS
+$$IF(PRINT)
+	ID_FILE_PAGE_SETUP      "@@Ändert die Druckoptionen.\nSeite einrichten@@"
+	ID_FILE_PRINT_SETUP     "@@Ändert den Drucker und die Druckoptionen.\nDruckereinrichtung@@"
+	ID_FILE_PRINT           "@@Druckt das aktive Dokument.\nDrucken@@"
+$$IF(!CHtmlView)
+	ID_FILE_PRINT_PREVIEW   "@@Zeigt ganze Seiten an.\nSeitenansicht@@"
+$$ENDIF 
+$$ENDIF //PRINT
+$$IF(MAPI)
+	ID_FILE_SEND_MAIL		"@@Versendet das aktive Dokument mittels elektronischer Post.\nNachricht senden@@"
+$$ENDIF //MAPI
+	ID_APP_ABOUT            "@@Zeigt Programm-Informationen, Versionsnummer und Copyright an.\nInfo@@"
+	ID_APP_EXIT             "@@Verläßt die Anwendung; fragt, ob Dokumente gespeichert werden sollen.\nBeenden@@"
+$$IF(HELP)
+	ID_CONTEXT_HELP         "@@Zeigt Hilfe zu angeklickten Schaltflächen, Menüs und Fenstern an.\nHilfe@@"
+	ID_HELP_INDEX           "@@Öffnet die Hilfefunktion.\nHilfethemen@@"
+	ID_HELP_FINDER			"@@Listet die Hilfethemen auf.\nHilfethemen@@"
+	ID_HELP_USING           "@@Zeigt Anweisungen zum Umgang mit der Hilfe an.\nHilfe@@"
+	ID_HELP                 "@@Zeigt Hilfe zum aktuellen Vorgang oder Befehl an.\nHilfe@@"
+$$ENDIF //HELP
+$$IF(!NODOCVIEW)
+	ID_FILE_MRU_FILE1       "@@Öffnet dieses Dokument.@@"
+	ID_FILE_MRU_FILE2       "@@Öffnet dieses Dokument.@@"
+	ID_FILE_MRU_FILE3       "@@Öffnet dieses Dokument.@@"
+	ID_FILE_MRU_FILE4       "@@Öffnet dieses Dokument.@@"
+	ID_FILE_MRU_FILE5       "@@Öffnet dieses Dokument.@@"
+	ID_FILE_MRU_FILE6       "@@Öffnet dieses Dokument.@@"
+	ID_FILE_MRU_FILE7       "@@Öffnet dieses Dokument.@@"
+	ID_FILE_MRU_FILE8       "@@Öffnet dieses Dokument.@@"
+	ID_FILE_MRU_FILE9       "@@Öffnet dieses Dokument.@@"
+	ID_FILE_MRU_FILE10      "@@Öffnet dieses Dokument.@@"
+	ID_FILE_MRU_FILE11      "@@Öffnet dieses Dokument.@@"
+	ID_FILE_MRU_FILE12      "@@Öffnet dieses Dokument.@@"
+	ID_FILE_MRU_FILE13      "@@Öffnet dieses Dokument.@@"
+	ID_FILE_MRU_FILE14      "@@Öffnet dieses Dokument.@@"
+	ID_FILE_MRU_FILE15      "@@Öffnet dieses Dokument.@@"
+	ID_FILE_MRU_FILE16      "@@Öffnet dieses Dokument.@@"
+$$ENDIF
+	ID_NEXT_PANE            "@@Wechselt zum nächsten Fensterausschnitt.\nNächster Ausschnitt@@"
+	ID_PREV_PANE            "@@Springt zum vorherigen Fensterausschnitt zurück.\nVorheriger Ausschnitt@@"
+$$IF(PROJTYPE_MDI)
+$$IF(!NODOCVIEW)
+	ID_WINDOW_NEW           "@@Öffnet ein weiteres Fenster für das aktive Dokument.\nNeues Fenster@@"
+$$ENDIF
+	ID_WINDOW_ARRANGE       "@@Ordnet die Symbole im unteren Bereich des Fensters an.\nSymbole anordnen@@"
+	ID_WINDOW_CASCADE       "@@Ordnet die Fenster überlappend an.\nÜberlappende Fenster@@"
+	ID_WINDOW_TILE_HORZ     "@@Ordnet die Fenster nebeneinander an.\nFenster nebeneinander@@"
+	ID_WINDOW_TILE_VERT     "@@Ordnet die Fenster nebeneinander an.\nFenster nebeneinander@@"
+$$ENDIF //MDI
+	ID_WINDOW_SPLIT         "@@Teilt das aktive Fenster in Ausschnitte.\nTeilen@@"
+	ID_EDIT_CLEAR           "@@Löscht die Markierung.\nLöschen@@"
+	ID_EDIT_CLEAR_ALL       "@@Löscht alles.\nAlles löschen@@"
+	ID_EDIT_COPY            "@@Kopiert die Markierung und überträgt sie in die Zwischenablage.\nKopieren@@"
+	ID_EDIT_CUT             "@@Entfernt die Markierung und überträgt sie in die Zwischenablage.\nAusschneiden@@"
+	ID_EDIT_FIND            "@@Sucht den angegebenen Text.\nSuchen@@"
+	ID_EDIT_PASTE           "@@Fügt den Inhalt der Zwischenablage ein.\nEinfügen@@"
+	ID_EDIT_REPEAT          "@@Wiederholt die letzte Aktion.\nWiederholen@@"
+	ID_EDIT_REPLACE         "@@Ersetzt einen bestimmten Text durch einen anderen.\nErsetzen@@"
+	ID_EDIT_SELECT_ALL      "@@Markiert das gesamte Dokument.\nAlles markieren@@"
+	ID_EDIT_UNDO            "@@Macht die letzte Aktion rückgängig.\nRückgängig@@"
+	ID_EDIT_REDO            "@@Wiederholt die vorher rückgängig gemachte Aktion.\nWiederherstellen@@"
+$$IF(TOOLBAR)
+	ID_VIEW_TOOLBAR         "@@Blendet die Symbolleiste ein oder aus.\nSymbolleiste ein-/ausschalten@@"
+$$ENDIF //TOOLBAR
+$$IF(STATUSBAR)
+	ID_VIEW_STATUS_BAR      "@@Blendet die Statusleiste ein oder aus.\nStatusleiste ein-/ausschalten@@"
+$$ENDIF //STATUSBAR
+$$IF(CONTAINER || CONTAINER_SERVER)
+	ID_EDIT_PASTE_LINK      "@@Fügt den Inhalt der Zwischenablage und eine Verknüpfung zu seinem Ursprung ein.\nVerknüpfung einfügen@@"
+	ID_EDIT_PASTE_SPECIAL	"@@Fügt den Inhalt der Zwischenablage unter Verwendung von Optionen ein.\nInhalte einfügen@@"
+	ID_OLE_INSERT_NEW       "@@Fügt ein neues eingebettetes Objekt ein.\nNeues Objekt@@"
+	ID_OLE_EDIT_LINKS       "@@Bearbeitet verknüpfte Objekte.\nVerknüpfungen bearbeiten@@"
+	ID_OLE_VERB_FIRST       "@@Aktiviert ein eingebettetes oder verknüpftes Objekt.@@"
+	57873					"@@Aktiviert ein eingebettetes oder verknüpftes Objekt.@@"
+	57874					"@@Aktiviert ein eingebettetes oder verknüpftes Objekt.@@"
+	57875					"@@Aktiviert ein eingebettetes oder verknüpftes Objekt.@@"
+	ID_OLE_EDIT_CONVERT		"@@Wandelt ein Objekt in einen anderen Typ um.\nObjekt konvertieren@@"
+$$ENDIF //CONTAINER || CONTAINER_SERVER
+$$IF(CRecordView || CDaoRecordView || COleDBRecordView)
+	ID_RECORD_NEXT			"@@Geht zum nächsten Datensatz.\nNächster Datensatz@@"
+	ID_RECORD_PREV			"@@Geht zum vorherigen Datensatz zurück.\nVorheriger Datensatz@@"
+	ID_RECORD_LAST			"@@Springt zum letzten Datensatz.\nLetzter Datensatz@@"
+	ID_RECORD_FIRST			"@@Springt zum ersten Datensatz.\nErster Datensatz@@"
+$$ENDIF
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+	AFX_IDS_SCSIZE          "@@Ändert die Fenstergröße.@@"
+	AFX_IDS_SCMOVE          "@@Ändert die Position des Fensters.@@"
+	AFX_IDS_SCMINIMIZE      "@@Verkleinert das Fenster zu einem Symbol.@@"
+	AFX_IDS_SCMAXIMIZE      "@@Vergrößert das Fenster zu voller Größe.@@"
+	AFX_IDS_SCNEXTWINDOW    "@@Wechselt zum nächsten Dokumentfenster.@@"
+	AFX_IDS_SCPREVWINDOW    "@@Wechselt zum vorherigen Dokumentfenster.@@"
+	AFX_IDS_SCCLOSE         "@@Schließt das aktive Fenster und fordert zur Dokumentspeicherung auf.@@"
+	AFX_IDS_SCRESTORE       "@@Stellt das Fenster in seiner normalen Größe wieder her.@@"
+	AFX_IDS_SCTASKLIST      "@@Aktiviert die Task-Liste.@@"
+$$IF(PROJTYPE_MDI)
+	AFX_IDS_MDICHILD        "@@Aktiviert dieses Fenster.@@"
+$$ENDIF //MDI
+$$IF(PRINT)
+	AFX_IDS_PREVIEW_CLOSE   "@@Beendet die Seitenansicht.\nSeitenansicht beenden@@"
+$$ENDIF //PRINT
+END
+
+$$IF(PROJTYPE_EXPLORER)
+$$IF(CListView)
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_SMALLICON       "@@Zeigt Elemente mit kleinen Symbolen an.\nKleine Symbole@@"
+    ID_VIEW_LARGEICON       "@@Zeigt Elemente mit großen Symbolen an.\nGroße Symbole@@"
+    ID_VIEW_LIST            "@@Zeigt Elemente als Liste an.\nListe@@"
+    ID_VIEW_DETAILS         "@@Zeigt Informationen über jedes Element im Fenster an.\nDetails@@"
+    ID_VIEW_LINEUP          "@@Richtet Symbole am Raster aus.@@"
+    ID_VIEW_BYNAME          "@@Sortiert die Symbole alphabetisch.@@"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_AUTOARRANGE         "@@Symbole am Raster ausrichten.@@"
+END
+$$ENDIF
+$$ENDIF
+

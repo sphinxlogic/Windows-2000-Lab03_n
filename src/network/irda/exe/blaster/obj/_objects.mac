@@ -1,0 +1,24 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\blaster.res \
+    $(_OBJ_DIR)\alpha\blaster.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\blaster.res \
+    $(_OBJ_DIR)\axp64\blaster.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\blaster.res \
+    $(_OBJ_DIR)\i386\blaster.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\blaster.res \
+    $(_OBJ_DIR)\ia64\blaster.obj
+
+PASS0_IA64_OBJECTS=
+

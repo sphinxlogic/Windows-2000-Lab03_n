@@ -1,0 +1,9 @@
+LIBRARY     ServerPS
+
+DESCRIPTION "Number to Text Proxy/Stub"
+
+EXPORTS
+   DllCanUnloadNow		private
+   DllGetClassObject	private
+   DllRegisterServer	private
+   DllUnregisterServer	private

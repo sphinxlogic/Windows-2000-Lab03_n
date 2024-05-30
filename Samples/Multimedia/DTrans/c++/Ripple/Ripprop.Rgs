@@ -1,0 +1,23 @@
+HKCR
+{
+	DX3DTransform.Microsoft.RipSampleProp.1 = s 'RipSampleProp Class'
+	{
+		CLSID = s '{97BB9530-EF20-11D1-B5E0-00AA003B6061}'
+	}
+	DX3DTransform.Microsoft.RipSampleProp = s 'RipSampleProp Class'
+	{
+		CurVer = s 'DX3DTransform.Microsoft.RipProp.1'
+		CLSID = s '{97BB9530-EF20-11D1-B5E0-00AA003B6061}'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {97BB9530-EF20-11D1-B5E0-00AA003B6061} = s 'RipSampleProp Class'
+		{
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+		}
+	}
+}

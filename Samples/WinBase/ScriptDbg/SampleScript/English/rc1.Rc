@@ -1,0 +1,145 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    PARSER_START            "Failure in Parser::Start"
+    PARSER_EXTERNAL_DECL    "Not a variable or function declaration"
+    PARSER_DECL_SPEC        "Invalid type specifier"
+    PARSER_DECL             "Expected type specifier"
+    PARSER_FUNCDECL         "Expected '(' or ';'"
+    PARSER_FUNCDECL1        "Expected parameter list or ')'"
+    PARSER_INITIALIZER      "Expected initializer"
+    PARSER_PARM_DECL        "Expected declaration"
+    PARSER_PARAM_LIST       "Expected parameter"
+    PARSER_PARAM_LIST2      "Bad list format"
+    PARSER_DECL_LIST        "Expected declaration"
+    PARSER_DECL_LIST2       "Bad list format"
+    PARSER_STMT_LIST        "Expected statement"
+    PARSER_STMT_LIST2       "Bad list format"
+    PARSER_STMT             "Not a valid statement"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    PARSER_EXPR_STMT        "Expected expression"
+    PARSER_COMP_STMT        "Expected curly brace"
+    PARSER_COMP_STMT2       "Expected declaration"
+    PARSER_COMP_STMT3       "Expected statement"
+    PARSER_SELECT_STMT      "Expected 'If'"
+    PARSER_OPT_ELSE         "Syntax Error"
+    PARSER_ITER_STMT        "Invalid iterator statement"
+    PARSER_OPT_EXPR_STMT    "Expected expression"
+    PARSER_DEFER_EXPR_STMT  "Expected expression"
+    PARSER_JUMP_STMT        "Expected 'break' or 'return'"
+    PARSER_OPT_EXPR         "Expected expression"
+    PARSER_EXPR             "Invalid expression"
+    PARSER_ASSIGNMENT_OP    "Expected assignment operator"
+    PARSER_ASSIGNMENT_EXPR  "Invalid expression"
+    PARSER_ASSIGNMENT_EXPR2 "Invalid expression"
+    PARSER_CONST_EXPR       "Invalid expression"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    PARSER_LOG_OR_EXPR      "Invalid expression"
+    PARSER_LOG_OR_EXPR2     "Invalid expression"
+    PARSER_LOG_AND_EXPR     "Invalid expression"
+    PARSER_LOG_AND_EXPR2    "Invalid expression"
+    PARSER_EQ_OP            "Expected equality operator"
+    PARSER_EQUAL_EXPR       "Invalid expression"
+    PARSER_EQUAL_EXPR2      "Invalid expression"
+    PARSER_REL_OP           "Expected comparison operator"
+    PARSER_REL_EXPR         "Invalid expression"
+    PARSER_REL_EXPR2        "Invalid expression"
+    PARSER_ADD_OP           "Expected addition operator"
+    PARSER_ADD_EXPR         "Invalid expression"
+    PARSER_ADD_EXPR2        "Invalid expression"
+    PARSER_MULT_OP          "Expected multiplication operator"
+    PARSER_MULT_EXPR        "Invalid expression"
+    PARSER_MULT_EXPR2       "Invalid expression"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    PARSER_UNARY_EXPR       "Invalid expression"
+    PARSER_POSTFIX_EXPR     "Invalid expression"
+    PARSER_POSTFIX_EXPR2    "Invalid expression"
+    PARSER_ARG_EXPR_LIST    "Expected expression"
+    PARSER_ARG_EXPR_LIST2   "Bad list format"
+    PARSER_PRIMARY_EXPR     "Expected constant or identifier"
+    PARSER_CONSTANT         "Invalid constant"
+    UNRECOGNIZED_CHARACTER  "Unrecognized character"
+    INVALID_REFERENCE       "Invalid reference"
+    OBJECT_REQUIRED         "COM object required"
+    INVALID_METHOD          "Invalid method call"
+    INVALID_INSTRUCTION     "Interpreter encountered invalid instruction"
+    STACK_FAILURE           "Interpreter detected stack corruption"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

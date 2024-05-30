@@ -1,0 +1,18 @@
+README for DXSurface Example 3
+
+This sample shows a fractal being rendered translucently over a parrot.
+
+USAGE:
+     c:\> dxsurf3.exe [-width xxx -height yyy -bpp zzz -windowed]
+              xxx specifies the width in pixels of the window, e.g. 1024
+              yyy specifies the height in pixels of the window, e.g. 768
+              zzz specifies the bits-per-pixel of the window, e.g. 16
+              -windowed indicates whether to run in a window or fullscreen
+
+This sample demonstrates:
+- using a DXSurface in fullscreen and windowed mode
+- loading an image onto a DXSurface
+- directly manipulating the Alpha, Red, Green, and Blue components of pixels
+- using GDI operations on DXSurfaces
+- using a DXTransform to scale a DXSurface to fit the window
+  (Use this instead of StretchBlt() to preserve alpha quality.)

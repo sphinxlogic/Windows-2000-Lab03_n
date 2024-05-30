@@ -1,0 +1,64 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\mouser.res \
+    $(_OBJ_DIR)\alpha\pnp.obj \
+    $(_OBJ_DIR)\alpha\cseries.obj \
+    $(_OBJ_DIR)\alpha\mseries.obj \
+    $(_OBJ_DIR)\alpha\sermcmn.obj \
+    $(_OBJ_DIR)\alpha\sermdep.obj \
+    $(_OBJ_DIR)\alpha\io.obj \
+    $(_OBJ_DIR)\alpha\detect.obj \
+    $(_OBJ_DIR)\alpha\wmi.obj \
+    $(_OBJ_DIR)\alpha\wrapper.obj
+
+PASS0_ALPHA_OBJECTS= \
+    $(PASS0_HEADERDIR)\sermlog.h \
+    $(MC_SOURCEDIR)\sermlog.rc
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\mouser.res \
+    $(_OBJ_DIR)\axp64\pnp.obj \
+    $(_OBJ_DIR)\axp64\cseries.obj \
+    $(_OBJ_DIR)\axp64\mseries.obj \
+    $(_OBJ_DIR)\axp64\sermcmn.obj \
+    $(_OBJ_DIR)\axp64\sermdep.obj \
+    $(_OBJ_DIR)\axp64\io.obj \
+    $(_OBJ_DIR)\axp64\detect.obj \
+    $(_OBJ_DIR)\axp64\wmi.obj \
+    $(_OBJ_DIR)\axp64\wrapper.obj
+
+PASS0_AXP64_OBJECTS= \
+    $(PASS0_HEADERDIR)\sermlog.h \
+    $(MC_SOURCEDIR)\sermlog.rc
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\mouser.res \
+    $(_OBJ_DIR)\i386\pnp.obj \
+    $(_OBJ_DIR)\i386\cseries.obj \
+    $(_OBJ_DIR)\i386\mseries.obj \
+    $(_OBJ_DIR)\i386\sermcmn.obj \
+    $(_OBJ_DIR)\i386\sermdep.obj \
+    $(_OBJ_DIR)\i386\io.obj \
+    $(_OBJ_DIR)\i386\detect.obj \
+    $(_OBJ_DIR)\i386\wmi.obj \
+    $(_OBJ_DIR)\i386\wrapper.obj
+
+PASS0_386_OBJECTS= \
+    $(PASS0_HEADERDIR)\sermlog.h \
+    $(MC_SOURCEDIR)\sermlog.rc
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\mouser.res \
+    $(_OBJ_DIR)\ia64\pnp.obj \
+    $(_OBJ_DIR)\ia64\cseries.obj \
+    $(_OBJ_DIR)\ia64\mseries.obj \
+    $(_OBJ_DIR)\ia64\sermcmn.obj \
+    $(_OBJ_DIR)\ia64\sermdep.obj \
+    $(_OBJ_DIR)\ia64\io.obj \
+    $(_OBJ_DIR)\ia64\detect.obj \
+    $(_OBJ_DIR)\ia64\wmi.obj \
+    $(_OBJ_DIR)\ia64\wrapper.obj
+
+PASS0_IA64_OBJECTS= \
+    $(PASS0_HEADERDIR)\sermlog.h \
+    $(MC_SOURCEDIR)\sermlog.rc
+

@@ -1,0 +1,114 @@
+
+<PUBLIC:EVENT id=finfly name=onFinishedFly />
+<PUBLIC:METHOD name=tick />
+<PUBLIC:METHOD name=startFly />
+<PUBLIC:PROPERTY name=from />
+<PUBLIC:PROPERTY name=fromX />
+<PUBLIC:PROPERTY name=fromY />
+<PUBLIC:PROPERTY name=delay />
+
+<script language="jscript">
+var currCount;
+var flyCount;
+var flying;
+var msecs;
+var oTop, oLeft;
+
+msecs = 50;
+flyCount = 20;
+flying = false;
+
+style.visibility = "hidden";
+
+window.attachEvent("onload", onload);
+
+function onload()
+{
+  // delay commences from the window.onLoad event
+  if (delay != "none")
+  {
+     window.setTimeout(uniqueID+".tick()", delay);
+  }
+   
+}
+
+
+function tick()
+{
+   if (flying == false)
+   {
+      startFly();
+   }
+   else
+   {
+      doFly();
+   }
+}
+
+function startFly()
+{
+
+  if (fromX==null && fromY==null)
+  {
+     if (from=="top")
+     {
+       style.posTop = -offsetTop-offsetHeight;
+     }
+     else if (from=="bottom")
+     {
+       style.posTop = window.document.body.clientHeight;
+     }
+     else if (from=="right" )
+     {
+       style.posLeft = window.document.body.clientWidth;
+     }
+     else 
+     { 
+       style.posLeft = -offsetLeft-offsetWidth;
+     }    
+  }
+  else
+  {
+     style.posTop = fromY;
+     style.posLeft = fromX;
+  }
+
+  style.visibility = "visible";
+  flying = true;
+
+  oTop = style.posTop;
+  oLeft = style.posLeft;
+
+  currCount = 0;
+  doFly();
+}
+
+function doFly()
+{
+  var dt, dl;
+
+  currCount++;
+  dt = oTop / flyCount;
+  dl = oLeft / flyCount;
+
+  style.posTop -= dt;
+  style.posLeft -= dl;
+
+  if (currCount < flyCount)
+  {
+      window.setTimeout(uniqueID+".tick();", msecs);
+  }
+  else
+  {
+      style.posTop = 0;
+      style.posLeft = 0;
+      flying = false;
+      evObj = createEventObject();
+      evObj.setAttribute("resulty", uniqueID);	
+      finfly.fire(evObj);
+  }
+}
+
+</script>
+
+</HTML>

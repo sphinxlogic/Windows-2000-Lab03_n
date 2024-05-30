@@ -1,0 +1,41 @@
+/*
+THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED
+TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+PARTICULAR PURPOSE.
+
+Copyright (C) 1998-1999.  Microsoft Corporation.  All rights reserved.
+
+*/
+
+#include <windows.h>
+#include "Resource.h"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_SPARSEMEM DIALOG DISCARDABLE  15, 24, 153, 127
+STYLE WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Sparsely Committed Memory Demo"
+FONT 8, "System"
+BEGIN
+    LTEXT           "Shared Memory (backed by the paging file):",IDC_STATIC,
+                    5,23,142,8
+    LTEXT           "ProcessID",IDC_TXTPROCESSID,47,7,35,8
+    PUSHBUTTON      "Use Chunk",IDC_CMDCOMMIT,105,4,44,14
+    LTEXT           "Process ID:",IDC_TXTPROCESSID2,5,7,39,8
+    LISTBOX         IDC_LIST1,4,32,145,91,LBS_NOINTEGRALHEIGHT | WS_VSCROLL |
+                    WS_TABSTOP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+IDI_SPARSEMEM           ICON    DISCARDABLE     "SparsMem.Ico"
+

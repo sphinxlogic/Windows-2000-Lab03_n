@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>ISAPI and Forms</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_isapi_and_forms"></a>ISAPI and Forms</h3>
+<p>
+This sample demonstrates how ISAPI extensions can access the data provided by an HTML form. The code for this sample has been subdivided into several different files. The main file, FORMDUMP.CPP, implements the DLL entry-point function <b>DllMain</b>, as well as the ISAPI extension entry-point functions <b>GetExtensionVersion</b> and <b>TerminateExtension</b>. </p>
+<p>
+The entry-point function <b>HttpExtensionProc</b> is also provided in FORMDUMP.CPP, and the bulk of the flow-control for the extension is performed in this function. When <b>HttpExtensionProc</b> is invoked, the extension sends an HTTP response header to the client browser. The extension then parses the inbound form fields, and sends information about each of those form fields to the client, as well. The extension next calls the <b>WhoAmI</b> function, implemented using the Windows NT <b>LookupAccountSid</b> function, to determine the security context in which the client browser is running. Finally, <b>SendVariables</b> is used to send an HTML list of some of the more important server variables and values. </p>
+<p>
+The other key file in this project, KEYS.CPP, provides an interface that you can use to access the form data that is passed to the extension with either the GET or POST method. The function <b>GetKeyList</b> is called first, to create a linked list of key-value pairs. <b>GetKeyInfo</b> is then used to walk through the linked list, and access information about each key in the list.  </p>
+<p>
+A third project file, HTML.CPP, provides a series of reusable wrappers for the most common HTML tasks. For instance, the function <b>HtmlCreatePage</b> can be used to write the beginnings of an HTML page, including the &lt;HTML&gt;, &lt;TITLE&gt;, and &lt;BODY&gt; tags, to the client browser. </p>
+<p>
+This sample is provided for educational purposes only. It has not been tested in a production environment, and Microsoft&reg; will not provide technical support for it. </p>
+</BODY>
+</HTML>

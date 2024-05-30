@@ -1,0 +1,19 @@
+Your project contains the following source files:
+
+$$Root$$Service.cpp, $$Root$$Agent.cpp, $$Root$$ContentCollector.cpp,
+$$Root$$HierarchyCollector.cpp, $$Root$$Synchronizer.cpp, $$Root$$Table.cpp,
+$$Root$$MAPIApp.cpp
+
+Your project contains the following help files:
+
+README.txt
+
+The following ICS features are enabled:
+
+$$IF(SERVICE_MANUAL_CONTROL)
+	+ Generation of an SCP to manually synchronize your agent
+$$ENDIF
+$$IF(SERVICE_POLL_CONTINUOUSLY)
+	+ Folders are polled continuously for incremental changes
+$$ENDIF
+

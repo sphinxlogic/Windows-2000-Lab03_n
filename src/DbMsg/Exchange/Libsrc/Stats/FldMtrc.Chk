@@ -1,0 +1,182 @@
+// --fldmtrc.chk----------------------------------------------------------------
+//
+//  File containing parameter checking functions for fldmtrc.cpp.
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+// -----------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_CFolderMetrics_HrReset(a)                       NOERROR
+#define CHK_CFolderMetrics_HrGetFolderMetrics(a,b,c,d,e)    NOERROR
+#define CHK_CFolderMetrics_HrGetcMessages(a)                NOERROR
+#define CHK_CFolderMetrics_HrGetLongestWait(a,b)            NOERROR
+#define CHK_CFolderMetrics_HrGetTotalWait(a,b,c)            NOERROR
+
+#else
+
+//$--CHK_CFolderMetrics_HrReset-------------------------------------------------
+//  Check the parameters for CFolderMetrics::HrReset().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_CFolderMetrics_HrReset(
+                                        // HRESULT
+    IN LPMAPIFOLDER lpFolder)           // Object is assigned to this folder.
+{
+    HRESULT hr = NOERROR;
+
+	if (!TEST_IUNKNOWN_PTR(lpFolder))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+    return(hr);
+}
+
+
+//$--CHK_CFolderMetrics_HrGetFolderMetrics--------------------------------------
+//  Check the parameters for CFolderMetrics::HrGetFolderMetrics().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_CFolderMetrics_HrGetFolderMetrics(
+                                            // RETURNS: HRESULT
+    IN __int64 liNow,                       // Current time expressed as a file time.
+    IN DWORD fMetric,                       // Flag to determine the metric
+                                            //  to query. May be an or'ed
+                                            //  combination of:
+                                            //  FM_CMESSAGES, FM_LONGEST_WAIT
+                                            //  FM_TOTAL_WAIT.
+    OUT DWORD &cMessages,                   // Receives number of mesages
+                                            //  in folder if FM_CMESSAGES
+                                            //  is specified. = 0 otherwise.
+    OUT __int64 &liLongestWait,             // Receives longest wait
+                                            //  expressed as a file time if
+                                            //  FM_LONGEST_WAIT specified.
+                                            //  = 0 otherwise.
+    OUT __int64 &liTotalWait)               // Recieves total wait
+                                            //  expresses as a file time if
+                                            //  FM_TOTAL_WAIT specified.
+                                            // = 0 otherwise.
+{
+    HRESULT hr = NOERROR;
+
+	if (liNow == 0L)
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (fMetric & ~(FM_CMESSAGES | FM_LONGEST_WAIT | FM_TOTAL_WAIT))
+	{
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(&cMessages, sizeof(cMessages)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(&liLongestWait, sizeof(liLongestWait)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(&liTotalWait, sizeof(liTotalWait)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+    return(hr);
+}
+
+
+//$--CHK_CFolderMetrics_HrGetcMessages------------------------------------------
+//  Check the parameters for CFolderMetrics::HrGetcMessages().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_CFolderMetrics_HrGetcMessages(
+                                        // RETURNS: HRESULT
+    OUT DWORD &cMessage)                // Receives number of messages in folder.
+{
+    HRESULT hr = NOERROR;
+
+	if (!TEST_WRITE_PTR(&cMessage, sizeof(cMessage)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+    return(hr);
+}
+
+
+//$--CHK_CFolderMetrics_HrGetLongestWait----------------------------------------
+//  Check the parameters for CFolderMetrics::HrGetLongestWait().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_CFolderMetrics_HrGetLongestWait(
+                                            // RETURNS: HRESULT
+    IN __int64 liNow,                       // Current Time expressed as a
+                                            //   file time.
+    OUT __int64 &liLongestWait)             // Receives the longest time that
+                                            //   a messages has been in
+                                            //   the folder expressed as a
+                                            //   file time.
+{
+    HRESULT hr = NOERROR;
+
+	if (liNow == 0L)
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(&liLongestWait, sizeof(liLongestWait)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+    return(hr);
+}
+
+
+//$--CHK_CFolderMetrics_HrGetTotalWait------------------------------------------
+//  Check the parameters for CFolderMetrics::HrGetTotalWait().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_CFolderMetrics_HrGetTotalWait(
+                                        // RETURNS: HRESULT
+    IN __int64 liNow,                   // Current time expressed as a file time.
+    OUT DWORD &cMessages,               // Receives number of messages in file.
+    OUT __int64 &liTotalWait)           // Receives total wait of messages in file.
+{
+    HRESULT hr = NOERROR;
+
+	if (liNow == 0L)
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(&cMessages, sizeof(cMessages)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+	if (!TEST_WRITE_PTR(&liTotalWait, sizeof(liTotalWait)))
+	{
+		hr = HR_LOG(E_INVALIDARG);
+		goto cleanup;
+	}
+
+cleanup:
+    return(hr);
+}
+
+#endif /* DEBUG */

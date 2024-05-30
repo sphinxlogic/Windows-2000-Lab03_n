@@ -1,0 +1,35 @@
+// -----------------------------------------------------------------------------
+// MAPIMsg.chk
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+// -----------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_CMAPIMessage_CMAPIMessage(a,b,c,d)  NOERROR
+
+#else
+
+// $--CHK_CMAPIMessage_CMAPIMessage()-----------------------------------------
+// -----------------------------------------------------------------------------
+__inline HRESULT CHK_CMAPIMessage_CMAPIMessage( 
+    LPMAPICONTAINER pMAPIContainer, // Containter to use to open message.
+    ULONG cb,                       // Count of bytes in Entry Id.
+    LPENTRYID pEID,                 // Entry Id of message to open.
+    ULONG ulFlags)                  // Defaults to 0L, MAPI_MODIFY is a likely one to pass in.
+{
+    if( !TEST_READ_PTR( pMAPIContainer, sizeof( IMAPIContainer)))
+        RETURN( E_INVALIDARG);
+    
+    if( !cb)
+        RETURN( E_INVALIDARG);
+
+    if( !TEST_READ_PTR( pEID, cb))
+        RETURN( E_INVALIDARG);
+
+    return( NOERROR);
+}
+
+// -----------------------------------------------------------------------------
+
+#endif /* DEBUG */

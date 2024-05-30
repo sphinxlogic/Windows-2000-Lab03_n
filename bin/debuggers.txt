@@ -1,0 +1,240 @@
+            Microsoft(R) Windows NT/2000(R) Debugging Tools
+            Microsoft(R) Windows 2000(R) Release Candidate 2
+                          Release Notes
+                            August 1999
+
+-----------------------------------------------------------------------------
+
+Contents
+
+	Overview
+	What's New
+	Known Issues
+	Programs
+	Debugger Extensions
+	Install Directory and Start Menus
+	Operating System- and Version-Specific Information
+	Debugger Documentation 
+	More Information
+	Feedback
+
+-----------------------------------------------------------------------------
+
+Overview
+
+The Microsoft(R) Windows NT/2000(R) Debugging Tools are a set of tools 
+provided by the Windows 2000 Debug team.  This includes a few debuggers 
+and related tools.  It is intended to be used by application developers, 
+driver developers, and administrators.  
+
+These debugging tools were previously shipped in separate distribution 
+channels; with this release, they are being consolidating into a single, 
+complete set to ship.  These tools will be available in each of these 
+products: 
+
+ - Platform SDK (MSDN CD and web site)
+ - Windows 2000 DDK (MSDN CD and web site)
+ - Windows 2000 Customer Support Diagnostics CD
+
+Note: Debugging requires using a user account with Administrive rights.
+If you are not familiar with debugging, experimentation can crash
+processes, and the the operating system. Only experienced users and
+developers should debug.
+
+-----------------------------------------------------------------------------
+
+What's New
+
+- Most changes from RC 1 to RC 2 are bugfixes, to increase debugger 
+stability.  
+
+- The debuggers now handle 64-bit debugging, both in terms of kernel wire
+protocol and the extension dll interface.  You must use current debuggers
+to debug RC 2.  If you load a 32-bit extension dll you may see a warning
+that this 32-bit dll may not work.  This is just a warning, if you see
+actual problems report it to Microsoft Product Support. 
+
+- New IIS Exception Monitor Tool has been added.
+
+- OEM Support Tools have been added.
+
+-----------------------------------------------------------------------------
+
+Known Issues
+
+- Uninstallation of the debugger tools are not working in this release.
+
+- If there are multiple versions of debugger extension DLLs in your PATH, 
+older verions might incorrectly get loaded.  There have been some 
+improvements in the area of debugger extension DLLs which make this kind 
+of problem more common, in some situations.  See below for more 
+information. Use the !listexts to find out where it was loaded from.
+
+- Win64 widening of debugger extension DLL source code is expected to 
+occur between Windows 2000 Beta 3 and final release.  At this point, 
+developers which have debugger extensions should expect to make small 
+modifications to their source code to widen from Win32 to Win64.  
+
+-----------------------------------------------------------------------------
+
+Programs
+
+This distribution includes the following debuggers:
+
+	windbg.exe - Windbg debugger
+	windbg.hlp - Windbg debugger online documentation
+	windbgrm.exe - Windbg Remote
+	dbgwiz.exe - Windbg Configuration Wizard
+	alphakd.exe - Kernel Debugger for Alpha systems
+	i386kd.exe - Kernel Debugger for x86 systems
+	ntsd.exe - NTSD Debugger
+	cdb.exe - CDB Debugger (variant of NTSD)
+
+On Windows 2000, ntsd.exe ships with the operating system, in 
+%systemroot%\system32, and is not included in this distribution.
+
+This distribution also includes these debugger-related tools:
+
+	gflags.exe - Global Flags utility
+	dumpchk.exe - Dump Check utility
+	breakin.exe - BreakIn utility
+	remote.exe - Remote utility
+	kill.exe - Process Kill utility
+	list.exe - File List utility
+
+Another related tool which ships with the operating system is:
+
+	drwtsn32.exe - Dr. Watson utility
+
+Windbg is the main debugger produced by the Windows 2000 Debugger 
+development team.  NTSD and KD are provided for those familiar with these 
+debuggers, and in scenerios where Windbg may not support (or have a 
+problem with) some particular operation.  
+
+-----------------------------------------------------------------------------
+
+Debugger Extensions
+
+Debugger Extensions are DLLs which Windbg, NTSD, and KD can use to provide 
+additional debugger commands.  The following extensions are included with 
+this release: 
+
+	gdikdx.dll   
+	kdextalp.dll 
+	kdextx86.dll 
+	ntsdexts.dll
+	rpcexts.dll  
+	userexts.dll 
+	userkdx.dll  
+	vdmexts.dll  
+
+The debugger extension DLLs are operating system version, build, platform, 
+and debug/retail specific.  Multiple versions of each DLL are included, to 
+provide the necessary files for each variant.  Additional DLLs have been 
+released for Windows NT 4.  All DLLs are provided in both debug and retail 
+versions.  The free and checked versions of these DLLs for Windows NT 4.0 
+and this build of Windows 2000 are installed into four subdirectories, 
+under the target subdirectory: 
+
+	nt4chk
+	nt4fre
+	w2kchk
+	w2kfre
+	
+The debugger has awareness of these subdirectories, and will not be able
+to find them if these subdirectories are renamed or moved. If a custom
+extension DLL is to be used, it should be placed in the PATH, refer to 
+the Windbg online documentation for more details.
+
+For Windows 2000, ntsdexts.dll ships with the operating system, in 
+%systemroot%\system32, and is not included in this distribution.
+
+The method that Windbg uses to search for debugger extension DLLs is:
+
+1. Search the current directory which the debugger was loaded from.
+2. Search the PATH environment variable.
+3. Look at the registry key, which is set when the debugger is installed.
+   Look at the subdirectory listed in 
+   "HKCU\Software\Microsoft\W2KDBG\Directories\Install Dir". If C:\FOO,
+   the the debugger looks in C:\FOO\nt4fre, C:\FOO\nt4chk, C:\FOO\w2kfre, 
+   and C:\FOO\w2kchk, based on the appropriate OS version (4 or 5) and type
+   (free or checked).
+   
+-----------------------------------------------------------------------------
+
+Install Directory and Start Menus
+
+Depending on which kit was installed, the subdirectory in which these tools
+are installed in varies. Using the Setup program from each kit, the
+subdirectory can be specified. 
+
+For the Platform SDK, the default location for these files is 
+<drive>:\mssdk\bin.  For the Windows 2000 DDK, the default location for 
+these files is <drive>:\ntddk\bin.  
+
+Similarly, the Start menu for these tools will vary based on which kit they
+are installed from. This path works for on all distributions:
+
+    Start -> Programs -> Debugging Tools
+    
+This path works for the Windows 2000 DDK:
+
+    Start -> Programs -> Development Kits -> Windows 2000 DDK -> Debugging Tools
+    
+-----------------------------------------------------------------------------
+
+Operating System- and Version-Specific Information
+
+The KD and NTSD debuggers are intended to debug systems running the curent 
+version of Windows 2000.  There are many cases where these versions of 
+these two debuggers will not work with previous releases of the operating 
+system.  KD and NTSD are not designed to be used on Microsoft Windows 95 
+or Microsoft Windows 98.  
+
+The Windbg debugger makes an effort to work with the current and
+previous major releases of the operating system, so it should work on
+Windows NT 4.0 and this build of Windows 2000. 
+
+Windbg can be used for simple (one-system) debugging scenerios of Win32 
+user-mode applications on Microsoft Windows 95 or Microsoft Windows 98.  
+Windbg cannot be used to debug kernel-mode drivers on Windows 9x, the WDeb 
+debugger (which ships in the Windows 9x DDK) should be used for this.
+
+To debug a Windows NT 4.0 system using KD or NTSD, use the versions of 
+KD and NTSD that ship in the \support subdirectory in the Windows NT
+4.0 CD. In addition to the debugger extensions provided in that
+directory, this current debugger distribution includes more extensions
+(including checked versions), in the nt4chk and nt4fre subdirectories.
+
+-----------------------------------------------------------------------------
+
+Debugger Documentation 
+
+For documtation on how to use these debuggers and related tools, see the
+Windbg online help (windbg.hlp) and the debugger online help (debugger.hlp). 
+Also, see the debugging chapters of the various kits, which discuss debugging 
+for different target audiences:
+
+ - Platform SDK online documentation
+ - Windows 2000 DDK online documentation
+ - Windows NT 4.0 Resource Kit online documentation
+
+In future releases, the DDK will have more extensive debugger documentation. 
+
+-----------------------------------------------------------------------------
+
+More Information
+
+For more information on debugging, see the Windows 2000 Debugger Resources 
+web page, <http://www.microsoft.com/hwdev/driver/ntdebugging.htm>.  
+
+-----------------------------------------------------------------------------
+
+Feedback
+
+We are interested in your feedback on these debugger tools.  Please mail 
+suggestions or bug reports to windbgfb@microsoft.com.  This is not a 
+support alias, but your feedback will help us to plan future changes for 
+these tools and will make them more useful to you in the future.  
+
+-----------------------------------------------------------------------------

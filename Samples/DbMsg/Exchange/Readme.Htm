@@ -1,0 +1,334 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<meta HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<style TYPE="text/css">
+pre,code       { font-size:110%; font-family:"Lucida Sans Typewriter,Courier New,monospace"; }
+pre.syntax     { font-size:120%; }
+h1,h2,h3,h4,h5 { font-weight:bold; font-family:"Tahoma,Verdana,sans-serif";  }
+h1             { font-size:161%; }
+h2             { font-size:148%; }
+h3             { font-size:122%; }
+h4             { font-size:109%; }
+h5             { font-size:96%; }
+
+h1,h2,h3,h4,h5 { margin:1.5em,0,0; }
+
+p,pre          { margin:0.8em,0,1.2em; }
+pre            { padding:1em,1em,0; background-color:#E6F4FF; }
+dl             { margin-top:0; }
+dt             { margin:0.8em,0,0; }
+dd             { margin:0; padding:0,0,0,24pt; }
+ol,ul          { margin-top:1.2em; margin-bottom:1.5em; }
+li,li p,dd p   { margin:0.8em,0; }
+img            { vertical-align:middle; }
+.indent1       { margin-left:12pt; }
+.indent2       { margin-left:24pt; }
+.indent3       { margin-left:36pt; }
+
+table          { margin:0; padding:0; }
+dd table       { margin:0.8em,0,0; padding:0; }
+th             { margin:0; padding:2,6; background-color:#D4D8E0; }
+td             { margin:0; padding:2,6; background-color:#EBEBEB; border-top:2px solid #FFFFFF; }
+td pre         { background-color:#EBEBEB; }
+th,td          { border-right:1px solid #FFFFFF; }
+
+p.proch        { padding-left:16px; }
+p.proch img    { position:relative; vertical-align:baseline; left:-18px; top:5px; margin-right:-14px; margin-bottom:-18px; }
+</style>
+<title>Platform SDK: Exchange Server Samples and Libraries Release Notes</title>
+</head>
+
+<body>
+<h1><a name="_edk_release_notes"></a>Release Notes</h1>
+
+<h2>Platform SDK: Microsoft Exchange Server Samples and Library</h2>
+
+<h2>Legal Notice</h2>
+
+<p>Information in this document is subject to change without notice. This document is
+provided for informational purposes only and Microsoft Corporation makes no warranties,
+either express or implied, in this document. The entire risk of the use or the results of
+the use of this document remains with the user. The names of companies, products, people,
+characters, and/or data mentioned herein are fictitious and are in no way intended to
+represent any real individual, company, product, or event, unless otherwise noted.
+Complying with all applicable copyright laws is the responsibility of the user. No part of
+this document may be reproduced or transmitted in any form or by any means, electronic or
+mechanical, without the express written permission of Microsoft Corporation. If, however,
+your only means of access is electronic, permission to print one copy is hereby granted.</p>
+
+<p>Microsoft may have patents or pending patent applications, trademarks, copyrights, or
+other intellectual property rights covering subject matter in this document. The
+furnishing of this document does not give you any license to these patents, trademarks,
+copyrights, or other intellectual property rights except as expressly provided in any
+written license agreement from Microsoft.</p>
+
+<p>© 1996-1998 Microsoft Corporation. All rights reserved.</p>
+
+<p>Microsoft, Microsoft Press, MS, MS-DOS, Visual Basic, Visual C++, Visual Studio,
+Windows, Win32, Win32s, Windows NT, Exchange, BackOffice, and Outlook are either
+registered trademarks or trademarks of Microsoft Corporation in the United States or other
+countries. </p>
+
+<h2>Known Issues</h2>
+
+<p>This file contains late-breaking information about issues you may encounter when
+building or using the Microsoft Exchange Server libraries and samples that accompany the
+Platform SDK in the Database and Messaging component. </p>
+<p>Issues are organized under the following broad categories:
+<ul>
+<li><a href="#library">Library and COM Component Issues</a><br>
+   Issues related to the COM components or the ExchSDK.lib library.</li>
+<li><a href="#samples">Samples Issues</a><br>
+   Issues related to the samples themselves.</li>
+<li><a href="#misc">Miscellaneous Issues</a><br>
+   Any other issues.</li>
+</ul>
+The samples are listed in the following sections according the
+convention used in the documentation:  the name of the sample matches the
+directory name in which the sample resides. This convention also applies to the library and components.  
+</p>
+<h3><a name="library"></a>Library and COM Component Issues</h3>
+
+<h4>Compiling COM Components using Microsoft Visual C++ 6.0</h4>
+<ul><li>The new COM components <b>ACL</b>, <b>Rule</b>, and <b>AcctMgmt</b>
+        are based on the Active Template Library (ATL). If you build one of the new COM components
+        on one machine with the MinSize configuration, and then copy and register the component on
+        a separate server machine, that machine will also require the new 3.0 version of the
+        Active Template Library (ATL) dynamic link library ATL.DLL for the component to function
+        properly. This run-time library is installed with the new Microsoft Visual Studio 6.0
+        release.
+	</li>
+</ul>
+
+<h4>Building Administrative Extensions</h4>
+
+<ul>
+  <li>If you build the administrative extensions using the Microsoft Foundation Classes (MFC)
+      with the NDEBUG flag set, you must ensure that the MFC42.DLL, MFC42D.DLL, MSVCRT.DLL, and
+      MSVCRTD.DLL dynamic link libraries are in the link path. If these files are not in the
+      linker's path, a link error occurs.
+  </li>
+  <li>If you build the administrative extensions using Visual C++ 6.0 and want to run the
+      sample on a machine that does not have Visual C++ 6.0 installed, you must copy the
+      MFC42.DLL, MFC42D.DLL and MSVCRTD.DLL libraries to the System32 directory on the machine
+      running the sample.</li>
+</ul>
+
+<h4>Compiler Produces Warning Messages</h4>
+   <ul>
+      <li>The compiler can produce warning messages when building the samples.
+	  You can safely ignore these warnings.
+	  </li>
+    </ul>
+
+<h4>AcctMgmt Component</h4>
+  <ul>
+    <li>This component does not check for invalid information supplied to create new accounts.
+        Invalid information includes group
+        names containing invalid characters, passwords longer than the maximum length, and
+        usernames containing periods or spaces.</li>
+    <li>The <strong>ChangeOwnerOfSecDescriptor</strong> method does not check whether the passed in 
+        <em>OldOwner</em> parameter is part of the security descriptor.</li>
+  </ul>
+
+<h4>ACLObject Component</h4>
+  <ul>
+    <li>If you are not the Exchange Server administrator, you must logon to a MAPI session before
+        creating the ACL Object.</li>
+  </ul>
+
+<h4>Rule Component</h4>
+ <ul>
+      <li>The Information Store accepts a maximum of 32K bytes of rule logic on a folder. This
+        limit translates to approximately 200 simple rules on a folder.</li>
+      <li>The <b>Rules.Item</b> property must be explicitly cast to an integer
+        when using scripting languages such as VBScript.
+        For example, <code><pre>myRule = objRules.Item(CInt(num))
+		  </code></pre></li>
+      <li>The <b>Actions.Add</b> method always adds actions to the end of the
+        collection.</li>
+      <li>The <b>Action.Arg</b> property does not accept Unicode characters.
+        It instead substitutes the <strong>?</strong> character in place of each Unicode character.</li>
+      <li>The <b>SizeCondition.Size</b> property erroneously allows negative values to be set.</li>
+    </ul>
+<h3><a name="samples"></a>Sample Issues</h3>
+
+<h4>ACLASP Sample</h4>
+<ul>
+<li>Searching (using the Find button in the sample) the Recipients
+ directory container using one character, such as 'n', 's', or 'x', can return unexpected
+   results (depending on your set of installed proxy addresses), such as &quot;SMTP&quot;, &quot;X400&quot;,
+   &quot;NOTES&quot;, in the list of display names, aliases, and
+	proxy addresses.  This problem occurs during Ambiguous Name Resolution
+	(ANR) searches using a CDO filter. To avoid this problem, submit a query using as
+	many letters as possible. 
+</li>
+ <li>Searches (using the Find button in the sample) of the Recipients directory container will
+ not find members if their respective alias and display name
+ both contain a leading space.  For example, if you have a distribution list with alias and
+ display name both equal to &quot; Admins&quot; (i.e. space - Admins), it will never appear as a result of a search.
+ </li>
+
+</ul>
+<h4>AEditor Sample</h4>
+<ul>
+	<li>The editor terminates abnormally when the Routing Wizard dynamic link library is not
+	installed. To avoid this problem, install the Routing Wizard dynamic link library (Exrtobj.dll)
+	 from Microsoft Exchange Server 5.5 Service Pack 1.</li>
+	<li>If you use the Exchange Administrator program to delete a mailbox used by a profile
+		that is
+        in the list of previously viewed profiles, and then try to access the profile in the
+        sample, an error with the message
+		&quot;Method 'Session' of object 'IEvents' failed&quot; is generated.</li>
+	<li>The sample neither displays nor allows you to modify custom agents.</li>
+	<li>The sample does not check whether folder permissions are changed after setting the
+        folder. If the permissions on a folder are changed you must restart the sample to pick up the
+        changes.</li>
+    <li>The sample does not gracefully degrade when the environment changes radically,
+        such as when the network is unreachable or the information store has stopped.</li>
+	<li>The sample allows concurrent access to a folder.
+        <br>
+        If user A opens a folder to add a new agent, and before they save the new agent User B also
+        opens the folder, both users can save their agent to the folder.
+        The result is two agents available in the selected folder, with two different scripts.
+        The map will be whichever was the last one saved.
+        <br>
+        One possible solution this problem is to give only one user permission to create agents on a
+        folder.</li>
+	<li>The sample erroneously allows you to create an agent on the Calendar folder.</li>
+</ul>
+<h4>DLUpdate Sample</h4>
+<ul>
+      <li>This sample only searches the top-level Recipients container for entries. 
+        If you have multiple Recipients directory containers and you
+        want to search them all, you must modify the sample code.
+		</li>
+      <li>You can create an illegal directory name using a client that supports 
+        Unicode characters by entering them in the alias field.
+        To avoid this problem, do not enter Unicode characters in the alias field.</li>
+      <li>The sample does not correctly display non-Roman characters in the name of a distribution list.
+        Each non-Roman character erroneously appears as the '?' character .</li>
+      <li>In the file Constants.inc, the result-set size for ActiveX Data Objects (ADO) queries is
+	  set to 100 using the mcADS_RS_PAGE_SIZE constant.  This matches the number supported for the
+      default Exchange Server 5.5
+	  LDAP configuration.  If you increase this value in the sample to over 100, make sure to
+	  update the LDAP search configuration value on the Exchange Server to match or exceed
+	  the new value.
+	   If this is not done, the sample will generate an error with the message
+	  &quot;The name limit for the local computer network adapter card
+        was exceeded&quot; if the size of the query result set is larger than the LDAP setting.
+		The LDAP search result-set size can
+		be modified throught the Exchange Adminstrator application:
+		navigate to
+		the property page located at Configuration,
+        Protocols, LDAP (Directory) Site Defaults, Search, and update the "Ma<u>x</u>imum number of search results returned" to the desired value.</li>
+      <li>The sample generates an error if you change the search parameter while the sample is
+        returning the query results.
+        To avoid this problem, wait until the sample has completed refreshing the query results
+        before changing the search parameter.</li>
+    </ul>
+<h4>Gateway Sample</h4>
+<ul>
+      <li>The sample does not accept data from a DAT file that was produced with the
+	  CFGCODE sample executable and a custom INI file.</li>
+      <li>If you want to build the binary, you must edit the INF file to ensure the file size and
+        date entry for each file is correct.</li>
+      <li>The sample exits when it receives a <strong>MAPI_E_NETWORK_ERROR</strong> error when
+        polling for new messages.</li>
+      <li>The sample can create an unusable address if the organization or site name contains a space.</li>
+</ul>
+<h4>Incremental Change Synchronization (ICS) Visual Studio Wizard Sample</h4>
+<ul>
+      <li>Building with the MFC library as a statically linked library produces a C++ run-time
+        library conflict while linking.<br>
+        To avoid this problem, always build with the MFC library as a shared DLL.</li>
+      <li>The compiler can produce warning messages when building the samples.&nbsp; To disable
+        the warnings, you can add certain libraries to the project's Link Ingore list.<br>
+        <ul>
+          <li><em>Debug Configuration</em> - You can safely ignore warnings about links to MSCVRT.LIB
+            (Microsoft C runtime libraries) or add it to the Ignore list.&nbsp; If you encounter link
+            errors to the MSVCRTD.LIB (Debug version of the C runtime), make sure this library is in
+            your link path as this library should be linked property for the debug configuration.<br>
+          </li>
+          <li><em>Release Configuration</em> -&nbsp; You can add LIBC.LIB and MSVCRTD.LIB to the
+            Project, Settings, Link, Input, Ignore libraries field in Visual C++.</li>
+        </ul>
+      </li>
+      <li>The ICS NT service fails to start after service is installed.<br>
+          To alleviate this problem, copy Folder_EIDS.sav from the source directory into the directory
+          containing ICSAgentNTService.awx.
+</ul>
+
+<h4>Instform Sample</h4>
+<ul>
+      <li>This form installation sample is not supported on Alpha machines.</li>
+</ul>
+
+<h4>Mailbox Sample</h4>
+ <ul>
+      <li>You can create an illegal mailbox name using a client that accepts double-byte (Unicode)
+        characters by entering double-byte characters in the alias field.<br>
+        To avoid this problem, do not enter double-byte characters in the alias field.</li>
+      <li>You can accidently try to add the same mailbox twice.<br>
+        If you click the <strong>Submit</strong> button twice on the <em>Add Mailbox</em> page,
+        the sample reports a <em>Recipient is already on file</em> error. The sample does not
+        report that a mailbox is successfully added after the first click.</li>
+      <li>You cannot access an Exchange server on a remote computer if NT challenge and response
+        security is used for authentication.</li>
+      <li>The sample allows you to create an illegal NT account, such as an account with periods
+        or spaces in the account name.</li>
+      <li>You can use this sample to only search the top-level container for entries. 
+        If you have multiple <em><strong>Recipients</strong></em> directory containers and you
+        want the sample to search them all, you must modify the code. </li>
+</ul>
+<h4>RuleASP Sample</h4>
+<ul>
+  <li>Searching (using the Find button in the sample) the Recipients
+   directory container using one character, such as 'n', 's', or 'x', can return unexpected
+   results (depending on your set of installed proxy addresses), such as &quot;SMTP&quot;, &quot;X400&quot;,
+   &quot;NOTES&quot;, in the list of display names, aliases, and
+	proxy addresses.  This problem occurs during Ambiguous Name Resolution
+	(ANR) searches using a CDO filter. To avoid this problem, submit a query using as
+	many letters as possible. 
+ </li>
+ <li>Searches (using the Find button in the sample) of the Recipients directory container will
+ not find senders or recipients if their respective alias and display name
+ both contain a leading space.  For example, if you have a distribution list with alias and
+ display name both equal to &quot; Admins&quot;, it will never appear as a result of a search.
+ </li>
+ <li>The &quot;Delete&quot; action for a rule deletes the message rather than moves the
+        message to the &quot;Deleted Items&quot; folder.
+        This is by design for the sample. If you want to change this behavior to move the message
+        to the &quot;Deleted Items&quot; folder, change the action from delete to move, and set
+        the <em>Action</em><strong>.Arg</strong> property to the &quot;Deleted Items&quot; folder
+        (see the <strong>Action</strong>
+        class example).</li>
+  <li>The sample cannot search mailboxes with leading spaces.</li>
+  <li>The sample will not allow you to log on to a mailbox using a different character set
+        than the one used to create the mailbox alias.</li>
+  <li>If a public folder does not have owner permissions, you cannot update more than one
+        rule.</li>
+  <li>If you create a folder rule without a condition, the sample cannot display the rules on that
+      folder.</li>
+ </ul>
+
+<h4>TOOLFORM Sample</h4>
+<ul><li>This sample is only supported for use with the Microsoft Exchange client.
+The form does not function properly with any version of Microsoft Outlook.</li>
+</ul>
+
+<h3><a name="misc"></a>Miscellaneous Issues</h3>
+
+<h4>RECIPIENTINFO Structure</h4>
+<ul>
+      <li>If you do not supply a last name in the <strong>pszLastName</strong> member, the proxy
+        generator uses the common name member, <strong>pszCommonName</strong>, not the first name
+        member, <strong>pszFirstName</strong>.
+        This can result in an erroneous proxy address.</li>
+</ul>
+	
+
+<p><br><br></p>
+</body>
+</html>

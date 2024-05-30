@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>Multi-CSS Classes Demo</title>
+
+<style>
+span {font-size: 40; width: 150px; height: 50px; cursor: hand; text-align: top;}
+.normal1 {font-family: verdana; color: red;}
+.normal2 {font-family: arial; color: blue}
+.over {font-weight: bold; filter: DropShadow(Color=#FF00FF, OffX=3, OffY=3);}
+
+</style>
+</head>
+<body>
+<h2 style="font-family: verdana">Multi-CSS Classes</h2>
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="top.close();return false">Close This Sample</A>
+</FONT>
+<br>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+<hr>
+As you mouse over each item, the <b>over</b> class is added, then removed, without disrupting the existing styles of the elements
+<br><br>
+<span over=true class="normal1">Eggs</span>
+<span over=true class="normal1">Pasta</span>
+<span over=true>Ham</span>
+<span over=true>Ribs</span>
+<span over=true class="normal2">Eggs</span>
+<span over=true class="normal2">Chicken</span>
+
+<script>
+
+function mouseover() {
+  e = window.event.srcElement;
+  if (e.over == "true") {
+     e.oldClass = e.className;
+     e.className += " over";
+  } 
+}
+
+document.onmouseover = mouseover;
+
+function mouseout() {
+  e = window.event.srcElement;
+  if (e.over == "true") {
+    e.className = e.oldClass;
+  }
+}
+
+document.onmouseout = mouseout;
+
+</script>
+
+</body>
+</html>

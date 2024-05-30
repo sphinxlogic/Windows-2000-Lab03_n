@@ -1,0 +1,10 @@
+LIBRARY EXTDATVW
+
+DESCRIPTION 'Extension Data View'
+
+EXETYPE WINDOWS
+
+EXPORTS
+	ADMIN_Initialize    @1
+
+

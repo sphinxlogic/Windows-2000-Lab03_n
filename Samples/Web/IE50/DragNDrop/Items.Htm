@@ -1,0 +1,102 @@
+<html><head>
+<title>Items to select</title>
+
+<script language="JavaScript">
+
+order = new Object()
+
+function fOnDragStart() {
+  value = 0
+  text = ""
+  for (x in order) {
+    text += x + "  $" + order[x] + "\n"
+    value += parseInt(order[x])
+  }
+  text += "--------------------------------------\n"
+  text += "Total    $" + value + "\n"
+
+  obj = window.event.srcElement
+  if (obj.type == "order") {
+    if (!window.event.dataTransfer) {
+      alert("This version of IE does not support Drag n' Drop")
+      return
+    }
+    window.event.dataTransfer.setData("Text", text);
+    window.event.dataTransfer.clearData("HTML");
+    window.event.dataTransfer.clearData("Image");
+  }
+
+}
+
+function fOnDragOver() {
+  event.returnValue = false;
+  if (window.event.dataTransfer.getData("Text"))
+    window.event.dataTransfer.dropEffect = "copy";
+}
+
+function fOnDrop() {
+  var item = new Object()
+  var elements, text, value, total
+
+  text = window.event.dataTransfer.getData("Text")
+
+  if (text.substr(0, 4) != "Item") return;
+
+  elements = text.split("\n")
+
+  for (x=0; x < elements.length; x++) {
+    value = elements[x].split(":")
+    item[value[0]] = value[1]
+  }
+
+  currentItem.innerText = text
+
+  order[ item['Item'].substr(1, item['Item'].length - 1) ] = item['Price']
+
+  value = 0
+  text = "<table width=\"100%\">"
+  for (x in order) {
+    text += "<tr><td>" + x + "</td><td align=right>$" + order[x] + "</td></tr>"
+    value += parseInt(order[x])
+  }
+  text += "<tr><td><hr></td><td><hr></td></tr>"
+  text += "<tr><td><b>Total</b></td><td align=right><b>$" + value + "</b></td></tr>"
+  text += "</table>"
+  currentOrder.innerHTML = text
+}
+
+</script>
+
+</head>
+<body topmargin=40>
+<h2> Item Specs <hr> </h2>
+Drop a catalog item into the space below to 
+view the specs and add it to your order.
+<br><br><font size="1">
+<i>(Note: the item prices are only used for demo purposes and do not reflect real world price quotes.)</i></font>
+
+<pre id=currentItem
+     onDragEnter="fOnDragOver()"
+     onDragOver="fOnDragOver()"
+     onDrop="fOnDrop()"
+     style="width:90%;background-color:F9F8C1"
+     >
+Drop the item here
+
+
+ </pre>
+
+<p>
+<br>
+<h2> <center>
+     <img onDragStart="fOnDragStart()" src="CurrentOrder.jpg" type=order>
+     <hr> 
+     </center> </h2>
+
+<span id=currentOrder>No items on order</span>
+
+<p>
+<br>
+<i>Drag the current order image above to another application to copy the order</i>
+</body></html>
+

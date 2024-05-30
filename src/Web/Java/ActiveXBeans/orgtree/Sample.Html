@@ -1,0 +1,151 @@
+<HTML>
+<HEAD>
+<TITLE>OrgTree Demo</TITLE>
+</HEAD>
+
+<BODY BGPROPERTIES="FIXED" BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="#0000FF" ALINK="#0000FF" TOPMARGIN=0 LEFTMARGIN=0 onLoad="DoOnLoad()">
+
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE="2">
+
+<A NAME="pagetop"></A>
+
+<!--margin-->
+<TD WIDTH=23><IMG SRC="/art/1pixel.gif" WIDTH=23 HEIGHT=1></TD>
+<!--margin ENDS-->
+
+<!--main title (fixed coloured cell type)-->
+<BR>
+<TABLE BORDER=0 WIDTH=100%>
+<TR><TD BGCOLOR=BLUE WIDTH=200><FONT FACE="HELVETICA, ARIAL" SIZE=4 COLOR=WHITE>
+&nbsp;<NOBR>ActiveX and Beans</NOBR></FONT>
+</TD>
+<!--main title ENDS-->
+
+<!--main page navigation-->
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP></TD>
+
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP><FONT FACE="ARIAL,HELVETICA" SIZE=1 COLOR=BLACK>
+<A HREF="../jbrowser/sample.html"><IMG SRC="../../art/butt_pre.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Previous"></A><BR><B>
+Previous</B></FONT></TD>
+
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP><FONT FACE="ARIAL,HELVETICA" SIZE=1 COLOR=BLACK>
+<A HREF="../../art/start.htm"><IMG SRC="../../art/butt_.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Welcome"></A><BR><B>
+Welcome</B></FONT></TD>
+
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP><FONT FACE="ARIAL,HELVETICA" SIZE=1 COLOR=BLACK>
+<A HREF="../safearray/sample.html"><IMG SRC="../../art/butt_nex.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Next"></A><BR><B>
+Next</B></FONT></TD>
+</TABLE>
+<!--main page navigation ENDS-->
+
+
+<!--this odd little break must accompany .gif filled cell title-->
+<BR>
+
+
+<TABLE BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<TR VALIGN=TOP>
+
+
+<!--main page sub-title-->
+<TD><FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=4>
+<B>OrgTree Demo</B></A>
+</FONT><BR>
+
+<!--main contents (NEW TABLE required in this scenario)-->
+<TABLE BORDER=0>
+<TR><TD ALIGN=LEFT VALIGN=TOP>
+
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=2>
+<P>This is an example of an Organization Tree
+<ul>
+<li>Type "register.bat" in the orgtree directory to register the bean. </li>
+</ul>
+<!--rule-->
+<TABLE WIDTH=95%><TD HEIGHT=1 BGCOLOR=BLUE></TD></TABLE>
+
+<!--rule tex back type>
+<TABLE WIDTH=95%><TD HEIGHT=1 BACKGROUND="../../art/Stex_4.gif" BGCOLOR="WHITE"></TD></TABLE>
+<BR-->
+
+
+<TR><TD>
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=4>
+<B></A></B></FONT><BR>
+<object classid="clsid:43d9f5c0-a906-11d0-a574-8b88d1d3e151"
+name="OrgTree" width=400 height=200>
+</object>
+
+<BR><BR>
+
+<FORM NAME="EmployeeForm">
+<TABLE Border=0><TR VALIGN=MIDDLE><TD>
+	<TD ALIGN=LEFT>
+	<FONT TYPE=FIXED>
+	Employee:<INPUT TYPE="text" NAME="empName" SIZE=30><P>
+	Title........:<INPUT TYPE="text" NAME="empTitle" SIZE=30><P>
+	Manager.:<INPUT TYPE="text" NAME="empManager" SIZE=30><P>
+
+	<INPUT TYPE="button" NAME="Add" VALUE="Add" SIZE=20 onClick="addEmployee()">
+	<INPUT TYPE="button" NAME="Remove" VALUE="Remove" SIZE=20 onClick="removeEmployee()">
+	</FONT></TD>
+</TD></TR></TABLE>
+</FORM>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+	function addEmployee()
+	{
+		OrgTree.addEmployee( document.EmployeeForm.empName.value,
+                             document.EmployeeForm.empTitle.value,
+                             document.EmployeeForm.empManager.value, 0 );
+	}
+
+	function removeEmployee()
+	{
+		alert("removeEmployee");
+	}
+
+	function DoOnLoad()
+	{
+		document.EmployeeForm.empName.value = "John Doe";
+        document.EmployeeForm.empTitle.value = "Baker";
+        document.EmployeeForm.empManager.value = "Jane Doe";
+	}
+//-->
+</SCRIPT>
+
+<SCRIPT LANGUAGE="JavaScript" FOR="OrgTree" EVENT="employeeSelected(empName,empTitle,empManager,row)">
+<!--
+    document.EmployeeForm.empName.value = empName;
+    document.EmployeeForm.empTitle.value = empTitle;
+    document.EmployeeForm.empManager.value = empManager;
+//-->
+</SCRIPT>
+
+
+
+
+<FONT FACE="HELVETICA, ARIAL" SIZE=2>
+<B></B><BR>
+
+<!--remarks 1-->
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=2>
+<B><I>Remarks:</I></B>
+<BR>
+<I>This sample requires Internet Explorer 4.0</I>
+
+<BR>
+
+<!--rule-->
+<TABLE WIDTH=95%><TD HEIGHT=2 BGCOLOR=BLUE></TD></TABLE>
+<BR>
+
+<!--page top button-->
+<TABLE WIDTH=100%><TR><TD ALIGN=LEFT><A HREF="#pagetop"><IMG SRC="../../art/butt_up.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Top"></A></TD>
+
+<!--MS copyright-->
+<TD ALIGN=RIGHT><FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK"><A HREF="../../art/cpyright.htm">&#169; 1996-1997 Microsoft Corporation. All rights reserved.</A></FONT></TD></TR></TABLE>
+</FONT>
+</BODY>
+</HTML>

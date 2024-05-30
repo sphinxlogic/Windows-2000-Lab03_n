@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Synchronous and Asynchronous I/O</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_k2_synchronous_and_asynchronous_i_o"></a>Synchronous and Asynchronous I/O</h3>
+<p>
+This set of samples demonstrates how to perform both synchronous and asynchronous I/O operations from your ISAPI extension. Both flavors of I/O have been provided here for the sake of comparison, and each type of operation has its advantages. Asynchronous reads and writes are powerful extensions to ISAPI, as they allow extensions to free server pool threads from blocking on I/O operations. Even more importantly, asynchronous I/O takes advantage of the special pool of dedicated threads that IIS reserves for asynchronous I/O.  
+<ul>
+<li>
+<b>Synchronous Read:</b> This sample, located in the SYNCREAD subdirectory, demonstrates simple, synchronous reads using the ISAPI callback function <b>ReadClient</b>. The DLL created from this project accepts input from the client browser, then sends it back to the browser as an HTML page. <br><br></li>
+<li>
+<b>Synchronous Write:</b> This example, located in the SYNCWRITE subdirectory, illustrates how to use the callback function <b>WriteClient</b> to perform simple, synchronous writes. This extension, when compiled, sends the file specified in the URL query string back to the client browser synchronously. <br><br></li>
+<li>
+<b>Asynchronous Read:</b> The sample illustrates how you can implement asynchronous reads in an ISAPI extension, using the callback <b>ServerSupportFunction</b> with the HSE_REQ_ASYNC_READ_CLIENT request. In addition, this sample submits a callback function and context of its own to the server by calling <b>ServerSupportFunction</b> with the request HSE_REQ_IO_COMPLETION. This sample is located in the ASYNCREAD subdirectory. This designates the function that IIS will call when the I/O operation has completed. <br><br></li>
+<li>
+<b>Asynchronous Write:</b> This example, located in the ASYNCWRITE subdirectory, uses the callback function <b>WriteClient</b>, with the HSE_IO_ASYNC option set, to write asynchronously to the client browser. This sample also submits a callback function and context to the server by calling <b>ServerSupportFunction</b> with the request HSE_REQ_IO_COMPLETION. This designates the function that IIS will call when the I/O operation has completed. <br><br></li>
+<li>
+<b>Asynchronous Transmit:</b> This sample demonstrates the use of the Win32 <b>TransmitFile</b> function to send a message asynchronously. This sample calls the <b>ServerSupportFunction</b> with the HSE_REQ_TRANSMIT_FILE request. It also specifies the callback function, to be called by IIS when the I/O operation has completed, in the HSE_TF_INFO structure that is passed along with the transmission request. This sample is located in the ASYNCTRANS subdirectory. </li>
+</ul>
+<p>
+These samples are provided for educational purposes only. They have not been tested in a production environment, and Microsoft&reg; will not provide technical support for them. </p>
+</BODY>
+</HTML>

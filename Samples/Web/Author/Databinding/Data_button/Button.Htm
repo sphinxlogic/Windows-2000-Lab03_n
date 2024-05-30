@@ -1,0 +1,116 @@
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<HTML>
+<HEAD>
+<TITLE>The BUTTON Tag</TITLE>
+<META NAME="FILENAME" CONTENT="button.HTM">
+
+<script language="JavaScript">
+
+function forward() {
+
+//This function increments the data bound record after checking to confirm 
+//you are not already at the end of the recordset. If you are, the program 
+//alerts you that it cant go any further. 
+
+  if (StockList.recordset.AbsolutePosition != StockList.recordset.RecordCount) {
+	StockList.recordset.MoveNext();
+	}
+	else {
+	alert("Already at last element");
+	}
+}
+
+function reverse() {
+
+//This function decrements the data bound record after checking to confirm  
+//you are not already at the end of the recordset. If you are, the program 
+//alerts you that it cant go any further.  
+
+  if (StockList.recordset.AbsolutePosition != 1) {
+	StockList.recordset.MovePrevious();
+	}
+	else {
+	alert("Already at first element");
+	}
+}
+
+</SCRIPT>
+</head>
+
+
+<body TOPMARGIN=20 leftmargin=40 bgcolor="#ffffff" link="#000066"
+	vlink="#666666 text="#000000">
+
+<H2>The BUTTON Tag</H2>
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT>
+<P>
+<P>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+<hr>
+<br>
+
+BUTTON is a new tag introduced in HTML 4.0 that inserts a push button into the
+page. The button label can be bound to the current record of a data set. The DATAFORMATAS attribute can be used to interpret the bound data as HTML and display it appropriately. If no data is bound to the button, the button label will contain the HTML included between the &lt;BUTTON&gt; and &lt;/BUTTON&gt; tags. An example of a button used with current record binding is shown below.
+<p>
+Click on the arrow buttons to change the current record. Notice that the
+value displayed in the button changes to match the value in the current record.
+<P>
+<object id="StockList" classid="clsid:333C7BC4-460F-11D0-BC04-0080C7055A83"
+	width=0 height=0>
+<param name="UseHeader" value="True">
+<param name="DataURL" value="quotes.txt">
+</object>
+<center>
+
+Button with plain text:
+<Button datasrc="#StockList" datafld="Symbol"></button>
+<p>
+Button with HTML:
+<Button datasrc="#StockList" datafld="Symbol_fmt" dataformatas="html"> </button>
+
+<hr width=100>
+<input type="button" value="  <  " onClick="reverse();">
+<input type="button" value="  >  " onClick="forward();">
+<hr width=100>
+<p>
+Bound buttons can also be used in repeated tables. An example follows:
+<P>
+<table datasrc="#StockList" border=1>
+	<THEAD>
+		<tr>
+		  <th> 
+			  <DIV> Text</DIV>
+		  </th>
+		  <th> 
+			  <DIV> HTML</DIV>
+		  </th>
+		</tr>
+	</THEAD>
+	<TBODY>
+		<td align=center> 
+			  <Button datafld="Symbol"></button>
+		</td>
+		<td align=center> 
+			  <Button datafld="Symbol_fmt" dataformatas="html"></button>
+		</td>
+	</TBODY>
+</Table>
+</center>
+<p>
+
+Click on <a href="quotes.txt">quotes.txt</a> to see the data file
+used by this page.
+<P>
+<P>
+<P>
+<P>
+<FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">
+&copy; <A HREF="/misc/cpyright.htm" TARGET="_top">1999 Microsoft Corporation. All rights reserved. Terms of use</A>.
+
+</font>
+</body>
+</html>

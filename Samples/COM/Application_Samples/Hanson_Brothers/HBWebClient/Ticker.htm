@@ -1,0 +1,60 @@
+
+
+<HTML>
+<HEAD><TITLE>MSWeb @ Microsoft</TITLE>
+<link rel="STYLESHEET" href="pg.css">
+
+<SCRIPT language="JavaScript">
+var fRunning = 0
+function startTrans()
+{
+	if (fRunning == 0){
+		fRunning = 1;
+		mytimeout = setTimeout("startTrans()",2500);
+	}else { giveslogan.filters.blendTrans.Apply();
+		giveslogan.style.visibility = "hidden";
+		giveslogan.filters.blendTrans.Play();
+		giveheadline.filters.blendTrans.Apply();
+		giveheadline.style.visibility = "visible";
+		giveheadline.filters.blendTrans.Play();
+		}
+}
+</SCRIPT>
+
+
+</HEAD>
+<!--end of ie 3.02 version-->
+<script language=javascript>
+function toggle(e){
+  if (e.style.display == "none")
+  	{e.style.display = "";}
+  else
+	 {e.style.display = "none";  }}
+</script>
+<BODY BGCOLOR="black" TOPMARGIN=0 LEFTMARGIN=0>
+<DIV></DIV>
+	<DIV id="ticker" style="HEIGHT: 40px; MARGIN-LEFT: 92px; WIDTH: 608px; Z-INDEX: 3">
+	<CENTER>
+<OBJECT classid=clsid:AE775D48-49AA-11d1-8F1C-00C04FB67063 
+codeBase=http://fdl.msn.com/public/investor/v5/ticker.cab#version=5,1998,0324,1 
+height=33 id=iexr2 type=application/x-oleobject width=600 VIEWASTEXT>
+<param name="NumLines" value="2"><param name="DataObjectActive" 
+value="1"><param name="ServerRoot" value="http://investor.msn.com"><param 
+name="AppRoot" value="http://investor.msn.com"><param name="Keywords" 
+value="http://www.msnbc.com/news/ticker.txt"><param name="InvestorURL" 
+value="http://investor.msn.com/"><param name="InvestorSite" value="0"> 
+								</OBJECT>
+	<BR>
+	
+<p>&nbsp;<p>
+<OBJECT classid=clsid:7823A620-9DD9-11CF-A662-00AA00C066D2 
+codeBase=http://activex.microsoft.com/controls/iexplorer/iemenu.ocx#Version=4,70,0,1161 
+height=1 id=helppop1 type=application/x-oleobject width=1>
+	<PARAM NAME="_ExtentX" VALUE="26">
+	<PARAM NAME="_ExtentY" VALUE="26">
+</OBJECT>
+</p></CENTER></DIV>
+
+
+</BODY>
+</HTML>

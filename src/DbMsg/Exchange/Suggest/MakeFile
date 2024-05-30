@@ -1,0 +1,35 @@
+#---------------------------------------------------------------------------
+# Description:
+#   Make file to generate Suggest.Dll
+#
+# Copyright (C) Microsoft Corporation 1986 - 1998.  All Rights Reserved.
+#---------------------------------------------------------------------------
+Proj = Suggest
+
+#USE_EXCHANGE=1
+#Use_MFC = 1
+dll=1
+
+
+CL= $(CL) -D_ATL_STATIC_REGISTRY
+
+libs=$(libs) kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib mapi32.lib 
+
+ObjList =  $(ObjDir)\$(Proj).Obj        \
+           $(ObjDir)\ExevHandler.Obj    \
+           $(ObjDir)\SuggestEvents.Obj  \
+           $(ObjDir)\$(Proj).res           
+         
+
+!Include <BkOffice.Mak>
+
+$(ObjDir)\$(Proj).Obj: $(ObjDir)\$(Proj).h $(Proj)_i.c
+
+$(Proj)_i.c $(ObjDir)\$(Proj).h: $(Proj).Idl
+    $(MkDest)
+    midl /out $(@D) $? $(LogCmd) 
+
+all: $(ObjDir)\$(Proj).Dll 
+
+$(ObjDir)\$(Proj).Dll: $(ObjList)
+

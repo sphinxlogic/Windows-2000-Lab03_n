@@ -1,0 +1,109 @@
+Option Explicit
+Const LAYOUTFLAG_VERTICAL_ONLY = 65
+Const LAYOUTFLAG_VERTICAL_AND_HORIZONTAL = 68
+
+Dim Critique_Status
+On Error Resume Next
+Critique_Status = False
+Function Item_Open()
+  Item.UserProperties("OldUserName").Value=""
+  Dim MyPage
+  'Choose the default option of radio button to load image
+  Set MyPage = Item.GetInspector.ModifiedFormPages("Message")
+  Select Case Item.UserProperties("Media").Value 
+     Case "Book"
+	set MyPage.imgMedia.Picture = MyPage.ImageList1.ListImages("Book").Picture
+     Case "Audio/Video"
+	set MyPage.imgMedia.Picture = MyPage.ImageList1.ListImages("AV").Picture
+     Case "Periodicals"
+	set MyPage.imgMedia.Picture = MyPage.ImageList1.ListImages("Prd").Picture
+     Case "Software"
+	set MyPage.imgMedia.Picture = MyPage.ImageList1.ListImages("Soft").Picture
+  End Select
+
+  'To Resize the Message Control Vertically
+  MyPage.frmMessage.LayoutFlags=LAYOUTFLAG_VERTICAL_AND_HORIZONTAL
+  MyPage.frmMessage.txtMessage.LayoutFlags=LAYOUTFLAG_VERTICAL_AND_HORIZONTAL 
+
+End Function
+
+'This event is fired when value of custom property changes
+Sub Item_CustomPropertyChange(ByVal Name)
+
+  Dim MyPage
+  Set MyPage=Item.GetInspector.ModifiedFormPages("Message") 
+  Select Case Name
+     Case "Item Title"
+	    If Not Critique_Status   then
+  	      Item.UserProperties("Subject").Value="Critique of: " & Item.UserProperties("Item Title").Value
+	    End If
+   
+     Case "Media"
+ 	  Select Case Item.UserProperties("Media").Value 
+     	    Case "Book"
+	  	Set MyPage.imgMedia.Picture = MyPage.ImageList1.ListImages("Book").Picture
+          Case "Audio/Video"
+            Set MyPage.imgMedia.Picture = MyPage.ImageList1.ListImages("AV").Picture
+          Case "Periodicals"
+            Set MyPage.imgMedia.Picture = MyPage.ImageList1.ListImages("Prd").Picture
+          Case "Software"
+            Set MyPage.imgMedia.Picture = MyPage.ImageList1.ListImages("Soft").Picture
+
+          End Select
+   End Select
+End Sub
+
+'This event is fired when the standard property like subject,from,to is changed
+Sub Item_PropertyChange(ByVal Name)
+	Dim TempString
+ 	Select Case Name
+  	  Case "Subject"
+	    TempString = "Critique of: " & Item.UserProperties("Item Title").Value
+	    If TempString <> UserProperties("Subject").Value then 
+	    	Critique_Status = True
+	    End If
+	  Case Else
+      End Select
+End Sub
+
+'Event is called when User hits the post button 
+Function Item_Write()
+	Dim Mypage
+   	If Item.UserProperties("AuthName").Value = "<Last,First>"  or Item.UserProperties("AuthName").Value ="" then
+		Item.UserProperties("AuthName").Value="Not Mentioned"
+	End If
+	If Item.UserProperties("Tech Level").Value= "<Select Rating>" then
+		Item.UserProperties("Tech Level").Value="Not Rated"
+	End If
+	If Item.UserProperties("Job Relevance").Value="<Select Rating>" then
+		Item.UserProperties("Job Relevance").Value ="Not Rated"
+	End If
+	If Item.UserProperties("Clarity Rating").Value="<Select Rating>" then
+		Item.UserProperties("Clarity Rating").Value = "Not Rated"
+	End If 
+	
+	'To attach the text to body property of postItem
+	Item.HTMLbody = "<i> " & Item.UserProperties("CritiqueText").Value & "</i>"
+	
+	Set MyPage = Item.GetInspector.ModifiedFormPages("Message")
+	Select Case Item.UserProperties("Media").Value
+	   Case "Book"
+		Set MyPage.imgMedia.Picture = MyPage.ImageList1.ListImages("Book").Picture
+	   Case "Audio/Video"
+		Set MyPage.imgMedia.Picture = MyPage.ImageList1.ListImages("AV").Picture
+	   Case "Periodicals"
+		Set MyPage.imgMedia.Picture = MyPage.ImageList1.ListImages("Prd").Picture
+	   Case "Software"
+		Set MyPage.imgMedia.Picture = MyPage.ImageList1.ListImages("Soft").Picture
+	End Select
+
+	'Concatenating the strings into one field 
+	Item.UserProperties("LongAuthor").value = "by " & Item.UserProperties("AuthName").value
+	Item.UserProperties("LongMedia").value  = Item.UserProperties("Media").value & " reviewed by "  & Application.GetNameSpace("MAPI").CurrentUser & " on " & Now()
+End Function
+
+Function Item_CustomAction(ByVal Action, ByVal NewItem)
+	MsgBox "CUSTOMACTION: " & Action
+	MsgBox "NEWITEM: " & NewItem
+End Function
+    

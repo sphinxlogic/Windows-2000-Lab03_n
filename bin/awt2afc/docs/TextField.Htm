@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>TextField -> UIEdit</title>
+<base target="descriptions">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">TextField to UIEdit</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.TextField should be transformed into instances of
+com.ms.ui.UIEdit.</p>
+
+<p align="left">TextField extends <a href="TextComponent.htm"
+target="descriptions">TextComponent</a>: be sure to see its
+changes.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">TextField provides a single-line text input
+component. UIEdit provides for both single-line and multi-line
+input components, so to restrict to a single line, simply call <font
+size="2" face="Courier">setSingleLine(true) </font>on your UIEdit
+object. To specify a preferred or minimum size for a UIEdit
+control, you must create a new class which extends UIEdit and
+overrides the <font size="2" face="Courier">getPreferredSize()</font>
+or <font size="2" face="Courier">getMinimumSize()</font> method.</p>
+
+<p align="left">UIEdit extends UIDrawText, a class that provides
+many new options: you can set alignments, foreground and
+background colors, and many others. See the documentation for
+UIDrawText for many more options.</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">This is the set of changes you need to make to
+port all TextField methods to UIEdit methods. Any method not
+listed here or below does not need to be changed.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial"><strong>AWT Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">TextField() or<br>
+        TextField(String)</font></td>
+        <td nowrap><font size="2" face="Courier">object = new
+        UIEdit(); // or UIEdit(String)<br>
+        object.setSingleLine(true);</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">TextField(int)
+        or<br>
+        TextField(String, int)</font></td>
+        <td nowrap><font size="2" face="Courier">object = new
+        UIEdit(); // or UIEdit(String)<br>
+        object.setMaxBufferSize(int);</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getEchoChar()</font></td>
+        <td><font size="2" face="Courier">getPasswordChar()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getColumns()</font></td>
+        <td><font size="2" face="Courier">getMaxBufferSize()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">minimumSize()</font></td>
+        <td><font size="2" face="Courier">getMinimumSize()</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setEchoChar(char)</font></td>
+        <td><font size="2" face="Courier">setPasswordChar(char)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setEchoCharacter(char)</font></td>
+        <td><font size="2" face="Courier">setPasswordChar(char)</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setColumns()</font></td>
+        <td><font size="2" face="Courier">setMaxBufferSize()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h3>Unsupported Methods</h3>
+
+<p>Some methods in java.awt.TextField are not directly supported
+in com.ms.ui.UIEdit. Those methods and suggested changes are
+described here.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial">AWT Code<strong>/Suggested
+        AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">echoCharIsSet()</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">getMinimumSize(int)</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getPreferredSize(int)</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">minimumSize(int)</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">paramString()</font><p><font
+        size="2" face="Courier"><strong>getName(), etc.</strong></font></p>
+        </td>
+        <td><font size="2">Use the appropriate getXXX function to
+        gather the information you need.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">preferredSize(int)</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+</table>
+</body>
+</html>

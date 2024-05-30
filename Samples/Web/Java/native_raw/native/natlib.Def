@@ -1,0 +1,4 @@
+LIBRARY     NATLIB
+
+EXPORTS
+    RNIGetCompatibleVersion

@@ -1,0 +1,49 @@
+------------------------------------------------------------------
+         Microsoft NetMeeting 2.1 SDK ILSINST Readme File
+                         November 1997            
+------------------------------------------------------------------
+
+             (c) Copyright Microsoft Corporation, 1997
+
+CONTENTS
+========
+
+OVERVIEW OF THE ILSINST.EXE
+USING ILSINST.EXE
+
+
+OVERVIEW OF THE ILSINST.EXE
+===========================
+The REDISTRB directory contains ILSINST.EXE.  This is a self-extracting
+executable that installs WLDAP32.DLL and ILS.DLL.  ILSINST.EXE is provided
+for two purposes:
+
+1.  Developers who do not need the rest of the NetMeeting APIs can install
+support for the ILS APIs without installing the rest of NetMeeting.
+
+2.  ISVs interested in leveraging the ILS APIs without the rest of the
+NetMeeting APIs, can ship and execute ILSINST.EXE as a part of their setup
+procedure.  This will result in correctly installed versions of the necessary
+DLLs on the customers machine.
+
+USING ILSINST.EXE
+=====================
+ILSINST.EXE can be run in two ways: with UI feedback and without it.
+
+With UI feedback:  Simply executing the sample will prompt the end-user with
+typical setup language - "Do you want to install ILS support?", etc.   This
+mode will typically be leveraged by developers who are simply looking to install
+ILS support on their machines without installing NetMeeting.
+
+Without UI feedback:  If you execute the sample with a command line switch - /Q -
+then no user interface will be presented as a result of running the executable.
+This mode is intended to be used during the setup procedure for your application.
+If you don't want the standard Microsoft UI to appear, you can use this switch to
+force no UI to appear.
+
+The self-extracting executable installs two files to the users machine: 
+ils.dll and wldap32.dll.  Both are placed in the WINDOWS\SYSTEM directory if
+the user is running Windows 95 or WINNT\SYSTEM32 if the user is running
+Windows NT.
+
+

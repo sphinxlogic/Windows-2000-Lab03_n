@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>Checkbox -> UICheckButton</title>
+<base target="descriptions">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">Checkbox to UICheckButton</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.Checkbox should be transformed into instances of
+com.ms.ui.UICheckButton. </p>
+
+<p align="left">Checkbox extends <a href="Component.htm"
+target="descriptions">Component</a>: be sure to see its changes.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">In AWT, all Checkbox components are limited to
+strings. AFC allows you to do this: however, it also allows you
+to enter UIComponents as UICheckButtons. In this manner, not only
+can you have text components adjacent to your checkbutton, but
+you can have images and even canvasses. You also have more
+control over the look of the components, including hottracking,
+toggle methods, and selection.</p>
+
+<p align="left">The transformation of AWT to AFC components is
+simple: to add text components, for example, you would replace</p>
+
+<p align="left"><font face="Courier New">add(&quot;foo&quot;);</font></p>
+
+<p align="left">by</p>
+
+<p align="left"><font face="Courier New">add(new
+UIText(&quot;Foo&quot;));</font></p>
+
+<p align="left">&nbsp;</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">This is the set of changes you need to make to
+port all Checkbox methods to UICheckButton methods. Any method
+not listed here or below does not need to be changed.</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial"><strong>AWT Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">Checkbox(String)</font></td>
+        <td><font size="2" face="Courier">UICheckButton(String)</font></td>
+        <td><font size="2">Better to use UIComponents (see above)</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">Checkbox(String,
+        boolean)</font></td>
+        <td nowrap><font size="2" face="Courier">UICheckButton(String);<br>
+        (UICheckButton).setChecked(boolean)</font></td>
+        <td><font size="2">Better to use UIComponents (see above)</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getLabel()</font></td>
+        <td><font size="2" face="Courier">getName()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getState()</font></td>
+        <td><font size="2" face="Courier">isChecked()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setLabel(String)</font></td>
+        <td><font size="2" face="Courier">setName(String)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setState()</font></td>
+        <td><font size="2" face="Courier">setChecked()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h3>Unsupported Methods</h3>
+
+<p>Some methods in java.awt.Checkbox are not directly supported
+in com.ms.ui.UICheckButton. Those methods and suggested changes
+are described here.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial">AWT Code<strong>/Suggested
+        AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">Checkbox(String,
+        boolean, CheckboxGroup)</font><p><font size="2"
+        face="Courier"><strong>UICheckButton(String);<br>
+        (UICheckButton).setChecked(boolean)</strong></font></p>
+        </td>
+        <td><font size="2">AFC does not have a </font><a
+        href="CheckboxGroup.htm" target="descriptions"><font
+        size="2">CheckboxGroup</font></a><font size="2">: see
+        that page for more information.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2"><br>
+        </font><font size="2" face="Courier">Checkbox(String,
+        CheckboxGroup, boolean)</font><p><font size="2"
+        face="Courier"><strong>UICheckButton(String);<br>
+        (UICheckButton).setChecked(boolean)</strong></font></p>
+        </td>
+        <td><font size="2">AFC does not have a CheckboxGroup: see
+        that page for more information.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getCheckboxGroup()</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td><font size="2">AFC does not have a CheckboxGroup: see
+        that page for more information.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setCheckboxGroup(CheckboxGroup)</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td><font size="2">AFC does not have a CheckboxGroup: see
+        that page for more information.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getSelectedObjects()</font><p><font
+        size="2" face="Courier"><strong>getName()</strong></font></p>
+        </td>
+        <td><font size="2">getSelectedObjects() returns an array
+        containing the label: getName() will just return the
+        label itself.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">paramString()</font><p><font
+        size="2" face="Courier"><strong>getName() or isChecked()</strong></font></p>
+        </td>
+        <td><font size="2">paramString() returns a list of
+        current settings: instead, you should just get the
+        setting you want.</font></td>
+    </tr>
+</table>
+</body>
+</html>

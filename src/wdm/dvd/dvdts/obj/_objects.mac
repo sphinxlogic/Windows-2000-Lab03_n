@@ -1,0 +1,40 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\dvd.res \
+    $(_OBJ_DIR)\alpha\dvdirq.obj \
+    $(_OBJ_DIR)\alpha\dvdinit.obj \
+    $(_OBJ_DIR)\alpha\devque.obj \
+    $(_OBJ_DIR)\alpha\debug.obj \
+    $(_OBJ_DIR)\alpha\dvdcmd.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\dvd.res \
+    $(_OBJ_DIR)\axp64\dvdirq.obj \
+    $(_OBJ_DIR)\axp64\dvdinit.obj \
+    $(_OBJ_DIR)\axp64\devque.obj \
+    $(_OBJ_DIR)\axp64\debug.obj \
+    $(_OBJ_DIR)\axp64\dvdcmd.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\dvd.res \
+    $(_OBJ_DIR)\i386\dvdirq.obj \
+    $(_OBJ_DIR)\i386\dvdinit.obj \
+    $(_OBJ_DIR)\i386\devque.obj \
+    $(_OBJ_DIR)\i386\debug.obj \
+    $(_OBJ_DIR)\i386\dvdcmd.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\dvd.res \
+    $(_OBJ_DIR)\ia64\dvdirq.obj \
+    $(_OBJ_DIR)\ia64\dvdinit.obj \
+    $(_OBJ_DIR)\ia64\devque.obj \
+    $(_OBJ_DIR)\ia64\debug.obj \
+    $(_OBJ_DIR)\ia64\dvdcmd.obj
+
+PASS0_IA64_OBJECTS=
+

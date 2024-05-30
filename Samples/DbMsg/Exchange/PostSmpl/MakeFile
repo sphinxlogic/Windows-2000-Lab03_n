@@ -1,0 +1,25 @@
+#---------------------------------------------------------------------------
+# Description:
+#   Make file to generate PostSmpl.exe
+#
+# Copyright 1986 - 1998 Microsoft Corporation.  All Rights Reserved.
+#---------------------------------------------------------------------------
+
+USE_EXCHANGE=1
+Use_MFC=1
+Use_MSCRT=1
+
+Proj = PostSmpl
+
+!Include <BkOffice.Mak>
+
+CL = -GX $(CL)
+
+ObjList = $(ObjDir)\PostSmpl.Res $(@D)\PostSmpl.Obj $(@D)\FldPick.Obj \
+          $(@D)\PostData.Obj $(@D)\MainFrm.Obj $(@D)\FreeDoc.Obj $(@D)\SummInfo.Obj \
+          $(@D)\PostDoc.Obj $(@D)\PostView.Obj $(@D)\PropSet.Obj \
+          $(@D)\StdAfx.Obj
+
+all:      $(ObjDir)\PostSmpl.Exe
+
+$(ObjDir)\$(Proj).Exe:  $(ObjList)

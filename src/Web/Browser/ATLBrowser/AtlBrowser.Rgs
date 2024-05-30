@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		{0818D423-6247-11D1-ABEE-00D049C10000} = s 'AtlBrowser'
+		'AtlBrowser.EXE'
+		{
+			val AppID = s {0818D423-6247-11D1-ABEE-00D049C10000}
+		}
+	}
+}

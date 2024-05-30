@@ -1,0 +1,54 @@
+LIBRARY VB4SMS32
+
+EXETYPE WINDOWS
+
+CODE PRELOAD MOVEABLE DISCARDABLE
+DATA PRELOAD MOVEABLE
+
+HEAPSIZE 1024
+
+EXPORTS
+    SmsAPIVerVB                 @10
+    SmsDataSourceConnectVB      @11
+    SmsDataSourceDisconnectVB   @12
+    SmsDescribeFolderVB         @13
+    SmsEnumContainersVB         @14
+    SmsEnumFoldersVB            @15
+    SmsEnumFiltersVB            @16
+    SmsOpenContainerVB          @23
+    SmsSetFilterVB              @24
+    SmsPopulateVB               @25
+    SmsGetNextFolderVB          @26
+    SmsCloseContainerVB         @27
+    SmsCreateFolderVB           @28
+    SmsGetFolderIDVB            @29
+    SmsGetFolderTypeVB          @30
+    SmsEnumFolderTypesVB        @31
+    SmsGetFolderCountVB         @32
+    SmsGetFolderByIDVB          @33
+    SmsRewindVB                 @34
+    SmsCloseFolderVB            @35
+    SmsLinkFolderVB             @36
+    SmsUnlinkFolderVB           @37
+    SmsCommitFolderVB           @38
+    SmsDupFolderVB              @39
+    SmsGetScalarCountVB         @40
+    SmsGetNextScalarVB          @41
+    SmsGetScalarByNameVB        @42
+    SmsSetScalarVB              @43
+    SmsOpenFilterContainerVB    @44
+    SmsCloseFilterContainerVB   @45
+    SmsGetNextFilterVB          @46
+    SmsGetFilterByIDVB          @47
+    SmsGetFilterIDVB            @48
+    SmsCommitFilterVB           @49
+    SmsCreateFilterVB           @50
+    SmsCloseFilterVB            @51
+    SmsGetFilterTypeVB          @52
+    SmsGetTokenVB               @53
+    SmsAddTokenVB               @54
+    SmsGetTokenCountVB          @55
+    SmsManipulateTokensVB       @56
+    SmsGetAllFiltersVB          @57
+    SmsEnumObjectTypesVB        @58
+    SmsEnumObjectsVB            @59

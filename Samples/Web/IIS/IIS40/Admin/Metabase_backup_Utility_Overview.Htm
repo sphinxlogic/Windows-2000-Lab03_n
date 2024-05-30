@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Metabase Backup Utility</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h2><a name="_metabase_backup_utility"></a>Metabase Backup Utility</h2>
+<p>
+The IIS metabase is a large and complicated structure, and is home for a potentially huge amount of vital information about your Internet sites. With all that complexity, and so much riding on the metabase remaining authentic, valid, and uncorrupted, it shouldn't be a surprise that backing up the metabase has been made into a relatively easy affair. This tool demonstrates how you can create a tool that makes backing up the metabase even easier. </p>
+<p>
+All metabase backup functionality is provided at the IIS://LocalHost level, so this string is passed to <b>GetObject</b> to get a reference to the local machine object. The <b>Backup</b> method is then invoked with several parameters, including a location, version number, and a number of flags. You needn't worry about the flags, but the other two parameters bear mentioning. The location refers to a name that you give to your set of backup versions. Backup implementation will most likely change in the future, but at the time of this writing, all backups are stored in the same directory. Therefore, it might be helpful, and less confusing, to think of location as the name of a series of backup snapshots. </p>
+<p>
+The backup version parameter can be explicit, or you can use one of several special values, the most important being &amp;HFFFFFFFF. This value, which equals -1 in VBScript, indicates that the <b>Backup</b> method should assign a version number to this backup that is one higher than the highest version number found for that location. </p>
+<p>
+This sample is provided for educational purposes only. It has not been tested in a production environment, and Microsoft&reg; will not provide technical support for it. </p>
+</BODY>
+</HTML>

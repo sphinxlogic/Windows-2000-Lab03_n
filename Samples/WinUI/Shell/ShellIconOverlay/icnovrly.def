@@ -1,0 +1,9 @@
+LIBRARY     ICNOVRLY
+
+DESCRIPTION "Sample Shell Shell Icon Overlay Identifier"
+
+EXPORTS
+   DllCanUnloadNow   PRIVATE
+   DllGetClassObject PRIVATE
+   DllRegisterServer PRIVATE
+   DllUnregisterServer PRIVATE

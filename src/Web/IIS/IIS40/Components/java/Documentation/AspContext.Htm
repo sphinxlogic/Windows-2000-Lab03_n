@@ -1,0 +1,75 @@
+<html>
+
+<head>
+<title>AspContext</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 3.0">
+</head>
+
+<body>
+<body TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<font FACE="Arial" SIZE="4"><b>
+
+<p><a NAME="_Toc397403947">AspContext</a></p>
+</b></font>
+
+<p>The <b>AspContext</b> is the object that you use to access the objects in your
+component's context. You retrieve one of the objects in the context, such as 
+Response, Request, ObjectContext, Session, Application, or Server, by calling the get
+method that corresponds to the object that you want to retrieve. Since all of the member
+functions are static, you do not need to actually to create an instance of AspContext. </p>
+
+<p>Since an object's context is only guaranteed valid for a single HTTP request, you
+should get a fresh reference to an object in your context in each method call. <font
+FACE="Courier New" SIZE="1"></p>
+</font><font FACE="Courier New" size="2">
+
+<p>public class AspContext<br>
+{<br>
+&nbsp;&nbsp;&nbsp; public static Request <a HREF="#getRequest">getRequest</a>();<br>
+&nbsp;&nbsp;&nbsp; public static Response <a HREF="#getResponse">getResponse</a>();<br>
+&nbsp;&nbsp;&nbsp; public static Server <a HREF="#getServer">getServer</a>();<br>
+&nbsp;&nbsp;&nbsp; public static Session <a HREF="#getSession">getSession</a>();<br>
+&nbsp;&nbsp;&nbsp; public static Application <a HREF="#getApplication">getApplication</a>();<br>
+&nbsp;&nbsp;&nbsp; public static IObjectContext <a HREF="#getObjectContext">getObjectContext</a>();<br>
+}<br>
+</p>
+</font>
+
+<hr>
+<font face="Arial" size="3"><b>
+
+<p><font color="#0000A0"><em>AspContext Members</em></font></p>
+</b></font>
+
+<p><font face="Arial" size="3"><b>public static Request <a NAME="getRequest"></a>getRequest( );</b></font></p>
+
+<p>Returns a reference to the current Request object.</p>
+
+<p><font face="Arial" size="3"><b>public static Response <a NAME="getResponse"></a>getResponse( );</p>
+</b></font>
+
+<p>Returns a reference to the current Response object.</p>
+
+<p><font face="Arial" size="3"><b>public static Server <a NAME="getServer"></a>getServer( );</p>
+</b></font>
+
+<p>Returns a reference to the current Server object.</p>
+
+<p><font face="Arial" size="3"><b>public static Session <a NAME="getSession"></a>getSession( );</p>
+</b></font>
+
+<p>Returns a reference to the current Session object.</p>
+
+<p><font face="Arial" size="3"><b>public static Application <a NAME="getApplication"></a>getApplication( );</p>
+</b></font>
+
+<p>Returns a reference to the current Application object.</p>
+
+<p><font face="Arial" size="3"><b>public static IObjectContext <a NAME="getObjectContext"></a>getObjectContext( );</p>
+</b></font>
+
+<p>Returns a reference to the current IObjectContext, which can be used by your component
+if it supports transactions. For more information on IObjectContext, see the Microsoft
+Transaction Server documentation.</p>
+</body>
+</html>

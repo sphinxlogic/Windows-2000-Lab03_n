@@ -1,0 +1,9 @@
+DIRS= \
+     ac97 \
+     ddksynth \
+     dmusuart \
+     fmsynth \
+     mpu401 \
+     sb16 \
+     stdunk \
+     uart

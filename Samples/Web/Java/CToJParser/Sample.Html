@@ -1,0 +1,847 @@
+<HTML>
+<HEAD>
+<TITLE>C to Java Header Parser</TITLE>
+</HEAD>
+
+<BODY BGPROPERTIES="FIXED" BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="#0000FF" ALINK="#0000FF" TOPMARGIN=0 LEFTMARGIN=0>
+
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE="2">
+
+<A NAME="pagetop"></A>
+
+<!--margin-->
+<TD WIDTH=23><IMG SRC="../art/1pixel.gif" WIDTH=23 HEIGHT=1></TD>
+<!--margin ENDS-->
+
+<!--main title (fixed coloured cell type)-->
+<BR>
+<TABLE BORDER=0 WIDTH=100%>
+<TR><TD BGCOLOR=BLUE WIDTH=200><FONT FACE="HELVETICA, ARIAL" SIZE=4 COLOR=WHITE>
+&nbsp;
+Applications</FONT>
+</TD>
+<!--main title ENDS-->
+
+<!--main page navigation-->
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP></TD>
+
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP><FONT FACE="ARIAL,HELVETICA" SIZE=1 COLOR=BLACK>
+<A HREF="../xmldso/sample.html" ><IMG SRC="../art/butt_pre.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Previous"></A><BR><B>
+Previous</B></FONT></TD>
+
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP><FONT FACE="ARIAL,HELVETICA" SIZE=1 COLOR=BLACK>
+<A HREF="../art/start.htm" ><IMG SRC="../art/butt_.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Welcome"></A><BR><B>
+Welcome</B></FONT></TD>
+
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP><FONT FACE="ARIAL,HELVETICA" SIZE=1 COLOR=BLACK>
+<A HREF="../native/sievedemo/sample.html" ><IMG SRC="../art/butt_nex.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Next"></A><BR><B>
+Next</B></FONT></TD>
+</TABLE>
+<!--main page navigation ENDS-->
+
+
+<!--this odd little break must accompany .gif filled cell title-->
+<BR>
+
+
+<TABLE BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<TR VALIGN=TOP>
+
+
+<!--main page sub-title-->
+<TD><FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=4>
+<B>Parser for Win32 API header files</B></A>
+</FONT><BR>
+
+<!--main contents (NEW TABLE required in this scenario)-->
+<TABLE BORDER=0>
+<TR><TD ALIGN=LEFT VALIGN=TOP>
+
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=2>
+
+<P>This tool was used to generate a significant portion of the Win32 API classes. It is being included for you to use and modify to fit your specific needs. Remember that C header files were not designed to be language-independent descriptions, and that there is more than one correct way to represent some data types in Java. Thus, some functions will require hand-translation. For information on how to do this, see the J/Direct documentation.
+ 
+<P>Notes:
+ 
+<UL>
+<LI>Currently we prefer the Unicode version of functions if possible. This avoids the overhead on NT of converting the Java string to ASCII then the ASCII wrapper converting the string back to Unicode internally. But most of the time we will output the auto keyword on structs and functions.
+ 
+<LI>COM uses a different object and function handling method.
+
+<LI>Inside structs the output only includes strings.
+ 
+</UL>
+
+<H2>Class Parser</H2>
+<PRE>public class Parser
+{
+  // Fields
+  protected static final String <A HREF="#PackageName">PackageName</A>;
+  protected PrintWriter <A HREF="#PuntOutput">PuntOutput</A>;
+  protected Vector <A HREF="#Functions">Functions</A>;
+  protected Vector <A HREF="#Symbols">Symbols</A>;
+  protected Hashtable <A HREF="#TypeLUT">TypeLUT</A>;
+  protected Hashtable <A HREF="#StringTypes">StringTypes</A>;
+  protected Hashtable <A HREF="#OutputClasses">OutputClasses</A>;
+  protected Hashtable <A HREF="#StructureLUT">StructureLUT</A>;
+  protected Hashtable <A HREF="#Precedence">Precedence</A>;
+  protected Vector <A HREF="#IncludeHeaders">IncludeHeaders</A>;
+  protected Vector <A HREF="#ExcludeHeaders">ExcludeHeaders</A>;
+  protected Vector <A HREF="#ExcludeFunctions">ExcludeFunctions</A>;
+  protected static final boolean <A HREF="#ReadSymbols">ReadSymbols</A>;
+  protected static final boolean <A HREF="#Suppress_UnknownLib_Functions">Suppress_UnknownLib_Functions</A>;
+  protected static final boolean <A HREF="#Suppress_Unused_Structures">Suppress_Unused_Structures</A>;
+  protected static final boolean <A HREF="#Comment_Variant_Types">Comment_Variant_Types</A>;
+  protected static final int <A HREF="#DEBUG">DEBUG</A>;
+  protected static final String <A HREF="#AnonymousString">AnonymousString</A>;
+  protected static final String <A HREF="#UnknownFileString">UnknownFileString</A>;
+  protected static final String <A HREF="#UnknownLibraryString">UnknownLibraryString</A>;
+  protected static final String <A HREF="#ExcludeFunctionFile">ExcludeFunctionFile</A>;
+  public static final String <A HREF="#CallbackString">CallbackString</A>;
+  
+
+  // Constructors
+  public <A HREF="#Parser()">Parser</A>();
+
+  // Methods
+  public void <A HREF="#finalizer()">finalizer</A>();
+  protected void <A HREF="#ReadExcludeFunctions()">ReadExcludeFunctions</A>();
+  public static final void <A HREF="#usage()">usage</A>();
+  protected void <A HREF="#PopulateTypeLUT()">PopulateTypeLUT</A>();
+  protected void <A HREF="#SetStringTypes()">SetStringTypes</A>();
+  public void <A HREF="#Convert()">Convert</A>() throws InvalidParameterException;
+  protected void <A HREF="#OutputToClassFile(Function)">OutputToClassFile</A>(Function func)
+        throws InvalidParameterException;
+  public String <A HREF="#ConvertFunction(Function)">ConvertFunction</A>(Function func)
+        throws InvalidParameterException;
+  public String <A HREF="#ConvertArgumentType(Variable,Function)">ConvertArgumentType</A>(Variable var, Function func)
+        throws UnrecognizedCodeException, InvalidParameterException;
+  public void <A HREF="#ParseFile(String)">ParseFile</A>(String FileIn) throws UnrecognizedCodeException,
+        InvalidParameterException;
+  protected void <A HREF="#MungeVariables(Function,StreamTokenizer)">MungeVariables</A>(Function func, StreamTokenizer st)
+        throws IOException, UnrecognizedCodeException;
+  protected multiFieldDataStructure <A HREF="#ReadStructure(StreamTokenizer,boolean)">ReadStructure</A>(StreamTokenizer st,
+        boolean insideStructure) throws UnrecognizedCodeException,
+        InvalidParameterException, IOException;
+  protected Variable <A HREF="#readField(StreamTokenizer,char,char,boolean,boolean)">readField</A>(StreamTokenizer st, char separator,
+        char terminator, boolean isInsideStruct, boolean allowAnonymous)
+        throws UnrecognizedCodeException, InvalidParameterException, IOException,
+        PuntException;
+  public boolean <A HREF="#isCOperator(char)">isCOperator</A>(char c);
+  public Operator <A HREF="#readOperator(StreamTokenizer,boolean)">readOperator</A>(StreamTokenizer st, boolean couldBePrefix)
+        throws IOException;
+  protected void <A HREF="#PackHandler(StreamTokenizer,Stack)">PackHandler</A>(StreamTokenizer st, Stack packsize)
+        throws InvalidParameterException, IOException, UnrecognizedCodeException;
+  protected void <A HREF="#ParseSymbolFile(String)">ParseSymbolFile</A>(String File) throws BadInputFileException,
+        InvalidParameterException;
+  protected void <A HREF="#CompareFunctionWithSymbols()">CompareFunctionWithSymbols</A>();
+  public void <A HREF="#UnifyFunctions()">UnifyFunctions</A>();
+  public void <A HREF="#UnifyStructures()">UnifyStructures</A>();
+  protected void <A HREF="#SetupFileFilters()">SetupFileFilters</A>();
+  protected void <A HREF="#SetupOutputClasses()">SetupOutputClasses</A>();
+  protected void <A HREF="#SetupPrecedenceTable()">SetupPrecedenceTable</A>();
+  protected boolean <A HREF="#CheckFile(String)">CheckFile</A>(String File);
+  protected Function <A HREF="#findFunction(String)">findFunction</A>(String Name);
+  protected void <A HREF="#FindLibrary(Function)">FindLibrary</A>(Function func) throws InvalidParameterException;
+  public void <A HREF="#OfficeFunctions(String,String)">OfficeFunctions</A>(String OfficeFileName, String MissingFileName);
+  public void <A HREF="#WriteOutFunctions(PrintWriter)">WriteOutFunctions</A>(PrintWriter pw);
+  public void <A HREF="#ReadListofSymbolFiles(String)">ReadListofSymbolFiles</A>(String list)
+        throws InvalidParameterException;
+  public static final void <A HREF="#main(String[])">main</A>(String args[]);
+}
+</PRE>
+
+<!-- ******************** -->
+<A NAME="constructors"></A><H2>Constructors</H2>
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="Parser()">Parser</A></H3>
+<BLOCKQUOTE><PRE>public Parser();
+</PRE>
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- ******************** -->
+<A NAME="methods"></A><H2>Methods</H2>
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="CheckFile"></A><A NAME="CheckFile(String)">CheckFile</A></H3><BLOCKQUOTE>
+<PRE>protected boolean CheckFile(String File);
+</PRE>
+<P>Decides if we should examine the current file or not. Checks IncludeHeaders, ExcludeHeaders, whether its an IDL file, and whether it starts with "mm". 
+
+<P><B>Return Value</B><P>Returns true if we should parse it, else false. 
+<P><TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD">
+<TD><B>Parameter</B><TD><B>Description</B></TR>
+
+<TR VALIGN=TOP><TD><I>File</I><TD>Header file we may want to parse. 
+</TR>
+</TABLE>
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="CompareFunctionWithSymbols"></A><A NAME="CompareFunctionWithSymbols()">CompareFunctionWithSymbols</A></H3><BLOCKQUOTE>
+<PRE>protected void CompareFunctionWithSymbols();
+</PRE>
+<P>Compares parsed functions with symbols from a DLL. Assumes a file has been parsed and a symbols file has been read in. 
+
+<P><B>Return Value</B><P>No return value. 
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="Convert"></A><A NAME="Convert()">Convert</A></H3><BLOCKQUOTE>
+<PRE>public void Convert() throws InvalidParameterException;
+</PRE>
+<P>Converts all functions and structures from C to Java. 
+
+<P><B>Return Value</B><P>No return value. 
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="ConvertArgumentType"></A><A NAME="ConvertArgumentType(Variable,Function)">ConvertArgumentType</A></H3><BLOCKQUOTE>
+<PRE>public String ConvertArgumentType(Variable var, Function func)
+        throws UnrecognizedCodeException, InvalidParameterException;
+</PRE>
+<P>Converts a C function argument's type into the equivalent Java type. Also determines how to do any string conversion (Ansi vs. Unicode) by setting function's stringformat. 
+
+<P><B>Return Value</B><P>Returns String holding Java type name. 
+<P><TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD">
+<TD><B>Parameter</B><TD><B>Description</B></TR>
+
+<TR VALIGN=TOP><TD><I>var</I><TD>Variable object to convert 
+</TR>
+
+<TR VALIGN=TOP><TD><I>func</I><TD>Function containing this Variable 
+</TR>
+</TABLE>
+
+<P><B>Exceptions</B>
+
+<P>UnrecognizedCodeException
+ if cannot convert argument's C type to Java. 
+
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="ConvertFunction"></A><A NAME="ConvertFunction(Function)">ConvertFunction</A></H3><BLOCKQUOTE>
+<PRE>public String ConvertFunction(Function func)
+        throws InvalidParameterException;
+</PRE>
+<P>Converts a C function prototype to a Java wrapper. 
+
+<P><B>Return Value</B><P>Returns String of converted Java wrapper or "" if conversion failed. 
+<P><TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD">
+<TD><B>Parameter</B><TD><B>Description</B></TR>
+
+<TR VALIGN=TOP><TD><I>func</I><TD>A Function object to convert. 
+</TR>
+</TABLE>
+
+<P><B>Exceptions</B>
+
+<P>InvalidParameterException
+ if func is null. 
+
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="finalizer"></A><A NAME="finalizer()">finalizer</A></H3><BLOCKQUOTE>
+<PRE>public void finalizer();
+</PRE>
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="findFunction"></A><A NAME="findFunction(String)">findFunction</A></H3><BLOCKQUOTE>
+<PRE>protected Function findFunction(String Name);
+</PRE>
+<P>Finds a Function with the given name in the Functions vector, returning the Function object. 
+
+<P><B>Return Value</B><P>Returns reference to the Function or null if a function with that name didn't exist. 
+<P><TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD">
+<TD><B>Parameter</B><TD><B>Description</B></TR>
+
+<TR VALIGN=TOP><TD><I>Name</I><TD>Name of the Function to look for. 
+</TR>
+</TABLE>
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="FindLibrary"></A><A NAME="FindLibrary(Function)">FindLibrary</A></H3><BLOCKQUOTE>
+<PRE>protected void FindLibrary(Function func) throws InvalidParameterException;
+</PRE>
+<P>Finds which library function occurs in based on loaded symbol files. Assumes the symbol tables have been set up to be effective. Changes Function's library field. 
+
+<P><B>Return Value</B><P>No return value. 
+<P><TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD">
+<TD><B>Parameter</B><TD><B>Description</B></TR>
+
+<TR VALIGN=TOP><TD><I>func</I><TD>Function to search for in symbol tables. 
+</TR>
+</TABLE>
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="isCOperator"></A><A NAME="isCOperator(char)">isCOperator</A></H3><BLOCKQUOTE>
+<PRE>public boolean isCOperator(char c);
+</PRE>
+<P>Is this character an operator or a valid first token in an operator in C? 
+
+<P><B>Return Value</B><P>Returns true if c is a C operator or the first character in a C operator, else false 
+<P><TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD">
+<TD><B>Parameter</B><TD><B>Description</B></TR>
+
+<TR VALIGN=TOP><TD><I>c</I><TD>char to test 
+</TR>
+</TABLE>
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="main"></A><A NAME="main(String[])">main</A></H3><BLOCKQUOTE>
+<PRE>public static final void main(String args[]);
+</PRE>
+<P>Main. Runs the application. 
+
+<P><B>Return Value</B><P>No return value. 
+<P><TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD">
+<TD><B>Parameter</B><TD><B>Description</B></TR>
+
+<TR VALIGN=TOP><TD><I>args[]</I><TD>Array of Strings containing command line parameters. 
+</TR>
+</TABLE>
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="MungeVariables"></A><A NAME="MungeVariables(Function,StreamTokenizer)">MungeVariables</A></H3><BLOCKQUOTE>
+<PRE>protected void MungeVariables(Function func, StreamTokenizer st)
+        throws IOException, UnrecognizedCodeException;
+</PRE>
+<P>MungeVariables takes the current function name and a StreamTokenizer positioned right after the first parenthesis. It prints the function name, a tab, the type of a parameter, then the parameter name on a line for every parameter. 
+<P>Example: void WINAPI foo(int, char ch); 
+<P>Translates into: <BR>foo\t void <BR>foo\t int\t &lt;anonymous&gt; <BR>foo\t char\t ch 
+
+<P><B>Return Value</B><P>No return value. 
+<P><TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD">
+<TD><B>Parameter</B><TD><B>Description</B></TR>
+
+<TR VALIGN=TOP><TD><I>func</I><TD>Function object whose arguments are being munged. 
+</TR>
+
+<TR VALIGN=TOP><TD><I>st</I><TD>StreamTokenizer positioned right after beginning '(' of function arguments. 
+</TR>
+</TABLE>
+
+<P><B>Exceptions</B>
+
+<P>IOException
+ if StreamTokenizer has a problem 
+
+
+<P>UnrecognizedCodeException
+ if it can't parse a variable (unlikely, but possible) 
+
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="OfficeFunctions"></A><A NAME="OfficeFunctions(String,String)">OfficeFunctions</A></H3><BLOCKQUOTE>
+<PRE>public void OfficeFunctions(String OfficeFileName, String MissingFileName);
+</PRE>
+<P>Given a file name for a list of function names, it will print out the ones not in the parser's internal storage. Writes out the missing function names to the screen and to a file. 
+
+<P><B>Return Value</B><P>No return value. 
+<P><TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD">
+<TD><B>Parameter</B><TD><B>Description</B></TR>
+
+<TR VALIGN=TOP><TD><I>OfficeFileName</I><TD>File containing a list of function names, separated by whitespace 
+</TR>
+
+<TR VALIGN=TOP><TD><I>MissingFileName</I><TD>File to output all missing function names to 
+</TR>
+</TABLE>
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="OutputToClassFile"></A><A NAME="OutputToClassFile(Function)">OutputToClassFile</A></H3><BLOCKQUOTE>
+<PRE>protected void OutputToClassFile(Function func)
+        throws InvalidParameterException;
+</PRE>
+<P>Writes out a Function to the correct class file for that function. 
+
+<P><B>Return Value</B><P>No return value. 
+<P><TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD">
+<TD><B>Parameter</B><TD><B>Description</B></TR>
+
+<TR VALIGN=TOP><TD><I>func</I><TD>Function to write to a class. 
+</TR>
+</TABLE>
+
+<P><B>Exceptions</B>
+
+<P>InvalidParameterException
+ if func is null. 
+
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="PackHandler"></A><A NAME="PackHandler(StreamTokenizer,Stack)">PackHandler</A></H3><BLOCKQUOTE>
+<PRE>protected void PackHandler(StreamTokenizer st, Stack packsize)
+        throws InvalidParameterException, IOException, UnrecognizedCodeException;
+</PRE>
+<P>Handles #pragma pack lines. Adjusts packsize stack as needed. 
+
+<P><B>Return Value</B><P>No return value. 
+<P><TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD">
+<TD><B>Parameter</B><TD><B>Description</B></TR>
+
+<TR VALIGN=TOP><TD><I>st</I><TD>StreamTokenizer positioned on a #pragma pack (specifically on "pack"). 
+</TR>
+
+<TR VALIGN=TOP><TD><I>packsize</I><TD>Stack of PackContainer's representing current alignment. 
+</TR>
+</TABLE>
+
+<P><B>Exceptions</B>
+
+<P>InvalidParameterException
+ if st isn't positioned on the word "pack" 
+
+
+<P>IOException
+ if st encounters an I/O error. 
+
+
+<P>UnrecognizedCodeException
+ if PackHandler encounters syntax error. 
+
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="ParseFile"></A><A NAME="ParseFile(String)">ParseFile</A></H3><BLOCKQUOTE>
+<PRE>public void ParseFile(String FileIn) throws UnrecognizedCodeException,
+        InvalidParameterException;
+</PRE>
+<P>Parsefile(String) reads in the filename you pass it, stores the functions and structures from that file in a vector of functions or a hash table of structures. This is the main input processing function. 
+
+<P><B>Return Value</B><P>No return value. 
+<P><TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD">
+<TD><B>Parameter</B><TD><B>Description</B></TR>
+
+<TR VALIGN=TOP><TD><I>FileIn</I><TD>Filename to parse. 
+</TR>
+</TABLE>
+
+<P><B>Exceptions</B>
+
+<P>UnrecognizedCodeException
+ if there was a parsing problem. 
+
+
+<P>InvalidParameterException
+ if there's a problem with a function called by this one. 
+
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="ParseSymbolFile"></A><A NAME="ParseSymbolFile(String)">ParseSymbolFile</A></H3><BLOCKQUOTE>
+<PRE>protected void ParseSymbolFile(String File) throws BadInputFileException,
+        InvalidParameterException;
+</PRE>
+<P>Reads in a symbol file, adding all symbols to the Symbol table, noting which file each symbol came from for use later when putting functions in files.
+<P> Symbol files can be generated by calling dumpbin on a library, like this:
+<P> 
+<PRE>dumpbin /exports c:\windows\system\kernel32.dll > kernel32.sym</PRE>
+
+<P> Do not edit symbol files, except to get rid of function names with question marks or other really odd names in them. You can leave the Microsoft dumpbin header + trailer info, or you can remove them if you need to. (Its not used by this program, but there is a keyword used to stop skipping over the header). Symbol files should contain info like this:
+<P> 
+<PRE>
+                  1    0   AddAtomA  (000079FE)
+                  2    1   AddAtomW  (00004478)
+</PRE>
+ 
+
+<P><B>Return Value</B><P>No return value. 
+<P><TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD">
+<TD><B>Parameter</B><TD><B>Description</B></TR>
+
+<TR VALIGN=TOP><TD><I>File</I><TD>Symbol file name. 
+</TR>
+</TABLE>
+
+<P><B>Exceptions</B>
+
+<P>BadInputFileException
+ if file is not strictly the output of dumpbin /exports 
+
+
+<P>InvalidParameterException
+ if one of the functions called here failed. 
+
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="PopulateTypeLUT"></A><A NAME="PopulateTypeLUT()">PopulateTypeLUT</A></H3><BLOCKQUOTE>
+<PRE>protected void PopulateTypeLUT();
+</PRE>
+<P>Inserts C type names and their corresponding Java types into TypeLUT, this class's internal hashtable. Edit this function if you want to handle another type name in a different way. 
+<P>Tricky types are handled by leaving their type names as they were. Then you are forced to deal with them yourself when you try to compile the resulting file. 
+<P>Took out most pointer to function types, hoping to recognize those at runtime. They need some special case handling anyway that I don't think we can do easily. 
+
+<P><B>Return Value</B><P>No return value. 
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="ReadExcludeFunctions"></A><A NAME="ReadExcludeFunctions()">ReadExcludeFunctions</A></H3><BLOCKQUOTE>
+<PRE>protected void ReadExcludeFunctions();
+</PRE>
+<P>Reads through list of functions to exclude, in the file described by ExcludeFunctionFile. 
+
+<P><B>Return Value</B><P>No return value. 
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="readField"></A><A NAME="readField(StreamTokenizer,char,char,boolean,boolean)">readField</A></H3><BLOCKQUOTE>
+<PRE>protected Variable readField(StreamTokenizer st, char separator,
+        char terminator, boolean isInsideStruct, boolean allowAnonymous)
+        throws UnrecognizedCodeException, InvalidParameterException, IOException,
+        PuntException;
+</PRE>
+<P>Given a StreamTokenizer, it will read a variable type and name, including the more complex user-defined data types like unions and structs. Assumes it is being called on text within a structure or a union, although it should work with functions too. Recursively calls ReadStructure if it hits an embedded structure. Reads a field until the ending separator or terminator, leaving st there. within this one. Also tries to handle some slightly different conversion rules while reading fields from structures. 
+
+<P><B>Return Value</B><P>Returns a Variable object (or if isInsideStruct is true, a Field) representing the field read in. 
+<P><TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD">
+<TD><B>Parameter</B><TD><B>Description</B></TR>
+
+<TR VALIGN=TOP><TD><I>st</I><TD>StreamTokenizer positioned at beginning of a field. 
+</TR>
+
+<TR VALIGN=TOP><TD><I>separator</I><TD>character used to separate multiple fields 
+</TR>
+
+<TR VALIGN=TOP><TD><I>terminator</I><TD>character used to end a list of fields 
+</TR>
+
+<TR VALIGN=TOP><TD><I>isInsideStruct</I><TD>whether we're reading a data structure 
+</TR>
+
+<TR VALIGN=TOP><TD><I>allowAnonymous</I><TD>whether we can have anonymous data types declared in place. 
+</TR>
+</TABLE>
+
+<P><B>Exceptions</B>
+
+<P>UnrecognizedCodeException
+ if the function gets lost. 
+
+
+<P>InvalidParameterException
+ if separator or terminator equal StreamTokenizer.TT_WORD, or if st is null. 
+
+
+<P>IOException
+ if StreamTokenizer has an IO problem. 
+
+
+<P>PuntException
+ if the parser doesn't understand this field or is told to ignore it, based on name and/or type. 
+
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="ReadListofSymbolFiles"></A><A NAME="ReadListofSymbolFiles(String)">ReadListofSymbolFiles</A></H3><BLOCKQUOTE>
+<PRE>public void ReadListofSymbolFiles(String list)
+        throws InvalidParameterException;
+</PRE>
+<P>Reads in a file containing filenames of symbol files, then subsequently parses each symbol file. Filenames should be separated by newlines. Comment char is '#'. 
+
+<P><B>Return Value</B><P>No return value. 
+<P><TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD">
+<TD><B>Parameter</B><TD><B>Description</B></TR>
+
+<TR VALIGN=TOP><TD><I>list</I><TD>name of file containing paths to symbol files. 
+</TR>
+</TABLE>
+
+<P><B>Exceptions</B>
+
+<P>InvalidParameterException
+ if list file isn't in the correct format. 
+
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="readOperator"></A><A NAME="readOperator(StreamTokenizer,boolean)">readOperator</A></H3><BLOCKQUOTE>
+<PRE>public Operator readOperator(StreamTokenizer st, boolean couldBePrefix)
+        throws IOException;
+</PRE>
+<P>Reads in a C++ operator, given a set of constraints on what this operator could be. 
+
+<P><B>Return Value</B><P>Returns Operator instance of token we just read. 
+<P><TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD">
+<TD><B>Parameter</B><TD><B>Description</B></TR>
+
+<TR VALIGN=TOP><TD><I>st</I><TD>StreamTokenizer positioned at start of operator. 
+</TR>
+</TABLE>
+
+<P><B>Exceptions</B>
+
+<P>IOException
+ if StreamTokenizer has problems. 
+
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="ReadStructure"></A><A NAME="ReadStructure(StreamTokenizer,boolean)">ReadStructure</A></H3><BLOCKQUOTE>
+<PRE>protected multiFieldDataStructure ReadStructure(StreamTokenizer st,
+        boolean insideStructure) throws UnrecognizedCodeException,
+        InvalidParameterException, IOException;
+</PRE>
+<P>Parses a multiFieldDataStructure, reading in its fields, etc. Returns the Struct or Union object. 
+
+<P><B>Return Value</B><P>Returns a new multiFieldDataStructure object. 
+<P><TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD">
+<TD><B>Parameter</B><TD><B>Description</B></TR>
+
+<TR VALIGN=TOP><TD><I>st</I><TD>StreamTokenizer positioned at the struct or union keyword. 
+</TR>
+
+<TR VALIGN=TOP><TD><I>insideStructure</I><TD>true if ReadStructure is nested in a struct or union. 
+</TR>
+</TABLE>
+
+<P><B>Exceptions</B>
+
+<P>UnrecognizedCodeException
+ if struct was unparsible. 
+
+
+<P>InvalidParameterException
+ if StreamTokenizer wasn't positioned on struct. 
+
+
+<P>IOException
+ if StreamTokenizer can't read stream. 
+
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="SetStringTypes"></A><A NAME="SetStringTypes()">SetStringTypes</A></H3><BLOCKQUOTE>
+<PRE>protected void SetStringTypes();
+</PRE>
+<P>Fills the StringTypes Hashtable with all String types and how to convert them from Unicode to whatever format is needed. Punts on TCHAR and derivatives, setting them to auto. 
+
+<P><B>Return Value</B><P>No return value. 
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="SetupFileFilters"></A><A NAME="SetupFileFilters()">SetupFileFilters</A></H3><BLOCKQUOTE>
+<PRE>protected void SetupFileFilters();
+</PRE>
+<P>Builds file Include and Exclude lists. Here is where we set IncludeHeaders and ExcludeHeaders to their original values. This should be edited when you add a new set of libraries, although the default rules should let your own header files be parsed with a warning. Remember, this program can't parse COM. 
+
+<P><B>Return Value</B><P>No return value. 
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="SetupOutputClasses"></A><A NAME="SetupOutputClasses()">SetupOutputClasses</A></H3><BLOCKQUOTE>
+<PRE>protected void SetupOutputClasses();
+</PRE>
+<P>Initializes hash table containing package files for each of the DLL's. To add a new output class, create a PrintWriter for it, output the header info and class name to it, and add it to the hash table, using the symbol file name as the key. This function totally controls how various functions are routed into their own Java classes. 
+
+<P><B>Return Value</B><P>No return value. 
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="SetupPrecedenceTable"></A><A NAME="SetupPrecedenceTable()">SetupPrecedenceTable</A></H3><BLOCKQUOTE>
+<PRE>protected void SetupPrecedenceTable();
+</PRE>
+<P>Set up a table of C operator precedence. Taken from the VC++ 5 online help. Keys are String's containing operator and values are ints describing precedence, with 0 being the lowest. Duplicate entries are handled by appending odd characters that convey some sense of the meaning with them. I spaced out the precedence numbers to add new operators, in case the table was incomplete or if the ISO committee goes change-happy. 
+
+<P><B>Return Value</B><P>No return value. 
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="UnifyFunctions"></A><A NAME="UnifyFunctions()">UnifyFunctions</A></H3><BLOCKQUOTE>
+<PRE>public void UnifyFunctions();
+</PRE>
+<P>Scans through read in functions, looking for the ASCII and Unicode versions of any such functions. If it finds them both, it will strip off the last character, merging them into one function call. Deals with the 4 special cases I found in the Win32 API. 
+
+<P><B>Return Value</B><P>No return value. 
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="UnifyStructures"></A><A NAME="UnifyStructures()">UnifyStructures</A></H3><BLOCKQUOTE>
+<PRE>public void UnifyStructures();
+</PRE>
+<P>Scans through read in functions, looking for the ASCII and Unicode versions of any such functions. If it finds them both, it will strip off the last character, merging them into one function call. Deals with the 4 special cases I found in the Win32 API. 
+
+<P><B>Return Value</B><P>No return value. 
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="usage"></A><A NAME="usage()">usage</A></H3><BLOCKQUOTE>
+<PRE>public static final void usage();
+</PRE>
+<P>Prints the command line syntax to stdout. 
+
+<P><B>Return Value</B><P>No return value. 
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- * * * * * * * * * * -->
+<H3><A NAME="WriteOutFunctions"></A><A NAME="WriteOutFunctions(PrintWriter)">WriteOutFunctions</A></H3><BLOCKQUOTE>
+<PRE>public void WriteOutFunctions(PrintWriter pw);
+</PRE>
+<P>Prints the functions out to the PrintWriter. Uses the format specified in Function::toString(). 
+
+<P><B>Return Value</B><P>No return value. 
+<P><TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD">
+<TD><B>Parameter</B><TD><B>Description</B></TR>
+
+<TR VALIGN=TOP><TD><I>pw</I><TD>PrintWriter to send output to. 
+</TR>
+</TABLE>
+</BLOCKQUOTE>
+<!-- * * * * * * * * * * -->
+
+
+<!-- ******************** -->
+<A NAME="fields"></A><H2>Fields</H2>
+<DL>
+<DT><B><A NAME="AnonymousString">AnonymousString</A></B>
+<DD>
+<DT><B><A NAME="CallbackString">CallbackString</A></B>
+<DD>
+<DT><B><A NAME="Comment_Variant_Types">Comment_Variant_Types</A></B>
+<DD>
+<DT><B><A NAME="CopyrightNotice">CopyrightNotice</A></B>
+<DD>
+<DT><B><A NAME="DEBUG">DEBUG</A></B>
+<DD>
+<DT><B><A NAME="ExcludeFunctionFile">ExcludeFunctionFile</A></B>
+<DD>
+<DT><B><A NAME="ExcludeFunctions">ExcludeFunctions</A></B>
+<DD>
+<DT><B><A NAME="ExcludeHeaders">ExcludeHeaders</A></B>
+<DD>
+<DT><B><A NAME="Functions">Functions</A></B>
+<DD>
+<DT><B><A NAME="IncludeHeaders">IncludeHeaders</A></B>
+<DD>
+<DT><B><A NAME="OutputClasses">OutputClasses</A></B>
+<DD>
+<DT><B><A NAME="PackageName">PackageName</A></B>
+<DD>
+<DT><B><A NAME="Precedence">Precedence</A></B>
+<DD>
+<DT><B><A NAME="PuntOutput">PuntOutput</A></B>
+<DD>
+<DT><B><A NAME="ReadSymbols">ReadSymbols</A></B>
+<DD>
+<DT><B><A NAME="StringTypes">StringTypes</A></B>
+<DD>
+<DT><B><A NAME="StructureLUT">StructureLUT</A></B>
+<DD>
+<DT><B><A NAME="Suppress_UnknownLib_Functions">Suppress_UnknownLib_Functions</A></B>
+<DD>
+<DT><B><A NAME="Suppress_Unused_Structures">Suppress_Unused_Structures</A></B>
+<DD>
+<DT><B><A NAME="Symbols">Symbols</A></B>
+<DD>
+<DT><B><A NAME="TypeLUT">TypeLUT</A></B>
+<DD>
+<DT><B><A NAME="UnknownFileString">UnknownFileString</A></B>
+<DD>
+<DT><B><A NAME="UnknownLibraryString">UnknownLibraryString</A></B>
+<DD>
+</DL>
+
+<!--rule-->
+<TABLE WIDTH=95%><TD HEIGHT=2 BGCOLOR=BLUE></TD></TABLE>
+<BR>
+
+<!--page top button-->
+<TABLE WIDTH=100%><TR><TD ALIGN=LEFT><A HREF="#pagetop"><IMG SRC="../art/butt_up.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Top"></A></TD>
+
+<!--MS copyright-->
+<TD ALIGN=RIGHT><FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK"><A HREF="../art/cpyright.htm" >&#169; 1996-1997 Microsoft Corporation. All rights reserved.</A></FONT></TD></TR></TABLE>
+</FONT>
+</BODY>
+</HTML>

@@ -1,0 +1,44 @@
+/////////////////////////////////////////////////////////////////////////////
+//
+//	Copyright (c) 99 <company name>
+//
+//	Module Name:
+//		ExtObjID.idl
+//
+//	Description:
+//		Definition of COM interfaces for the Cluster Administrator
+//		SmbSmpEx Extension DLL.
+//
+//	Author:
+//		<name> (<e-mail name>) Mmmm DD, 99
+//
+//	Revision History:
+//
+//	Notes:
+//
+/////////////////////////////////////////////////////////////////////////////
+
+// This file will be processed by the MIDL tool to
+// produce the type library (ExtObj.tlb) and marshalling code.
+
+[
+	uuid(6D06F145-F2E4-11D2-BDB3-00A0C9B6094C),
+	version(1.0),
+	helpstring("SmbSmpEx 1.0 Type Library")
+]
+library CLUADMEXLib
+{
+	importlib("stdole2.tlb");
+	import "CluAdmEx.idl";
+
+	[
+		uuid(6D06F146-F2E4-11D2-BDB3-00A0C9B6094C),
+		helpstring("CoSmbSmpEx Class")
+	]
+	coclass CoSmbSmpEx
+	{
+		interface IWEExtendPropertySheet;
+		interface IWEExtendWizard;
+	};
+
+};

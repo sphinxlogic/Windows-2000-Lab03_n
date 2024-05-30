@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>ItemEvent -> UIItemEvent</title>
+<base target="descriptions">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">ItemEvent to UIItemEvent</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.event.ItemEvent should be transformed into instances of
+com.ms.ui.event.UIItemEvent.</p>
+
+<p align="left">ItemEvent extends <a href="AWTEvent.htm"
+target="descriptions">AWTEvent</a>: be sure to see its changes.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">AFC provides an adapter class, UIItemAdapter, for
+this event. </p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">This is the set of changes you need to make to
+port all ItemEvent methods to UIItemEvent methods. Any method not
+listed here or below does not need to be changed.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial"><strong>AWT Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">ItemEvent(ItemSelectable,
+        int, Object, int)</font></td>
+        <td nowrap><font size="2" face="Courier">ItemEvent(IUIComponent,
+        int, Object, int)</font></td>
+        <td><font size="2">The source is always an IUIComponent.</font></td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h3>Unsupported Methods and Constants</h3>
+
+<p>Some methods and constants in java.awt.event.ItemEvent are not
+directly supported in com.ms.ui.event.UIItemEvent. Those methods
+and constants, and suggested workarounds, are described here.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial">AWT Code<strong>/Suggested
+        AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">ITEM_FIRST</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">ITEM_LAST</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getItemSelectable()</font><p><font
+        size="2" face="Courier"><strong>getItemSelectable()</strong></font></p>
+        </td>
+        <td><font size="2">The AWT version returns an
+        ItemSelectable: the AFC version returns an IUIComponent.</font></td>
+    </tr>
+</table>
+</body>
+</html>

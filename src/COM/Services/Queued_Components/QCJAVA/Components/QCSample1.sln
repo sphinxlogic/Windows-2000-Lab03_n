@@ -1,0 +1,13 @@
+Microsoft Visual Studio Solution File, Format Version 1.00
+Project("{66355F20-A65B-11D0-BFB5-00A0C91EBFA0}") = "QCSample1", "QCSample1.vjp", "{2AD460D0-EC4B-41A6-A0AE-B3E67944E2F6}"
+EndProject
+Global
+	GlobalSection(LocalDeployment) = postSolution
+		StartupProject = {2AD460D0-EC4B-41A6-A0AE-B3E67944E2F6}
+	EndGlobalSection
+	GlobalSection(BuildOrder) = postSolution
+		0 = {2AD460D0-EC4B-41A6-A0AE-B3E67944E2F6}
+	EndGlobalSection
+	GlobalSection(DeploymentRoot) = postSolution
+	EndGlobalSection
+EndGlobal

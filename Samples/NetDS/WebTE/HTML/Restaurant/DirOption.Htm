@@ -1,0 +1,91 @@
+<html>
+<!-- 
+/**************************************************************************
+ *
+ * Copyright (c) 1999 Microsoft Corporation.  All rights reserved.
+ *
+ * This is prerelease software and is provided as is and Microsoft
+ * makes no warranties, either express or implied.  The entire risk of
+ * the use or the results of the use of this prerelease software
+ * remains with the user.
+ **************************************************************************/
+
+-->
+<head>
+<title>WEB-IVR DIRECTIONS</title>
+</head>
+
+<body onunload="CancelTTS();" background="images/back.jpg">
+<!--
+<p align="center">
+<img src="images/direction_b.gif" width="600" height="60" alt="direction_b.gif (13439 bytes)">
+</p>
+
+<p align="center">
+<a href="Default.htm"><img src="images/home.gif" width="140" height="60" alt="home.gif (2942 bytes)" border="0"></a> 
+<a href="resoption.htm"><img src="images/reservation.gif" width="140" height="60" alt="reservation.gif (2961 bytes)" border="0"></a> 
+<img src="images/direction_g.gif" width="140" height="60" alt="direction_g.gif (3227 bytes)">
+</p>
+-->
+<script LANGUAGE="JavaScript">
+      
+       function CancellErrors() 
+       {
+         return true;
+
+       }
+  
+       window.onerror = CancellErrors;       
+       var theMainObject;
+       if(window.external.hostName == "Microsoft Web Telephony Engine")
+       {
+           theMainObject=window.external.Configuration;
+       }
+       
+        theMainObject.rendertts=true;
+
+       function CancelTTS() {
+       theMainObject.rendertts=false;
+       }
+
+</script>
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td width="100%"><h2 align="center">Directions by location </h2>
+    <p align="center"><strong>Kirkland</strong>:<br>
+    Take interstate 65 to South Jefferson street, go two blocks were located on the right.<br>
+    <br>
+    <strong>Raglan</strong>:<br>
+    Take interstate 65 to South Jefferson street, go two blocks were located on the right.<br>
+    <br>
+    <strong>Bellevue</strong>:<br>
+    Take interstate 65 to South Jefferson street, go two blocks were located on the right.<br>
+    <br>
+    <strong>Seattle</strong>:<br>
+    Take interstate 65 to South Jefferson street, go two blocks were located on the right.<br>
+    <br>
+    <!--
+    <a accessKey="*" VoiceFile="Waves/ReturnMain.wav" HREF="Default.htm"></a>
+    <a accessKey="#" VoiceFile="Waves/EndCall.wav" HREF="Final.htm"></a> 
+    -->
+    </td>
+  </tr>
+</table>
+</center></div>
+<!--<a accessKey="*" VoiceFile="Waves/ReturnMain.wav" HREF="DemoIntroduction.htm">-->
+
+<p align="center">
+<a accessKey="*" VoiceFile="Waves/ReturnMain.wav" HREF="Default.htm"><img src="images/home.gif" width="140" height="60" alt="home.gif (2942 bytes)" border="0"></a>
+<a accessKey="1" VoiceFile="Waves/ResOption.wav" href="ResOption.htm">
+ <img src="images/reservation.gif" width="140" height="60" alt="reservation.gif (2961 bytes)" border="0">
+</a> 
+<a accessKey="2" VoiceFile="Waves/DirOption.wav" href="DirOption.htm">
+ <img src="images/direction_g.gif" width="140" height="60" alt="direction_g.gif (3227 bytes)" border="0">
+</a>
+<a accessKey="#" VoiceFile="Waves/EndCall.wav" HREF="Final.htm"></a> 
+</p>
+<p>&nbsp;</p>
+</body>
+</html>

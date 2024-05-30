@@ -1,0 +1,89 @@
+<html>
+<head>
+<title>Striped Tables DHTML Behavior</title>
+<style>
+	.stripes { behavior: url(stripes.htc); }
+</style>
+</head>
+
+<body>
+<script>
+
+var evenColor = "orange" ;
+var oddColor = "green" ; 
+
+function change(r)  {
+
+   if (r == 0)   {
+	temp = table1.color1;
+	table1.color1 = oddColor;
+	oddColor = temp;
+   }
+   else	 {
+	temp = table1.color2;
+	table1.color2 = evenColor;
+	evenColor = temp;
+   }
+}
+
+function toggle() {
+
+	oddColor = table1.color1;
+	evenColor = table1.color2;
+
+	temp = table1.color2;
+	table1.color2 = table1.color1;
+	table1.color1 = temp;
+}
+
+</script>
+<h2>Striped Tables DHTML Behavior</h2>
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="top.close();return false">Close This Sample</A>
+</FONT>
+<br>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+<hr>
+
+<H2>Using Default Colors</H2>
+<input type=button value="Change Even Rows" onclick="change(0)">
+<input type=button value="Change Odd Rows" onclick="change(1)">
+<input type=button value="Toggle" onclick="toggle()">
+<br>
+<br>
+<table id=table1 class=stripes  border=1>
+<tr><td>one</td><td>two</td><td>three</td><td>four</td><td>five</td></tr>
+<tr><td>six</td><td>seven</td><td>eight</td><td>nine</td><td>ten</td></tr>
+<tr><td>eleven</td><td>twelve</td><td>thirteen</td><td>fourteen</td><td>fifteen</td></tr>
+<tr><td>sixteen</td><td>seventeen</td><td>eighteen</td><td>nineteen</td><td>twenty</td></tr>
+<tr><td>twenty one</td><td>twenty two</td><td>twenty three</td><td>twenty four</td><td>twenty five</td></tr>
+<tr><td>twenty six</td><td>twenty seven</td><td>twenty eight</td><td>twenty nine</td><td>thirty</td></tr>
+<tr><td>thirty one</td><td>thirty two</td><td>thirty three</td><td>thirty four</td><td>thirty five</td></tr>
+<tr><td>thirty six</td><td>thirty seven</td><td>thirty eight</td><td>thirty nine</td><td>forty</td></tr>
+<tr><td>forty one</td><td>forty two</td><td>forty three</td><td>forty four</td><td>forty five</td></tr>
+<tr><td>forty six</td><td>forty seven</td><td>forty eight</td><td>forty nine</td><td>fifty</td></tr>
+</table>
+<br>
+
+<H2>Specifying Custom Colors</H2>
+<table id=table2 class=stripes color1=yellow color2=coral>
+<thead>
+<tr><td><u>Name</u></td><td><u>Morning Drink</u></td><td><u>Afternoon drink</u></td><td><u>Friday afternoon drink</u></td></tr></thead>
+<tr><td>Michelle Wallingsworth</td><td>iced tall latte</td><td>diet Coke</td><td>Margarita</td></tr>
+<tr><td>Robert Norwester</td><td>tall nonfat latte w/ creme de cacao</td><td>hot tea</td><td>lemon drop</td></tr>
+<tr><td>Sam Wilson</td><td>grande nonfat latte</td><td>diet Mug</td><td>gin and tonic</td></tr>
+<tr><td>Jamie Allen</td><td>Gatorade</td><td>Mountain Dew</td><td>Kamikazee</td></tr>
+</table>
+<br><br>
+<h2>...And of course:</h2>
+<table id=table3 border=1 class=stripes style="font-family:courier" color1=white color2=lightgreen>
+<thead><tr><td><u>Name</u></td><td><u>Rank</u></td><td><u>Serial Number</u></td></tr></thead>
+<tr><td>Bugs Bunny</td><td>Private</td><td>1234567890</td></tr>
+<tr><td>Road Runner</td><td>Private</td><td>0987654321</td></tr>
+<tr><td>Wile E. Coyote</td><td>Sargent</td><td>1111111111</td></tr>
+<tr><td>Foghorn Leghorn</td><td>General</td><td>9999999999</td></tr>
+<tr><td>Captain Crunch</td><td>Captain</td><td>222222222</td></tr>
+<tr><td>Homer Simpson</td><td>Duh?</td><td>0000000000</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,6 @@
+#include <windows.h>
+#include <winver.h>
+
+#include "gwperfm.rc"
+
+#include "gwperf.rcv"

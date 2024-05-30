@@ -1,0 +1,11 @@
+DESCRIPTION 'Test DLL'
+
+EXPORTS
+        DllMain
+        RNIGetCompatibleVersion
+
+        VarStrMarshaler_toJava
+        VarStrMarshaler_copyToExternal
+
+        VarStrMarshaler_releaseByValExternal
+

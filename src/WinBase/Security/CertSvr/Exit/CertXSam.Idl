@@ -1,0 +1,48 @@
+//+--------------------------------------------------------------------------
+//
+// Microsoft Windows
+// Copyright (C) Microsoft Corporation, 1996 - 1999
+//
+// File:        certxsam.idl
+//
+// Contents:    IDL source for certxsam
+//
+//---------------------------------------------------------------------------
+
+import "wtypes.idl";
+import "certexit.idl";
+import "certmod.idl";
+
+//+--------------------------------------------------------------------------
+// certexit Type library
+//+--------------------------------------------------------------------------
+
+[
+    uuid(d3dc8a60-f77e-11d2-b318-00c04f79dc72),
+    version(1.0),
+    helpstring("CertExit Sample 1.0 Type Library")
+]
+
+library CERTEXITLib
+{
+    importlib("stdole2.tlb");
+
+    [
+	uuid(bf4f5fd0-f77e-11d2-b318-00c04f79dc72),
+	helpstring("CertExit Class")
+    ]
+    coclass CCertExit
+    {
+	[default] interface ICertExit;
+    };
+
+    [
+	uuid(bff159b0-f77e-11d2-b318-00c04f79dc72),
+	helpstring("CertManageModule Class")
+    ]
+    coclass CCertManageExitModule
+    {
+	[default] interface ICertManageModule;
+    };
+
+};

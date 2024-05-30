@@ -1,0 +1,38 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" Content="Microsoft Visual Studio 6.0">
+</HEAD>
+<BODY onLoad="javascript:onLoad()">
+<link type="text/css" rel="stylesheet" href="../_Themes/fm/theme.css">	
+<img class="logo" SRC="../images/fmlogo.gif" WIDTH="187" HEIGHT="90">
+<img class="sublogo" SRC="../images/Fmcorplib.gif" WIDTH="180" HEIGHT="18">
+
+<!-- DATA CONTROL -- ContactEmail -->
+<object id="RDS_ContactEmail" CLASSID="clsid:BD96C556-65A3-11D0-983A-00C04FC29E33"
+        height=1 width=1 VIEWASTEXT>
+</object>
+
+<script LANGUAGE="VBScript">
+Sub onLoad()
+   RDS_ContactEmail.Server = "http://" & document.location.hostname
+   RDS_ContactEmail.Connect = "DSN=FmLib;UID=sa;PWD=;DATABASE=FmLib"
+   RDS_ContactEmail.SQL = "SELECT DefaultContactEmail,DefaultDomainName FROM Settings"
+   RDS_ContactEmail.ExecuteOptions = 1
+   RDS_ContactEmail.Refresh
+   
+   ContactEmail.href = "mailto:" & Trim(RDS_ContactEmail.Recordset(0)) & _
+                       "@" & Trim(RDS_ContactEmail.Recordset(1))
+End Sub
+</script>
+
+<div STYLE="FONT-FAMILY: Franklin Gothic demi, Verdana, Arial; FONT-SIZE: 15pt; POSITION: absolute; LEFT: 260px; TOP: 50px; Z-INDEX: 5">
+Access Denied: IP Address Rejected
+</div>
+<div class="contents">
+Library adminstration from this workstation is not allowed. Please contact
+the <a id="ContactEmail">library administrator</a> to grant
+access to the administration functions.
+</div>
+
+</body>
+</HTML>

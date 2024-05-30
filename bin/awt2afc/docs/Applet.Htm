@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>Applet -> UIApplet</title>
+<base target="descriptions">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">Applet to UIApplet</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.applet.Applet should be transformed into instances of
+com.ms.ui.UIApplet.</p>
+
+<p align="left">Applet extends <a href="Panel.htm"
+target="descriptions">Panel</a>: be sure to see its changes.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">AFC's UIApplet is designed to take advantage of
+the improved component model without creating a difficult
+situation for a developer. Because browsers and applet viewers
+expect applets, not UIApplets, you need to wrap an applet
+(written normally, extending UIApplet) in a class extending
+AwtUIApplet, which acts as a bridge between AWT and UI
+components. This is a simple process. As an example, here is the
+&quot;Hello World&quot; applet, in a basic AWT version and then
+in a UI version.</p>
+
+<p align="left">Basic AWT version:</p>
+
+<p><font size="2" face="Courier">import java.applet.*;<br>
+import java.awt.*;<br>
+<br>
+public class HelloWorld extends Applet <br>
+{</font></p>
+
+<blockquote>
+    <p><font size="2" face="Courier">public void init() <br>
+    {</font></p>
+</blockquote>
+
+<blockquote>
+    <blockquote>
+        <p><font size="2" face="Courier">setSize(150,25);</font></p>
+    </blockquote>
+</blockquote>
+
+<blockquote>
+    <p><font size="2" face="Courier">}</font></p>
+</blockquote>
+
+<blockquote>
+    <p><font size="2" face="Courier">public void paint(Graphics
+    g)<br>
+    {</font></p>
+</blockquote>
+
+<blockquote>
+    <blockquote>
+        <p><font size="2" face="Courier">g.drawString(&quot;Hello
+        World&quot;,50,25);</font></p>
+    </blockquote>
+</blockquote>
+
+<blockquote>
+    <p><font size="2" face="Courier">}</font></p>
+</blockquote>
+
+<p><font size="2" face="Courier">}</font></p>
+
+<p>A UI version of the same applet (with the differences in <font
+color="#FF0000">red</font><font color="#000000">)</font></p>
+
+<p><font face="Courier">import java.applet.*;<br>
+import java.awt.*;</font><font color="#FF0000" face="Courier"><br>
+import com.ms.ui.*;<br>
+import com.ms.fx.*;</font></p>
+
+<p><font color="#FF0000" face="Courier">public class HelloWorld
+extends AwtUIApplet<br>
+{</font></p>
+
+<blockquote>
+    <p><font color="#FF0000" face="Courier">public HelloWorld() <br>
+    {</font></p>
+</blockquote>
+
+<blockquote>
+    <blockquote>
+        <p><font color="#FF0000" face="Courier">super(new
+        HelloWorldImpl());</font></p>
+    </blockquote>
+</blockquote>
+
+<blockquote>
+    <p><font color="#FF0000" face="Courier">}</font></p>
+</blockquote>
+
+<p><font color="#FF0000" face="Courier">}</font></p>
+
+<p>&nbsp;</p>
+
+<p><font face="Courier">class</font><font color="#0000FF"
+face="Courier"> </font><font color="#FF0000" face="Courier">HelloWorldImpl</font><font
+color="#0000FF" face="Courier"> </font><font face="Courier">extends</font><font
+color="#0000FF" face="Courier"> </font><font color="#FF0000"
+face="Courier">UIApplet</font><font color="#0000FF"
+face="Courier"> <br>
+</font><font face="Courier">{</font></p>
+
+<blockquote>
+    <p><font face="Courier">public void init() <br>
+    {</font></p>
+</blockquote>
+
+<blockquote>
+    <blockquote>
+        <p><font face="Courier">setSize(150,25);</font></p>
+    </blockquote>
+</blockquote>
+
+<blockquote>
+    <p><font face="Courier">}</font></p>
+</blockquote>
+
+<p>&nbsp;</p>
+
+<blockquote>
+    <p><font face="Courier">public void paint(</font><font
+    color="#FF0000" face="Courier">FxGraphics</font><font
+    color="#0000FF" face="Courier"> </font><font face="Courier">g)
+    <br>
+    {</font></p>
+</blockquote>
+
+<blockquote>
+    <blockquote>
+        <p><font face="Courier">g.drawString(&quot;Hello
+        World&quot;,50,25);</font></p>
+    </blockquote>
+</blockquote>
+
+<blockquote>
+    <p><font face="Courier">}</font></p>
+</blockquote>
+
+<p><font face="Courier">}</font></p>
+
+<p align="left">&nbsp;</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">This is the set of changes you need to make to
+port all Applet methods to UIApplet methods. Any method not
+listed here or below does not need to be changed.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial"><strong>AWT Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>AFC Code</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">Applet()</font></td>
+        <td nowrap><font size="2" face="Courier">UIApplet()</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">resize(Dimension)
+        or<br>
+        setSize(Dimension)</font></td>
+        <td nowrap><font size="2" face="Courier">setSize(Dimension)</font></td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h3>Unsupported Methods</h3>
+
+<p>Some methods in java.applet.Applet are not directly supported
+in com.ms.ui.UIApplet. Those methods are listed here.</p>
+
+<p><font face="Courier">getLocale()</font></p>
+
+<p><font face="Courier">setStub(AppletStub)</font></p>
+</body>
+</html>

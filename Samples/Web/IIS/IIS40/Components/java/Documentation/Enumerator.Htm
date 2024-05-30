@@ -1,0 +1,75 @@
+<html>
+
+<head>
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 3.0">
+<title>Enumerator</title>
+<meta NAME="Version" CONTENT="8.0.3410">
+<meta NAME="Date" CONTENT="10/11/96">
+<meta NAME="Template" CONTENT="C:\Program Files\Office\Office\HTML.DOT">
+</head>
+
+<body TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<font FACE="Arial" SIZE="4"><b>
+
+<p><a NAME="_Toc397403947">Interface Enumerator</a></p>
+</b></font>
+
+<p>All of the collections that support enumeration do so by implementing the Enumerator
+interface. The <strong>Enumerator</strong> interface supports the standard Java
+enumeration interface, <strong>java.util.Enumeration</strong>, and extends it with methods
+to make it functionally equivalent to the standard automation enumerator, IEnumVariant.
+For example, all objects that implement Enumerator <em>must</em> implement <strong>Cloneable</strong>,
+and the <strong>reset</strong> member can be used to set the enumerator to the beginning
+of the collection. <font FACE="Courier New" SIZE="1">
+
+<dir>
+  </font><font FACE="Courier New" size="2">public interface Enumerator extends Cloneable,
+  java.util.Enumeration {<br>
+  &nbsp;&nbsp;&nbsp; public void <a HREF="#reset">reset</a>();<br>
+  &nbsp;&nbsp;&nbsp; // From java.util.Enumeration<br>
+  &nbsp;&nbsp;&nbsp; public boolean <a HREF="#hasMoreElements">hasMoreElements</a>();<br>
+  &nbsp;&nbsp;&nbsp; public Object <a HREF="#nextElement">nextElement</a>() throws
+  NoSuchElementException;<br>
+  &nbsp;&nbsp;&nbsp; // From Cloneable<br>
+  &nbsp;&nbsp;&nbsp; public Object <a HREF="#clone">clone</a>();<br>
+  }</font><font FACE="Courier New" SIZE="1"><br>
+</dir>
+</font>
+
+<hr>
+<font FACE="Arial"><b>
+
+<p><em><font color="#0000A0"><a NAME="reset"></a>Enumerator Methods</font></em></p>
+</b></font>
+
+<p><font FACE="Arial"><b>public void reset( )</b></font></p>
+
+<p>Resets the Enumerator to the start of the collection.</p>
+
+<p><font color="#0000A0" face="Arial"><b><em>java.util.Enumeration</em> <a NAME="reset"></a><em>Methods</em></b></font></p>
+<font FACE="Arial"><b>
+
+<p><a NAME="hasMoreElements"></a>public Boolean hasMoreElements( )</p>
+</b></font>
+
+<p>Returns <b>true</b> if there are any remaining items in the collection that can be obtained
+by calling nextElement( ).</p>
+<font FACE="Arial"><b>
+
+<p><a NAME="nextElement"></a>public Object nextElement( ) throws NoSuchElementException</p>
+</b></font>
+
+<p>Returns the next Object in the collection. You should typically call this following a
+call to hasMoreElements( ).</p>
+<b><font FACE="Arial">
+
+<p></font><font color="#0000A0" face="Arial"><em>java.lang.Cloneable</em> <em>Methods</em></font><font
+FACE="Arial"></p>
+</font></b>
+
+<p><font FACE="Arial"><b><a NAME="clone"></a>public Object clone( )</b></font></p>
+
+<p>Makes a copy of the Enumerator, with the current state of the enumeration.</p>
+</body>
+</html>

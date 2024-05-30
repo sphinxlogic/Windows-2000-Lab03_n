@@ -1,0 +1,90 @@
+<HTML>
+<HEAD>
+<TITLE>MetaCreations Image transform in DirectAnimation</TITLE>
+</HEAD>
+<BODY BGCOLOR=WHITE LINK="#0033CC" TOPMARGIN=15 LEFTMARGIN=20>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=2> 
+<CENTER>
+<H1>MetaCreations Transform in DirectAnimation</H1>
+</CENTER>
+
+<OBJECT ID="DAControl"
+  STYLE="position:relative; left:200; top:0;width:480;height:320"
+  CLASSID="CLSID:B6FFC24C-7E13-11D0-9B47-00C04FC2F51D">
+</OBJECT>
+
+<SCRIPT LANGUAGE="JScript">
+<!--
+   // The DirectAnimation library
+   m = DAControl.PixelLibrary;
+
+   img1 = m.ImportImage("..\\..\\..\\media\\image\\cedar.jpg");
+   img2 = m.ImportImage("..\\..\\..\\media\\image\\bryce.jpg");
+   
+   inputImgs = new Array(img1, img2);
+
+   transf = new ActiveXObject("DXImageTransform.MetaCreations.CenterCurls");
+
+   function myInterp(duration) {
+       forward = m.Interpolate(0, 1, duration);
+       back = m.Interpolate(1, 0, duration);
+       return m.Sequence(forward, back).RepeatForever();
+   }
+
+   // cycle through effect in 4 seconds
+   result = m.ApplyDXTransform(transf, inputImgs, myInterp(4));
+
+   finalImage = result.OutputBvr;
+
+   fpsImg = m.StringImageAnim(m.ViewFrameRate.ToString(1),
+                              m.DefaultFont.Color(m.Red));
+
+   fpsImg = fpsImg.Transform(m.Scale2Uniform(2))
+                  .Transform(m.Translate2(0, -110));
+
+   fpsImg = m.Cond(m.LeftButtonState, fpsImg, m.EmptyImage);
+
+   finalImage = m.Overlay(fpsImg, finalImage);
+
+   DAControl.Image = finalImage;
+   DAControl.Start();
+
+-->
+</SCRIPT>
+</FONT>
+<center>
+
+
+
+<FONT SIZE=4 FACE="Verdana,Tahoma,Arial"> 
+<P>
+<a href="BurnFilm.HTM">BurnFilm</a>
+<a href="CenterCurls.HTM">CenterCurls</a>
+<a href="ColorFade.HTM">ColorFade</a>
+<a href="Curls.HTM">Curls</a>
+<a href="Curtains.HTM">Curtains</a>
+<a href="FadeWhite.HTM">Fadewhite</a>
+<a href="FlowMotion.HTM">FlowMotion</a>
+<a href="Glassblock.HTM">GlassBlock</a>
+<a href="Grid.HTM">Grid</a>
+<a href="Jaws.HTM">Jaws</a>
+<a href="LightWipe.HTM">LightWipe</a>
+<a href="Lens.HTM">Lens</a>
+<a href="Liquid.HTM">Liquid</a>
+<a href="PageCurl.HTM">PageCurl</a>
+<a href="PeelABCD.HTM">PeelABCD</a>
+<a href="Ripple.HTM">Ripple</a>
+<a href="RollDown.HTM">RollDown</a>
+<a href="Threshold.HTM">Threshold</a>
+<a href="Twister.HTM">Twister</a>
+<a href="Vacuum.HTM">vacuum</a>
+<a href="Water.HTM">Water</a>
+<a href="Wormhole.HTM">WormHole</a>
+<BR>
+<BR>
+Press and hold left mouse button for performance indicator.
+</FONT>
+</center>
+</BODY>
+</HTML>
+

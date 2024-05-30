@@ -1,0 +1,33 @@
+HKCR
+{
+	IEMimeCtl.IEMimeCtl.1 = s 'IEMimeCtl Class'
+	{
+		CLSID = s '{C60BC919-F40E-11D0-B038-00C04FB9C24A}'
+	}
+	IEMimeCtl.IEMimeCtl = s 'IEMimeCtl Class'
+	{
+		CurVer = s 'IEMimeCtl.IEMimeCtl.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {C60BC919-F40E-11D0-B038-00C04FB9C24A} = s 'IEMimeCtl Class'
+		{
+			ProgID = s 'IEMimeCtl.IEMimeCtl.1'
+			VersionIndependentProgID = s 'IEMimeCtl.IEMimeCtl'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			ForceRemove 'Control'
+			ForceRemove 'Programmable'
+			ForceRemove 'ToolboxBitmap32' = s '%MODULE%, 1'
+			'MiscStatus' = s '0'
+			{
+			    '1' = s '131473'
+			}
+			'TypeLib' = s '{C60BC90B-F40E-11D0-B038-00C04FB9C24A}'
+			'Version' = s '1.0'
+		}
+	}
+}

@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>MenuBar -> UIBand</title>
+<base target="descriptions">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">MenuBar to UIBand</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.MenuBar should be transformed into instances of
+com.ms.ui.UIBand.</p>
+
+<p align="left">MenuBar extends <a href="MenuComponent.htm"
+target="descriptions">MenuComponent</a>: be sure to see its
+changes.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">AFC applications do not need a separate menu bar.
+Instead, the UIBand class can be used to create a menu bar by
+adding UIMenuButtons to it. Similarly, UIBand can be used to make
+a tool bar by adding UIPushButtons to it. </p>
+
+<p align="left">The difference this creates applies mainly to
+frames: in AWT's Frame, you would use setMenuBar to create a new
+menu bar. In a UIFrame, you simply add your UIBand bar to the
+UIFrame (or UIContainer). This gives you more flexibility in
+choosing the location and container of the menu bar.</p>
+
+<p align="left">&nbsp;</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">This is the set of changes you need to make to
+port all MenuBar methods to UIBand methods. Any method not listed
+here or below does not need to be changed.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial"><strong>AWT Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">MenuBar()</font></td>
+        <td nowrap><font size="2" face="Courier">UIBand() or<br>
+        UIBand(String) or<br>
+        UIBand(String, int)</font></td>
+        <td><font size="2">The String input is displayed on the
+        UIBand; the int refers to a style involving breaks
+        between bands. See the documentation for more
+        information.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">countMenus()</font></td>
+        <td nowrap><font size="2" face="Courier">getComponentCount()</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getMenu(int)</font></td>
+        <td><font size="2" face="Courier">getComponent(int)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">getMenuCount()</font></td>
+        <td><font size="2" face="Courier">getComponentCount()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h3>Unsupported Methods</h3>
+
+<p>Some methods in java.awt.MenuBar are not directly supported in
+com.ms.ui.UIBand. Those methods and suggested changes are
+described here.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial">AWT Code<strong>/Suggested
+        AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">add(Menu)</font><p><font
+        size="2" face="Courier"><strong>add(UIMenuButton)</strong></font></p>
+        </td>
+        <td><font size="2">UIMenuButtons typically contain
+        UIMenuLists for menus: see above and the documentation
+        for more information.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">deleteShortcut(MenuShortCut)</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td><font size="2">Shortcuts are implemented by default
+        as an incremental type search.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getHelpMenu()</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td><font size="2">In AFC, you do not specify which
+        UIMenuList is fixed as the help menu.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">getShortcutMenuItem(MenuShortcut)</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td><font size="2">Shortcuts are implemented by default
+        as an incremental type search.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">remove(MenuComponent)</font><p><font
+        size="2" face="Courier"><strong>remove(UIComponent)</strong></font></p>
+        </td>
+        <td><font size="2">AFC uses UIComponents instead of
+        MenuComponents.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setHelpMenu(Menu)</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td><font size="2">In AFC, you do not specify which
+        UIMenuList is fixed as the help menu.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">shortcuts()</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td><font size="2">Shortcuts are implemented by default
+        and so this information is not available.</font></td>
+    </tr>
+</table>
+</body>
+</html>

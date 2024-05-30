@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Variables</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_variables"></a>  Variables</h3>
+<p>
+Every application ever written, regardless of the programming language, has used variables of some sort, and ASP scripts are no exception. Both VBScript and JScript allow you to create and manage variables simply and easily. </p>
+<p>
+Each language deals with variable declaration differently. As an acknowledgement that scripters often don't want to get bogged down in strict data typing, both JScript and VBScript are quite flexible about variables and their declaration. In VBScript, any variable is automatically considered to be of the <b>Variant</b> type when it is initially declared with the <b>Dim</b> statement. Each variable eventually is assigned a subtype, such as <b>Numeric</b> and <b>Array</b>, according to what is assigned to them. JScript, likewise, doesn't require much type specificity when the variable is initially declared with the <b>var</b> statement. Both languages, in general, try to make your life easier by performing much of the data type management under the covers, including performing automatic type conversion. In fact, you don't even have to use the <b>Dim</b> or <b>var</b> statements at all to use a new variable; they are optional in their respective languages.</p>
+<p>
+This sample declares several different kinds of variables, performs simple operations on them, and then displays them to the client browser using the special &lt;% = ...%&gt; script delimiters. An integer is assigned to the variable <i>intVariable</i>, added to itself, and the sum sent to the client browser. <i>StrVariable</i> is set to equal Jemearl, is added to Smith, and sent to the client browser. Booleans and dates are likewise declared or created, initialized, manipulated, and displayed. </p>
+<p>
+Of particular interest is the final step in the date variable demonstration. In VBScript, the variable is first assigned a literal date string, and displayed. It is then reset, and assigned the value that is returned by the VBScript <b>Now</b> function, which should return the current system time. The JScript example uses the JScript <b>Date</b> function to set both the initial literal by passing parameters to the function, and then to set the variable equal to the current system time by passing no parameters to the function. </p>
+</BODY>
+</HTML>

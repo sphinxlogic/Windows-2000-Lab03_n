@@ -1,0 +1,68 @@
+
+//=--------------------------------------------------------------------------=
+//  (C) Copyright 1996-1999 Microsoft Corporation. All Rights Reserved.
+//=--------------------------------------------------------------------------=
+#include <olectl.h>
+
+#include "dispids.h"
+// IEMime.idl : IDL source for IEMime.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (IEMime.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+	
+
+	[
+		object,
+		uuid(C60BC918-F40E-11D0-B038-00C04FB9C24A),
+		dual,
+		helpstring("IIEMimeCtl Interface"),
+		pointer_default(unique)
+	]
+	interface IIEMimeCtl : IDispatch
+	{
+		[propget, id(DISPID_URL), helpstring("property URL")] HRESULT URL([out, retval] BSTR *pVal);
+		[propput, id(DISPID_URL), helpstring("property URL")] HRESULT URL([in] BSTR newVal);
+		[propget, id(DISPID_MEDIA), helpstring("property Media")] HRESULT Media([out, retval] BSTR *pVal);
+		[propput, id(DISPID_MEDIA), helpstring("property Media")] HRESULT Media([in] BSTR newVal);
+		[propget, id(DISPID_CFFORMAT), helpstring("property Cfformat")] HRESULT Cfformat([out, retval] BSTR *pVal);
+		[propget, id(DISPID_READYSTATE), helpstring("Stock property ReadyState")] HRESULT ReadyState([out, retval] long *pnReadyState);
+		[id(DISPID_ABOUTBOX), helpstring("method AboutBox")] HRESULT AboutBox();
+		[id(DISPID_RELOAD), helpstring("method Reload")] HRESULT Reload();
+	};
+[
+	uuid(C60BC90B-F40E-11D0-B038-00C04FB9C24A),
+	version(1.0),
+	helpstring("IEMime 1.0 Type Library")
+]
+library IEMIMELib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+    [
+        uuid(0f4a7b40-a295-11cf-a3a9-00a0c9034920),
+		helpstring("Event interface for IEMime control")
+    ]
+    dispinterface _IEMimeEvents
+	{
+        properties:
+		methods:
+			[id(1), helpstring("event complete - fired when IEMime is done downloading")]
+				void Complete();
+    };
+
+	[
+		uuid(C60BC919-F40E-11D0-B038-00C04FB9C24A),
+		helpstring("IEMimeCtl Class")
+	]
+	coclass IEMimeCtl
+	{
+		[default] interface IIEMimeCtl;
+		[default, source] interface _IEMimeEvents;
+	};
+};

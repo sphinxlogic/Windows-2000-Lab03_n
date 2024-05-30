@@ -1,0 +1,350 @@
+// --dsyncomm.chk---------------------------------------------------------------
+//
+//  File containing parameter checking functions for dsyncomm.c.
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+// -----------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_HrOpenExport(a)                     NOERROR
+#define CHK_HrWriteExport(a,b,c,d)              NOERROR
+#define CHK_HrOpenImport(a,b,c,d,e,f)           NOERROR
+#define CHK_HrReadImport(a,b,c)                 NOERROR
+#define CHK_HrCreateDAPIEntry(a)                NOERROR
+#define CHK_HrReadImportRecordHeader(a,b,c,d,e) NOERROR
+#define CHK_HrStripWhiteSpace(a)                NOERROR
+#define CHK_HrReadImportDataLines(a,b)          NOERROR
+#define CHK_HrAddAttributeToList(a,b,c,d,e)     NOERROR
+#define CHK_HrExpandDAPIEntry(a)                NOERROR
+
+#else
+
+//$--CHK_HrOpenExport-----------------------------------------------------------
+//  Check the parameters for HrOpenExport().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrOpenExport(
+    IN LPSTR pszExportFileName)             // file name from /EXPFILE
+{
+    HRESULT             hr                  = NOERROR;
+
+    if (!TEST_STRINGA_PTR(pszExportFileName))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+    return(hr);
+}
+
+
+
+//$--CHK_HrWriteExport----------------------------------------------------------
+//  Check the parameters for HrWriteExport().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrWriteExport(
+    IN PDAPI_ENTRY pEntry,                  // record to export
+    IN LPDIR_SYNC_ATTRIBUTE_INFO
+        rgdsAttributeInfo,                  // additional information about pEntry
+    IN LPSTR pszDN,                         // distinguished name of this object
+    IN DIR_SYNC_OPERATION eOperation)       // type of operation to do with object
+{
+    HRESULT             hr                  = NOERROR;
+
+    if (!TEST_READ_PTR(pEntry, sizeof(*pEntry)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if (!TEST_READ_PTR(rgdsAttributeInfo, 
+        pEntry->unAttributes * sizeof(*rgdsAttributeInfo)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if (!TEST_STRINGA_PTR(pszDN))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if (eOperation >= OPERATION_LAST)
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+    return(hr);
+}
+
+
+
+//$--CHK_HrOpenImport-----------------------------------------------------------
+//  Check the parameters for HrOpenImport().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrOpenImport(
+    IN  LPSTR pszImportFile,               // name of file to import
+    IN  LPSTR pszObjectType,               // default object class
+    IN  LPSTR pszSourceStamp,              // string for Imported-From attr
+    IN  LPSTR pszBasePoint,                // default base point
+    IN  LPSTR pszContainer,                // default container
+    IN  LPSTR pszHomeServer)               // default home server for new mbx
+{
+    HRESULT             hr                  = NOERROR;
+
+    if (!TEST_STRINGA_PTR(pszImportFile))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if (!TEST_STRINGA_PTR(pszObjectType))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if (!TEST_STRINGA_PTR(pszSourceStamp))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if (!TEST_STRINGA_PTR(pszBasePoint))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if (!TEST_STRINGA_PTR(pszContainer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if (!TEST_STRINGA_PTR(pszHomeServer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+    return(hr);
+}
+
+
+
+//$--CHK_HrReadImport-----------------------------------------------------------
+//  Check the parameters for HrReadImport().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrReadImport(
+    OUT LPDIR_SYNC_OPERATION peOperation,   // type of operation
+    OUT PDAPI_ENTRY * ppAttributes,         // list of attribute names
+    OUT PDAPI_ENTRY * ppValues)             // list of attribute values
+{
+    HRESULT             hr                  = NOERROR;
+
+    if (!TEST_WRITE_PTR(peOperation, sizeof(*peOperation)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if (!TEST_WRITE_PTR(ppAttributes, sizeof(*ppAttributes)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if (!TEST_WRITE_PTR(ppValues, sizeof(*ppValues)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+    return(hr);
+}
+
+
+
+//$--CHK_HrCreateDAPIEntry------------------------------------------------------
+//  Check the parameters for HrCreateDAPIEntry().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrCreateDAPIEntry(
+    OUT PDAPI_ENTRY * ppDAPIEntry)          // DAPI_ENTRY structure created
+{
+    HRESULT             hr                  = NOERROR;
+
+    if (!TEST_WRITE_PTR(ppDAPIEntry, sizeof(*ppDAPIEntry)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+    return(hr);
+}
+
+
+
+//$--CHK_HrReadImportRecordHeader-----------------------------------------------
+//  Check the parameters for HrReadImportRecordHeader().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrReadImportRecordHeader(
+    IN      LPSTR pszBasePoint,             // default base point
+    IN      LPSTR pszContainer,             // default container
+    IN OUT  PDAPI_ENTRY pAttributes,        // attribute name structure
+    IN OUT  PDAPI_ENTRY pValues,            // attribute value structure
+    OUT     LPDIR_SYNC_OPERATION peOperation) // operation type
+{
+    HRESULT             hr                  = NOERROR;
+
+    if (!TEST_STRINGA_PTR(pszBasePoint))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if (!TEST_STRINGA_PTR(pszContainer))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if (!TEST_WRITE_PTR(pAttributes, sizeof(*pAttributes)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if (!TEST_WRITE_PTR(pValues, sizeof(*pValues)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if (!TEST_WRITE_PTR(peOperation, sizeof(*peOperation)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+    return(hr);
+}
+
+
+
+//$--CHK_HrStripWhiteSpace------------------------------------------------------
+//  Check the parameters for HrStripWhiteSpace().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrStripWhiteSpace(
+    IN OUT  LPSTR pszString)               // string to strip white space from
+{
+    HRESULT             hr                  = NOERROR;
+
+    if (!TEST_STRINGA_PTR(pszString))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+    return(hr);
+}
+
+
+
+//$--CHK_HrReadImportDataLines--------------------------------------------------
+//  Check the parameters for HrReadImportDataLines().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrReadImportDataLines(
+    IN OUT  PDAPI_ENTRY pAttributes,        // list of attribute names
+    IN OUT  PDAPI_ENTRY pValues)            // list of attribute values
+{
+    HRESULT             hr                  = NOERROR;
+
+    if (!TEST_WRITE_PTR(pAttributes, sizeof(*pAttributes)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if (!TEST_WRITE_PTR(pValues, sizeof(*pValues)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+    return(hr);
+}
+
+
+
+//$--CHK_HrAddAttributeToList---------------------------------------------------
+//  Check the parameters for HrAddAttributeToList().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrAddAttributeToList(
+    IN      LPSTR       pszAttribute,       // name of attribute to add
+    IN      LPSTR       pszValue,           // value of attribute to add
+    IN      ULONG       ulDuplicateAction,  // action if property already in list
+    IN OUT  PDAPI_ENTRY pAttributes,        // list of attribute names
+    IN OUT  PDAPI_ENTRY pValues)            // list of attribute values
+{
+    HRESULT             hr                  = NOERROR;
+
+    if (!TEST_STRINGA_PTR(pszAttribute))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if (!TEST_STRINGA_PTR(pszValue))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if (!TEST_WRITE_PTR(pAttributes, sizeof(*pAttributes)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if (!TEST_WRITE_PTR(pValues, sizeof(*pValues)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+    return(hr);
+}
+
+
+
+//$--CHK_HrExpandDAPIEntry------------------------------------------------------
+//  Check the parameters for HrExpandDAPIEntry().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrExpandDAPIEntry(
+    IN OUT  PDAPI_ENTRY pDAPIEntry)         // DAPI_ENTRY structure
+{
+    HRESULT             hr                  = NOERROR;
+
+    if (!TEST_WRITE_PTR(pDAPIEntry, sizeof(*pDAPIEntry)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+    return(hr);
+}
+
+#endif /* DEBUG */

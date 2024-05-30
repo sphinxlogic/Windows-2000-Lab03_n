@@ -1,0 +1,32 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\toaster.res \
+    $(_OBJ_DIR)\alpha\toaster.obj \
+    $(_OBJ_DIR)\alpha\power.obj \
+    $(_OBJ_DIR)\alpha\wmi.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\toaster.res \
+    $(_OBJ_DIR)\axp64\toaster.obj \
+    $(_OBJ_DIR)\axp64\power.obj \
+    $(_OBJ_DIR)\axp64\wmi.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\toaster.res \
+    $(_OBJ_DIR)\i386\toaster.obj \
+    $(_OBJ_DIR)\i386\power.obj \
+    $(_OBJ_DIR)\i386\wmi.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\toaster.res \
+    $(_OBJ_DIR)\ia64\toaster.obj \
+    $(_OBJ_DIR)\ia64\power.obj \
+    $(_OBJ_DIR)\ia64\wmi.obj
+
+PASS0_IA64_OBJECTS=
+

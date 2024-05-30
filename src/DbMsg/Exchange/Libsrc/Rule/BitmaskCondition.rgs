@@ -1,0 +1,25 @@
+HKCR
+{
+	MSExchange.BitmaskCondition.1 = s 'BitmaskCondition Class'
+	{
+		CLSID = s '{95525549-095F-11D2-BC0F-00C04F8C92F7}'
+	}
+	MSExchange.BitmaskCondition = s 'BitmaskCondition Class'
+	{
+		CLSID = s '{95525549-095F-11D2-BC0F-00C04F8C92F7}'
+		CurVer = s 'MSExchange.BitmaskCondition.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {95525549-095F-11D2-BC0F-00C04F8C92F7} = s 'BitmaskCondition Class'
+		{
+			ProgID = s 'MSExchange.BitmaskCondition.1'
+			VersionIndependentProgID = s 'MSExchange.BitmaskCondition'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+		}
+	}
+}

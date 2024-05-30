@@ -1,0 +1,51 @@
+// grad.idl : IDL source for grad.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (grad.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+import "dxtrans.idl";
+
+	[
+		object,
+		uuid(D4ADDB7F-A306-11D1-9054-00C04FD9189D),
+		dual,
+		helpstring("ISimpleGradient Interface"),
+		pointer_default(unique)
+	]
+	interface ISimpleGradient : IDispatch
+	{
+		[propget, id(1), helpstring("property UpperLeftColor")] HRESULT UpperLeftColor([out, retval] OLE_COLOR *pVal);
+		[propput, id(1), helpstring("property UpperLeftColor")] HRESULT UpperLeftColor([in] OLE_COLOR newVal);
+		[propget, id(2), helpstring("property LowerLeftColor")] HRESULT LowerLeftColor([out, retval] OLE_COLOR *pVal);
+		[propput, id(2), helpstring("property LowerLeftColor")] HRESULT LowerLeftColor([in] OLE_COLOR newVal);
+		[propget, id(3), helpstring("property UpperRightColor")] HRESULT UpperRightColor([out, retval] OLE_COLOR *pVal);
+		[propput, id(3), helpstring("property UpperRightColor")] HRESULT UpperRightColor([in] OLE_COLOR newVal);
+		[propget, id(4), helpstring("property LowerRightColor")] HRESULT LowerRightColor([out, retval] OLE_COLOR *pVal);
+		[propput, id(4), helpstring("property LowerRightColor")] HRESULT LowerRightColor([in] OLE_COLOR newVal);
+		[propget, id(5), helpstring("property Height")] HRESULT Height([out, retval] long *pVal);
+		[propput, id(5), helpstring("property Height")] HRESULT Height([in] long newVal);
+		[propget, id(6), helpstring("property Width")] HRESULT Width([out, retval] long *pVal);
+		[propput, id(6), helpstring("property Width")] HRESULT Width([in] long newVal);
+	};
+[
+	uuid(D4ADDB72-A306-11D1-9054-00C04FD9189D),
+	version(1.0),
+	helpstring("grad 1.0 Type Library")
+]
+library GRADLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(D4ADDB80-A306-11D1-9054-00C04FD9189D),
+		helpstring("Gradient")
+	]
+	coclass SimpleGradient
+	{
+		[default] interface ISimpleGradient;
+	};
+};

@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Metabase Backup Enumerator</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h2><a name="_metabase_backup_enumerator"></a>Metabase Backup Enumerator</h2>
+<p>
+It's often nice to have several different versions of your metabase backed up, especially if you're making a lot of changes to your metabase (or practicing writing admin tools). This sample admin tool, if invoked without any command-line arguments, lists all available backup location sets. If an argument is present on the command-line, the tool assumes that it is the name of a backup location, and will list only those versions that match that location. </p>
+<p>
+The method that accomplishes this location list, <b>EnumBackups</b>, is not as straightforward as the other backup methods. <b>EnumBackups</b>, behind-the-scenes, sees the list of backups as an array, but it does not return that array to your script. Instead, the method takes several parameters. A name parameter is passed to the method, specifying what backup sets the method is to retrieve. If no name is supplied, all the backup sets available to IIS are returned as a result. Several return variables are supplied to <b>EnumBackups</b>, to hold the name, version, and date information for each individual backup set. Finally, an index into the (behind-the-scenes) array is passed to <b>EnumBackups</b>, specifying from which element of the result array the name, version, and date information should be drawn. For this sample, <b>EnumBackups</b> is executed in a loop until the index into the result array is out of range and an error is generated. </p>
+<p>
+This sample is provided for educational purposes only. It has not been tested in a production environment, and Microsoft&reg; will not provide technical support for it. </p>
+</BODY>
+</HTML>

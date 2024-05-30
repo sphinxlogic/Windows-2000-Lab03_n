@@ -1,0 +1,298 @@
+<!-- This document was created with my own two hands
+	 (plus a keyboard and notepad).
+	 
+	 Not surprisingly, it works much better this way.
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<HTML>
+<HEAD>
+	<TITLE>MetaStream DXTransform Demo</TITLE>
+	<LINK REL=STYLESHEET HREF="metastream.css" TITLE="MetaStream Style">
+	
+<script language="JavaScript">
+<!--
+var metastreamer;
+
+function UseModel(idx)
+{
+
+	nav = navigator.appName == "Microsoft Internet Explorer" ? 1 : 0;
+	
+	switch(idx) {
+		case 0:
+			if(nav) {
+				// Show correct model info
+				ILFileName.innerHTML="mcre.mts";
+				ILFileSize.innerHTML="21 Kb";
+
+				//Now we show correct model & background
+				model = "mcre.mts";
+			}
+			break;
+			
+		case 1:
+			if(nav) {
+				ILFileName.innerHTML="anton.mts";
+				ILFileSize.innerHTML="149 Kb";
+
+				model = "anton.mts";
+			}
+			break;
+						
+		case 2:
+			if(nav) {
+				ILFileName.innerHTML="monster.mts";
+				ILFileSize.innerHTML="172 Kb";
+				
+				model = "monster.mts";
+			}
+			break;
+			
+		case 3:
+			if(nav) {
+				ILFileName.innerHTML="skull.mts";
+				ILFileSize.innerHTML="160 Kb";
+				
+				model = "skull.mts";
+			}
+			break;
+			
+		case 4:
+			if(nav) {
+				ILFileName.innerHTML="pot.mts";
+				ILFileSize.innerHTML="184 Kb";
+				
+				model="pot.mts";
+			}
+			break;
+	}
+	
+	if(nav)
+		changeModel(model, 0);
+}
+
+function usefile() {
+
+	if(filepath.value != "") {
+		ILFileName.innerHTML=filepath.value;
+		ILFileSize.innerHTML="??? Kb";
+		
+		changeModel(filepath.value, 0);
+	}
+}
+
+function changeModel(model, firsttime) {
+
+if(model != "") {
+  m = DAControl.MeterLibrary;
+  dim = 0.006;  // in meters because we use the MeterLibrary
+  fullpathtomodel = model;
+  
+  // Absolute path to the models
+  metastreamer.DXTurl = fullpathtomodel;
+  metastreamer_result = m.ApplyDXTransform(metastreamer, null, null);
+    
+  // This will run it's course over the canonical 0 to 1 period.
+  xformedGeo = metastreamer_result.OutputBvr;
+  
+  // Place nicely in the window.                  
+  xformedGeo = xformedGeo.Transform(m.Compose3Array(new Array(
+                                    m.Translate3(0, 0, -dim*15),
+                                    m.Scale3Uniform(.04),
+                                    m.Rotate3RateDegrees(m.XVector3, 0),
+                                    m.Rotate3RateDegrees(m.YVector3, 15),
+                                    m.Rotate3RateDegrees(m.ZVector3, 0)
+                                    )));
+
+  // Point Light
+  PointLight = m.PointLight.Transform(m.Translate3(0, 0, 35));
+
+  // Perspective Camera
+  camera = m.PerspectiveCamera(100, 0);
+
+  // render the geometry with the ambient light and camera
+  finalImg = m.UnionGeometry(xformedGeo, PointLight).Render(camera);
+  
+  if(firsttime) {
+	  DAControl.Image = m.Overlay(finalImg, m.SolidColorImage(m.Black));
+  }
+
+  // Use Trident timers for speed.
+  DAControl.TimerSource = 1;
+
+  // start the animation only if it's the first time...
+  if(firsttime) {
+	  DAControl.Start();
+  }
+
+} 
+}
+
+function SetQuality(percquality) {
+	actualquality = percquality / 100;  // Since quality is really a 0 - 1 value, not 0 - 100
+	
+	metastreamer.DXTquality = actualquality;
+}
+
+function AutoScale(asboolean) {
+	metastreamer.DXTAutoScale = asboolean;
+}
+
+function QualityChange(percqual) {
+
+	if(percqual>= 0 && percqual <= 100)
+	{
+			SetQuality(percqual);
+	} else if(percqual> 100)
+	{
+		window.alert("That is impossible.  No one can give more than 100 %.  By definition that is the most anyone can give.");
+	} else
+	{
+		window.alert("The Quality must be larger than 0 and below 100 %")
+	}
+
+
+}
+
+function SceneLoader() {
+	metastreamer = new ActiveXObject("DX3DTransform.MetaCreations.MetaStream.1");
+	model = "mcre.mts";
+
+	changeModel(model, 1);
+	QualityText.value=100;
+	SetQuality(100);
+	AutoScale(AutoScaleOption.checked);
+}
+
+function Loader()
+{
+	if(navigator.appName == "Microsoft Internet Explorer") {
+		ILFileName.innerHTML="mcre.mts";
+		ILFileSize.innerHTML="21 Kb";
+	}
+
+	SceneLoader();
+}
+//-->
+</script>
+</HEAD>
+
+<BODY bgcolor="#000000" link="#4D93B5" vlink="#2E3A96" onLoad="Loader();">
+<table width="100%" border=0 cellspacing=0 cellpadding=0>
+	<tr>
+		<td nowrap colspan=2 width=30 height=30 bgcolor="#000000" background="top-border.jpg">
+			<img src="top-left.jpg" width=30 height=30 ALT="">
+		</td>
+		<td nowrap width="100%" height=30 bgcolor="#000000" background="top-border.jpg">
+			&nbsp;
+		</td>
+		<td nowrap width=30 height=30 bgcolor="#000000" background="top-border.jpg">
+			<IMG SRC="top-right.jpg" width=30 height=30 alt="Top-Right Arc">
+		</td>
+	</tr>
+		
+	<tr>
+		<td nowrap bgcolor="#000000">
+			<DIV class="InfoLayer" Title="InfoLayer" align=left>
+				<CENTER><FONT FACE="Tahoma, Verdana, serif" COLOR="White"><b><i><H1 class=face>model information</H1></i></b></FONT></center>
+				<FONT FACE="Tahoma, Veradana, serif" COLOR=Green>
+				<P class="InfoLayer">Model File: <SPAN ID="ILFileName">mcre.mts</span>
+				<P class="InfoLayer">Model Size: <SPAN ID="ILFileSize">21 Kb</span>
+				<SCRIPT LANGUAGE="JavaScript">
+				<!--
+					if(navigator.appName == "Netscape") {
+						document.write("<P class='InfoLayer'>Note: This area and the model displayed will remain constant in Netscape.");
+					}
+				//-->
+				</SCRIPT>
+				</FONT>
+			</DIV>
+		</td>
+		
+		<td width="50" nowrap bgcolor="#FFFFFF">
+			&nbsp;
+		</td>
+		
+		<td nowrap bgcolor="#FFFFFF">
+			<P align=CENTER><FONT FACE="Tahoma" Size=4><b><i>MetaCreations MetaStream DXTransform Demo</i></b></FONT>
+			<form name="options">
+			<table>
+				<tr>
+					<td nowrap align="center">
+					<FONT FACE="Tahoma" Size=2>Select Model:</FONT>
+					</td>
+				</tr>
+				
+				<tr>
+					<td nowrap>
+						<select name="FileList">
+							<option>MetaCreations Logo
+							<option>Anton's Head
+							<option>A Scary Monster
+							<option>Dinosaur Skull
+							<option>Terracotta Pot
+						</select>
+					</td>
+					<td nowrap>
+						<button id="AddButton" name="AddButton" onClick="UseModel(FileList.selectedIndex);">
+							Use Model
+						</button>
+					</td>
+				</tr>
+			</table>
+			</form>
+		</td>
+		
+		<td nowrap width=30 bgcolor="#000000" background="right-border.jpg">
+			&nbsp;
+		</td>
+	</tr>
+		
+	<tr>
+		<td nowrap colspan=2 width=30 height=30 bgcolor="#000000" background="bottom-border.jpg">
+			<img src="bottom-left.jpg" width=30 height=100% ALT="">
+		</td>
+		<td nowrap width="100%" height=30 bgcolor="#000000" background="bottom-border.jpg">
+			&nbsp;
+		</td>
+		<td nowrap width=30 height=30 bgcolor="#000000" background="bottom-border.jpg">
+			<img src="bottom-right.jpg" width=30 height=100% ALT="">
+		</td>
+	</tr>
+		
+	<tr>
+		<td width="100%" height=10 bgcolor="#000000">
+		</td>
+	</tr>
+			
+	<tr>
+		<td nowrap align="center">
+		<script language="JavaScript" src="dxtransform.js">
+		</script>
+		</td>
+		
+		<td colspan=3 align="CENTER" valign="TOP">
+		<A HREF="http://www.metastream.com/"><IMG SRC="metaloop.gif" width=346 height=194 alt="MetaStream Animated Logo" border=0></A>
+		<P align="left" class="ChromeInfo">DirectAnimation's ability to progressively download complex models using <a href="http://www.metacreations.com/">MetaCreations</a>' <a href="http://www.metastream.com/">MetaStream</a> technology provides the end user with higher performance and the ability to see content before it is fully downloaded.
+		<P align="left" class="ChromeInfo">Different models are provided for you to browse by selecting them above.  In the top left corner of the screen, you should be able to see information about each model.
+		<P align="left" class="ChromeInfo">X-Files (model files with a .x extension) can also contain streamable content.  The models above are MetaStream files (.mts extensions).  They also appear as X-Files in the same directory as this demo.  To use them, just enter the same filename you see in the top-left corner in the text box below, but replace the extension with 'x' and click Test this File.
+		<P align="left" class="ChromeInfo">Below, you can use local files with this demo!  If you have your own MetaStream (or X-) files, click Browse and find a file to test.  Then click Test this File to see your own file.  You can even enter your own URLs to models that you know exist!
+		<BR>
+		<P align="left" class="ChromeInfo"><B>model testbed:</B>
+		<P><input type="file" name="filepath" id="filepath" size=30>
+		<P><button name="FileButton" id="FileButton" onClick="usefile();">Test this File</button>
+		</td>
+	</tr>
+	<tr>
+		<td nowrap>
+			<BR>
+			<P align="left" class="ChromeInfo"><B>MetaStream Model Options:</B>
+			<P><input type="checkbox" id="AutoScaleOption" name="AutoScaleOption" onClick="AutoScale(AutoScaleOption.checked);" CHECKED><label class="ChromeInfo" for="AutoScaleOption">AutoScale Model to Cube</label>
+			<P align="left" class="ChromeInfo">Quality of Model:
+			<input type="text" id="QualityText" name="QualityText" size=3> <button id="QualityButton" name="QualityButton" onClick="QualityChange(QualityText.value);">Set Quality</button>
+		</td>
+	</tr>
+</table>
+</BODY>
+</HTML>

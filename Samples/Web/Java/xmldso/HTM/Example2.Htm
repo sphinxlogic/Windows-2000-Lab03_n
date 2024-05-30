@@ -1,0 +1,153 @@
+<html>  
+
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+  <head>
+    <title>XML Data Source Applet</title>
+    <style>
+      td    {font-size:80%;}
+      xmp   {font-size:120%; background:yellow}
+    </style>
+  </head>
+
+<BODY TOPMARGIN=0 LEFTMARGIN=40 BGCOLOR="#ffffff" LINK="#000066" VLINK="#666666" TEXT="#000000">
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+
+
+<table align=right>
+<tr><td bgcolor=black><a href=Example1.htm>
+    <font color=white onmouseover="this.style.color='gold'" 
+        onmouseout="this.style.color='white'" ><b>Previous<b></font></a>
+    <td bgcolor=black><a href=Example3.htm>
+        <font color=white onmouseover="this.style.color='gold'" 
+        onmouseout="this.style.color='white'" ><b>Next<b></font></a>
+</table>
+
+<h2>XML Data Source Applet</h2>
+<h3>Example 2</h3>
+<P>
+This example shows how the XML DSO can get the XML data from inside
+the APPLET tag in the HTML page instead of from a separate file.
+<P>
+<applet code=com.ms.xml.dso.XMLDSO.class width=100% height=25 id=xmldso mayscript=true>
+    <?XML VERSION="1.0" RMD="NONE"?>
+    <BOOKS>
+	    <ITEM>
+		    <XTITLE>Number, the Language of Science</>
+		    <AUTHOR>Danzig</>
+		    <PRICE>5.95</>
+	    </>
+	    <ITEM>
+		    <XTITLE>Tales of Grandpa Cat</>
+		    <AUTHOR>Wardlaw, Lee</>
+		    <PRICE>6.58</>
+	    </>
+	    <ITEM>
+		    <XTITLE>Evolution of Complexity in Animal Culture</>
+		    <PUBLISHER>Associated Press</>
+		    <AUTHOR>Bonner</>
+		    <PRICE>5.95</>
+	    </>
+	    <ITEM>
+		    <XTITLE>When We Were Very Young</>
+		    <AUTHOR>Milne, A. A.</>
+		    <PRICE>12.50</>
+	    </>
+	    <ITEM>
+		    <XTITLE>Learn Java Now</>
+		    <AUTHOR>Stephen R. Davis</>
+		    <PUBLISHER>Microsoft Corporation</>
+		    <PRICE>9.95</>
+	    </>
+	    <ITEM>
+		    <XTITLE>Design Patterns</>
+		    <AUTHOR>Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides</>
+		    <PUBLISHER>Addison Wesley</>
+		    <PRICE>49.95</>
+	    </>
+    </>
+</applet>
+<table id=table border=2 width=100% datasrc=#xmldso cellpadding=5>
+<thead>
+	<th>Author
+	<th>Title
+	<th>Price
+	<th>Publisher
+</thead>
+<tr>
+  <td valign=top><div datafld=AUTHOR dataformatas=HTML></td>
+  <td valign=top><div datafld=XTITLE dataformatas=HTML></td>
+  <td valign=top><div datafld=PRICE dataformatas=HTML></td>
+  <td valign=top><div datafld=PUBLISHER dataformatas=HTML></td>
+</tr>
+</table>
+<P>
+The APPLET tag used to invoke the XML DSO and load the XML data is as 
+follows:
+<xmp>
+<applet code=com.ms.xml.dso.XMLDSO.class 
+    width=100% height=25 id=xmldso mayscript=true>
+    <?XML VERSION="1.0" RMD="NONE"?>
+    <BOOKS>
+	    <ITEM>
+		    <XTITLE>Number, the Language of Science</>
+		    <AUTHOR>Danzig</>
+		    <PRICE>5.95</>
+	    </>
+	    <ITEM>
+		    <XTITLE>Tales of Grandpa Cat</>
+		    <AUTHOR>Wardlaw, Lee</>
+		    <PRICE>6.58</>
+	    </>
+	    <ITEM>
+		    <XTITLE>Evolution of Complexity in Animal Culture</>
+		    <PUBLISHER>Associated Press</>
+		    <AUTHOR>Bonner</>
+		    <PRICE>5.95</>
+	    </>
+	    <ITEM>
+		    <XTITLE>When We Were Very Young</>
+		    <AUTHOR>Milne, A. A.</>
+		    <PRICE>12.50</>
+	    </>
+	    <ITEM>
+		    <XTITLE>Learn Java Now</>
+		    <AUTHOR>Stephen R. Davis</>
+		    <PUBLISHER>Microsoft Corporation</>
+		    <PRICE>9.95</>
+	    </>
+	    <ITEM>
+		    <XTITLE>Design Patterns</>
+		    <AUTHOR>Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides</>
+		    <PUBLISHER>Addison Wesley</>
+		    <PRICE>49.95</>
+	    </>
+    </>
+    </applet>
+</xmp>
+<P>
+<input type=button value="Show Schema" 
+    onclick='var schema = document.all.item("schema");
+            if (this.value == "Show Schema") {
+                schema.innerText=xmldso.getSchema();
+                this.value="Hide Schema";
+            } else {
+                schema.innerText="";
+                this.value="Show Schema";
+            }'>
+<xmp id=schema ></xmp>
+<P>
+<i>(Note - currently the &lt;TITLE&gt; tag is not allowed
+inside inline XML so you will notice I changed it to XTITLE).</i>
+<P>
+The TABLE that binds to the data is the same as in example 1.
+<P>
+The <a href=XMLDSO.java>XML DSO Source Code</a> is in Java.
+<p>
+
+<FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">&#169; 1997 Microsoft Corporation. All rights reserved. <A HREF="../../art/cpyright.htm" target="_top">Legal Notices</a>.<P></FONT>
+
+
+  </body>
+</html>

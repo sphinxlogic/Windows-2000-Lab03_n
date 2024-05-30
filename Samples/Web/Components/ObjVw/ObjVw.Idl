@@ -1,0 +1,109 @@
+
+//=--------------------------------------------------------------------------=
+//  (C) Copyright 1996-1999 Microsoft Corporation. All Rights Reserved.
+//=--------------------------------------------------------------------------=
+#include <olectl.h>
+// ObjVw.idl : IDL source for ObjVw.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (ObjVw.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+	[
+		object,
+		uuid(5DC52A0F-F33E-11D0-8A4F-00C04FB9C3A5),
+		dual,
+		helpstring("IObjVw Interface"),
+		pointer_default(unique)
+	]
+	interface IObjVw : IDispatch
+	{
+		[id(1), helpstring("method Recalc")] HRESULT Recalc();
+	};
+
+    [
+      uuid(34A715A0-6587-11D0-924A-0020AFC7AC4D),
+      helpstring("Web Browser Control events interface"),
+      hidden
+    ]
+    interface DWebBrowserEvents2 : IDispatch
+	{
+            [id(0x00000066), helpstring("Statusbar text changed.")]
+            HRESULT StatusTextChange([in] BSTR Text);
+            [id(0x0000006c), helpstring("Fired when download progress is updated.")]
+            HRESULT ProgressChange(
+                            [in] long Progress, 
+                            [in] long ProgressMax);
+            [id(0x00000069), helpstring("The enabled state of a command changed.")]
+            HRESULT CommandStateChange(
+                            [in] long Command, 
+                            [in] VARIANT_BOOL Enable);
+            [id(0x0000006a), helpstring("Download of a page started.")]
+            HRESULT DownloadBegin();
+            [id(0x00000068), helpstring("Download of page complete.")]
+            HRESULT DownloadComplete();
+            [id(0x00000071), helpstring("Document title changed.")]
+            HRESULT TitleChange([in] BSTR Text);
+            [id(0x00000070), helpstring("Fired when the PutProperty method has been called.")]
+            HRESULT PropertyChange([in] BSTR szProperty);
+            [id(0x000000fa), helpstring("Fired before navigate occurs in the given WebBrowser (window or frameset element). The processing of this navigation may be modified.")]
+            HRESULT BeforeNavigate2(
+                            [in] IDispatch* pDisp, 
+                            [in] VARIANT* URL, 
+                            [in] VARIANT* Flags, 
+                            [in] VARIANT* TargetFrameName, 
+                            [in] VARIANT* PostData, 
+                            [in] VARIANT* Headers, 
+                            [out] VARIANT_BOOL* Cancel);
+            [id(0x000000fb), helpstring("A new, hidden, non-navigated WebBrowser window is needed.")]
+            HRESULT NewWindow2(
+                            [out] IDispatch** ppDisp, 
+                            [out] VARIANT_BOOL* Cancel);
+            [id(0x000000fc), helpstring("Fired when the document being navigated to becomes visible and enters the navigation stack.")]
+            HRESULT NavigateComplete2(
+                            [in] IDispatch* pDisp, 
+                            [in] VARIANT* URL);
+            [id(0x00000103), helpstring("Fired when the document being navigated to reaches ReadyState_Complete.")]
+            HRESULT DocumentComplete(
+                            [in] IDispatch* pDisp, 
+                            [in] VARIANT* URL);
+            [id(0x000000fd), helpstring("Fired when application is quiting.")]
+            HRESULT OnQuit();
+            [id(0x000000fe), helpstring("Fired when the window should be shown/hidden")]
+            HRESULT OnVisible([in] VARIANT_BOOL Visible);
+            [id(0x000000ff), helpstring("Fired when the toolbar  should be shown/hidden")]
+            HRESULT OnToolBar([in] VARIANT_BOOL ToolBar);
+            [id(0x00000100), helpstring("Fired when the menubar should be shown/hidden")]
+            HRESULT OnMenuBar([in] VARIANT_BOOL MenuBar);
+            [id(0x00000101), helpstring("Fired when the statusbar should be shown/hidden")]
+            HRESULT OnStatusBar([in] VARIANT_BOOL StatusBar);
+            [id(0x00000102), helpstring("Fired when fullscreen mode should be on/off")]
+            HRESULT OnFullScreen([in] VARIANT_BOOL FullScreen);
+            [id(0x00000104), helpstring("Fired when theater mode should be on/off")]
+            HRESULT OnTheaterMode([in] VARIANT_BOOL TheaterMode);
+    };
+
+
+[
+	uuid(42BE256D-F339-11D0-8A4E-00C04FB9C3A5),
+	version(1.0),
+	helpstring("ObjVw 1.0 Type Library")
+]
+library OBJVWLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(5DC52A12-F33E-11D0-8A4F-00C04FB9C3A5),
+		helpstring("ObjVw Class")
+	]
+	coclass ObjVw
+	{
+		[default] interface IObjVw;
+		interface DWebBrowserEvents2;
+	};
+};

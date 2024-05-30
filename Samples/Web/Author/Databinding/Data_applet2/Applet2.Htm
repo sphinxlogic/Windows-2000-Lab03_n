@@ -1,0 +1,90 @@
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<HTML>
+<HEAD>
+<TITLE>The Applet Tag</TITLE>
+<META NAME="FILENAME" CONTENT="applet2.HTM">
+<script language="JavaScript">
+
+function forward() {
+
+//This function increments the data bound record after checking to confirm 
+//you are not already at the end of the recordset. If you are, the program 
+//alerts you that it cant go any further. 
+
+  if (StockList.recordset.AbsolutePosition != StockList.recordset.RecordCount) {
+	StockList.recordset.MoveNext();
+	}
+	else {
+	alert("Cant move past last record");
+	}
+}
+
+function reverse() {
+
+//This function decrements the data bound record after checking to confirm  
+//you are not already at the end of the recordset. If you are, the program 
+//alerts you that it cant go any further.  
+
+  if (StockList.recordset.AbsolutePosition != 1) {
+	StockList.recordset.MovePrevious();
+	}
+	else {
+	alert("cant move past first record");
+	}
+}
+
+</script>
+</head>
+
+<body TOPMARGIN=20 leftmargin=40 bgcolor="#ffffff" link="#000066"
+	vlink="#666666 text="#000000">
+
+<H2>The APPLET Tag</H2>
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT>
+<P>
+<P>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+<hr>
+
+<p>
+Properties of Java applets can be bound using data binding. The Java applet must
+conform to the JavaBeans specification for properties (that is, there must be
+setXXXX() and getXXXX() methods for the property). Properties of the applet are
+bound by specifying the data binding attributes on the PARAM tag with the NAME
+attribute corresponding to the property name.
+<p>
+An example of Java applet with a property bound to the current record of the
+data set is shown below. Click on the arrow buttons to change the current
+record. Notice that the value displayed in the applet changes to match the
+value in the current record.<P>
+
+<object id="StockList" classid="clsid:333C7BC4-460F-11D0-BC04-0080C7055A83"
+	width=0 height=0>
+  <param name="UseHeader" value="True">
+  <param name="TextQualifier" value="&quot;">
+  <param name="FieldDelim" value=",">
+  <param name="DataURL" value="quotes.txt">
+</object>
+
+<center>
+
+<applet code=StringApplet.class id=ap1 name=ap1
+        width=150 height=30 >
+  <param name="TextVal" DATASRC="#StockList" DATAFLD="Company">
+</applet>
+<hr width=100>
+<input type="button" value="  <  " onClick="reverse();">
+<input type="button" value="  >  " onClick="forward();">
+</center>
+<P>
+<P>
+<P>
+<FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">
+&copy; <A HREF="/misc/cpyright.htm" TARGET="_top">1999 Microsoft Corporation. All rights reserved. Terms of use</A>.
+</FONT>
+</body>
+</html>

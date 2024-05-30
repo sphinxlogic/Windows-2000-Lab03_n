@@ -1,0 +1,222 @@
+ getimage
+
+ Timestamp is 656655aa (Tue Nov 28 16:03:38 2023)
+
+ Preferred load address is 01000000
+
+ Start         Length     Name                   Class
+ 0001:00000000 000000b0H .idata$5                CODE
+ 0001:000000b0 000009c8H .rdata                  CODE
+ 0001:00000a80 00000e4cH .text                   CODE
+ 0001:000018cc 00000014H .text$x                 CODE
+ 0001:000018e0 00000028H .xdata$x                CODE
+ 0001:00001908 00000064H .idata$2                CODE
+ 0001:0000196c 00000014H .idata$3                CODE
+ 0001:00001980 000000b0H .idata$4                CODE
+ 0001:00001a30 00000288H .idata$6                CODE
+ 0001:00001cb8 00000000H .edata                  CODE
+ 0002:00000000 00000004H .CRT$XCA                DATA
+ 0002:00000004 00000004H .CRT$XCZ                DATA
+ 0002:00000008 00000004H .CRT$XIA                DATA
+ 0002:0000000c 00000004H .CRT$XIZ                DATA
+ 0002:00000010 00000004H .data                   DATA
+ 0002:00000018 00000240H .bss                    DATA
+ 0003:00000000 00000058H .rsrc$01                DATA
+ 0003:00000060 00000310H .rsrc$02                DATA
+
+  Address         Publics by Value              Rva+Base     Lib:Object
+
+ 0001:00000000       __imp__lstrcmpiA@8         01001000     kernel32:KERNEL32.dll
+ 0001:00000004       __imp__OutputDebugStringA@4 01001004     kernel32:KERNEL32.dll
+ 0001:00000008       __imp__LocalAlloc@8        01001008     kernel32:KERNEL32.dll
+ 0001:0000000c       __imp__InterlockedDecrement@4 0100100c     kernel32:KERNEL32.dll
+ 0001:00000010       __imp__InterlockedIncrement@4 01001010     kernel32:KERNEL32.dll
+ 0001:00000014       __imp__LocalFree@4         01001014     kernel32:KERNEL32.dll
+ 0001:00000018       __imp__DeleteFileA@4       01001018     kernel32:KERNEL32.dll
+ 0001:0000001c       __imp__lstrcpyA@8          0100101c     kernel32:KERNEL32.dll
+ 0001:00000020       __imp__CopyFileA@12        01001020     kernel32:KERNEL32.dll
+ 0001:00000024       __imp__MultiByteToWideChar@24 01001024     kernel32:KERNEL32.dll
+ 0001:00000028       \177KERNEL32_NULL_THUNK_DATA 01001028     kernel32:KERNEL32.dll
+ 0001:0000002c       __imp___initterm           0100102c     msvcrt:MSVCRT.dll
+ 0001:00000030       __imp____setusermatherr    01001030     msvcrt:MSVCRT.dll
+ 0001:00000034       __imp___adjust_fdiv        01001034     msvcrt:MSVCRT.dll
+ 0001:00000038       __imp____p__commode        01001038     msvcrt:MSVCRT.dll
+ 0001:0000003c       __imp___XcptFilter         0100103c     msvcrt:MSVCRT.dll
+ 0001:00000040       __imp____getmainargs       01001040     msvcrt:MSVCRT.dll
+ 0001:00000044       __imp____p___initenv       01001044     msvcrt:MSVCRT.dll
+ 0001:00000048       __imp___except_handler3    01001048     msvcrt:MSVCRT.dll
+ 0001:0000004c       __imp___controlfp          0100104c     msvcrt:MSVCRT.dll
+ 0001:00000050       __imp__printf              01001050     msvcrt:MSVCRT.dll
+ 0001:00000054       __imp__exit                01001054     msvcrt:MSVCRT.dll
+ 0001:00000058       __imp___EH_prolog          01001058     msvcrt:MSVCRT.dll
+ 0001:0000005c       __imp___exit               0100105c     msvcrt:MSVCRT.dll
+ 0001:00000060       __imp__sprintf             01001060     msvcrt:MSVCRT.dll
+ 0001:00000064       __imp_??3@YAXPAX@Z         01001064     msvcrt:MSVCRT.dll
+ 0001:00000068       __imp____CxxFrameHandler   01001068     msvcrt:MSVCRT.dll
+ 0001:0000006c       __imp_??2@YAPAXI@Z         0100106c     msvcrt:MSVCRT.dll
+ 0001:00000070       __imp____p__fmode          01001070     msvcrt:MSVCRT.dll
+ 0001:00000074       __imp____set_app_type      01001074     msvcrt:MSVCRT.dll
+ 0001:00000078       __imp__strtok              01001078     msvcrt:MSVCRT.dll
+ 0001:0000007c       \177MSVCRT_NULL_THUNK_DATA 0100107c     msvcrt:MSVCRT.dll
+ 0001:00000080       __imp__SysFreeString@4     01001080     oleaut32:OLEAUT32.dll
+ 0001:00000084       __imp__SysAllocString@4    01001084     oleaut32:OLEAUT32.dll
+ 0001:00000088       \177OLEAUT32_NULL_THUNK_DATA 01001088     oleaut32:OLEAUT32.dll
+ 0001:0000008c       __imp__wsprintfA           0100108c     user32:USER32.dll
+ 0001:00000090       \177USER32_NULL_THUNK_DATA 01001090     user32:USER32.dll
+ 0001:00000094       __imp__FreePropVariantArray@8 01001094     ole32:ole32.dll
+ 0001:00000098       __imp__PropVariantClear@4  01001098     ole32:ole32.dll
+ 0001:0000009c       __imp__OleInitialize@4     0100109c     ole32:ole32.dll
+ 0001:000000a0       __imp__OleUninitialize@0   010010a0     ole32:ole32.dll
+ 0001:000000a4       __imp__CoCreateInstance@20 010010a4     ole32:ole32.dll
+ 0001:000000a8       __imp__ReleaseStgMedium@4  010010a8     ole32:ole32.dll
+ 0001:000000ac       \177ole32_NULL_THUNK_DATA  010010ac     ole32:ole32.dll
+ 0001:00000104       ??_C@_0BK@LGCN@OLE?5failed?5to?5initialize?6?$AA@ 01001104     getimage.obj
+ 0001:00000120       ??_C@_0CF@OFLE@?6Transfer?5completed?5successfully@ 01001120     getimage.obj
+ 0001:00000148       ??_C@_0CA@MPBL@Device?5Created?5successfully?4?4?4?6?$AA@ 01001148     getimage.obj
+ 0001:00000168       ??_C@_0BK@FBIC@?$DN?$DN?$DN?$DN?$DN?$DN?$DN?$DN?$DN?$DN?$DN?$DN?$DN?$DN?$DN?$DN?$DN?$DN?$DN?$DN?$DN?$DN?$DN?$DN?6?$AA@ 01001168     getimage.obj
+ 0001:00000184       ??_C@_0O@DDAE@Format?3?5?5?7?$CFs?6?$AA@ 01001184     getimage.obj
+ 0001:00000194       ??_C@_0BA@HDAA@Item?5Name?3?7?$CFws?6?$AA@ 01001194     getimage.obj
+ 0001:000001a4       ??_C@_0BO@OGMI@Item?5Name?3?7?$FL?5none?5specified?$FN?6?$AA@ 010011a4     getimage.obj
+ 0001:000001c4       ??_C@_0P@PPLG@DeviceID?3?7?$CFws?6?$AA@ 010011c4     getimage.obj
+ 0001:000001d4       ??_C@_0BN@FILF@DeviceID?3?7?$FL?5none?5specified?$FN?6?$AA@ 010011d4     getimage.obj
+ 0001:000001f4       ??_C@_0O@HIMJ@Filename?3?7?$CFs?6?$AA@ 010011f4     getimage.obj
+ 0001:00000204       ??_C@_0BK@PLIO@?$DN?$DN?$DN?5Current?5settings?5?$DN?$DN?$DN?6?$AA@ 01001204     getimage.obj
+ 0001:00000220       ??_C@_0BO@OHCO@Enumerate?5items?5requested?4?4?4?6?$AA@ 01001220     getimage.obj
+ 0001:00000240       ??_C@_05GICG@items?$AA@    01001240     getimage.obj
+ 0001:00000248       ??_C@_0CA@JMOL@Enumerate?5devices?5requested?4?4?4?6?$AA@ 01001248     getimage.obj
+ 0001:00000268       ??_C@_04PGN@enum?$AA@      01001268     getimage.obj
+ 0001:00000270       ??_C@_0DH@GGHB@?1items?5Enumerate?5child?5items?0?5?$CIm@ 01001270     getimage.obj
+ 0001:000002a8       ??_C@_0CD@HPMM@?1enum?5Enumerate?5Devices?5on?5syste@ 010012a8     getimage.obj
+ 0001:000002cc       ??_C@_0EE@LCPN@?1i?5name?5of?5target?5child?5item?5for@ 010012cc     getimage.obj
+ 0001:00000310       ??_C@_0DA@PNBK@?1f?5image?5file?5name?5?5?5?$CIex?4?5?1f?5?$CCc?3@ 01001310     getimage.obj
+ 0001:00000340       ??_C@_0DK@FDFC@possible?5choices?3?5?$CIIMGFMT_BMP?0?5I@ 01001340     getimage.obj
+ 0001:0000037c       ??_C@_0CM@DEEJ@?1c?5Clipboard?5Format?5?5?$CIex?4?5?1c?5?$CCIM@ 0100137c     getimage.obj
+ 0001:000003a8       ??_C@_0EN@CGED@?1d?5target?5device?5ID?5?5?$CIex?4?5?1d?5?$CC?$HL6@ 010013a8     getimage.obj
+ 0001:000003f8       ??_C@_0BF@FLGL@?1?$DP?5This?5help?5screen?6?$AA@ 010013f8     getimage.obj
+ 0001:00000410       ??_C@_0N@EGAI@Arguments?3?6?6?$AA@ 01001410     getimage.obj
+ 0001:00000420       ??_C@_0CC@MBLI@Defaults?3?5IMGFMT_BMP?0?5image?4bmp?6@ 01001420     getimage.obj
+ 0001:00000444       ??_C@_0EJ@CKBN@Usage?3?5getimage?5?$FL?1d?5?$CCdeviceID?$CC?$FN?5@ 01001444     getimage.obj
+ 0001:00000490       ??_C@_0DH@KEEE@getimage?5?9?5retrieves?5an?5image?5fr@ 01001490     getimage.obj
+ 0001:000004c8       ??_C@_02JJJH@?6?6?$AA@     010014c8     getimage.obj
+ 0001:000004cc       ??_C@_0CE@OHMH@Invalid?3?5Clipboard?5Format?5?$DN?5?$CINUL@ 010014cc     getimage.obj
+ 0001:000004f0       ??_C@_0BN@DFBF@Invalid?3?5Device?5ID?5?$DN?5?$CINULL?$CJ?6?$AA@ 010014f0     getimage.obj
+ 0001:00000510       ??_C@_0BM@IOM@Invalid?3?5FileName?5?$DN?5?$CINULL?$CJ?6?$AA@ 01001510     getimage.obj
+ 0001:0000052c       ??_C@_0BN@OMAA@Invalid?3?5Item?5Name?5?$DN?5?$CINULL?$CJ?6?$AA@ 0100152c     getimage.obj
+ 0001:0000054c       ??_C@_01FDLN@?1?$AA@       0100154c     getimage.obj
+ 0001:00000550       ??_C@_0L@NJOJ@IMGFMT_BMP?$AA@ 01001550     getimage.obj
+ 0001:0000055c       ??_C@_09IIGF@image?4bmp?$AA@ 0100155c     getimage.obj
+ 0001:00000568       ??_C@_0M@FKKK@IMGFMT_TIFF?$AA@ 01001568     getimage.obj
+ 0001:00000574       ??_C@_0M@IIFG@IMGFMT_JPEG?$AA@ 01001574     getimage.obj
+ 0001:00000580       ??_C@_0BD@LKAP@Item?5not?5found?4?4?4?6?$AA@ 01001580     getimage.obj
+ 0001:00000594       ??_C@_0BM@FKH@WIA?5Device?5Manager?5is?5NULL?6?$AA@ 01001594     getimage.obj
+ 0001:000005b0       ??_C@_0BH@BNMF@EnumDeviceInfo?5Failed?6?$AA@ 010015b0     getimage.obj
+ 0001:000005c8       ??_C@_0BA@EDMO@Reset?$CI?$CJ?5Failed?6?$AA@ 010015c8     getimage.obj
+ 0001:000005d8       ??_C@_0CB@LEOG@Next?$CI?$CJ?5Failed?5requesting?51?5item?6@ 010015d8     getimage.obj
+ 0001:000005fc       ??_C@_0EF@HIJL@ReadMultiple?$CI?$CJ?5Failed?5while?5read@ 010015fc     getimage.obj
+ 0001:00000644       ??_C@_01BJG@?6?$AA@        01001644     getimage.obj
+ 0001:00000648       ??_C@_0BD@LLML@Server?5Name?3?5?7?$CFws?6?$AA@ 01001648     getimage.obj
+ 0001:0000065c       ??_C@_0BB@INIG@Device?5ID?3?5?7?$CFws?6?$AA@ 0100165c     getimage.obj
+ 0001:00000670       ??_C@_0BD@BJBB@Device?5Name?3?5?7?$CFws?6?$AA@ 01001670     getimage.obj
+ 0001:00000684       ??_C@_0DH@FKEK@Next?5returned?5?$CFd?5item?$CIs?$CJ?0?5after?5@ 01001684     getimage.obj
+ 0001:000006bc       ??_C@_0BC@BDGC@RootItem?5is?5NULL?6?$AA@ 010016bc     getimage.obj
+ 0001:000006d0       ??_C@_0CD@FHPJ@QI?5for?5IWiaPropertyStorage?5faile@ 010016d0     getimage.obj
+ 0001:000006f4       ??_C@_0BE@NBKI@Item?5Name?5?$DN?5?$CINULL?$CJ?6?$AA@ 010016f4     getimage.obj
+ 0001:00000708       ??_C@_0CM@FBHP@ReadPropStr?$CIWIA_IPA_FULL_ITEM_NA@ 01001708     getimage.obj
+ 0001:00000734       ??_C@_0BB@LIPF@Item?5Name?5?$DN?5?$CFws?6?$AA@ 01001734     getimage.obj
+ 0001:00000748       ??_C@_0DE@OGPE@Failed?5to?5Create?5Device?0?5possibl@ 01001748     getimage.obj
+ 0001:0000077c       ??_C@_0CF@ODHB@WritePropLong?$CIWIA_IPA_TYMED?$CJ?5fai@ 0100177c     getimage.obj
+ 0001:000007a4       ??_C@_0CG@POHF@WritePropGUID?$CIWIA_IPA_FORMAT?$CJ?5fa@ 010017a4     getimage.obj
+ 0001:000007cc       ??_C@_0CN@IBK@QueryInterface?$CIIID_IWiaDataTrans@ 010017cc     getimage.obj
+ 0001:000007fc       ??_C@_0CM@PIDH@Callback?5interface?5object?5failed@ 010017fc     getimage.obj
+ 0001:00000828       ??_C@_0CN@FBPN@QueryInterface?$CIIID_IWiaDataCallb@ 01001828     getimage.obj
+ 0001:00000858       ??_C@_0BF@INKE@idtGetData?$CI?$CJ?5failed?6?$AA@ 01001858     getimage.obj
+ 0001:00000870       ??_C@_0CA@IFPI@IWiaDataTransfer?5?$CI?5Saving?5?$CFs?5?$CJ?6?$AA@ 01001870     getimage.obj
+ 0001:00000890       ??_C@_06EGEB@Done?$CB?6?$AA@ 01001890     getimage.obj
+ 0001:00000898       ??_C@_0CD@OJMO@Executing?5an?5IWiaData?5Transfer?4?4@ 01001898     getimage.obj
+ 0001:000008bc       ??_C@_0CE@LIJD@Format?5was?5successfully?5written?4@ 010018bc     getimage.obj
+ 0001:000008e0       ??_C@_0CD@JLGL@TYMED?5was?5successfully?5written?4?4@ 010018e0     getimage.obj
+ 0001:00000904       ??_C@_0CE@FCM@pIWiaItem?9?$DOQueryInterface?$CI?$CJ?5Fail@ 01001904     getimage.obj
+ 0001:00000928       ??_C@_0BD@PBHE@pIWiaItem?5is?5NULL?6?$AA@ 01001928     getimage.obj
+ 0001:0000093c       ??_C@_0DA@BBGI@ReadPropStr?0?5ReadMultiple?5of?5pro@ 0100193c     getimage.obj
+ 0001:0000096c       ??_C@_11A@?$AA?$AA@        0100196c     getimage.obj
+ 0001:00000970       ??_C@_0BN@HMIK@?5Failed?5to?5copy?5temp?5file?4?4?6?$AA@ 01001970     getimage.obj
+ 0001:00000990       ??_C@_03INHL@?$CFws?$AA@   01001990     getimage.obj
+ 0001:00000998       ??_7CWiaDataCallback@@6B@  01001998     getimage.obj
+ 0001:000009a8       ??_C@_0BM@PDIM@Reading?5Header?5information?6?$AA@ 010019a8     getimage.obj
+ 0001:000009c4       ??_C@_0O@BLB@?$CFi?5out?5of?5?$CFli?$AA@ 010019c4     getimage.obj
+ 0001:000009d4       ??_C@_01PJCK@?4?$AA@       010019d4     getimage.obj
+ 0001:000009e8       _IID_IUnknown              010019e8     uuid:unknwn_i.obj
+ 0001:000009f8       _IMGFMT_TIFF               010019f8     wiaguid:wiaevent.obj
+ 0001:00000a08       _IMGFMT_JPEG               01001a08     wiaguid:wiaevent.obj
+ 0001:00000a18       _IMGFMT_BMP                01001a18     wiaguid:wiaevent.obj
+ 0001:00000a28       _CLSID_WiaDevMgr           01001a28     wiaguid:wiaiid.obj
+ 0001:00000a38       _IID_IWiaPropertyStorage   01001a38     wiaguid:wiaiid.obj
+ 0001:00000a48       _IID_IWiaDataTransfer      01001a48     wiaguid:wiaiid.obj
+ 0001:00000a58       _IID_IWiaDataCallback      01001a58     wiaguid:wiaiid.obj
+ 0001:00000a68       _IID_IWiaDevMgr            01001a68     wiaguid:wiaiid.obj
+ 0001:00000a80       _main                      01001a80 f   getimage.obj
+ 0001:00000e73       ?WIAFormatStrToValue@@YG?AU_GUID@@PAD@Z 01001e73 f   getimage.obj
+ 0001:00000ec8       ?SetWIAItem@@YGHXZ         01001ec8 f   getimage.obj
+ 0001:00000efc       ?CleanUp@@YGXXZ            01001efc f   getimage.obj
+ 0001:00000f1b       ?EnumerateDevices@@YGHXZ   01001f1b f   getimage.obj
+ 0001:0000106f       ?EnumerateItems@@YGHXZ     0100206f f   getimage.obj
+ 0001:0000109d       ?EnumerateAllItems@@YGJPAUIWiaItem@@@Z 0100209d f   getimage.obj
+ 0001:000010f3       ?EnumNextLevel@@YGJPAUIEnumWiaItem@@@Z 010020f3 f   getimage.obj
+ 0001:00001167       ?DisplayItemName@@YGXPAUIWiaItem@@@Z 01002167 f   getimage.obj
+ 0001:000011f0       ?CreateThisDevice@@YGHPAG@Z 010021f0 f   getimage.obj
+ 0001:00001224       ?CreateWIADeviceManager@@YGHXZ 01002224 f   getimage.obj
+ 0001:0000124e       ?DoIdtGetDataTransfer@@YGHPAUIWiaItem@@KU_GUID@@@Z 0100224e f   getimage.obj
+ 0001:000013fb       ?ReadPropStr@@YGJKPAUIWiaPropertyStorage@@PAPAG@Z 010023fb f   getimage.obj
+ 0001:0000147b       ?WritePropLong@@YGJKPAUIWiaPropertyStorage@@J@Z 0100247b f   getimage.obj
+ 0001:000014b3       ?WritePropGUID@@YGJKPAUIWiaPropertyStorage@@U_GUID@@@Z 010024b3 f   getimage.obj
+ 0001:000014eb       ?MoveTempFile@@YGHPAGPBD@Z 010024eb f   getimage.obj
+ 0001:00001546       ?QueryInterface@CWiaDataCallback@@UAGJABU_GUID@@PAPAX@Z 01002546 f   getimage.obj
+ 0001:0000158d       ?AddRef@CWiaDataCallback@@UAGKXZ 0100258d f   getimage.obj
+ 0001:000015a5       ?Release@CWiaDataCallback@@UAGKXZ 010025a5 f   getimage.obj
+ 0001:000015dd       ??0CWiaDataCallback@@QAE@XZ 010025dd f   getimage.obj
+ 0001:000015f1       ??1CWiaDataCallback@@QAE@XZ 010025f1 f   getimage.obj
+ 0001:0000160e       ?Initialize@CWiaDataCallback@@QAGJXZ 0100260e f   getimage.obj
+ 0001:00001617       ?BandedDataCallback@CWiaDataCallback@@UAGJJJJJJJJPAE@Z 01002617 f   getimage.obj
+ 0001:000016f0       _mainCRTStartup            010026f0 f   msvcrt:crtexe.obj
+ 0001:00001840       ??3@YAXPAX@Z               01002840 f   msvcrt:MSVCRT.dll
+ 0001:00001846       ??2@YAPAXI@Z               01002846 f   msvcrt:MSVCRT.dll
+ 0001:0000184c       ___CxxFrameHandler         0100284c f   msvcrt:MSVCRT.dll
+ 0001:00001860       __EH_prolog                01002860 f   msvcrt:MSVCRT.dll
+ 0001:00001866       __XcptFilter               01002866 f   msvcrt:MSVCRT.dll
+ 0001:0000186c       __initterm                 0100286c f   msvcrt:MSVCRT.dll
+ 0001:00001880       __setdefaultprecision      01002880 f   msvcrt:fp8.obj
+ 0001:000018a0       __matherr                  010028a0 f   msvcrt:merr.obj
+ 0001:000018b0       __setargv                  010028b0 f   msvcrt:dllargv.obj
+ 0001:000018c0       __except_handler3          010028c0 f   msvcrt:MSVCRT.dll
+ 0001:000018c6       __controlfp                010028c6 f   msvcrt:MSVCRT.dll
+ 0001:00001908       __IMPORT_DESCRIPTOR_MSVCRT 01002908     msvcrt:MSVCRT.dll
+ 0001:0000191c       __IMPORT_DESCRIPTOR_KERNEL32 0100291c     kernel32:KERNEL32.dll
+ 0001:00001930       __IMPORT_DESCRIPTOR_USER32 01002930     user32:USER32.dll
+ 0001:00001944       __IMPORT_DESCRIPTOR_ole32  01002944     ole32:ole32.dll
+ 0001:00001958       __IMPORT_DESCRIPTOR_OLEAUT32 01002958     oleaut32:OLEAUT32.dll
+ 0001:0000196c       __NULL_IMPORT_DESCRIPTOR   0100296c     msvcrt:MSVCRT.dll
+ 0002:00000000       ___xc_a                    01003000     msvcrt:cinitexe.obj
+ 0002:00000004       ___xc_z                    01003004     msvcrt:cinitexe.obj
+ 0002:00000008       ___xi_a                    01003008     msvcrt:cinitexe.obj
+ 0002:0000000c       ___xi_z                    0100300c     msvcrt:cinitexe.obj
+ 0002:00000010       ___defaultmatherr          01003010     msvcrt:merr.obj
+ 0002:00000018       ?g_szClipboardFormat@@3PADA 01003018     getimage.obj
+ 0002:00000120       ?g_szFileName@@3PADA       01003120     getimage.obj
+ 0002:00000224       ?g_bstrDeviceID@@3PAGA     01003224     getimage.obj
+ 0002:00000228       ?g_bstrItemName@@3PAGA     01003228     getimage.obj
+ 0002:0000022c       ?g_pIWiaDevMgr@@3PAUIWiaDevMgr@@A 0100322c     getimage.obj
+ 0002:00000230       ?g_pIWiaRootItem@@3PAUIWiaItem@@A 01003230     getimage.obj
+ 0002:00000234       ?g_pIWiaItem@@3PAUIWiaItem@@A 01003234     getimage.obj
+ 0002:00000238       ?g_bDisplayOnly@@3HA       01003238     getimage.obj
+ 0002:0000023c       __dowildcard               0100323c     msvcrt:wildcard.obj
+ 0002:00000240       __newmode                  01003240     msvcrt:_newmode.obj
+ 0002:00000244       __commode                  01003244     msvcrt:xncommod.obj
+ 0002:00000248       __fmode                    01003248     msvcrt:xtxtmode.obj
+ 0002:0000024c       ___onexitend               0100324c     <common>
+ 0002:00000250       ___onexitbegin             01003250     <common>
+ 0002:00000254       __adjust_fdiv              01003254     <common>
+
+ entry point at        0001:000016f0
+
+ Static symbols
+

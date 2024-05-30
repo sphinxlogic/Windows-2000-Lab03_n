@@ -1,0 +1,5 @@
+This is a sample text file which can be compressed using the Create
+class.  For example:
+
+jview Create /m MSZIP test.cab test.txt
+

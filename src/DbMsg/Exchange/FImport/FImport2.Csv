@@ -1,0 +1,5 @@
+Command, Folderpath=@DEFAULT\@PR_IPM_INBOX_ENTRYID, Class=IPM.Note
+pr_subject, pr_body, attach, s:Message Number In French
+Message Number One,Here is the first message.,fimport2.txt,Un
+Message Number Two,Here is the second message.,fimport2.txt,Deux
+Message Number Three,Here is the third message.,fimport2.txt,Trois

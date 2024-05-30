@@ -1,0 +1,169 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_PUBDLG DIALOG DISCARDABLE  0, 0, 306, 325
+STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "EventMon Publisher"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Register",IDC_REGEC,223,46,50,14
+    GROUPBOX        "EventClass",IDC_STATIC,13,14,274,52
+    CONTROL         "Publisher Filter",IDC_DECL_FILTER,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,27,31,69,10
+    CONTROL         "AllowInprocActivation",IDC_ALLOWINPROC,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,111,30,84,10
+    CONTROL         "FireInParallel",IDC_FIREINPARALLEL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,27,46,84,10
+    GROUPBOX        "Subscription",IDC_STATIC,13,74,274,149
+    CONTROL         "FilterCriteria",IDC_FILTERCRITERIA,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,171,151,52,10
+    CONTROL         "Persistent",IDC_PERSISTENT,"Button",BS_AUTORADIOBUTTON,
+                    138,180,47,10
+    CONTROL         "Transient",IDC_TRANSIENT,"Button",BS_AUTORADIOBUTTON,
+                    139,196,45,10
+    GROUPBOX        "Type",IDC_STATIC,131,168,68,47
+    PUSHBUTTON      "Register",IDC_REGSUB,224,202,50,14
+    CONTROL         "Out of Proc Subscriber App",IDC_LOCAL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,25,206,103,10
+    GROUPBOX        "Firing",IDC_STATIC,15,228,274,76
+    COMBOBOX        IDC_INTERFACE,82,90,71,39,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "All the methods in the interface",IDC_ALL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,171,110,113,10
+    COMBOBOX        IDC_METHOD,82,110,71,42,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "Interface",IDC_STATIC,26,90,51,8
+    LTEXT           "Method",IDC_STATIC,26,110,51,8
+    COMBOBOX        IDC_FIREINTERFACE,25,255,71,40,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_FIREMETHOD,121,255,71,40,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Interface",IDC_STATIC,25,244,51,8
+    LTEXT           "Method",IDC_STATIC,121,244,51,8
+    PUSHBUTTON      "Fire",IDC_FIRE,224,282,50,14
+    CONTROL         "All the Interfaces",IDC_ALLINT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,171,90,71,10
+    CONTROL         "EventClassID",IDC_ECID,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,25,192,79,10
+    CONTROL         "PublisherID",IDC_PUBID,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,25,176,52,10
+    CONTROL         "PublisherID",IDC_PUBID_EC,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,111,46,52,10
+    EDITTEXT        IDC_PARAM,224,255,50,14,ES_AUTOHSCROLL
+    LTEXT           "Method Argument",IDC_STATIC,224,244,57,8
+    EDITTEXT        IDC_PUBPROPEDIT,82,130,71,14,ES_AUTOHSCROLL
+    CONTROL         "Publisher Property",IDC_PUBPROP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,171,130,85,10
+    LTEXT           "Property",IDC_STATIC,26,130,46,13
+    LTEXT           "Filter Criteria",IDC_STATIC,25,151,54,8
+    EDITTEXT        IDC_FILTERCRITERIASTR,82,151,71,14,ES_AUTOHSCROLL
+    CONTROL         "Publisher Filter (Runtime)",IDC_RUNTIME_FILTER,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,25,284,104,12
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_PUBDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 299
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 318
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_PUBDLG DLGINIT
+BEGIN
+    IDC_INTERFACE, 0x403, 1, 0
+"\000" 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// TYPELIB
+//
+
+1                       TYPELIB DISCARDABLE     "..\\EventMonEventClass\\EventMonEventClass.tlb"
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

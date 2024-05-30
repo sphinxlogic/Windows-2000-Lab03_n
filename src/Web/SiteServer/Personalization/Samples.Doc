@@ -1,0 +1,800 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl {\f0\froman\fprq2\fcharset0 Times New Roman;}{\f1\fswiss\fprq2\fcharset0 Arial Narrow;}{\f2\fmodern\fcharset0 Lucida Sans Typewriter;}{\f3\froman\fcharset255 MSIcons;}{\f4\fmodern\fprq1\fcharset0 Courier New;}{\f5\fnil\fcharset0 Times New Roman;}}
+{\colortbl ;\red255\green255\blue255;}
+\uc1\pard\li280\tx6960\lang1024\ulnone\f0\fs21 Introduction\tab 2\par
+User Management Scripts\tab 3\par
+\pard\li560\tx6960 SetAttribute.VBS\tab 4\par
+CancelUsers.VBS\tab 6\par
+RemCancelledUsers.VBS\tab 7\par
+RemExpiredMembers.VBS\tab 8\par
+RemObject.VBS\tab 9\par
+AddRemGroupMembers.VBS\tab 10\par
+ListGroupMembers.VBS\tab 12\par
+ListChildren.VBS\tab 13\par
+\pard\li280\tx6960 DistList.VBS-Distribution List Scripts\tab 15\par
+\pard\li560\tx6960 /F1 Remove Non-existent/Cancelled Users from a Distribution List or All Distribution Lists\tab 16\par
+/F2 Add/Remove a List of Users to/from a Distribution List\tab 18\par
+/F3 Remove a User from All Distribution Lists\tab 20\par
+/F4 Count Number of Users in Each Distribution List\tab 21\par
+/F5 Display Distribution List Members\tab 22\par
+\pard\li280\tx6960 Schema Functions and Scripts\tab 23\par
+\pard\li560\tx6960 Vocab.ASP\tab 24\par
+Schema.ASP\tab 25\par
+CreateAttribute\tab 26\par
+ModifyAttribute\tab 27\par
+CreateClass\tab 28\par
+ModifyClass\tab 29\par
+DeleteObject\tab 30\par
+DumpConfig.VBS\tab 31\par
+DumpSchema.VBS\tab 32\par
+\pard\li280\tx6960 Security Scripts\tab 33\par
+\pard\li560\tx6960 VerifPwd.ASP\tab 34\par
+Logoff.ASP\tab 36\par
+Cert.ASP\tab\b Error! Bookmark not defined.\b0\par
+DumpACL.VBS\tab 37\par
+\pard\li280\tx6960 Dynamic Directory Sample Pages\tab 41\par
+\pard\li560\tx6960 Dynamic.ASP\tab 42\par
+ILS_Session.ASP\tab 43\par
+NetMeeting/Dynamic Directory Sample Pages\tab 45\par
+ILSAdd.VBS\tab 46\par
+\pard\par
+\lang1033\b\f1\fs40 Introduction\par
+\b0\f0\fs21 This set of samples has been provided to demonstrate how to use some of the Personalization & Membership (P&M) capabilities with scripts and Active Server Pages (ASPs). In doing so, they provide functions that you may find useful in the day-to-day management of your system.\par
+\pard\li30\ri30\cf1\fs12\par
+\pard\cf0\b\f1\fs21 Important\par
+\b0\f0 The scripts, functions, and ASP pages described in this document are samples only, and not finished Microsoft products. Product support is not available. Please test the samples thoroughly before using them in a production environment.\par
+\pard\li30\ri30\cf1\fs12\par
+\pard\cf0\fs21 There are five types of samples:\par
+\pard\fi-280\li280\tx280\b\'b7\b0\tab User management scripts.\par
+\b\'b7\b0\tab Distribution list scripts.\par
+\b\'b7\b0\tab Schema scripts and functions.\par
+\b\'b7\b0\tab Security scripts.\par
+\b\'b7\b0\tab Dynamic directory sample pages.\par
+\pard\qr\fs12\par
+\pard\b\f1\fs40 User Management Scripts\par
+\b0\f0\fs21 Use these scripts to work with user and group objects in the Membership Directory. Some scripts also work with other leaf and container nodes in the Membership Directory.\par
+We recommend that you use a dedicated Site Server computer to run these scripts. If your Membership Directory is very large, the scripts that use the \b ADODB.Connection \b0 object will consume significant amounts of RAM; the scripts may not be able to complete successfully. For example:\par
+\pard\fi-280\li280\tx280\b\'b7\b0\tab If you run \b RemCancelledUsers.vbs\b0  on a Membership Directory containing 170,000 users, the script can consume more than 95 MB.\par
+\b\'b7\b0\tab If you run \b RemCancelledUsers.vbs\b0  on a Membership Directory containing 50,000 users, the script can consume more than 65 MB.\par
+\pard\qr\fs12\par
+\pard\li30\ri30\cf1\par
+\pard\cf0\b\f1\fs21 Important\par
+\b0\f0 We recommend that once a script that uses \b ADODB.Connection\b0  is running, you do not close the Command Prompt window or use \b\fs17 ctrl+c\b0\fs21  to attempt to stop the script. If you do so, \b ADODB\b0  and cscript may not function properly.\par
+\pard\li30\ri30\cf1\fs12\par
+\pard\cf0\b\fs19 Script File\tab Purpose\tab\fs21\par
+\b0\fs8\tab\tab\fs21\par
+\b\fs19 SetAttribute.VBS\tab\b0 Sets the value of a specified attribute for each object in a list of objects.\tab\fs21\par
+\b\fs19 CancelUsers.VBS\tab\b0 Looks for users under the \b ou=Members\b0  container who have not visited the site for a specified number of days and who satisfy some filter criteria (if any). The script sets the account-status attribute of these accounts to 4.\tab\fs21\par
+\b\fs19 RemCancelledUsers.VBS\tab\b0 Removes all users under the \b ou=Members\b0  container whose account-status is 4 and who satisfy some filter criteria (if any).\tab\fs21\par
+\b\fs19 RemExpiredMembers.VBS\tab\b0 Examines either a specified group or all of the groups under a specified container, and removes group members whose memberships have expired or are expiring today.\tab\fs21\par
+\b\fs19 RemObject.VBS\tab\b0 Removes a specified object from the Membership Directory. If the object is a container, then all the objects under it will also be removed.\tab\fs21\par
+\b\fs19 AddRemGroupMembers.VBS\tab\b0 Adds a list of users to a group or removes a list of users from a group. \tab\fs21\par
+\b\fs19 ListGroupMembers.VBS\tab\b0 Lists or counts the members of a group.\tab\fs21\par
+\b\fs19 ListChildren.VBS\tab\b0 Lists or counts either the immediate children or all the descendants of a specified container.\tab\fs21\par
+\pard\qr\fs12\par
+\pard\b\f1\fs34 SetAttribute.VBS\par
+\fs24 Purpose\par
+\b0\f0\fs21 Given an input file containing a list of distinguished names (DNs), this script sets the value of a specified attribute for each of the named objects.\par
+\b\f1\fs24 Components\par
+\b0\f0\fs21 File: %wwwroot%\\[x86|Alpha]\\files\\MDM\\setattribute.vbs\par
+Microsoft\fs14\'ae\fs21  Visual Basic\fs14\'ae\fs21 , Scripting Edition (VBScript) object: \b Scripting.FileSystemObject\b0 , used to read the input file.\par
+\b\f1\fs24 Parameters/Switches\par
+\f0\fs19 Switch\tab Description\tab\fs21\par
+\b0\fs8\tab\tab\fs21\par
+\b\fs19 /H\b0  \i string\i0 [:\i integer\i0 ]\b\tab\b0 Server name of the Lightweight Directory Access Protocol (LDAP) Service (followed by a colon and the LDAP Service port number, if needed).\tab\fs21\par
+\b\fs19 /U\b0  \i string\b\i0\tab\b0 DN of the user running the script (optional).\tab\fs21\par
+\b\fs19 /P\b0  \i string\b\i0\tab\b0 User password of the user running the script (optional).\tab\fs21\par
+\b\fs19 /I\b0  \i filename\b\i0\tab\b0 Filename (and path, if needed) of an input file containing list of DNs of objects to modify.\tab\fs21\par
+\b\fs19 /A\b0  \i string\b\i0\tab\b0 Common name (cn) of the attribute to set. The attribute can use any syntax except binary. No special processing is done for multi-valued attributes. If you specify a multi-valued attribute, the single value you specify with \b /V\b0  will replace all of the attribute's current values (as opposed to being added to them).\tab\fs21\par
+\b\fs19 /V\b0  \i string\b\i0\tab\b0 New value for the attribute. The script does not validate the new value.\tab\fs21\par
+\b\fs19 /S\tab\b0 Run script in silent mode (will not display status of each operation).\tab\fs21\par
+\b\fs19 /?\tab\b0 Display list of switches.\tab\fs21\par
+\pard\qr\fs12\par
+\pard\fs21 These switches are both case- and order-insensitive.\par
+If \b /U\b0  and \b /P \b0 are not specified, the script will bind to the Membership Directory as follows:\par
+\pard\fi-280\li280\tx280\b\'b7\b0\tab If the Membership Directory uses Membership Authentication mode, the script binds as an anonymous user.\par
+\b\'b7\b0\tab If the Membership Directory uses Microsoft\fs14\'ae \fs21 Windows NT\fs14\'ae\fs21  Authentication mode, the script binds as the user currently logged on to Windows NT. This account should be a member of the Administrators group of any computer that the script will access.\par
+\pard\qr\fs12\par
+\pard\b\f1\fs24 Syntax\par
+\pard\tx390\tx780\tx1170\tx1560\tx1950\tx2340\tx2730\tx3120\tx3510\tx3900\tx4290\tx4680\tx5070\tx5460\tx5850\tx6240\tx6630\b0\f2\fs16 cscript SetAttribute.vbs /H <\i server\i0 :\i port\i0 > [/U <User DN> /P <user password>] /I <path of input file> /A <attribute name> /V <value> [/S]\par
+\pard\b\f1\fs34 CancelUsers.VBS\par
+\fs24 Purpose\par
+\b0\f0\fs21 This script looks for users under the \b ou=Members\b0  container who have not visited the site for a specified number of days and who satisfy some filter criteria (if any). The script sets the account-status attribute of these accounts to 4.\par
+\b\f1\fs24 Components\par
+\b0\f0\fs21 File: %wwwroot%\\[x86|Alpha]\\files\\MDM\\\\cancelusers.vbs\par
+Active Directory Service Interface (ADSI) object: \b ADODB.Connection\b0 , used to execute the search under the \b ou=Members \b0 container.\par
+\b\f1\fs24 Parameters/Switches\par
+\f0\fs19 Switch\tab Description\tab\fs21\par
+\b0\fs8\tab\tab\fs21\par
+\b\fs19 /H\b0  \i string\i0 [:\i integer\i0 ]\b\tab\b0 Server name of the LDAP Service (followed by a colon and the LDAP Service port number, if needed).\tab\fs21\par
+\b\fs19 /U\b0  \i string\b\i0\tab\b0 DN of the user running the script (optional).\tab\fs21\par
+\b\fs19 /P\b0  \i string\b\i0\tab\b0 User password of the user running the script (optional).\tab\fs21\par
+\b\fs19 /N\b0  \i integer\b\i0\tab\b0 Number of days since a user's last visit.\tab\fs21\par
+\b\fs19 /F\b0  \i string\b\i0\tab\b0 Filter string to limit search (optional). \b /F\b0  allows cancelling of only those users who satisfy certain criteria.\tab\fs21\par
+\b\fs19 /S\tab\b0 Run script in silent mode (will not display status of each operation).\tab\fs21\par
+\b\fs19 /?\tab\b0 Display list of switches.\tab\fs21\par
+\pard\qr\fs12\par
+\pard\fs21 These switches are both case- and order-insensitive.\par
+If \b /U\b0  and \b /P \b0 are not specified, the script will bind to the Membership Directory as follows:\par
+\pard\fi-280\li280\tx280\b\'b7\b0\tab If the Membership Directory uses Membership Authentication mode, the script binds as an anonymous user.\par
+\b\'b7\b0\tab If the Membership Directory uses Windows NT Authentication mode, the script binds as the user currently logged on to Windows NT. This account should be a member of the Administrators group of any computer that the script will access.\par
+\pard\qr\fs12\par
+\pard\b\f1\fs24 Syntax\par
+\pard\tx390\tx780\tx1170\tx1560\tx1950\tx2340\tx2730\tx3120\tx3510\tx3900\tx4290\tx4680\tx5070\tx5460\tx5850\tx6240\tx6630\b0\f2\fs16 cscript CancelUsers.vbs /H <server:port> [/U <User DN> /P <user password>] /N <number of days> [/F <filter string>] [/S]\par
+\pard\b\f1\fs34 RemCancelledUsers.VBS\par
+\fs24 Purpose\par
+\b0\f0\fs21 This script removes all users under the \b ou=Members\b0  container whose account-status is 4 and who satisfy some filter criteria (if any).\par
+\b\f1\fs24 Components\par
+\b0\f0\fs21 File: %wwwroot%\\[x86|Alpha]\\files\\MDM\\\\remcancelledusers.vbs\par
+ADSI object: \b ADODB.Connection\b0 , used to execute the search under the \b ou=Members \b0 container.\par
+\b\f1\fs24 Parameters/Switches\par
+\f0\fs19 Switch\tab Description\tab\fs21\par
+\b0\fs8\tab\tab\fs21\par
+\b\fs19 /H\b0  \i string\i0 [:\i integer\i0 ]\b\tab\b0 Server name of the LDAP Service (followed by a colon and the LDAP Service port number, if needed).\tab\fs21\par
+\b\fs19 /U\b0  \i string\b\i0\tab\b0 DN of the user running the script (optional).\tab\fs21\par
+\b\fs19 /P\b0  \i string\b\i0\tab\b0 User password of the user running the script (optional).\tab\fs21\par
+\b\fs19 /F\b0  \i string\b\i0\tab\b0 Filter string to limit search (optional). \b /F\b0  allows the removal of only those users that satisfy certain criteria.\tab\fs21\par
+\b\fs19 /S\tab\b0 Run script in silent mode (will not display status of each operation).\tab\fs21\par
+\b\fs19 /?\tab\b0 Display list of switches.\tab\fs21\par
+\pard\qr\fs12\par
+\pard\fs21 These switches are both case- and order-insensitive.\par
+If \b /U\b0  and \b /P \b0 are not specified, the script will bind to the Membership Directory as follows:\par
+\pard\fi-280\li280\tx280\b\'b7\b0\tab If the Membership Directory uses Membership Authentication mode, the script binds as an anonymous user.\par
+\b\'b7\b0\tab If the Membership Directory uses Windows NT Authentication mode, the script binds as the user currently logged on to Windows NT. This account should be a member of the Administrators group of any computer that the script will access.\par
+\pard\qr\fs12\par
+\pard\b\f1\fs24 Syntax\par
+\pard\tx390\tx780\tx1170\tx1560\tx1950\tx2340\tx2730\tx3120\tx3510\tx3900\tx4290\tx4680\tx5070\tx5460\tx5850\tx6240\tx6630\b0\f2\fs16 cscript RemCancelledUsers.vbs /H <server:port> [/U <User DN> /P <user password>] [/F <filter string>] [/S]\par
+\pard\b\f1\fs34 RemExpiredMembers.VBS\par
+\fs24 Purpose\par
+\b0\f0\fs21 This script examines either a specified group or all of the groups under a specified container. The script removes group members whose memberships have expired or are expiring today.\par
+\b\f1\fs24 Components\par
+\b0\f0\fs21 File: %wwwroot%\\[x86|Alpha]\\files\\MDM\\\\remexpiredmembers.vbs\par
+ADSI object: \b ADODB.Connection\b0 , used to execute the search under the specified group or container.\par
+\b\f1\fs24 Parameters/Switches\par
+\f0\fs19 Switch\tab Description\tab\fs21\par
+\b0\fs8\tab\tab\fs21\par
+\b\fs19 /H\b0  \i string\i0 [:\i integer\i0 ]\b\tab\b0 Server name of the LDAP Service (followed by a colon and the LDAP Service port number, if needed).\tab\fs21\par
+\b\fs19 /U\b0  \i string\b\i0\tab\b0 DN of the user running the script (optional).\tab\fs21\par
+\b\fs19 /P\b0  \i string\b\i0\tab\b0 User password of the user running the script (optional).\tab\fs21\par
+\b\fs19 /C\b0  \i string\b\i0\tab\b0 DN of the container or group. If the DN following \b /C\b0  is that of a group, the script will remove the expiring members of that group. If the DN is that of a container, it will remove the expiring members of all the groups under the container.\tab\fs21\par
+\b\fs19 /S\tab\b0 Run script in silent mode (will not display status of each operation).\tab\fs21\par
+\b\fs19 /?\tab\b0 Display list of switches.\tab\fs21\par
+\pard\qr\fs12\par
+\pard\fs21 These switches are both case- and order-insensitive.\par
+If \b /U\b0  and \b /P \b0 are not specified, the script will bind to the Membership Directory as follows:\par
+\pard\fi-280\li280\tx280\b\'b7\b0\tab If the Membership Directory uses Membership Authentication mode, the script binds as an anonymous user.\par
+\f3\fs19\'fa\tab\f0\fs21 If the Membership Directory uses Windows NT Authentication mode, the script binds as the user currently logged on to Windows NT. This account should be a member of the Administrators group of any computer that the script will access.\par
+\pard\qr\fs12\par
+\pard\b\f1\fs24 Syntax\par
+\pard\tx390\tx780\tx1170\tx1560\tx1950\tx2340\tx2730\tx3120\tx3510\tx3900\tx4290\tx4680\tx5070\tx5460\tx5850\tx6240\tx6630\b0\f2\fs16 cscript RemExpiredMembers.vbs /H <server:port> [/U <User DN> /P <user password>] /C <Container or group DN> [/S]\par
+\pard\b\f1\fs34 RemObject.VBS\par
+\fs24 Purpose\par
+\b0\f0\fs21 This script removes a specified object from the Membership Directory. If the object is a container, then all the objects under it will also be removed.\par
+\b\f1\fs24 Components\par
+\b0\f0\fs21 File: %wwwroot%\\[x86|Alpha]\\files\\MDM\\\\remobject.vbs\par
+ADSI object: \b ADODB.Connection\b0 , used to execute the search under the object and its subcontainers.\par
+\b\f1\fs24 Parameters/Switches\par
+\f0\fs19 Switch\tab Description\tab\fs21\par
+\b0\fs8\tab\tab\fs21\par
+\b\fs19 /H\b0  \i string\i0 [:\i integer\i0 ]\b\tab\b0 Server name of the LDAP Service (followed by a colon and the LDAP Service port number, if needed).\tab\fs21\par
+\b\fs19 /U\b0  \i string\b\i0\tab\b0 DN of the user running the script (optional).\tab\fs21\par
+\b\fs19 /P\b0  \i string\b\i0\tab\b0 User password of the user running the script (optional).\tab\fs21\par
+\b\fs19 /O\b0  \i string\b\i0\tab\b0 DN of the object to remove.\tab\fs21\par
+\b\fs19 /S\tab\b0 Run script in silent mode (will not display status of each operation).\tab\fs21\par
+\b\fs19 /?\tab\b0 Display list of switches.\tab\fs21\par
+\pard\qr\fs12\par
+\pard\fs21 These switches are both case- and order-insensitive.\par
+If \b /U\b0  and \b /P \b0 are not specified, the script will bind to the Membership Directory as follows:\par
+\pard\fi-280\li280\tx280\f3\fs19\'fa\tab\f0\fs21 If the Membership Directory uses Membership Authentication mode, the script binds as an anonymous user.\par
+\f3\fs19\'fa\tab\f0\fs21 If the Membership Directory uses Windows NT Authentication mode, the script binds as the user currently logged on to Windows NT. This account should be a member of the Administrators group of any computer that the script will access.\par
+\pard\qr\fs12\par
+\pard\b\f1\fs24 Syntax\par
+\pard\tx390\tx780\tx1170\tx1560\tx1950\tx2340\tx2730\tx3120\tx3510\tx3900\tx4290\tx4680\tx5070\tx5460\tx5850\tx6240\tx6630\b0\f2\fs16 cscript RemObject.vbs /H <server:port> [/U <User DN> /P <user password>] /O <Object DN> [/S]\par
+\pard\b\f1\fs34 AddRemGroupMembers.VBS\par
+\fs24 Purpose\par
+\b0\f0\fs21 Given an input file containing a list of DNs of users, this script adds the users to a group or removes the users from a group. The users must already exist in the Membership Directory.\par
+\b\f1\fs24 Components\par
+\f0\fs19 Component\tab Description\tab\fs21\par
+\b0\fs8\tab\tab\fs21\par
+\fs19 %wwwroot%\\[x86|Alpha]\\files\\MDM\\\b\\addremgroupmembers.vbs\tab\b0 Script file.\tab\fs21\par
+\b\fs19 Membership.GuidGen.1\b0\tab ADSI object; when adding members to a group, this is used to generate the globally unique identifiers (GUIDs) that will be the \b cn=\b0  values for the new \b memberof \b0 objects.\tab\fs21\par
+\b\fs19 ADODB.Connection\b0\tab ADSI object; used to execute searches under the \b ou=Groups \b0 container.\tab\fs21\par
+\b\fs19 Scripting.FileSystemObject\b0\tab VBScript object; used to read the input file.\tab\fs21\par
+\pard\qr\fs12\par
+\pard\b\f1\fs24 Parameters/Switches\par
+\f0\fs19 Switch\tab Description\tab\fs21\par
+\b0\fs8\tab\tab\fs21\par
+\b\fs19 /H\b0  \i string\i0 [:\i integer\i0 ]\b\tab\b0 Server name of the LDAP Service (followed by a colon and the LDAP Service port number, if needed).\tab\fs21\par
+\b\fs19 /U\b0  \i string\b\i0\tab\b0 DN of the user running the script (optional).\tab\fs21\par
+\b\fs19 /P\b0  \i string\b\i0\tab\b0 User password of the user running the script (optional).\tab\fs21\par
+\b\fs19 /G\b0  \i string\b\i0\tab\b0 DN of the group.\tab\fs21\par
+\b\fs19 /I\b0  \i filename\b\i0\tab\b0 Input file containing list of DNs of users to be added or removed.\tab\fs21\par
+\b\fs19 /E\b0  \i date\b\i0\tab\b0 Expiration date for new group members (optional). The expiration date is meaningful only if you also use \b /+\b0 . It can be in any format recognizable in the current locale setting. If not specified, the new members will have no expiration date.\tab\fs21\par
+\b\fs19 /+\tab\b0 Add the list of users to the group.\tab\fs21\par
+\b\fs19 /-\tab\b0 Remove the list of users from the group.\tab\fs21\par
+\b\fs19 /S\tab\b0 Run script in silent mode (will not display status of each operation).\tab\fs21\par
+\b\fs19 /?\tab\b0 Display list of switches.\tab\fs21\par
+\pard\qr\fs12\par
+\pard\fs21 These switches are both case- and order-insensitive.\par
+If \b /U\b0  and \b /P \b0 are not specified, the script will bind to the Membership Directory as follows:\par
+\pard\fi-280\li280\tx280\f3\fs19\'fa\tab\f0\fs21 If the Membership Directory uses Membership Authentication mode, the script binds as an anonymous user.\par
+\f3\fs19\'fa\tab\f0\fs21 If the Membership Directory uses Windows NT Authentication mode, the script binds as the user currently logged on to Windows NT. This account should be a member of the Administrators group of any computer that the script will access.\par
+\pard\qr\fs12\par
+\pard\fs21 The switches \b /+\b0  and \b /-\b0  are mutually exclusive.\par
+\b\f1\fs24 Syntax\par
+\pard\tx390\tx780\tx1170\tx1560\tx1950\tx2340\tx2730\tx3120\tx3510\tx3900\tx4290\tx4680\tx5070\tx5460\tx5850\tx6240\tx6630\b0\f2\fs16 cscript AddRemGroupMembers.vbs /H <server:port> [/U <User DN> /P <user password>] /G <group DN> /I <path of input file> \{/+|/-\} [/E <expiration date>] [/S]\par
+\pard\b\f1\fs34 ListGroupMembers.VBS\par
+\fs24 Purpose\par
+\b0\f0\fs21 This script lists or counts the members of a group. You can specify whether the members to list or count are users or groups (or both).\par
+\b\f1\fs24 Components\par
+\b0\f0\fs21 File: %wwwroot%\\[x86|Alpha]\\files\\MDM\\\\listgroupmembers.vbs\par
+ADSI object: \b ADODB.Connection\b0 , used to execute the search under the specified group.\par
+\b\f1\fs24 Parameters/Switches\par
+\f0\fs19 Switch\tab Description\tab\fs21\par
+\b0\fs8\tab\tab\fs21\par
+\b\fs19 /H\b0  \i string\i0 [:\i integer\i0 ]\b\tab\b0 Server name of the LDAP Service (followed by a colon and the LDAP Service port number, if needed).\tab\fs21\par
+\b\fs19 /U\b0  \i string\b\i0\tab\b0 DN of the user running the script (optional).\tab\fs21\par
+\b\fs19 /P\b0  \i string\b\i0\tab\b0 User password of the user running the script (optional).\tab\fs21\par
+\b\fs19 /G\b0  \i string\b\i0\tab\b0 DN of group whose members you want to be listed.\tab\fs21\par
+\b\fs19 /USR\tab\b0 List or count the user members of the group.\tab\fs21\par
+\b\fs19 /GRP\tab\b0 List or count the group members of the group.\tab\fs21\par
+\b\fs19 /S\tab\b0 Run script in silent mode (will not display status of each operation).\tab\fs21\par
+\b\fs19 /?\tab\b0 Display list of switches.\tab\fs21\par
+\pard\qr\fs12\par
+\pard\fs21 These switches are both case- and order-insensitive.\par
+If \b /U\b0  and \b /P \b0 are not specified, the script will bind to the Membership Directory as follows:\par
+\pard\fi-280\li280\tx280\f3\fs19\'fa\tab\f0\fs21 If the Membership Directory uses Membership Authentication mode, the script binds as an anonymous user.\par
+\f3\fs19\'fa\tab\f0\fs21 If the Membership Directory uses Windows NT Authentication mode, the script binds as the user currently logged on to Windows NT. This account should be a member of the Administrators group of any computer that the script will access.\par
+\pard\qr\fs12\par
+\pard\b\fs21 /USR\b0  and \b /GRP\b0  are mutually exclusive.\par
+\b\f1\fs24 Syntax\par
+\pard\tx390\tx780\tx1170\tx1560\tx1950\tx2340\tx2730\tx3120\tx3510\tx3900\tx4290\tx4680\tx5070\tx5460\tx5850\tx6240\tx6630\b0\f2\fs16 cscript ListGroupMembers.vbs /H <server:port> [/U <User DN> /P <user password>] /G <group DN> \{/USR|/GRP\} [/S]\par
+\pard\b\f1\fs34 ListChildren.VBS\par
+\fs24 Purpose\par
+\b0\f0\fs21 Given the DN of a container, this script lists or counts either the immediate children or all the descendants of the container. You can specify a filter string to narrow down the list. You can redirect the output to a file that you can use as input to other scripts that require an input file containing a list of DNs.\par
+Some possible uses of this script are listing or counting the users in the Membership Directory and listing or counting the groups in the Membership Directory.\par
+\b\f1\fs24 Components\par
+\b0\f0\fs21 File: %wwwroot%\\[x86|Alpha]\\files\\MDM\\\\listchildren.vbs\par
+ADSI object: \b ADODB.Connection\b0 , used to execute the search under the specified container.\par
+\b\f1\fs24 Parameters/Switches\par
+\f0\fs19 Switch\tab Description\tab\fs21\par
+\b0\fs8\tab\tab\fs21\par
+\b\fs19 /H\b0  \i string\i0 [:\i integer\i0 ]\b\tab\b0 Server name of the LDAP Service (followed by a colon and the LDAP Service port number, if needed).\tab\fs21\par
+\b\fs19 /U\b0  \i string\b\i0\tab\b0 DN of the user running the script (optional).\tab\fs21\par
+\b\fs19 /P\b0  \i string\b\i0\tab\b0 User password of the user running the script (optional).\tab\fs21\par
+\b\fs19 /C\b0  \i string\b\i0\tab\b0 DN of container whose children you want to list.\tab\fs21\par
+\b\fs19 /F\b0  \i string\b\i0\tab\b0 Filter string to limit the search (optional). /F allows listing of only those objects that satisfy certain criteria.\tab\fs21\par
+\b\fs19 /OL\tab\b0 Perform a one-level search under the container (use this if you only want the immediate children).\tab\fs21\par
+\b\fs19 /ST\tab\b0 Perform a subtree search under the container (use this if you want all the descendants).\tab\fs21\par
+\b\fs19 /S\tab\b0 Run script in silent mode (will not display status of each operation).\tab\fs21\par
+\b\fs19 /?\tab\b0 Display list of switches.\tab\fs21\par
+\pard\qr\fs12\par
+\pard\fs21 These switches are both case- and order-insensitive.\par
+If \b /U\b0  and \b /P \b0 are not specified, the script will bind to the Membership Directory as follows:\par
+\pard\fi-280\li280\tx280\f3\fs19\'fa\tab\f0\fs21 If the Membership Directory uses Membership Authentication mode, the script binds as an anonymous user.\par
+\f3\fs19\'fa\tab\f0\fs21 If the Membership Directory uses Windows NT Authentication mode, the script binds as the user currently logged on to Windows NT. This account should be a member of the Administrators group of any computer that the script will access.\par
+\pard\qr\fs12\par
+\pard\b\fs21 /OL\b0  and \b /ST\b0  are mutually exclusive.\par
+\b\f1\fs24 Syntax\par
+\pard\tx390\tx780\tx1170\tx1560\tx1950\tx2340\tx2730\tx3120\tx3510\tx3900\tx4290\tx4680\tx5070\tx5460\tx5850\tx6240\tx6630\b0\f2\fs16 cscript ListChildren.vbs /H <server:port> [/U <User DN> /P <user password>] /C <container DN> [/F <filter string>] \{/OL|/ST\} [/S]\par
+\pard\b\f1\fs24 Sample Uses\par
+\b0\f0\fs21 Listing or counting the users under the members container:\par
+\pard\tx390\tx780\tx1170\tx1560\tx1950\tx2340\tx2730\tx3120\tx3510\tx3900\tx4290\tx4680\tx5070\tx5460\tx5850\tx6240\tx6630\f2\fs16 cscript ListChildren.vbs /H <server:port> /C ou=members,o=myorg /F objectClass=member /ST [/S]\par
+\pard\f4\fs20\par
+\f0\fs21 Listing or counting the groups under the groups container:\par
+\pard\tx390\tx780\tx1170\tx1560\tx1950\tx2340\tx2730\tx3120\tx3510\tx3900\tx4290\tx4680\tx5070\tx5460\tx5850\tx6240\tx6630\f2\fs16 cscript ListChildren.vbs /H <server:port> /C ou=groups,o=myorg /F objectClass=mgroup /ST [/S]\par
+\pard\b\f1\fs40 DistList.VBS-Distribution List Scripts\par
+\b0\f0\fs21 Use these scripts to work with the distribution lists that support Site Server Direct Mail. These scripts work with distribution lists that are stored in the \b ou=DistributionLists \b0 container (or a in a subcontainer under \b ou=DistributionLists\b0 ).\par
+We recommend that you use a dedicated Site Server computer to run these scripts. If your Membership Directory is very large, the scripts that use the \b ADODB.Connection \b0 object will consume significant amounts of RAM; the scripts may not be able to complete successfully.\par
+\pard\li30\ri30\cf1\fs12\par
+\pard\cf0\b\f1\fs21 Important\par
+\b0\f0 We recommend that once a script that uses \b ADODB.Connection\b0  is running, you do not close the Command Prompt window or use \b\fs17 ctrl+c\b0\fs21  to attempt to stop the script. If you do so, \b ADODB\b0  and cscript may not function properly.\par
+\pard\li30\ri30\cf1\fs12\par
+\pard\cf0\b\fs19 Switch\tab Function\tab\fs21\par
+\b0\fs8\tab\tab\fs21\par
+\b\fs19 /F1\tab\b0 Remove non-existent/cancelled users from a distribution list or all distribution lists.\tab\fs21\par
+\b\fs19 /F2\tab\b0 Add/remove a list of users to/from a distribution list.\tab\fs21\par
+\b\fs19 /F3\tab\b0 Remove a user from all distribution lists.\tab\fs21\par
+\b\fs19 /F4\tab\b0 Count number of users in each distribution list.\tab\fs21\par
+\b\fs19 /F5\tab\b0 Display distribution list members.\tab\fs21\par
+\pard\qr\fs12\par
+\pard\b\f1\fs34 /F1 Remove Non-existent/Cancelled Users from a Distribution List or All Distribution Lists\par
+\fs24 Purpose\par
+\b0\f0\fs21 This script removes non-existent or cancelled users from a specified distribution list or from all distribution lists.\par
+\b\f1\fs24 Components\par
+\b0\f0\fs21 File: %wwwroot%\\[x86|Alpha]\\files\\DistList\\distlist.vbs\par
+Active Directory Service Interface object: \b ADODB.Connection\b0 , used to execute the search under the \b ou=DistributionLists\b0  container if no distribution list is specified.\par
+\b\f1\fs24 Parameters/Switches\par
+\f0\fs19 Switch\tab Description\tab\fs21\par
+\b0\fs8\tab\tab\fs21\par
+\b\fs19 /H\b0  \i string\i0 [:\i integer\i0 ]\b\tab\b0 Server name of the LDAP Service (followed by a colon and the LDAP Service port number, if needed).\tab\fs21\par
+\b\fs19 /U\b0  \i string\b\i0\tab\b0 Distingushed name (DN) of the user running the script (optional).\tab\fs21\par
+\b\fs19 /P\b0  \i string\b\i0\tab\b0 User password of the user running the script (optional).\tab\fs21\par
+\b\fs19 /D \b0\i string\b\i0\tab\b0 DN of the distribution list (optional). If you do not specify a distribution list, the script will operate on all of the distribution lists.\tab\fs21\par
+\b\fs19 /N\tab\b0 Remove non-existent users only (optional).\tab\fs21\par
+\b\fs19 /C\tab\b0 Remove cancelled users only (optional).\tab\fs21\par
+\b\fs19 /?\tab\b0 Display list of switches.\tab\fs21\par
+\pard\qr\fs12\par
+\pard\fs21 These switches are both case- and order-insensitive.\par
+If neither or both \b /N\b0  and \b /C\b0  are specified, the script will remove both non-existent and cancelled users.\par
+If \b /U\b0  and \b /P \b0 are not specified, the script will bind to the Membership Directory as follows:\par
+\pard\fi-280\li280\tx280\f3\fs19\'fa\tab\f0\fs21 If the Membership Directory uses Membership Authentication mode, the script binds as an anonymous user.\par
+\f3\fs19\'fa\tab\f0\fs21 If the Membership Directory uses Windows NT Authentication mode, the script binds as the user currently logged on to Windows NT. This account should be a member of the Administrators group of any computer that the script will access.\par
+\pard\qr\fs12\par
+\pard\b\f1\fs24 Syntax\par
+\pard\tx390\tx780\tx1170\tx1560\tx1950\tx2340\tx2730\tx3120\tx3510\tx3900\tx4290\tx4680\tx5070\tx5460\tx5850\tx6240\tx6630\b0\f2\fs16 cscript DistList.vbs /F1 /H <server:port> [/U <User DN> /P <user password>] /D <DL DN> [\{/N|/C\}] \par
+\pard\b\f1\fs34 /F2 Add/Remove a List of Users to/from a Distribution List\par
+\fs24 Purpose\par
+\b0\f0\fs21 Given an input file containing a list of DNs of users, this script adds the users to a distribution list or removes the users from a distribution list. The users must already exist in the Membership Directory.\par
+\b\f1\fs24 Components\par
+\b0\f0\fs21 File: %wwwroot%\\[x86|Alpha]\\files\\DistList\\distlist.vbs\par
+Microsoft Visual Basic (VBScript) object: \b Scripting.FileSystemObject\b0 , used to read the input file.\par
+\b\f1\fs24 Parameters/Switches\par
+\pard\li30\ri30\cf1\b0\f0\fs12\par
+\pard\cf0\b\f1\fs21 Important\par
+\b0\f0 This script does not check for duplicate user names, and does not verify that user names are defined in the Membership Directory.\par
+\pard\li30\ri30\cf1\fs12\par
+\pard\cf0\b\fs19 Switch\tab Description\tab\fs21\par
+\b0\fs8\tab\tab\fs21\par
+\b\fs19 /H\b0  \i string\i0 [:\i integer\i0 ]\b\tab\b0 Server name of the LDAP Service (followed by a colon and the LDAP Service port number, if needed).\tab\fs21\par
+\b\fs19 /U\b0  \i string\b\i0\tab\b0 DN of the user running the script (optional).\tab\fs21\par
+\b\fs19 /P\b0  \i string\b\i0\tab\b0 User password of the user running the script (optional).\tab\fs21\par
+\b\fs19 /D \b0\i string\b\i0\tab\b0 DN of the distribution list.\tab\fs21\par
+\b\fs19 /I\b0  \i filename\b\i0\tab\b0 Input file containing list of DNs of users to be added or removed.\tab\fs21\par
+\b\fs19 /+\tab\b0 Add the list of users to the distribution list.\tab\fs21\par
+\b\fs19 /-\tab\b0 Remove the list of users from distribution list.\tab\fs21\par
+\b\fs19 /?\tab\b0 Display list of switches.\tab\fs21\par
+\pard\qr\fs12\par
+\pard\fs21 These switches are both case- and order-insensitive.\par
+If \b /U\b0  and \b /P \b0 are not specified, the script will bind to the Membership Directory as follows:\par
+\pard\fi-280\li280\tx280\f3\fs19\'fa\tab\f0\fs21 If the Membership Directory uses Membership Authentication mode, the script binds as an anonymous user.\par
+\f3\fs19\'fa\tab\f0\fs21 If the Membership Directory uses Windows NT Authentication mode, the script binds as the user currently logged on to Windows NT. This account should be a member of the Administrators group of any computer that the script will access.\par
+\pard\qr\fs12\par
+\pard\fs21 The switches \b /+\b0  and \b /-\b0  are mutually exclusive.\par
+\b\f1\fs24 Syntax\par
+\pard\tx390\tx780\tx1170\tx1560\tx1950\tx2340\tx2730\tx3120\tx3510\tx3900\tx4290\tx4680\tx5070\tx5460\tx5850\tx6240\tx6630\b0\f2\fs16 cscript DistList.vbs /F2 /H <server:port> [/U <User DN> /P <user password>] /I <path of input file> /D <DL DN> /+\par
+\pard\b\f1\fs34 /F3 Remove a User from All Distribution Lists\par
+\fs24 Purpose\par
+\b0\f0\fs21 Given a user's DN, this script removes that user from all distribution lists.\par
+\b\f1\fs24 Components\par
+\b0\f0\fs21 File: %wwwroot%\\[x86|Alpha]\\files\\DistList\\distlist.vbs\par
+Active Directory Service Interface (ADSI) object: \b ADODB.Connection\b0 , used to execute the search under the \b ou=DistributionLists\b0  container.\par
+\b\f1\fs24 Parameters/Switches\par
+\f0\fs19 Switch\tab Description\tab\fs21\par
+\b0\fs8\tab\tab\fs21\par
+\b\fs19 /H\b0  \i string\i0 [:\i integer\i0 ]\b\tab\b0 Server name of the LDAP Service (followed by a colon and the LDAP Service port number, if needed).\tab\fs21\par
+\b\fs19 /U\b0  \i string\b\i0\tab\b0 DN of the user running the script (optional).\tab\fs21\par
+\b\fs19 /P\b0  \i string\b\i0\tab\b0 User password of the user running the script (optional).\tab\fs21\par
+\b\fs19 /M\b0  \i string\b\i0\tab\b0 DN of the user to remove.\tab\fs21\par
+\b\fs19 /?\tab\b0 Display list of switches.\tab\fs21\par
+\pard\qr\fs12\par
+\pard\fs21 These switches are both case- and order-insensitive.\par
+If \b /U\b0  and \b /P \b0 are not specified, the script will bind to the Membership Directory as follows:\par
+\pard\fi-280\li280\tx280\f3\fs19\'fa\tab\f0\fs21 If the Membership Directory uses Membership Authentication mode, the script binds as an anonymous user.\par
+\f3\fs19\'fa\tab\f0\fs21 If the Membership Directory uses Windows NT Authentication mode, the script binds as the user currently logged on to Windows NT. This account should be a member of the Administrators group of any computer that the script will access.\par
+\pard\qr\fs12\par
+\pard\b\f1\fs24 Syntax\par
+\pard\tx390\tx780\tx1170\tx1560\tx1950\tx2340\tx2730\tx3120\tx3510\tx3900\tx4290\tx4680\tx5070\tx5460\tx5850\tx6240\tx6630\b0\f2\fs16 cscript DistList.vbs /F3 /H <server:port> [/U <User DN> /P <user password>] /M <User DN to remove> \par
+\pard\b\f1\fs34 /F4 Count Number of Users in Each Distribution List\par
+\fs24 Purpose\par
+\b0\f0\fs21 This script counts the number of users in each distribution list.\par
+\b\f1\fs24 Components\par
+\b0\f0\fs21 File: %wwwroot%\\[x86|Alpha]\\files\\DistList\\distlist.vbs\par
+ADSI object: \b ADODB.Connection\b0 , used to execute the search under the \b ou=DistributionLists\b0  container.\par
+\b\f1\fs24 Parameters/Switches\par
+\pard\li30\ri30\cf1\b0\f0\fs12\par
+\pard\cf0\b\f1\fs21 Important\par
+\b0\f0 This script does not check for circular inclusions (one distribution list is a member of a second distribution list, and the second distribution list is a member of the first distribution list, either directly or indirectly). Such a condition will throw the script into an infinite loop.\par
+\pard\li30\ri30\cf1\fs12\par
+\pard\cf0\b\fs19 Switch\tab Description\tab\fs21\par
+\b0\fs8\tab\tab\fs21\par
+\b\fs19 /H\b0  \i string\i0 [:\i integer\i0 ]\b\tab\b0 Server name of the LDAP Service (followed by a colon and the LDAP Service port number, if needed).\tab\fs21\par
+\b\fs19 /U\b0  \i string\b\i0\tab\b0 DN of the user running the script (optional).\tab\fs21\par
+\b\fs19 /P\b0  \i string\b\i0\tab\b0 User password of the user running the script (optional).\tab\fs21\par
+\b\fs19 /?\tab\b0 Display list of switches.\tab\fs21\par
+\pard\qr\fs12\par
+\pard\fs21 These switches are both case- and order-insensitive.\par
+If \b /U\b0  and \b /P \b0 are not specified, the script will bind to the Membership Directory as follows:\par
+\pard\fi-280\li280\tx280\f3\fs19\'fa\tab\f0\fs21 If the Membership Directory uses Membership Authentication mode, the script binds as an anonymous user.\par
+\f3\fs19\'fa\tab\f0\fs21 If the Membership Directory uses Windows NT Authentication mode, the script binds as the user currently logged on to Windows NT. This account should be a member of the Administrators group of any computer that the script will access.\par
+\pard\qr\fs12\par
+\pard\b\f1\fs24 Syntax\par
+\pard\tx390\tx780\tx1170\tx1560\tx1950\tx2340\tx2730\tx3120\tx3510\tx3900\tx4290\tx4680\tx5070\tx5460\tx5850\tx6240\tx6630\b0\f2\fs16 cscript DistList.vbs /F4 /H <server:port> [/U <User DN> /P <user password>]\par
+\pard\b\f1\fs34 /F5 Display Distribution List Members\par
+\fs24 Purpose\par
+\b0\f0\fs21 For a given distribution list, this script displays the e-mail addresses and globally unique identifiers (GUIDs) of all of the users that are members of the distribution list. This comes in handy when troubleshooting Direct Mail problems caused by some members not having proper e-mail addresses.\par
+\b\f1\fs24 Components\par
+\b0\f0\fs21 File: %wwwroot%\\[x86|Alpha]\\files\\DistList\\distlist.vbs\par
+\b\f1\fs24 Parameters/Switches\par
+\pard\li30\ri30\cf1\b0\f0\fs12\par
+\pard\cf0\b\f1\fs21 Important\par
+\b0\f0 This script does not check for recursive distribution lists. If one of the distribution list members is another distribution list, that list's members will not be listed.\par
+\pard\li30\ri30\cf1\fs12\par
+\pard\cf0\b\fs19 Switch\tab Description\tab\fs21\par
+\b0\fs8\tab\tab\fs21\par
+\b\fs19 /H\b0  \i string\i0 [:\i integer\i0 ]\b\tab\b0 Server name of the LDAP Service (followed by a colon and the LDAP Service port number, if needed).\tab\fs21\par
+\b\fs19 /U\b0  \i string\b\i0\tab\b0 DN of the user running the script (optional).\tab\fs21\par
+\b\fs19 /P\b0  \i string\b\i0\tab\b0 User password of the user running the script (optional).\tab\fs21\par
+\b\fs19 /D \b0\i string\b\i0\tab\b0 DN of the distribution list.\tab\fs21\par
+\b\fs19 /?\tab\b0 Display list of switches.\tab\fs21\par
+\pard\qr\fs12\par
+\pard\fs21 These switches are both case- and order-insensitive.\par
+If \b /U\b0  and \b /P \b0 are not specified, the script will bind to the Membership Directory as follows:\par
+\pard\fi-280\li280\tx280\f3\fs19\'fa\tab\f0\fs21 If the Membership Directory uses Membership Authentication mode, the script binds as an anonymous user.\par
+\f3\fs19\'fa\tab\f0\fs21 If the Membership Directory uses Windows NT Authentication mode, the script binds as the user currently logged on to Windows NT. This account should be a member of the Administrators group of any computer that the script will access.\par
+\pard\qr\fs12\par
+\pard\b\f1\fs24 Syntax\par
+\pard\tx390\tx780\tx1170\tx1560\tx1950\tx2340\tx2730\tx3120\tx3510\tx3900\tx4290\tx4680\tx5070\tx5460\tx5850\tx6240\tx6630\b0\f2\fs16 cscript DistList.vbs /F5 /H <server:port> [/U <User DN> /P <user password>] /D <DL DN>\par
+\pard\b\f1\fs40 Schema Functions and Scripts\par
+\b0\f0\fs21 Use these functions and scripts to modify the Membership Directory's \b cn=Schema\b0  object. Some of these functions also provide you with information about the Membership Directory.\par
+\b\fs19 Function/Script\tab Purpose\tab\fs21\par
+\b0\fs8\tab\tab\fs21\par
+\b\fs19 Vocab.ASP\tab\b0 Lists the objects in the Site Vocabulary; shows how to access the Site Vocabulary from an Active Server Page (ASP).\tab\fs21\par
+\b\fs19 Schema.ASP\tab\b0 Shows how the schema functions could be used in an ASP page. Each schema function is shown with the correct calling syntax and parameters.\tab\fs21\par
+\b\fs19 CreateAttribute\tab\b0 Creates a new attribute in the schema.\tab\fs21\par
+\b\fs19 ModifyAttribute\tab\b0 Modifies an existing attribute in the schema.\tab\fs21\par
+\b\fs19 CreateClass\tab\b0 Creates a class object in the schema.\tab\fs21\par
+\b\fs19 ModifyClass\tab\b0 Modifies an existing class object in the schema.\tab\fs21\par
+\b\fs19 DeleteObject\tab\b0 Deletes the specified object from the Membership Directory.\tab\fs21\par
+\b\fs19 DumpConfig.VBS\tab\b0 Lists the configuration of a specified Lightweight Directory Access Protocol (LDAP) Service.\tab\fs21\par
+\b\fs19 DumpSchema.VBS\tab\b0 Lists the contents of the \b cn=Schema \b0 of the Membership Directory served by a specified LDAP Service.\tab\fs21\par
+\pard\qr\fs12\par
+\pard\b\f1\fs34 Vocab.ASP\par
+\fs24 Purpose\par
+\b0\f0\fs21 This script produces a list of the objects in the Site Vocabulary. By default, the script attempts to access a local LDAP Service on port 1002 to connect to the Membership Directory; you can configure the script to access other LDAP Services.\par
+\b\f1\fs24 Requirements (Beyond a Default Site Server Installation)\par
+\b0\f0\fs21 To access a Membership Directory using an LDAP Service other than the local LDAP Service on port 1002:\par
+\pard\fi-440\li440\tx160\tx280\tab 1.\tab Open the \b vocab.asp\b0  file in an editor, such as Notepad.\par
+\tab 2.\tab Locate the \b sTagPath\b0  variable.\par
+\tab 3.\tab Edit the value of \b sTagPath\b0  (\i computername\i0 :\i port\i0 ).\par
+\tab 4.\tab Save the edited file.\par
+\pard\qr\fs12\par
+\pard\fs21 The vocab.asp file must reside in a directory that is accessible to your Web site.\par
+\b\f1\fs24 Components\par
+\b0\f0\fs21 File: %wwwroot%\\[x86|Alpha]\\files\\Schema\\vocab.asp\par
+\b\f1\fs24 Procedure\par
+\b0\f0\fs21 Use your Web browser to run \b vocab.asp\b0 . \par
+\b\f1\fs34 Schema.ASP\par
+\fs24 Purpose\par
+\b0\f0\fs21 This script demonstrates how ASP pages can use the schema functions. It performs the following operations:\par
+\pard\fi-440\li440\tx160\tx280\tab 1.\tab Creates an attribute.\par
+\tab 2.\tab Modifies the attribute.\par
+\tab 3.\tab Creates a class.\par
+\tab 4.\tab Modifies the class.\par
+\tab 5.\tab Deletes the class.\par
+\tab 6.\tab Deletes the attribute.\par
+\pard\qr\fs12\par
+\pard\fs21 By default, the script attempts to access a local LDAP Service on port 1002 to connect to the Membership Directory; you can configure the script to access other LDAP Services.\par
+\b\f1\fs24 Requirements (Beyond a Default Site Server Installation)\par
+\b0\f0\fs21 To access a Membership Directory using an LDAP Service other than the local LDAP Service on port 1002:\par
+\pard\fi-440\li440\tx160\tx280\tab 1.\tab Open the \b schema.asp\b0  file in an editor, such as Notepad.\par
+\tab 2.\tab Locate the \b g_sHostname\b0  variable.\par
+\tab 3.\tab Edit the value of \b g_sHostname\b0  (\i computername\i0 :\i port\i0 ).\par
+\tab 4.\tab Save the edited file.\par
+\pard\qr\fs12\par
+\pard\fs21 The schema.asp file must reside in a directory that is accessible to your Web site.\par
+\b\f1\fs24 Components\par
+\b0\f0\fs21 File: %wwwroot%\\[x86|Alpha]\\files\\Schema\\schema.asp\par
+\b\f1\fs24 Procedure\par
+\b0\f0\fs21 Use your Web browser to run \b schema.asp\b0 . \par
+\b\f1\fs34 CreateAttribute\par
+\fs24 Purpose\par
+\b0\f0\fs21 This function creates a new attribute in the schema.\par
+\b\f1\fs24 Components\par
+\b0\f0\fs21 File: %wwwroot%\\[x86|Alpha]\\files\\Schema\\schema.vbs\par
+\b\f1\fs24 Parameters/Switches\par
+\f0\fs19 Parameter\tab Type\tab Description\tab\fs21\par
+\b0\fs8\tab\tab\fs21\par
+\i\fs19 Server\tab\i0 string\tab Server name of the LDAP Service (followed by a colon and the LDAP Service port number, if needed).\tab\fs21\par
+\i\fs19 CN\tab\i0 string\tab Common name of the attribute.\tab\fs21\par
+\i\fs19 DisplayName\tab\i0 string\tab Display name of the attribute.\tab\fs21\par
+\i\fs19 Description\tab\i0 string\tab Description of the attribute.\tab\fs21\par
+\i\fs19 Syntax\tab\i0 string\tab Syntax of the attribute.\tab\fs21\par
+\i\fs19 Constraint\tab\i0 string\tab Unenforced syntax constraints on the attribute.\tab\fs21\par
+\fs19 Multivalued\tab integer\tab Whether the new attribute is multi-valued. 0=Single-valued 1=Multivalued\tab\fs21\par
+\fs19 Searchable\tab integer\tab Whether the new attribute will be indexed for easy searching. 0=No 1=Yes\tab\fs21\par
+\pard\qr\fs12\par
+\pard\b\f1\fs24 Syntax\par
+\pard\tx390\tx780\tx1170\tx1560\tx1950\tx2340\tx2730\tx3120\tx3510\tx3900\tx4290\tx4680\tx5070\tx5460\tx5850\tx6240\tx6630\b0\f2\fs16 CreateAttribute (<Server>, <CN>, <DisplayName>, <Description>, <Syntax>, <Constraint>, <Multivalued>, <Searchable>)\par
+\pard\b\f1\fs34 ModifyAttribute\par
+\fs24 Purpose\par
+\b0\f0\fs21 This function modifies an existing attribute in the schema.\par
+\pard\li30\ri30\cf1\fs12\par
+\pard\cf0\b\f1\fs21 Note\par
+\b0\f0 The type of the attribute (including the \b Multivalued\b0  and \b Searchable\b0  attributes) cannot be modified after the attribute has been created.\par
+\pard\li30\ri30\cf1\fs12\par
+\pard\cf0\b\f1\fs24 Components\par
+\b0\f0\fs21 File: %wwwroot%\\[x86|Alpha]\\files\\Schema\\schema.vbs\par
+\b\f1\fs24 Parameters/Switches\par
+\f0\fs19 Parameter\tab Type\tab Description\tab\fs21\par
+\b0\fs8\tab\tab\fs21\par
+\i\fs19 Server\tab\i0 string\tab Server name of the LDAP Service (followed by a colon and the LDAP Service port number, if needed).\tab\fs21\par
+\i\fs19 CN\tab\i0 string\tab Common name of the attribute.\tab\fs21\par
+\i\fs19 DisplayName\tab\i0 string\tab Display name of the attribute.\tab\fs21\par
+\i\fs19 Description\tab\i0 string\tab Description of the attribute.\tab\fs21\par
+\i\fs19 Constraint\tab\i0 string\tab Unenforced syntax constraints on the attribute.\tab\fs21\par
+\pard\qr\fs12\par
+\pard\b\f1\fs24 Syntax\par
+\pard\tx390\tx780\tx1170\tx1560\tx1950\tx2340\tx2730\tx3120\tx3510\tx3900\tx4290\tx4680\tx5070\tx5460\tx5850\tx6240\tx6630\b0\f2\fs16 ModifyAttribute(<Server>, <CN>, <DisplayName>, <Description>, <Constraint>)\par
+\pard\b\f1\fs34 CreateClass\par
+\fs24 Purpose\par
+\b0\f0\fs21 This function creates a class object in the schema.\par
+\b\f1\fs24 Components\par
+\b0\f0\fs21 File: %wwwroot%\\[x86|Alpha]\\files\\Schema\\schema.vbs\par
+\b\f1\fs24 Parameters/Switches\par
+\f0\fs19 Parameter\tab Type\tab Description\tab\fs21\par
+\b0\fs8\tab\tab\fs21\par
+\i\fs19 Server\tab\i0 string\tab Server name of the LDAP Service (followed by a colon and the LDAP Service port number, if needed).\tab\fs21\par
+\i\fs19 CN\tab\i0 string\tab Common name of the class.\tab\fs21\par
+\i\fs19 DisplayName\tab\i0 string\tab Display name of the class.\tab\fs21\par
+\i\fs19 Description\tab\i0 string\tab Description of the class.\tab\fs21\par
+\i\fs19 MustContain\tab\i0 array\tab Array of mandatory attributes.\tab\fs21\par
+\i\fs19 MayContain\tab\i0 array\tab Array of optional attributes.\tab\fs21\par
+\i\fs19 RDNAttributeID\tab\i0 string\tab Attribute used as the relative distinguished name (RDN) of the class (must be \b cn\b0 ). This attribute must be listed in the \b MustContain\b0  array.\tab\fs21\par
+\i\fs19 PossibleSuperiors\tab\i0 array\tab Array of all of the classes that are possible superior classes to this class.  Every class must have at least one parent class in order for objects of the class to be created.\tab\fs21\par
+\i\fs19 Container\tab\i0 integer\tab Whether the class is a container. 0=No 1=Yes\tab\fs21\par
+\i\fs19 ContainerType\tab\i0 integer\tab Type of container that the class is.\tab\fs21\par
+\i\fs19 SecurityPrincipal\tab\i0 integer\tab Whether the class is a security principal. 0=No.  Only \b Member\b0  and \b mGroup\b0  objects are security principals\tab\fs21\par
+\pard\qr\fs12\par
+\pard\b\f1\fs24 Syntax\par
+\pard\tx390\tx780\tx1170\tx1560\tx1950\tx2340\tx2730\tx3120\tx3510\tx3900\tx4290\tx4680\tx5070\tx5460\tx5850\tx6240\tx6630\b0\f2\fs16 CreateClass(<Server>, <CN>, <DisplayName>, <Description>, <MustContain>, <MayContain>, <RDNAttributeID>, <PossibleSuperiors>, [Container, <ContainerType>])\par
+\pard\b\f1\fs34 ModifyClass\par
+\fs24 Purpose\par
+\b0\f0\fs21 This function modifies an existing class object in the schema.\par
+\b\f1\fs24 Components\par
+\b0\f0\fs21 File: %wwwroot%\\[x86|Alpha]\\files\\Schema\\schema.vbs\par
+\b\f1\fs24 Parameters/Switches\par
+\f0\fs19 Parameter\tab Type\tab Description\tab\fs21\par
+\b0\fs8\tab\tab\fs21\par
+\i\fs19 Server\tab\i0 string\tab Server name of the LDAP Service (followed by a colon and the LDAP Service port number, if needed).\tab\fs21\par
+\i\fs19 CN\tab\i0 string\tab Common name of the class.\tab\fs21\par
+\i\fs19 DisplayName\tab\i0 string\tab Display name of the class.\tab\fs21\par
+\i\fs19 Description\tab\i0 string\tab Description of the class.\tab\fs21\par
+\i\fs19 MustContain\tab\i0 array\tab Array of mandatory attributes.\tab\fs21\par
+\i\fs19 MayContain\tab\i0 array\tab Array of optional attributes.\tab\fs21\par
+\i\fs19 RDNAttributeID\tab\i0 string\tab Attribute used as the RDN of the class (must be \b cn\b0 ). This attribute must be listed in the \b MustContain\b0  array.\tab\fs21\par
+\i\fs19 Container\tab\i0 integer\tab Whether the class is a container. 0=No 1=Yes\tab\fs21\par
+\i\fs19 ContainerType\tab\i0 integer\tab Type of container that the class is.\tab\fs21\par
+\i\fs19 SecurityPrincipal\tab\i0 integer\tab Whether the class is a security principal. 0=No.  Only \b Member\b0  and \b mGroup\b0  objects are security principals\tab\fs21\par
+\pard\qr\fs12\par
+\pard\b\f1\fs24 Syntax\par
+\pard\tx390\tx780\tx1170\tx1560\tx1950\tx2340\tx2730\tx3120\tx3510\tx3900\tx4290\tx4680\tx5070\tx5460\tx5850\tx6240\tx6630\b0\f2\fs16 ModifyClass(<Server>, <CN>, <DisplayName>, <Description>, <MustContain>, <MayContain>, <PossibleSuperiors>, [<Container>, <ContainerType>])\par
+\pard\b\f1\fs34 DeleteObject\par
+\fs24 Purpose\par
+\b0\f0\fs21 This function deletes the specified object from the Membership Directory.\par
+\b\f1\fs24 Components\par
+\b0\f0\fs21 File: %wwwroot%\\[x86|Alpha]\\files\\Schema\\schema.vbs\par
+\b\f1\fs24 Parameters/Switches\par
+\b0\f0\fs21 Active Directory Service (ADS) path (string) to the object.\par
+\b\f1\fs24 Syntax\par
+\pard\tx390\tx780\tx1170\tx1560\tx1950\tx2340\tx2730\tx3120\tx3510\tx3900\tx4290\tx4680\tx5070\tx5460\tx5850\tx6240\tx6630\b0\f2\fs16 DeleteObject(ADsPath)\par
+\pard\b\f1\fs34 DumpConfig.VBS\par
+\fs24 Purpose\par
+\b0\f0\fs21 This script lists the configuration of a specified LDAP Service. This information is stored in the Membership Directory.\par
+\b\f1\fs24 Components\par
+\b0\f0\fs21 File: %wwwroot%\\[x86|Alpha]\\files\\Schema\\dumpconfig.vbs\par
+\b\f1\fs24 Parameters/Switches\par
+\b0\f0\fs21 Server name of the LDAP Service (followed by a colon and the LDAP Service port number, if needed).\par
+\b\f1\fs24 Syntax\par
+\pard\tx390\tx780\tx1170\tx1560\tx1950\tx2340\tx2730\tx3120\tx3510\tx3900\tx4290\tx4680\tx5070\tx5460\tx5850\tx6240\tx6630\b0\f2\fs16 cscript DumpConfig.vbs <Servername>\par
+\pard\b\f1\fs34 DumpSchema.VBS\par
+\fs24 Purpose\par
+\b0\f0\fs21 This script uses a specified LDAP Service to access a Membership Directory, and then lists the attributes of the \b cn=Schema\b0  object of that Membership Directory.\par
+\b\f1\fs24 Components\par
+\b0\f0\fs21 File: %wwwroot%\\[x86|Alpha]\\files\\Schema\\dumpschema.vbs\par
+\b\f1\fs24 Parameters/Switches\par
+\b0\f0\fs21 Server name of the LDAP Service (followed by a colon and the LDAP Service port number, if needed).\par
+\b\f1\fs24 Syntax\par
+\pard\tx390\tx780\tx1170\tx1560\tx1950\tx2340\tx2730\tx3120\tx3510\tx3900\tx4290\tx4680\tx5070\tx5460\tx5850\tx6240\tx6630\b0\f2\fs16 cscript DumpSchema.vbs <Servername>\par
+\pard\b\f1\fs40 Security Scripts\par
+\b0\f0\fs21 Use these scripts to enhance the security of your Membership Directory and your Web site.\par
+\b\fs19 Script\tab Purpose\tab\fs21\par
+\b0\fs8\tab\tab\fs21\par
+\b\fs19 VerifPwd.ASP\tab\b0 Automatically creates Membership Directory accounts for Microsoft\fs14\'ae\fs19  Windows NT\fs14\'ae\fs19  users.\tab\fs21\par
+\b\fs19 Logoff.ASP\tab\b0 Cancel the user's HTML Forms Authentication cookie.\tab\fs21\par
+\b\fs19 Certificate Enrollment System\tab\b0 Assigns certificates to Membership Directory accounts.\tab\fs21\par
+\b\fs19 DumpACL.VBS\tab\b0 Lists the access control list (ACL) contents for a specific Membership Directory object.\tab\fs21\par
+\pard\qr\fs12\par
+\pard\b\f1\fs34 VerifPwd.ASP\par
+\fs24 Purpose\par
+\b0\f0\fs21 This sample helps migrate existing Microsoft Windows NT users to Membership Directory accounts. When users log in using HTML Forms Authentication, the Formslogin.asp collects the username and password from the user and sends a HTTP POST request to /mem_bin/verifpwd.asp. Verifpwd.asp verifies the username and password, and then if the verification succeeds, issues an HTML Forms Authentication cookie to the user. \par
+This is a modified version of verifpwd.asp that first checks to see if the user exists in the Membership Directory. If the user does not exist, then it checks to see if the username and password are valid for a Windows NT account. If they are, then the script creates an account for the user in the Membership Directory and then authenticates the user in Membership Authentication mode. If the user already exists in the Membership Directory, then the user will be authenticated normally in Membership Authentication mode.\par
+For example:\par
+\pard\fi-280\li280\tx280\f3\fs19\'fa\tab\f0\fs21 If a user logs in as REDMOND\\johns, and the Windows NT account and password are valid, then the script creates a container named \b ou=REDMOND\b0  inside the \b ou=Members\b0  container, and creates the user \b cn=johns \b0 inside \b ou=REDMOND\b0 .\par
+\f3\fs19\'fa\tab\f0\fs21 If a user logs in as the local account johns, and the Windows NT account and password are valid, then the script creates the user \b cn=johns \b0 inside \b ou=Members\b0 .\par
+\pard\qr\fs12\par
+\pard\b\f1\fs24 Requirements (Beyond a Default Site Server Installation)\par
+\b0\f0\fs21 In order for this sample to work, you will need to perform the following steps:\par
+\pard\fi-440\li440\tx160\tx280\tab 1.\tab Move verifpwd.asp to a directory that is accessible to your Web site. You can:\par
+\pard\fi-280\li560\tx560\f3\fs19\'fa\tab\f0\fs21 Replace the existing verifpwd.asp in $\\Microsoft Site Server\\bin\\p&m\\html\par
+\pard\li560\tx160\tx280 -or- \par
+\pard\fi-280\li560\tx560\f3\fs19\'fa\tab\f0\fs21 Place this verifpwd.asp somewhere else and change the Formslogin.asp file to send POST requests to this new location.\par
+\pard\qr\fs12\par
+\pard\fi-440\li440\tx160\tx280\fs21\tab 2.\tab Execute the following command:\par
+\pard\tx390\tx780\tx1170\tx1560\tx1950\tx2340\tx2730\tx3120\tx3510\tx3900\tx4290\tx4680\tx5070\tx5460\tx5850\tx6240\tx6630\f2\fs16 regsvr32 checkntuser.dll\par
+\par
+\pard\li280\tx160\tx280\f0\fs21 You can find checkntuser.dll in the dll directory. The source for the this dll is in the checkntuser directory.\par
+\pard\fi-440\li440\tx160\tx280\tab 3.\tab Modify verifpwd.asp to use your Membership Directory's administrator account (default: \b cn=Administrator\b0 ). \par
+\pard\fi-600\li600\tx440\tx560\tab 1.\tab Open the \b verifpwd.asp\b0  file in an editor, such as Notepad.\par
+\tab 2.\tab Locate the \b strScriptID\b0  and \b strPassword\b0  variables (starting at line 57 of verifpwd.asp).\par
+\tab 3.\tab Edit the value of \b strScriptID\b0  (cn=Administrator,ou=members,o=\i directoryname\i0 ) and \b strPassword\b0  (\i password\i0 ).\par
+\tab 4.\tab Save the edited file.\par
+\pard\qr\fs12\par
+\pard\b\f1\fs24 Components\par
+\b0\f0\fs21 File: %wwwroot%\\[x86|Alpha]\\Files\\Security\\verifpwd.asp\par
+Directories: \par
+\pard\fi-280\li280\tx280\f3\fs19\'fa\tab\f0\fs21 %wwwroot%\\[x86|Alpha]\\Files\\Security\\checkntuser\\*.*\par
+\f3\fs19\'fa\tab\f0\fs21 %wwwroot%\\[x86|Alpha]\\Files\\Security\\dll\\*.*\par
+\pard\qr\fs12\par
+\pard\b\f1\fs24 Procedure\par
+\b0\f0\fs21 Once the sample is set up as described in "Requirements," it will run automatically when a user logs in to your Web site.\par
+\b\f1\fs34 Logoff.ASP\par
+\fs24 Purpose\par
+\b0\f0\fs21 This script cancels the user's HTML Forms Authentication cookie. Subsequently, when the user accesses a protected page on the same site, they will have to log in again.\par
+\b\f1\fs24 Requirements (Beyond a Default Site Server Installation)\par
+\b0\f0\fs21 The logoff.asp file must reside in a directory that is accessible to your Web site.\par
+\b\f1\fs24 Components\par
+\b0\f0\fs21 File: %wwwroot%\\[x86|Alpha]\\Files\\Security\\logoff.asp\par
+\b\f1\fs24 Procedure\par
+\b0\f0\fs21 Place this script in a Web page or call this ASP from a Web page where you want to cancel the cookie. \par
+\b\f1\fs34 Certificate Enrollment System\par
+\fs24 Purpose\par
+\b0\f0\fs22 The certificate enrollment system is a sample ASP application and accompanying ActiveX control that perform the following tasks:\par
+\pard\fi-440\li440\tx160\tx280\fs21\tab 1.\tab Requests a client authentication certificate from a Microsoft Certificate Server for an authenticated Site Server Membership Directory user.\par
+\pard\li280\tx160\tx280 Certificate Server must reside on a computer that runs Internet Information Server (IIS).\par
+\pard\fi-440\li440\tx160\tx280\tab 2.\tab Places that certificate in the user's computer.\par
+\tab 3.\tab Places a binary version of the certificate in the \b userCertificate\b0  attribute of the authenticated user's object in \b ou=Members\b0 .\par
+\tab 4.\tab Creates and places a hash of the DN and Issuer of the newly acquired certificate in the \b userCertificateHash\b0  attribute of the authenticated user's object in \b ou=Members\b0 .\par
+\tab 5.\tab The code to accomplish the following tasks is in the ASPs but it is currently commented out:\par
+\pard\fi-280\li560\tx560\f3\fs19\'fa\tab\f0\fs21 Log information about received requests for certificates to a file.\par
+\f3\fs19\'fa\tab\f0\fs21 Store a base64 encoded copy of the certificate in the authenticated user's object in \b ou=Members\b0 . A new string attribute has to be created for the object to receive this certificate.\par
+\pard\b\f1\fs24 Components\par
+\b0\f0\fs21 The CertPage ASP application consists of the following files:\par
+\pard\fi-280\li280\tx280\f3\fs19\'fa\tab\f0\fs21 CertErrorPage.asp\par
+\f3\fs19\'fa\tab\f0\fs21 CertPageError.txt\par
+\f3\fs19\'fa\tab\f0\fs21 DataStore.txt\par
+\f3\fs19\'fa\tab\f0\fs21 global.asa\par
+\f3\fs19\'fa\tab\f0\fs21 LogToFile.txt\par
+\f3\fs19\'fa\tab\f0\fs21 SSCertPage.Log\par
+\f3\fs19\'fa\tab\f0\fs21 StartHere.asp\par
+\f3\fs19\'fa\tab\f0\fs21 STEP1.ASP\par
+\f3\fs19\'fa\tab\f0\fs21 STEP2.ASP\par
+\f3\fs19\'fa\tab\f0\fs21 Utils.txt\par
+\pard\qr\fs12\par
+\pard\fs22 CertSource is an ATL COM component that is required to place the binary certificate in \fs21 the authenticated user's object in \b ou=Members\b0\fs22 . It requires the following files:\par
+\pard\fi-280\li280\tx280\f3\fs19\'fa\tab\f0\fs21 CertSource.cpp\par
+\f3\fs19\'fa\tab\f0\fs21 CertSrc.cpp\par
+\f3\fs19\'fa\tab\f0\fs21 StdAfx.cpp\par
+\f3\fs19\'fa\tab\f0\fs21 CertSource.h\par
+\f3\fs19\'fa\tab\f0\fs21 CertSrc.h\par
+\f3\fs19\'fa\tab\f0\fs21 resource.h\par
+\f3\fs19\'fa\tab\f0\fs21 StdAfx.h\par
+\f3\fs19\'fa\tab\f0\fs21 CertSource.idl\par
+\f3\fs19\'fa\tab\f0\fs21 CertSource.def\par
+\f3\fs19\'fa\tab\f0\fs21 CertSourceps.def\par
+\pard\qr\fs12\par
+\pard\fs22 To build the CertSource control, you must have the Microsoft Platform SDK and Microsoft Visual C++. It requires winldap.h and wldap32.dll that are contained in the platform SDK. Both the source project directory and a compiled x86 binary are supplied with the sample.\par
+\b\f1\fs24 Procedure: Configuration\par
+\pard\fi-440\li440\tx160\tx280\b0\f0\fs21\tab 1.\tab Place all CertPage application files in a single directory. \par
+\pard\li280\tx160\tx280 This is common practice for an ASP application. \par
+\pard\fi-440\li440\tx160\tx280\tab 2.\tab Create an IIS virtual directory for the CertPage application. \par
+\pard\li280\tx160\tx280 The virtual directory must be under a site that is mapped to a Site Server Membership Server that uses Membership Authentication.\par
+\pard\fi-440\li440\tx160\tx280\tab 3.\tab The following authentication options must apply to these specific pages:\par
+\pard\li280\tx160\tx280 StartPage.asp:\par
+\pard\fi-280\li560\tx560\f3\fs19\'fa\tab\b\f0\fs21 Membership Authentication\b0  tab: \b Clear Text/Basic authentication\b0  checked; \b Anonymous access\b0  must not be checked.\par
+\f3\fs19\'fa\tab\b\f0\fs21 File Security\b0  tab: \b Require secure channel\b0  checked, \b Do not accept client certificates\b0  checked.\par
+\pard\li280\tx160\tx280 Step1.asp: \par
+\pard\fi-280\li560\tx560\f3\fs19\'fa\tab\b\f0\fs21 Membership Authentication\b0  tab: \b Clear Text/Basic authentication\b0  checked; \b Anonymous access\b0  must not be checked.\par
+\f3\fs19\'fa\tab\b\f0\fs21 File Security\b0  tab: \b Require secure channel\b0  checked; \b Do not accept client certificates\b0  checked.\par
+\pard\li280\tx160\tx280 Step2.asp: \par
+\pard\fi-280\li560\tx560\f3\fs19\'fa\tab\b\f0\fs21 Membership Authentication\b0  tab: \b Anonymous access\b0  checked.\par
+\f3\fs19\'fa\tab\b\f0\fs21 File Security\b0  tab: \b Require secure channel\b0  checked; \b Require client certificates\b0  checked.\par
+\pard\fi-440\li440\tx160\tx280\tab 4.\tab Update the DataStore.txt file to point to the LDAP Service used by the Web server's Authentication Service.\par
+\pard\li280\tx160\tx280\b AuthRootNode = "\i directoryname\i0 "\b0\par
+\b AuthServerName = "\i LDAPcomputername\i0 "\b0\par
+\b AuthPortNumber = \i LDAPport\b0\i0\par
+\pard\fi-440\li440\tx160\tx280\tab 5.\tab Build the CertSource component (as indicated in the previous section).\par
+\tab 6.\tab Copy the CertSource component to a desired location, and then run \b regsvr32.exe\b0 .\par
+\pard\li280\tx160\tx280 Once the configuration process is complete, the ASP and accompanying files will run automatically.\par
+\pard\qr\fs12\par
+\pard\b\f1\fs34 DumpACL.VBS\par
+\fs24 Purpose\par
+\b0\f0\fs21 Given an object's Active Directory Service (ADS) path, this script lists the contents of that object's Access Control List (ACL).\par
+\b\f1\fs24 Components\par
+\b0\f0\fs21 File: %wwwroot%\\[x86|Alpha]\\Files\\MDM\\dumpacl.vbs\par
+\b\f1\fs24 Parameters/Switches\par
+\f0\fs19 Parameter\tab Type\tab Description\tab\fs21\par
+\b0\fs8\tab\tab\fs21\par
+\i\fs19 ADsPath\tab\i0 string\tab ADS path to the object.\tab\fs21\par
+\i\fs19 BindDN\tab\i0 string\tab Distinguished name (DN) of the user running the script (optional).\tab\fs21\par
+\i\fs19 Password\tab\i0 string\tab User password of the user running the script (optional).\tab\fs21\par
+\pard\qr\fs12\par
+\pard\b\f1\fs24 Syntax\par
+\pard\tx390\tx780\tx1170\tx1560\tx1950\tx2340\tx2730\tx3120\tx3510\tx3900\tx4290\tx4680\tx5070\tx5460\tx5850\tx6240\tx6630\b0\f2\fs16 cscript DumpACL.vbs <ADsPath> [<BindDN> <Password>]\par
+\pard\b\f1\fs40 Dynamic Directory Sample Pages\par
+\b0\f0\fs21 Use these samples to see some of the possible uses of the Membership Directory's Dynamic Directory feature (also known as the Internet Locator Service (ILS)).\par
+\b\fs19 Sample page or set\tab Purpose\tab\fs21\par
+\b0\fs8\tab\tab\fs21\par
+\b\fs19 Dynamic.ASP\tab\b0 Shows how to use the Active User Object (AUO) to create dynamic users in the Membership Directory.\tab\fs21\par
+\b\fs19 ILS_Session.ASP\tab\b0 Demonstrates how to use the Dynamic Directory feature of the Membership Directory along with AUO for solving the Active Server Page (ASP) session state data probem across Web farms.\tab\fs21\par
+\b\fs19 NetMeeting Sample Pages\tab\b0 Demonstrates how to integrate NetMeeting and Personalization & Membership's (P&M's) Dynamic Directory (formerly known as ILS) into your web site.\tab\fs21\par
+\b\fs19 ILSAdd.VBS\tab\b0 Adds an object in the Dynamic Directory.\tab\fs21\par
+\pard\qr\fs12\par
+\pard\b\f1\fs34 Dynamic.ASP\par
+\fs24 Purpose\par
+\b0\f0\fs21 This sample shows how to use AUO to create dynamic users in the Membership Directory.\par
+\b\f1\fs24 Requirements (Beyond a Default Site Server Installation)\par
+\b0\f0\fs21 For the sample to work, you should create an AUO provider named \b dynamic\b0  and with the following properties:\par
+\pard\fi-280\li280\tx280\f3\fs19\'fa\tab\f0\fs21 ADS path: LDAP://\i computername\i0 :\i port\i0 /o=\i directoryname\i0 /ou=dynamic\par
+\f3\fs19\'fa\tab\f0\fs21 Path Suffix: User name\par
+\f3\fs19\'fa\tab\f0\fs21 Schema Path: LDAP://\i computername\i0 :\i port\i0 /o=\i directoryname\i0 /cn=schema/cn=member\par
+\f3\fs19\'fa\tab\f0\fs21 Log on with: \i context\i0\par
+\pard\qr\fs12\par
+\pard\fs21 You should also be sure that the LDAP Service is configured to support dynamic data.\par
+The dynamic.asp file must reside in a directory that is accessible to your Web site.\par
+\b\f1\fs24 Required Membership Directory Objects\par
+\b0\f0\fs21 LDAP://\i computername\i0 :\i port\i0 /o=\i directoryname\i0 //ou=dynamic and LDAP://\i computername\i0 :\i port\i0 /o=\i directoryname\i0 //cn=schema/cn=member must be configured as shipped.\par
+\b\f1\fs24 Components\par
+\b0\f0\fs21 File: %wwwroot%\\[x86|Alpha]\\Files\\AUO\\dynamic.asp\par
+\b\f1\fs24 Procedure\par
+\b0\f0\fs21 Add the ASP to your Web site, and when users access the page, their properties will be stored in dynamic objects in the Membership Directory.\par
+\b\f1\fs34 ILS_Session.ASP\par
+\fs24 Purpose\par
+\b0\f0\fs21 This sample demonstrates how to use the Dynamic Directory (also known as ILS) feature of the Membership Directory along with AUO for solving the ASP session state data probem across Web farms. It demonstrates how easy it is to use AUO to store dynamic directory data in the Membership Directory that contains a time to live (TTL) value that will cause the object to be automatically deleted from the directory after the TTL has expired.\par
+\b\f1\fs24 Requirements (Beyond a Default Site Server Installation)\par
+\b0\f0\fs21 The ils_session.asp file must reside in a directory that is accessible to your Web site.\par
+\b\f1\fs24 Required Membership Directory Objects\par
+\b0\f0\fs21 In order for this sample to work, you will need to perform the following steps:\par
+\pard\fi-440\li440\tx160\tx280\tab 1.\tab Under the Membership Directory root node, create a container named \b ou=SessionStateData\b0 . \par
+\tab 2.\tab Create an attribute in the schema with the following attributes:\par
+\pard\fi-280\li560\tx560\f3\fs19\'fa\tab\b\f0\fs21 cn\b0 : HitCount\par
+\f3\fs19\'fa\tab\b\f0\fs21 Type\b0 : Integer\par
+\pard\fi-440\li440\tx160\tx280\tab 3.\tab Create a class named \b SessionState\b0  with the following attributes\par
+\pard\fi-280\li560\tx560\f3\fs19\'fa\tab\f0\fs21 Common-Name (\b cn\b0 )\par
+\f3\fs19\'fa\tab\b\f0\fs21 GUID\b0\par
+\f3\fs19\'fa\tab\b\f0\fs21 HitCount\b0\par
+\pard\fi-440\li440\tx160\tx280\tab 4.\tab Create a secondary AUO provider with the alias \b SessionState \b0 and give it the following properties:\par
+\pard\fi-280\li560\tx560\f3\fs19\'fa\tab\f0\fs21 ADS path: \b LDAP://\i computername\i0 :\i port\i0 /o=\i directoryname\i0 /ou=SessionStateData\b0\par
+\f3\fs19\'fa\tab\f0\fs21 Schema path: \b LDAP://\i computername\i0 :\i port\i0 /o=\i directoryname\i0 /ou=Admin/cn=Schema/cn=SessionState\b0\par
+\pard\fi-440\li440\tx160\tx280\tab 5.\tab Copy the \b ils_session.asp\b0  file to the Web site root directory where you want it to run.\par
+\pard\b\f1\fs24 Components\par
+\b0\f0\fs21 File: %wwwroot%\\[x86|Alpha]\\Files\\ils\\ils_session.asp.\par
+\b\f1\fs24 Procedure\par
+\b0\f0\fs21 Use your Web browser to run \b ils_session.asp\b0 . \par
+The sample will increment the \b HitCount\b0  attribute after each page refresh. The entry will automatically time out after 10 minutes.\par
+\b\f1\fs34 NetMeeting/Dynamic Directory Sample Pages\par
+\fs24 Purpose\par
+\b0\f0\fs21 This sample demonstrates how to integrate NetMeeting and P&M's Dynamic Directory (formerly known as ILS) into your Web site. This sample consists of a set of sample pages that allow users to get a directory of online NetMeeting users and search for people on line. These pages are very similar to what can be found on the ils.microsoft.com NetMeeting site. \par
+The LDAP Service running the Dynamic Directory is used as the location server for NetMeeting clients.\par
+\b\f1\fs24 Requirements (Beyond a Default Site Server Installation)\par
+\b0\f0\fs21 All of these sample pages require:\par
+\pard\fi-280\li280\tx280\f3\fs19\'fa\f0\fs21\tab An LDAP Service set to the standard LDAP TCP port 389.\par
+\pard\li280\tx160\tx280 If you do not have such an LDAP Service, you will need to run the P&M \b New Membership Server Instance \b0 Wizard. When asked for the LDAP port, type \b 389\b0 . \par
+\pard\fi-280\li280\tx280\f3\fs19\'fa\f0\fs21\tab A Web site root directory (you can use your default Web directory).\par
+\pard\li280\tx160\tx280 Copy all the files from the NetMeeting directory and all its subdirectories to that directory.\par
+\pard\fi-280\li280\tx280\f3\fs19\'fa\f0\fs21\tab The \b fastads.dll\b0  sample DLL (included in the Personalization & Membership Software Developer's Kit).\par
+\pard\qr\fs12\par
+\pard\fs21 Some of these samples assume that the LDAP Service is running locally (they call specify \i localhost\i0  when connecting to the LDAP Service). You can easily change this setting, but to start with make sure that the LDAP Service and the Web site are on the same computer.\par
+The Netmeeting directory must reside in a directory that is accessible to your Web site.\par
+\b\f1\fs24 Components\par
+\b0\f0\fs21 File: %wwwroot%\\[x86|Alpha]\\Files\\ils\\netmeeting\\*.*\par
+This sample consists of a set of ASP and image files. They are all contained in the NetMeeting subdirectory of the sample directory.\par
+\b\f1\fs24 Procedure\par
+\b0\f0\fs21 Use your Web browser to run \b default.asp\b0 . \par
+\b\f1\fs34 ILSAdd.VBS\par
+\fs24 Purpose\par
+\b0\f0\fs21 This script creates a dynamic user object in the \b ou=Members \b0 container.\par
+\b\f1\fs24 Components\par
+\b0\f0\fs21 File: %wwwroot%\\[x86|Alpha]\\Files\\ils\\ilsadd.vbs\par
+\b\f1\fs24 Parameters/Switches\par
+\f0\fs19 Parameter\tab Type\tab Description\tab\fs21\par
+\b0\fs8\tab\tab\fs21\par
+\i\fs19 Server\tab\i0 string\tab Server name of the LDAP Service (followed by a colon and the LDAP Service port number, if needed). The default port number is 389.\tab\fs21\par
+\i\fs19 Username\tab\i0 string\tab Common name of the user to add.\tab\fs21\par
+\pard\qr\fs12\par
+\pard\b\f1\fs24 Syntax\par
+\pard\tx390\tx780\tx1170\tx1560\tx1950\tx2340\tx2730\tx3120\tx3510\tx3900\tx4290\tx4680\tx5070\tx5460\tx5850\tx6240\tx6630\b0\f2\fs16 cscript ilsadd.vbs <Servername> <Username>\par
+\pard\f0\fs21\par
+\fs20\par
+\pard\f5\par
+}
+ 

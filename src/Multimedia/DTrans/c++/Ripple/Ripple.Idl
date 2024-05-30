@@ -1,0 +1,65 @@
+// Ripple.idl : IDL source for Ripple.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (Ripple.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+import "dxtrans.idl";
+
+
+//--- IRipple -------------------------------------------------
+[
+	object,
+	uuid(F0A1EC20-EF2F-11D1-B5E0-00AA003B6061),
+	dual,
+	helpstring("IRipple Interface"),
+	pointer_default(unique)
+]
+interface IRipple : IDXEffect
+{
+    [propget, id(1), helpstring("property XOrigin")] HRESULT XOrigin([out, retval] float *pVal);
+    [propput, id(1), helpstring("property XOrigin")] HRESULT XOrigin([in] float newVal);
+    [propget, id(2), helpstring("property YOrigin")] HRESULT YOrigin([out, retval] float *pVal);
+    [propput, id(2), helpstring("property YOrigin")] HRESULT YOrigin([in] float newVal);
+    [propget, id(3), helpstring("property Wavelength")] HRESULT Wavelength([out, retval] float *pVal);
+    [propput, id(3), helpstring("property Wavelength")] HRESULT Wavelength([in] float newVal);
+    [propget, id(4), helpstring("property Amplitude")] HRESULT Amplitude([out, retval] float *pVal);
+    [propput, id(4), helpstring("property Amplitude")] HRESULT Amplitude([in] float newVal);
+    [propget, id(5), helpstring("property NumberOfWaves")] HRESULT NumberOfWaves([out, retval] long *pVal);
+    [propput, id(5), helpstring("property NumberOfWaves")] HRESULT NumberOfWaves([in] long newVal);
+    [propget, id(6), helpstring("property MinSteps")] HRESULT MinSteps([out, retval] long *pVal);
+    [propput, id(6), helpstring("property MinSteps")] HRESULT MinSteps([in] long newVal);
+    [propget, id(7), helpstring("property MaxSteps")] HRESULT MaxSteps([out, retval] long *pVal);
+    [propput, id(7), helpstring("property MaxSteps")] HRESULT MaxSteps([in] long newVal);
+};
+
+[
+	uuid(97BB9520-EF20-11D1-B5E0-00AA003B6061),
+	version(1.0),
+	helpstring("Ripple 1.0 Type Library")
+]
+library RIPPLELib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+	
+	[
+		uuid(F0A1EC22-EF2F-11D1-B5E0-00AA003B6061),
+		helpstring("Ripple Class")
+	]
+	coclass Ripple
+	{
+		[default] interface IRipple;
+	};
+
+	[
+		uuid(97BB9530-EF20-11D1-B5E0-00AA003B6061),
+		helpstring("RipProp Class")
+	]
+	coclass RipProp
+	{
+		interface IUnknown;
+	};
+};

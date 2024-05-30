@@ -1,0 +1,44 @@
+Command,Append,Folderpath=@DEFAULT\@PR_IPM_SUBTREE_ENTRYID\Auto Parts,Class=IPM.AutoPart,Setread,EFD
+PR_SUBJECT,S:Supplier,S:Type,T:TransDate,L:Quantity,S:UnitPrice,S:Region,S:PQR
+Champion Fuel Line,Champion,Fuel Line,1995/10/22,400,$3.20,NW,$0.01
+Champion Spark Plugs,Champion,Spark Plugs,1995/10/26,200,$1.00,SW,$0.01
+Champion Spark Plugs,Champion,Spark Plugs,1995/10/27,200,$1.20,SW,$0.01
+Champion Spark Plugs,Champion,Spark Plugs,1995/10/28,200,$1.10,NE,$0.01
+Champion Spark Plugs,Champion,Spark Plugs,1995/10/27,400,$1.30,SW,$0.00
+Hardy Engineering Injectors,Hardy Engineering,Injectors,1995/10/29,25,$17.00,NE,$0.68
+Hardy Engineering Injectors,Hardy Engineering,Injectors,1995/10/22,30,$17.50,NW,$0.58
+Hardy Engineering Injectors,Hardy Engineering,Injectors,1995/10/26,30,$17.00,SW,$0.57
+Hardy Engineering Single Carburetor,Hardy Engineering,Single Carburetor,1995/10/27,20,$92.00,SE,$4.60
+Hardy Engineering Single Carburetor,Hardy Engineering,Single Carburetor,1995/10/28,75,$70.00,SE,$0.93
+Hardy Engineering Single Carburetor,Hardy Engineering,Single Carburetor,1995/10/27,50,$76.00,SE,$1.52
+Hardy Engineering Spark Plugs,Hardy Engineering,Spark Plugs,1995/10/29,200,$1.10,NE,$0.01
+Hardy Engineering Spark Plugs,Hardy Engineering,Spark Plugs,1995/10/22,200,$1.20,NW,$0.01
+Hardy Engineering Spark Plugs,Hardy Engineering,Spark Plugs,1995/10/26,300,$1.30,SW,$0.00
+Hardy Engineering Spark Plugs,Hardy Engineering,Spark Plugs,1995/10/27,500,$1.00,NE,$0.00
+Hardy Engineering Spark Plugs,Hardy Engineering,Spark Plugs,1995/10/28,200,$1.20,SW,$0.01
+Hardy Engineering Twin Carburetor,Hardy Engineering,Twin Carburetor,1995/10/27,5,$225.00,NW,$45.00
+Hardy Engineering Twin Carburetor,Hardy Engineering,Twin Carburetor,1995/10/29,15,$200.00,NW,$13.33
+Hardy Engineering Twin Carburetor,Hardy Engineering,Twin Carburetor,1995/10/22,2,$250.00,NW,$125.00
+Hardy Engineering Twin Carburetor,Hardy Engineering,Twin Carburetor,1995/10/26,15,$210.00,SE,$14.00
+Hardy Engineering Twin Carburetor,Hardy Engineering,Twin Carburetor,1995/10/27,20,$198.00,NE,$9.90
+Lucas Fuel Line,Lucas,Fuel Line,1995/10/28,500,$3.00,NE,$0.01
+Lucas Fuel Line,Lucas,Fuel Line,1995/10/27,500,$3.10,SE,$0.01
+Lucas Injectors,Lucas,Injectors,1995/10/29,20,$17.00,NW,$0.85
+Lucas Injectors,Lucas,Injectors,1995/10/22,25,$16.00,NE,$0.64
+Lucas Spark Plugs,Lucas,Spark Plugs,1995/10/26,300,$1.20,NW,$0.00
+Lucas Spark Plugs,Lucas,Spark Plugs,1995/10/27,500,$1.00,NE,$0.00
+Lucas Spark Plugs,Lucas,Spark Plugs,1995/10/28,200,$1.20,SW,$0.01
+NGK Spark Plugs,NGK,Spark Plugs,1995/10/27,500,$0.90,SW,$0.00
+NGK Spark Plugs,NGK,Spark Plugs,1995/10/29,300,$1.20,SE,$0.00
+NGK Spark Plugs,NGK,Spark Plugs,1995/10/22,300,$1.20,SW,$0.00
+NGK Spark Plugs,NGK,Spark Plugs,1995/10/26,100,$1.20,SE,$0.01
+Vehicle Supply Inc Spark Plugs,Vehicle Supply Inc,Spark Plugs,1995/10/27,200,$1.20,SE,$0.01
+Vehicle Supply Inc Twin Carburetor,Vehicle Supply Inc,Twin Carburetor,1995/10/28,10,$200.00,NE,$20.00
+Weber Fuel Line,Weber,Fuel Line,1995/10/27,800,$2.95,NW,$0.00
+Weber Injectors,Weber,Injectors,1995/10/29,15,$18.00,NE,$1.20
+Weber Injectors,Weber,Injectors,1995/10/22,50,$15.50,SW,$0.31
+Weber Single Carburetor,Weber,Single Carburetor,1995/10/26,80,$89.00,SW,$1.11
+Weber Twin Carburetor,Weber,Twin Carburetor,1995/10/27,10,$205.00,NW,$20.50
+Weber Twin Carburetor,Weber,Twin Carburetor,1995/10/28,5,$245.00,SE,$49.00
+Weber Twin Carburetor,Weber,Twin Carburetor,1995/10/27,15,$200.00,SW,$13.33
+Weber Injectors,Weber,Injectors,1995/10/29,50,$15.00,SE,$0.30

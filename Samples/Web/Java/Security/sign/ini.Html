@@ -1,0 +1,82 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>Sample ini files for signing Java code</TITLE>
+<META NAME="Template" CONTENT="C:\PROGRAM FILES\MICROSOFT OFFICE\OFFICE\html.dot">
+</HEAD>
+<BODY LINK="#0000ff" VLINK="#0000ff" BGCOLOR="#ffffff" BGPROPERTIES="FIXED" ALINK="#0000FF" TOPMARGIN=0 LEFTMARGIN=0>
+
+<P><A NAME="pagetop"></A><!--margin--><IMG SRC="/art/1pixel.gif" WIDTH=23 HEIGHT=1><!--margin ENDS--><!--main title (fixed coloured cell type)--></P>
+<TABLE BORDER=0 WIDTH=100%>
+<TR><TD BGCOLOR=BLUE WIDTH=200><FONT FACE="HELVETICA, ARIAL" SIZE=4 COLOR=WHITE>
+&nbsp;<NOBR>Sample ini files for signing Java code</NOBR></FONT>
+</TD>
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP></TD>
+
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP><FONT FACE="ARIAL,HELVETICA" SIZE=1 COLOR=BLACK>
+<A HREF="../loader/sample.html"><IMG SRC="../../art/butt_pre.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Previous"></A><BR><B>
+Previous</B></FONT></TD>
+
+<TD WIDTH=50 ALIGN=CENTER VALIGN=TOP><FONT FACE="ARIAL,HELVETICA" SIZE=1 COLOR=BLACK>
+<A HREF="../../art/start.htm"><IMG SRC="../../art/butt_.gif" WIDTH="40" HEIGHT="11"  BORDER=0 ALT="Welcome"></A><BR><B>
+Welcome</B></FONT></TD>
+
+<TD WIDTH="8%" VALIGN="TOP">
+<P ALIGN="CENTER"><A HREF="../../debugger/readme.txt"><IMG SRC="../../art/butt_nex.gif" BORDER=0 WIDTH=40 HEIGHT=11 ALT="Next"></A><FONT FACE="Arial" SIZE=1><BR>
+<B>Next</B></FONT></TD>
+</TABLE>
+
+<P><!--main page navigation ENDS--><!--this odd little break must accompany .gif filled cell title--><FONT FACE="Verdana" SIZE=2><BR>
+These samples must be run from a command prompt. </P>
+<P>These samples demonstrate the use of ini files to sign Java code. A cab file containing Java code may be signed with default high, medium, or low permissions using the signcode utility. Developers who wish to sign the file with a set of custom permissions must use an ini file that specifies the permissions requested.</P>
+<P>Four ini files have been provided: high.ini, medium.ini, low.ini, and sample.ini. The high, medium, and low ini files list the permissions that will be used for the default cases. These are provided as examples only.</P>
+<P>The sample ini file enumerates the complete list of possible permissions that may be specified in an ini file. Note that the enumerated permissions may be mutually exclusive; for example, if you specif the [FullyTrusted] permission, you do not have to specify any of the other permissions. The sample ini file makes a good base to create your own custom ini file by commenting out permissions that are not needed. To comment out a line in an ini file, place a semi-colon in the first character of the line.</P>
+<P>For more information on signing Java code with permissions, please refer to the Security section in the Java SDK 2.0 documentation.</P>
+</FONT><PRE>
+cd sample</PRE>
+
+<UL>
+<LI>To sign a cab file with the sample permission, run the following from a command prompt:</LI></UL>
+<DIR>
+<DIR>
+
+<PRE>makecert -n "CN=My Publisher Name" -sv MyKeyName.pvk MyTestCert.cer
+cert2spc MyTestCert.cer MyTestCert.spc
+signcode -j javasign.dll -jp sample.ini -spc MyTestCert.spc -v MyKeyName.pvk MyApplet.cab
+setreg 1 TRUE
+chkjava MyApplet.cab
+setreg 1 FALSE
+
+</PRE></DIR>
+</DIR>
+
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=624>
+<TR><TD VALIGN="MIDDLE" COLSPAN=2>
+<P><!--main page sub-title--><!--rule tex back type>
+<TABLE WIDTH=95%><TD HEIGHT=1 BACKGROUND="../../art/Stex_4.gif" BGCOLOR="WHITE"></TD></TABLE>
+<BR--></TD>
+</TR>
+<TR><TD VALIGN="MIDDLE" COLSPAN=2>
+<FONT FACE="Verdana" SIZE=2><P><BR>
+</FONT><FONT FACE="Helvetica" SIZE=2><BR>
+<!--remarks 1--></FONT><B><I><FONT FACE="Verdana" SIZE=2>Remarks:</B></I> <BR>
+<I>This sample requires Internet Explorer 4.0 and the Java SDK 2.0</I><BR>
+<!--rule--></FONT></TD>
+</TR>
+<TR><TD VALIGN="MIDDLE" COLSPAN=2 BGCOLOR="#0000ff">
+<P></TD>
+</TR>
+<TR><TD VALIGN="MIDDLE" COLSPAN=2>
+<FONT FACE="Verdana" SIZE=2><P><BR>
+<!--page top button--></FONT></TD>
+</TR>
+<TR><TD WIDTH="11%" VALIGN="MIDDLE">
+<P><A HREF="#pagetop"><IMG SRC="../../art/butt_up.gif" BORDER=0 WIDTH=40 HEIGHT=11 ALT="Top"></A><!--MS copyright--></TD>
+<TD WIDTH="89%" VALIGN="MIDDLE">
+<P ALIGN="RIGHT"><A HREF="../../art/cpyright.htm"><FONT FACE="MS Sans Serif" SIZE=1>&copy; 1996-1997 Microsoft Corporation. All rights reserved.</FONT></A></TD>
+</TR>
+</TABLE>
+
+<FONT FACE="Verdana" SIZE=2></FONT></BODY>
+</HTML>

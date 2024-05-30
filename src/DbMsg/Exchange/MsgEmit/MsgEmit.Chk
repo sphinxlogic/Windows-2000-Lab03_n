@@ -1,0 +1,236 @@
+// --msgemit.chk--------------------------------------------------------------
+//
+// Parameter checking for msgemit.cpp.
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All rights reserved.
+//
+// ---------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_HrFindValueString(a,b,c,d)                  NOERROR
+#define CHK_HrCreateDateTimeStringW(a,b)                NOERROR
+#define CHK_HrCreateDateTimeStringA(a,b)                NOERROR
+#define CHK_HrCreateImportanceString(a,b)               NOERROR
+#define CHK_HrEmitTagDataLine(a,b,c)                    NOERROR
+#define CHK_HrCreatePriorityString(a,b)                 NOERROR
+#define CHK_HrEDKEncodeBinaryStreamDataToStream(a,b)    NOERROR
+#define CHK_HrCreateExternalTraceString(a,b,c,d,e)      NOERROR
+#define CHK_HrCreateInternalTraceString(a,b,c,d,e, f)   NOERROR
+#define CHK_HrGetRecipientList(a,b,c)                   NOERROR
+
+#else
+
+//$--CHK_HrFindValueString-----------------------------------------------------
+// ----------------------------------------------------------------------------
+static inline HRESULT CHK_HrFindValueString(
+    IN LONG lValue,             // value to lookup
+    IN UINT nValues,            // number values in array
+    IN STRINGVALUEPAIR const rgValue[],   // string value pair array
+    OUT LPSTR * lppString)     // associated string
+{
+    HRESULT hr          =   NOERROR;
+
+    if( nValues == 0 ||
+        !TEST_READ_PTR(rgValue, sizeof(STRINGVALUEPAIR) * nValues) ||
+        !TEST_WRITE_PTR(lppString, sizeof(LPSTR)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+}
+
+//$--CHK_HrCreateDateTimeString@----------------------------------------------
+// ---------------------------------------------------------------------------
+static inline HRESULT CHK_HrCreateDateTimeStringW(   
+    IN LPFILETIME lpFileTime,    // Universal file time structure pointer
+    OUT LPWSTR * lppTimeString)  // pointer to time string buffer                        
+{
+    HRESULT hr  =   NOERROR;
+
+    if( !TEST_READ_PTR(lpFileTime, sizeof(FILETIME)) ||
+        !TEST_WRITE_PTR(lppTimeString, sizeof(LPWSTR)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+}
+
+static inline HRESULT CHK_HrCreateDateTimeStringA(   
+    IN LPFILETIME lpFileTime,    // Universal file time structure pointer
+    OUT LPSTR * lppTimeString)   // pointer to time string buffer                        
+{
+    HRESULT hr  =   NOERROR;
+
+    if( !TEST_READ_PTR(lpFileTime, sizeof(FILETIME)) ||
+        !TEST_WRITE_PTR(lppTimeString, sizeof(LPSTR)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+}
+
+//$--CHK_HrCreateImportanceString--------------------------------------------
+// ---------------------------------------------------------------------------
+static inline HRESULT CHK_HrCreateImportanceString( 
+    IN ULONG ulImportance,          // PR_IMPORTANCE value
+    OUT LPSTR * lppImportance)  // pointer to stream
+{
+    HRESULT hr  =   NOERROR;
+
+    if( ulImportance >= nImportances ||
+        !TEST_WRITE_PTR(lppImportance, sizeof(LPSTR)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+}
+
+//$--CHK_HrEmitTagDataLine-------------------------------------------------------
+// ---------------------------------------------------------------------------
+
+static inline HRESULT CHK_HrEmitTagDataLine(   
+    IN LPCSTR lpszTag,      // static portion of line
+    IN LPSTR lpData,        // dynamic portion of line
+    IN LPSTREAM lpStream)   // stream to write line to
+{
+    HRESULT hr  =   NOERROR;
+
+    if( !TEST_STRINGA_PTR(lpszTag) ||
+        !TEST_STRINGA_PTR(lpData) ||
+        !TEST_IUNKNOWN_PTR(lpStream) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+}
+
+//$--CHK_HrCreatePriorityString-------------------------------------------------------
+// ---------------------------------------------------------------------------
+static inline HRESULT CHK_HrCreatePriorityString(   
+    IN ULONG ulPriority,             // PR_PRIORITY value
+    OUT LPSTR * lppPriorityString)   // message priority data string pointer
+{
+    HRESULT hr          =   NOERROR;    // return code
+    LONG    nLowest     =   0;          // lowest valid priority
+    LONG    nHighest    =   0;          // highest valid priority
+
+    nLowest = 0 - nPrioOffset;                  // evaluates to -1
+    nHighest = nLowest + (INT) nPriorities - 1; // evaluatest to 1
+
+    if ( ((LONG) ulPriority < nLowest) ||
+         ((LONG) ulPriority > nHighest) ) 
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_WRITE_PTR(lppPriorityString, sizeof(LPSTR)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return hr;
+
+}
+
+//$--CHK_HrEDKEncodeBinaryStreamDataToStream-----------------------------------------------
+// ---------------------------------------------------------------------------
+static inline HRESULT CHK_HrEDKEncodeBinaryStreamDataToStream(               
+    IN LPSTREAM lpStreamIn,         // input stream pointer
+    IN LPSTREAM lpStreamOut)        // output stream pointer
+{
+    HRESULT hr  =   NOERROR;    // return code
+
+    if( !TEST_IUNKNOWN_PTR(lpStreamIn) ||
+        !TEST_IUNKNOWN_PTR(lpStreamOut) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+}
+
+//$--CHK_HrCreateExternalTraceString--------------------------------------------
+// -----------------------------------------------------------------------------
+
+static inline HRESULT CHK_HrCreateExternalTraceString(      
+    IN LONG lAction,               // trace action
+    IN LPSTR lpCountry,            // country
+    IN LPSTR lpADMDName,           // ADMD name
+    IN LPSTR lpPRMDId,             // PRMD identifier
+    OUT LPSTR * lppTraceString)    // trace information string pointer
+{
+    HRESULT hr  =   NOERROR;        // return code
+
+    if( !VALID_MD_ACTION(lAction) ||
+        !TEST_STRINGA_PTR(lpCountry) ||
+        !TEST_STRINGA_PTR(lpADMDName) ||
+        !TEST_STRINGA_PTR(lpPRMDId) ||
+        !TEST_WRITE_PTR(lppTraceString, sizeof(LPSTR)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+
+}
+
+//$--CHK_HrCreateInternalTraceString--------------------------------------------
+// -----------------------------------------------------------------------------
+
+static inline HRESULT CHK_HrCreateInternalTraceString(      
+    IN LONG lAction,               // trace action
+    IN LPSTR lpCountry,            // country
+    IN LPSTR lpADMDName,           // ADMD name
+    IN LPSTR lpPRMDId,             // PRMD identifier
+    IN LPSTR lpMTAName,            // MTA name
+    OUT LPSTR * lppTraceString)    // trace information string pointer
+{
+    HRESULT hr  =   NOERROR;        // return code
+
+    if( !VALID_MD_ACTION(lAction) ||
+        !TEST_STRINGA_PTR(lpCountry) ||
+        !TEST_STRINGA_PTR(lpADMDName) ||
+        !TEST_STRINGA_PTR(lpPRMDId) ||
+        !TEST_STRINGA_PTR(lpMTAName) ||
+        !TEST_WRITE_PTR(lppTraceString, sizeof(LPSTR)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+
+}
+
+//$--CHK_HrGetRecipientList-----------------------------------------------------
+// -----------------------------------------------------------------------------
+static inline HRESULT CHK_HrGetRecipientList(       
+    IN LPMESSAGE lpMessage,         // MAPI message pointer
+    IN LPSPropTagArray lpPropTags,  // properties (columns) desired
+    OUT LPSRowSet * lppRows)        // pointer to rows returned
+{
+    HRESULT hr  =   NOERROR;
+
+    if( !TEST_IUNKNOWN_PTR(lpMessage) ||
+        !TEST_READ_PTR(lpPropTags, sizeof(SPropTagArray)) ||
+        !TEST_WRITE_PTR(lppRows, sizeof(LPSRowSet)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+
+}
+
+#endif /* DEBUG */

@@ -1,0 +1,7 @@
+LIBRARY hook
+
+EXETYPE WINDOWS
+
+EXPORTS
+    SpyGetMsgProc       @2
+    SpyCallWndProc      @3

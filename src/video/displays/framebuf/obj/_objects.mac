@@ -1,0 +1,44 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\framebuf.res \
+    $(_OBJ_DIR)\alpha\color.obj \
+    $(_OBJ_DIR)\alpha\debug.obj \
+    $(_OBJ_DIR)\alpha\enable.obj \
+    $(_OBJ_DIR)\alpha\palette.obj \
+    $(_OBJ_DIR)\alpha\pointer.obj \
+    $(_OBJ_DIR)\alpha\screen.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\framebuf.res \
+    $(_OBJ_DIR)\axp64\color.obj \
+    $(_OBJ_DIR)\axp64\debug.obj \
+    $(_OBJ_DIR)\axp64\enable.obj \
+    $(_OBJ_DIR)\axp64\palette.obj \
+    $(_OBJ_DIR)\axp64\pointer.obj \
+    $(_OBJ_DIR)\axp64\screen.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\framebuf.res \
+    $(_OBJ_DIR)\i386\color.obj \
+    $(_OBJ_DIR)\i386\debug.obj \
+    $(_OBJ_DIR)\i386\enable.obj \
+    $(_OBJ_DIR)\i386\palette.obj \
+    $(_OBJ_DIR)\i386\pointer.obj \
+    $(_OBJ_DIR)\i386\screen.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\framebuf.res \
+    $(_OBJ_DIR)\ia64\color.obj \
+    $(_OBJ_DIR)\ia64\debug.obj \
+    $(_OBJ_DIR)\ia64\enable.obj \
+    $(_OBJ_DIR)\ia64\palette.obj \
+    $(_OBJ_DIR)\ia64\pointer.obj \
+    $(_OBJ_DIR)\ia64\screen.obj
+
+PASS0_IA64_OBJECTS=
+

@@ -1,0 +1,88 @@
+// Copyright (c) 1997  Microsoft Corporation.  All rights reserved.
+
+[ uuid(2BEBEC40-6499-11d0-BFFC-00AA003CFDFC), version(1.0),
+  helpstring("Sample Custom Marshaling (Java->COM") ]
+library JavaLib
+{
+
+    importlib("stdole32.tlb");
+    importlib("sysdata.tlb");
+
+
+    // Defining our own VARIANT look-alike because VARIANT is treated specially
+    // and cannot be customized.
+    typedef struct MYVARIANT {
+        unsigned short  vt;
+        unsigned short  pad1;
+        unsigned short  pad2;
+        unsigned short  pad3;
+        BSTR            bstrVal;
+        unsigned long   pad4;
+    } MYVARIANT;
+
+    
+
+
+    [ uuid(2BEBEC41-6499-11d0-BFFC-00AA003CFDFC), version(1.0),
+      helpstring("Simple test"),
+      odl]
+    interface ICustSample : IUnknown
+    {
+        HRESULT PassFixedPtIn([in] FIXED fp);
+        HRESULT PassPFixedPtOutRetVal([out,retval] FIXED *pfp);
+        HRESULT PassPFixedPtIn([in] FIXED *pfp);
+        HRESULT PassPFixedPtOut([out] FIXED *pfp);
+        HRESULT PassPFixedPtInOut([in,out] FIXED *pfp);
+
+
+        HRESULT PassFixedPtsFromComToJava([in] ICustSample *pCustSample);
+
+
+        HRESULT PassMyVariantIn([in] MYVARIANT v);
+        HRESULT PassPMyVariantOutRetVal([out,retval] MYVARIANT *pv);
+        HRESULT PassPMyVariantIn([in] MYVARIANT *pv);
+        HRESULT PassPMyVariantOut([out] MYVARIANT *pv);
+        HRESULT PassPMyVariantInOut([in,out] MYVARIANT *pv);
+
+        HRESULT PassMyVariantFromComToJava([in] ICustSample *pCustSample);
+
+
+        HRESULT PassPPointOut([out] POINT *ppt);
+        HRESULT PassPPointInOut([in,out] POINT *ppt);
+        HRESULT PassPointFromComToJava([in] ICustSample *pCustSample);
+
+
+        HRESULT PassRectIn([in] RECT r);
+        HRESULT PassPRectOutRetVal([out,retval] RECT *pr);
+        HRESULT PassPRectIn([in] RECT *pr);
+        HRESULT PassPRectOut([out] RECT *pr);
+        HRESULT PassPRectInOut([in,out] RECT *pr);
+        HRESULT PassPPRectOutRetVal([out,retval] RECT **ppr);
+        HRESULT PassPPRectIn([in] RECT **ppr);
+        HRESULT PassPPRectOut([out] RECT **ppr);
+        HRESULT PassPPRectInOut([in,out] RECT **ppr);
+
+        HRESULT PassRectFromComToJava([in] ICustSample *pCustSample);  
+
+
+        HRESULT PassPStrIn([in] MYCHAR *pstr);
+        HRESULT PassPPStrOutRetVal( [out,retval] MYCHAR **ppstr );
+        HRESULT PassPPStrIn(    [in]     MYCHAR **ppstr );
+        HRESULT PassPPStrOut(   [out]    MYCHAR **ppstr );
+        HRESULT PassPPStrInOut( [in,out] MYCHAR **ppstr );
+
+        HRESULT PassAnsiFromComToJava([in] ICustSample *pCustSample);  
+
+         
+    }
+
+
+
+    [ uuid(2BEBEC42-6499-11d0-BFFC-00AA003CFDFC), version(1.0),
+      helpstring("Simple test")
+    ]
+    coclass CCustSample {
+        [default] interface ICustSample;
+    }
+
+};

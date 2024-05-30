@@ -1,0 +1,69 @@
+// --track.chk------------------------------------------------------------------
+//
+// Gateway message tracking sample application.
+// 
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+// -----------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_HrDoEnterString(a,b)        NOERROR
+#define CHK_HrDoEnterNumber(a,b,c)      NOERROR
+
+#else
+
+//$--CHK_HrDoEnterString--------------------------------------------------------
+//  Enter a string.
+// -----------------------------------------------------------------------------
+HRESULT CHK_HrDoEnterString(
+    IN LPSTR lpszPrompt,               // prompt
+    IN LPSTR lpszString)               // string buffer
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszPrompt))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_STRINGA_PTR(lpszString))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    RETURN(hr);
+}
+
+//$--CHK_HrDoEnterNumber--------------------------------------------------------
+//  Enter a number.
+// -----------------------------------------------------------------------------
+HRESULT CHK_HrDoEnterNumber(
+    LPSTR lpszPrompt,                   // prompt
+    IN BOOL fAllowNegative,             // TRUE=allow negative number
+    LONG *lplNumber)                    // number
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_STRINGA_PTR(lpszPrompt))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_WRITE_PTR(lplNumber, sizeof(LONG)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    RETURN(hr);
+}
+
+#endif /* DEBUG */
+

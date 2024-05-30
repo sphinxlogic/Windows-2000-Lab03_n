@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Accessing Built-In ASP Objects</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_accessing_built_in_asp_objects"></a>Accessing Built-In ASP Objects</h3>
+<p>
+The Java Component Framework was designed to make accessing the ASP built-in objects from a Java component simple. The framework does this by hiding many of the intricacies of COM object programming from you, allowing you to focus almost exclusively on enhancing the functionality of your component. It is still important, however, to have some understanding of what's happening under the hood. This sample demonstrates the steps that would be necessary to access, and invoke a method in, the built-in <b>Response</b> object if you were <i>not</i> using the Java Component Framework. </p>
+<p>
+This sample uses the <b>GetObjectContext</b> to get a reference to the interface for the context properties, and then uses the <b>GetProperty</b> method of the context properties to get a reference to the actual <b>Response</b> object. Finally, the <b>getDispatch</b> of the <b>Response</b> object is called to get a pointer to the actual dispinterface for the <b>Response</b> object. In this sample, the dispinterface is used to invoke the <b>Write</b> method of the <b>Response</b> object and send &quot;Hello, World!&quot; to the client browser. </p>
+<p>
+These steps are fairly straightforward, but the Java Component Framework makes it even easier by providing methods that you can use to immediately gain access to the correct ASP objects. The framework's <b>AspContext.getResponse</b> method, for example, consists of code that looks very much like the code in this sample, but it also includes error trapping and additional functionality that would be tedious to implement for every single Java component that you create. </p>
+<p>
+This sample is provided for educational purposes only. It has not been tested in a production environment, and Microsoft&reg; will not provide technical support for it. </p>
+</BODY>
+</HTML>

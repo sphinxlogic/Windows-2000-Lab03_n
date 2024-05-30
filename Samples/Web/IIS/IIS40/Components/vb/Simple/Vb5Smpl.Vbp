@@ -1,0 +1,35 @@
+Type=OleDll
+Class=VB5Simple; VB5Smpl.cls
+Reference=*\G{00020430-0000-0000-C000-000000000046}#2.0#0#C:\WINNT\System32\stdole2.tlb#OLE Automation
+Startup="(None)"
+HelpFile=""
+Title="VB5Simple"
+ExeName32="VB5Smpl.dll"
+Command32=""
+Name="IISSample"
+HelpContextID="0"
+CompatibleMode="0"
+CompatibleEXE32="VB5Smpl.dll"
+MajorVer=2
+MinorVer=0
+RevisionVer=0
+AutoIncrementVer=0
+ServerSupportFiles=0
+VersionCompanyName="Microsoft"
+CompilationType=-1
+OptimizationType=0
+FavorPentiumPro(tm)=0
+CodeViewDebugInfo=0
+NoAliasing=0
+BoundsCheck=0
+OverflowCheck=0
+FlPointCheck=0
+FDIVCheck=0
+UnroundedFP=0
+StartMode=1
+Unattended=0
+ThreadPerObject=0
+MaxNumberOfThreads=1
+
+[MS Transaction Server]
+AutoRefresh=1

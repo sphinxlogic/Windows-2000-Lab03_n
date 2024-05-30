@@ -1,0 +1,20 @@
+Home Shopping Simulation
+
+Files:
+dataevents.htm
+dataevents.ocx
+
+Description:
+This demo simulates a home shopping scenario with multiple users changing data.  The point of 
+this demo is to illustrate the new data events and the new properties on the event object that
+have been added for Internet Explorer 5.
+
+The new events are onrowsdelete, onrowsinserted, and oncellchange.  The new properties on the
+event object are boundElements, recordset, dataFld, and bookmarks.
+
+Platform Compatibility:
+You must be running Internet Explorer 5 or greater to view this demo.
+
+Usage:
+These events and properties now provide the web application builder more direct control over
+the run-time behavior of the web page.

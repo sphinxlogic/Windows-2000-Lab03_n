@@ -1,0 +1,96 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\chajei.res \
+    $(_OBJ_DIR)\alpha\immsec.obj \
+    $(_OBJ_DIR)\alpha\init.obj \
+    $(_OBJ_DIR)\alpha\chcand.obj \
+    $(_OBJ_DIR)\alpha\candui.obj \
+    $(_OBJ_DIR)\alpha\compose.obj \
+    $(_OBJ_DIR)\alpha\compui.obj \
+    $(_OBJ_DIR)\alpha\config.obj \
+    $(_OBJ_DIR)\alpha\convlist.obj \
+    $(_OBJ_DIR)\alpha\data.obj \
+    $(_OBJ_DIR)\alpha\dic.obj \
+    $(_OBJ_DIR)\alpha\ddis.obj \
+    $(_OBJ_DIR)\alpha\notify.obj \
+    $(_OBJ_DIR)\alpha\offcaret.obj \
+    $(_OBJ_DIR)\alpha\regword.obj \
+    $(_OBJ_DIR)\alpha\statusui.obj \
+    $(_OBJ_DIR)\alpha\search.obj \
+    $(_OBJ_DIR)\alpha\toascii.obj \
+    $(_OBJ_DIR)\alpha\ui.obj \
+    $(_OBJ_DIR)\alpha\uisubs.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\chajei.res \
+    $(_OBJ_DIR)\axp64\immsec.obj \
+    $(_OBJ_DIR)\axp64\init.obj \
+    $(_OBJ_DIR)\axp64\chcand.obj \
+    $(_OBJ_DIR)\axp64\candui.obj \
+    $(_OBJ_DIR)\axp64\compose.obj \
+    $(_OBJ_DIR)\axp64\compui.obj \
+    $(_OBJ_DIR)\axp64\config.obj \
+    $(_OBJ_DIR)\axp64\convlist.obj \
+    $(_OBJ_DIR)\axp64\data.obj \
+    $(_OBJ_DIR)\axp64\dic.obj \
+    $(_OBJ_DIR)\axp64\ddis.obj \
+    $(_OBJ_DIR)\axp64\notify.obj \
+    $(_OBJ_DIR)\axp64\offcaret.obj \
+    $(_OBJ_DIR)\axp64\regword.obj \
+    $(_OBJ_DIR)\axp64\statusui.obj \
+    $(_OBJ_DIR)\axp64\search.obj \
+    $(_OBJ_DIR)\axp64\toascii.obj \
+    $(_OBJ_DIR)\axp64\ui.obj \
+    $(_OBJ_DIR)\axp64\uisubs.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\chajei.res \
+    $(_OBJ_DIR)\i386\immsec.obj \
+    $(_OBJ_DIR)\i386\init.obj \
+    $(_OBJ_DIR)\i386\chcand.obj \
+    $(_OBJ_DIR)\i386\candui.obj \
+    $(_OBJ_DIR)\i386\compose.obj \
+    $(_OBJ_DIR)\i386\compui.obj \
+    $(_OBJ_DIR)\i386\config.obj \
+    $(_OBJ_DIR)\i386\convlist.obj \
+    $(_OBJ_DIR)\i386\data.obj \
+    $(_OBJ_DIR)\i386\dic.obj \
+    $(_OBJ_DIR)\i386\ddis.obj \
+    $(_OBJ_DIR)\i386\notify.obj \
+    $(_OBJ_DIR)\i386\offcaret.obj \
+    $(_OBJ_DIR)\i386\regword.obj \
+    $(_OBJ_DIR)\i386\statusui.obj \
+    $(_OBJ_DIR)\i386\search.obj \
+    $(_OBJ_DIR)\i386\toascii.obj \
+    $(_OBJ_DIR)\i386\ui.obj \
+    $(_OBJ_DIR)\i386\uisubs.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\chajei.res \
+    $(_OBJ_DIR)\ia64\immsec.obj \
+    $(_OBJ_DIR)\ia64\init.obj \
+    $(_OBJ_DIR)\ia64\chcand.obj \
+    $(_OBJ_DIR)\ia64\candui.obj \
+    $(_OBJ_DIR)\ia64\compose.obj \
+    $(_OBJ_DIR)\ia64\compui.obj \
+    $(_OBJ_DIR)\ia64\config.obj \
+    $(_OBJ_DIR)\ia64\convlist.obj \
+    $(_OBJ_DIR)\ia64\data.obj \
+    $(_OBJ_DIR)\ia64\dic.obj \
+    $(_OBJ_DIR)\ia64\ddis.obj \
+    $(_OBJ_DIR)\ia64\notify.obj \
+    $(_OBJ_DIR)\ia64\offcaret.obj \
+    $(_OBJ_DIR)\ia64\regword.obj \
+    $(_OBJ_DIR)\ia64\statusui.obj \
+    $(_OBJ_DIR)\ia64\search.obj \
+    $(_OBJ_DIR)\ia64\toascii.obj \
+    $(_OBJ_DIR)\ia64\ui.obj \
+    $(_OBJ_DIR)\ia64\uisubs.obj
+
+PASS0_IA64_OBJECTS=
+

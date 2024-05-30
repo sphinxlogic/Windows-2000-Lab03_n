@@ -1,0 +1,69 @@
+----Languages supported by Windows Installer----
+The table below lists the languages for which the Windows Installer has
+localized resource strings, and for which this SDK has supplied localized
+Error and ActionText tables. The associated ANSI codepage for each of the
+languages is given, and unless a package or table is truly neutral, i.e.
+having no extended characters in any of its strings, the database or 
+table is tagged with this codepage. A LangId marked with an asterisk '*'
+indicates that resource strings are stored in the installer as the base
+languages (low-order 10 bits or LangId & 0x3FF), in order to allow use
+with all dialects, e.g. US English, British English, Austrailian English.
+
+LangId (hex) ACP (abbr) Language (country)
+
+ 1025*  401  1256  ARA  Arabic (Saudi Arabia)
+ 1027   403  1252  CAT  Catalan (Spain)
+ 1028*  404   950  CHT  Chinese (Taiwan)
+ 2052   804   936  CHS  Chinese (People's Republic of China)
+ 1029   405  1250  CSY  Czech (Czech Republic)
+ 1030   406  1252  DAN  Danish (Denmark)
+ 1031*  407  1252  DEU  German (Germany)
+ 1032   408  1253  ELL  Greek (Greece)
+ 1033*  409  1252  ENU  English (United States)
+ 3082*  C0A  1252  ESN  Spanish - Modern Sort (Spain)
+ 1035   40B  1252  FIN  Finnish (Finland)
+ 1036*  40C  1252  FRA  French (France)
+ 1037   40D  1255  HEB  Hebrew (Israel)
+ 1038   40E  1250  HUN  Hungarian (Hungary)
+ 1040*  410  1252  ITA  Italian (Italy)
+ 1041   411   932  JPN  Japanese (Japan)
+ 1042   412   949  KOR  Korean (Korea)
+ 1043*  413  1252  NLD  Dutch (Netherlands)
+ 1044*  414  1252  NOR  Norwegian (Bokmål) (Norway)
+ 1045   415  1250  PLK  Polish (Poland)
+ 1046   416  1252  PTB  Portuguese (Brazil)
+ 2070   816  1252  PTG  Portuguese (Portugal)
+ 1048   418  1250  ROM  Romanian (Romania)
+ 1049   419  1251  RUS  Russian (Russia)
+ 1050   41A  1250  HRV  Croatian (Croatia)
+ 1051   41B  1250  SKY  Slovak (Slovakia)
+ 1053*  41D  1252  SVE  Swedish (Sweden)
+ 1054   41E   874  THA  Thai (Thailand)
+ 1055   41F  1254  TRK  Turkish (Turkey)
+ 1060   424  1250  SLV  Slovenian (Slovenia)
+ 1066   42A  1258  VIT  Vietnamese (Viet Nam)
+ 1069   42D  1252  EUQ  Basque (Spain)
+
+----Steps in localization of an installer package----
+The following is a suggest sequence to produce a localized package.
+See the help topic "Code Page Handling" for more details. For use
+on Windows 9x, which does not support Unicode, the system codepage
+must match the target codepage for the localized installer package.
+Note that database column types are designated as localizable when
+appropriate, as an aid to development of localization tools.
+1. Set the database codepage, unless starting with a neutral (ACP = 0) package.
+   Use WiLangId.vbs or equivalent code, importing the _ForceCodepage table.
+2. Import localized Error.idt and ActionTe.idt tables for the target language.
+   Use WiImport.vbs or MsiDb.exe or use the MsiDatabaseImport API function.
+3. Localize other data in localizable columns, using a table editor such as
+   Orca.exe, or by using the installer database API SQL access functions.
+4. Set the ProductLanguage property in the Property table to the target
+   LangId, as part of the localization or by using WiLangId.vbs.
+5. Set summary information stream property 7 (Template) to indicate the target
+   LangId. Use WiLangId.vbs, WiSumInf.vbs, MsiInfo.exe, or consult MSI help.
+6. Only if the text summary information stream strings are localized should the
+   summary information property 1 (Codepage) be set to the associated codepage.
+7. Commit the database changes by saving the package with the editing tool
+   or by calling the MsiDatabaseCommit API function.
+The summary information LangId should match the ProductLanguage property,
+and the database must be set to the codepage that supports that language.

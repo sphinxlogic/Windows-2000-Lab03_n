@@ -1,0 +1,20 @@
+# Microsoft Developer Studio Generated Dependency File, included by SmbSmp.mak
+
+.\ClRes.cpp : \
+	"..\..\..\..\..\..\..\mssdk\include\basetsd.h"\
+	"..\..\..\..\..\..\..\mssdk\include\guiddef.h"\
+	"..\..\..\..\..\..\..\mssdk\include\propidl.h"\
+	"..\..\..\..\..\..\..\mssdk\include\tvout.h"\
+	"..\..\..\..\..\..\..\mssdk\include\winefs.h"\
+	".\ClRes.h"\
+	
+
+.\SmbSmp.cpp : \
+	"..\..\..\..\..\..\..\mssdk\include\basetsd.h"\
+	"..\..\..\..\..\..\..\mssdk\include\guiddef.h"\
+	"..\..\..\..\..\..\..\mssdk\include\lmjoin.h"\
+	"..\..\..\..\..\..\..\mssdk\include\propidl.h"\
+	"..\..\..\..\..\..\..\mssdk\include\tvout.h"\
+	"..\..\..\..\..\..\..\mssdk\include\winefs.h"\
+	".\ClRes.h"\
+	

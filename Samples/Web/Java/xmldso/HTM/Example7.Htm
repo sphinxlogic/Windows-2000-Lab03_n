@@ -1,0 +1,111 @@
+<html>  
+
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+  <head>
+    <title>XML Data Source Applet</title>
+    <style>
+      td    {font-size:80%;}
+      xmp   {font-size:120%; background:yellow}
+    </style>
+  </head>
+
+<script>
+    function CalcTotal()
+    {
+        var root = xmldso.getDocument().root;
+        var items = root.children.item("ITEM");
+        var num = items.length;
+        var total = 0;
+        var count = 0;
+        for (i = 0; i < num; i++) {
+            var item = items.item(i).children;
+            var price = item.item("PRICE").text;
+            var p = parseFloat(price);
+            var tax = items.item(i).getAttribute("TAX");
+            var t = parseFloat(tax);
+            if (t > 0) p = (p * (100 + t)) / 100;
+            var quantity = item.item("QUANTITY").text;
+            var q = parseInt(quantity);
+            count += q;
+            total = total + p * q;     
+        }      
+        var msg = "+" + (total * 100); // get rid of floating
+        total = parseInt(msg) / 100; // point noise.
+        msg = "There are " + count + " books";
+        msg = msg + " with a total value of $" + total + ".";
+        return msg;
+    }
+</script>
+
+<BODY TOPMARGIN=0 LEFTMARGIN=40 BGCOLOR="#ffffff" LINK="#000066" VLINK="#666666" TEXT="#000000">
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+
+<table align=right>
+<tr><td bgcolor=black><a href=Example6.htm>
+        <font color=white onmouseover="this.style.color='gold'" 
+        onmouseout="this.style.color='white'" ><b>Previous<b></font></a>
+    <td bgcolor=black><a href=Example8.htm>
+        <font color=white onmouseover="this.style.color='gold'" 
+        onmouseout="this.style.color='white'" ><b>Next<b></font></a>
+</table>
+
+<h2>XML Data Source Applet</h2>
+<h3>Example 7</h3>
+<P>
+This example shows how the JavaScript interface to the
+XML Java Parser can be used to program the XML Object 
+Model directly.  In this case we traverse all the items and
+multiply the PRICE and QUANTITY fields to come up with a 
+total dollar value.
+<applet code=com.ms.xml.dso.XMLDSO.class width=100% height=25 id=xmldso MAYSCRIPT=true>
+    <PARAM NAME="url" VALUE="books.xml">
+</applet>
+<input type=button value="Calculate Total Value" 
+        onclick='document.all.item("output").innerText = CalcTotal()'>
+<div style="background:yellow" id=output></div>
+<P>
+The test script that this button invokes is as follows:
+<xmp id=testscript >
+<script>
+    function CalcTotal()
+    {
+        var root = xmldso.getDocument().root;
+        var items = root.children.item("ITEM");
+        var num = items.length;
+        var total = 0;
+        var count = 0;
+        for (i = 0; i < num; i++) {
+            var item = items.item(i).children;
+            var price = item.item("PRICE").text;
+            var quantity = item.item("QUANTITY").text;
+            var q = parseInt(quantity);
+            count += q;
+            total = total + parseFloat(price) * q;     
+        }      
+        var msg = "+" + (total * 100); // get rid of floating
+        total = parseInt(msg) / 100; // point noise.
+        msg = "There are " + count + " books";
+        msg = msg + " with a total value of $" + total + ".";
+        return msg;
+    }
+</script>
+</xmp>
+<P>
+<input type=button value="Show XML Data"
+    onclick='var xmldata = document.all.item("xmldata");
+            if (this.value == "Show XML Data") {
+                xmldata.innerText= xmldso.getXML();
+                this.value="Hide XML Data";
+            } else {
+                xmldata.innerText="";
+                this.value="Show XML Data";
+            }'>
+<xmp id=xmldata ></xmp>
+<p>
+<FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">&#169; 1997 Microsoft Corporation. All rights reserved. <A HREF="../../art/cpyright.htm" target="_top">Legal Notices</a>.<P></FONT>
+
+
+  </body>
+</html>

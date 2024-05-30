@@ -1,0 +1,42 @@
+<HTML>
+<COMMENT>
+'
+'THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+'ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED
+'TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+'PARTICULAR PURPOSE.
+'
+' Copyright (c) 1996-1999  Microsoft Corporation
+'
+' Created:
+'       2/13/1997
+'
+' Revision history
+'
+' Notes:
+'
+'       This example uses an .INF file and the Internet Component Download
+'       service to download, setup the Vendor COM SSP
+'
+</COMMENT>
+
+<HEAD><TITLE>SSP/Code Download Test Page</TITLE><HEAD>
+
+<BODY BGCOLOR=Green>
+<H1>SSP/Code Download Test Page
+
+<COMMENT>
+'
+' Set URL to point to the example .INF file to setup DLL
+'
+</COMMENT>
+<OBJECT
+        ID = "VendorSSP"
+        CLASSID = "clsid:5E586218-5A09-11d0-B84C-00C04FD424B9"
+        CODEBASE = "file://cdudley2/cdudley2_d/nt/private/ispu/calais/ssps/bin/objd/i386/scardcom.dll"
+>
+</OBJECT>
+
+</BODY>
+
+</HTML>

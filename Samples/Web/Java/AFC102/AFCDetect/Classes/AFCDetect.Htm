@@ -1,0 +1,133 @@
+<HTML>
+<HEAD>
+<TITLE>AFC Detect Sample</TITLE>
+</HEAD>
+
+<BODY BGPROPERTIES="FIXED" BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="#0000FF" ALINK="#0000FF" TOPMARGIN=0 LEFTMARGIN=0>
+
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE="2">
+
+<A NAME="pagetop"></A>
+
+
+<!--main title (fixed coloured cell type)-->
+
+<!--main title ENDS-->
+
+<SCRIPT LANGUAGE="JavaScript">
+
+	// this is where we do version detection
+
+	// the "current" version of AFC as best known by this web page.
+	ourAFCVersionMajor = 2
+	ourAFCVersionMinor = 0
+
+	// detects if AFC is installed. Returns 1 if so, 0 if not. Pops up message boxes
+	// which tell the user whether they have an old version of AFC installed, a 
+	// current version, or if it is not installed at all.
+    	function detectAFC()
+    	{	   	    	   		
+	    // check if AFC is installed at all.
+		var answer;
+		answer=document.AFCDetect.doesSupportAFC();
+	    if ( answer== 0)
+		{
+			alert("You don't have AFC installed on your machine.");
+			return 0
+		}
+	    else
+		{			
+			var version;
+			version=document.AFCDetect.getAFCVersionString();
+			alert("You currently have AFC version " + version);
+
+			// grab AFC version numbers from the system
+			afcVerMajor = document.AFCDetect.getAFCMajorVersion();
+			afcVerMinor = document.AFCDetect.getAFCMinorVersion();
+			isOld = 0;
+
+			// checks version numbers
+			isOld = ourAFCVersionMajor - afcVerMajor;
+
+			if (isOld == 0)
+				{
+					isOld = ourAFCVersionMinor - afcVerMinor;					
+				}		
+
+			// if isOld <= 0, AFC is the same as or newer than the version this page knows about. If
+			// isOld > 0, AFC is too old here.
+			if (isOld <= 0)     
+				{
+					alert("A current version of AFC is installed on your computer.");
+					return 1;
+				}
+			else
+				{
+					alert("An old version of AFC is installed on your computer. You should install AFC again.");
+					return 0;
+				}	
+		}
+    	}
+
+</SCRIPT>
+
+<!--main page sub-title-->
+<p>
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=4>
+<B>AFC Detect Sample</B></A>
+</FONT><BR>
+</TD>
+<!--main contents -->
+
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=2>
+<p>
+<p>AFC Detect provides an easy way for developers to determine whether
+a AFC is installed on a user's computer. Using this applet and a small amount
+of JavaScript on a web page, AFC's presence on a machine can be detected and the right
+actions taken. This allows one to avoid running applets which aren't supported
+on the user's machine.
+</p>
+<ul>
+<li><a href="AFCDetectInfo.htm">How to use AFC Detect in your own web pages</a>
+<li><a href="AFCAutoinstall.htm">How to insure that your web page visitors have AFC installed</a>
+<li>Click the button to check whether AFC is installed in your computer
+<form>
+<input type=submit name=action value="AFC Installation Detect Program" onClick="detectAFC()">
+</form>
+</ul>
+
+
+<TR><TD>
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=4>
+<B></A></B></FONT><BR>
+
+<!-- AFC detect applet. Won't display -->
+<applet 
+	code="AFCDetect.class" 
+	name="AFCDetect" 
+	width=2 
+	height=1>
+</applet>
+
+<applet 
+	code="AFCVersionManager.class" 
+	name="AFCVersionManager" 
+	width=2 
+	height=1>
+</applet>
+	
+<FONT FACE="HELVETICA, ARIAL" SIZE=2>
+<B></B>
+
+<!--remarks 1-->
+<FONT FACE="VERDANA, GEORGIA, ARIAL, HELVETICA" SIZE=2>
+<B><I>Remarks:</I></B>
+<I>This sample created with Microsoft AFC.</I>
+<p>
+
+<!--MS copyright-->
+<TD ALIGN=RIGHT><FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK"><A HREF="../../art/cpyright.htm">&#169; 1996 Microsoft Corporation. All rights reserved.</A></FONT></TD></TR></TABLE>
+</FONT>
+
+</BODY>
+</HTML>

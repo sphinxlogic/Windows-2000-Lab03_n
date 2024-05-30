@@ -1,0 +1,25 @@
+DESCRIPTION 'Debugger Helper Library for Java(TM)'
+
+EXPORTS
+
+    RNIGetCompatibleVersion
+
+    DebuggeeProcess_CreateSuspendedProcess
+    DebuggeeProcess_ResumeProcess
+
+    com_ms_debug_ConstantPoolHelper_GetConstantPoolItem
+
+    com_ms_debug_LockBytesHelper_GetBytes
+
+    com_ms_debug_RemoteBooleanObjectHelper_GetValue
+    com_ms_debug_RemoteBooleanObjectHelper_SetValue
+    com_ms_debug_EnumRemoteBooleanValueHelper_GetNext
+
+    com_ms_debug_RemoteFloatObjectHelper_GetValue
+    com_ms_debug_RemoteFloatObjectHelper_SetValue
+    com_ms_debug_EnumRemoteFloatValueHelper_GetNext
+
+    com_ms_debug_RemoteDoubleObjectHelper_GetValue
+    com_ms_debug_RemoteDoubleObjectHelper_SetValue
+    com_ms_debug_EnumRemoteDoubleValueHelper_GetNext
+

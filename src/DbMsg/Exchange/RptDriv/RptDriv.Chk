@@ -1,0 +1,310 @@
+// --rptdriv.chk----------------------------------------------------------------
+// 
+//  Report generation sample.
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+// -----------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_HrBuildSampleNDRAdrList(a,b)        NOERROR
+#define CHK_HrSendNDR(a,b,c,d)                  NOERROR
+#define CHK_HrBuildSampleDRAdrList(a,b)         NOERROR
+#define CHK_HrSendDR(a,b,c,d)                   NOERROR
+#define CHK_HrBuildSampleRNSender(a,b,c,d,e)    NOERROR
+#define CHK_HrSendRN(a,b,c,d)                   NOERROR
+#define CHK_HrSendNRN(a,b,c,d)                  NOERROR
+#define CHK_HrSendReport(a,b,c)                 NOERROR
+
+#else
+
+//$--CHK_HrBuildSampleNDRAdrList------------------------------------------------
+//  Build a sample non-delivery report address list.
+// -----------------------------------------------------------------------------
+HRESULT CHK_HrBuildSampleNDRAdrList(        // RETURNS: return code
+    IN LPMESSAGE lpMessage,                 // pointer to message
+    OUT LPADRLIST *lppAdrList)              // pointer to address list pointer
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_IUNKNOWN_PTR(lpMessage))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_WRITE_PTR(lppAdrList, sizeof(LPADRLIST *)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrSendNDR--------------------------------------------------------------
+//  Send a non-delivery report.
+// -----------------------------------------------------------------------------
+HRESULT CHK_HrSendNDR(                      // RETURNS: return code
+    IN LPADRBOOK  lpAdrBook,                // pointer to address book
+    IN LPMAPIFOLDER lpFolder,               // pointer to folder
+    IN LPMESSAGE lpEnvelope,                // pointer to message envelope
+    IN LPMESSAGE lpMessage)                 // pointer to message
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_IUNKNOWN_PTR(lpAdrBook))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_IUNKNOWN_PTR(lpFolder))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_IUNKNOWN_PTR(lpEnvelope))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_IUNKNOWN_PTR(lpMessage))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrBuildSampleDRAdrList-------------------------------------------------
+//  Build a sample delivery report address list.
+// -----------------------------------------------------------------------------
+HRESULT CHK_HrBuildSampleDRAdrList(         // RETURNS: return code
+    IN LPMESSAGE lpMessage,                 // pointer to message
+    OUT LPADRLIST *lppAdrList)              // pointer to address list pointer
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_IUNKNOWN_PTR(lpMessage))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_WRITE_PTR(lppAdrList, sizeof(LPADRLIST *)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrSendDR---------------------------------------------------------------
+//  Send a delivery report.
+// -----------------------------------------------------------------------------
+HRESULT CHK_HrSendDR(                       // RETURNS: return code
+    IN LPADRBOOK  lpAdrBook,                // pointer to address book
+    IN LPMAPIFOLDER lpFolder,               // pointer to folder
+    IN LPMESSAGE lpEnvelope,                // pointer to message envelope
+    IN LPMESSAGE lpMessage)                 // pointer to message
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_IUNKNOWN_PTR(lpAdrBook))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_IUNKNOWN_PTR(lpFolder))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_IUNKNOWN_PTR(lpEnvelope))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_IUNKNOWN_PTR(lpMessage))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrBuildSampleRNSender--------------------------------------------------
+//  Build a sample sender for a RN/NRN report.
+// -----------------------------------------------------------------------------
+HRESULT CHK_HrBuildSampleRNSender(      // RETURNS: return code
+    IN LPMESSAGE lpMessage,             // pointer to message
+    IN LPADRBOOK  lpAdrBook,            // pointer to address book
+    OUT LPSTR     *lppszDisplayName,    // pointer to display name
+    OUT ULONG     *lpcbeid,             // pointer count of bytes in entry ID
+    OUT LPENTRYID *lppeid)              // pointer to entry ID
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_IUNKNOWN_PTR(lpMessage))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_IUNKNOWN_PTR(lpAdrBook))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_WRITE_PTR(lpcbeid, sizeof(ULONG *)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_WRITE_PTR(lppeid, sizeof(LPENTRYID *)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrSendRN---------------------------------------------------------------
+//  Send a read notification report.
+// -----------------------------------------------------------------------------
+HRESULT CHK_HrSendRN(                       // RETURNS: return code
+    IN LPADRBOOK  lpAdrBook,                // pointer to address book
+    IN LPMAPIFOLDER lpFolder,               // pointer to folder
+    IN LPMESSAGE lpEnvelope,                // pointer to envelope
+    IN LPMESSAGE lpMessage)                 // pointer to message
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_IUNKNOWN_PTR(lpAdrBook))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_IUNKNOWN_PTR(lpFolder))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_IUNKNOWN_PTR(lpEnvelope))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_IUNKNOWN_PTR(lpMessage))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrSendNRN--------------------------------------------------------------
+//  Send a non-read notification report.
+// -----------------------------------------------------------------------------
+HRESULT CHK_HrSendNRN(                      // RETURNS: return code
+    IN LPADRBOOK  lpAdrBook,                // pointer to address book
+    IN LPMAPIFOLDER lpFolder,               // pointer to folder
+    IN LPMESSAGE lpEnvelope,                // pointer to envelope
+    IN LPMESSAGE lpMessage)                 // pointer to message
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_IUNKNOWN_PTR(lpAdrBook))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_IUNKNOWN_PTR(lpFolder))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_IUNKNOWN_PTR(lpEnvelope))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_IUNKNOWN_PTR(lpMessage))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrSendReport-----------------------------------------------------------
+//
+//  Send a report to the originator of the message.
+//
+// -----------------------------------------------------------------------------
+HRESULT CHK_HrSendReport(               // RETURNS: nothing
+    IN LPADRBOOK lpAdrBook,             // pointer to address book
+    IN LPMESSAGE lpMessage,             // pointer to message
+    IN LPMESSAGE lpEnvelope)            // pointer to envelope
+
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_IUNKNOWN_PTR(lpAdrBook))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_IUNKNOWN_PTR(lpMessage))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+    if(! TEST_IUNKNOWN_PTR(lpEnvelope))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+#endif /* DEBUG */

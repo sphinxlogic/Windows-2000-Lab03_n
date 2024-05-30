@@ -1,0 +1,128 @@
+<HTML> 
+<HEAD>
+<TITLE>DirectAnimation SDK, JScript sample</TITLE>
+<SCRIPT LANGUAGE="JScript">
+<!--
+if (window.top.frames.length!=0 && window.top.frames[0].ShowNoButtons!=null)
+    window.top.frames[0].ShowNoButtons();
+//-->
+</SCRIPT>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+//<!--
+var g_isIE = false, g_isNav = false, g_iMaj = 0, g_sPlat = "";
+// -->
+</SCRIPT>
+<SCRIPT SRC="../ver.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript">if((g_isIE == true) && (g_iMaj < 4)) window.location.href = '../../../../../help/da/demo/demo_downlevel.htm'</SCRIPT>
+</HEAD>	 
+
+<BODY BGCOLOR=WHITE TOPMARGIN=15 LEFTMARGIN=20>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=2> 
+<CENTER>
+<H1>Explode</H1>
+</CENTER>
+<BR>
+<CENTER>
+<OBJECT ID="DAControl"
+  STYLE="left:100; top:100;width:300;height:300" 
+  CLASSID="CLSID:B6FFC24C-7E13-11D0-9B47-00C04FC2F51D">
+</OBJECT>
+
+<SCRIPT LANGUAGE="JScript">
+<!--
+  m = DAControl.MeterLibrary;
+
+ if( m.VersionString != "5.01.15.1106" && m.VersionString != "6.00.03.0518" && m.VersionString != "5.01.17.0825" && m.VersionString != "5.01.15.0828")  {
+  
+  dim = 0.03;
+  initXCol = m.Green;
+
+  camera = m.PerspectiveCamera(2*dim, 1.1*dim);
+
+  mediaBase = "../../../Media/";
+  geoBase = mediaBase + "geometry/";
+  rawX = m.ImportGeometry(geoBase + "dx.x");
+
+  geoTuple = activate(rawX);
+
+  xGeo = geoTuple.nth(0).DiffuseColor(geoTuple.nth(1));
+  
+  light = m.DirectionalLight.Transform(m.Rotate3Degrees(m.XVector3,-90));
+
+  xGeo = xGeo.Transform(
+    m.Compose3Array(new Array( m.Scale3Uniform(dim/10), 
+      m.Rotate3RateDegrees(m.XVector3, 31), m.Rotate3RateDegrees(m.YVector3, 16))));
+
+  xBounce = m.Translate3Anim(m.Mul(m.DANumber(0.4 * dim),m.Sin(m.LocalTime)),
+    m.Mul(m.DANumber(0.3 * dim),
+	  m.Sin(m.LocalTime)),m.Mul(m.DANumber(0.3 * dim),m.Sin(m.LocalTime)));
+
+  xGeo = xGeo.Transform(xBounce);
+
+  lightAndGeo = m.UnionGeometryArray(new Array(light,xGeo));
+
+  // Give it a shadow.
+  shadowGeo = lightAndGeo.Shadow(lightAndGeo,m.Point3(0, -dim*0.7, 0),m.Vector3(0,1,0));
+
+  shadowAlphaGeo = shadowGeo.ExtendedAttrib ("AlphaShadows", true);
+  shadowAlphaGeo = shadowAlphaGeo.EmissiveColor(geoTuple.nth(1));
+
+
+  finalGeo = m.UnionGeometryArray(new Array(lightAndGeo,shadowAlphaGeo));
+
+  finalImg = finalGeo.Render(camera);
+  
+  DAControl.Image = m.Overlay(finalImg,m.SolidColorImage(m.Black));
+
+  DAControl.Start();
+
+  function activate(unpickedGeo)  {
+    pickGeo = unpickedGeo.Pickable();
+    pickEvent = m.AndEvent(m.LeftButtonDown, pickGeo.pickEvent);
+	
+	forward = m.Interpolate(0, 1, 10);
+	back  = m.Interpolate(1, 0, 10);
+    pickXCol = m.ColorHslAnim(m.Div(m.LocalTime,
+      m.DANumber(8)), m.DANumber(1), m.DANumber(0.5));
+
+	eval = m.Sequence(forward, back).RepeatForever();
+
+    explodeCow = simpleApply("DX3DTransform.Microsoft.Explode", unpickedGeo, eval);
+
+	pickCowGeo = explodeCow.Pickable();
+	pickEvent2 = m.AndEvent(m.LeftButtonDown, pickCowGeo.pickEvent);
+
+	geoCyc = new ActiveXObject("DirectAnimation.DAGeometry")
+	geoCyc.Init(m.Until(pickGeo.Geometry, pickEvent, m.Until(pickCowGeo.Geometry, pickEvent2, geoCyc)));
+
+	clrCyc = new ActiveXObject("DirectAnimation.DAColor")
+	clrCyc.Init(m.Until(initXCol, pickEvent, m.Until(pickXCol, pickEvent2, clrCyc)));
+
+
+	return m.DATuple(new Array(geoCyc, clrCyc));
+  }
+  
+  function simpleApply(progid, inputVal, evaluator) {
+    xf = new ActiveXObject(progid);
+    inputs = new Array(1);
+    inputs[0] = inputVal;
+    result = m.ApplyDXTransform(xf, inputs, evaluator);
+    return result.OutputBvr;
+  }
+
+
+}
+ else
+    window.top.location.href = "../../../../../help/da/demo/demo_downlevel.htm"
+
+//-->
+</SCRIPT>
+<P>
+This sample illustrates integration of the DirectAnimation and DXTransforms.  Click on the
+spinning X, to apply the Explode transfrom to it.  Then click it again to return to the original
+geometry.
+</CENTER>
+</FONT>
+</BODY>
+</HTML>
+

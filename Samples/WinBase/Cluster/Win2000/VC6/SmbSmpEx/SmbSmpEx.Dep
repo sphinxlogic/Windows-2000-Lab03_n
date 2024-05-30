@@ -1,0 +1,70 @@
+# Microsoft Developer Studio Generated Dependency File, included by SmbSmpEx.mak
+
+.\BasePage.cpp : \
+	"..\..\..\..\..\..\..\mssdk\include\guiddef.h"\
+	".\BasePage.h"\
+	".\BasePage.inl"\
+	".\ExtObj.h"\
+	".\ExtObjID.h"\
+	".\PropList.h"\
+	".\SmbSmpEx.h"\
+	
+
+.\DDxDDv.cpp : \
+	"..\..\..\..\..\..\..\mssdk\include\guiddef.h"\
+	".\DDxDDv.h"\
+	
+
+.\ExtObj.cpp : \
+	"..\..\..\..\..\..\..\mssdk\include\guiddef.h"\
+	".\BasePage.h"\
+	".\ExtObj.h"\
+	".\ExtObjID.h"\
+	".\PropList.h"\
+	".\ResProp.h"\
+	".\SmbSmpEx.h"\
+	
+
+.\PropList.cpp : \
+	"..\..\..\..\..\..\..\mssdk\include\guiddef.h"\
+	".\PropList.h"\
+	
+
+.\RegExt.cpp : \
+	"..\..\..\..\..\..\..\mssdk\include\guiddef.h"\
+	
+
+.\ResProp.cpp : \
+	"..\..\..\..\..\..\..\mssdk\include\guiddef.h"\
+	".\BasePage.h"\
+	".\BasePage.inl"\
+	".\DDxDDv.h"\
+	".\ExtObj.h"\
+	".\ExtObjID.h"\
+	".\PropList.h"\
+	".\ResProp.h"\
+	".\SmbSmpEx.h"\
+	
+
+.\SmbSmpEx.cpp : \
+	"..\..\..\..\..\..\..\mssdk\include\guiddef.h"\
+	".\BasePage.h"\
+	".\ExtObj.h"\
+	".\ExtObjID.h"\
+	".\PropList.h"\
+	".\RegExt.h"\
+	".\SmbSmpEx.h"\
+	
+
+.\SmbSmpEx.rc : \
+	".\res\SmbSmpEx.rc2"\
+	
+
+.\StdAfx.cpp : \
+	"..\..\..\..\..\..\..\mssdk\include\basetsd.h"\
+	"..\..\..\..\..\..\..\mssdk\include\guiddef.h"\
+	"..\..\..\..\..\..\..\mssdk\include\propidl.h"\
+	"..\..\..\..\..\..\..\mssdk\include\shldisp.h"\
+	"..\..\..\..\..\..\..\mssdk\include\tvout.h"\
+	".\StdAfx.h"\
+	

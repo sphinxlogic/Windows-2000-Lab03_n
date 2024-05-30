@@ -1,0 +1,16 @@
+.magnet	{	color		:	white;
+		text-align	:	center;
+		background-color:	black;
+		position	:	absolute;
+		font-family	:	arial;
+		font-weight	:	bold;
+		height		:	12pt; 
+		cursor		:	hand;
+		disabled	:	true;
+		border-width	:	1pt;
+		border-color	:	white;
+		border-style	:	solid;
+		width		:	0pt; 
+		/* width will be changed by script */
+	}
+

@@ -1,0 +1,48 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\1394diag.res \
+    $(_OBJ_DIR)\alpha\1394diag.obj \
+    $(_OBJ_DIR)\alpha\1394api.obj \
+    $(_OBJ_DIR)\alpha\asyncapi.obj \
+    $(_OBJ_DIR)\alpha\ioctl.obj \
+    $(_OBJ_DIR)\alpha\isochapi.obj \
+    $(_OBJ_DIR)\alpha\pnp.obj \
+    $(_OBJ_DIR)\alpha\power.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\1394diag.res \
+    $(_OBJ_DIR)\axp64\1394diag.obj \
+    $(_OBJ_DIR)\axp64\1394api.obj \
+    $(_OBJ_DIR)\axp64\asyncapi.obj \
+    $(_OBJ_DIR)\axp64\ioctl.obj \
+    $(_OBJ_DIR)\axp64\isochapi.obj \
+    $(_OBJ_DIR)\axp64\pnp.obj \
+    $(_OBJ_DIR)\axp64\power.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\1394diag.res \
+    $(_OBJ_DIR)\i386\1394diag.obj \
+    $(_OBJ_DIR)\i386\1394api.obj \
+    $(_OBJ_DIR)\i386\asyncapi.obj \
+    $(_OBJ_DIR)\i386\ioctl.obj \
+    $(_OBJ_DIR)\i386\isochapi.obj \
+    $(_OBJ_DIR)\i386\pnp.obj \
+    $(_OBJ_DIR)\i386\power.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\1394diag.res \
+    $(_OBJ_DIR)\ia64\1394diag.obj \
+    $(_OBJ_DIR)\ia64\1394api.obj \
+    $(_OBJ_DIR)\ia64\asyncapi.obj \
+    $(_OBJ_DIR)\ia64\ioctl.obj \
+    $(_OBJ_DIR)\ia64\isochapi.obj \
+    $(_OBJ_DIR)\ia64\pnp.obj \
+    $(_OBJ_DIR)\ia64\power.obj
+
+PASS0_IA64_OBJECTS=
+

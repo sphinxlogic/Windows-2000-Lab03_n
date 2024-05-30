@@ -1,0 +1,18 @@
+REGEDIT4
+
+[HKEY_CLASSES_ROOT\CLSID\{8cccc630-14f0-11d1-824c-00aa00a3f13e}]
+@="Java Class: VJSecuritySampleClass"
+"AppID"="{8cccc630-14f0-11d1-824c-00aa00a3f13e}"
+
+[HKEY_CLASSES_ROOT\CLSID\{8cccc630-14f0-11d1-824c-00aa00a3f13e}\InprocServer32]
+@="MSJAVA.DLL"
+"ThreadingModel"="Both"
+"JavaClass"="VJSecuritySampleClass"
+
+[HKEY_CLASSES_ROOT\CLSID\{8cccc630-14f0-11d1-824c-00aa00a3f13e}\Implemented Categories]
+
+[HKEY_CLASSES_ROOT\CLSID\{8cccc630-14f0-11d1-824c-00aa00a3f13e}\Implemented Categories\{BE0975F0-BBDD-11CF-97DF-00AA001F73C1}]
+
+[HKEY_CLASSES_ROOT\AppID\{8cccc630-14f0-11d1-824c-00aa00a3f13e}]
+@="Java Class: VJSecuritySampleClass"
+

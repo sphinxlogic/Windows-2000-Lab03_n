@@ -1,0 +1,32 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\mouclass.res \
+    $(_OBJ_DIR)\alpha\mouclass.obj
+
+PASS0_ALPHA_OBJECTS= \
+    $(PASS0_HEADERDIR)\moulog.h \
+    $(MC_SOURCEDIR)\moulog.rc
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\mouclass.res \
+    $(_OBJ_DIR)\axp64\mouclass.obj
+
+PASS0_AXP64_OBJECTS= \
+    $(PASS0_HEADERDIR)\moulog.h \
+    $(MC_SOURCEDIR)\moulog.rc
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\mouclass.res \
+    $(_OBJ_DIR)\i386\mouclass.obj
+
+PASS0_386_OBJECTS= \
+    $(PASS0_HEADERDIR)\moulog.h \
+    $(MC_SOURCEDIR)\moulog.rc
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\mouclass.res \
+    $(_OBJ_DIR)\ia64\mouclass.obj
+
+PASS0_IA64_OBJECTS= \
+    $(PASS0_HEADERDIR)\moulog.h \
+    $(MC_SOURCEDIR)\moulog.rc
+

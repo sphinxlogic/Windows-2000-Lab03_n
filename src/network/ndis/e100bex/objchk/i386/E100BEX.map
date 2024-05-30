@@ -1,0 +1,210 @@
+ E100BEX
+
+ Timestamp is 656655a4 (Tue Nov 28 16:03:32 2023)
+
+ Preferred load address is 00010000
+
+ Start         Length     Name                   Class
+ 0001:00000000 0000b90cH .text                   CODE
+ 0002:00000000 000000d8H .idata$5                DATA
+ 0002:000000d8 00000af3H .rdata                  DATA
+ 0003:00000000 000003f0H .data                   DATA
+ 0003:000003f0 00000000H .bss                    DATA
+ 0004:00000000 0000003cH .idata$2                CODE
+ 0004:0000003c 00000014H .idata$3                CODE
+ 0004:00000050 000000d8H .idata$4                CODE
+ 0004:00000128 0000050eH .idata$6                CODE
+ 0005:00000000 000000d0H .rsrc$01                DATA
+ 0005:000000d0 00000790H .rsrc$02                DATA
+
+  Address         Publics by Value              Rva+Base     Lib:Object
+
+ 0001:00000207       _DeleteSharedAdapterMemory@4 00010607 f   d100.obj
+ 0001:00000512       _FreeAdapterObject@4       00010912 f   d100.obj
+ 0001:0000057e       _SoftwareReset@4           0001097e f   d100.obj
+ 0001:000005e8       _D100DisableInterrupt@4    000109e8 f i d100.obj
+ 0001:00000724       _DriverEntry@8             00010b24 f   d100.obj
+ 0001:0000085e       _D100EnableInterrupt@4     00010c5e f i d100.obj
+ 0001:00000974       _D100GetReturnedPackets@8  00010d74 f   d100.obj
+ 0001:00000b1a       _InitAndChainPacket@8      00010f1a f   d100.obj
+ 0001:00000cdc       _D100CheckForHang@4        000110dc f   d100.obj
+ 0001:00000e9e       _D100Halt@4                0001129e f   d100.obj
+ 0001:00001018       _D100IssueScbCommand@12    00011418 f i d100.obj
+ 0001:000010ba       _WaitScb@4                 000114ba f i d100.obj
+ 0001:00001121       _D100ShutdownHandler@4     00011521 f   d100.obj
+ 0001:00001541       _D100Initialize@24         00011941 f   d100.obj
+ 0001:00001ac2       _D100Reset@8               00011ec2 f   d100.obj
+ 0001:00001d63       _D100ResetComplete@16      00012163 f   d100.obj
+ 0001:00001e93       _D100AllocateComplete@20   00012293 f   d100.obj
+ 0001:0000204e       _AllocateRMD@24            0001244e f   d100.obj
+ 0001:00002185       _BuildSwRfd@12             00012585 f   d100.obj
+ 0001:0000231c       _FreeSwRfd@8               0001271c f   d100.obj
+ 0001:000023e6       _FreeRMD@8                 000127e6 f   d100.obj
+ 0001:000024e2       _D100MultipleSend@12       000128e2 f   send.obj
+ 0001:000028a8       _SetupNextSend@8           00012ca8 f   send.obj
+ 0001:00003444       _PrepareForTransmit@12     00013844 f   send.obj
+ 0001:00003db1       _AcquireCoalesceBuffer@8   000141b1 f   send.obj
+ 0001:00003f12       _D100CopyFromPacketToBuffer@24 00014312 f   send.obj
+ 0001:00004076       _ProcessTXInterrupt@4      00014476 f   send.obj
+ 0001:000045a4       _TransmitCleanup@4         000149a4 f   send.obj
+ 0001:0000490c       _D100Isr@12                00014d0c f   interrup.obj
+ 0001:00004998       _D100HandleInterrupt@4     00014d98 f   interrup.obj
+ 0001:00004e9a       _ProcessRXInterrupt@4      0001529a f   interrup.obj
+ 0001:000054d4       _StartReceiveUnit@4        000158d4 f   interrup.obj
+ 0001:0000578c       _MdiWrite@16               00015b8c f   routines.obj
+ 0001:00005806       _MdiRead@16                00015c06 f   routines.obj
+ 0001:00005a95       _DumpStatsCounters@4       00015e95 f   routines.obj
+ 0001:00006086       _DoBogusMulticast@4        00016486 f   routines.obj
+ 0001:00006444       _D100IssueSelectiveReset@4 00016844 f   routines.obj
+ 0001:000066a0       _D100SubmitCommandBlockAndWait@4 00016aa0 f   routines.obj
+ 0001:0000683c       _GetConnectionStatus@4     00016c3c f   routines.obj
+ 0001:000069be       _D100SetPacketFilter@8     00016dbe f   request.obj
+ 0001:00006d95       _D100ChangeMCAddresses@8   00017195 f   request.obj
+ 0001:0000705d       _D100SetInformation@24     0001745d f   request.obj
+ 0001:000073c1       _D100QueryInformation@24   000177c1 f   request.obj
+ 0001:00007a96       _ClaimAdapter@4            00017e96 f   init.obj
+ 0001:00007d61       _SetupCsrIoMapping@4       00018161 f   init.obj
+ 0001:00007e20       _SetupAdapterInfo@4        00018220 f   init.obj
+ 0001:0000818b       _SetupSharedAdapterMemory@4 0001858b f   init.obj
+ 0001:00008783       _SelfTestHardware@4        00018b83 f   init.obj
+ 0001:00008b4a       _SetupTransmitQueues@8     00018f4a f   init.obj
+ 0001:000092d2       _SetupReceiveQueues@4      000196d2 f   init.obj
+ 0001:00009752       _InitializeAdapter@4       00019b52 f   init.obj
+ 0001:0000990a       _InitializeD100@4          00019d0a f   init.obj
+ 0001:00009a76       _Configure@4               00019e76 f   init.obj
+ 0001:00009d91       _SetupIAAddress@4          0001a191 f   init.obj
+ 0001:00009eb0       _ClearAllCounters@4        0001a2b0 f   init.obj
+ 0001:0000a23d       _FindPciDevice50Scan@16    0001a63d f   pci.obj
+ 0001:0000a6c1       _ParseRegistryParameters@8 0001aac1 f   parse.obj
+ 0001:0000aa14       _PhyDetect@4               0001ae14 f   physet.obj
+ 0001:0000add6       _SelectPhy@12              0001b1d6 f   physet.obj
+ 0001:0000b031       _SetupPhy@4                0001b431 f   physet.obj
+ 0001:0000b444       _FindPhySpeedAndDpx@8      0001b844 f   physet.obj
+ 0001:0000b684       _ResetPhy@4                0001ba84 f   physet.obj
+ 0001:0000b6e8       _ReadEEprom@12             0001bae8 f   eeprom.obj
+ 0001:0000b760       _ShiftOutBits@16           0001bb60 f   eeprom.obj
+ 0001:0000b7f6       _RaiseClock@12             0001bbf6 f   eeprom.obj
+ 0001:0000b81c       _LowerClock@12             0001bc1c f   eeprom.obj
+ 0001:0000b844       _ShiftInBits@8             0001bc44 f   eeprom.obj
+ 0001:0000b8b4       _EEpromCleanup@8           0001bcb4 f   eeprom.obj
+ 0001:0000b8fa       _DbgBreakPoint@0           0001bcfa f   ntoskrnl:ntoskrnl.exe
+ 0001:0000b900       _DbgPrint                  0001bd00 f   ntoskrnl:ntoskrnl.exe
+ 0001:0000b906       _NdisAdjustBufferLength@8  0001bd06 f   ndis:NDIS.SYS
+ 0002:00000000       __imp__READ_PORT_UCHAR@4   0001be00     hal:HAL.dll
+ 0002:00000004       __imp__KeStallExecutionProcessor@4 0001be04     hal:HAL.dll
+ 0002:00000008       __imp__WRITE_PORT_UCHAR@8  0001be08     hal:HAL.dll
+ 0002:0000000c       \177HAL_NULL_THUNK_DATA    0001be0c     hal:HAL.dll
+ 0002:00000010       __imp__NdisReadNetworkAddress@16 0001be10     ndis:NDIS.SYS
+ 0002:00000014       __imp__NdisOpenConfiguration@12 0001be14     ndis:NDIS.SYS
+ 0002:00000018       __imp__NdisAllocateMemoryWithTag@12 0001be18     ndis:NDIS.SYS
+ 0002:0000001c       __imp__NdisMFreeMapRegisters@4 0001be1c     ndis:NDIS.SYS
+ 0002:00000020       __imp__NdisMFreeSharedMemory@24 0001be20     ndis:NDIS.SYS
+ 0002:00000024       __imp__NdisFreeMemory@12   0001be24     ndis:NDIS.SYS
+ 0002:00000028       __imp__NdisFreePacketPool@4 0001be28     ndis:NDIS.SYS
+ 0002:0000002c       __imp__NdisFreeBufferPool@4 0001be2c     ndis:NDIS.SYS
+ 0002:00000030       __imp__NdisMDeregisterIoPortRange@16 0001be30     ndis:NDIS.SYS
+ 0002:00000034       __imp__NdisMRegisterMiniport@12 0001be34     ndis:NDIS.SYS
+ 0002:00000038       __imp__NdisInitializeWrapper@16 0001be38     ndis:NDIS.SYS
+ 0002:0000003c       __imp__NdisReleaseSpinLock@4 0001be3c     ndis:NDIS.SYS
+ 0002:00000040       __imp__NdisAcquireSpinLock@4 0001be40     ndis:NDIS.SYS
+ 0002:00000044       __imp__NdisFreeSpinLock@4  0001be44     ndis:NDIS.SYS
+ 0002:00000048       __imp__NdisMDeregisterInterrupt@4 0001be48     ndis:NDIS.SYS
+ 0002:0000004c       __imp__NdisMCancelTimer@8  0001be4c     ndis:NDIS.SYS
+ 0002:00000050       __imp__NdisMDeregisterAdapterShutdownHandler@4 0001be50     ndis:NDIS.SYS
+ 0002:00000054       __imp__NdisWriteErrorLogEntry 0001be54     ndis:NDIS.SYS
+ 0002:00000058       __imp__NdisMInitializeTimer@16 0001be58     ndis:NDIS.SYS
+ 0002:0000005c       __imp__NdisMRegisterAdapterShutdownHandler@12 0001be5c     ndis:NDIS.SYS
+ 0002:00000060       __imp__NdisAllocateSpinLock@4 0001be60     ndis:NDIS.SYS
+ 0002:00000064       __imp__NdisMRegisterInterrupt@28 0001be64     ndis:NDIS.SYS
+ 0002:00000068       __imp__NdisMSetAttributesEx@20 0001be68     ndis:NDIS.SYS
+ 0002:0000006c       __imp__NdisMCompleteBufferPhysicalMapping@12 0001be6c     ndis:NDIS.SYS
+ 0002:00000070       __imp__NdisCloseConfiguration@4 0001be70     ndis:NDIS.SYS
+ 0002:00000074       __imp__NdisMAllocateSharedMemoryAsync@16 0001be74     ndis:NDIS.SYS
+ 0002:00000078       __imp__NdisAdjustBufferLength@8 0001be78     ndis:NDIS.SYS
+ 0002:0000007c       __imp__NdisSetTimer@8      0001be7c     ndis:NDIS.SYS
+ 0002:00000080       __imp__NdisAllocateBuffer@20 0001be80     ndis:NDIS.SYS
+ 0002:00000084       __imp__NdisAllocatePacket@12 0001be84     ndis:NDIS.SYS
+ 0002:00000088       __imp__NdisFreePacket@4    0001be88     ndis:NDIS.SYS
+ 0002:0000008c       __imp__NdisFreeBuffer@4    0001be8c     ndis:NDIS.SYS
+ 0002:00000090       __imp__NdisMStartBufferPhysicalMapping@24 0001be90     ndis:NDIS.SYS
+ 0002:00000094       __imp__NDIS_BUFFER_TO_SPAN_PAGES@4 0001be94     ndis:NDIS.SYS
+ 0002:00000098       __imp__NdisQueryBufferOffset@12 0001be98     ndis:NDIS.SYS
+ 0002:0000009c       __imp__NdisQueryBuffer@12  0001be9c     ndis:NDIS.SYS
+ 0002:000000a0       __imp__NdisAllocateBufferPool@12 0001bea0     ndis:NDIS.SYS
+ 0002:000000a4       __imp__NdisMMapIoSpace@20  0001bea4     ndis:NDIS.SYS
+ 0002:000000a8       __imp__NdisMRegisterIoPortRange@16 0001bea8     ndis:NDIS.SYS
+ 0002:000000ac       __imp__NdisMAllocateSharedMemory@20 0001beac     ndis:NDIS.SYS
+ 0002:000000b0       __imp__NdisMAllocateMapRegisters@20 0001beb0     ndis:NDIS.SYS
+ 0002:000000b4       __imp__NdisReadConfiguration@20 0001beb4     ndis:NDIS.SYS
+ 0002:000000b8       __imp__NdisAllocatePacketPool@16 0001beb8     ndis:NDIS.SYS
+ 0002:000000bc       __imp__NdisWritePciSlotInformation@20 0001bebc     ndis:NDIS.SYS
+ 0002:000000c0       __imp__NdisMPciAssignResources@12 0001bec0     ndis:NDIS.SYS
+ 0002:000000c4       __imp__NdisReadPciSlotInformation@20 0001bec4     ndis:NDIS.SYS
+ 0002:000000c8       \177NDIS_NULL_THUNK_DATA   0001bec8     ndis:NDIS.SYS
+ 0002:000000cc       __imp__DbgPrint            0001becc     ntoskrnl:ntoskrnl.exe
+ 0002:000000d0       __imp__DbgBreakPoint@0     0001bed0     ntoskrnl:ntoskrnl.exe
+ 0002:000000d4       \177ntoskrnl_NULL_THUNK_DATA 0001bed4     ntoskrnl:ntoskrnl.exe
+ 0002:000002e8       ??_C@_0BO@MNND@Entered?5D100DisableInterrupt?6?$AA@ 0001c0e8     d100.obj
+ 0002:00000308       ??_C@_04HPGM@?$CFs?3?5?$AA@ 0001c108     d100.obj
+ 0002:00000310       ?__FUNC__@?1??D100DisableInterrupt@@9@9 0001c110     d100.obj
+ 0002:00000328       ??_C@_0BN@PEAL@Entered?5D100EnableInterrupt?6?$AA@ 0001c128     d100.obj
+ 0002:00000348       ?__FUNC__@?1??D100EnableInterrupt@@9@9 0001c148     d100.obj
+ 0002:0000035c       ??_C@_0BK@MEOF@First?5D100WaitScb?5failed?6?$AA@ 0001c15c     d100.obj
+ 0002:00000378       ??_C@_08JLJP@?$CFs?3?$CFd?5?9?5?$AA@ 0001c178     d100.obj
+ 0002:00000384       ??_C@_0M@IDNM@?4?2inlinef?4h?$AA@ 0001c184     d100.obj
+ 0002:00000390       ??_C@_0BN@LEIH@Entered?5D100IssueScbCommand?6?$AA@ 0001c190     d100.obj
+ 0002:000003b0       ?__FUNC__@?1??D100IssueScbCommand@@9@9 0001c1b0     d100.obj
+ 0002:00000850       ??_C@_07IAFG@Congest?$AA@  0001c650     parse.obj
+ 0002:00000858       ??_C@_1BA@ELGJ@?$AAC?$AAo?$AAn?$AAg?$AAe?$AAs?$AAt?$AA?$AA@ 0001c658     parse.obj
+ 0002:00000868       ??_C@_09HNPA@MWIEnable?$AA@ 0001c668     parse.obj
+ 0002:00000874       ??_C@_1BE@HOJK@?$AAM?$AAW?$AAI?$AAE?$AAn?$AAa?$AAb?$AAl?$AAe?$AA?$AA@ 0001c674     parse.obj
+ 0002:00000888       ??_C@_04BDJA@MCWA?$AA@     0001c688     parse.obj
+ 0002:00000890       ??_C@_19CBLD@?$AAM?$AAC?$AAW?$AAA?$AA?$AA@ 0001c690     parse.obj
+ 0002:0000089c       ??_C@_09DDGH@Threshold?$AA@ 0001c69c     parse.obj
+ 0002:000008a8       ??_C@_1BE@OFKD@?$AAT?$AAh?$AAr?$AAe?$AAs?$AAh?$AAo?$AAl?$AAd?$AA?$AA@ 0001c6a8     parse.obj
+ 0002:000008bc       ??_C@_05PDDA@Speed?$AA@    0001c6bc     parse.obj
+ 0002:000008c4       ??_C@_1M@IKGE@?$AAS?$AAp?$AAe?$AAe?$AAd?$AA?$AA@ 0001c6c4     parse.obj
+ 0002:000008d0       ??_C@_08KNJO@ForceDpx?$AA@ 0001c6d0     parse.obj
+ 0002:000008dc       ??_C@_1BC@ONMA@?$AAF?$AAo?$AAr?$AAc?$AAe?$AAD?$AAp?$AAx?$AA?$AA@ 0001c6dc     parse.obj
+ 0002:000008f0       ??_C@_0O@CPHL@UnderrunRetry?$AA@ 0001c6f0     parse.obj
+ 0002:00000900       ??_C@_1BM@PLCL@?$AAU?$AAn?$AAd?$AAe?$AAr?$AAr?$AAu?$AAn?$AAR?$AAe?$AAt?$AAr?$AAy?$AA?$AA@ 0001c700     parse.obj
+ 0002:0000091c       ??_C@_0L@HJCE@RxDmaCount?$AA@ 0001c71c     parse.obj
+ 0002:00000928       ??_C@_1BG@MOMC@?$AAR?$AAx?$AAD?$AAm?$AAa?$AAC?$AAo?$AAu?$AAn?$AAt?$AA?$AA@ 0001c728     parse.obj
+ 0002:00000940       ??_C@_0L@FJKJ@TxDmaCount?$AA@ 0001c740     parse.obj
+ 0002:0000094c       ??_C@_1BG@KPEK@?$AAT?$AAx?$AAD?$AAm?$AAa?$AAC?$AAo?$AAu?$AAn?$AAt?$AA?$AA@ 0001c74c     parse.obj
+ 0002:00000964       ??_C@_06GHAK@RxFifo?$AA@   0001c764     parse.obj
+ 0002:0000096c       ??_C@_1O@PHCA@?$AAR?$AAx?$AAF?$AAi?$AAf?$AAo?$AA?$AA@ 0001c76c     parse.obj
+ 0002:0000097c       ??_C@_06BKMK@TxFifo?$AA@   0001c77c     parse.obj
+ 0002:00000984       ??_C@_1O@BAEM@?$AAT?$AAx?$AAF?$AAi?$AAf?$AAo?$AA?$AA@ 0001c784     parse.obj
+ 0002:00000994       ??_C@_0N@JDJC@BusTypeLocal?$AA@ 0001c794     parse.obj
+ 0002:000009a4       ??_C@_1BK@LHCO@?$AAB?$AAu?$AAs?$AAT?$AAy?$AAp?$AAe?$AAL?$AAo?$AAc?$AAa?$AAl?$AA?$AA@ 0001c7a4     parse.obj
+ 0002:000009c0       ??_C@_09DJGB@Connector?$AA@ 0001c7c0     parse.obj
+ 0002:000009cc       ??_C@_1BE@DPFB@?$AAC?$AAo?$AAn?$AAn?$AAe?$AAc?$AAt?$AAo?$AAr?$AA?$AA@ 0001c7cc     parse.obj
+ 0002:000009e0       ??_C@_0L@HPBP@PhyAddress?$AA@ 0001c7e0     parse.obj
+ 0002:000009ec       ??_C@_1BG@FOMN@?$AAP?$AAh?$AAy?$AAA?$AAd?$AAd?$AAr?$AAe?$AAs?$AAs?$AA?$AA@ 0001c7ec     parse.obj
+ 0002:00000a04       ??_C@_0N@LIBG@MapRegisters?$AA@ 0001c804     parse.obj
+ 0002:00000a14       ??_C@_1BK@ECA@?$AAM?$AAa?$AAp?$AAR?$AAe?$AAg?$AAi?$AAs?$AAt?$AAe?$AAr?$AAs?$AA?$AA@ 0001c814     parse.obj
+ 0002:00000a30       ??_C@_0M@PPAO@NumCoalesce?$AA@ 0001c830     parse.obj
+ 0002:00000a3c       ??_C@_1BI@IKAC@?$AAN?$AAu?$AAm?$AAC?$AAo?$AAa?$AAl?$AAe?$AAs?$AAc?$AAe?$AA?$AA@ 0001c83c     parse.obj
+ 0002:00000a54       ??_C@_0P@LBGF@NumTbdPerArray?$AA@ 0001c854     parse.obj
+ 0002:00000a64       ??_C@_1BK@PCDL@?$AAN?$AAu?$AAm?$AAT?$AAb?$AAd?$AAP?$AAe?$AAr?$AAT?$AAc?$AAb?$AA?$AA@ 0001c864     parse.obj
+ 0002:00000a80       ??_C@_06PJAC@NumTcb?$AA@   0001c880     parse.obj
+ 0002:00000a88       ??_C@_1O@FHLN@?$AAN?$AAu?$AAm?$AAT?$AAc?$AAb?$AA?$AA@ 0001c888     parse.obj
+ 0002:00000a98       ??_C@_06KGAH@NumRfd?$AA@   0001c898     parse.obj
+ 0002:00000aa0       ??_C@_1O@HMAH@?$AAN?$AAu?$AAm?$AAR?$AAf?$AAd?$AA?$AA@ 0001c8a0     parse.obj
+ 0002:00000ab0       ??_C@_0L@GHMA@SlotNumber?$AA@ 0001c8b0     parse.obj
+ 0002:00000abc       ??_C@_1BG@LMJN@?$AAS?$AAl?$AAo?$AAt?$AAN?$AAu?$AAm?$AAb?$AAe?$AAr?$AA?$AA@ 0001c8bc     parse.obj
+ 0002:00000ad4       ??_C@_09LHOM@BusNumber?$AA@ 0001c8d4     parse.obj
+ 0002:00000ae0       ??_C@_1BE@GIME@?$AAB?$AAu?$AAs?$AAN?$AAu?$AAm?$AAb?$AAe?$AAr?$AA?$AA@ 0001c8e0     parse.obj
+ 0002:00000af4       ??_C@_05FPNF@Debug?$AA@    0001c8f4     parse.obj
+ 0002:00000afc       ??_C@_1M@GFFL@?$AAD?$AAe?$AAb?$AAu?$AAg?$AA?$AA@ 0001c8fc     parse.obj
+ 0003:000000d8       _D100GlobalRegTab          0001cad8     parse.obj
+ 0004:00000000       __IMPORT_DESCRIPTOR_ntoskrnl 0001ce00     ntoskrnl:ntoskrnl.exe
+ 0004:00000014       __IMPORT_DESCRIPTOR_HAL    0001ce14     hal:HAL.dll
+ 0004:00000028       __IMPORT_DESCRIPTOR_NDIS   0001ce28     ndis:NDIS.SYS
+ 0004:0000003c       __NULL_IMPORT_DESCRIPTOR   0001ce3c     ntoskrnl:ntoskrnl.exe
+
+ entry point at        0001:00000724
+
+ Static symbols
+

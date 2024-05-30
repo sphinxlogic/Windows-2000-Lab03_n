@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 1.00
+Project("{66355F20-A65B-11D0-BFB5-00A0C91EBFA0}") = "SampleOSP_VJ", "SampleOSP_VJ.vjp", "{81C75D3C-790A-11D2-8A61-0060088F441E}"
+	ProjectSection(SourceCodeControl) = preProject
+		SccProjectName = \u0022$/mdac25/RTM/Data\u0020Access\u0020SDK/Samples/osp/vj\u0022,\u0020GHJCBAAA
+		SccAuxPath = \\\\dagvss\\f$\\srcsafe,
+		SccLocalPath = .
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(LocalDeployment) = postSolution
+		StartupProject = {81C75D3C-790A-11D2-8A61-0060088F441E}
+	EndGlobalSection
+	GlobalSection(BuildOrder) = postSolution
+		0 = {81C75D3C-790A-11D2-8A61-0060088F441E}
+	EndGlobalSection
+	GlobalSection(SourceCodeControl) = preSolution
+		SccProjectName = \u0022$/mdac25/RTM/Data\u0020Access\u0020SDK/Samples/osp/vj\u0022,\u0020GHJCBAAA
+		SccAuxPath = \\\\dagvss\\f$\\srcsafe,
+		SccLocalPath = .
+	EndGlobalSection
+	GlobalSection(DeploymentRoot) = postSolution
+	EndGlobalSection
+EndGlobal

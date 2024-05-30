@@ -1,0 +1,48 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\testusd.res \
+    $(_OBJ_DIR)\alpha\camevent.obj \
+    $(_OBJ_DIR)\alpha\camopen.obj \
+    $(_OBJ_DIR)\alpha\camxfer.obj \
+    $(_OBJ_DIR)\alpha\device.obj \
+    $(_OBJ_DIR)\alpha\miniitem.obj \
+    $(_OBJ_DIR)\alpha\testusd.obj \
+    $(_OBJ_DIR)\alpha\wiadev.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\testusd.res \
+    $(_OBJ_DIR)\axp64\camevent.obj \
+    $(_OBJ_DIR)\axp64\camopen.obj \
+    $(_OBJ_DIR)\axp64\camxfer.obj \
+    $(_OBJ_DIR)\axp64\device.obj \
+    $(_OBJ_DIR)\axp64\miniitem.obj \
+    $(_OBJ_DIR)\axp64\testusd.obj \
+    $(_OBJ_DIR)\axp64\wiadev.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\testusd.res \
+    $(_OBJ_DIR)\i386\camevent.obj \
+    $(_OBJ_DIR)\i386\camopen.obj \
+    $(_OBJ_DIR)\i386\camxfer.obj \
+    $(_OBJ_DIR)\i386\device.obj \
+    $(_OBJ_DIR)\i386\miniitem.obj \
+    $(_OBJ_DIR)\i386\testusd.obj \
+    $(_OBJ_DIR)\i386\wiadev.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\testusd.res \
+    $(_OBJ_DIR)\ia64\camevent.obj \
+    $(_OBJ_DIR)\ia64\camopen.obj \
+    $(_OBJ_DIR)\ia64\camxfer.obj \
+    $(_OBJ_DIR)\ia64\device.obj \
+    $(_OBJ_DIR)\ia64\miniitem.obj \
+    $(_OBJ_DIR)\ia64\testusd.obj \
+    $(_OBJ_DIR)\ia64\wiadev.obj
+
+PASS0_IA64_OBJECTS=
+

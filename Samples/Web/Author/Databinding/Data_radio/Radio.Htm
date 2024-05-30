@@ -1,0 +1,147 @@
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<HTML>
+<HEAD>
+<TITLE>The RADIO Button</TITLE>
+<META NAME="FILENAME" CONTENT="radio.HTM">
+
+
+
+<SCRIPT LANGUAGE="JavaScript">
+
+function forward() {
+
+//This function increments the data bound record after checking to confirm 
+//you are not already at the end of the recordset. If you are, the program 
+//alerts you that it cant go any further. 
+
+  if (StockList.recordset.AbsolutePosition != StockList.recordset.RecordCount) {
+	StockList.recordset.MoveNext();
+	}
+	else {
+	alert("Already at last element");
+	}
+}
+
+function reverse() {
+
+//This function decrements the data bound record after checking to confirm  
+//you are not already at the end of the recordset. If you are, the program 
+//alerts you that it cant go any further.  
+
+  if (StockList.recordset.AbsolutePosition != 1) {
+	StockList.recordset.MovePrevious();
+	}
+	else {
+	alert("Already at first element");
+	}
+}
+
+</SCRIPT>
+</HEAD>
+
+
+<BODY TOPMARGIN=20 LEFTMARGIN=40 BGCOLOR="#ffffff" LINK="#000066"
+	VLINK="#666666 text="#000000">
+
+
+<H2>The RADIO Button</H2>
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT>
+<P>
+<P>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+<hr>
+
+<BR>
+
+A radio button or group of radio buttons can be bound to a column in the data
+set. The binding stores the VALUE attribute from the selected radio button. If
+the value in the data set matches no VALUE attributes on the radio button group,
+then no radio buttons are selected.
+<P>
+Below is an example of a radio button group with a current record binding.
+Clicking on the arrow buttons will move the current record. This results in
+the radio button with the matching value being selected.  
+<P>
+
+<CENTER>
+
+<TABLE>
+  <TR>
+	<TD VALIGN=TOP ALIGN=RIGHT><FONT FACE="verdana,arial,helvetica" SIZE=2>
+ Investment Type: 
+	<TD VALIGN=TOP><FONT FACE="verdana,arial,helvetica" SIZE=2>
+
+	  <INPUT TYPE="radio" VALUE="L" NAME="choices" ID="choic"
+			 DATASRC="#StockList" DATAFLD="Inv_type"> Long
+	  <BR>
+	  <INPUT TYPE="radio" VALUE="S" NAME="choices" ID="choic"
+			 DATASRC="#StockList" DATAFLD="Inv_type"> Short
+</TABLE>
+
+<HR WIDTH=100>
+<INPUT TYPE="button" VALUE="  <  " ONCLICK="reverse();">
+<INPUT TYPE="button" VALUE="  >  " onClick="forward();">
+<HR WIDTH=100>
+</CENTER>
+<P>
+
+Radio buttons can also be used within a repeated table. However, you must
+ensure that a named form surrounds buttons to ensure correct operation. Here is
+an example of a table:
+<P>
+
+<OBJECT ID="StockList" CLASSID="clsid:333C7BC4-460F-11D0-BC04-0080C7055A83"
+	WIDTH=0 HEIGHT=0>
+<PARAM NAME="UseHeader" VALUE="True">
+<PARAM NAME="TextQualifier" VALUE="&quot;">
+<PARAM NAME="FieldDelim" VALUE=",">
+<PARAM NAME="DataURL" VALUE="quotes.txt">
+</OBJECT>
+
+<CENTER>
+<TABLE DATASRC="#StockList" BORDER=1>
+
+	<THEAD>
+		<TR>
+		<TH>
+			<DIV> Symbol </DIV>
+		</TH>
+		<TH>
+			<DIV> Investment<BR>Type </DIV>
+		</TH>
+		</TR>
+	</THEAD>
+	<TBODY>
+		<TD ALIGN=CENTER>
+	                <FONT FACE="verdana,arial,helvetica" SIZE=2>
+			<DIV DATAFLD="Symbol"> </DIV>
+		</TD>
+		<TD>
+			<form>
+			<FONT FACE="verdana,arial,helvetica" SIZE=2>
+			<INPUT TYPE="radio" VALUE="L" ID="choic" NAME="choices" DATAFLD="Inv_type"> Long
+			<BR>
+			<INPUT TYPE="radio" VALUE="S" ID="choic" NAME="choices" DATAFLD="Inv_type"> Short
+			</form>
+		</TD>
+	</TBODY>
+</TABLE>
+</FORM>
+</CENTER>
+<P>
+
+Click on <A HREF="quotes.txt">quotes.txt</A> to see the data file used by this page.
+<P>
+<P>
+<P>
+<P>
+<FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">
+&copy; <A HREF="/misc/cpyright.htm" TARGET="_top">1999 Microsoft Corporation. All rights reserved. Terms of use</A>.
+</FONT>
+</BODY>
+</HTML>
+

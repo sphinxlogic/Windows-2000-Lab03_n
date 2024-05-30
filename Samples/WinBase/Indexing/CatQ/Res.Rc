@@ -1,0 +1,25 @@
+
+#include "windows.h"
+#include "catq.h"
+
+catqIcon ICON catq.ico
+
+mainDlg DIALOG 58, 19, 454, 304
+STYLE WS_OVERLAPPEDWINDOW
+CAPTION SZ_APP_TITLE
+FONT 9, "MS Shell Dlg"
+BEGIN
+    RTEXT           "Machine name", -1, 10, 13, 75, 12
+    RTEXT           "Catalog",      -1, 10, 26, 75, 12
+    RTEXT           "Containing Text", -1, 10, 39, 75, 12
+    RTEXT           "Directory scope", -1, 10, 52, 75, 12
+
+    EDITTEXT        DID_MACHINE, 95, 10, 114, 12, ES_AUTOHSCROLL
+    COMBOBOX        DID_CATALOG, 95, 23, 114, 36, CBS_DROPDOWNLIST
+    EDITTEXT        DID_CONTAIN, 95, 36, 114, 12, ES_AUTOHSCROLL
+    EDITTEXT        DID_SCOPE  , 95, 49, 114, 12, ES_AUTOHSCROLL
+
+    LISTBOX         DID_OUTRESULTS, 3, 116, 430, 76, WS_VSCROLL | LBS_NOINTEGRALHEIGHT
+
+    DEFPUSHBUTTON   "Find Now",          DID_FINDNOW   ,  242, 10, 80, 40
+END

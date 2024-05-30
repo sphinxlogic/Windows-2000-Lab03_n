@@ -1,0 +1,156 @@
+// --process.chk----------------------------------------------------------------
+//
+//  Functions to start a thread to handle processing of new mail or files.
+// 
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+// -----------------------------------------------------------------------------
+
+#include "edk.h"
+
+#ifndef DEBUG
+
+#define CHK_HrCheckParameter(a)                         NOERROR
+#define CHK_HrGWStartNewMailHandlerW(a,b,c,d,e,f,g)    NOERROR
+#define CHK_HrGWStartNewMailHandlerA(a,b,c,d,e,f,g)    NOERROR
+#define CHK_HrPollFile(a,b,c,d)                         NOERROR
+#define CHK_HrGWStartNewFileHandlerW(a,b,c,d,e,f,g,h)  NOERROR
+#define CHK_HrGWStartNewFileHandlerA(a,b,c,d,e,f,g,h)  NOERROR
+
+#else
+
+//$--CHK_HrCheckParameter-------------------------------------------------------
+//  Check the thread context structure.
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrCheckParameter(// RETURNS: return code
+    IN LPVOID lpParameter)                   // parameter
+{
+    HRESULT hr = NOERROR;
+
+    if(! TEST_READ_PTR(lpParameter, sizeof(GWTHREADCONTEXT)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+        goto cleanup;
+    }
+
+cleanup:
+
+    return(hr);
+}
+
+//$--CHK_HrGWStartNewMailHandler@----------------------------------------------
+//  Start a thread to handle processing of new mail.
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrGWStartNewMailHandlerW(
+    IN DWORD   dwSubmitInterval,                // submit interval
+    IN DWORD   dwPollingInterval,               // polling interval
+    IN DWORD   cMessages,                       // #messages/thread
+    IN DWORD   cThreads,                        // #threads
+    IN LPCWSTR lpszAddrType,                    // address type
+    IN LPCWSTR lpszPath,                        // path
+    IN LPTHREAD_START_ROUTINE lpStartAddress)   // thread function
+{
+    HRESULT hr = NOERROR;
+
+    if( !TEST_STRINGW_PTR(lpszAddrType) || lstrlenW(lpszAddrType) > MAX_PATH ||
+        !TEST_STRINGW_PTR(lpszPath) || lstrlenW(lpszPath) > MAX_PATH ||
+        !TEST_FUNCTION_PTR(lpStartAddress))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return(hr);
+}
+
+__inline static HRESULT CHK_HrGWStartNewMailHandlerA(
+    IN DWORD   dwSubmitInterval,                // submit interval
+    IN DWORD   dwPollingInterval,               // polling interval
+    IN DWORD   cMessages,                       // #messages/thread
+    IN DWORD   cThreads,                        // #threads
+    IN LPCSTR  lpszAddrType,                    // address type
+    IN LPCSTR  lpszPath,                        // path
+    IN LPTHREAD_START_ROUTINE lpStartAddress)   // thread function
+{
+    HRESULT hr = NOERROR;
+
+    if( !TEST_STRINGA_PTR(lpszAddrType) || lstrlenA(lpszAddrType) > MAX_PATH ||
+        !TEST_STRINGA_PTR(lpszPath) || lstrlenA(lpszPath) > MAX_PATH ||
+        !TEST_FUNCTION_PTR(lpStartAddress))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return(hr);
+}
+
+//$--CHK_HrPollFile-------------------------------------------------------------
+//  Poll for a file.
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrPollFile(     // RETURNS: return code
+    IN LPSTR              lpszDirectory,    // pointer to directory
+    IN LPSTR              lpszFindMask,     // pointer to find mask
+    OUT HANDLE            *lpPollHandle,    // pointer to find data handle
+	OUT LPWIN32_FIND_DATA lpFindData)       // pointer to find data
+{
+    HRESULT hr = NOERROR;
+
+    if( !TEST_STRINGA_PTR(lpszDirectory) ||
+        !TEST_STRINGA_PTR(lpszFindMask) ||
+        !TEST_WRITE_PTR(lpPollHandle, sizeof(HANDLE *)) ||
+        !TEST_WRITE_PTR(lpFindData, sizeof(WIN32_FIND_DATA)))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return(hr);
+}
+
+//$--CHK_HrGWStartNewFileHandler@----------------------------------------------
+//  Start a thread to handle processing of new files.
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_HrGWStartNewFileHandlerW(
+    IN DWORD   dwSubmitInterval,                // submit interval
+    IN DWORD   dwPollingInterval,               // polling interval
+    IN DWORD   cMessages,                       // #messages/thread
+    IN DWORD   cThreads,                        // #threads
+    IN LPCWSTR lpszAddrType,                    // address type
+    IN LPCWSTR lpszFileMask,                    // file mask
+    IN LPCWSTR lpszPath,                        // path
+    IN LPTHREAD_START_ROUTINE lpStartAddress)   // thread function
+{
+    HRESULT hr = NOERROR;
+
+    if( !TEST_STRINGW_PTR(lpszAddrType) || lstrlenW(lpszAddrType) > MAX_PATH ||
+        !TEST_STRINGW_PTR(lpszFileMask) || lstrlenW(lpszFileMask) > MAX_PATH ||
+        !TEST_STRINGW_PTR(lpszPath) || lstrlenW(lpszPath) > MAX_PATH ||
+        !TEST_FUNCTION_PTR(lpStartAddress))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return(hr);
+}
+
+__inline static HRESULT CHK_HrGWStartNewFileHandlerA(
+    IN DWORD   dwSubmitInterval,                // submit interval
+    IN DWORD   dwPollingInterval,               // polling interval
+    IN DWORD   cMessages,                       // #messages/thread
+    IN DWORD   cThreads,                        // #threads
+    IN LPCSTR  lpszAddrType,                    // address type
+    IN LPCSTR  lpszFileMask,                    // file mask
+    IN LPCSTR  lpszPath,                        // path
+    IN LPTHREAD_START_ROUTINE lpStartAddress)   // thread function
+{
+    HRESULT hr = NOERROR;
+
+    if( !TEST_STRINGA_PTR(lpszAddrType) || lstrlenA(lpszAddrType) > MAX_PATH ||
+        !TEST_STRINGA_PTR(lpszFileMask) || lstrlenA(lpszFileMask) > MAX_PATH ||
+        !TEST_STRINGA_PTR(lpszPath) || lstrlenA(lpszPath) > MAX_PATH ||
+        !TEST_FUNCTION_PTR(lpStartAddress))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return(hr);
+}
+
+#endif /* DEBUG */

@@ -1,0 +1,90 @@
+<html>
+
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+  <head>
+    <title>XML Data Source Applet</title>
+    <style>
+      td    {font-size:80%;}
+      xmp   {font-size:120%; background:yellow}
+    </style>
+  </head>
+  
+
+<BODY TOPMARGIN=0 LEFTMARGIN=40 BGCOLOR=#ffffff LINK="#000066" VLINK="#666666" TEXT="#000000">
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+
+
+<table align=right>
+<tr><td bgcolor=black><a href=Example5.htm>
+    <font color=white onmouseover="this.style.color='gold'" 
+        onmouseout="this.style.color='white'" ><b>Previous<b></font></a>
+    <td bgcolor=black><a href=Example7.htm>
+        <font color=white onmouseover="this.style.color='gold'" 
+        onmouseout="this.style.color='white'" ><b>Next<b></font></a>
+    
+</table>
+
+<h2>XML Data Source Applet</h2>
+<h3>Example 6</h3>
+<P>
+This example shows a very different table layout where each record
+has its own row. 
+<p>
+<applet code=com.ms.xml.dso.XMLDSO.class width=100% height=25 id=xmldso mayscript=true>
+    <PARAM NAME="url" VALUE="books.xml">
+</applet>
+<table datasrc=#xmldso width=80% align=center>
+<tr><td><div align=right datafld="TITLE"></div>
+<tr><td><div align=right  datafld="AUTHOR"></div>
+<tr><td><div align=right  datafld="PUBLISHER"></div>
+<tr><td><div align=right  datafld="PRICE"></div>
+<tr><td><hr>
+</table>
+<P>
+In this example the table that binds to this data is as follows:
+<xmp>
+<table datasrc=#xmldso width=80% align=center>
+<tr><td><div align=right datafld="TITLE"></div>
+<tr><td><div align=right  datafld="AUTHOR"></div>
+<tr><td><div align=right  datafld="PUBLISHER"></div>
+<tr><td><div align=right  datafld="PRICE"></div>
+<tr><td><hr>
+</table>
+</xmp>
+<P>
+Notice that the empty rows are automatically compressed out of the display. 
+<P>
+<input type=button value="Show XML Data"
+    onclick='var xmldata = document.all.item("xmldata");
+            if (this.value == "Show XML Data") {
+                xmldata.innerText=xmldso.getXML();
+                this.value="Hide XML Data";
+            } else {
+                xmldata.innerText="";
+                this.value="Show XML Data";
+            }'>
+<xmp id=xmldata ></xmp>
+
+<P>
+<input type=button value="Show Schema" 
+    onclick='var schema = document.all.item("schema");
+            if (this.value == "Show Schema") {
+                schema.innerText=xmldso.getSchema();
+                this.value="Hide Schema";
+            } else {
+                schema.innerText="";
+                this.value="Show Schema";
+            }'>
+<xmp id=schema ></xmp>
+<P>
+The <a href=XMLDSO.java>XML DSO Source Code</a> is in Java.
+<P>
+<BR>
+
+<FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">&#169; 1997 Microsoft Corporation. All rights reserved. <A HREF="../../art/cpyright.htm" target="_top">Legal Notices</a>.<P></FONT>
+
+
+  </body>
+</html>

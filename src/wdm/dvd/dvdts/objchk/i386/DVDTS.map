@@ -1,0 +1,453 @@
+ DVDTS
+
+ Timestamp is 656655f3 (Tue Nov 28 16:04:51 2023)
+
+ Preferred load address is 00010000
+
+ Start         Length     Name                   Class
+ 0001:00000000 0000e6ecH .text                   CODE
+ 0002:00000000 00000054H .idata$5                DATA
+ 0002:00000058 00000380H .rdata                  DATA
+ 0003:00000000 00003535H .data                   DATA
+ 0003:00003538 00000ab0H .bss                    DATA
+ 0004:00000000 000000c0H PAGECONST               DATA
+ 0005:00000000 0000003cH .idata$2                CODE
+ 0005:0000003c 00000014H .idata$3                CODE
+ 0005:00000050 00000054H .idata$4                CODE
+ 0005:000000a4 000001feH .idata$6                CODE
+ 0006:00000000 00000058H .rsrc$01                DATA
+ 0006:00000060 00000378H .rsrc$02                DATA
+
+  Address         Publics by Value              Rva+Base     Lib:Object
+
+ 0001:00000021       _HwInterrupt@4             00010301 f   dvdirq.obj
+ 0001:000001d5       _HwIntDMA@8                000104b5 f   dvdirq.obj
+ 0001:0000040c       _DriverEntry@8             000106ec f   dvdinit.obj
+ 0001:000004e5       _GetPCIConfigSpace@4       000107c5 f   dvdinit.obj
+ 0001:0000058a       _InitializationEntry@4     0001086a f   dvdinit.obj
+ 0001:000007b2       _HwInitialize@4            00010a92 f   dvdinit.obj
+ 0001:00000a08       _DeviceQueue_init@4        00010ce8 f   devque.obj
+ 0001:00000a26       _DeviceQueue_put@12        00010d06 f   devque.obj
+ 0001:00000a6c       _DeviceQueue_put_video@8   00010d4c f   devque.obj
+ 0001:00000a6c       _DeviceQueue_put_subpic@8  00010d4c f   devque.obj
+ 0001:00000a6c       _DeviceQueue_put_audio@8   00010d4c f   devque.obj
+ 0001:00000a9a       _DeviceQueue_get@12        00010d7a f   devque.obj
+ 0001:00000b10       _DeviceQueue_refer1st@12   00010df0 f   devque.obj
+ 0001:00000b42       _DeviceQueue_refer2nd@12   00010e22 f   devque.obj
+ 0001:00000bf0       _DeviceQueue_remove@8      00010ed0 f   devque.obj
+ 0001:00000c8f       _DeviceQueue_setEndAddress@12 00010f6f f   devque.obj
+ 0001:00000cd8       _DeviceQueue_isEmpty@4     00010fb8 f   devque.obj
+ 0001:00000cee       _DebugLLConvtoStr@12       00010fce f   debug.obj
+ 0001:00000ec8       _AdapterCancelPacket@4     000111a8 f   dvdcmd.obj
+ 0001:00001039       _AdapterTimeoutPacket@4    00011319 f   dvdcmd.obj
+ 0001:000013c7       _AdapterReceivePacket@4    000116a7 f   dvdcmd.obj
+ 0001:00001588       _AdapterStreamInfo@4       00011868 f   dvdcmd.obj
+ 0001:00001779       _HwProcessDataIntersection@4 00011a59 f   dvdcmd.obj
+ 0001:00001a1b       _AdapterOpenStream@4       00011cfb f   dvdcmd.obj
+ 0001:00001ccb       _AdapterCloseStream@4      00011fab f   dvdcmd.obj
+ 0001:00001ed0       _ClockEvents@4             000121b0 f   dvdcmd.obj
+ 0001:00002129       _AudioEvent@4              00012409 f   dvdcmd.obj
+ 0001:000021bf       _CycEvent@4                0001249f f   dvdcmd.obj
+ 0001:00002370       _VideoReceiveDataPacket@4  00012650 f   dvdcmd.obj
+ 0001:000027b3       _VideoReceiveCtrlPacket@4  00012a93 f   dvdcmd.obj
+ 0001:00002baa       _AudioReceiveDataPacket@4  00012e8a f   dvdcmd.obj
+ 0001:00002fab       _AudioReceiveCtrlPacket@4  0001328b f   dvdcmd.obj
+ 0001:000032cf       _SubpicReceiveDataPacket@4 000135af f   dvdcmd.obj
+ 0001:0000367b       _SubpicReceiveCtrlPacket@4 0001395b f   dvdcmd.obj
+ 0001:00003865       _VpeReceiveDataPacket@4    00013b45 f   dvdcmd.obj
+ 0001:00003adb       _VpeReceiveCtrlPacket@4    00013dbb f   dvdcmd.obj
+ 0001:00003cdd       _CCReceiveDataPacket@4     00013fbd f   dvdcmd.obj
+ 0001:00003f7d       _CCReceiveCtrlPacket@4     0001425d f   dvdcmd.obj
+ 0001:00004107       _VideoQueryAccept@4        000143e7 f   dvdcmd.obj
+ 0001:00004240       _ProcessVideoFormat@8      00014520 f   dvdcmd.obj
+ 0001:000043b4       _BadWait@4                 00014694 f   dvdcmd.obj
+ 0001:0000442a       _VideoDataDiscontinuity@4  0001470a f   dvdcmd.obj
+ 0001:00004444       _AudioDataDiscontinuity@4  00014724 f   dvdcmd.obj
+ 0001:00004460       _SubpicDataDiscontinuity@4 00014740 f   dvdcmd.obj
+ 0001:0000447c       _ClearDataDiscontinuity@4  0001475c f   dvdcmd.obj
+ 0001:0000448e       _ClearTimeDiscontinuity@4  0001476e f   dvdcmd.obj
+ 0001:0000451a       _FastSlowControl@4         000147fa f   dvdcmd.obj
+ 0001:0000482e       _GetStreamID@4             00014b0e f   dvdcmd.obj
+ 0001:000048cb       _GetHowLongWait@8          00014bab f   dvdcmd.obj
+ 0001:00004a7c       _ScheduledDMAxfer@4        00014d5c f   dvdcmd.obj
+ 0001:00004bb1       _PreDMAxfer@4              00014e91 f   dvdcmd.obj
+ 0001:00005051       _DMAxfer@4                 00015331 f   dvdcmd.obj
+ 0001:0000550d       _DMAxferKeyData@20         000157ed f   dvdcmd.obj
+ 0001:00005616       _EndKeyData@4              000158f6 f   dvdcmd.obj
+ 0001:00005739       _MenuDecodeStart@4         00015a19 f   dvdcmd.obj
+ 0001:000058f4       _DecodeStart@8             00015bd4 f   dvdcmd.obj
+ 0001:00005a2f       _TimerDecodeStart@4        00015d0f f   dvdcmd.obj
+ 0001:00005ad5       _TimerAudioMuteOff@4       00015db5 f   dvdcmd.obj
+ 0001:00005bc0       _GetVideoProperty@4        00015ea0 f   dvdcmd.obj
+ 0001:00005c98       _SetVideoProperty@4        00015f78 f   dvdcmd.obj
+ 0001:00005d6e       _GetAudioProperty@4        0001604e f   dvdcmd.obj
+ 0001:00005e78       _SetAudioProperty@4        00016158 f   dvdcmd.obj
+ 0001:00005f71       _GetSubpicProperty@4       00016251 f   dvdcmd.obj
+ 0001:000060b8       _SetSubpicProperty@4       00016398 f   dvdcmd.obj
+ 0001:0000654b       _GetVpeProperty@4          0001682b f   dvdcmd.obj
+ 0001:00006b53       _SetVpeProperty@4          00016e33 f   dvdcmd.obj
+ 0001:00006d5d       _GetCCProperty@4           0001703d f   dvdcmd.obj
+ 0001:00006e2c       _SetCCProperty@4           0001710c f   dvdcmd.obj
+ 0001:00007095       _GetCppProperty@8          00017375 f   dvdcmd.obj
+ 0001:0000764f       _SetCppProperty@4          0001792f f   dvdcmd.obj
+ 0001:000079fb       _StreamClockRtn@4          00017cdb f   dvdcmd.obj
+ 0001:00007c84       _GetSystemTime@0           00017f64 f   dvdcmd.obj
+ 0001:00007ce8       _ConvertPTStoStrm@4        00017fc8 f   dvdcmd.obj
+ 0001:00007d12       _ConvertStrmtoPTS@8        00017ff2 f   dvdcmd.obj
+ 0001:00007e57       _TimerCppReset@4           00018137 f   dvdcmd.obj
+ 0001:00007fa7       _SetPlayMode@8             00018287 f   dvdcmd.obj
+ 0001:00008243       _StopData@4                00018523 f   dvdcmd.obj
+ 0001:000084b3       _CheckAudioUnderflow@4     00018793 f   dvdcmd.obj
+ 0001:0000856c       _UnderflowStopData@4       0001884c f   dvdcmd.obj
+ 0001:000085f9       _ForcedStopData@8          000188d9 f   dvdcmd.obj
+ 0001:000086fa       _StopDequeue@4             000189da f   dvdcmd.obj
+ 0001:00008806       _SetAudioID@8              00018ae6 f   dvdcmd.obj
+ 0001:000088aa       _SetSubpicID@8             00018b8a f   dvdcmd.obj
+ 0001:00008967       _SetCppFlag@4              00018c47 f   dvdcmd.obj
+ 0001:00008a63       _AudioQueryAccept@4        00018d43 f   dvdcmd.obj
+ 0001:00008c89       _ProcessAudioFormat@8      00018f69 f   dvdcmd.obj
+ 0001:00008f19       _ProcessAudioFormat2@8     000191f9 f   dvdcmd.obj
+ 0001:00008fb2       _SetVideoRateDefault@4     00019292 f   dvdcmd.obj
+ 0001:00009006       _SetAudioRateDefault@4     000192e6 f   dvdcmd.obj
+ 0001:00009034       _SetSubpicRateDefault@4    00019314 f   dvdcmd.obj
+ 0001:0000911a       _SetRateChange@8           000193fa f   dvdcmd.obj
+ 0001:0000935f       _SetVideoRateChange@4      0001963f f   dvdcmd.obj
+ 0001:00009583       _SetAudioRateChange@4      00019863 f   dvdcmd.obj
+ 0001:00009755       _SetSubpicRateChange@4     00019a35 f   dvdcmd.obj
+ 0001:000098e9       _GetVideoRateChange@4      00019bc9 f   dvdcmd.obj
+ 0001:000099eb       _GetAudioRateChange@4      00019ccb f   dvdcmd.obj
+ 0001:00009aed       _GetSubpicRateChange@4     00019dcd f   dvdcmd.obj
+ 0001:00009b82       _DbgBreakPoint@0           00019e62 f   wdm:NTOSKRNL.EXE
+ 0001:00009b90       __alldiv                   00019e70 f   wdm:lldiv.obj
+ 0001:00009c40       __allmul                   00019f20 f   wdm:llmul.obj
+ 0001:00009c80       __aullshr                  00019f60 f   wdm:ullshr.obj
+ 0001:00009ca0       __aulldiv                  00019f80 f   wdm:ulldiv.obj
+ 0001:00009d10       __aullrem                  00019ff0 f   wdm:ullrem.obj
+ 0001:00009d90       __allshr                   0001a070 f   wdm:llshr.obj
+ 0001:00009db2       _StreamClassDebugPrint     0001a092 f   stream:STREAM.SYS
+ 0001:00009db8       _StreamClassStreamNotification 0001a098 f   stream:STREAM.SYS
+ 0001:00009dbe       _StreamClassScheduleTimer@20 0001a09e f   stream:STREAM.SYS
+ 0001:00009dc4       _StreamClassRegisterAdapter@12 0001a0a4 f   stream:STREAM.SYS
+ 0001:00009dca       _StreamClassCallAtNewPriority@20 0001a0aa f   stream:STREAM.SYS
+ 0001:00009dd0       _StreamClassReadWriteConfig@20 0001a0b0 f   stream:STREAM.SYS
+ 0001:00009dd6       _StreamClassDeviceNotification 0001a0b6 f   stream:STREAM.SYS
+ 0001:00009ddc       _StreamClassGetPhysicalAddress@20 0001a0bc f   stream:STREAM.SYS
+ 0001:00009de2       _StreamClassGetDmaBuffer@4 0001a0c2 f   stream:STREAM.SYS
+ 0001:00009de8       _StreamClassAbortOutstandingRequests@12 0001a0c8 f   stream:STREAM.SYS
+ 0001:00009dee       _StreamClassGetNextEvent@20 0001a0ce f   stream:STREAM.SYS
+ 0001:00009df4       _decAllocateDecoderInfo@4  0001a0d4 f   dvdtdcod:decoder.obj
+ 0001:00009e82       _decVsyncOn@4              0001a162 f   dvdtdcod:decoder.obj
+ 0001:00009e8e       _decClosedCaptionOn@4      0001a16e f   dvdtdcod:decoder.obj
+ 0001:00009e9a       _decClosedCaptionOff@4     0001a17a f   dvdtdcod:decoder.obj
+ 0001:00009ea6       _decGetVideoSTCA@4         0001a186 f   dvdtdcod:decoder.obj
+ 0001:00009eb2       _decSetDma0Size@8          0001a192 f   dvdtdcod:decoder.obj
+ 0001:00009ec2       _decSetDma1Size@8          0001a1a2 f   dvdtdcod:decoder.obj
+ 0001:00009ed2       _decSetDma0Addr@8          0001a1b2 f   dvdtdcod:decoder.obj
+ 0001:00009ee2       _decSetDma1Addr@8          0001a1c2 f   dvdtdcod:decoder.obj
+ 0001:00009ef2       _decSetDma0Start@4         0001a1d2 f   dvdtdcod:decoder.obj
+ 0001:00009efe       _decSetDma1Start@4         0001a1de f   dvdtdcod:decoder.obj
+ 0001:00009f0a       _decDecodeStartNormal@8    0001a1ea f   dvdtdcod:decoder.obj
+ 0001:00009faa       _decDecodeStartFast@8      0001a28a f   dvdtdcod:decoder.obj
+ 0001:00009ff8       _decDecodeStartSlow@8      0001a2d8 f   dvdtdcod:decoder.obj
+ 0001:0000a08a       _decDvdTitleCopyKey@8      0001a36a f   dvdtdcod:decoder.obj
+ 0001:0000a0d6       _decCpp_reset@8            0001a3b6 f   dvdtdcod:decoder.obj
+ 0001:0000a0e6       _decCpp_decoder_challenge@8 0001a3c6 f   dvdtdcod:decoder.obj
+ 0001:0000a0f6       _decCpp_drive_bus@8        0001a3d6 f   dvdtdcod:decoder.obj
+ 0001:0000a106       _decCpp_drive_challenge@8  0001a3e6 f   dvdtdcod:decoder.obj
+ 0001:0000a116       _decCpp_decoder_bus@8      0001a3f6 f   dvdtdcod:decoder.obj
+ 0001:0000a126       _decCpp_DiscKeyStart@4     0001a406 f   dvdtdcod:decoder.obj
+ 0001:0000a132       _decCpp_DiscKeyEnd@4       0001a412 f   dvdtdcod:decoder.obj
+ 0001:0000a13e       _decGetSubpicMute@4        0001a41e f   dvdtdcod:decoder.obj
+ 0001:0000a152       _decSetSubpicMute@8        0001a432 f   dvdtdcod:decoder.obj
+ 0001:0000a17e       _decInitMPEG@8             0001a45e f   dvdtdcod:decoder.obj
+ 0001:0000a29c       _decSetStreamMode@8        0001a57c f   dvdtdcod:decoder.obj
+ 0001:0000a2f0       _decSetDisplayMode@4       0001a5d0 f   dvdtdcod:decoder.obj
+ 0001:0000a342       _decGetAudioMode@4         0001a622 f   dvdtdcod:decoder.obj
+ 0001:0000a356       _decSetAudioFreq@8         0001a636 f   dvdtdcod:decoder.obj
+ 0001:0000a36e       _decSetAudioMode@4         0001a64e f   dvdtdcod:decoder.obj
+ 0001:0000a3c0       _decSetAudioPCM@4          0001a6a0 f   dvdtdcod:decoder.obj
+ 0001:0000a3fe       _decSetAudioAC3@4          0001a6de f   dvdtdcod:decoder.obj
+ 0001:0000a442       _decSetVideoPlayMode@8     0001a722 f   dvdtdcod:decoder.obj
+ 0001:0000a456       _decGetVideoPlayMode@4     0001a736 f   dvdtdcod:decoder.obj
+ 0001:0000a466       _decSetVideoRunMode@8      0001a746 f   dvdtdcod:decoder.obj
+ 0001:0000a47a       _decGetVideoRunMode@4      0001a75a f   dvdtdcod:decoder.obj
+ 0001:0000a48a       _decGetVideoPort@4         0001a76a f   dvdtdcod:decoder.obj
+ 0001:0000a49a       _decSetVideoPort@8         0001a77a f   dvdtdcod:decoder.obj
+ 0001:0000a4b6       _decSetCopyGuard@4         0001a796 f   dvdtdcod:decoder.obj
+ 0001:0000a4e0       _decGetMPegIntStatus@4     0001a7c0 f   dvdtdcod:decoder.obj
+ 0001:0000a51a       _decHwIntVideo@4           0001a7fa f   dvdtdcod:decoder.obj
+ 0001:0000a5b0       _decHwIntVSync@4           0001a890 f   dvdtdcod:decoder.obj
+ 0001:0000a632       _decStopData@8             0001a912 f   dvdtdcod:decoder.obj
+ 0001:0000a6a8       _decHighlight@8            0001a988 f   dvdtdcod:decoder.obj
+ 0001:0000a770       _decDisableInt@4           0001aa50 f   dvdtdcod:decoder.obj
+ 0001:0000a786       _decGenericNormal@4        0001aa66 f   dvdtdcod:decoder.obj
+ 0001:0000a828       _decGenericFreeze@4        0001ab08 f   dvdtdcod:decoder.obj
+ 0001:0000a844       _decGenericSlow@4          0001ab24 f   dvdtdcod:decoder.obj
+ 0001:0000a884       _decStopForFast@4          0001ab64 f   dvdtdcod:decoder.obj
+ 0001:0000a8e2       _decResumeForFast@4        0001abc2 f   dvdtdcod:decoder.obj
+ 0001:0000a904       _decFastNormal@4           0001abe4 f   dvdtdcod:decoder.obj
+ 0001:0000a920       _decFastSlow@4             0001ac00 f   dvdtdcod:decoder.obj
+ 0001:0000a942       _decFastFreeze@4           0001ac22 f   dvdtdcod:decoder.obj
+ 0001:0000a95e       _decFreezeFast@4           0001ac3e f   dvdtdcod:decoder.obj
+ 0001:0000a97c       _decInitAudioAfterNewFormat@4 0001ac5c f   dvdtdcod:decoder.obj
+ 0001:0000a998       _decGetLPCMInfo@8          0001ac78 f   dvdtdcod:decoder.obj
+ 0001:0000a9ee       _decSUBP_STC_ON@4          0001acce f   dvdtdcod:decoder.obj
+ 0001:0000a9fa       _decSUBP_STC_OFF@4         0001acda f   dvdtdcod:decoder.obj
+ 0001:0000aa06       _decVPRO_SUBP_PALETTE@8    0001ace6 f   dvdtdcod:decoder.obj
+ 0001:0000aa16       _decSUBP_SET_AUDIO_CH@8    0001acf6 f   dvdtdcod:decoder.obj
+ 0001:0000aa26       _decSUBP_GET_AUDIO_CH@4    0001ad06 f   dvdtdcod:decoder.obj
+ 0001:0000aa32       _decSUBP_SET_SUBP_CH@8     0001ad12 f   dvdtdcod:decoder.obj
+ 0001:0000aa42       _decSUBP_GET_SUBP_CH@4     0001ad22 f   dvdtdcod:decoder.obj
+ 0001:0000aa4e       _decSUBP_SET_STC@8         0001ad2e f   dvdtdcod:decoder.obj
+ 0001:0000aa5e       _decCGuard_CPGD_SET_ASPECT@8 0001ad3e f   dvdtdcod:decoder.obj
+ 0001:0000aa6e       _decCGuard_CPGD_SUBP_PALETTE@8 0001ad4e f   dvdtdcod:decoder.obj
+ 0001:0000aa7e       _decAUDIO_ZR38521_STAT@8   0001ad5e f   dvdtdcod:decoder.obj
+ 0001:0000aa8e       _decAUDIO_ZR38521_MUTE_OFF@4 0001ad6e f   dvdtdcod:decoder.obj
+ 0001:0000aa9a       _decAUDIO_ZR38521_BFST@8   0001ad7a f   dvdtdcod:decoder.obj
+ 0001:0000aaaa       _decAUDIO_ZR38521_STOP@4   0001ad8a f   dvdtdcod:decoder.obj
+ 0001:0000aab6       _decAUDIO_ZR38521_VDSCR_ON@8 0001ad96 f   dvdtdcod:decoder.obj
+ 0001:0000aac6       _decVIDEO_SET_STCA@8       0001ada6 f   dvdtdcod:decoder.obj
+ 0001:0000aad6       _decVIDEO_GET_STD_CODE@4   0001adb6 f   dvdtdcod:decoder.obj
+ 0001:0000aae2       _decVIDEO_GET_DECODE_STATE@4 0001adc2 f   dvdtdcod:decoder.obj
+ 0001:0000aaee       _decVIDEO_DECODE_STOP@4    0001adce f   dvdtdcod:decoder.obj
+ 0001:0000aafa       _decVIDEO_UFLOW_INT_OFF@4  0001adda f   dvdtdcod:decoder.obj
+ 0001:0000ab06       _decVIDEO_PRSO_PS1@4       0001ade6 f   dvdtdcod:decoder.obj
+ 0001:0000ab12       _USCC_on@4                 0001adf2 f   dvdtdcod:ccap.obj
+ 0001:0000ab6e       _USCC_get@4                0001ae4e f   dvdtdcod:ccap.obj
+ 0001:0000adea       _USCC_put@4                0001b0ca f   dvdtdcod:ccap.obj
+ 0001:0000aebe       _USCC_discont@4            0001b19e f   dvdtdcod:ccap.obj
+ 0001:0000af2c       _CCQueue_init@4            0001b20c f   dvdtdcod:ccap.obj
+ 0001:0000af48       _CCQueue_put@8             0001b228 f   dvdtdcod:ccap.obj
+ 0001:0000af8c       _CCQueue_get@4             0001b26c f   dvdtdcod:ccap.obj
+ 0001:0000afbc       _CCQueue_remove@8          0001b29c f   dvdtdcod:ccap.obj
+ 0001:0000b020       _PCIF_RESET@4              0001b300 f   dvdtdcod:cdack.obj
+ 0001:0000b0d8       _PCIF_AMUTE_OFF@4          0001b3b8 f   dvdtdcod:cdack.obj
+ 0001:0000b0fe       _PCIF_AMUTE2_OFF@4         0001b3de f   dvdtdcod:cdack.obj
+ 0001:0000b124       _PCIF_VSYNC_ON@4           0001b404 f   dvdtdcod:cdack.obj
+ 0001:0000b14a       _PCIF_VSYNC_OFF@4          0001b42a f   dvdtdcod:cdack.obj
+ 0001:0000b170       _PCIF_PACK_START_ON@4      0001b450 f   dvdtdcod:cdack.obj
+ 0001:0000b18a       _PCIF_SET_DIGITAL_OUT@8    0001b46a f   dvdtdcod:cdack.obj
+ 0001:0000b21e       _PCIF_SET_DMA0_SIZE@8      0001b4fe f   dvdtdcod:cdack.obj
+ 0001:0000b292       _PCIF_SET_DMA1_SIZE@8      0001b572 f   dvdtdcod:cdack.obj
+ 0001:0000b308       _PCIF_SET_DMA0_ADDR@8      0001b5e8 f   dvdtdcod:cdack.obj
+ 0001:0000b378       _PCIF_SET_DMA1_ADDR@8      0001b658 f   dvdtdcod:cdack.obj
+ 0001:0000b3ea       _PCIF_DMA0_START@4         0001b6ca f   dvdtdcod:cdack.obj
+ 0001:0000b412       _PCIF_DMA1_START@4         0001b6f2 f   dvdtdcod:cdack.obj
+ 0001:0000b43a       _PCIF_SET_PALETTE@12       0001b71a f   dvdtdcod:cdack.obj
+ 0001:0000b4fc       _PCIF_CHECK_SERIAL@4       0001b7dc f   dvdtdcod:cdack.obj
+ 0001:0000b54a       _PCIF_ALL_IFLAG_CLEAR@4    0001b82a f   dvdtdcod:cdack.obj
+ 0001:0000b578       _PCIF_ASPECT_0403@4        0001b858 f   dvdtdcod:cdack.obj
+ 0001:0000b5a6       _VIDEO_RESET@4             0001b886 f   dvdtdcod:cvdec.obj
+ 0001:0000b742       _VIDEO_MODE_DVD@4          0001ba22 f   dvdtdcod:cvdec.obj
+ 0001:0000b81e       _VIDEO_PRSO_PS1@4          0001bafe f   dvdtdcod:cvdec.obj
+ 0001:0000b862       _VIDEO_PRSO_NON@4          0001bb42 f   dvdtdcod:cvdec.obj
+ 0001:0000b8a4       _VIDEO_OUT_NTSC@4          0001bb84 f   dvdtdcod:cvdec.obj
+ 0001:0000ba1e       _VIDEO_ALL_INT_OFF@4       0001bcfe f   dvdtdcod:cvdec.obj
+ 0001:0000ba82       _VIDEO_UFLOW_INT_ON@4      0001bd62 f   dvdtdcod:cvdec.obj
+ 0001:0000bada       _VIDEO_UFLOW_INT_OFF@4     0001bdba f   dvdtdcod:cvdec.obj
+ 0001:0000bb32       _VIDEO_DECODE_INT_OFF@4    0001be12 f   dvdtdcod:cvdec.obj
+ 0001:0000bb8a       _VIDEO_UDSC_INT_ON@4       0001be6a f   dvdtdcod:cvdec.obj
+ 0001:0000bbbe       _VIDEO_ALL_IFLAG_CLEAR@4   0001be9e f   dvdtdcod:cvdec.obj
+ 0001:0000bc16       _VIDEO_SET_STCA@8          0001bef6 f   dvdtdcod:cvdec.obj
+ 0001:0000bca8       _VIDEO_SET_STCS@8          0001bf88 f   dvdtdcod:cvdec.obj
+ 0001:0000bd3a       _VIDEO_GET_STCA@4          0001c01a f   dvdtdcod:cvdec.obj
+ 0001:0000bdc0       _VIDEO_SYSTEM_START@4      0001c0a0 f   dvdtdcod:cvdec.obj
+ 0001:0000bdf0       _VIDEO_SYSTEM_STOP@4       0001c0d0 f   dvdtdcod:cvdec.obj
+ 0001:0000be46       _VIDEO_GET_STD_CODE@4      0001c126 f   dvdtdcod:cvdec.obj
+ 0001:0000beae       _VIDEO_GET_DECODE_STATE@4  0001c18e f   dvdtdcod:cvdec.obj
+ 0001:0000bee8       _VIDEO_DECODE_START@4      0001c1c8 f   dvdtdcod:cvdec.obj
+ 0001:0000bf42       _VIDEO_DECODE_STOP@4       0001c222 f   dvdtdcod:cvdec.obj
+ 0001:0000bfb8       _VIDEO_STD_CLEAR@4         0001c298 f   dvdtdcod:cvdec.obj
+ 0001:0000bfd4       _VIDEO_USER_CLEAR@4        0001c2b4 f   dvdtdcod:cvdec.obj
+ 0001:0000c004       _VIDEO_PVSIN_ON@4          0001c2e4 f   dvdtdcod:cvdec.obj
+ 0001:0000c034       _VIDEO_PVSIN_OFF@4         0001c314 f   dvdtdcod:cvdec.obj
+ 0001:0000c064       _VIDEO_VIDEOCD_OFF@4       0001c344 f   dvdtdcod:cvdec.obj
+ 0001:0000c094       _VIDEO_PLAY_NORMAL@4       0001c374 f   dvdtdcod:cvdec.obj
+ 0001:0000c0b0       _VIDEO_PLAY_FAST@8         0001c390 f   dvdtdcod:cvdec.obj
+ 0001:0000c0fc       _VIDEO_PLAY_SLOW@8         0001c3dc f   dvdtdcod:cvdec.obj
+ 0001:0000c13c       _VIDEO_PLAY_FREEZE@4       0001c41c f   dvdtdcod:cvdec.obj
+ 0001:0000c16c       _VIDEO_PLAY_STILL@4        0001c44c f   dvdtdcod:cvdec.obj
+ 0001:0000c19c       _VIDEO_UDAT_CLEAR@4        0001c47c f   dvdtdcod:cvdec.obj
+ 0001:0000c1de       _VIDEO_GET_TRICK_MODE@4    0001c4be f   dvdtdcod:cvdec.obj
+ 0001:0000c216       _VIDEO_BUG_PRE_SEARCH_01@4 0001c4f6 f   dvdtdcod:cvdec.obj
+ 0001:0000c2be       _VIDEO_BUG_PRE_SEARCH_02@4 0001c59e f   dvdtdcod:cvdec.obj
+ 0001:0000c33e       _VIDEO_BUG_PRE_SEARCH_04@4 0001c61e f   dvdtdcod:cvdec.obj
+ 0001:0000c396       _VIDEO_BUG_PRE_SEARCH_05@4 0001c676 f   dvdtdcod:cvdec.obj
+ 0001:0000c3d8       _VIDEO_BUG_SLIDE_01@4      0001c6b8 f   dvdtdcod:cvdec.obj
+ 0001:0000c5b0       _CGuard_CPGD_RESET_FUNC@4  0001c890 f   dvdtdcod:ccpgd.obj
+ 0001:0000c656       _CGuard_CPGD_VIDEO_MUTE_ON@4 0001c936 f   dvdtdcod:ccpgd.obj
+ 0001:0000c68c       _CGuard_CPGD_VIDEO_MUTE_OFF@4 0001c96c f   dvdtdcod:ccpgd.obj
+ 0001:0000c6c2       _CGuard_CPGD_INIT_NTSC@4   0001c9a2 f   dvdtdcod:ccpgd.obj
+ 0001:0000c736       _CGuard_CPGD_CC_ON@4       0001ca16 f   dvdtdcod:ccpgd.obj
+ 0001:0000c76c       _CGuard_CPGD_SUBP_PALETTE@8 0001ca4c f   dvdtdcod:ccpgd.obj
+ 0001:0000c7d4       _CGuard_CPGD_SET_AGC_CHIP@8 0001cab4 f   dvdtdcod:ccpgd.obj
+ 0001:0000c838       _CGuard_CPGD_SET_ASPECT@8  0001cb18 f   dvdtdcod:ccpgd.obj
+ 0001:0000c86a       _CGuard_CPGD_SET_CGMS@8    0001cb4a f   dvdtdcod:ccpgd.obj
+ 0001:0000c89c       _CGuard_CPGD_SET_CGMSnCPGD@20 0001cb7c f   dvdtdcod:ccpgd.obj
+ 0001:0000c96e       _CGuard_CPGD_UPDATE_AGC@4  0001cc4e f   dvdtdcod:ccpgd.obj
+ 0001:0000ca18       _CGuard_CPGD_SET_CGMSparameter@4 0001ccf8 f   dvdtdcod:ccpgd.obj
+ 0001:0000ca9a       _CGuard_CPGD_SET_CPGDparameter@4 0001cd7a f   dvdtdcod:ccpgd.obj
+ 0001:0000caf4       _CGuard_CPGD_SET_CLR_STRIPE_OFF@4 0001cdd4 f   dvdtdcod:ccpgd.obj
+ 0001:0000cbe0       _CGuard_CPGD_SET_CLR_STRIPE_2@4 0001cec0 f   dvdtdcod:ccpgd.obj
+ 0001:0000cd08       _CGuard_CPGD_SET_CLR_STRIPE_4@4 0001cfe8 f   dvdtdcod:ccpgd.obj
+ 0001:0000ce30       _CGuard_CPGD_SET_CPGD_0@4  0001d110 f   dvdtdcod:ccpgd.obj
+ 0001:0000ce5a       _CGuard_CPGD_SET_CPGD_1@4  0001d13a f   dvdtdcod:ccpgd.obj
+ 0001:0000ce88       _CGuard_CPGD_SET_CPGD_2@4  0001d168 f   dvdtdcod:ccpgd.obj
+ 0001:0000ce88       _CGuard_CPGD_SET_CPGD_3@4  0001d168 f   dvdtdcod:ccpgd.obj
+ 0001:0000ceb6       _CGuard_CPGD_SET_BURST@12  0001d196 f   dvdtdcod:ccpgd.obj
+ 0001:0000cf0e       _CGuard_CPGD_SET_AGC@12    0001d1ee f   dvdtdcod:ccpgd.obj
+ 0001:0000cf72       _CGuard_CPGD_CALC_CRC@8    0001d252 f   dvdtdcod:ccpgd.obj
+ 0001:0000cf9e       _VPRO_RESET_FUNC@4         0001d27e f   dvdtdcod:cvpro.obj
+ 0001:0000cff4       _VPRO_VIDEO_MUTE_ON@4      0001d2d4 f   dvdtdcod:cvpro.obj
+ 0001:0000d028       _VPRO_VIDEO_MUTE_OFF@4     0001d308 f   dvdtdcod:cvpro.obj
+ 0001:0000d05c       _VPRO_INIT_NTSC@4          0001d33c f   dvdtdcod:cvpro.obj
+ 0001:0000d0ca       _VPRO_CC_ON@4              0001d3aa f   dvdtdcod:cvpro.obj
+ 0001:0000d0fe       _VPRO_SUBP_PALETTE@8       0001d3de f   dvdtdcod:cvpro.obj
+ 0001:0000d160       _SUBP_RESET_INIT@4         0001d440 f   dvdtdcod:cvpro.obj
+ 0001:0000d1fa       _SUBP_RESET_FUNC@4         0001d4da f   dvdtdcod:cvpro.obj
+ 0001:0000d244       _SUBP_BUFF_CLEAR@4         0001d524 f   dvdtdcod:cvpro.obj
+ 0001:0000d2a2       _SUBP_MUTE_ON@4            0001d582 f   dvdtdcod:cvpro.obj
+ 0001:0000d2e4       _SUBP_MUTE_OFF@4           0001d5c4 f   dvdtdcod:cvpro.obj
+ 0001:0000d324       _SUBP_HLITE_ON@4           0001d604 f   dvdtdcod:cvpro.obj
+ 0001:0000d358       _SUBP_HLITE_OFF@4          0001d638 f   dvdtdcod:cvpro.obj
+ 0001:0000d38c       _SUBP_SET_STC@8            0001d66c f   dvdtdcod:cvpro.obj
+ 0001:0000d3ea       _SUBP_SET_LNCTLI@8         0001d6ca f   dvdtdcod:cvpro.obj
+ 0001:0000d43e       _SUBP_SET_PXCTLIS@8        0001d71e f   dvdtdcod:cvpro.obj
+ 0001:0000d4b2       _SUBP_SET_PXCTLIE@8        0001d792 f   dvdtdcod:cvpro.obj
+ 0001:0000d526       _SUBP_STC_ON@4             0001d806 f   dvdtdcod:cvpro.obj
+ 0001:0000d554       _SUBP_STC_OFF@4            0001d834 f   dvdtdcod:cvpro.obj
+ 0001:0000d582       _SUBP_SET_SUBP_CH@8        0001d862 f   dvdtdcod:cvpro.obj
+ 0001:0000d62c       _SUBP_GET_SUBP_CH@4        0001d90c f   dvdtdcod:cvpro.obj
+ 0001:0000d646       _SUBP_SET_AUDIO_CH@8       0001d926 f   dvdtdcod:cvpro.obj
+ 0001:0000d6ac       _SUBP_SET_AUDIO_NON@4      0001d98c f   dvdtdcod:cvpro.obj
+ 0001:0000d6e4       _SUBP_GET_AUDIO_CH@4       0001d9c4 f   dvdtdcod:cvpro.obj
+ 0001:0000d6fe       _SUBP_SELECT_AUDIO_STID@4  0001d9de f   dvdtdcod:cvpro.obj
+ 0001:0000d718       _SUBP_SELECT_AUDIO_SSID@4  0001d9f8 f   dvdtdcod:cvpro.obj
+ 0001:0000d732       _AUDIO_TC6800_INIT_PCM@4   0001da12 f   dvdtdcod:cadec.obj
+ 0001:0000d78e       _AUDIO_TC6800_INIT_AC3@4   0001da6e f   dvdtdcod:cadec.obj
+ 0001:0000d7e4       _AUDIO_ZR385_OUT@8         0001dac4 f   dvdtdcod:cadec.obj
+ 0001:0000d824       _AUDIO_ZR385_DOWNLOAD@12   0001db04 f   dvdtdcod:cadec.obj
+ 0001:0000d848       _AUDIO_ZR38521_BOOT_AC3@4  0001db28 f   dvdtdcod:cadec.obj
+ 0001:0000d880       _AUDIO_ZR38521_BOOT_PCM@4  0001db60 f   dvdtdcod:cadec.obj
+ 0001:0000d896       _AUDIO_ZR38521_CFG@4       0001db76 f   dvdtdcod:cadec.obj
+ 0001:0000d938       _AUDIO_ZR38521_PCMX@4      0001dc18 f   dvdtdcod:cadec.obj
+ 0001:0000d9ce       _AUDIO_ZR38521_AC3@4       0001dcae f   dvdtdcod:cadec.obj
+ 0001:0000da60       _AUDIO_ZR38521_PLAY@4      0001dd40 f   dvdtdcod:cadec.obj
+ 0001:0000dab0       _AUDIO_ZR38521_MUTE_OFF@4  0001dd90 f   dvdtdcod:cadec.obj
+ 0001:0000db00       _AUDIO_ZR38521_MUTE_ON@4   0001dde0 f   dvdtdcod:cadec.obj
+ 0001:0000db50       _AUDIO_ZR38521_STOP@4      0001de30 f   dvdtdcod:cadec.obj
+ 0001:0000dba0       _AUDIO_ZR38521_STOPF@4     0001de80 f   dvdtdcod:cadec.obj
+ 0001:0000dbf0       _AUDIO_ZR38521_VDSCR_ON@8  0001ded0 f   dvdtdcod:cadec.obj
+ 0001:0000dcd2       _AUDIO_ZR38521_STAT@8      0001dfb2 f   dvdtdcod:cadec.obj
+ 0001:0000ddda       _AUDIO_ZR38521_KCOEF@4     0001e0ba f   dvdtdcod:cadec.obj
+ 0001:0000debe       _AUDIO_ZR38521_REPEAT_16@4 0001e19e f   dvdtdcod:cadec.obj
+ 0001:0000df4c       _AUDIO_ZR38521_BFST@8      0001e22c f   dvdtdcod:cadec.obj
+ 0001:0000e056       _AUDIO_TC9425_INIT_DIGITAL@4 0001e336 f   dvdtdcod:cadec.obj
+ 0001:0000e184       _AUDIO_TC9425_INIT_ANALOG@4 0001e464 f   dvdtdcod:cadec.obj
+ 0001:0000e32a       _AUDIO_TC9425_SET_VOLUME@8 0001e60a f   dvdtdcod:cadec.obj
+ 0001:0000e402       _INVERSE_BYTE@8            0001e6e2 f   dvdtdcod:cadec.obj
+ 0001:0000e426       _Cpp_outp@12               0001e706 f   dvdtdcod:ccpp.obj
+ 0001:0000e45e       _Cpp_inp@8                 0001e73e f   dvdtdcod:ccpp.obj
+ 0001:0000e492       _Cpp_wait@8                0001e772 f   dvdtdcod:ccpp.obj
+ 0001:0000e4c8       _Cpp_cmd_wait_loop@4       0001e7a8 f   dvdtdcod:ccpp.obj
+ 0001:0000e4fe       _Cpp_decoder_challenge@8   0001e7de f   dvdtdcod:ccpp.obj
+ 0001:0000e538       _Cpp_drive_bus@8           0001e818 f   dvdtdcod:ccpp.obj
+ 0001:0000e578       _Cpp_drive_challenge@8     0001e858 f   dvdtdcod:ccpp.obj
+ 0001:0000e5b2       _Cpp_decoder_bus@8         0001e892 f   dvdtdcod:ccpp.obj
+ 0001:0000e5d6       _Cpp_DiscKeyStart@4        0001e8b6 f   dvdtdcod:ccpp.obj
+ 0001:0000e5e8       _Cpp_DiscKeyEnd@4          0001e8c8 f   dvdtdcod:ccpp.obj
+ 0001:0000e5f4       _Cpp_TitleKey@8            0001e8d4 f   dvdtdcod:ccpp.obj
+ 0001:0000e658       _Cpp_reset@8               0001e938 f   dvdtdcod:ccpp.obj
+ 0002:00000000       __imp__READ_PORT_UCHAR@4   0001e9e0     wdm:HAL.DLL
+ 0002:00000004       __imp__WRITE_PORT_UCHAR@8  0001e9e4     wdm:HAL.DLL
+ 0002:00000008       __imp__KeStallExecutionProcessor@4 0001e9e8     wdm:HAL.DLL
+ 0002:0000000c       __imp__KeQueryPerformanceCounter@4 0001e9ec     wdm:HAL.DLL
+ 0002:00000010       \177HAL_NULL_THUNK_DATA    0001e9f0     wdm:HAL.DLL
+ 0002:00000014       __imp__RtlAssert@16        0001e9f4     wdm:NTOSKRNL.EXE
+ 0002:00000018       __imp__DbgBreakPoint@0     0001e9f8     wdm:NTOSKRNL.EXE
+ 0002:0000001c       __imp__ExAllocatePoolWithTag@12 0001e9fc     wdm:NTOSKRNL.EXE
+ 0002:00000020       \177NTOSKRNL_NULL_THUNK_DATA 0001ea00     wdm:NTOSKRNL.EXE
+ 0002:00000024       __imp__StreamClassStreamNotification 0001ea04     stream:STREAM.SYS
+ 0002:00000028       __imp__StreamClassDeviceNotification 0001ea08     stream:STREAM.SYS
+ 0002:0000002c       __imp__StreamClassRegisterAdapter@12 0001ea0c     stream:STREAM.SYS
+ 0002:00000030       __imp__StreamClassCallAtNewPriority@20 0001ea10     stream:STREAM.SYS
+ 0002:00000034       __imp__StreamClassReadWriteConfig@20 0001ea14     stream:STREAM.SYS
+ 0002:00000038       __imp__StreamClassDebugPrint 0001ea18     stream:STREAM.SYS
+ 0002:0000003c       __imp__StreamClassGetPhysicalAddress@20 0001ea1c     stream:STREAM.SYS
+ 0002:00000040       __imp__StreamClassGetDmaBuffer@4 0001ea20     stream:STREAM.SYS
+ 0002:00000044       __imp__StreamClassAbortOutstandingRequests@12 0001ea24     stream:STREAM.SYS
+ 0002:00000048       __imp__StreamClassGetNextEvent@20 0001ea28     stream:STREAM.SYS
+ 0002:0000004c       __imp__StreamClassScheduleTimer@20 0001ea2c     stream:STREAM.SYS
+ 0002:00000050       \177STREAM_NULL_THUNK_DATA 0001ea30     stream:STREAM.SYS
+ 0003:00000008       _g_S3Guid                  0001edc8     dvdcmd.obj
+ 0003:00000018       _g_ATIGuid                 0001edd8     dvdcmd.obj
+ 0003:00000028       _hwfmtiMpeg2Vid            0001ede8     dvdcmd.obj
+ 0003:00000068       _Mpeg2AudioFormat          0001ee28     dvdcmd.obj
+ 0003:000000c0       _LPCMAudioFormat           0001ee80     dvdcmd.obj
+ 0003:00000118       _hwfmtiMpeg2Subpic         0001eed8     dvdcmd.obj
+ 0003:00000158       _hwfmtiVPEOut              0001ef18     dvdcmd.obj
+ 0003:00000198       _hwfmtiCCOut               0001ef58     dvdcmd.obj
+ 0003:000001d8       _Mpeg2VidInfo              0001ef98     dvdcmd.obj
+ 0003:000001e0       _AudioFormatBlocks         0001efa0     dvdcmd.obj
+ 0003:000001e8       _Mpeg2SubpicInfo           0001efa8     dvdcmd.obj
+ 0003:000001ec       _VPEInfo                   0001efac     dvdcmd.obj
+ 0003:000001f0       _CCInfo                    0001efb0     dvdcmd.obj
+ 0003:00000560       _vpePropSetid              0001f320     dvdcmd.obj
+ 0003:000005a0       _MY_KSEVENTSETID_VPNOTIFY  0001f360     dvdcmd.obj
+ 0003:000005b0       _VPEventSet                0001f370     dvdcmd.obj
+ 0003:000005c0       _ClockEventItm             0001f380     dvdcmd.obj
+ 0003:000005f0       _ClockEventSet             0001f3b0     dvdcmd.obj
+ 0003:00000618       _VPMedium                  0001f3d8     dvdcmd.obj
+ 0003:00000630       _audiodecoutmode           0001f3f0     dvdcmd.obj
+ 0003:00000640       _CPGD_BSTLNOFF_SIZE        0001f400     dvdtdcod:ccpgd.obj
+ 0003:00000644       _CPGD_BSTLN2_SIZE          0001f404     dvdtdcod:ccpgd.obj
+ 0003:00000648       _CPGD_BSTLN2_DATA          0001f408     dvdtdcod:ccpgd.obj
+ 0003:0000067c       _CPGD_BSTLN4_SIZE          0001f43c     dvdtdcod:ccpgd.obj
+ 0003:00000680       _CPGD_BSTLN4_DATA          0001f440     dvdtdcod:ccpgd.obj
+ 0003:000006b8       _CPGD_AGC_Y_TBL            0001f478     dvdtdcod:ccpgd.obj
+ 0003:000007f0       _CPGD_AGC_C_TBL            0001f5b0     dvdtdcod:ccpgd.obj
+ 0003:00000928       _ZRN_AC3_DEC               0001f6e8     dvdtdcod:cadec.obj
+ 0003:00001860       _ZRN_AC3_SPD               00020620     dvdtdcod:cadec.obj
+ 0003:00001a00       _ZRN_PCM                   000207c0     dvdtdcod:cadec.obj
+ 0003:00003758       _VPEventItm                00022518     dvdcmd.obj
+ 0003:00003770       _LastSysTime               00022530     dvdcmd.obj
+ 0003:00003778       _PauseTime                 00022538     dvdcmd.obj
+ 0003:00003f90       _wUsccSize                 00022d50     dvdtdcod:ccap.obj
+ 0003:00003f94       _wUsccWptr                 00022d54     dvdtdcod:ccap.obj
+ 0003:00003f98       _wUsccRptr                 00022d58     dvdtdcod:ccap.obj
+ 0003:00003fa0       _CPGD_BSTLNOFF_DATA        00022d60     dvdtdcod:ccpgd.obj
+ 0003:00003fd4       _hClk                      00022d94     <common>
+ 0003:00003fd8       _fProgrammed               00022d98     <common>
+ 0003:00003fdc       _fClkPause                 00022d9c     <common>
+ 0003:00003fe0       _fStarted                  00022da0     <common>
+ 0003:00003fe4       _hMaster                   00022da4     <common>
+ 0004:00000000       _KSPROPSETID_TSRateChange  00022dc0     ksguid:ksguid.obj
+ 0004:00000010       _KSDATAFORMAT_TYPE_DVD_ENCRYPTED_PACK 00022dd0     ksguid:ksguid.obj
+ 0004:00000020       _KSPROPSETID_CopyProt      00022de0     ksguid:ksguid.obj
+ 0004:00000030       _KSPROPSETID_DvdSubPic     00022df0     ksguid:ksguid.obj
+ 0004:00000040       _KSPROPSETID_AudioDecoderOut 00022e00     ksguid:ksguid.obj
+ 0004:00000050       _KSDATAFORMAT_SUBTYPE_AC3_AUDIO 00022e10     ksguid:ksguid.obj
+ 0004:00000060       _KSDATAFORMAT_SUBTYPE_LPCM_AUDIO 00022e20     ksguid:ksguid.obj
+ 0004:00000070       _KSPROPSETID_Mpeg2Vid      00022e30     ksguid:ksguid.obj
+ 0004:00000080       _KSEVENTSETID_Clock        00022e40     ksguid:ksguid.obj
+ 0004:00000090       _KSPROPSETID_Connection    00022e50     ksguid:ksguid.obj
+ 0004:000000a0       _KSCATEGORY_DATADECOMPRESSOR 00022e60     ksguid:ksguid.obj
+ 0004:000000b0       _GUID_NULL                 00022e70     ksguid:ksguid.obj
+ 0005:00000000       __IMPORT_DESCRIPTOR_NTOSKRNL 00022e80     wdm:NTOSKRNL.EXE
+ 0005:00000014       __IMPORT_DESCRIPTOR_HAL    00022e94     wdm:HAL.DLL
+ 0005:00000028       __IMPORT_DESCRIPTOR_STREAM 00022ea8     stream:STREAM.SYS
+ 0005:0000003c       __NULL_IMPORT_DESCRIPTOR   00022ebc     wdm:NTOSKRNL.EXE
+
+ entry point at        0001:0000040c
+
+ Static symbols
+
+ 0001:000043fe       _GetCurrentTime_ms@0       000146de f   dvdcmd.obj
+ 0001:000043fe       _GetCurrentTime_ms@0       000146de f   dvdcmd.obj
+ 0001:000043fe       _GetCurrentTime_ms@0       000146de f   dvdcmd.obj
+ 0001:000043fe       _GetCurrentTime_ms@0       000146de f   dvdcmd.obj
+ 0001:0000ae90       _USCC_Wait@4               0001b170 f   dvdtdcod:ccap.obj
+ 0001:000043fe       _GetCurrentTime_ms@0       000146de f   dvdcmd.obj
+
+ 137 bytes saved through ICF
+

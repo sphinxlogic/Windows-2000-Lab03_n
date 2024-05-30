@@ -1,0 +1,72 @@
+<?XML VERSION="1.0" RMD="NONE"?>
+<CUSTOMERS>
+	<CUSTOMER>
+		<NAME>
+			<FIRST>Bradley</>
+			<LAST>Bismark</>
+		</>
+		<ORDER>
+			<NUMBER>16273</>
+			<DATE><DAY>11</><MONTH>6</><YEAR>1997</></>
+			<ITEM>
+				<TITLE>Number, the Language of Science</>
+				<AUTHOR>Danzig</>
+				<PRICE>5.95</>
+			</>
+			<ITEM>
+				<TITLE>Tales of Grandpa Cat</>
+				<AUTHOR>Wardlaw, Lee</>
+				<PRICE>6.58</>
+			</>
+		</>
+	</>
+	<CUSTOMER>
+		<NAME>
+			<LAST>Higginbottom</>
+			<FIRST>Amy</>
+		</>
+		<CREDIT-LIMIT>5000</>
+		<ORDER>
+			<NUMBER>16182</>
+			<DATE><MONTH>6</><DAY>15</><YEAR>1997</></>
+			<ITEM>
+				<TITLE>Evolution of Complexity in Animal Culture</>
+				<PUBLISHER>Associated Press</>
+				<AUTHOR>Bonner</>
+				<PRICE>5.95</>
+			</>
+			<ITEM>
+				<TITLE>When We Were Very Young</>
+				<AUTHOR>Milne, A. A.</>
+				<PRICE>12.50</>
+			</>
+		</>
+		<ORDER>
+			<NUMBER>19182</>
+			<DATE><YEAR>1997</><MONTH>7</><DAY>17</></>
+			<ITEM>
+				<TITLE>Learn Java Now</>
+				<AUTHOR>Stephen R. Davis</>
+				<PUBLISHER>Microsoft Corporation</>
+				<PRICE>9.95</>
+			</>
+		</>
+	</>
+	<CUSTOMER>
+		<NAME>
+			<FIRST>Alvin</>
+			<MIDDLE>J</>
+			<LAST>Brain</>		
+		</>
+		<ORDER>
+			<NUMBER>17218</>
+			<DATE><MONTH>7</><DAY>3</><YEAR>1997</></>
+			<ITEM>
+				<TITLE>Design Patterns</>
+				<AUTHOR>Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides</>
+				<PUBLISHER>Addison Wesley</>
+				<PRICE>49.95</>
+			</>
+		</>
+	</>
+</>

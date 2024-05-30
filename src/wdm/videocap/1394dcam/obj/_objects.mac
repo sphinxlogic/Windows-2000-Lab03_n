@@ -1,0 +1,52 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\sonydcam.res \
+    $(_OBJ_DIR)\alpha\callback.obj \
+    $(_OBJ_DIR)\alpha\capprop.obj \
+    $(_OBJ_DIR)\alpha\device.obj \
+    $(_OBJ_DIR)\alpha\sonydcam.obj \
+    $(_OBJ_DIR)\alpha\ctrlpkt.obj \
+    $(_OBJ_DIR)\alpha\datapkt.obj \
+    $(_OBJ_DIR)\alpha\dcampkt.obj \
+    $(_OBJ_DIR)\alpha\dbg.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\sonydcam.res \
+    $(_OBJ_DIR)\axp64\callback.obj \
+    $(_OBJ_DIR)\axp64\capprop.obj \
+    $(_OBJ_DIR)\axp64\device.obj \
+    $(_OBJ_DIR)\axp64\sonydcam.obj \
+    $(_OBJ_DIR)\axp64\ctrlpkt.obj \
+    $(_OBJ_DIR)\axp64\datapkt.obj \
+    $(_OBJ_DIR)\axp64\dcampkt.obj \
+    $(_OBJ_DIR)\axp64\dbg.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\sonydcam.res \
+    $(_OBJ_DIR)\i386\callback.obj \
+    $(_OBJ_DIR)\i386\capprop.obj \
+    $(_OBJ_DIR)\i386\device.obj \
+    $(_OBJ_DIR)\i386\sonydcam.obj \
+    $(_OBJ_DIR)\i386\ctrlpkt.obj \
+    $(_OBJ_DIR)\i386\datapkt.obj \
+    $(_OBJ_DIR)\i386\dcampkt.obj \
+    $(_OBJ_DIR)\i386\dbg.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\sonydcam.res \
+    $(_OBJ_DIR)\ia64\callback.obj \
+    $(_OBJ_DIR)\ia64\capprop.obj \
+    $(_OBJ_DIR)\ia64\device.obj \
+    $(_OBJ_DIR)\ia64\sonydcam.obj \
+    $(_OBJ_DIR)\ia64\ctrlpkt.obj \
+    $(_OBJ_DIR)\ia64\datapkt.obj \
+    $(_OBJ_DIR)\ia64\dcampkt.obj \
+    $(_OBJ_DIR)\ia64\dbg.obj
+
+PASS0_IA64_OBJECTS=
+

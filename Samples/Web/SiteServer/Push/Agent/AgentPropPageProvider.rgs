@@ -1,0 +1,24 @@
+HKCR
+{
+    AgentPropPageProvider.AgentPropPageProvider.1 = s 'AgentPropPageProvider Class'
+    {
+        CLSID = s '{1E29E4B8-83B2-11D1-9C43-0000F8756757}'
+    }
+    AgentPropPageProvider.AgentPropPageProvider = s 'AgentPropPageProvider Class'
+    {
+        CurVer = s 'AgentPropPageProvider.AgentPropPageProvider.1'
+    }
+    NoRemove CLSID
+    {
+        ForceRemove {1E29E4B8-83B2-11D1-9C43-0000F8756757} = s 'AgentPropPageProvider Class'
+        {
+            ProgID = s 'AgentPropPageProvider.AgentPropPageProvider.1'
+            VersionIndependentProgID = s 'AgentPropPageProvider.AgentPropPageProvider'
+            ForceRemove 'Programmable'
+            InprocServer32 = s '%MODULE%'
+            {
+                val ThreadingModel = s 'Free'
+            }
+        }
+    }
+}

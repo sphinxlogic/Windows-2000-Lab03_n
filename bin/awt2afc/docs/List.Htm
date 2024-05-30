@@ -1,0 +1,298 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>List -> UIList</title>
+<base target="descriptions">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">List to UIList</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.List should be transformed into instances of
+com.ms.ui.UIList.</p>
+
+<p align="left">List extends <a href="Component.htm"
+target="descriptions">Component</a>: be sure to see its changes.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">AFC's UIList class provides several advantages
+over the basic List class. UIList provides another selection
+option, EXTENDSELECT, which allows the user to select items by
+dragging the mouse or using the SHIFT key. Also, UIList uses the
+UIVerticalFlowLayout for its layout manager, which allows the
+list to span multiple columns (with MULTICOLUMN), and allows you
+to extend the width of the selectable area to the width of the
+column (with FILL). Thus you might declare a new UIList as</p>
+
+<p align="left"><font face="Courier">new
+UIList(UIList.EXTENDSELECT, UIVerticalFlowLayout.FILL);</font></p>
+
+<p align="left">You cannot set the number of visible rows in
+UIList. The ability to scroll in a list is provided by
+UIScrollViewer: typically, you will create a UIScrollViewer
+object to display your list control.</p>
+
+<p align="left">&nbsp;</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">This is the set of changes you need to make to
+port all List methods to UIList methods. Any method not listed
+here or below does not need to be changed.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial"><strong>AWT Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">List() or<br>
+        List(int) or<br>
+        List(int, boolean)</font></td>
+        <td nowrap><font size="2" face="Courier">UIList() or<br>
+        UIList(int) or<br>
+        UIList(int, int)</font></td>
+        <td><font size="2">As explained above, the int's in the
+        constructors mean different things. See the documentation
+        for more information.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">addItem(String)</font></td>
+        <td nowrap><font size="2" face="Courier">add(String)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">addItem(String, int)</font></td>
+        <td><font size="2" face="Courier">add(String, int)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">clear()</font></td>
+        <td><font size="2" face="Courier">removeAll()</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">countItems()</font></td>
+        <td><font size="2" face="Courier">getComponentCount()</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">delItem(int)</font></td>
+        <td><font size="2" face="Courier">remove(int)</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">deselect(int)</font></td>
+        <td><font size="2" face="Courier">removeSelectedIndex(int)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getItemCount()</font></td>
+        <td><font size="2" face="Courier">getComponentCount()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getSelectedIndexes()</font></td>
+        <td><font size="2" face="Courier">getSelectedIndices()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">isMultipleMode()</font></td>
+        <td nowrap><font size="2" face="Courier">(getSelectionMode
+        == UIList.MULTISELECT)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">minimumSize()</font></td>
+        <td><font size="2" face="Courier">getMinimumSize()</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">preferredSize()</font></td>
+        <td><font size="2" face="Courier">getPreferredSize()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">replaceItem(String,
+        int)</font></td>
+        <td><font size="2" face="Courier">remove(int);<br>
+        add(String, int)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">select(int)</font></td>
+        <td><font size="2" face="Courier">setSelectedIndex(int)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setMultipleMode(boolean)</font></td>
+        <td><font size="2" face="Courier">setSelectionMode(boolean)</font></td>
+        <td><font size="2">true for MULTISELECT, false for
+        SINGLESELECT</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">setMultipleSelections(boolean)</font></td>
+        <td><font size="2" face="Courier">setSelectionMode(boolean)</font></td>
+        <td><font size="2">true for MULTISELECT, false for
+        SINGLESELECT: Deprecated in AWT 1.1</font></td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h3>Unsupported Methods</h3>
+
+<p>Some methods in java.awt.List are not directly supported in
+com.ms.ui.UIList. Those methods and suggested changes are
+described here.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial">AWT Code<strong>/Suggested
+        AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">allowsMultipleSelections()</font><p><font
+        size="2" face="Courier"><strong>getStateCode()</strong></font></p>
+        </td>
+        <td><font size="2">check for
+        UIAccessible.STATE_SYSTEM_MULTISELECTABLE; deprecated in
+        AWT 1.1.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">delItems(int,
+        int)</font><p><font size="2" face="Courier"><strong>remove(int)</strong></font></p>
+        </td>
+        <td><font size="2">Use repeatedly; deprecated in AWT 1.1.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getItem(int)</font><p><font
+        size="2" face="Courier"><strong>getComponent(int)</strong></font></p>
+        </td>
+        <td><font size="2">getComponent returns a UIComponent
+        while getItem returns a String: you can then use getName.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getItems()</font><p><font
+        size="2" face="Courier"><strong>getComponents()</strong></font></p>
+        </td>
+        <td><font size="2">getComponent returns an array of
+        UIComponents while getItems returns an array of Strings.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getMinimumSize(int)</font><p><font
+        size="2" face="Courier"><strong>(none)</strong></font></p>
+        </td>
+        <td><font size="2">In AFC you cannot specify the number
+        of rows in a UIList, and so this function becomes
+        unimportant.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getRows()</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td><font size="2">The number of rows displayed is not a
+        property of UIList.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getSelectedItem()</font><p><font
+        size="2" face="Courier"><strong>(same)</strong></font></p>
+        </td>
+        <td><font size="2">This function exists in AFC, but it
+        returns a UIComponent, while the AWT version returns a
+        String.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getSelectedItems()</font><p><font
+        size="2" face="Courier"><strong>(same)</strong></font></p>
+        </td>
+        <td><font size="2">This function exists in AFC, but it
+        returns an array of UIComponents, while the AWT version
+        returns an array of Strings.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getSelectedObjects()</font><p><font
+        size="2" face="Courier"><strong>getSelectedItems()</strong></font></p>
+        </td>
+        <td><font size="2">The AFC version returns an array of
+        UIComponents.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getVisibleIndex()</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td><font size="2">The number of visible rows displayed,
+        and thus the currently visible one, is not a property of
+        UIList.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">isIndexSelected(int)</font><p><font
+        size="2" face="Courier"><strong>getSelectedItems()</strong></font></p>
+        </td>
+        <td><font size="2">Use getSelectedItems and see if the
+        one you are looking for is selected.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">isSelected()</font><p><font
+        size="2" face="Courier"><strong>getSelectedItems()</strong></font></p>
+        </td>
+        <td><font size="2">Use getSelectedItems and see if the
+        one you are looking for is selected; Deprecated in AWT
+        1.1.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">makeVisible(int)</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td><font size="2">The visibility of rows displayed is
+        not a property of UIList.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">minimumSize(int)</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td><font size="2">In AFC you cannot specify the number
+        of rows in a UIList, and so this function becomes
+        unimportant: deprecated in AWT 1.1.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">paramString()</font><p><font
+        size="2" face="Courier"><strong>getName(), etc.</strong></font></p>
+        </td>
+        <td><font size="2">Use getXXX methods to get the specific
+        information you want.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">preferredSize(int)</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td><font size="2">In AFC you cannot specify the number
+        of visible rows in a UIList, and so this function becomes
+        unimportant: deprecated in AWT 1.1.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">remove(String)</font><p><font
+        size="2" face="Courier"><strong>remove(UIComponent)</strong></font></p>
+        </td>
+        <td><font size="2">In AFC when you add a string, you get
+        a UIComponent as the return value. You should save this
+        value to later remove the component. </font></td>
+    </tr>
+</table>
+</body>
+</html>

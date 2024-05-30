@@ -1,0 +1,31 @@
+// Copyright (c) 1997 Microsoft Corporation.  All rights reserved.
+
+[
+  uuid(A364ACF0-F5EF-11cf-BC7E-00A0C913D202),
+  version(1.0),
+]
+library NatComLib
+{
+	importlib("stdole32.tlb") ;
+	importlib("jnatcom.tlb") ;
+
+	[
+	  uuid(A364ACF1-F5EF-11cf-BC7E-00A0C913D202),
+	  odl
+	]
+	interface INatCom : IUnknown
+	{
+		HRESULT MultParam([in] long lMult, [in, out] long *lVal) ;
+		HRESULT Square([in] long lVal, [out, retval] long *lResult) ;
+		HRESULT GetClass([out, retval] jINatCom **pjNatCom) ;
+	}
+
+	[
+	  uuid(A364ACF2-F5EF-11cf-BC7E-00A0C913D202)
+	]                                             
+	coclass CNatCom
+	{   
+		[default] interface INatCom ;
+	}
+} ;
+

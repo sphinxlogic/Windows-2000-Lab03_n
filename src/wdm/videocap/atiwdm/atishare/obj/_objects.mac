@@ -1,0 +1,40 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\aticonfg.obj \
+    $(_OBJ_DIR)\alpha\i2clog.obj \
+    $(_OBJ_DIR)\alpha\i2script.obj \
+    $(_OBJ_DIR)\alpha\pinmedia.obj \
+    $(_OBJ_DIR)\alpha\mmconfig.obj \
+    $(_OBJ_DIR)\alpha\registry.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\aticonfg.obj \
+    $(_OBJ_DIR)\axp64\i2clog.obj \
+    $(_OBJ_DIR)\axp64\i2script.obj \
+    $(_OBJ_DIR)\axp64\pinmedia.obj \
+    $(_OBJ_DIR)\axp64\mmconfig.obj \
+    $(_OBJ_DIR)\axp64\registry.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\aticonfg.obj \
+    $(_OBJ_DIR)\i386\i2clog.obj \
+    $(_OBJ_DIR)\i386\i2script.obj \
+    $(_OBJ_DIR)\i386\pinmedia.obj \
+    $(_OBJ_DIR)\i386\mmconfig.obj \
+    $(_OBJ_DIR)\i386\registry.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\aticonfg.obj \
+    $(_OBJ_DIR)\ia64\i2clog.obj \
+    $(_OBJ_DIR)\ia64\i2script.obj \
+    $(_OBJ_DIR)\ia64\pinmedia.obj \
+    $(_OBJ_DIR)\ia64\mmconfig.obj \
+    $(_OBJ_DIR)\ia64\registry.obj
+
+PASS0_IA64_OBJECTS=
+

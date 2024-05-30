@@ -1,0 +1,37 @@
+HKCR
+{
+	ExEvHandler.ExEvHandler.1 = s 'Microsoft Exchange 5.5 SDK Custom Agent Class'
+	{
+		CLSID = s '{00C47255-379A-11D2-BBCB-00C04FB9DC0D}'
+	}
+	ExEvHandler.ExEvHandler = s 'Microsoft Exchange 5.5 SDK Custom Agent Class'
+	{
+		CurVer = s 'ExEvHandler.ExEvHandler.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {00C47255-379A-11D2-BBCB-00C04FB9DC0D} = s 'Microsoft Exchange 5.5 SDK Custom Agent Class'
+		{
+			ProgID = s 'ExEvHandler.ExEvHandler.1'
+			VersionIndependentProgID = s 'ExEvHandler.ExEvHandler'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			ForceRemove 'Implemented Categories'
+			{
+				ForceRemove '{50F45350-D0AF-11d0-9836-00AA006D27AB}' = s 'Exchange Event Handler Category'
+			}
+		}
+	}
+	NoRemove 'Component Categories'
+	{
+		ForceRemove {50F45350-D0AF-11d0-9836-00AA006D27AB} = s 'Exchange Event Handler Category'
+		{
+			val 409 = s 'Exchange Event Handler Category'
+			409 = s 'Exchange Event Handler Category'
+		}
+	}
+
+}

@@ -1,0 +1,24 @@
+HKCR
+{
+	MSExchange.ACEs.1 = s 'ACEs Class'
+	{
+		CLSID = s '{A0E483FF-F971-11D1-A956-00C04FB155E5}'
+	}
+	MSExchange.ACEs = s 'ACEs Class'
+	{
+		CurVer = s 'MSExchange.ACEs.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {A0E483FF-F971-11D1-A956-00C04FB155E5} = s 'ACEs Class'
+		{
+			ProgID = s 'MSExchange.ACEs.1'
+			VersionIndependentProgID = s 'MSExchange.ACEs'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+		}
+	}
+}

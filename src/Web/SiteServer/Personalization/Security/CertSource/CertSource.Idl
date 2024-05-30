@@ -1,0 +1,57 @@
+#include <olectl.h>
+//-------------------------------------------------------------------------------
+// (C) Copyright 1998 Microsoft Corporation. All Rights Reserved.
+// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+// ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+// THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+// PARTICULAR PURPOSE.
+
+// CertSource.idl : IDL source for CertSource.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (CertSource.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+	
+
+	[
+		object,
+		uuid(A01F8A4E-CE73-11D1-A728-00C04FB66DAF),
+		dual,
+		helpstring("ICertSrc Interface"),
+		pointer_default(unique)
+	]
+	interface ICertSrc : IDispatch
+	{
+		[propget, id(1), helpstring("property Certificate")] HRESULT Certificate([out, retval] BSTR *pVal);
+		[propput, id(1), helpstring("property Certificate")] HRESULT Certificate([in] BSTR newVal);
+		[propget, id(2), helpstring("property DN")] HRESULT DN([out, retval] BSTR *pVal);
+		[propput, id(2), helpstring("property DN")] HRESULT DN([in] BSTR newVal);
+		[id(3), helpstring("method AddCertToDN")] HRESULT AddCertToDN();
+		[propget, id(4), helpstring("property ServerName")] HRESULT ServerName([out, retval] BSTR *pVal);
+		[propput, id(4), helpstring("property ServerName")] HRESULT ServerName([in] BSTR newVal);
+		[propget, id(5), helpstring("property PortNumber")] HRESULT PortNumber([out, retval] long *pVal);
+		[propput, id(5), helpstring("property PortNumber")] HRESULT PortNumber([in] long newVal);
+	};
+[
+	uuid(A01F8A41-CE73-11D1-A728-00C04FB66DAF),
+	version(1.0),
+	helpstring("CertSource 1.0 Type Library")
+]
+library CERTSOURCELib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(A01F8A51-CE73-11D1-A728-00C04FB66DAF),
+		helpstring("CertSrc Class")
+	]
+	coclass CertSrc
+	{
+		[default] interface ICertSrc;
+	};
+};

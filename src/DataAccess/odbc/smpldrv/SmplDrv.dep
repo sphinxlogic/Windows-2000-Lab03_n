@@ -1,0 +1,9 @@
+# Microsoft Developer Studio Generated Dependency File, included by SmplDrv.mak
+
+.\CONFDSN.C : \
+	"..\..\..\..\tools\vc98\include\basetsd.h"\
+	
+
+.\SMPLDRV.C : \
+	"..\..\..\..\tools\vc98\include\basetsd.h"\
+	

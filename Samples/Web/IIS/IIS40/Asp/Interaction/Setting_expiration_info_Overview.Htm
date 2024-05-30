@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Setting Expiration Info</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_setting_expiration_info"></a>  Setting Expiration Info</h3>
+<p>
+You can give every page or script that a client browser accesses on the server an expiration date. This can either be in the form of an absolute date, such as January 1, 2000, or a relative date, such as 600 minutes from the time the page was first downloaded by the client browser. If a client browser accesses that same page again before the expiration date and time, then the client browser uses the cached copy. </p>
+<p>
+This example illustrates how your script can set the expiration date for a file. The <b>Response.Expires</b> property is used to set the relative expiration date. The unit of measurement is minutes, so if this property is set to 10, as in the example, then the page will expire after 10 minutes. </p>
+<p>
+The <b>Response.ExpiresAbsolute</b> property allows you to specify an absolute expiration date. In this example, the page is specified to expire on January 1, 1999, at 1:30:15pm. Either the time or the date can be left out when assigning an expiration date.</p>
+<p>
+<b>Note</b>&nbsp;&nbsp;IIS sends all HTTP headers required for a given Web page or script before any HTML is sent to the client browser. Therefore, all statements and methods that modify the HTTP headers of the response, including setting the <b>Response.Expires</b> and <b>Response.ExpiresAbsolute</b> properties, must be located before the &lt;HTML&gt; tag in your script. If your script attempts to modify the HTTP headers after the server has begun sending HTML content back to the client browser, the script will generate an error.</p>
+</BODY>
+</HTML>

@@ -1,0 +1,13 @@
+Line 10: Property Icon in XQL_Query had an invalid file reference.
+Line 58: Property ItemData in lstAttributes had an invalid file reference.
+Line 60: Property List in lstAttributes had an invalid file reference.
+Line 75: Property ItemData in lstMethods had an invalid file reference.
+Line 77: Property List in lstMethods had an invalid file reference.
+Line 158: Property ItemData in lstNodes had an invalid file reference.
+Line 160: Property List in lstNodes had an invalid file reference.
+Line 182: Property ItemData in lstContext had an invalid file reference.
+Line 184: Property List in lstContext had an invalid file reference.
+Line 191: Property ItemData in lstExpressions had an invalid file reference.
+Line 193: Property List in lstExpressions had an invalid file reference.
+Line 200: Property ItemData in lstChars had an invalid file reference.
+Line 202: Property List in lstChars had an invalid file reference.

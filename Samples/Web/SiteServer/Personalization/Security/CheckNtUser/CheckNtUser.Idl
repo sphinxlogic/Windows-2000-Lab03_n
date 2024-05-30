@@ -1,0 +1,42 @@
+// CheckNTUser.idl : IDL source for CheckNTUser.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (CheckNTUser.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+	[
+		object,
+		uuid(D39DFE05-B881-11D1-A10D-006008C3D8D3),
+		dual,
+		helpstring("ICheckNTUserImp Interface"),
+		pointer_default(unique)
+	]
+	interface ICheckNTUserImp : IDispatch
+	{
+		//Standard Server Side Component Methods
+		HRESULT OnStartPage([in] IUnknown* piUnk);
+		HRESULT OnEndPage();	
+		[id(1), helpstring("method CheckNTUser")] HRESULT CheckNTUser(BSTR bszUserName, BSTR bszDomain, BSTR bszPassword, [out, retval] LONG * plPasswordVerified);
+	};
+[
+	uuid(D39DFDF8-B881-11D1-A10D-006008C3D8D3),
+	version(1.0),
+	helpstring("CheckNTUser 1.0 Type Library")
+]
+library CHECKNTUSERLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(D39DFE07-B881-11D1-A10D-006008C3D8D3),
+		helpstring("CheckNTUserImp Class")
+	]
+	coclass CheckNTUserImp
+	{
+		[default] interface ICheckNTUserImp;
+	};
+};

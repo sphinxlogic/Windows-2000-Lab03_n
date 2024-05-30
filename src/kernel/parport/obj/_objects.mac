@@ -1,0 +1,92 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\parport.res \
+    $(_OBJ_DIR)\alpha\cleanup.obj \
+    $(_OBJ_DIR)\alpha\debug.obj \
+    $(_OBJ_DIR)\alpha\errlog.obj \
+    $(_OBJ_DIR)\alpha\initunld.obj \
+    $(_OBJ_DIR)\alpha\ioctl.obj \
+    $(_OBJ_DIR)\alpha\nec_r98.obj \
+    $(_OBJ_DIR)\alpha\openclos.obj \
+    $(_OBJ_DIR)\alpha\par12843.obj \
+    $(_OBJ_DIR)\alpha\parmode.obj \
+    $(_OBJ_DIR)\alpha\parport.obj \
+    $(_OBJ_DIR)\alpha\pnp.obj \
+    $(_OBJ_DIR)\alpha\power.obj \
+    $(_OBJ_DIR)\alpha\ppa3x.obj \
+    $(_OBJ_DIR)\alpha\registry.obj \
+    $(_OBJ_DIR)\alpha\util.obj \
+    $(_OBJ_DIR)\alpha\wmi.obj
+
+PASS0_ALPHA_OBJECTS= \
+    $(PASS0_HEADERDIR)\parlog.h \
+    $(MC_SOURCEDIR)\parlog.rc
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\parport.res \
+    $(_OBJ_DIR)\axp64\cleanup.obj \
+    $(_OBJ_DIR)\axp64\debug.obj \
+    $(_OBJ_DIR)\axp64\errlog.obj \
+    $(_OBJ_DIR)\axp64\initunld.obj \
+    $(_OBJ_DIR)\axp64\ioctl.obj \
+    $(_OBJ_DIR)\axp64\nec_r98.obj \
+    $(_OBJ_DIR)\axp64\openclos.obj \
+    $(_OBJ_DIR)\axp64\par12843.obj \
+    $(_OBJ_DIR)\axp64\parmode.obj \
+    $(_OBJ_DIR)\axp64\parport.obj \
+    $(_OBJ_DIR)\axp64\pnp.obj \
+    $(_OBJ_DIR)\axp64\power.obj \
+    $(_OBJ_DIR)\axp64\ppa3x.obj \
+    $(_OBJ_DIR)\axp64\registry.obj \
+    $(_OBJ_DIR)\axp64\util.obj \
+    $(_OBJ_DIR)\axp64\wmi.obj
+
+PASS0_AXP64_OBJECTS= \
+    $(PASS0_HEADERDIR)\parlog.h \
+    $(MC_SOURCEDIR)\parlog.rc
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\parport.res \
+    $(_OBJ_DIR)\i386\cleanup.obj \
+    $(_OBJ_DIR)\i386\debug.obj \
+    $(_OBJ_DIR)\i386\errlog.obj \
+    $(_OBJ_DIR)\i386\initunld.obj \
+    $(_OBJ_DIR)\i386\ioctl.obj \
+    $(_OBJ_DIR)\i386\nec_r98.obj \
+    $(_OBJ_DIR)\i386\openclos.obj \
+    $(_OBJ_DIR)\i386\par12843.obj \
+    $(_OBJ_DIR)\i386\parmode.obj \
+    $(_OBJ_DIR)\i386\parport.obj \
+    $(_OBJ_DIR)\i386\pnp.obj \
+    $(_OBJ_DIR)\i386\power.obj \
+    $(_OBJ_DIR)\i386\ppa3x.obj \
+    $(_OBJ_DIR)\i386\registry.obj \
+    $(_OBJ_DIR)\i386\util.obj \
+    $(_OBJ_DIR)\i386\wmi.obj
+
+PASS0_386_OBJECTS= \
+    $(PASS0_HEADERDIR)\parlog.h \
+    $(MC_SOURCEDIR)\parlog.rc
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\parport.res \
+    $(_OBJ_DIR)\ia64\cleanup.obj \
+    $(_OBJ_DIR)\ia64\debug.obj \
+    $(_OBJ_DIR)\ia64\errlog.obj \
+    $(_OBJ_DIR)\ia64\initunld.obj \
+    $(_OBJ_DIR)\ia64\ioctl.obj \
+    $(_OBJ_DIR)\ia64\nec_r98.obj \
+    $(_OBJ_DIR)\ia64\openclos.obj \
+    $(_OBJ_DIR)\ia64\par12843.obj \
+    $(_OBJ_DIR)\ia64\parmode.obj \
+    $(_OBJ_DIR)\ia64\parport.obj \
+    $(_OBJ_DIR)\ia64\pnp.obj \
+    $(_OBJ_DIR)\ia64\power.obj \
+    $(_OBJ_DIR)\ia64\ppa3x.obj \
+    $(_OBJ_DIR)\ia64\registry.obj \
+    $(_OBJ_DIR)\ia64\util.obj \
+    $(_OBJ_DIR)\ia64\wmi.obj
+
+PASS0_IA64_OBJECTS= \
+    $(PASS0_HEADERDIR)\parlog.h \
+    $(MC_SOURCEDIR)\parlog.rc
+

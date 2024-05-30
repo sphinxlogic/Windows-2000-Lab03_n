@@ -1,0 +1,12 @@
+LIBRARY NtFilter
+
+DESCRIPTION 'SNA Filter'
+
+EXETYPE WINDOWS
+
+EXPORTS
+    PrtFilterAlloc	@2
+    PrtFilterFree	@3
+    PrtFilterJobData	@4
+    PrtFilterJobEnd	@5
+    PrtFilterJobStart	@6

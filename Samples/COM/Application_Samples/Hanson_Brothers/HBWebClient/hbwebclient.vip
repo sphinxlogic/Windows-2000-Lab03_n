@@ -1,0 +1,3 @@
+# Microsoft Developer Studio Project File - Name="<Name of Machine>/HBWebClient" - Package Owner=<21>
+ISPROJ=HBWebClient
+ISSRVR=http://<Name of Machine>

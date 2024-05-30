@@ -1,0 +1,20 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\pcl5ems.res
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\pcl5ems.res
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\pcl5ems.res
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\pcl5ems.res
+
+PASS0_IA64_OBJECTS=
+

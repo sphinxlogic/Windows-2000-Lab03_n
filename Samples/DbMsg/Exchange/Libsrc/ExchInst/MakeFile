@@ -1,0 +1,20 @@
+#----------------------------------------------------------------------------
+# Description:
+#   Makefile for ExchInst.Lib
+#
+# Copyright (C) Microsoft Corporation 1986 - 1998.  All Rights Reserved.
+#----------------------------------------------------------------------------
+
+USE_EXCHANGE=1
+
+Proj = ExchInst
+
+ObjList = $(@D)\$(Proj).Obj
+
+!include <BkOffice.Mak>
+
+all: $(ObjDir)\$(Proj).Lib
+
+$(ObjDir)\$(Proj).Lib: $(ObjList)
+
+$(Proj).C: ExchProf.C

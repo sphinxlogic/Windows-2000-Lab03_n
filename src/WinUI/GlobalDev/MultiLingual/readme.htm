@@ -1,0 +1,280 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 9">
+<meta name=Originator content="Microsoft Word 9">
+<link rel=File-List href="./readme_files/filelist.xml">
+<title>readme</title>
+<style>
+<!--
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+p
+	{font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+@page Section1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:36.0pt;
+	mso-footer-margin:36.0pt;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+@list l0
+	{mso-list-id:1378048788;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1657655862 469804218 -350567024 -1519846528 -142189300 302528680 -22391940 415292784 -1115659450 -321346190;}
+@list l0:level1
+	{mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l1
+	{mso-list-id:1475030191;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1050661128 1464235910 -570802358 2029441964 619741942 -1603869536 2142777782 -1797891490 1016604618 -639477232;}
+@list l1:level1
+	{mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<meta name=Template content="D:\Program Files\Microsoft Office\Office\html.dot">
+</head>
+
+<body lang=EN-US link=blue vlink=purple style='tab-interval:36.0pt'>
+
+<div class=Section1>
+
+<p><b>Sample Application GLOBALDV<o:p></o:p></b></p>
+
+<p><b><span style='font-size:13.5pt;font-family:Arial'>1. Introduction<o:p></o:p></span></b></p>
+
+<p>This sample application demonstrates several techniques for developing a
+globalized application. The principles demonstrated include the following:</p>
+
+<p>- Developing a single binary Unicode application that runs on all versions
+of Windows 95, Windows 98, and Windows NT.</p>
+
+<p>- Providing a multilingual user interface based on using satellite resource
+DLLs.</p>
+
+<p>- Use of NLS APIs (minimal implementation so far)</p>
+
+<p>- Right to left layout for Arabic localized user interface</p>
+
+<p>- Supporting multilingual text input</p>
+
+<p>This sample was originally developed for the Microsoft Systems Journal, to
+accompany an <a
+href="http://www.microsoft.com/msj/0499/multilangUnicode/multilangUnicodetop.htm">article</a>
+on Unicode for Windows 9x, multilingual user interface, and right-to-left
+layout. This version has been modified from the sample code posted with that
+article.<o:p></o:p></p>
+
+<p><b><span style='font-size:13.5pt;font-family:Arial'>2. Source Files<o:p></o:p></span></b></p>
+
+<p><b><i><span style='font-family:Arial'>GLOBALDV.CPP:<o:p></o:p></span></i></b></p>
+
+<p>Provides standard Windows routines such as WinMain, Winproc, and
+initialization routines.</p>
+
+<p>Includes header files UPDTLANG.H and UMHANDLERS.H.</p>
+
+<p><b><i><span style='font-family:Arial'>UNIANSI.CPP<o:p></o:p></span></i></b></p>
+
+<p>Implements &quot;AU&quot; wrapper functions that parallel selected Win32
+API, &quot;W&quot; entry points for use on Windows 9x. Each wrapper convert
+ANSI strings to/from Unicode and calls the appropriate &quot;A&quot; entry
+point.</p>
+
+<p>Includes header file UAPI.H.</p>
+
+<p><b><i><span style='font-family:Arial'>UAPIINIT.CPP<o:p></o:p></span></i></b></p>
+
+<p>Initializes the &quot;U&quot; API function pointers, by setting them to the
+&quot;W&quot; routines if running on Windows, and the &quot;AU&quot; routines
+in UNIANSI.CPP if running on Windows 95 or Windows 98.</p>
+
+<p>Includes header file UAPI.H</p>
+
+<p><b><i><span style='font-family:Arial'>UMHANDLERS.CPP<o:p></o:p></span></i></b></p>
+
+<p>Implements messages handlers used by WinProc in GLOBLADV.CPP. The name of
+each message handler is of the form On&lt;MessageID&gt;, where MessageID is the
+message identifier (leaving off WM_). For example, the handler for WM_CHAR is
+OnChar. </p>
+
+<p>Includes header files UMHANDLERS.H, GENTEXTOUT.H, and UPDTLANG.H.</p>
+
+<p><b><i><span style='font-family:Arial'>GENTEXTOUT.CPP<o:p></o:p></span></i></b></p>
+
+<p>Implements a generic Text Out function that uses Uniscribe if available, or
+ExtTextOut otherwise. See the sample CSSAMP for details on use of <a
+href="http://www.microsoft.com/msj/1198/multilang/multilangtop.htm">Uniscribe</a>.</p>
+
+<p>Includes GENTEXTOUT.H</p>
+
+<p><b><i><span style='font-family:Arial'>UPDTLANG.CPP<o:p></o:p></span></i></b></p>
+
+<p>Contains routines for initializing and updating the user interface and other
+components related to locale and language. Also provides some utility routines
+used in UMHANDLERS.CPP.</p>
+
+<p>Includes UPDTLANG.H and UAPI.H.</p>
+
+<p><b><span style='font-size:13.5pt;font-family:Arial'>3. Description of
+Unicode implementation.<o:p></o:p></span></b></p>
+
+<p><b><i><span style='font-family:Arial'>The U Entry Points<o:p></o:p></span></i></b></p>
+
+<p>One of the objectives of the sample is to make Unicode implementation
+interface natural, so that developers can use the standard Win32 programming
+style as if they were writing a pure Unicode application using the
+&quot;W&quot; entry points, with only minor modifications. To do this, we
+implemented a set of function pointers that parallels the Win32 API. Each of
+these function pointers points to a function whose prototype is identical to
+that of the corresponding &quot;W&quot; entry point. For example, the function
+pointer RegisterClassExU is given by these two lines:</p>
+
+<p><span style='font-family:"Courier New"'>typedef WINUSERAPI ATOM (WINAPI
+*UAPI_RegisterClassEx) (CONST WNDCLASSEXW *) ; <o:p></o:p></span></p>
+
+<p><span style='font-family:"Courier New"'>UAPI_RegisterClassEx
+RegisterClassExU = RegisterClassExW ;<o:p></o:p></span></p>
+
+<p>Note that by default, RegisterClassExU points to the W routine. At runtime,
+the initialization routine InitUnicodeAPI in the module UAPIINIT determines
+what system the application is running on. If it is Windows NT, then the
+initialization leaves the function pointer set to the W routine. Thus, on
+Windows NT, this application behaves exactly as if it were a pure Unicode
+application (compiled with -DUNICODE and -D_UNICODE). </p>
+
+<p>If InitUnicodeAPI finds that it is running on Windows 95 or Windows 98,
+however, it loads a DLL called UNIANSI.DLL. This DLL contains an entry point
+for each of the U function pointers, with the same prototype as the
+corresponding W routine (other than the name, which ends in AU rather than W).
+For example, the entry point corresponding to RegisterClassExW is RegisterClassExAU.
+InitUnicodeAPI sets the U routine equal to this entry point, e.g.,</p>
+
+<p><span style='font-family:"Courier New"'>RegisterClassExU =
+(UAPI_RegisterClassEx) GetProcAddress(hMUniAnsi, &quot;RegisterClassExAU&quot;)
+;<o:p></o:p></span></p>
+
+<p>Note that since UNIANSI.DLL is not referenced on Windows NT, it need not be
+installed.</p>
+
+<p><b><i><span style='font-family:Arial'>ConvertMessage<o:p></o:p></span></i></b></p>
+
+<p>ConvertMessage is a special purpose API meant to be called in WinProc before
+any messages are processed. This routine is needed on Windows 95 and Windows 98
+because messages such as WM_CHAR, WM_IME_CHAR, and others send data through
+wParm and lParam as ANSI on Windows 9x. Given the objective of writing the
+application as if it were a pure Unicode application, we would like to handle
+all messages in Unicode, as they are on Windows NT. Thus, on Windows 9x,
+ConvertMessage intercepts messages with ANSI data and converts it to Unicode
+(on Windows NT it is a stub that simply returns).</p>
+
+<p><b><span style='font-size:13.5pt;font-family:Arial'>4. Description of
+Multilingual User Interface<o:p></o:p></span></b></p>
+
+<p>The multilingual user interface is implemented by using satellite resource
+DLLs in a subdirectory RESOURCES beneath the one where the main executable
+(GLOBALDV.EXE) is located. Each DLL is of the form RES&lt;LANGID&gt;.DLL, where
+&lt;LANGID&gt; identifies the language of the resources, in hexadecimal. At
+initialization, function InitUILang in module UPDTLANG.CPP attempts to find a
+resource DLL whose language ID matches that of the user interface. If none is
+found, it falls back to the US English version (RES409.DLL). Note that this
+could be made more sophisticated, for example, by matching only the primary
+language ID if no exact match is found.</p>
+
+<p>There is also a menu entry that puts up a combo-box to allow the user to
+change the user interface at runtime.</p>
+
+<p><b><span style='font-size:13.5pt;font-family:Arial'>5. Implementation of
+Right-to-Left Layout support<o:p></o:p></span></b></p>
+
+<p>Right-to-left (RTL) layout is a requirement of systems and applications
+localized to Middle Eastern right-to-left languages such as Arabic and Hebrew.
+For example, the main menu on an Arabic application should be such that the
+equivalent of &quot;File&quot; is on the far right, followed by Edit, View,
+etc. up to Help, advancing from right to left. Windows 2000 and Windows 98 with
+support for Arabic and Hebrew provide new APIs that enable right-to-left layout
+without major changes to most applications. </p>
+
+<p>There are three places where RTL layout and formatting can be used in this
+application:</p>
+
+<ol start=1 type=1>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo1;tab-stops:list 36.0pt'>The main window, by calling
+     SetProcessDefaultLayout. (This can also be done by using the extended
+     style WS_EX_LAYOUTRTL in the call to CreateWindowEx).</li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo1;tab-stops:list 36.0pt'>The Message boxes, by using
+     the option MB_RTLLAYOUT.</li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo1;tab-stops:list 36.0pt'>The Dialog boxes using the
+     extended style WS_EX_LAYOUTRTL.</li>
+</ol>
+
+<p><b><span style='font-size:13.5pt;font-family:Arial'>6. Knows Issues and
+Restrictions<o:p></o:p></span></b></p>
+
+<ol start=1 type=1>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l0 level1 lfo2;tab-stops:list 36.0pt'>The function CharLowerAU
+     only works on strings. It will not accept a single character as input as
+     do both CharLowerA and CharLowerW. </li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l0 level1 lfo2;tab-stops:list 36.0pt'>Throughout this sample we
+     assume resource identifiers, which have prototype LPTSTR, are constants,
+     rather than strings. This will not work if you use string identifiers in
+     your resources.</li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l0 level1 lfo2;tab-stops:list 36.0pt'>SendMessageAU has not been
+     tested for all cases. The function SendMessageW handles hundreds of
+     messages, each with different input parameters and return values. For the
+     wrapper function SendMessageAU, some of these messages require conversion
+     from Unicode to ANSI before calling SendMessageA, some require conversion
+     from ANSI to Unicode after calling SendMessageA, and some may require
+     both. We have tested those situations used in this application, but not
+     the hundreds of others.</li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l0 level1 lfo2;tab-stops:list 36.0pt'>To initialize the user
+     interface, InitUILang looks for a resource with exactly the same user
+     interface language ID as that of the user. If it can’t find an exact
+     match, it falls back to US English. A better fallback would be to look for
+     a match between the primary language of the resource DLL and the user’s
+     language, ignoring the sub-language. </li>
+</ol>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+Type=Exe
+Reference=*\G{00020430-0000-0000-C000-000000000046}#2.0#0#C:\WINNT\System32\stdole2.tlb#OLE Automation
+Object={6B7E6392-850A-101B-AFC0-4210102A8DA7}#1.1#0; COMCTL32.OCX
+Object={F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.1#0; COMDLG32.OCX
+Reference=*\G{6EB22880-8A19-11D0-81B6-00A0C9231C29}#1.0#0#C:\WINNT\System32\MTS\mtxadmin.dll#MTS 1.0 Admin Type Library
+Form=AssociateRole.frm
+Form=CompImport.frm
+Form=CompInstall.frm
+Form=Form1.frm
+Form=MainCompInstall.frm
+Form=PackageExport.frm
+Form=PackInstall.frm
+Form=RemoteComp.frm
+Form=ServerDlg.frm
+Startup="Explorer"
+HelpFile=""
+ExeName32="Explore.exe"
+Command32=""
+Name="Explore"
+HelpContextID="0"
+CompatibleMode="0"
+MajorVer=1
+MinorVer=0
+RevisionVer=0
+AutoIncrementVer=0
+ServerSupportFiles=0
+VersionCompanyName="Microsoft"
+CompilationType=0
+OptimizationType=0
+FavorPentiumPro(tm)=0
+CodeViewDebugInfo=0
+NoAliasing=0
+BoundsCheck=0
+OverflowCheck=0
+FlPointCheck=0
+FDIVCheck=0
+UnroundedFP=0
+StartMode=0
+Unattended=0
+ThreadPerObject=0
+MaxNumberOfThreads=1
+
+[RVB]
+DeleteClass1=frmOptions
+
+[MS Transaction Server]
+AutoRefresh=1

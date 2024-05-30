@@ -1,0 +1,14 @@
+// Added to just satisfy the workspace requirement
+import "..\include\EventMon.idl";
+
+
+[
+	uuid(5B56AB0C-C9F0-11d2-BEA2-00C04F72EB9B),
+	version (1.0),
+	helpstring("EventMon 1.0 Type Library")	
+]
+
+// added to just satisfy the atl object wizard
+library EventMonLib
+{
+};

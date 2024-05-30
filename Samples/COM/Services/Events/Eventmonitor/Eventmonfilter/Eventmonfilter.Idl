@@ -1,0 +1,32 @@
+// EventMonFilter.idl : IDL source for EventMonFilter.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (EventMonFilter.tlb) and marshalling code.
+
+
+import "..\include\EventMon.idl";
+
+[
+	uuid(FCB7D188-DB25-11d2-A5B6-0000F805C593),
+	version(1.0),
+	helpstring("EventMonFilter 1.0 Type Library")
+]
+library EventMonFILTERLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	// EventMonFilter Object
+	[
+		uuid(621CE0F8-D42C-11D2-9A34-00C04F72EB9B),
+		helpstring("EventMonFilter Class")
+	]
+	coclass EventMonFilter
+	{
+		[default] interface IDiskEvents;
+		interface IFileSystemEvents;
+		interface ISystemEvents;
+		interface IMultiInterfacePublisherFilter;
+	};
+};

@@ -1,0 +1,45 @@
+# Microsoft Developer Studio Generated Dependency File, included by WBCustomizer.mak
+
+.\IE4Events.cpp : \
+	".\IE4Events.h"\
+	".\Resource.h"\
+	".\StdAfx.h"\
+	".\WBCustomizerObj.h"\
+	
+
+.\StdAfx.cpp : \
+	".\StdAfx.h"\
+	
+
+.\WBCustomizer.cpp : \
+	".\IE4Events.h"\
+	".\Resource.h"\
+	".\StdAfx.h"\
+	".\WBCustomizerObj.h"\
+	
+
+!IF  "$(CFG)" == "WBCustomizer - Win32 Debug"
+
+!ELSEIF  "$(CFG)" == "WBCustomizer - Win32 Unicode Debug"
+
+!ELSEIF  "$(CFG)" == "WBCustomizer - Win32 Release MinSize"
+
+!ELSEIF  "$(CFG)" == "WBCustomizer - Win32 Release MinDependency"
+
+!ELSEIF  "$(CFG)" == "WBCustomizer - Win32 Unicode Release MinSize"
+
+!ELSEIF  "$(CFG)" == "WBCustomizer - Win32 Unicode Release MinDependency"
+
+!ENDIF 
+
+.\WBCustomizer.rc : \
+	".\Resource.h"\
+	".\WBCustomizer.rgs"\
+	
+
+.\WBCustomizerObj.cpp : \
+	".\IE4Events.h"\
+	".\Resource.h"\
+	".\StdAfx.h"\
+	".\WBCustomizerObj.h"\
+	

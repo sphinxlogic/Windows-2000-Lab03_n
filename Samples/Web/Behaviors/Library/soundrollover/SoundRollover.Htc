@@ -1,0 +1,65 @@
+<!-- ---------------------------------------------------------------------
+//
+//  Copyright 1999 Microsoft Corporation.  All Rights Reserved.
+//
+//  File:         soundRollover.htc
+//
+//  Description:  The sound rollover behavior provides and easy, 
+//                declarative way to add sound effects to web pages and
+//                html based applications.
+//
+//-------------------------------------------------------------------- -->
+
+<script language="javascript">
+
+//------------------------------------------------------------------------
+// Create an element to play sounds if needed
+//------------------------------------------------------------------------
+
+if (! element.document.all.MSSoundControl)
+{
+  element.document.body.insertAdjacentHTML('beforeEnd', '<img id=MSSoundControl>')
+  element.document.all['MSSoundControl'].style.width = 1
+  element.document.all['MSSoundControl'].style.height = 1
+}
+
+//------------------------------------------------------------------------
+// Attach to element events
+//------------------------------------------------------------------------
+
+element.attachEvent("onmouseover", fnOnMouseOver);
+element.attachEvent("onmousedown", fnOnMouseDown);
+
+//------------------------------------------------------------------------
+//
+//  Function:  fnOnMouseOver()
+//
+//  Synopsis:  When the mouse is over the element, play the hoverSound
+//
+//------------------------------------------------------------------------
+
+function fnOnMouseOver()
+{
+  if (element.hoverSound)
+  {
+    element.document.all['MSSoundControl'].dynsrc = element.hoverSound
+  }
+}
+
+//------------------------------------------------------------------------
+//
+//  Function:  fnOnMouseDown()
+//
+//  Synopsis:  When the element is clicked, play the pressedSound
+//
+//------------------------------------------------------------------------
+
+function fnOnMouseDown()
+{
+  if (element.pressedSound)
+  {
+    element.document.all['MSSoundControl'].dynsrc = element.pressedSound
+  }
+}
+
+</script>

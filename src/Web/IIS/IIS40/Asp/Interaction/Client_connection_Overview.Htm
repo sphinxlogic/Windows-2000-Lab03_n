@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Client Connection</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_client_connection"></a>  Client Connection</h3>
+<p>
+If your Web-based application performs complicated or time-consuming calculations or procedures, it is often useful for it to periodically check-in with the client browser and confirm that they are, indeed, still connected to the server. For instance, an on-line catalog application could check the client browser's connection before and after performing each computationally-intensive operation, such as creating an individual catalog item page from a database, or generating a purchasing invoice. If at any time it discovers that the connection has been abandoned, the application can destroy the session and state information, and devote the server's resources to other tasks.</p>
+<p>
+This sample simulates an application that performs time-consuming calculations. A message is sent to the client browser that the application is about to perform a time-consuming operation, which in this case is simply a large loop. After the operation, the script checks the <b>Response.IsClientConnected</b> property to determine whether the client browser is still connected. If they are still connected, another time-consuming loop is performed, followed by another <b>Response.IsClientConnected</b> check. If the client browser remains connected, the user is rewarded with a thank you message.</p>
+</BODY>
+</HTML>

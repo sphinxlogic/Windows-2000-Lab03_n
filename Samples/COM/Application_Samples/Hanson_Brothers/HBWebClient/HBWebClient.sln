@@ -1,0 +1,13 @@
+Microsoft Visual Studio Solution File, Format Version 1.00
+Project("{BDD4A1A1-7A1F-11D0-AC13-00A0C91E29D5}") = "rekhas2/HBWebClient", "hbwebclient.vip", "{457C3F5B-00EA-4D3F-8C0C-9D9D0CDFF197}"
+EndProject
+Global
+	GlobalSection(LocalDeployment) = postSolution
+		StartupProject = {457C3F5B-00EA-4D3F-8C0C-9D9D0CDFF197}
+	EndGlobalSection
+	GlobalSection(BuildOrder) = postSolution
+		0 = {457C3F5B-00EA-4D3F-8C0C-9D9D0CDFF197}
+	EndGlobalSection
+	GlobalSection(DeploymentRoot) = postSolution
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,397 @@
+<html>
+
+<head>
+<title>Lightweight Proxy Handler</title>
+<link rel="stylesheet" href="../../styles.css" type="text/css">
+<style>
+A:link {color: Olive}
+A:visited {color: 336666}
+A:hover {background:Olive; color: White}
+</style>
+</head>
+
+<body>
+
+<h2>Lightweight Proxy Handler</h2>
+
+<hr>
+
+<h4>Overview</h4>
+
+<p>The Lightweight Proxy Handler sample allows custom marshaling on top of standard
+marshaled interface. </p>
+
+<p>The&nbsp; Lightweight Proxy Handler sample LtWtHndlr sample is a COM client/server
+sample, where the server is a local server which has one custom interface(INumToText),
+this interface has one method. GetText(). The method GetText of INumToText behaves as
+follows, it takes a integer as a &quot;in&quot; parameter and returns textual
+representation string as an &quot;out&quot; parameter, e.g, take 1 return &quot;ONE&quot;,
+takes 2 and returns &quot;TWO&quot;, and so on. Also, returns an error if the
+&quot;in&quot; parameter is outside the bounds. This interface of the server is enhanced,
+by implementing light-weight proxy handler to implement special logic in the proxy of the
+interface. </p>
+
+<p>There are two type of light-weight proxy handlers, and the two subsets of this samples
+show, how to implement both types of handler. </p>
+
+<p>1) <b>No Extra Data</b> Cache the data, i.e. the first time, client asks for 1,
+&quot;ONE&quot; gets returned from the Server(out of proc), the inproc light-weight
+handler caches this for the client. So the next time, client makes the same request, ie.
+1, the call is not sent to the server, the information is returned from the cache. </p>
+
+<p>2) <b>Extra Data</b> In this type, when the interface gets marshaled, there is extra
+information marshaled alongwith the interface to the proxy handler. So in this example,
+the range, or the bounds of the &quot;in&quot; parameter is marshaled as extra data when
+the interface INumToText is marshaled. i.e. 0 to 9 in this example, thus the table consist
+of 10 entries, so, proxy gets asked anything outside this range, proxy handler, Itself can
+simple return error, and not make the call to the server. Besides this, this sample cache
+the data just as in No Extra Data case. </p>
+
+<p>2) <b>Extra Data</b> In this type, when the interface gets marshaled, there is extra
+information marshaled alongwith the interface to the proxy handler. So in this example,
+the range, or the bounds of the &quot;in&quot; parameter is marshaled as extra data when
+the interface INumToText is marshaled. i.e. 0 to 9 in this example, thus the table consist
+of 10 entries, so, proxy gets asked anything outside this range, proxy handler, Itself can
+simple return error, and not make the call to the server. Besides this, this sample cache
+the data just as in No Extra Data case. </p>
+
+<h4>Project Files</h4>
+
+<p>ltwtHndlr bin WithXData NoXData client NumTxtPS NoXData Handler WithXData Handler </p>
+
+<p>The ltwtHndlr directory contains code for shared files which all samples use, namely
+Debug helper functions and the Guids for this sample. The client directory contains code
+for the Client test application. The NumTxtPS directory contains the idl and the midl
+generated proxy/stub code. The noXData directory contains the code for the server where no
+extra data is sent from the server to the handler. The handler sub-directory under noXData
+contains code for the corresponding handler. The WithXData directory contains the code for
+the server where extra data is sent from the server to the handler. The handler
+sub-directory under WithXData contains code for the corresponding handler. </p>
+
+<p>Files in the <b>ltwthandlr</b> directory: </p>
+
+<table border="0">
+  <tr>
+    <td><strong>Files </strong></td>
+    <td><strong>Description</strong> </td>
+  </tr>
+  <tr>
+    <td>MAKEFILE </td>
+    <td>The Platform SDK generic makefile for building the sample. </td>
+  </tr>
+  <tr>
+    <td>noxdata.dsw </td>
+    <td>Microsoft Visual Studio Workspace file. </td>
+  </tr>
+  <tr>
+    <td>WithXData.dsw </td>
+    <td>Microsoft Visual Studio Workspace file. </td>
+  </tr>
+</table>
+
+<p>Files in the <b>ltwthandlr/Client</b> directory: </p>
+
+<table border="0">
+  <tr>
+    <td><strong>Files</strong></td>
+    <td><strong>Description</strong> </td>
+  </tr>
+  <tr>
+    <td>MAKEFILE</td>
+    <td>The Platform SDK generic makefile for building the sample. </td>
+  </tr>
+  <tr>
+    <td>client.cpp</td>
+    <td>Contains the Client implementation WinMain </td>
+  </tr>
+  <tr>
+    <td>ClientNoXData.dsp</td>
+    <td>Microsoft Visual Studio Project file for NoXData client. </td>
+  </tr>
+  <tr>
+    <td>ClientWithXData.dsp&nbsp; </td>
+    <td>Microsoft Visual Studio Project file for WithXData client. </td>
+  </tr>
+</table>
+
+<p>Files in the <b>ltwthandlr\Common</b> directory: </p>
+
+<table border="0">
+  <tr>
+    <td><strong>Files</strong></td>
+    <td><strong>Description</strong> </td>
+  </tr>
+  <tr>
+    <td>debug.cpp </td>
+    <td>Helper trace function for debugging. (Also, used by Client,Servers,and Handlers)</td>
+  </tr>
+  <tr>
+    <td>debug.h</td>
+    <td>Include file for the helper trace function&nbsp;&nbsp;&nbsp; </td>
+  </tr>
+  <tr>
+    <td>guid.cpp</td>
+    <td>Contains the CLSID definition of the Server. (Also, used by Client,Servers, and
+    Handlers)</td>
+  </tr>
+  <tr>
+    <td>guid.h</td>
+    <td>Includes file for the guid definition. </td>
+  </tr>
+</table>
+
+<p>Files in the <b>ltwthandlr\NumTxtPS</b> directory: </p>
+
+<table border="0">
+  <tr>
+    <td><strong>Files </strong></td>
+    <td><strong>Description</strong> </td>
+  </tr>
+  <tr>
+    <td>MAKEFILE</td>
+    <td>The Platform SDK generic makefile for building the sample. </td>
+  </tr>
+  <tr>
+    <td>server.def</td>
+    <td>Module definition file for the Proxy/Stub </td>
+  </tr>
+  <tr>
+    <td>Server.idl </td>
+    <td>Defines INumberToText Interface. </td>
+  </tr>
+  <tr>
+    <td>ServerPS.dsp </td>
+    <td>Microsoft Visual Studio Project file. </td>
+  </tr>
+</table>
+
+<p>Files in the <b>ltwthandlr\NoXData</b> directory: </p>
+
+<table border="0">
+  <tr>
+    <td><strong>Files</strong></td>
+    <td><strong>Description</strong> </td>
+  </tr>
+  <tr>
+    <td>MAKEFILE</td>
+    <td>The Platform SDK generic makefile for building the sample. </td>
+  </tr>
+  <tr>
+    <td>classfact.cpp </td>
+    <td>Implementation of CClassFactory class which implements IClassFactory for the server. </td>
+  </tr>
+  <tr>
+    <td>classfact.h </td>
+    <td>Header file for the CClassFactory class definition </td>
+  </tr>
+  <tr>
+    <td>noxdata.dsp</td>
+    <td>Microsoft Visual Studio Project file. </td>
+  </tr>
+  <tr>
+    <td>NumToText.cpp </td>
+    <td>Implements the interface CNumToText class which implements INumToText for the server. </td>
+  </tr>
+  <tr>
+    <td>NumToText.h&nbsp;&nbsp; </td>
+    <td>Header file for the CNumToText class definition </td>
+  </tr>
+  <tr>
+    <td>NumToTextSvr.CPP&nbsp; </td>
+    <td>Implements WinMain for the server </td>
+  </tr>
+  <tr>
+    <td>NumToTextSvr.reg</td>
+    <td>Server Registration File </td>
+  </tr>
+</table>
+
+<p>&nbsp;Files in the <b>ltwthandlr\NoXData\Handler</b>
+directory: </p>
+
+<table border="0">
+  <tr>
+    <td><strong>Files</strong> </td>
+    <td><strong>Description</strong> </td>
+  </tr>
+  <tr>
+    <td>MAKEFILE </td>
+    <td>The Platform SDK generic makefile for building the sample. </td>
+  </tr>
+  <tr>
+    <td>classfact.cpp </td>
+    <td>Implementation of CClassFactory class which implements IClassFactory for the inproc
+    handler. </td>
+  </tr>
+  <tr>
+    <td>classfact.h </td>
+    <td>Header file for the CClassFactory class definition </td>
+  </tr>
+  <tr>
+    <td>handler.cpp </td>
+    <td>Implements DllMain, DllGetClassObject, and DllCanUnloadNow </td>
+  </tr>
+  <tr>
+    <td>handler.def </td>
+    <td>Module definition file for the handler </td>
+  </tr>
+  <tr>
+    <td>handler.dsp </td>
+    <td>Microsoft Visual Studio Project file. </td>
+  </tr>
+  <tr>
+    <td>handler.reg </td>
+    <td>Handler Registration File </td>
+  </tr>
+  <tr>
+    <td>NumToText.cpp </td>
+    <td>Implements the interface CNumToText class which implements INumToText for the handler.
+    </td>
+  </tr>
+  <tr>
+    <td>NumToText.h </td>
+    <td>Header file for the CNumToText class definition </td>
+  </tr>
+</table>
+
+<p>Files in the <b>ltwthandlr\WithXData</b> directory: </p>
+
+<table border="0">
+  <tr>
+    <td><strong>Files</strong> </td>
+    <td><strong>Description</strong> </td>
+  </tr>
+  <tr>
+    <td>MAKEFILE </td>
+    <td>The Platform SDK generic makefile for building the sample. </td>
+  </tr>
+  <tr>
+    <td>classfact.cpp </td>
+    <td>Implementation of CClassFactory class which implements IClassFactory for the server. </td>
+  </tr>
+  <tr>
+    <td>classfact.h </td>
+    <td>Header file for the CClassFactory class definition </td>
+  </tr>
+  <tr>
+    <td>NumToText.cpp </td>
+    <td>Implements the interface CNumToText class which implements INumToText for the server. </td>
+  </tr>
+  <tr>
+    <td>NumToText.h </td>
+    <td>Header file for the CNumToText class definition </td>
+  </tr>
+  <tr>
+    <td>NumToTextSvr.CPP </td>
+    <td>Implements WinMain for the server </td>
+  </tr>
+  <tr>
+    <td>NumToTextSvr.reg </td>
+    <td>Server Registration File </td>
+  </tr>
+  <tr>
+    <td>withXData.dsp </td>
+    <td>Microsoft Visual Studio Project file. </td>
+  </tr>
+</table>
+
+<p>&nbsp;Files in the <b>ltwthandlr\WithXData\Handler</b>
+directory: </p>
+
+<table border="0">
+  <tr>
+    <td><strong>Files</strong> </td>
+    <td><strong>Description</strong> </td>
+  </tr>
+  <tr>
+    <td>MAKEFILE </td>
+    <td>The Platform SDK generic makefile for building the sample. </td>
+  </tr>
+  <tr>
+    <td>classfact.cpp </td>
+    <td>Implementation of CClassFactory class which implements IClassFactory for the inproc
+    handler. </td>
+  </tr>
+  <tr>
+    <td>classfact.h </td>
+    <td>Header file for the CClassFactory class definition </td>
+  </tr>
+  <tr>
+    <td>handler.cpp </td>
+    <td>Implements DllMain, DllGetClassObject, and DllCanUnloadNow </td>
+  </tr>
+  <tr>
+    <td>handler.def </td>
+    <td>Module definition file for the handler </td>
+  </tr>
+  <tr>
+    <td>handler.dsp </td>
+    <td>Microsoft Visual Studio Project file. </td>
+  </tr>
+  <tr>
+    <td>handler.reg </td>
+    <td>Handler Registration File </td>
+  </tr>
+  <tr>
+    <td>NumToText.cpp </td>
+    <td>Implements the interface CNumToText class which implements INumToText for the handler.
+    </td>
+  </tr>
+  <tr>
+    <td>NumToText.h </td>
+    <td>Header file for the CNumToText class definition </td>
+  </tr>
+</table>
+
+<p>&nbsp; </p>
+
+<h4>Build Notes</h4>
+
+<p>The sample mainly, uses OutputDebugString to exhibit the behavior, so the best way to
+use this sample, would be to build the Debug version of the sample, and run DBMON
+(Platform SDK Sample), which displays OutputDebugString from multiple application in one
+console Or run the Client and the Server application in the debugger environment. Here are
+some steps for running and observing the operation of the Light-weight proxy handler
+samples: 
+
+<ol>
+  <li>Build all of the sample parts from within the LteHndler directory. Note: there are two
+    different types of light-weight proxy handler samples, one each in NoXData and WithXData
+    subdirectory.</li>
+  <li>This will build the samples and put the executables in under the ltwthndlr\bin
+    corresponding subdirectories.</li>
+  <li>Modify the four Registration files in the NoXData, NoXData\handler, WithXData, WithXData\handler
+    directories, to reflect your complete path.</li>
+  <li>Register these file, by either double clicking in on these files or running regedit <filename></li>
+  <li>Register the the proxy/stub file from the bin directory by running regsvr32 serverps.dll</li>
+  <li>Run the Server and the Client in the debugger environment so one can watch the
+    OutputDebugString, or use DBMON utility (ships with Platform SDK bin\winnt) to watch the
+    OutputDebugStrings.</li>
+</ol>
+
+<h4>Remarks</h4>
+
+<p>For convenient use in Microsoft's Visual Studio, workspace files are provided. Bulding
+no extra data Load the noXData.DSW under noXData directory in Microsoft Visual Studio, and
+compile, build all, this will cause all the relevant portions of the sample to be
+built.From within Visual Studio you can then browse the C++ classes of the sample source
+and generally perform the other edit-compile-debug operations. Note that, as part of the
+Platform SDK, the compilation of these samples from within Visual Studio requires the
+proper setting of Platform SDK directory paths within Visual Studio. </p>
+
+<table border="0" width="80%" bgcolor="#EEF0FF">
+  <tr>
+    <td width="100%"><pre><font <font size="2">&nbsp;
+    MSDEV WithXData.DSW
+</pre>
+    </font></td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<hr>
+
+<p>&nbsp;</p>
+</body>
+</html>

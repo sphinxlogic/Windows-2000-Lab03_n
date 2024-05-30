@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Executing Stored Procedures</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_executing_stored_procedures"></a>  Executing Stored Procedures</h3>
+<p>
+Stored procedures, such as those provided by Microsoft&reg; SQL Server, are the keys to making large, mission-critical database-applications function smoothly and efficiently. This example demonstrates how you can access this functionality using ADO from within an ASP script.</p>
+<p>
+This script first creates an instance of the <b>Connection</b> object and uses it to open an ODBC connection with the SQL IISSDK database. A special object, called a <b>Command</b> object, is created next. The <b>Command</b> object's <b>CommandText</b> property is set to the string of the command you wish to issue, which for this sample is the name of a stored procedure, ByRoyalty. The <b>Command</b> object <b>Parameters </b>property provides a collection of <b>Parameter</b> objects, and this script uses the <b>Append</b> method to add a new parameter to the collection. </p>
+<p>
+Once <b>CreateParameter</b> has been used to name and configure the parameter instance, the parameter name assigned can be used to access the value of that parameter directly, as if the <b>Command</b> object itself was a collection. Thus </p>
+<pre>oCmd(&quot;@Percentage&quot;) = 75 
+</pre>
+<p>
+assigns the value <code>75</code> to the parameter that the script has labeled as <code>@Percentage</code>. The <b>Command</b> object's <b>Execute</b> method is invoked, and the resulting recordset is assigned to the previously created object variable <i>oRs</i>. The first record of the resultant recordset is displayed. </p>
+<p>
+<b>Note</b>&nbsp;&nbsp;SQL Server must be installed, and configured properly, on the same machine on which IIS is running in order for this sample to work correctly. In addition, the IISSDK data source must also be configured properly.</p>
+</BODY>
+</HTML>

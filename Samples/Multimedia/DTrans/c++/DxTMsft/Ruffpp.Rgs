@@ -1,0 +1,23 @@
+HKCR
+{
+    DXPropPage.Microsoft.RuffleProp.1 = s 'RuffleProp'
+    {
+	CLSID = s '{A21CA3E1-E6DA-11d1-BA12-00C04FB6BD36}'
+    }
+    DXPropPage.Microsoft.RuffleProp = s 'RuffleProp'
+    {
+	CurVer = s 'DXPropPage.Microsoft.RuffleProp.1'
+	CLSID = s '{A21CA3E1-E6DA-11d1-BA12-00C04FB6BD36}'
+    }
+    NoRemove CLSID
+    {
+	ForceRemove {A21CA3E1-E6DA-11d1-BA12-00C04FB6BD36} = s 'RuffleProp'
+	{
+	    ForceRemove 'Programmable'
+	    InprocServer32 = s '%MODULE%'
+	    {
+		val ThreadingModel = s 'Apartment'
+	    }
+	}
+    }
+}

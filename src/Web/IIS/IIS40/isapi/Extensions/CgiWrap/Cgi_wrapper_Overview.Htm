@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>CGI Wrapper</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_cgi_wrapper"></a>CGI Wrapper</h3>
+<p>
+This sample demonstrates how you can create a wrapper for an ISAPI DLL, so that the DLL can be executed on servers that support only CGI applications. This sample is not itself an ISAPI extension, but rather extends the environment in which ISAPI applications can be used. </p>
+<p>
+To use this sample, you must first compile it into an EXE file. It then must be renamed, so that the filename before the .exe extension matches the filename of the DLL that you wish to wrap. For instance, if the target DLL is MyExtension.DLL, you would rename this sample's executable to MyExtension.EXE. To change target DLLs, recompilation is unnecessary, as only the filename must be changed. </p>
+<p>
+When this application is executed by the server, in response to a client browser's request, the application first parses its own filename to arrive at the name of its companion DLL. This DLL is then loaded, and the address of the ISAPI extension entry-point functions (<b>GetExtensionVersion</b> and <b>HttpExtensionVersion</b>) are discovered using the <b>GetProcAddress</b> function. </p>
+<p>
+The application then creates and fills a new ECB, and calls <b>HttpExtensionProc</b> in the ISAPI DLL. Most of the functionality that IIS usually provides, in the form of call-back functions such as <b>GetServerVariable</b>, <b>ReadClient</b>, <b>WriteClient</b>, and <b>ServerSupportFunction</b>, are implemented within this application. </p>
+<p>
+<b>Note</b>&nbsp;&nbsp;This sample can be useful for debugging simple ISAPI extensions, but the execution environment and function implementation are substantially different than the environment and implementation of the actual server. Therefore, it is probably better used as a resource for understanding more about the IIS-ISAPI interaction. </p>
+<p>
+This sample is provided for educational purposes only. It has not been tested in a production environment, and Microsoft&reg; will not provide technical support for it. </p>
+</BODY>
+</HTML>

@@ -1,0 +1,891 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<ROOT>
+ <ID>477
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>10' Coax RG58</Description>
+        <Price>8.95</Price>
+</ID>
+ <ID>478
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>10' IEEE Parallel</Description>
+        <Price>18.95</Price>
+</ID>
+ <ID>479
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>10' Monitor/Mouse Ext. DB9 M/F</Description>
+        <Price>6.95</Price>
+</ID>
+ <ID>480
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>10' Parallel Cable</Description>
+        <Price>8.95</Price>
+</ID>
+ <ID>481
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>10' Serial DB25 M/F</Description>
+        <Price>6.95</Price>
+</ID>
+ <ID>482
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>10'AT Serial 9F/25M</Description>
+        <Price>6.95</Price>
+</ID>
+ <ID>483
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>10'Key.Ext.Din5 M/F</Description>
+        <Price>5.95</Price>
+</ID>
+ <ID>484
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>10'Serial DB25 M/M</Description>
+        <Price>6.95</Price>
+</ID>
+ <ID>485
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>10'VGA Ext.</Description>
+        <Price>10.95</Price>
+</ID>
+ <ID>486
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>100'RJ45 UTP 4-Pair</Description>
+        <Price>39.95</Price>
+</ID>
+ <ID>487
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>1000' LEVL-5 4-Pair</Description>
+        <Price>190.95</Price>
+</ID>
+ <ID>488
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>128MB EDO ECC Unbuffered</Description>
+        <Price>209.95</Price>
+</ID>
+ <ID>489
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>128MB PC100 SDRAM</Description>
+        <Price>199.95</Price>
+</ID>
+ <ID>490
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>128MB Sync/DIMM w/ EPROM</Description>
+        <Price>179.95</Price>
+</ID>
+ <ID>491
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>15' DB 25 M/M</Description>
+        <Price>9.95</Price>
+</ID>
+ <ID>492
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>15' Parallel Cable</Description>
+        <Price>12.95</Price>
+</ID>
+ <ID>493
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>15'RJ45 CAT 5</Description>
+        <Price>10.95</Price>
+</ID>
+ <ID>494
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>150W Speakers</Description>
+        <Price>69.95</Price>
+</ID>
+ <ID>495
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>16MB 72 pin 4X32 60ns</Description>
+        <Price>45.95</Price>
+</ID>
+ <ID>496
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>16MB 72 pin 4X32 60ns EDO</Description>
+        <Price>49.95</Price>
+</ID>
+ <ID>497
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>18' COAX CABLE RG58</Description>
+        <Price>12.95</Price>
+</ID>
+ <ID>498
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>1998 Best 10 Pak</Description>
+        <Price>24.95</Price>
+</ID>
+ <ID>499
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>230W. Power Supply</Description>
+        <Price>39.95</Price>
+</ID>
+ <ID>500
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>25' Coax RG58</Description>
+        <Price>14.95</Price>
+</ID>
+ <ID>501
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>25'Parallel Cable</Description>
+        <Price>19.95</Price>
+</ID>
+ <ID>502
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>25'RJ45 CAT 5</Description>
+        <Price>16.95</Price>
+</ID>
+ <ID>503
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>250W.ATX</Description>
+        <Price>64.95</Price>
+</ID>
+ <ID>504
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>250W.P/S</Description>
+        <Price>42.95</Price>
+</ID>
+ <ID>505
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>256MB Sync/DIMM PC100</Description>
+        <Price>769.95</Price>
+</ID>
+ <ID>506
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>25M-50M Cent.6'</Description>
+        <Price>17.95</Price>
+</ID>
+ <ID>507
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num>00001</Manuf_Part_Num>
+        <Description>25W x2 Stereo Powered Speakers</Description>
+        <Price>9.95</Price>
+</ID>
+ <ID>508
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>3' CAT 5</Description>
+        <Price>3.95</Price>
+</ID>
+ <ID>509
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>300W ATX</Description>
+        <Price>89.95</Price>
+</ID>
+ <ID>510
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>300W.P/S UL</Description>
+        <Price>69.95</Price>
+</ID>
+ <ID>511
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>32MB 72 Pin 8*32</Description>
+        <Price>84.95</Price>
+</ID>
+ <ID>512
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>32MB 8*32 EDO 60NS</Description>
+        <Price>79.95</Price>
+</ID>
+ <ID>513
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>32MB BX 100MHz Dimm w/ EPROM</Description>
+        <Price>49.95</Price>
+</ID>
+ <ID>514
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>32MB Sync/DIMM 10ns W/EPROM</Description>
+        <Price>44.95</Price>
+</ID>
+ <ID>515
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>36x IDE CD-ROM</Description>
+        <Price>39.95</Price>
+</ID>
+ <ID>516
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>400W ATX</Description>
+        <Price>129.95</Price>
+</ID>
+ <ID>517
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>40x IDE CD-ROM</Description>
+        <Price>49.95</Price>
+</ID>
+ <ID>518
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>4MB 30Pin Simms</Description>
+        <Price>19.95</Price>
+</ID>
+ <ID>519
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>5 Drive SCSI Cable Int.</Description>
+        <Price>12.95</Price>
+</ID>
+ <ID>520
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>5.25 2 bay SCSI 3</Description>
+        <Price>169.95</Price>
+</ID>
+ <ID>521
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>50 OHM Term. Qty. 2</Description>
+        <Price>6.95</Price>
+</ID>
+ <ID>522
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>50'Coax RG58</Description>
+        <Price>20.95</Price>
+</ID>
+ <ID>523
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>50'RJ45 UTP 4-Pair</Description>
+        <Price>29.95</Price>
+</ID>
+ <ID>524
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>50/50 SCSI 3'</Description>
+        <Price>17.95</Price>
+</ID>
+ <ID>525
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>50F-68F Int. Adapter</Description>
+        <Price>34.95</Price>
+</ID>
+ <ID>526
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>50M-68M Int. Adapter</Description>
+        <Price>34.95</Price>
+</ID>
+ <ID>527
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>55 Piece Computer Tool Kit</Description>
+        <Price>49.95</Price>
+</ID>
+ <ID>528
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>6' IEEE PARALLEL</Description>
+        <Price>15.95</Price>
+</ID>
+ <ID>529
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>6' Key M-M</Description>
+        <Price>8.95</Price>
+</ID>
+ <ID>530
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>6' Key.Ext.Din5 M/F</Description>
+        <Price>5.95</Price>
+</ID>
+ <ID>531
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>6' VGA Ext.</Description>
+        <Price>7.95</Price>
+</ID>
+ <ID>532
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>6'AT Serial 9F/25M</Description>
+        <Price>6.95</Price>
+</ID>
+ <ID>533
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>6'Monitor/Mouse Ext.DB9 M/F</Description>
+        <Price>5.95</Price>
+</ID>
+ <ID>534
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>6'Parallel Cable</Description>
+        <Price>5.95</Price>
+</ID>
+ <ID>535
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>6'PS/2 Key.Ext.</Description>
+        <Price>5.95</Price>
+</ID>
+ <ID>536
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>6'RJ45 UTP 4-Pair</Description>
+        <Price>5.95</Price>
+</ID>
+ <ID>537
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>6'Serial DB25 M/F</Description>
+        <Price>6.95</Price>
+</ID>
+ <ID>538
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>6'Serial DB25 M/M</Description>
+        <Price>5.95</Price>
+</ID>
+ <ID>539
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>64MB EDO 16*32 60NS</Description>
+        <Price>129.95</Price>
+</ID>
+ <ID>540
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>64MB PC100 SDRAM 8ns</Description>
+        <Price>99.95</Price>
+</ID>
+ <ID>541
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>64MB Sync/DIMM 10ns HD w/EPROM</Description>
+        <Price>89.95</Price>
+</ID>
+ <ID>542
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>7' Cat-5 CROSSED PAIR</Description>
+        <Price>7.95</Price>
+</ID>
+ <ID>543
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>8' Parallel LapLink</Description>
+        <Price>10.95</Price>
+</ID>
+ <ID>544
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>8'Serial LapLink</Description>
+        <Price>12.95</Price>
+</ID>
+ <ID>545
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num>00002</Manuf_Part_Num>
+        <Description>80 Watt Speakers</Description>
+        <Price>29.95</Price>
+</ID>
+ <ID>546
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>9F/25M Gender</Description>
+        <Price>5.95</Price>
+</ID>
+ <ID>547
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>9M/25F Adapter</Description>
+        <Price>7.95</Price>
+</ID>
+ <ID>548
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>9M/25M Gender Changer</Description>
+        <Price>5.95</Price>
+</ID>
+ <ID>549
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>ABCD Switch Box DB25</Description>
+        <Price>29.95</Price>
+</ID>
+ <ID>550
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>ACTIVE SCSI 1 Terminator</Description>
+        <Price>24.95</Price>
+</ID>
+ <ID>551
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>AT FD Combo 30</Description>
+        <Price>3.95</Price>
+</ID>
+ <ID>552
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>AT/ATX CASE FAN</Description>
+        <Price>15.95</Price>
+</ID>
+ <ID>553
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>AT/PS2 Keybd.</Description>
+        <Price>5.95</Price>
+</ID>
+ <ID>554
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>ATX Power Supply</Description>
+        <Price>54.95</Price>
+</ID>
+ <ID>555
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>Auto A/B</Description>
+        <Price>29.95</Price>
+</ID>
+ <ID>556
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>BNC F/F</Description>
+        <Price>2.95</Price>
+</ID>
+ <ID>557
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>BNC T Connector</Description>
+        <Price>3.95</Price>
+</ID>
+ <ID>558
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>CD-74Min Single</Description>
+        <Price>1.95</Price>
+</ID>
+ <ID>559
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>CPU Fan</Description>
+        <Price>24.95</Price>
+</ID>
+ <ID>560
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>DAT CLEANING KIT</Description>
+        <Price>19.95</Price>
+</ID>
+ <ID>561
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>DB25 F/F Gender</Description>
+        <Price>5.95</Price>
+</ID>
+ <ID>562
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>DB25 M/M Gender</Description>
+        <Price>5.95</Price>
+</ID>
+ <ID>563
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>DB25-SCSI 1  6'</Description>
+        <Price>19.95</Price>
+</ID>
+ <ID>564
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>DB25-SCSI 2 3'</Description>
+        <Price>19.95</Price>
+</ID>
+ <ID>565
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>DB25-SCSI II 6'</Description>
+        <Price>27.95</Price>
+</ID>
+ <ID>566
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>DB50/SCSI-2</Description>
+        <Price>29.95</Price>
+</ID>
+ <ID>567
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>DB9 F/F Gender</Description>
+        <Price>3.95</Price>
+</ID>
+ <ID>568
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>DB9 M/M Gender</Description>
+        <Price>3.95</Price>
+</ID>
+ <ID>569
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>DB9F to DB25M</Description>
+        <Price>6.95</Price>
+</ID>
+ <ID>570
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>Dual IDE Cable 24</Description>
+        <Price>5.95</Price>
+</ID>
+ <ID>571
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>F/H SCSI II Ext.Case</Description>
+        <Price>119.95</Price>
+</ID>
+ <ID>572
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>Floppy Power Adapter</Description>
+        <Price>3.95</Price>
+</ID>
+ <ID>573
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>H/H 3.5 Ext. SCSI II</Description>
+        <Price>89.95</Price>
+</ID>
+ <ID>574
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>H/H 5.25 SCSI II</Description>
+        <Price>89.95</Price>
+</ID>
+ <ID>575
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>H/H Ext. 3.5 SCSI 1</Description>
+        <Price>69.95</Price>
+</ID>
+ <ID>576
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>H/H Ext.Case 5.25</Description>
+        <Price>79.95</Price>
+</ID>
+ <ID>577
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>H/H SCSI III CASE</Description>
+        <Price>139.95</Price>
+</ID>
+ <ID>578
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>HD50M/CN50F GC</Description>
+        <Price>21.95</Price>
+</ID>
+ <ID>579
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>IDE Tray</Description>
+        <Price>40.95</Price>
+</ID>
+ <ID>580
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>Joystick Y Adapter</Description>
+        <Price>8.95</Price>
+</ID>
+ <ID>581
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num>OEM</Manuf_Part_Num>
+        <Description>Microphone</Description>
+        <Price>10.95</Price>
+</ID>
+ <ID>582
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num>MiniCase</Manuf_Part_Num>
+        <Description>Mini Tower AT Case</Description>
+        <Price>29.95</Price>
+</ID>
+ <ID>583
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>Mon.Switch DB-15 ABCD</Description>
+        <Price>39.95</Price>
+</ID>
+ <ID>584
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>Monitor Switch DB-9</Description>
+        <Price>29.95</Price>
+</ID>
+ <ID>585
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>Mouse Pad</Description>
+        <Price>3.95</Price>
+</ID>
+ <ID>586
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>CPU Cooling FAN</Description>
+        <Price>29.95</Price>
+</ID>
+ <ID>587
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>Smart Fan Variable</Description>
+        <Price>19.95</Price>
+</ID>
+ <ID>588
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>P8/P9 Extension</Description>
+        <Price>10.95</Price>
+</ID>
+ <ID>589
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num>Foo1</Manuf_Part_Num>
+        <Description>PCI 3D Sound Card</Description>
+        <Price>29.95</Price>
+</ID>
+ <ID>590
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>Power Cable</Description>
+        <Price>5.95</Price>
+</ID>
+ <ID>591
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>PS2 Mouse/Serial Adapter</Description>
+        <Price>5.95</Price>
+</ID>
+ <ID>592
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>PS2-Serial</Description>
+        <Price>5.95</Price>
+</ID>
+ <ID>593
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>PS2/AT Keybd.</Description>
+        <Price>5.95</Price>
+</ID>
+ <ID>594
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>RJ-45 Coupler</Description>
+        <Price>1.95</Price>
+</ID>
+ <ID>595
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>SCSI 1 Terminator</Description>
+        <Price>14.95</Price>
+</ID>
+ <ID>596
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>SCSI 1 to 3 3'</Description>
+        <Price>49.95</Price>
+</ID>
+ <ID>597
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>SCSI 1 to 3 6'</Description>
+        <Price>54.95</Price>
+</ID>
+ <ID>598
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>SCSI 1-2 3'</Description>
+        <Price>25.95</Price>
+</ID>
+ <ID>599
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>SCSI 1-2 6'</Description>
+        <Price>29.95</Price>
+</ID>
+ <ID>600
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>SCSI 2 Terminator</Description>
+        <Price>20.95</Price>
+</ID>
+ <ID>601
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>SCSI 2-2 6'</Description>
+        <Price>39.95</Price>
+</ID>
+ <ID>602
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>SCSI 2-3 3'</Description>
+        <Price>49.95</Price>
+</ID>
+ <ID>603
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>SCSI 2/2 3'</Description>
+        <Price>32.95</Price>
+</ID>
+ <ID>604
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>SCSI 3 18Internal Single</Description>
+        <Price>20.95</Price>
+</ID>
+ <ID>605
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>SCSI 3 int. 5 Connectors</Description>
+        <Price>60.95</Price>
+</ID>
+ <ID>606
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>SCSI 3 Int.36 4 Conn.</Description>
+        <Price>19.95</Price>
+</ID>
+ <ID>607
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>SCSI 3-1 3'</Description>
+        <Price>49.95</Price>
+</ID>
+ <ID>608
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>SCSI 3-1 6'</Description>
+        <Price>54.95</Price>
+</ID>
+ <ID>609
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>SCSI 3-2 3'</Description>
+        <Price>38.95</Price>
+</ID>
+ <ID>610
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>SCSI 3-2 Int. Adapter</Description>
+        <Price>35.95</Price>
+</ID>
+ <ID>611
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>SCSI 3-3  3'</Description>
+        <Price>49.95</Price>
+</ID>
+ <ID>612
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>SCSI 3-3 6'</Description>
+        <Price>59.95</Price>
+</ID>
+ <ID>613
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>SCSI Cable 36</Description>
+        <Price>7.95</Price>
+</ID>
+ <ID>614
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>SCSI II IN/OUT Adapter</Description>
+        <Price>25.95</Price>
+</ID>
+ <ID>615
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>TR3 EXTRA</Description>
+        <Price>35.95</Price>
+</ID>
+ <ID>616
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>TR-1 800MB</Description>
+        <Price>29.95</Price>
+</ID>
+ <ID>617
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>TR-2 1.6GB</Description>
+        <Price>32.95</Price>
+</ID>
+ <ID>618
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>TR-3 3.2GB</Description>
+        <Price>35.95</Price>
+</ID>
+ <ID>619
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>TR-4 4/8GB</Description>
+        <Price>39.95</Price>
+</ID>
+ <ID>620
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>VGA 15M/15M</Description>
+        <Price>9.95</Price>
+</ID>
+ <ID>621
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>VGA 15M/15M 10'</Description>
+        <Price>14.95</Price>
+</ID>
+ <ID>622
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>VGA 15M/15M 6'</Description>
+        <Price>5.95</Price>
+</ID>
+ <ID>623
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>VGA/Mouse/Kbd AB Switch Box</Description>
+        <Price>29.95</Price>
+</ID>
+ <ID>624
+        <Manufacturer>Various</Manufacturer>
+        <Manuf_Part_Num></Manuf_Part_Num>
+        <Description>Y Power Cable</Description>
+        <Price>5.95</Price>
+</ID>
+</ROOT>

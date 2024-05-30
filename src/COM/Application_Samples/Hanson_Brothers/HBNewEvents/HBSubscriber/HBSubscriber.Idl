@@ -1,0 +1,29 @@
+// HBSubscriber.idl : IDL source for HBSubscriber.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (HBSubscriber.tlb) and marshalling code.
+
+import "..\include\hb.idl";
+
+[
+	uuid(05662CE2-0024-11D3-8403-0000F8751B94),
+	version(1.0),
+	helpstring("HBSubscriber 1.0 Type Library")
+]
+library HBSUBSCRIBERLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(A04D2D0E-0188-11D3-8403-0000F8751B94),
+		helpstring("HBSubscriber Class")
+	]
+	
+	coclass HBSubscriber
+	{
+		[default] interface IHB;
+		interface INewsService;
+	};
+};

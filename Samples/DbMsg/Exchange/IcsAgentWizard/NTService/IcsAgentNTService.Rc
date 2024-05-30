@@ -1,0 +1,207 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "#include ""afxres.rc""  // Standard components\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "ICSAGENTNTSERVICE AppWizard\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "ICSAGENTNTSERVICE\0"
+            VALUE "LegalCopyright", "Copyright © 1998\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "ICSAGENTNTSERVICE.DLL\0"
+            VALUE "ProductName", "ICS Agent AppWizard (NT Service)\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_CUSTOM1 DIALOGEX 0, 0, 303, 197
+STYLE DS_CONTROL | WS_CHILD | WS_TABSTOP
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Tree1",IDC_EXCHANGE_TREE,"SysTreeView32",TVS_HASBUTTONS | 
+                    TVS_HASLINES | TVS_LINESATROOT | TVS_DISABLEDRAGDROP | 
+                    TVS_NOTOOLTIPS | TVS_CHECKBOXES | WS_BORDER | WS_TABSTOP,
+                    5,5,185,185,WS_EX_STATICEDGE
+    LTEXT           "Select which folders you wish to monitor by clicking in their corresponding checkboxes.",
+                    IDC_STATIC,195,20,100,140
+END
+
+IDD_CUSTOM2 DIALOG DISCARDABLE  0, 0, 303, 197
+STYLE DS_CONTROL | WS_CHILD | WS_TABSTOP
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Manual synchronization (using an SCP)",IDC_SCP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,20,95,145,15
+    CONTROL         "Continuous polling",IDC_POLL_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,20,110,145,15
+    LTEXT           "Select the mechanisms by which you wish to synchronize your agent:",
+                    IDC_STATIC,20,35,215,30
+    GROUPBOX        "Synchronization",IDC_STATIC,10,10,280,175
+END
+
+IDD_CUSTOM3 DIALOG DISCARDABLE  0, 0, 303, 197
+STYLE DS_CONTROL | WS_CHILD | WS_TABSTOP
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "TODO: Place controls for custom dialog 3 here",
+                    IDC_STATIC,32,79,232,19
+END
+
+IDD_CUSTOM4 DIALOG DISCARDABLE  0, 0, 303, 197
+STYLE DS_CONTROL | WS_CHILD | WS_TABSTOP
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "TODO: Place controls for custom dialog 4 here",
+                    IDC_STATIC,32,79,232,19
+END
+
+IDD_CUSTOM5 DIALOG DISCARDABLE  0, 0, 303, 197
+STYLE DS_CONTROL | WS_CHILD | WS_TABSTOP
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "TODO: Place controls for custom dialog 5 here",
+                    IDC_STATIC,32,79,232,19
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEMPLATE
+//
+
+NEWPROJ.INF             TEMPLATE DISCARDABLE    "template\\newproj.inf"
+CONFIRM.INF             TEMPLATE DISCARDABLE    "template\\confirm.inf"
+STDAFX.CPP              TEMPLATE DISCARDABLE    "Template\\StdAfx.cpp"
+ERRORCODES.H            TEMPLATE DISCARDABLE    "Template\\ErrorCodes.h"
+ICS.CPP                 TEMPLATE DISCARDABLE    "Template\\ICS.cpp"
+ICS.H                   TEMPLATE DISCARDABLE    "Template\\ICS.h"
+ICSAGENT.CPP            TEMPLATE DISCARDABLE    "Template\\ICSAgent.cpp"
+ICSAGENT.H              TEMPLATE DISCARDABLE    "Template\\ICSAgent.h"
+ICSDEMOCONTENTCOLLECTOR.CPP TEMPLATE DISCARDABLE    "Template\\ICSDemoContentCollector.cpp"
+ICSDEMOCONTENTCOLLECTOR.H TEMPLATE DISCARDABLE    "Template\\ICSDemoContentCollector.h"
+ICSDEMOHIERARCHYCOLLECTOR.CPP TEMPLATE DISCARDABLE    "Template\\ICSDemoHierarchyCollector.cpp"
+ICSDEMOHIERARCHYCOLLECTOR.H TEMPLATE DISCARDABLE    "Template\\ICSDemoHierarchyCollector.h"
+ICSSYNCHRONIZER.CPP     TEMPLATE DISCARDABLE    "Template\\ICSSynchronizer.cpp"
+ICSSYNCHRONIZER.H       TEMPLATE DISCARDABLE    "Template\\ICSSynchronizer.h"
+STDAFX.H                TEMPLATE DISCARDABLE    "Template\\StdAfx.h"
+ICSTABLE.CPP            TEMPLATE DISCARDABLE    "Template\\ICSTable.cpp"
+ICSTABLE.H              TEMPLATE DISCARDABLE    "Template\\ICSTable.h"
+MAPIAPP.H               TEMPLATE DISCARDABLE    "Template\\MAPIApp.h"
+MAPIAPP.CPP             TEMPLATE DISCARDABLE    "Template\\MAPIApp.cpp"
+AgentService.cpp        TEMPLATE DISCARDABLE    "Template\\AgentService.cpp"
+AgentService.h          TEMPLATE DISCARDABLE    "Template\\AgentService.h"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON1               ICON    DISCARDABLE     "res\\icon1.ico"
+IDI_ICSAGENTNTSERVICE   ICON    DISCARDABLE     "res\\ICSAgentNTService.ico"
+IDI_ICON2               ICON    DISCARDABLE     "res\\icon2.ico"
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+#include "afxres.rc"  // Standard components
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

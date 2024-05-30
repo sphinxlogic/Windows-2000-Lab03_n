@@ -1,0 +1,22 @@
+HKCR
+{
+	TxSink.TxSink.1 = s 'TxSink Class'
+	{
+		CLSID = s '{66B24CBE-7886-11D0-B169-00AA00BA3258}'
+	}
+	TxSink.TxSink = s 'TxSink Class'
+	{
+		CurVer = s 'TxSink.TxSink.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {66B24CBE-7886-11D0-B169-00AA00BA3258} = s 'TxSink Class'
+		{
+			ProgID = s 'TxSink.TxSink.1'
+			VersionIndependentProgID = s 'TxSink.TxSink'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			val AppID = s '{C2202E8A-773D-11D0-B167-00AA00BA3258}'
+		}
+	}
+}

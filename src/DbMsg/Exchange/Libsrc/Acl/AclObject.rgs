@@ -1,0 +1,25 @@
+HKCR
+{
+	MSExchange.ACLObject.1 = s 'ACLObject Class'
+	{
+		CLSID = s '{A0E483FD-F971-11D1-A956-00C04FB155E5}'
+	}
+	MSExchange.ACLObject = s 'ACLObject Class'
+	{
+		CLSID = s '{A0E483FD-F971-11D1-A956-00C04FB155E5}'
+		CurVer = s 'MSExchange.ACLObject.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {A0E483FD-F971-11D1-A956-00C04FB155E5} = s 'ACLObject Class'
+		{
+			ProgID = s 'MSExchange.ACLObject.1'
+			VersionIndependentProgID = s 'MSExchange.ACLObject'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+		}
+	}
+}

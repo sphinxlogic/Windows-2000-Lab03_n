@@ -1,0 +1,25 @@
+HKCR
+{
+	MSExchange.Rule.1 = s 'Rule Class'
+	{
+		CLSID = s '{92C2FEE7-00A6-11D2-BC07-00C04F8C92F7}'
+	}
+	MSExchange.Rule = s 'Rule Class'
+	{
+		CLSID = s '{92C2FEE7-00A6-11D2-BC07-00C04F8C92F7}'
+		CurVer = s 'MSExchange.Rule.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {92C2FEE7-00A6-11D2-BC07-00C04F8C92F7} = s 'Rule Class'
+		{
+			ProgID = s 'MSExchange.Rule.1'
+			VersionIndependentProgID = s 'MSExchange.Rule'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+		}
+	}
+}

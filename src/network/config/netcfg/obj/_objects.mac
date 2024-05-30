@@ -1,0 +1,36 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\snetcfg.res \
+    $(_OBJ_DIR)\alpha\main.obj \
+    $(_OBJ_DIR)\alpha\snetcfg.obj \
+    $(_OBJ_DIR)\alpha\implinc.obj
+
+PASS0_ALPHA_OBJECTS= \
+    $(PASS0_HEADERDIR)\idls.h
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\snetcfg.res \
+    $(_OBJ_DIR)\axp64\main.obj \
+    $(_OBJ_DIR)\axp64\snetcfg.obj \
+    $(_OBJ_DIR)\axp64\implinc.obj
+
+PASS0_AXP64_OBJECTS= \
+    $(PASS0_HEADERDIR)\idls.h
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\snetcfg.res \
+    $(_OBJ_DIR)\i386\main.obj \
+    $(_OBJ_DIR)\i386\snetcfg.obj \
+    $(_OBJ_DIR)\i386\implinc.obj
+
+PASS0_386_OBJECTS= \
+    $(PASS0_HEADERDIR)\idls.h
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\snetcfg.res \
+    $(_OBJ_DIR)\ia64\main.obj \
+    $(_OBJ_DIR)\ia64\snetcfg.obj \
+    $(_OBJ_DIR)\ia64\implinc.obj
+
+PASS0_IA64_OBJECTS= \
+    $(PASS0_HEADERDIR)\idls.h
+

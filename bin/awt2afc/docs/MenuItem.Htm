@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>MenuItem -> UIText</title>
+<base target="descriptions">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">MenuItem to UIText</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.MenuItem should be transformed into instances of
+com.ms.ui.UIText.</p>
+
+<p align="left">MenuItem extends <a href="MenuComponent.htm"
+target="descriptions">MenuComponent</a>: be sure to see its
+changes.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">AWT's MenuItem class only allows you to convert
+Strings into menu items. The AFC equivalent of doing this is to
+create UIText items and add those to menus instead. So instead of</p>
+
+<p align="left"><font face="Courier">Menu myMenu = new Menu();<br>
+myMenu.add(new MenuItem(&quot;First Item&quot;));</font></p>
+
+<p align="left">you would have</p>
+
+<p align="left"><font face="Courier">UIMenuList myMenu = new
+UIMenuList;<br>
+myMenu.add(new UIText(&quot;First Item&quot;));</font></p>
+
+<p align="left">This is a direct change: AFC, though, provides
+you many other options to add to a menu. Any UIComponent (like
+UIItem, which combines an image and text, and any type of
+UIButton) can be added to a UIMenuList. See the documentation for
+more information on those classes.</p>
+
+<p align="left">&nbsp;</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">This is the set of changes you need to make to
+port all MenuItem methods to UIText methods. Any method not
+listed here or below does not need to be changed.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial"><strong>AWT Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">MenuItem() or<br>
+        MenuItem(String) or<br>
+        MenuItem(String, MenuShortcut)</font></td>
+        <td nowrap><font size="2" face="Courier">UIText() or<br>
+        UIText(String)</font></td>
+        <td><font size="2">Shortcuts are implemented by default
+        in AFC as incremental-type searches.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">disable()</font></td>
+        <td nowrap><font size="2" face="Courier">setEnabled(false)</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">enable()</font></td>
+        <td><font size="2" face="Courier">setEnabled(true)</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">enable(boolean)</font></td>
+        <td nowrap><font size="2" face="Courier">setEnabled(boolean)</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getLabel()</font></td>
+        <td><font size="2" face="Courier">getName()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getActionCommand()</font></td>
+        <td><font size="2" face="Courier">getName()</font></td>
+        <td><font size="2">In AFC, the name is the action command
+        sent when an event occurs.</font></td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h3>Unsupported Methods</h3>
+
+<p>Some methods in java.awt.MenuItem are not directly supported
+in com.ms.ui.UIText. Those methods and suggested changes are
+described here.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial">AWT Code<strong>/Suggested
+        AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">deleteShortcut()</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td><font size="2">Shortcuts are implemented by default
+        in AFC as an incremental-type search.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">getShortcut()</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td><font size="2">Shortcuts are implemented by default
+        in AFC as an incremental-type search.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">paramString()</font><p><font
+        size="2" face="Courier"><strong>getName(), etc.</strong></font></p>
+        </td>
+        <td><font size="2">Call the specific getXXX function you
+        need.</font></td>
+    </tr>
+</table>
+</body>
+</html>

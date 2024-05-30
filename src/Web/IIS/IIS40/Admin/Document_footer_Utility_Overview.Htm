@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Document Footer Utility</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h2><a name="_document_footer_utility"></a>Document Footer Utility</h2>
+<p>
+A document footer is a chunk of text, possibly even HTML code, that is added to the end of a document. With IIS, you can globally specify whether you want to have the server automatically append a footer, and, if so, the text you want to append. You can specify this by either explicitly stating the string to include in every document, or by providing the name of a file to use as the footer. </p>
+<p>
+This sample tool takes as its sole required command-line argument the ADsPath of the metabase node for which you would like to enable document footers, such as IIS://LocalHost/W3SVC/3. The <b>GetObject </b>method is then called to access the ADSI wrapper object for that node, and the two document footer properties, <b>EnableDocFooter</b> and <b>DefaultDocFooter</b> are appropriately modified, according to the other command-line arguments. </p>
+<p>
+Notice that the <b>SetInfo</b> method of any ADSI object must be invoked before the changes you've made to the object take effect. <b>SetInfo</b> is the method that actually writes the modifications back to the metabase, so if you neglect to invoke it, your changes will be lost.</p>
+<p>
+This sample is provided for educational purposes only. It has not been tested in a production environment, and Microsoft&reg; will not provide technical support for it. </p>
+</BODY>
+</HTML>

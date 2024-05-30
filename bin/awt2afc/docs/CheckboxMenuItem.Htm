@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>CheckboxMenuItem -> UICheckButton</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">CheckboxMenuItem to UICheckButton</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.CheckboxMenuItem should be transformed into instances of
+com.ms.UICheckButton.</p>
+
+<p align="left">CheckboxMenuItem extends <a href="MenuItem.htm"
+target="descriptions">MenuItem</a>: be sure to see its changes.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">In AWT, to create a menu with checkboxes, you
+need to use CheckboxMenuItem: in AFC, though, you can use normal
+UICheckButtons. Further, you can instantiate UICheckButtons with
+UIComponents, so the checkbuttons can include images and even
+canvasses as part of their descriptions. You also have more style
+options, like hottracking and toggling. See <a
+href="Checkbox.htm" target="descriptions">Checkbox</a> for more
+information.</p>
+
+<p align="left">&nbsp;</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">This is the set of changes you need to make to
+port all CheckboxMenuItem methods to UICheckButton methods. Any
+method not listed here or below does not need to be changed.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial"><strong>AWT Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">CheckboxMenuItem(String)</font></td>
+        <td><font size="2" face="Courier">UICheckButton(String)</font></td>
+        <td><font size="2">Better to use UIComponents (see above)</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">CheckboxMenuItem(String,
+        boolean)</font></td>
+        <td nowrap><font size="2" face="Courier">UICheckButton(String);<br>
+        (UICheckButton).setChecked(boolean)</font></td>
+        <td><font size="2">Better to use UIComponents (see above)</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">getState()</font></td>
+        <td nowrap><font size="2" face="Courier">isChecked()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setState(boolean)</font></td>
+        <td><font size="2" face="Courier">setChecked(boolean)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h3>Unsupported Methods</h3>
+
+<p>Some methods in java.awt.CheckboxMenuItem are not directly
+supported in com.ms.ui.UICheckButton. Those methods and suggested
+changes are described here.</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial">AWT Code<strong>/Suggested
+        AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getSelectedObjects()</font><p><font
+        size="2" face="Courier"><strong>getName()</strong></font></p>
+        </td>
+        <td><font size="2">getSelectedObjects() returns an array
+        containing the label: getName() will just return the
+        label itself.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">paramString()</font><p><font
+        size="2" face="Courier"><strong>getName() or isChecked()</strong></font></p>
+        </td>
+        <td><font size="2">paramString() returns a list of
+        current settings: instead, you should just get the
+        setting you want.</font></td>
+    </tr>
+</table>
+</body>
+</html>

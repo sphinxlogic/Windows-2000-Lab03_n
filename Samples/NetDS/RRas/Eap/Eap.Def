@@ -1,0 +1,11 @@
+LIBRARY EAP
+EXPORTS
+    DllCanUnloadNow     @1 PRIVATE
+    DllGetClassObject   @2 PRIVATE
+    DllRegisterServer   @3 PRIVATE
+    DllUnregisterServer @4 PRIVATE
+    RasEapGetInfo
+    RasEapGetIdentity
+    RasEapInvokeInteractiveUI
+    RasEapInvokeConfigUI
+    RasEapFreeMemory

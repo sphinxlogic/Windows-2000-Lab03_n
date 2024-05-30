@@ -1,0 +1,91 @@
+// --MBLSampl.chk---------------------------------------------------------------
+//
+//  Privileged Access to logon and off of any message store.
+//  
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+// -----------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_HrInitialize(a,b,c,d)               NOERROR
+#define CHK_HrShutDown(a,b)                     NOERROR
+#define CHK_HrGetMsgList(a,b,c)                 NOERROR
+#define CHK_HrDispMailboxSubjects(a)            NOERROR
+
+#else
+
+//$--HrInitialize---------------------------------------------------------------
+//  Initialize the application by initializing MAPI, Logging on, and opening the
+//  Exchange message store.
+// -----------------------------------------------------------------------------
+__inline HRESULT CHK_HrInitialize(
+    IN  LPSTR lpszProfileName,      // MAPI profile name
+    IN  LPSTR lpszPassword,         // Profile password
+    OUT LPMAPISESSION *lpplhSession,// ptr to MAPI session handle ptr.
+    OUT LPMDB  *lppMDB)             // ptr to message store ptr.
+{
+    HRESULT     hr      = NOERROR;
+
+    if( !TEST_STRINGA_PTR(lpszProfileName) ||
+        !TEST_STRINGA_PTR_OR_NULL(lpszPassword) ||
+        !TEST_WRITE_PTR(lpplhSession, sizeof(LPMAPISESSION)) ||
+        !TEST_WRITE_PTR(lppMDB, sizeof(LPMDB)))
+    {
+        hr = HR_LOG( E_INVALIDARG);
+    }
+
+    return(hr);
+}
+
+//$--HrShutDown-----------------------------------------------------------------
+//  Shutdown the application by closing the Exchange message store, logging off, 
+//  and uninitializing MAPI.
+// -----------------------------------------------------------------------------
+__inline HRESULT CHK_HrShutDown(                     // RETURNS: return code
+    IN OUT LPMAPISESSION *lpplhSession, // ptr to MAPI session handle ptr.
+    IN OUT LPMDB  *lppMDB)              // ptr to message store ptr.
+{
+    HRESULT hr = NOERROR;
+
+    if( !lpplhSession || !TEST_IUNKNOWN_PTR(*lpplhSession) ||
+        !lppMDB || !TEST_IUNKNOWN_PTR(*lppMDB))
+    {
+        hr = HR_LOG( E_INVALIDARG);
+    }
+
+    return( hr);
+}
+
+//$--HrGetMsgList-----------------------------------------------------------
+//  Returns the next message list (<=cMaxNRows) in a given message table;
+// -----------------------------------------------------------------------------
+__inline HRESULT CHK_HrGetMsgList(                // RETURNS: return code
+    IN  LPMAPITABLE lpTable,    // ptr.to the contents table
+    IN  ULONG       cMaxNRows,  // Max.# of rows to return
+    OUT LPSRowSet   *lppRows )  // ptr.to address variable for SRowSet
+{
+    if( !TEST_IUNKNOWN_PTR(lpTable) ||
+        cMaxNRows == 0L ||
+        !TEST_WRITE_PTR(lppRows, sizeof(LPSRowSet)) )
+    {
+        RETURN( E_INVALIDARG);
+    }
+
+    return( NOERROR);
+}
+
+//$--HrDispMailboxSubjects-------------------------------------------------------
+//  Reads and displays the subject of the mail messages found in the MDB.
+// -----------------------------------------------------------------------------
+__inline HRESULT CHK_HrDispMailboxSubjects( // RETURNS: return code
+    IN LPMDB  lpMDB)                        // Message store ptr.
+{
+    if( !TEST_IUNKNOWN_PTR(lpMDB) )
+        RETURN( E_INVALIDARG);
+
+    return( NOERROR);
+}
+
+// -----------------------------------------------------------------------------
+
+#endif /* DEBUG */

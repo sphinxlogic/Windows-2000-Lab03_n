@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Recoverable Delivery</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_recoverable_delivery"></a>  Recoverable Delivery</h3>
+<p>
+MSMQ provides you with a number of distinct methods for delivering messages. This sample demonstrates how to open a message queue and transmit a simple message using one type of delivery called recoverable delivery. Recoverable delivery means that message delivery is guaranteed, as MSMQ will either forward the message immediately to the queue or save it to disk. If you use recoverable delivery, you can be sure that your message will arrive at its destination, even if the computer crashes or the network is temporarily down. This guarantee is not without a price, however; recoverable delivery is slower than other forms of delivery. </p>
+<p>
+This example first creates an instance of the <b>MSMQQueueInfo</b> object, which will be used as a template for the actual queue object instances. <b>MSMQQueueInfo</b> contains a number of properties that can be used to configure the queue instances it will create, but in this sample, only the <b>PathName</b> property is set. <b>PathName</b> specifies the MSMQ pathname of the queue, and is given in the general form <i>MachineName\QueueName</i>. Note that in this example, the <i>MachineName</i> part of the MSMQ pathname is a period (.), which indicates that the queue is located on the local computer.</p>
+<p>
+The <b>MSMQQueueInfo.Open</b> method is used to create an instance of the actual queue object, <b>MSMQQueue</b>, and the variable <i>Queue</i> is set to refer to the new queue instance. </p>
+<p>
+At this point, having gained access to the IIS_SDK_EXAMPLE queue, this sample now creates a new message object by instantiating <b>MSMQMessage</b>. The reference to the instance, <i>Msg</i>, is used to set the description and content of the message using the <b>Label</b> and <b>Body</b> properties. The <b>Delivery</b> property, which indicates whether express or recoverable delivery is used, is also set at this time. For this demonstration, it has been set to indicate that MSMQ is to use recoverable delivery.</p>
+<p>
+With the message complete and the queue configured, the script is ready to send the message. The <b>MSMQMessage.Send</b> method is called to send the message to the queue pointed to by the reference <i>Queue</i>, and the queue is closed with the <b>Close</b> method. The message is now available to any other applications that have permission and inclination to access that queue. </p>
+<p>
+<b>Note</b>&nbsp;&nbsp;This sample requires that you install MSMQ on your host machine. It also requires, prior to running this sample for the first time, that you start MSMQ Explorer and create a new queue named IIS_SDK_EXAMPLE. MSMQ Explorer can also be used after the sample is run so that you can examine the results of the script's execution.</p>
+</BODY>
+</HTML>

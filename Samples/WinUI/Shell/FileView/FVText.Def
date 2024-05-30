@@ -1,0 +1,7 @@
+LIBRARY         FVTEXT
+CODE            PRELOAD MOVEABLE DISCARDABLE
+DATA            PRELOAD MOVEABLE SINGLE
+
+EXPORTS
+                DllGetClassObject private
+                DllCanUnloadNow private

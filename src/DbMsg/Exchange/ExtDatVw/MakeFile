@@ -1,0 +1,22 @@
+#----------------------------------------------------------------------------
+# Description:
+#   Makefile for ExtDatVw.DLL
+#
+# Copyright (C) Microsoft Corporation 1986 - 1998.  All Rights Reserved.
+#----------------------------------------------------------------------------
+
+USE_EXCHANGE=1
+dll=1
+crtdll=1
+
+Proj = ExtDatVw
+
+ObjList = $(@D)\PrValAry.obj $(@D)\EditDlg.obj $(@R).Obj $(@D)\Admin.Obj $(ObjDir)\$(Proj).Res
+
+!include  <BkOffice.Mak>
+
+DLLFLAGS=-entry:LibMain $(DLLFLAGS)
+
+all:      $(ObjDir)\$(Proj).DLL
+
+$(ObjDir)\$(Proj).DLL: $(ObjList)

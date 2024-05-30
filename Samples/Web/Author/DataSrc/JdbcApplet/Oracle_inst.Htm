@@ -1,0 +1,137 @@
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<HTML>
+<HEAD>
+<TITLE>Using the JDBC Data Source Applet with Oracle</TITLE>
+<META NAME="FILENAME" CONTENT="oracle_inst.HTM">
+</HEAD>
+
+<BODY MARGINHEIGHT="0" MARGINWIDTH="0" BGCOLOR="#FFFFFF" LINK="#000066" VLINK="#666666" TEXT="#000000">
+
+
+
+
+<TABLE CELLPADDING="0" CELLSPACING="0" BORDER="0">
+	<TR>
+		<TD WIDTH="15" ROWSPAN="5">&nbsp;</TD>
+		<TD COLSPAN="4"><I>Data Source Objects</I><BR><H2 CLASS="clsSampTitle">Using the JDBC Data Source Applet with Oracle</H2></TD>
+	</TR>
+
+</TABLE>
+<!--
+	End include table
+-->
+
+<DIV CLASS="clsSampDocBody">
+<P><P>
+<P>
+<P>
+<B>Description</B>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+
+   If you're viewing this page, you're presumed to have installed the JDBC
+    software from the JDBC Applet introduction page. If not, click
+    <A HREF="default.asp">here</A> to go install the software.
+    <P>
+    This page provides instructions to use the software
+    to access data stored in the DEMO database installed with Oracle.
+    
+    <H4>Instructions for all Oracle users</H4>
+
+    These instructions assume you have access to an Oracle database, either on your
+    machine or through your network. You must also have an Oracle ODBC driver
+    installed on your machine that is configured to access this database. 
+    <BR>
+    <B>Note:</B> In most cases this requires Oracle SQL*Net.
+
+    <OL>
+      <LI>Save this page to a file on your local system.
+      <LI>Edit the page and change the following two lines inside the applet
+      tag:
+      <BLOCKQUOTE><FONT FACE="Courier New" SIZE="2">
+&lt;param name=&quot;user&quot; value=&quot;nothing&quot;&gt;
+          <BR>
+&lt;param name=&quot;password&quot; value=&quot;nothing&quot;&gt;
+      </FONT>
+      </BLOCKQUOTE>
+      Change the values &quot;nothing&quot; to your UserID and password to
+      access the Oracle database.
+      <LI>Save the file.
+      <LI>Proceed to the specific instructions below.
+    </OL>
+
+    <H4>Instructions for Oracle users with the DEMO database</H4>
+
+    <OL START=5>
+      <LI>Create an ODBC DSN to the DEMO database. Name this
+      DSN <I>OracleDemo</I>.
+      <LI>Run the page you saved in step 3.
+      <LI>You should now be viewing a list of customers from the DEMO database
+      table CUSTOMER.
+    </OL>
+
+    <H4>Instructions for Oracle users without the DEMO database</H4>
+
+    If you do not have the DEMO database installed:
+    <OL START=5>
+      <LI>change the <I>sqlStatement</I> attribute on the JDBC Applet to
+      be a query to a database accessible from your system.
+      <LI>Change the DATAFLD attributes in the table to match the field names
+      returned from your query.
+      <LI>Change the <I>OracleDemo</I> DSN on the dbURL PARAM of the applet to
+      the DSN defined on your system.
+      <LI>Save the page.
+      <LI>Run the page.
+      <LI>You should now be viewing the data from your query.
+    </OL>
+    <BR>
+
+    <applet code=JDC.class NAME="DSA1" ID="DSA1" width=0 height=0>
+        <param name=cabbase value="jdc.cab">
+        <param name=dbURL value="jdbc:jet:OracleDemo">
+        <param name=showUI value=false>
+        <param name=sqlStatement value="select * FROM DEMO.CUSTOMER">
+        <param name=allowInsert value="true">
+        <param name=allowDelete value="true">
+        <param name=allowUpdate value="false">
+        <param name="user" value="nothing">
+        <param name="password" value="nothing">
+    </applet>
+
+    <A NAME="list"><TABLE ID=mytbl DATASRC="#DSA1" border=1>
+      <THEAD>
+        <TR>
+          <TH ROWSPAN=2><FONT FACE="Arial, Helvetica, Verdana" SIZE="3">Name</FONT>
+          <TH COLSPAN=3 ALIGN=LEFT><FONT FACE="Arial, Helvetica, Verdana" SIZE="3">Address</FONT>
+        </TR>
+        <TR>
+          <TH><FONT FACE="Arial, Helvetica, Verdana" SIZE="3">City</FONT><TH><FONT FACE="Arial, Helvetica, Verdana" SIZE="3">State</FONT><TH><FONT FACE="Arial, Helvetica, Verdana" SIZE="3">Zip</FONT>
+        </TR>
+      </THEAD>
+      <TBODY>
+        <TR>
+          <TD ROWSPAN=2><FONT SIZE=+1><SPAN DATAFLD="NAME"></SPAN></FONT></TD>
+          <TD COLSPAN=3><SPAN DATAFLD="ADDRESS"></SPAN></TD>
+        </TR>
+        <TR>
+          <TD><SPAN DATAFLD="CITY"></SPAN></TD>
+          <TD><SPAN DATAFLD="STATE"></SPAN></TD>
+          <TD><SPAN DATAFLD="ZIP_CODE"></SPAN></TD>
+      </TBODY>
+    </TABLE></A>
+
+    <HR>
+
+<P CLASS="copyright">&nbsp;<BR>
+<FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">
+&copy; <A HREF="/misc/cpyright.htm" TARGET="_top">1999 Microsoft Corporation. All rights reserved. Terms of use</A>. 
+</FONT>
+<P>
+</DIV>
+<!-- END DOCUMENT BODY --->
+
+
+</BODY>
+</HTML>
+

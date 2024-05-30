@@ -1,0 +1,42 @@
+//--convrept.chk---------------------------------------------------------------
+//
+// Parameter checking for convrept.cpp
+//
+// Copyright (C) Microsoft, 1986-1996.  All rights reserved.
+//
+//-----------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_CIPMConvert_HrParseReportSpecific(a) NOERROR
+
+#else
+
+//$--CHK_CIPMConvert_HrParseReportSpecific------------------------------------------
+//
+// DESCRIPTION: Parses [non]delivery report-specific tag and data lines
+//              and constructs RCPT TO recipient list from them
+//
+// INPUT:   none
+//
+// OUTPUT:  pnRecipients    --  number of [non]recipients
+//
+// RETURNS: HRESULT --  NOERROR if successful,
+//                      E_INVALIDARG if bad input.
+//
+// ----------------------------------------------------------------------------
+static inline HRESULT CHK_CIPMConvert_HrParseReportSpecific(
+            OUT ULONG * pnRecipients)   // # of [non]recipients
+{
+    HRESULT hr  =   NOERROR;
+
+    if ( ! TEST_WRITE_PTR(pnRecipients, sizeof(ULONG)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+
+}
+
+#endif /* DEBUG */

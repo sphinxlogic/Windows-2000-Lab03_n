@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>Using CSS with XML Demo</title>
+
+<XML:namespace prefix="IE5"/>
+<style>
+ .myClass {font-family: verdana; color: white; background-color: black}
+ @namespace IE5 {
+   getsclass {font-family: courier; color: blue; font-weight: bold; border-style: solid; background-color: yellow; border-color: black; border-width: 3; width: 200; height: 100}
+ }
+</style>
+</head>
+<body>
+<h2>Using CSS with XML</h2>
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="top.close();return false">Close This Sample</A>
+</FONT>
+<br>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+<hr>
+
+<h2 style="font-family: verdana">Application of CSS to XML</h2>
+<br>
+This is just HTML content<br><br>
+<IE5:simple style="color: blue">This is XML with inline styles</IE5:simple><br><br>
+<IE5:simple style="background-color: green; color: blue;">This is XML with more inline styles</IE5:simple><br><br>
+<IE5:simple style="font-family: verdana; font-weight: bold">This is XML with more inline styles</IE5:simple><br><br>
+This is just HTML content<br><br>
+<span class=myClass>I'm a SPAN with class=myClass.</span><br><br>
+<IE5:aclass class=myClass>I'm an XML tag with class=myClass.</IE5:aclass><br><br>
+<IE5:getsclass onclick="this.style.position = 'static';" style="position: absolute; top: 200; left: 200">I'm positioned XML. Click me, I'm XML, and I'll morph to be position:static</IE5:getsclass>
+</body>
+</html>

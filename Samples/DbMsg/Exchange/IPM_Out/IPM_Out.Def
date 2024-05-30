@@ -1,0 +1,12 @@
+; --ipm_out.def--------------------------------------------------------------
+;
+; Definition file for exported IPM MAPI message to 822-style header API functions.
+;
+; Copyright (C) Microsoft Corp. 1986-1996.  All rights reserved.
+;
+; ---------------------------------------------------------------------------
+LIBRARY ipm_out
+
+EXPORTS
+    DllEntryPoint
+    GetTrivialVector = HrGetExportVector @32

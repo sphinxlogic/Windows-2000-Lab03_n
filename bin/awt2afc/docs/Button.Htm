@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>Button -> UIPushButton</title>
+<base target="descriptions">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">Button to UIPushButton</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.Button should be transformed into instances of
+com.ms.ui.UIPushButton. </p>
+
+<p align="left">Button extends <a href="Component.htm"
+target="descriptions">Component</a>: be sure to see its changes.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">UIPushButton is one of AFC's five classes that
+implement button types, and the one that mirrors java.awt.Button.
+UIPushButton provides several advantages over Button. </p>
+
+<ul>
+    <li><p align="left">The class UIRepeatButton (which extends
+        UIPushButton) allows you to continually generate events
+        while the button remains pressed.</p>
+    </li>
+    <li><p align="left">In java.awt.Button, you can only create
+        buttons associated with text labels. In AFC, though,
+        buttons can also be created with UIComponents, which
+        means you can make buttons of text, images, or
+        combinations thereof. For example, instead of </p>
+    </li>
+</ul>
+
+<blockquote>
+    <p align="left"><font size="2" face="Courier New">Button b =
+    new Button(&quot;foo&quot;);</font></p>
+    <p align="left">you can have</p>
+    <p align="left"><font size="2" face="Courier New">UIPushButton
+    b = new UIPushButton(new UIText(&quot;foo&quot;));<br>
+    UIPushButton c = new UIPushButton(new UIGraphic(myImage));</font></p>
+    <p align="left">You also have other options to make the
+    button hottracked, and to have it start as raised and/or
+    toggled.</p>
+</blockquote>
+
+<p align="left">Other benefits come directly from the changes to <a
+href="Component.htm" target="descriptions">Component</a> and <a
+href="Container.htm" target="descriptions">Container</a>: see the
+documentation for more information.</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">This is the set of changes you need to make to
+port all Button methods to UIPushButton methods. Any method not
+listed here or below does not need to be changed.</p>
+
+<p align="left">&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial"><strong>AWT Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">Button(String)</font></td>
+        <td nowrap><font size="2" face="Courier">UIPushButton(String)</font></td>
+        <td><font size="2">This is a direct port, but you have
+        other options: you could add styles and use UIComponents
+        instead of Strings--see above.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">Button()</font></td>
+        <td><font size="2" face="Courier">UIPushButton()</font></td>
+        <td><font size="2">You could add styles--see above.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getLabel()</font></td>
+        <td><font size="2" face="Courier">getName()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">setLabel(String)</font></td>
+        <td nowrap><font size="2" face="Courier">setName(String)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h3>Unsupported Methods</h3>
+
+<p>Some methods in java.awt.Button are not directly supported in
+com.ms.ui.UIPushButton. Those methods and suggested changes are
+described here.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial">AWT Code<strong>/Suggested
+        AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">paramString()</font><p><font
+        size="2" face="Courier"><strong>getName()</strong></font></p>
+        </td>
+        <td><font size="2">paramString usually just returns the
+        name of the button, <br>
+        so getName should be sufficient.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setActionCommand(String)</font><p><font
+        size="2" face="Courier"><strong>setName(String)</strong></font></p>
+        </td>
+        <td><font size="2">In AFC, the String that would have
+        been passed by <br>
+        setActionCommand is always the name of the object, <br>
+        so setName is the same information: however, <br>
+        setName will also change the label of the UIPushButton.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getActionCommand()</font><p><font
+        size="2" face="Courier"><strong>getName()</strong></font></p>
+        </td>
+        <td><font size="2">In AFC, the String sent when an action
+        event <br>
+        occurs is the name, so this should return the same
+        result.</font></td>
+    </tr>
+</table>
+</body>
+</html>

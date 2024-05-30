@@ -1,0 +1,9 @@
+DESCRIPTION 'Test DLL'
+
+EXPORTS
+        DllMain
+        RNIGetCompatibleVersion
+        FixedPtMarshaler_toJava
+        FixedPtMarshaler_copyToExternal
+
+

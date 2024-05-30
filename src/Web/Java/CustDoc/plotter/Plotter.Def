@@ -1,0 +1,9 @@
+DESCRIPTION 'Test DLL'
+
+EXPORTS
+        DllMain
+        DllGetClassObject
+        DllRegisterServer
+        DllUnregisterServer
+
+        

@@ -1,0 +1,27 @@
+#---------------------------------------------------------------------------
+# Description:
+#   Make file to generate ToolForm.Exe
+#
+# Copyright 1986 - 1998 Microsoft Corporation.  All Rights Reserved.
+#---------------------------------------------------------------------------
+
+USE_EXCHANGE=1
+Use_MFC=1
+Use_MSCRT=1
+
+Proj = ToolForm
+
+!Include <BkOffice.Mak>
+
+CL = -GX $(CL)
+
+ObjList = $(ObjDir)\ToolForm.Res $(@R).Obj $(@D)\Form.Obj          \
+          $(@D)\FormData.Obj $(@D)\FormFact.Obj $(@D)\FormMapi.Obj \
+          $(@D)\FormPrst.Obj $(@D)\FormUnk.Obj $(@D)\MainFrm.Obj   \
+          $(@D)\StdAfx.Obj $(@D)\Tool.Obj $(@D)\ToolDoc.Obj
+
+LibList = Uuid.Lib
+
+all:  $(ObjDir)\$(Proj).Exe
+
+$(ObjDir)\$(Proj).Exe: $(ObjList)

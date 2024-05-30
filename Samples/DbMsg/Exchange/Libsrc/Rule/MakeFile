@@ -1,0 +1,42 @@
+#makefile for mssdk_samples_dbmsg_exchange_rule
+
+Proj= Rule
+
+libs=$(libs) mapi32.lib -def:$(Proj).Def
+
+dll=1
+
+CL= $(CL) -GX /GR
+   
+ObjList =  $(ObjDir)\$(Proj).Obj               \
+           $(ObjDir)\ActionCollection.Obj      \
+           $(ObjDir)\ActionObj.Obj             \
+           $(ObjDir)\BitmaskCondition.Obj      \
+           $(ObjDir)\CommentCondition.Obj      \
+           $(ObjDir)\ComparePropsCondition.Obj \
+           $(ObjDir)\ContentCondition.Obj      \
+           $(ObjDir)\ExistsCondition.Obj       \
+           $(ObjDir)\LogicalCondition.Obj      \
+           $(ObjDir)\PropertyCondition.Obj     \
+           $(ObjDir)\PropVal.Obj               \
+           $(ObjDir)\RuleCollection.Obj        \
+           $(ObjDir)\RuleObj.Obj               \
+           $(ObjDir)\SizeCondition.Obj         \
+           $(ObjDir)\SubCondition.Obj          \
+           $(ObjDir)\StdAfx.Obj                \
+           $(ObjDir)\Util.Obj          
+
+!include <BkOffice.Mak>
+
+all: $(ObjDir)\$(Proj).dll 
+
+$(ObjDir)\$(Proj).dll: $(ObjList) 
+
+$(ObjDir)\$(Proj).Obj: $(ObjDir)\$(Proj).h
+
+$(ObjDir)\$(Proj).h: $(Proj).Idl
+    $(MkDest)
+    midl /Oicf /h $(Proj).h $? $(LogCmd) 
+
+
+

@@ -1,0 +1,8 @@
+RegClAdm is used to register a Cluster Administrator extension DLL both
+with a cluster and with the local machine. The cluster registration adds
+the CLSID of the extension DLL to the cluster allow Cluster Administrator
+to find the component when displaying property sheets, wizard, and context
+menus. The local machine registration allows the extension DLL component to
+be found by its CLSID on that system.
+
+This tool is only supported on Windows 2000 and later.

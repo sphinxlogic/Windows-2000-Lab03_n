@@ -1,0 +1,206 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>ScrollBar -> UIScrollBar</title>
+<base target="descriptions">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">ScrollBar to UIScrollBar</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.ScrollBar should be transformed into instances of
+com.ms.UIScrollBar.</p>
+
+<p align="left">ScrollBar extends <a href="Component.htm"
+target="descriptions">Component</a>: be sure to see its changes.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">AWT's ScrollBar class allows you to customize
+several features: the orientation of the scrollbar, its initial
+value, slider size, minimum value and maximum value. AFC's
+UIScrollBar class gives more options, including the type of the
+scrollbar and when it can be seen. In addition, you can specify
+other UIComponents to display for the thumb position, the line up
+and down buttons, and the page up and down regions.</p>
+
+<p align="left">The constructors for ScrollBar and UIScrollBar
+work in different orders: while the ones that take no inputs are
+the same, the others are different. Both have a constructor that
+takes one int as input: ScrollBar's is a flag that notes
+HORIZONTAL or VERTICAL, while UIScrollBar's is a bitwise
+combination of VERTICAL (default is horizontal), NOHIDE (the
+scrollbar is always visible), NOSHOW (the scrollbar is never
+visible), NONPROPORTIONAL (the size of the scroll bar's thumb
+component is not proportional to the scroll bar's range), and
+NOKEY (the scrollbar does not respond to keyboard input). The
+third constructors are very different: ScrollBar's takes five
+integers, in the form</p>
+
+<p align="left"><font face="Courier">Scrollbar(flag, value,
+visible, minimum, maximum)</font></p>
+
+<p align="left">while UIScrollBar's takes six integers, in the
+form</p>
+
+<p align="left"><font face="Courier">UIScrollbar(flag, minimum,
+maximum, visible, line_increment, value)</font></p>
+
+<p align="left">where line_increment is the number of scroll
+positions associated with an up/down request.</p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">This is the set of changes you need to make to
+port all ScrollBar methods to UIScrollBar methods. Any method not
+listed here or below does not need to be changed.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial"><strong>AWT Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">ScrollBar() or<br>
+        Scrollbar(int) or<br>
+        Scrollbar(int, int, int, int, int)</font></td>
+        <td nowrap><font size="2" face="Courier">UIScrollBar() or<br>
+        UIScrollBar(int) or<br>
+        UIScrollBar(int, int, int, int, int, int)</font></td>
+        <td><font size="2">see above</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">getBlockIncrement()</font></td>
+        <td nowrap><font size="2" face="Courier">getScrollPage()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getLineIncrement()</font></td>
+        <td><font size="2" face="Courier">getScrollLine()</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getMaximum()</font></td>
+        <td><font size="2" face="Courier">getScrollMax()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getMinimum()</font></td>
+        <td><font size="2" face="Courier">getScrollMin()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getOrientation()</font></td>
+        <td><font size="2" face="Courier">getStyle()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getPageIncrement()</font></td>
+        <td><font size="2" face="Courier">getScrollPage()</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getUnitIncrement()</font></td>
+        <td><font size="2" face="Courier">getScrollLine()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getValue()</font></td>
+        <td><font size="2" face="Courier">getScrollPos()</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getVisible()</font></td>
+        <td><font size="2" face="Courier">getScrollPage()</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">getVisibleAmount()</font></td>
+        <td><font size="2" face="Courier">getScrollPage()</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setBlockIncrement(int)</font></td>
+        <td><font size="2" face="Courier">setScrollPage(int)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setLineIncrement(int)</font></td>
+        <td><font size="2" face="Courier">setScrollLine(int)</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setMaximum(int)</font></td>
+        <td><font size="2" face="Courier">setScrollMax(int)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setOrientation(int)</font></td>
+        <td><font size="2" face="Courier">setStyle(int)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setPageIncrement(int)</font></td>
+        <td><font size="2" face="Courier">setScrollPage(int)</font></td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setUnitIncrement(int)</font></td>
+        <td><font size="2" face="Courier">setScrollLine(int)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setValue(int)</font></td>
+        <td><font size="2" face="Courier">setScrollPos(int)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setValues(int, int,
+        int, int)</font></td>
+        <td><font size="2" face="Courier">setScrollInfo(int, int,
+        int, int, int)</font></td>
+        <td><font size="2">same inputs as the constructors,
+        leaving off the first input</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">setVisibleAmount(int)</font></td>
+        <td><font size="2" face="Courier">setScrollPage(int)</font></td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<h3>Unsupported Methods</h3>
+
+<p>Some methods in java.awt.ScrollBar are not directly supported
+in com.ms.ui.UIScrollBar. Those methods and suggested changes are
+described here.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial">AWT Code<strong>/Suggested
+        AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">paramString()</font><p><font
+        size="2" face="Courier"><strong>getName(), etc.</strong></font></p>
+        </td>
+        <td><font size="2">use the appropriate getXXX function to
+        get the information you need.</font></td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,44 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\pscr.res \
+    $(_OBJ_DIR)\alpha\pscrnt.obj \
+    $(_OBJ_DIR)\alpha\pscrcb.obj \
+    $(_OBJ_DIR)\alpha\pscrcmd.obj \
+    $(_OBJ_DIR)\alpha\pscrrdwr.obj
+
+PASS0_ALPHA_OBJECTS= \
+    $(PASS0_HEADERDIR)\pscrlog.h \
+    $(MC_SOURCEDIR)\pscrlog.rc
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\pscr.res \
+    $(_OBJ_DIR)\axp64\pscrnt.obj \
+    $(_OBJ_DIR)\axp64\pscrcb.obj \
+    $(_OBJ_DIR)\axp64\pscrcmd.obj \
+    $(_OBJ_DIR)\axp64\pscrrdwr.obj
+
+PASS0_AXP64_OBJECTS= \
+    $(PASS0_HEADERDIR)\pscrlog.h \
+    $(MC_SOURCEDIR)\pscrlog.rc
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\pscr.res \
+    $(_OBJ_DIR)\i386\pscrnt.obj \
+    $(_OBJ_DIR)\i386\pscrcb.obj \
+    $(_OBJ_DIR)\i386\pscrcmd.obj \
+    $(_OBJ_DIR)\i386\pscrrdwr.obj
+
+PASS0_386_OBJECTS= \
+    $(PASS0_HEADERDIR)\pscrlog.h \
+    $(MC_SOURCEDIR)\pscrlog.rc
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\pscr.res \
+    $(_OBJ_DIR)\ia64\pscrnt.obj \
+    $(_OBJ_DIR)\ia64\pscrcb.obj \
+    $(_OBJ_DIR)\ia64\pscrcmd.obj \
+    $(_OBJ_DIR)\ia64\pscrrdwr.obj
+
+PASS0_IA64_OBJECTS= \
+    $(PASS0_HEADERDIR)\pscrlog.h \
+    $(MC_SOURCEDIR)\pscrlog.rc
+

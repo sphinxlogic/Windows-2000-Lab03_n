@@ -1,0 +1,113 @@
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<HTML>
+<HEAD>
+<TITLE>The TEXT Tag</TITLE>
+<META NAME="FILENAME" CONTENT="text.HTM">
+
+
+<SCRIPT LANGUAGE="JavaScript">
+
+function forward() {
+
+//This function increments the data bound record after checking to confirm 
+//you are not already at the end of the recordset. If you are, the program 
+//alerts you that it cant go any further. 
+
+  if (StockList.recordset.AbsolutePosition != StockList.recordset.RecordCount) {
+	StockList.recordset.MoveNext();
+	}
+	else {
+	alert("Already at last element");
+	}
+}
+
+function reverse() {
+
+//This function decrements the data bound record after checking to confirm 
+//you are not already at the end of the recordset. If you are, the program 
+//alerts you that it cant go any further.  
+
+  if (StockList.recordset.AbsolutePosition != 1) {
+	StockList.recordset.MovePrevious();
+	}
+	else {
+	alert("Already at first element");
+	}
+}
+
+</SCRIPT>
+</HEAD>
+
+
+<BODY TOPMARGIN=20 LEFTMARGIN=40 BGCOLOR="#ffffff" LINK="#000066"
+	VLINK="#666666 text="#000000">
+
+
+<H2>The TEXT Tag</H2>
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT>
+<P>
+<P>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+<hr>
+
+
+Binding is supported to the VALUE attribute of the input text. The example
+below shows the text box bound to the current record of the data set. Clicking
+on the arrow buttons will move the current record. This results in the value
+displayed in the text box changing to display the values from the current record.
+<P>
+
+<CENTER>
+<INPUT TYPE=TEXT DATASRC="#StockList" DATAFLD="Symbol" BORDER=1> 
+<P>
+<HR WIDTH=100>
+<INPUT TYPE="button" VALUE="<" ONCLICK="reverse();">
+<INPUT TYPE="button" VALUE=">" onClick="forward();">
+<HR WIDTH=100>
+</CENTER>
+<P>
+
+Text boxes can also be used within repeated tables. Here's an example:
+<P>
+
+<OBJECT ID="StockList" CLASSID="clsid:333C7BC4-460F-11D0-BC04-0080C7055A83"
+	WIDTH=0 HEIGHT=0>
+<PARAM NAME="UseHeader" VALUE="True">
+<PARAM NAME="TextQualifier" VALUE="&quot;">
+<PARAM NAME="FieldDelim" VALUE=",">
+<PARAM NAME="DataURL" VALUE="quotes.txt">
+</OBJECT>
+
+<CENTER>
+<TABLE DATASRC="#StockList" BORDER=1>
+	<THEAD>
+	<TR>
+	<TH> 
+		<DIV> Symbol </DIV>
+	</TH>
+	</TR>
+	</THEAD>
+	<TBODY>
+	<TD> 
+		<INPUT TYPE=TEXT DATAFLD="Symbol" SIZE=20>
+	</TD>
+	</TBODY>
+</TABLE>
+</CENTER>
+<P>
+
+Click on <A HREF="quotes.txt">quotes.txt</A> to see the data file
+used by this page.
+<P>
+<P>
+<P>
+<P>
+<FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">
+&copy; <A HREF="/misc/cpyright.htm" TARGET="_top">1999 Microsoft Corporation. All rights reserved. Terms of use</A>.
+</FONT>
+</BODY>
+</HTML>

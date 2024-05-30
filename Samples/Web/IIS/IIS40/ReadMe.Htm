@@ -1,0 +1,230 @@
+<HTML>
+<HEAD>
+
+<TITLE>Microsoft Internet Information Server Readme</TITLE>
+
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+
+
+
+</HEAD>
+
+
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<FONT FACE="Verdana, Arial, Helvetica">
+
+<IMG SRC="IIStitle.gif" WIDTH="481" HEIGHT="148" ALT="Internet Information Server">
+
+<H1>Internet Information Server Platform SDK</H1>
+
+<H2>Setup</H2>
+
+<H3>1)  Downloading & Installing</H3>
+If you are reading this file from the Microsoft Platform SDK CD and 
+have not already installed Microsoft Internet Information Server (IIS) 4.0
+and created the correct directory structure, the samples included will
+not work.  Some samples will work if you have IIS 3.0 installed;
+however, this IIS SDK is designed to illustrate the extended
+functionality of IIS 4.0.  It is recommended that you use IIS 4.0 to
+run these samples.  You can download and install Microsoft Windows NT® 
+4.0 Option Pack which contains IIS 4.0 from the <A 
+HREF="http://www.microsoft.com/iis">Microsoft IIS Website</A>.  
+
+<H3>2)  Directory structure</H3>
+Once you have installed IIS 4.0, you may need to create the 
+correct directory structure in order for the samples to run correctly.  
+The SDK samples on the Platform SDK CD supercede the ones that come
+with IIS 4.0 Beta 3.  If you have this previous version of IIS, you should 
+copy the contents of the <STRONG>(%mssdk%)/samples/internet/iis</STRONG> 
+directory on the Platform SDK CD into the 
+<STRONG>/<EM>your-wwwroot</EM>/iissamples/sdk</STRONG> directory (the 
+default is <STRONG>Inetpub</STRONG>).  Replace any files that already
+exist in the latter directory.  If you install IIS 4.0 (release version),
+you should use the SDK found in the product itself.  The virtual path 
+that all the samples use is 
+<STRONG>http://<EM>servername</EM>/iissamples/sdk</STRONG>.
+Make sure the permission setting for this directory is <STRONG>Execute</STRONG>.  This is necessary for some samples to 
+execute properly.
+<P>
+<STRONG>NOTE:</STRONG> If you install Windows NT 4.0 Option Pack
+and choose to install the SDK for IIS 4.0, the directory structure
+will be set up for you automatically.  The SDK, however, is not
+installed as a part of IIS 4.0 by default.  You will need to do a
+custom install and choose SDK under
+<STRONG>Internet Information Server\Documentation\SDK</STRONG> when 
+prompted for components to install.
+
+<H2>Samples</H2>
+The samples are designed to expose you to the power and
+flexibility of IIS. ASP scripts, 
+Active Server components, and ISAPI extensions and filters are included in 
+the samples provided.  Each section demonstrates both basic concepts 
+and advanced techniques.  The samples are organized as follows:
+
+<UL>
+<LI><STRONG>Admin</STRONG> -- This section contains Windows Scripting Host (WSH) samples that illustrate how to administer IIS using the WSH environment.<BR>
+<UL>
+<LI><A HREF="admin\Application_creator_Overview.htm">Application Creator</A><BR>
+<LI><A HREF="admin\Document_footer_utility_Overview.htm">Document Footer Utility</A><BR>
+<LI><A HREF="admin\Logging_module_enumerator_Overview.htm">Logging Module Enumerator</A><BR>
+<LI><A HREF="admin\Metabase_backup_utility_Overview.htm">Metabase Backup Utility</A><BR>
+<LI><A HREF="admin\Metabase_backup_enumerator_Overview.htm">Metabase Backup Enumerator</A><BR>
+<LI><A HREF="admin\Metabase_backup_restore_utility_Overview.htm">Metabase Backup Restore Utility</A><BR>
+<LI><A HREF="admin\Metabase_backup_delete_utility_Overview.htm">Metabase Backup Delete Utility</A><BR>
+<LI><A HREF="admin\Web_server_creator_Overview.htm">Web Server Creator</A><BR>
+</UL><BR>
+<LI><STRONG>ASP</STRONG> -- This section contains sample scripts ranging in difficulty.
+ <UL><BR>
+  <LI><STRONG>Simple</STRONG> -- These scripts illustrate the fundamental techniques used in ASP scripting. If you're a newcomer to application development, or you're a programmer who has never scripted before, this is a good starting place.
+<UL>
+<LI><A HREF="asp\simple\Variables_Overview.htm">Variables</A><BR>
+<LI><A HREF="asp\simple\Looping_Overview.htm">Looping</A><BR>
+<LI><A HREF="asp\simple\Conditional_operators_Overview.htm">Conditional Operators</A><BR>
+<LI><A HREF="asp\simple\Arrays_Overview.htm">Arrays</A><BR>
+<LI><A HREF="asp\simple\Server_side_includes_Overview.htm">Server-Side Includes</A><BR>
+<LI><A HREF="asp\simple\Functions_and_procedures_Overview.htm">Functions and Procedures</A><BR>
+<LI><A HREF="asp\simple\Using_components_Overview.htm">Using Components</A><BR><BR>
+
+</UL>
+  <LI><STRONG>Applications</STRONG> -- With the tools and services provided with ASP, you can create an integrated and powerful application with a minimal amount of time and effort. Here you will find examples that show some of the basic application features in action.
+<UL>
+<LI><A HREF="asp\applications\Session_variables_Overview.htm">Session Variables</A><BR>
+<LI><A HREF="asp\applications\Application_variables_Overview.htm">Application Variables</A><BR>
+<LI><A HREF="asp\applications\Session_management_Overview.htm">Session Management</A><BR><BR>
+
+</UL>
+  <LI><STRONG>Interaction</STRONG> -- These examples demonstrate some of the techniques used in creating an interactive ASP application. 
+<UL>
+<LI><A HREF="asp\interaction\User_form_input_with_get_Overview.htm">User Form Input with GET</A><BR>
+<LI><A HREF="asp\interaction\User_form_input_with_post_Overview.htm">User Form Input with POST</A><BR>
+<LI><A HREF="asp\interaction\Http_server_variables_Overview.htm">HTTP Server Variables</A><BR>
+<LI><A HREF="asp\interaction\Using_cookies_Overview.htm">Using Cookies</A><BR>
+<LI><A HREF="asp\interaction\Redirection_Overview.htm">Redirection</A><BR>
+<LI><A HREF="asp\interaction\Setting_expiration_info_Overview.htm">Setting Expiration Info</A><BR>
+<LI><A HREF="asp\interaction\Setting_pics_ratings_Overview.htm">Setting PICS Ratings</A><BR>
+<LI><A HREF="asp\interaction\Setting_content_type_Overview.htm">Setting Content Type</A><BR>
+<LI><A HREF="asp\interaction\Client_connection_Overview.htm">Client Connection</A><BR>
+<LI><A HREF="asp\interaction\Client_side_scripting_Overview.htm">Client-Side Scripting</A><BR>
+<LI><A HREF="asp\interaction\Populating_fields_Overview.htm">Populating Fields</A><BR>
+<LI><A HREF="asp\interaction\Login_screens_Overview.htm">Login Screens</A><BR>
+<LI><A HREF="asp\interaction\Response_buffering_Overview.htm">Response Buffering</A><BR>
+<LI><A HREF="asp\interaction\Cdf_Overview.htm">CDF</A><BR><BR>
+
+</UL>
+  <LI><STRONG>Components</STRONG> -- To further enhance the power of ASP scripting, there are a number of installable components that your application can call upon to perform a wide variety of tasks. The examples below demonstrate how to access these components, and show some simple situations in which they can be used.
+<UL>
+<LI><A HREF="asp\components\Ad_rotator_Overview.htm">Ad Rotator</A><BR>
+<LI><A HREF="asp\components\File_access_Overview.htm">File Access</A><BR>
+<LI><A HREF="asp\components\Browser_capabilities_Overview.htm">Browser Capabilities</A><BR>
+<LI><A HREF="asp\components\Collaboration_data_objects_Overview.htm">Collaboration Data Objects</A><BR>
+<LI><A HREF="asp\components\Content_rotator_Overview.htm">Content Rotator</A><BR>
+<LI><A HREF="asp\components\Permission_checker_Overview.htm">Permission Checker</A><BR>
+<LI><A HREF="asp\components\Counters_Overview.htm">Counters</A><BR>
+<LI><A HREF="asp\components\Tools_Overview.htm">Tools</A><BR>
+<LI><A HREF="asp\components\Index_Overview.htm">Index</A><BR>
+<LI><A HREF="asp\components\Page_counter_Overview.htm">Page Counter</A><BR><BR>
+
+
+</UL>
+  <LI><STRONG>Database</STRONG> -- ActiveX™ Data Objects (ADO) provides you with a set of powerful tools for accessing and manipulating data sources.  The samples in this section illustrate the techniques required to use ADO effectively, and how you can best put its functionality to use in a Web-based application. 
+<UL>
+<LI><A HREF="asp\database\Simple_query_Overview.htm">Simple Query</A><BR>
+<LI><A HREF="asp\database\Query_to_fill_html_table_Overview.htm">Query to Fill HTML Table</A><BR>
+<LI><A HREF="asp\database\Limit_query_results_Overview.htm">Limit Query Results</A><BR>
+<LI><A HREF="asp\database\Scrollable_query_Overview.htm">Scrollable Query</A><BR>
+<LI><A HREF="asp\database\Add_delete_records_Overview.htm">Add/Delete Records</A><BR>
+<LI><A HREF="asp\database\Update_records_Overview.htm">Update Records</A><BR>
+<LI><A HREF="asp\database\Executing_stored_procedures_Overview.htm">Executing Stored Procedures</A><BR>
+<LI><A HREF="asp\database\Ado_blob_Overview.htm">ADO BLOB</A><BR><BR>
+</UL>
+  <LI><STRONG>Transactional</STRONG> -- Transaction management is a required component for any serious Web-based application. These examples demonstrate how ASP and Microsoft® Transaction Server (MTS) take care of the technical details of transaction management behind the scenes.  
+<UL>
+<LI><A HREF="asp\transactional\Basic_transaction_Overview.htm">Basic Transaction</A><BR>
+<LI><A HREF="asp\transactional\Forced_abort_Overview.htm">Forced Abort</A><BR>
+<LI><A HREF="asp\transactional\Syntax_error_Overview.htm">Syntax Error</A><BR>
+<LI><A HREF="asp\transactional\Fund_transfer_Overview.htm">Fund Transfer</A><BR><BR>
+</UL>
+  <LI><STRONG>Queuing</STRONG> -- Microsoft® Message Queue Server (MSMQ) technology enables applications running at different times to communicate across heterogeneous networks and systems. The examples provided here demonstrate techniques for making use of this important functionality.
+<UL>
+<LI><A HREF="asp\queuing\Transmit_message_Overview.htm">Transmit Message</A><BR>
+<LI><A HREF="asp\queuing\Recoverable_delivery_Overview.htm">Recoverable Delivery</A><BR>
+<LI><A HREF="asp\queuing\Transacted_message_Overview.htm">Transacted Message</A><BR>
+<LI><A HREF="asp\queuing\Encrypted_message_Overview.htm">Encrypted Message</A><BR><BR>
+</UL>
+ </UL>
+<LI><STRONG>Components</STRONG> -- In addition to the installable components, you can create components that meet your specific needs.  The samples in the following directories demonstrate key concepts in component construction in various languages.
+ <UL>
+  <LI><STRONG>C++</STRONG>
+<UL>
+<LI><A HREF="components\c++\simple\Simple_c_component_Overview.htm">Simple C++ Component</A><BR>
+<LI><A HREF="components\c++\intermediate\Intermediate_c_component_Overview.htm">Intermediate C++ Component</A><BR>
+</UL>
+  <LI><STRONG>Java</STRONG>
+<UL>
+<LI><A HREF="components\java\Samples\Hello_world_Overview.htm">Hello World</A><BR>
+<LI><A HREF="components\java\Samples\Accessing_built_in_asp_objects_Overview.htm">Accessing Built-In ASP Objects</A><BR>
+<LI><A HREF="components\java\Samples\File_expiration_Overview.htm">File Expiration</A><BR>
+<LI><A HREF="components\java\Samples\Binary_data_output_Overview.htm">Binary Data Output</A><BR>
+<LI><A HREF="components\java\Samples\Server_variable_enumeration_Overview.htm">Server Variable Enumeration</A><BR>
+<LI><A HREF="components\java\Samples\Forms_and_cookies_Overview.htm">Forms and Cookies</A><BR>
+<LI><A HREF="components\java\Samples\Java_and_tables_Overview.htm">Java and Tables</A><BR>
+</UL>
+  <LI><STRONG>VB</STRONG>
+<UL>
+<LI><A HREF="components\vb\simple\Simple_visual_basic_component_Overview.htm">Simple Visual Basic Component</A><BR>
+<LI><A HREF="components\vb\intermediate\Intermediate_visual_basic_component_Overview.htm">Intermediate Visual Basic Component</A><BR><BR>
+</UL>
+ </UL>
+<LI><STRONG>ISAPI</STRONG> -- Developers can add to the functionality of IIS using ISAPI and create Web applications that have as much functionality as any desktop application.  ISAPI programs are divided into two types.<BR><BR>
+ <UL>
+  <LI><STRONG>Extensions</STRONG> -- Extensions are loaded on-demand, to provide extended functionality to a Web application. The samples provided here range from the basic extension outline to a complex ISAPI program that deals with threads and keep-alives.
+<UL>
+<LI><A HREF="isapi\extensions\Simple\Simple_isapi_extension_Overview.htm">Simple ISAPI Extension</A><BR>
+<LI><A HREF="isapi\extensions\com\Isapi_and_com_Overview.htm">ISAPI and COM</A><BR>
+<LI><A HREF="isapi\extensions\Keep-Alive\Keep_alive_Overview.htm">Keep-Alive</A><BR>
+<LI><A HREF="isapi\extensions\WorkerThread\Worker_thread_Overview.htm">Worker Thread</A><BR>
+<LI><A HREF="isapi\extensions\KeepAliveWithThreads\Keep_alive_with_worker_thread_Overview.htm">Keep-Alive with Worker Thread</A><BR>
+<LI><A HREF="isapi\extensions\ServerVariables\Server_variables_Overview.htm">Server Variables</A><BR>
+<LI><A HREF="isapi\extensions\Redirect\Redirection_extension_Overview.htm">Redirection Extension</A><BR>
+<LI><A HREF="isapi\extensions\io\Synchronous_and_asynchronous_i_o_Overview.htm">Synchronous and Asynchronous I/O</A><BR>
+<LI><A HREF="isapi\extensions\FORMDUMP\Isapi_and_forms_Overview.htm">ISAPI and Forms</A><BR>
+<LI><A HREF="isapi\extensions\CGIWRAP\Cgi_wrapper_Overview.htm">CGI Wrapper</A><BR>
+<LI><A HREF="isapi\extensions\chunk\Chunked_transfer_encoding_Overview.htm">Chunked Transfer Encoding</A><BR><BR>
+</UL>
+  <LI><STRONG>Filters</STRONG> -- Filters are loaded with the server, and can be used to customize and enhance the services provided by the server. The samples included here demonstrate how to create and use your own ISAPI filters.
+<UL>
+<LI><A HREF="isapi\filters\UpCase\Uppercase_conversion_filter_Overview.htm">Uppercase Conversion Filter</A><BR>
+<LI><A HREF="isapi\filters\CkyMunge\Cookie_conversion_filter_Overview.htm">Cookie Conversion Filter</A><BR>
+<LI><A HREF="isapi\filters\AuthFilt\Authentication_filter_Overview.htm">Authentication Filter</A><BR>
+</UL>
+      <BR><STRONG>Important:</STRONG>  Before a filter can be used, it must be registered with the Internet Service Manager.  To register a filter,
+	<OL>
+	<LI> Go to the <STRONG>Start/Programs/Windows NT 4.0 Option Pack/Microsoft Internet Information Server/Internet Service Manager</STRONG>.
+	<LI> Click with the right mouse button to choose <STRONG>Properties</STRONG> on the web site you want to use the filter in.
+	<LI> Click the <STRONG>ISAPI FIlter</STRONG> tab.
+	<LI> Click <STRONG>Add</STRONG>.
+	<LI> Give the filter a name and point it to the correct file.
+	<LI> Stop and restart the web site.
+	</OL>
+
+
+ </UL>
+</UL> 
+<P>
+
+<HR>
+<P>
+<CENTER>
+©1997 Microsoft Corporation. All rights reserved.
+<A HREF="http://www.microsoft.com/misc/cpyright.htm">Legal Notices.</A>
+</CENTER>
+
+</BODY>
+</HTML>
+
+
+
+
+
+
+

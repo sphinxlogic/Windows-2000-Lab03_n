@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>MenuComponent -> UIStateComponent</title>
+<base target="descriptions">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">MenuComponent to UIComponent</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.MenuComponent should be transformed into instances of
+com.ms.ui.UIComponent.</p>
+
+<p align="left">&nbsp;</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">In AFC, the classes that work with menus
+(UIMenuList, UIMenuButton, and UIMenuItem) all derive from
+UIComponent: they do not need a special base class like
+MenuComponent. UIComponent provides the functionality of
+MenuComponent.</p>
+
+<p align="left">&nbsp;</p>
+
+<h3>Unsupported Methods</h3>
+
+<p>Some methods in java.awt.MenuComponent are not directly
+supported in com.ms.ui.UIComponent. Those methods and suggested
+changes are described here.</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial">AWT Code<strong>/Suggested
+        AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">getPeer()</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td><font size="2">Deprecated in AWT 1.1</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">dispatchEvent(AWTEvent)</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">paramString()</font><p><font
+        size="2" face="Courier"><strong>getName(), etc.</strong></font></p>
+        </td>
+        <td><font size="2">Use the getXXX function that provides
+        the information you need.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">processEvent(AWTEvent)</font><p><font
+        size="2" face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+</body>
+</html>

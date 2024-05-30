@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>BorderLayout -> UIBorderLayout</title>
+<base target="descriptions">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1 align="center">BorderLayout to UIBorderLayout</h1>
+
+<p align="left">To convert from AWT to AFC, instances of
+java.awt.BorderLayout should be transformed into instances of
+com.ms.ui.UIBorderLayout. </p>
+
+<p align="left">BorderLayout implements <a
+href="LayoutManager2.htm" target="descriptions">LayoutManager2</a>:
+be sure to see its changes.</p>
+
+<h3 align="left">Purpose and Usage</h3>
+
+<p align="left">UIBorderLayout is a replacement for BorderLayout
+as part of the improved UILayoutManager. The changes are minimal:
+UIBorderLayout allows you to use LEFT, RIGHT, TOP, and BOTTOM as
+well as the compass points WEST, EAST, NORTH, and SOUTH. </p>
+
+<h3 align="left">Porting</h3>
+
+<p align="left">This is the set of changes you need to make to
+port all BorderLayout methods to UIBorderLayout methods. Any
+method not listed here or below does not need to be changed.</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial"><strong>AWT Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>AFC Code</strong></font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">BorderLayout() or<br>
+        BorderLayout(int, int)</font></td>
+        <td><font size="2" face="Courier">UIBorderLayout() or<br>
+        UIBorderLayout(int, int)</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">invalidateLayout(Container)</font></td>
+        <td nowrap><font size="2" face="Courier">(Container).invalidateAll()</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">maximumLayoutSize(Container)</font></td>
+        <td nowrap><font size="2" face="Courier">(Container).getMaximumSize()</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">minimumLayoutSize(Container)</font></td>
+        <td nowrap><font size="2" face="Courier">(Container).getMinimumSize()</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">preferredLayoutSize(Container)</font></td>
+        <td nowrap><font size="2" face="Courier">(Container).getPreferredSize()</font></td>
+    </tr>
+</table>
+
+<h3>Unsupported Methods</h3>
+
+<p>Some methods in java.awt.BorderLayout are not directly
+supported in com.ms.ui.UIBorderLayout. Those methods and
+suggested changes are described here.</p>
+
+<table border="1">
+    <tr>
+        <td><font size="2" face="Arial">AWT Code<strong>/Suggested
+        AFC Code</strong></font></td>
+        <td><font size="2" face="Arial"><strong>Comments</strong></font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">removeLayoutComponent(Component)</font><p><font
+        size="2" face="Courier"><strong>remove(UIComponent)</strong></font></p>
+        </td>
+        <td><font size="2">Use this method in the Container
+        containing UIBorderLayout.</font></td>
+    </tr>
+    <tr>
+        <td><font size="2" face="Courier">addLayoutComponent(Component,
+        Object)</font><p><font size="2" face="Courier"><strong>addLayoutComponent(IUIContainer,
+        IUIComponent, Object)</strong></font></p>
+        </td>
+        <td><font size="2">IUIContainer refers to the Container
+        to which this Object is being added.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">addLayoutComponent(String,
+        Component)</font><p><font size="2" face="Courier"><strong>addLayoutComponent(IUIContainer,
+        IUIComponent, Object)</strong></font></p>
+        </td>
+        <td><font size="2">IUIContainer refers to the Container
+        to which the Object is being added, and the Object is the
+        String representing the constraints.</font></td>
+    </tr>
+    <tr>
+        <td nowrap><font size="2" face="Courier">getLayoutAlignmentX(Container)<br>
+        getLayoutAlignmentY(Container)</font><p><font size="2"
+        face="Courier"><strong>(no suggestions)</strong></font></p>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+</body>
+</html>

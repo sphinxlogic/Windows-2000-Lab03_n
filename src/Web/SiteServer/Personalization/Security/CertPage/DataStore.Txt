@@ -1,0 +1,15 @@
+<%
+' -- IMPORTANT --
+' Replace the parameter values with those that correspond to
+'  your Site Server Authentication Data Store installation.
+'
+' AuthRootNode   - The root node of the Site Server data store.
+' AuthServerName - The server that hosts the Site Server LDAP service.
+' AuthPortNumber - The port number to use when connecting to the Site Server data store.
+'
+AuthRootNode = "Microsoft"
+AuthServerName = "localhost"
+AuthPortNumber = 1004
+' -- --
+%>
+

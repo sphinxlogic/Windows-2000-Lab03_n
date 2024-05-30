@@ -1,0 +1,119 @@
+// --convcls.chk--------------------------------------------------------------
+//
+// Parameter checking for convcls.cpp
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All rights reserved.
+//
+// ---------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_CIPMConvert_HrInitialize(a,b,c,d,e,f)       NOERROR
+#define CHK_CIPMConvert_HrSetMessageType(a)             NOERROR
+#define CHK_CIPMConvert_HrParseRecipients(a,b,c,d)      NOERROR
+#define CHK_CIPMConvert_HrParseExternalTraceData(a)     NOERROR
+#define CHK_CIPMConvert_HrParseInternalTraceData(a)     NOERROR
+
+#else
+
+//$--CHK_CIPMConvert_HrInitialize-----------------------------------
+//  Check parameters fo CIPMConvert_HrInitialize().
+// ----------------------------------------------------------------
+__inline static HRESULT CHK_CIPMConvert_HrInitialize(
+    IN LPCWSTR lpwszMsgClass,           // message class
+    IN BOOL fTNEFEncode,                // TNEF encode attachments flag
+    IN LPCSTR lpszAddrType,             // address type
+    IN LPADRBOOK lpAddrBook,            // address book pointer
+    IN LPMESSAGE lpEnvelope,            // message envelope pointer
+    IN LPSTREAM lpStream)               // stream to write output to
+{
+    HRESULT hr =   NOERROR;
+
+    if( !TEST_STRINGW_PTR(lpwszMsgClass) ||
+        !VALID_BOOL(fTNEFEncode) ||
+        !TEST_STRINGA_PTR(lpszAddrType) ||
+        !TEST_IUNKNOWN_PTR(lpAddrBook) ||
+        !TEST_IUNKNOWN_PTR(lpEnvelope) ||
+        !TEST_IUNKNOWN_PTR(lpStream) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return (hr);
+}
+
+//$--CHK_CIPMConvert_HrSetMessageType--------------------------------------------
+//  Check parameters of CIPMConvert_HrSetMessageType().
+// ----------------------------------------------------------------------------
+__inline static HRESULT CHK_CIPMConvert_HrSetMessageType(
+    IN LPSTR lpszMessageClass)        // message class
+{
+    HRESULT hr =   NOERROR;
+
+    if( !TEST_STRINGA_PTR(lpszMessageClass))
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+
+}
+
+// $--CHK_CIPMConvert_HrParseRecipients-------------------------------------------
+//  Check parameters for CIPMConvert_HrParseRecipients().
+// ----------------------------------------------------------------------------
+__inline static HRESULT CHK_CIPMConvert_HrParseRecipients(
+    IN LPCSTR lpszTag,             // expected tag
+    IN ULONG ulType,               // MAPI recipient type
+    IN OUT LPADRLIST * lppAdrList, // target address list
+    OUT ULONG * pnRecips)          // # recipients found of type
+{
+    HRESULT hr =   NOERROR;
+
+    if( !TEST_STRINGA_PTR(lpszTag) ||
+        !VALID_RECIP_TYPE(ulType) ||
+        !TEST_WRITE_PTR(lppAdrList, sizeof(LPADRLIST)) ||
+        !TEST_READ_PTR_OR_NULL(*lppAdrList, sizeof(ADRLIST)) ||
+        !TEST_WRITE_PTR(pnRecips, sizeof(ULONG)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return (hr);
+}
+
+// $--CHK_CIPMConvert_HrParseExternalTraceData----------------------------------
+//  Check parameters of CIPMConvert_HrParseExternalTraceData().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_CIPMConvert_HrParseExternalTraceData(
+    OUT ULONG * pnEntries)   // # trace entries found
+{
+    HRESULT     hr          =   NOERROR;
+
+    if( !TEST_WRITE_PTR(pnEntries, sizeof(ULONG)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return (hr);
+
+}
+
+// $--CHK_CIPMConvert_HrParseInternalTraceData----------------------------------
+//  Check parameters of CIPMConvert_HrParseInternalTraceData().
+// -----------------------------------------------------------------------------
+__inline static HRESULT CHK_CIPMConvert_HrParseInternalTraceData(
+    OUT ULONG * pnEntries)   // # trace entries found
+{
+    HRESULT     hr          =   NOERROR;
+
+    if( !TEST_WRITE_PTR(pnEntries, sizeof(ULONG)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return (hr);
+
+}
+
+#endif /* DEBUG */

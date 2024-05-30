@@ -1,0 +1,61 @@
+<HEAD>
+<TITLE>Java Organization Tree Control</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="white" onLoad="DoOnLoad()">
+
+<object classid="clsid:43d9f5c0-a906-11d0-a574-8b88d1d3e151"
+name="OrgTree" width=400 height=200>
+</object>
+
+<hr>
+<a href="OrgTree.java">The source.</a>
+
+<FORM NAME="EmployeeForm">
+<TABLE Border=0><TR VALIGN=MIDDLE><TD>
+	<TD ALIGN=LEFT>
+	<FONT TYPE=FIXED>
+	Employee:<INPUT TYPE="text" NAME="empName" SIZE=30><P>
+	Title........:<INPUT TYPE="text" NAME="empTitle" SIZE=30><P>
+	Manager.:<INPUT TYPE="text" NAME="empManager" SIZE=30><P>
+
+	<INPUT TYPE="button" NAME="Add" VALUE="Add" SIZE=20 onClick="addEmployee()">
+	<INPUT TYPE="button" NAME="Remove" VALUE="Remove" SIZE=20 onClick="removeEmployee()">
+	</FONT></TD>
+</TD></TR></TABLE>
+</FORM>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+	function addEmployee()
+	{
+		OrgTree.addEmployee( document.EmployeeForm.empName.value,
+                             document.EmployeeForm.empTitle.value,
+                             document.EmployeeForm.empManager.value, 0 );
+	}
+
+	function removeEmployee()
+	{
+		alert("removeEmployee");
+	}
+
+	function DoOnLoad()
+	{
+		document.EmployeeForm.empName.value = "John Doe";
+        document.EmployeeForm.empTitle.value = "Baker";
+        document.EmployeeForm.empManager.value = "Jane Doe";
+	}
+//-->
+</SCRIPT>
+
+<SCRIPT LANGUAGE="JavaScript" FOR="OrgTree" EVENT="employeeSelected(empName,empTitle,empManager,row)">
+<!--
+    document.EmployeeForm.empName.value = empName;
+    document.EmployeeForm.empTitle.value = empTitle;
+    document.EmployeeForm.empManager.value = empManager;
+//-->
+</SCRIPT>
+
+</BODY>
+
+

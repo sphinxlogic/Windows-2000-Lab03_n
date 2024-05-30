@@ -1,0 +1,107 @@
+// --convreg.chk----------------------------------------------------------------
+// 
+//  Parameter checkin for convreg.cpp
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+//
+// -----------------------------------------------------------------------------
+#ifndef DEBUG
+#define CHK_CEDKConvReg_HrEDKRecordValues(a,b,c) NOERROR
+#define CHK_CEDKConvReg_HrEDKSearchOpen(a,b,c)   NOERROR
+#else
+//$--CHK_CEDKConvReg_HrEDKRecordValues----------------------------------------------------
+//
+//  DESCRIPTION: Parameter checking for CEDKConvReg::HrEDKRecordValues.
+//
+//  INPUT:  hkEntryPoint    --  entry point key
+//          pszDll  --  DLL name
+//          pszEntryPoint   --  name of DLL's entry point function
+//
+//  RETURNS:    HRESULT --  NOERROR if successful,
+//                          E_INVALIDARG if bad input,
+//
+//---------------------------------------------------------------------
+static inline HRESULT CHK_CEDKConvReg_HrEDKRecordValues(     // RETURN:  HRESULT
+                                    //   if a required value is not present
+                                    //   SyntaxError() is also called.
+    IN HKEY const hkEntryPoint,     // Entry point key that contain details
+    IN LPCWSTR pszDll,              // dll containing entry point.
+    IN LPCWSTR pszEntryPoint)       // name of entry point in dll.
+{
+    HRESULT        hr             = NOERROR;    // return code
+
+    if ( (hkEntryPoint == NULL) ||
+         (hkEntryPoint == INVALID_HANDLE_VALUE) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( (pszDll == NULL) || IsBadStringPtrW(pszDll, INFINITE) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( (pszEntryPoint == NULL) || IsBadStringPtrW(pszEntryPoint, INFINITE) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return hr;
+}
+
+
+//$--CHK_CEDKConvReg_HrEDKSearchOpen---------------------------------------------
+//
+//  DESCRIPTION: Parameter checking for CEDKConvReg::HrEDKSearchOpen.
+//
+//  INPUT:  pszConversionPoint  --  what conversion point
+//          pszContentClass --  what class
+//
+//  OUTPUT: pep --  hold candidate conversion, if found
+//
+//  RETURNS:    HRESULT --  NOERROR if successful,
+//                          E_INVALIDARG if bad input
+//
+//---------------------------------------------------------------------
+static inline HRESULT CHK_CEDKConvReg_HrEDKSearchOpen(       // returns HRESULT
+    IN LPCWSTR pszConversionPoint,          // what conversion point.
+    IN LPCWSTR pszContentClass,             // what class
+    OUT CDllEntryPoint * &pep)              // holds candidate if found.
+{
+    HRESULT hr  =   NOERROR;    // return code
+
+    if ( (pszConversionPoint == NULL) || IsBadStringPtrW(pszConversionPoint, INFINITE) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( (pszContentClass == NULL) || IsBadStringPtrW(pszContentClass, INFINITE) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( ! TEST_WRITE_PTR(&pep, sizeof(CDllEntryPoint *)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return hr;
+
+}
+#endif

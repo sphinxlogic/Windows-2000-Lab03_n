@@ -1,0 +1,174 @@
+<HTML>
+<HEAD>
+<TITLE>NetShow SDK Sample 3 - Netscape Navigator specific intermediate scripting sample</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" onload="RegisterEventObservers()">
+
+<!-- BEGIN GENERIC ALL BROWSER FRIENDLY HTML FOR NETSHOW V3 -->
+<OBJECT ID="NSPlay" width=320 height=240 classid="CLSID:22D6F312-B0F6-11D0-94AB-0080C74C7E95"
+        codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=5,1,52,701"
+        standby="Loading Microsoft Media Player components..." type="application/x-oleobject">
+        <PARAM name="FileName" value="demo.asf">
+        <EMBED type="application/x-mplayer2"
+               pluginspage="http://www.microsoft.com/Windows/Downloads/Contents/Products/MediaPlayer/"
+               filename="demo.asf"
+               name="NSPlay"
+               width=320
+               height=240
+        ></EMBED>
+</OBJECT>
+<BR>
+<A href="demo.asf">Start the NetShow presentation in the stand-alone player.</A>
+<!-- END GENERIC ALL BROWSER FRIENDLY HTML FOR NETSHOW V3 RTM -->
+
+<H4><FONT FACE="VERDANA">Use Buttons to Change NetShow Control Parameters.<br>To begin, click 'Play'.</H4></FONT>
+<HR>
+<FONT FACE="VERDANA" SIZE=2>
+
+<FORM name="myform">
+    <P>
+	    <input type=button value="No Controls"  name="NoControls" OnClick="ToggleControls(false)"></td>
+	    <input type=button value="All Controls" name="Full" Onclick="ToggleControls(true)"></td>
+	    <BR>
+	    <input type=button value="   Small   " name="Small" OnClick="displaySize(1)"  ></TD>
+	    <input type=button value="   Large   " name="Large" Onclick="displaySize(2)"  ></TD>
+	    <input type=button value="  Normal   " name="Normal" Onclick="displaySize(0)" ></TD>
+	    <BR>
+	    <input type=button value="   Play    " name="Play" Onclick="PlayClick()"      ></TD>
+	    <input type=button value="   Pause   " name="Pause" Onclick="PauseClick()"    ></TD>
+	    <input type=button value="   Stop    " name="Stop" Onclick="StopClick()"      ></p></TD>
+
+	    button to toggle between play and pause:
+	    <input type="button" value="   Pause   " name="PlayPause" Onclick="PlayPauseClick()">
+    <P>
+</FORM>
+
+<HR>
+<FONT FACE="VERDANA" SIZE=1><I>Netscape Navigator 4.x</I></FONT>
+<HR>
+</P>
+
+<SCRIPT language="javascript">
+<!--
+//
+// **** BEGIN NETSCAPE SPECIFIC BLOCK - NETSHOW V3 RTM ****.
+//
+// This block ensures the APPLET tag is set in the document to handle events,
+// refreshes just installed plug-ins and most importantly, it calls the 
+// event observer initialization function - a requirement to enable events.
+//
+// ***Please note that if you do not need to script events, you can safely remove the next two lines
+//
+document.write("\x3C" + "applet MAYSCRIPT Code=NPDS.npDSEvtObsProxy.class");
+document.writeln(" width=5 height=5 name=appObs\x3E" + "\x3C/" + "applet\x3E");
+
+// This next line ensures that any plug-ins just installed are updated in the Browser
+// without quitting the browser.
+//
+navigator.plugins.refresh();
+
+// Event handlers and Functions follow below
+//
+
+function RegisterEventObservers ()
+{
+    // This helper function is required to register event observers with the
+    // Java proxy.  Registration MUST be done before desired events will fire.
+
+    var pluginJavaPeerRef = document.NSPlay;        // grab pointer to the object, NSPlay.
+    
+    // These are the event observers we want activated in the plug-in
+    //
+    document.appObs.setByProxyDSScriptCommandObserver(pluginJavaPeerRef, true);
+    document.appObs.setByProxyDSPlayStateChangeObserver(pluginJavaPeerRef, true);
+    document.appObs.setByProxyDSReadyStateChangeObserver(pluginJavaPeerRef, true);
+}
+
+// OnDSScriptCommandEvt() is required to receive the ScriptCommand event
+// registered by appObs.setByProxyDSScriptCommandObserver().
+//
+// Other event handlers would have similar syntax.
+//
+function OnDSScriptCommandEvt (scType, scParam)
+{
+    alert("ScriptCommand: " + scType + ", " + scParam);
+
+}   /* end OnDSScriptCommandEvt() */
+
+
+function OnDSPlayStateChangeEvt (OldPlayState, PlayState)
+{
+    alert("PlayStateChange: New State=" + PlayState);
+
+}   /* end OnDSPlayStateChangeEvt() */
+
+
+function OnDSReadyStateChangeEvt (ReadyState)
+{
+    if ((ReadyState == 3) || (ReadyState == 4))
+        alert("ReadyStateChange: New State=" + ReadyState);
+
+}   /* end OnDSWarningEvt() */
+
+
+function ToggleControls (setting)
+{
+    document.NSPlay.SetShowControls(setting);
+
+}   /* end controlType() */
+
+
+function displaySize (setting)
+{
+    document.NSPlay.SetDisplaySize(setting);
+
+}   /* end displaySize() */
+
+
+function PlayClick ()
+{
+    document.NSPlay.Play();
+
+}   /* end PlayClick() */
+
+
+function StopClick ()
+{
+    document.NSPlay.Stop();
+    document.NSPlay.SetCurrentPosition(0);
+
+}   /* end StopClick() */
+
+
+function PauseClick ()
+{
+    document.NSPlay.Pause();
+
+}   /* end PauseClick() */
+
+
+function PlayPauseClick ()
+{
+    var state;
+    
+    state = document.NSPlay.GetPlayState();
+
+    if (state == 0) {
+        document.NSPlay.Play();
+        document.myform.PlayPause.value = "Pause";
+    } else if (state == 1) {
+        document.NSPlay.Play();
+        document.myform.PlayPause.value = "Pause";
+    } else if (state == 2) {
+        document.NSPlay.Pause();
+        document.myform.PlayPause.value = " Play";
+    }
+
+}   /* end PlayPauseClick() */
+//
+// **** END NETSCAPE SPECIFIC BLOCK - NETSHOW V3 RTM ****.
+//
+//-->
+</SCRIPT>
+</BODY>
+</HTML>

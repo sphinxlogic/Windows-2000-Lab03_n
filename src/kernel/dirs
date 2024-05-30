@@ -1,0 +1,7 @@
+DIRS= \
+     agp \
+     mca \
+     parclass \
+     parport \
+     serenum \
+     serial

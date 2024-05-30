@@ -1,0 +1,96 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\atibt.res \
+    $(_OBJ_DIR)\alpha\capstrm.obj \
+    $(_OBJ_DIR)\alpha\capvbi.obj \
+    $(_OBJ_DIR)\alpha\capvideo.obj \
+    $(_OBJ_DIR)\alpha\decdev.obj \
+    $(_OBJ_DIR)\alpha\decvport.obj \
+    $(_OBJ_DIR)\alpha\drventry.obj \
+    $(_OBJ_DIR)\alpha\mediums.obj \
+    $(_OBJ_DIR)\alpha\ourcrt.obj \
+    $(_OBJ_DIR)\alpha\vidstrm.obj \
+    $(_OBJ_DIR)\alpha\vpstrm.obj \
+    $(_OBJ_DIR)\alpha\wdmvdec.obj \
+    $(_OBJ_DIR)\alpha\capmain.obj \
+    $(_OBJ_DIR)\alpha\decoder.obj \
+    $(_OBJ_DIR)\alpha\device.obj \
+    $(_OBJ_DIR)\alpha\regbase.obj \
+    $(_OBJ_DIR)\alpha\register.obj \
+    $(_OBJ_DIR)\alpha\scaler.obj \
+    $(_OBJ_DIR)\alpha\strminfo.obj \
+    $(_OBJ_DIR)\alpha\xbar.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\atibt.res \
+    $(_OBJ_DIR)\axp64\capstrm.obj \
+    $(_OBJ_DIR)\axp64\capvbi.obj \
+    $(_OBJ_DIR)\axp64\capvideo.obj \
+    $(_OBJ_DIR)\axp64\decdev.obj \
+    $(_OBJ_DIR)\axp64\decvport.obj \
+    $(_OBJ_DIR)\axp64\drventry.obj \
+    $(_OBJ_DIR)\axp64\mediums.obj \
+    $(_OBJ_DIR)\axp64\ourcrt.obj \
+    $(_OBJ_DIR)\axp64\vidstrm.obj \
+    $(_OBJ_DIR)\axp64\vpstrm.obj \
+    $(_OBJ_DIR)\axp64\wdmvdec.obj \
+    $(_OBJ_DIR)\axp64\capmain.obj \
+    $(_OBJ_DIR)\axp64\decoder.obj \
+    $(_OBJ_DIR)\axp64\device.obj \
+    $(_OBJ_DIR)\axp64\regbase.obj \
+    $(_OBJ_DIR)\axp64\register.obj \
+    $(_OBJ_DIR)\axp64\scaler.obj \
+    $(_OBJ_DIR)\axp64\strminfo.obj \
+    $(_OBJ_DIR)\axp64\xbar.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\atibt.res \
+    $(_OBJ_DIR)\i386\capstrm.obj \
+    $(_OBJ_DIR)\i386\capvbi.obj \
+    $(_OBJ_DIR)\i386\capvideo.obj \
+    $(_OBJ_DIR)\i386\decdev.obj \
+    $(_OBJ_DIR)\i386\decvport.obj \
+    $(_OBJ_DIR)\i386\drventry.obj \
+    $(_OBJ_DIR)\i386\mediums.obj \
+    $(_OBJ_DIR)\i386\ourcrt.obj \
+    $(_OBJ_DIR)\i386\vidstrm.obj \
+    $(_OBJ_DIR)\i386\vpstrm.obj \
+    $(_OBJ_DIR)\i386\wdmvdec.obj \
+    $(_OBJ_DIR)\i386\capmain.obj \
+    $(_OBJ_DIR)\i386\decoder.obj \
+    $(_OBJ_DIR)\i386\device.obj \
+    $(_OBJ_DIR)\i386\regbase.obj \
+    $(_OBJ_DIR)\i386\register.obj \
+    $(_OBJ_DIR)\i386\scaler.obj \
+    $(_OBJ_DIR)\i386\strminfo.obj \
+    $(_OBJ_DIR)\i386\xbar.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\atibt.res \
+    $(_OBJ_DIR)\ia64\capstrm.obj \
+    $(_OBJ_DIR)\ia64\capvbi.obj \
+    $(_OBJ_DIR)\ia64\capvideo.obj \
+    $(_OBJ_DIR)\ia64\decdev.obj \
+    $(_OBJ_DIR)\ia64\decvport.obj \
+    $(_OBJ_DIR)\ia64\drventry.obj \
+    $(_OBJ_DIR)\ia64\mediums.obj \
+    $(_OBJ_DIR)\ia64\ourcrt.obj \
+    $(_OBJ_DIR)\ia64\vidstrm.obj \
+    $(_OBJ_DIR)\ia64\vpstrm.obj \
+    $(_OBJ_DIR)\ia64\wdmvdec.obj \
+    $(_OBJ_DIR)\ia64\capmain.obj \
+    $(_OBJ_DIR)\ia64\decoder.obj \
+    $(_OBJ_DIR)\ia64\device.obj \
+    $(_OBJ_DIR)\ia64\regbase.obj \
+    $(_OBJ_DIR)\ia64\register.obj \
+    $(_OBJ_DIR)\ia64\scaler.obj \
+    $(_OBJ_DIR)\ia64\strminfo.obj \
+    $(_OBJ_DIR)\ia64\xbar.obj
+
+PASS0_IA64_OBJECTS=
+

@@ -1,0 +1,24 @@
+[OPTIONS]
+Binary TOC=Yes
+Compatibility=1.1 or later
+Compiled file=SnapSamp.chm
+Contents file=D:\nt\private\admin\MMCPriv\samples\sdk\Help\hlpsrc\toc.hhc
+Default topic=why.htm
+Display compile progress=Yes
+Full-text search=Yes
+Index file=SnapSamp.hhk
+Language=0x409 English (United States)
+Title=SnapSamp
+
+
+[FILES]
+reference.htm
+step_four.htm
+step_one.htm
+step_three.htm
+step_two.htm
+default.htm
+why.htm
+
+[INFOTYPES]
+

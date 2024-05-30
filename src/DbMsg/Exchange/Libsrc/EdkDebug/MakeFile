@@ -1,0 +1,20 @@
+#----------------------------------------------------------------------------
+# Description:
+#   Makefile for EdkDebug.Lib
+#
+# Copyright (C) Microsoft Corporation 1986 - 1998.  All Rights Reserved.
+#----------------------------------------------------------------------------
+
+USE_EXCHANGE=1
+console=1
+
+Proj = EdkDebug
+
+ObjList = $(@D)\Memory.Obj $(@D)\EdkLog.Obj $(@D)\EdkDebug.Obj \
+          $(@D)\Error.Obj $(@D)\MapiMem.Obj
+
+!Include <BkOffice.Mak>
+
+all: $(ObjDir)\$(Proj).Lib
+
+$(ObjDir)\$(Proj).Lib: $(ObjList)

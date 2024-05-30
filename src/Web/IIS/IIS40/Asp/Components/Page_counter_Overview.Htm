@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Page Counter</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_page_counter"></a>  Page Counter</h3>
+<p>
+The Page Counter component creates a <b>PageCounter</b> object that can be used to count the number of times a Web page has been opened. The <b>PageCounter</b> object accesses count data from an internal data object, which periodically writes the information to a hit count data file. </p>
+<p>
+This example illustrates how to use the Page Counter component in an ASP script. The <b>PageCounter</b> object is instantiated, and the variable <i>MyPageCounter</i> is set to refer to the new instance. The <b>PageCounter.PageHit</b> method is called to increment the hit total. The <b>PageCounter.Hits</b> method is then called, which returns the number of hits the specified page has had. </p>
+<p>
+<b>Note</b>&nbsp;&nbsp;The Page Counter component increments the number of hits for a given page each time the <b>PageCounter.PageHit</b> method is called. If your script does not call this method exactly once per page hit, your page hit count will be inaccurate for that page. </p>
+<p>
+<b>Note</b>&nbsp;&nbsp;This component is not installed with IIS. You can install it from the Microsoft Web site at <b>http://www.microsoft.com/iis/</b>, or from the CD included with the IIS Resource Kit. The ProgID declared by the component version installed from these sources specifies &quot;IISSamples&quot; in the vendor component of the ProgID, not &quot;MSWC.&quot; Therefore, the <b>Server.CreateObject</b> invocation in this sample script must be modified to reflect the proper component ProgID.</p>
+</BODY>
+</HTML>

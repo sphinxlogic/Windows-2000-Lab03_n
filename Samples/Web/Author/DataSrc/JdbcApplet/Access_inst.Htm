@@ -1,0 +1,106 @@
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<HTML>
+<HEAD>
+<TITLE>Using the JDBC Data Source Applet with Microsoft Access</TITLE>
+<META NAME="FILENAME" CONTENT="access_inst.HTM">
+</HEAD>
+<!--HEADER_END-->
+
+
+<BODY MARGINHEIGHT="0" MARGINWIDTH="0" BGCOLOR="#FFFFFF" LINK="#000066" VLINK="#666666" TEXT="#000000">
+
+
+
+
+
+  
+
+<TABLE CELLPADDING="0" CELLSPACING="0" BORDER="0">
+	<TR>
+		<TD WIDTH="15" ROWSPAN="5">&nbsp;</TD>
+		<TD COLSPAN="4"><I>Data Source Objects</I><BR><H2>Using the JDBC Data Source Applet with Microsoft Access</H2></TD>
+	</TR>
+	
+
+	
+</TABLE>
+<!--
+	End include table
+-->
+
+<DIV CLASS="clsSampDocBody">
+
+<P>
+<B>Description</B>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+
+<P>
+
+	If you're viewing this page, you're presumed to have installed the JDBC
+	software from the JDBC Applet introduction page. If not, click
+	<A HREF="default.asp">here</A> to go install the software.
+	<P>
+	This page provides instructions to use the software
+	to access data stored in a Microsoft Access database on your local system.
+	<P>
+	<B>Instructions for Microsoft Access users</B>
+	<P>
+
+	These instructions assume you have Microsoft Access installed on your
+	system along with the desktop ODBC drivers. It also assumes that you
+	installed the sample database, Northwind.mdb.
+	<OL>
+	  <LI>Create an ODBC DSN to the Northwind database. Name this
+	  DSN <I>Northwind</I>.
+	  <LI>Press the refresh button on the browser.
+	  <LI>When you scroll down, you should now be viewing a list of products
+	  from the Northwind Trader's database including the product name,
+	  the name of the company supplying the product, and the product category.
+	</OL>
+<BR>
+
+<applet code=JDC.class NAME="DSA1" ID="DSA1" width=0 height=0>
+    <param name=cabbase value="jdc.cab">
+	<param name=dbURL value="jdbc:odbc:Northwind">
+    <param name=showUI value=false>
+    <param name=sqlStatement value="select ProductName, CompanyName, CategoryName from Products, Suppliers, Categories where Suppliers.SupplierID=Products.SupplierID and Categories.CategoryID = Products.CategoryID and Categories.CategoryID < 5">
+    <param name=allowInsert value="true">
+    <param name=allowDelete value="true">
+    <param name=allowUpdate value="false">
+    <param name=user        value="/isapi>
+    <param name=password    value="/isapi>
+</applet>
+
+	<TABLE ID=mytbl DATASRC="#DSA1" border=1>
+	  <THEAD>
+		<TR>
+		  <TH><FONT FACE="Arial, Helvetica, Verdana" SIZE="3"COLOR=BLACK>Product Name</FONT></U>
+		  <TH><FONT FACE="Arial, Helvetica, Verdana" SIZE="3"COLOR=BLACK>Supplier</FONT></U>
+		  <TH><FONT FACE="Arial, Helvetica, Verdana" SIZE="3"COLOR=BLACK>Category</FONT></U>
+		</TR>
+	  </THEAD>
+	  <TBODY>
+		<TR>
+		 <TD><SPAN DATAFLD="ProductName"></SPAN></TD>
+		 <TD><SPAN DATAFLD="CompanyName"></SPAN></TD>
+		 <TD><SPAN DATAFLD="CategoryName"></SPAN></TD>
+		</TR>
+	  </TBODY>
+	</TABLE>
+
+<HR>
+
+
+<P CLASS="copyright">&nbsp;<BR>
+<FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">
+&copy; <A HREF="/misc/cpyright.htm" TARGET="_top">1999 Microsoft Corporation. All rights reserved. Terms of use</A>. 
+</FONT>
+<P>
+</DIV>
+<!-- END DOCUMENT BODY --->
+
+
+</BODY>
+</HTML>

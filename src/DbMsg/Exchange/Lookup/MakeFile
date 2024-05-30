@@ -1,0 +1,17 @@
+#---------------------------------------------------------------------------
+# Description:
+#   Makefile to generate Lookup.Exe
+#
+# Copyright (C) Microsoft Corporation 1986 - 1998.  All Rights Reserved.
+#---------------------------------------------------------------------------
+
+USE_EXCHANGE=1
+console=1
+
+Proj = Lookup
+
+!Include <BkOffice.Mak>
+
+all: $(ObjDir)\$(Proj).Exe
+
+$(ObjDir)\$(Proj).Exe: $(@R).Obj

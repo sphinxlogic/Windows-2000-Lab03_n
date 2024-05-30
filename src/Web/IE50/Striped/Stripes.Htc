@@ -1,0 +1,50 @@
+<PUBLIC:PROPERTY name=color1 put=setColor1 get=getColor1 />
+<PUBLIC:PROPERTY name=color2 put=setColor2 get=getColor2 />
+
+<script language="jscript">
+
+var color1;
+var color2;
+
+// set defaults
+if (color1 == null)
+  color1 = 0xcccccc;
+if (color2 == null)
+  color2 = 0xffffff;
+
+attachEvent("onreadystatechange", doColor);
+
+function doColor() {
+   if (readyState != "complete")
+	return;
+
+   len = rows.length; 
+   for (i=0; i<len; i++)
+   {
+	rows(i).style.setExpression("backgroundColor", "rowIndex % 2 ? parentElement.parentElement.color1 : parentElement.parentElement.color2");
+   }
+}
+
+function getColor1()
+{
+	return color1;
+}
+
+function getColor2()
+{
+	return color2;
+}
+
+function setColor1(c)
+{
+	color1 = c;
+	element.document.recalc();
+}
+
+function setColor2(c)
+{
+	color2 = c;
+	element.document.recalc();
+}
+
+</script>

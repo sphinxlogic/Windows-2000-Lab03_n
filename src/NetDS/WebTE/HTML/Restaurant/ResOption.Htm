@@ -1,0 +1,137 @@
+<html>
+<!-- 
+/**************************************************************************
+ *
+ * Copyright (c) 1999 Microsoft Corporation.  All rights reserved.
+ *
+ * This is prerelease software and is provided as is and Microsoft
+ * makes no warranties, either express or implied.  The entire risk of
+ * the use or the results of the use of this prerelease software
+ * remains with the user.
+ **************************************************************************/
+
+-->
+<head>
+<title>WEB-IVR RESERVATION</title>
+
+      <STYLE TYPE="text/css" MEDIA="aural, print">
+         #FinalMenu {display:none}
+      </STYLE>
+</head>
+
+<body background="images/back.jpg" Onunload="CancelPageSettings();">
+
+<p align="center"><img src="images/reservation_b.gif" width="600" height="60" alt="reservation_b.gif (13523 bytes)"></p>
+
+
+<SCRIPT LANGUAGE="JavaScript"> 
+            function CancellErrors()        
+            {
+            return true;
+            }
+            //window.onerror = CancellErrors;
+            var CallConfiguration;
+            var PreviousOfferItems, PreviousUseSR, PreviousTimeOut;
+            if(window.external.hostName == "Microsoft Web Telephony Engine")
+            {
+                CallConfiguration=window.external.Configuration;
+                PreviousOfferItems = CallConfiguration.offeritems;
+                CallConfiguration.offeritems=false;
+       		PreviousUseSR = CallConfiguration.UseSR;
+	        CallConfiguration.UseSR = true;
+                CallConfiguration.confirmbefore = "url(waves/IfYouSaid.wav)";
+                CallConfiguration.confirmafter = "url(waves/press1.wav)";
+                CallConfiguration.RepeatMenuAnnouncement="url(waves/IfNotPress9.wav)";
+                CallConfiguration.RepeatMenuKey="9";
+                //alert(CallConfiguration.UseSR); 
+                PreviousTimeOut=CallConfiguration.firsttimeoutinterval;
+                CallConfiguration.firsttimeoutinterval = 30;
+                //alert(CallConfiguration.firsttimeoutinterval); 
+            }
+            function CancelPageSettings()
+	    {
+	    if(window.external.hostName == "Microsoft Web Telephony Engine") 
+            {
+                CallConfiguration.offeritems=PreviousOfferItems;
+		CallConfiguration.UseSR=PreviousUseSR;
+                CallConfiguration.firsttimeoutinterval =  PreviousTimeOut;
+            }
+            }	      
+</script>
+<script language="JScript" FOR=Loca Event="onselectiontimeout">
+                window.external.Configuration.offeritems=true;
+		window.external.Configuration.UseSR=false;
+                navigate('#MyForm');
+</script>
+
+<script language="JScript" FOR=Loca Event="onchange">
+                window.external.Configuration.offeritems=true;
+		window.external.Configuration.UseSR=false;
+</script>
+
+<script language="VBScript" FOR=Loca Event="onselectionerror">
+a = window.external.alternativephrases
+On Error Resume Next
+b  = a(0)
+
+If Err Then
+   window.external.Configuration.offeritems=TRUE
+   window.external.Configuration.UseSR=FALSE
+   window.navigate("#MyForm")
+End If   
+</script>
+
+<form method="post" action="Answer.asp" ID="MyForm">
+  <div align="center"><center><table border="0" cellpadding="5" cellspacing="0" width="100%">
+    <tr>
+      <td width="16%" valign="top" align="right">Select Location of party:</td>
+      <td width="50%" valign="top">
+      
+      <A VoiceFile="waves\SpeakLoc.wav"></A>
+      <select NAME="Loca" SIZE="4">
+        <option value="Kirkland" VoiceFile="waves\Kirkland.wav" STYLE = "cue-before: 'URL(waves/for.wav)'; cue-after: 'URL(waves/press1.wav)'">Kirkland </option>
+        <option value="Raglan" VoiceFile="waves\Raglan.wav" STYLE = "cue-before: 'URL(waves/for.wav)'; cue-after: 'URL(waves/press2.wav)'">Raglan </option>
+        <option value="Bellevue" VoiceFile="waves\Bellevue.wav" STYLE = "cue-before: 'URL(waves/for.wav)'; cue-after: 'URL(waves/press3.wav)'">Bellevue </option>
+        <option value="Seattle" VoiceFile="waves\Seattle.wav" STYLE = "cue-before: 'URL(waves/for.wav)'; cue-after: 'URL(waves/press4.wav)'">Seattle </option>
+      </select></td>
+    </tr>
+    <tr>
+      <td width="16%" align="right"><a VoiceFile="Waves\PartyNum.wav">Enter number in your
+      party:</a></td>
+      <td width="35%" valign="top"><input TYPE="text" NAME="PartyNum" SIZE="2" MAXLENGTH="1"></td>
+    </tr>
+    <tr>
+      <td width="50%" align="right" valign="top"><a VoiceFile="Waves\ResTime.wav">Enter
+      reservation time:</a></td>
+      <td width="35%" valign="top" align="right"><div align="left"><p>
+      <select NAME="ResTime" size="1">
+        <option VALUE="5" accesskey=5> 5:00</option>
+        <option VALUE="6" accesskey=6> 6:00</option>
+        <option VALUE="7" accesskey=7> 7:00</option>
+        <option VALUE="8" accesskey=8> 8:00</option>
+        <option VALUE="9" accesskey=9> 9:00</option>
+      </select></td>
+    </tr>
+    <tr>
+      <td width="16%" align="right"><a VoiceFile="Waves\Smoking.wav">Non-Smoking:</a> </td>
+      <td width="35%" valign="top" align="right"><div align="left"><p><input TYPE="checkbox"
+      NAME="Smoking" value="ON"></td>
+    </tr>
+    <tr>
+      <td width="83%" align="right" colspan="2"><div align="center"><center><p><input
+      TYPE="Submit" NAME="sub" VALUE="Submit"></td>
+    </tr>
+  </table>
+  </center></div>
+</form>
+
+<!--<p align="center"><a HREF="Default.htm"></a><br>-->
+</p>
+<DIV ID=FinalMenu>
+<p align="center"><a href="Default.htm"><img src="images/home.gif" width="140" height="60"
+alt="home.gif (2942 bytes)" border="0"></a> 
+<img src="images/reservation_g.gif" width="140" height="60" alt="reservation_g.gif (3235 bytes)"> 
+</p>
+</DIV>
+</body>
+</html>

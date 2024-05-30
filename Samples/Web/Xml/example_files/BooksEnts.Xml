@@ -1,0 +1,32 @@
+<?xml version='1.0'?>
+<!DOCTYPE bookstore SYSTEM "books.dtd"[
+<!ENTITY aut "autobiography">
+<!ENTITY nov "novel">
+<!ENTITY phi "philosophy"> 
+]>
+<!-- This file represents a fragment of a book store inventory database -->
+<bookstore>
+  <book genre="&aut;">
+    <title>The Autobiography of Benjamin Franklin</title>
+    <author>
+      <first-name>Benjamin</first-name>
+      <last-name>Franklin</last-name>
+    </author>
+    <price>8.99</price>
+  </book>
+  <book genre="&nov;">
+    <title>The Confidence Man</title>
+    <author>
+      <first-name>Herman</first-name>
+      <last-name>Melville</last-name>
+    </author>
+    <price>11.99</price>
+  </book>
+  <book genre="&phi;">
+    <title>The Gorgias</title>
+    <author>
+      <name>Plato</name>
+    </author>
+    <price>9.99</price>
+  </book>
+</bookstore>

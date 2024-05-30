@@ -1,0 +1,20 @@
+// db_LoginEvents.idl : IDL source for db_LoginEvents.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (db_LoginEvents.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	uuid(B40A5644-F4FB-11D1-9734-00805F31E0AF),
+	version(1.0),
+	helpstring("db_LoginEvents 1.0 Type Library")
+]
+library DB_LOGINEVENTSLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+};

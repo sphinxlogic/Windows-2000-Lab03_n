@@ -1,0 +1,328 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "1 TYPELIB ""AtlBrowser.tlb""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "AtlBrowser Module\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "ATLBROWSER\0"
+            VALUE "LegalCopyright", "Copyright 1999\0"
+            VALUE "OriginalFilename", "ATLBROWSER.DLL\0"
+            VALUE "ProductName", "AtlBrowser Module\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+            VALUE "OLESelfRegister", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// REGISTRY
+//
+
+IDR_AtlBrowser          REGISTRY MOVEABLE PURE  "AtlBrowser.rgs"
+IDR_ATLBRCON            REGISTRY DISCARDABLE    "AtlBrCon.rgs"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_ATLBR_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Open\tCtrl+O",               ID_FILE_OPEN
+        MENUITEM "Save &As...",                 ID_FILE_SAVEAS
+        MENUITEM SEPARATOR
+        MENUITEM "Page Set&up...",              ID_FILE_PAGESETUP
+        MENUITEM "&Print...\tCtrl+P",           ID_FILE_PRINT
+        MENUITEM SEPARATOR
+        MENUITEM "&Close",                      ID_FILE_CLOSE
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "Select All\tCtrl+A",          ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "&Find (on this page)...\tCtrl+F", ID_EDIT_FIND
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Stop\tEsc",                  ID_VIEW_STOP
+        MENUITEM "&Refresh\tF5",                ID_VIEW_REFRESH
+        MENUITEM SEPARATOR
+        MENUITEM "Sour&ce",                     ID_VIEW_SOURCE
+        MENUITEM SEPARATOR
+        MENUITEM "Internet &Options",           ID_VIEW_OPTIONS
+    END
+    POPUP "&Go"
+    BEGIN
+        MENUITEM "&Back\tAlt+Left Arrow",       ID_GO_BACK
+        MENUITEM "&Forward\tAlt+Right Arrow",   ID_GO_FORWARD
+        MENUITEM SEPARATOR
+        MENUITEM "&Home Page",                  ID_GO_HOME
+        MENUITEM "&Search the Web",             ID_GO_SEARCH
+    END
+    POPUP "&UI Control"
+    BEGIN
+        MENUITEM "&Context Menus",              ID_UICONTROL_CTXMENUS
+        , CHECKED
+        MENUITEM "Allow &Text Selection",       ID_UICONTROL_DIALOG, CHECKED
+        MENUITEM "&3D Border",                  ID_UICONTROL_3DBORDER
+        , CHECKED
+        MENUITEM "&Scrollbars",                 ID_UICONTROL_SCROLLBARS
+        , CHECKED
+        MENUITEM "Do not O&pen links in new window", ID_UICONTROL_OPENNEWWIN
+        , CHECKED
+        MENUITEM "Use AtlBrowser Help",         ID_UICONTROL_HELP, CHECKED
+    END
+    POPUP "&Download Control"
+    BEGIN
+        MENUITEM "&Images",                     ID_DLCTL_DLIMAGES, CHECKED
+        MENUITEM "&Videos",                     ID_DLCTL_VIDEOS, CHECKED
+        MENUITEM "&Sounds",                     ID_DLCTL_BGSOUNDS, CHECKED
+        MENUITEM "No S&cript execution",        ID_DLCTL_NO_SCRIPTS
+        MENUITEM "No &Java Applets",            ID_DLCTL_NO_JAVA
+        MENUITEM "No Execution of ActiveX Controls", ID_DLCTL_NO_RUNACTIVEX
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About AtlBrowser",           ID_HELP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 186, 95
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About AtlBrowser"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",1,67,76,50,14
+    LTEXT           "AtlBrowser Version 1.0",IDC_STATIC,54,18,75,9
+    LTEXT           "Copyright (C) 1999 Microsoft Corporation",IDC_STATIC,28,
+                    47,129,10
+    LTEXT           "Created by Microsoft Developer Support",IDC_STATIC,50,32,83,10
+    ICON            IDI_ICON,IDC_STATIC,15,17,20,20
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_ACCELERATOR ACCELERATORS DISCARDABLE 
+BEGIN
+    "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
+    VK_ESCAPE,      ID_VIEW_STOP,           VIRTKEY, NOINVERT
+    VK_F5,          ID_VIEW_REFRESH,        VIRTKEY, NOINVERT
+    VK_LEFT,        ID_GO_BACK,             VIRTKEY, ALT, NOINVERT
+    VK_RIGHT,       ID_GO_FORWARD,          VIRTKEY, ALT, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON                ICON    DISCARDABLE     "res\\AtlBrowser.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_TOOLBAR             BITMAP  MOVEABLE PURE   "res\\toolbar.bmp"
+IDR_TOOLBAR2            BITMAP  MOVEABLE PURE   "res\\toolbar2.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_TOOLBAR TOOLBAR DISCARDABLE  23, 20
+BEGIN
+    BUTTON      32771
+    BUTTON      32772
+    SEPARATOR
+    BUTTON      32776
+    BUTTON      32775
+    BUTTON      32773
+    SEPARATOR
+    BUTTON      32774
+    SEPARATOR
+    BUTTON      57607
+    BUTTON      ID_APP_ABOUT
+END
+
+IDR_TOOLBAR2 TOOLBAR DISCARDABLE  23, 20
+BEGIN
+    BUTTON      ID_URL_NAME
+    SEPARATOR
+    BUTTON      32771
+    BUTTON      32772
+    SEPARATOR
+    BUTTON      32776
+    BUTTON      32775
+    BUTTON      32773
+    SEPARATOR
+    BUTTON      32774
+    SEPARATOR
+    BUTTON      57607
+    BUTTON      ID_APP_ABOUT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PROJNAME            "AtlBrowser"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_EXIT            "Close Application"
+    ID_FILE_CLOSE           "Closes the window"
+    ID_FILE_PRINT           "Prints this Document"
+    ID_EDIT_FIND            "Searches the current window for text"
+    ID_VIEW_SOURCE          "Display source (HTML) for this page"
+    ID_VIEW_OPTIONS         "Enables you to change settings"
+    ID_GO_BACK              "Goes back one step"
+    ID_GO_FORWARD           "Goes forward one step"
+    ID_GO_HOME              "Opens your start page"
+    ID_HELP_ABOUT           "Displays the program information"
+    ID_GO_SEARCH            "Opens the search web page"
+    ID_VIEW_REFRESH         "Refresh the contents of the current page"
+    ID_FILE_OPEN            "Opens a document in this window"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EDIT_SELECT_ALL      "Select all the text"
+    ID_FILE_PAGESETUP       "Enables you to change the page setup."
+    ID_FILE_SAVEAS          "Saves this document as a file."
+    ID_UICONTROL_CTXMENUS   "Enable/Disable Context Menus"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_DLCTL_DLIMAGES       "Toggles the downloading of images from the server."
+    ID_DLCTL_VIDEOS         "Toggles the playing of video clips that are contained in the document."
+    ID_DLCTL_BGSOUNDS       "Toggles the playing of background sounds associated with the document. "
+    ID_DLCTL_NO_SCRIPTS     "Toggles the execution of script"
+    ID_DLCTL_NO_JAVA        "Toggles the execution of Java applets. "
+    ID_DIALOG               "Allow selection of the text in the form. "
+    ID_UICONTROL_3DBORDER   "Do not use 3-D borders for the WebBrowser control"
+    ID_UICONTROL_SCROLLBARS "Turns off scrollbars in the WebBrowser control"
+    ID_UICONTROL_OPENNEWWIN "Open a site in a new window when a link is clicked"
+    ID_UICONTROL_DBLCLK_DEFAULT "Perform the default action"
+    ID_UICONTROL_DBLCLK_SHOWPROP "Show the item's properties"
+    ID_UICONTROL_DBLCLK_SHOWCODE "Show the page's source"
+    ID_DLCTL_NO_RUNACTIVEX  "Toggles the execution of ActiveX controls"
+    ID_UICONTROL_HELP       "Toggles the use of AtlBrowser's help"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+1 TYPELIB "AtlBrowser.tlb"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

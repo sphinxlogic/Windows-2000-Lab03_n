@@ -1,0 +1,99 @@
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<HTML>
+<HEAD>
+<TITLE>The LABEL Tag</TITLE>
+<META NAME="FILENAME" CONTENT="label.HTM">
+
+
+<script language="JavaScript">
+
+function forward() {
+
+//This function increments the data bound record after checking to confirm 
+//you are not already at the end of the recordset. If you are, the program 
+//alerts you that it cant go any further. 
+
+  if (StockList.recordset.AbsolutePosition != StockList.recordset.RecordCount) {
+	StockList.recordset.MoveNext();
+	}
+	else {
+	alert("Already at last element");
+	}
+}
+
+function reverse() {
+
+//This function decrements the data bound record after checking to confirm 
+//you are not already at the end of the recordset. If you are, the program 
+//alerts you that it cant go any further.  
+
+  if (StockList.recordset.AbsolutePosition != 1) {
+	StockList.recordset.MovePrevious();
+	}
+	else {
+	alert("Already at first element");
+	}
+}
+
+</SCRIPT>
+</head>
+
+
+<body TOPMARGIN=20 leftmargin=40 bgcolor="#ffffff" link="#000066"
+	vlink="#666666 text="#000000">
+
+<H2>The LABEL Tag</H2>
+<FONT FACE="verdana,arial,helvetica" SIZE=1>
+<A HREF="#" ONCLICK="self.close();return false">Close This Sample</A>
+</FONT>
+<P>
+<P>
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+<hr>
+<br>
+
+The content of the LABEL tag can be data bound. Clicking on the content results in the associated controls obtaining the focus. Below is an example of labels bound to the current record of a data source. Clicking on the arrow buttons will move the current record. This results in the label displaying the data from the
+current record.
+<P>
+<center>
+<label for=button1 datasrc=#StockList datafld=Symbol> Normal label </label>
+<input type="checkbox" id=button1> 
+<hr width=100>
+<input type="button" value="  <  " onClick="reverse();">
+<input type="button" value="  >  " onClick="forward();">
+<hr width=100>
+</center>
+<p>
+The data the label binds may contain HTML. Using the DATAFORMATAS attribute, the
+HTML can be displayed for the label. Clicking anywhere on the HTML will result in the associated control obtaining the focus.
+<P>
+
+<object id="StockList" classid="clsid:333C7BC4-460F-11D0-BC04-0080C7055A83"
+	width=0 height=0>
+<param name="UseHeader" value="True">
+<param name="DataURL" value="quotes.txt">
+</object>
+
+<center>
+<label for=button2 datasrc=#StockList datafld=Symbol_fmt dataformatas="html"></label>
+<input type="checkbox" id=button2>
+</center>
+<p>
+
+<p>
+Data bound labels cannot be used within repeated tables.
+<p>
+
+Click on <a href="quotes.txt">quotes.txt</a> to see the data file 
+used by this page.
+<P>
+<P>
+<P>
+<P>
+<FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">
+&copy; <A HREF="/misc/cpyright.htm" TARGET="_top">1999 Microsoft Corporation. All rights reserved. Terms of use</A>.
+</FONT>
+</body>
+</html>

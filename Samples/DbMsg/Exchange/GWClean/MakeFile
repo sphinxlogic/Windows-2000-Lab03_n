@@ -1,0 +1,21 @@
+#----------------------------------------------------------------------------
+# Description:
+#   Makefile for GWClean.Exe
+#
+# Copyright (C) Microsoft Corporation 1986 - 1998.  All Rights Reserved.
+#----------------------------------------------------------------------------
+
+USE_EXCHANGE=1
+console=1
+
+Proj = GwClean
+
+!include <BkOffice.Mak>
+
+ObjList = $(@R).Res $(@R).Obj $(@D)\GwObjCls.Obj
+
+all:    $(ObjDir)\$(Proj).Exe
+
+$(ObjDir)\$(Proj).Exe: $(ObjList)
+
+$(ObjDir)\$(Proj).Res: $(@D)\GwEvents.Res

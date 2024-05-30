@@ -1,0 +1,394 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 3.0">
+<title>Microsoft OLE DB Provider for AS/400 and VSAM</title>
+</head>
+
+<body background="texture.gif">
+
+<p align="center"><font face="Arial" color="#000080"><big><strong>Web Client-based Host
+Record Lookup</strong></big></font></p>
+<div align="center"><center>
+
+<table border="0" width="600" cellspacing="4" cellpadding="3">
+  <tr>
+    <td nowrap width="140" align="right"><strong><font face="Arial">Fields&nbsp;&nbsp; </font></strong></td>
+    <td align="left" width="130"><strong><font face="Arial">&nbsp;&nbsp; Data</font></strong>
+    &nbsp; </td>
+    <td width="100"><p align="right"><input type="button" value="Open RS" name="cmdOpenRS"></td>
+  </tr>
+  <tr>
+    <td width="140" nowrap align="right"><font face="Arial"><a id="lblField1">Field 1</a></font></td>
+    <td align="left" width="460" colspan="2"><input type="text" id="txtField1" size="50"
+    value="Field 1" tabindex="3"></td>
+  </tr>
+  <tr>
+    <td width="140" nowrap align="right" id="lblField2"><font face="Arial">Field 2</font></td>
+    <td align="left" width="460" colspan="2"><input type="text" id="txtField2" size="50"
+    value="Field 2" tabindex="4"></td>
+  </tr>
+  <tr>
+    <td width="140" nowrap align="right" id="lblField3"><font face="Arial">Field 3</font></td>
+    <td align="left" width="460" colspan="2"><input type="text" id="txtField3" size="50"
+    value="Field 3" tabindex="5"></td>
+  </tr>
+  <tr>
+    <td width="140" nowrap align="right" id="lblField4"><font face="Arial">Field 4</font></td>
+    <td align="left" width="460" colspan="2"><input type="text" id="txtField4" size="50"
+    value="Field 4" tabindex="6"></td>
+  </tr>
+  <tr>
+    <td width="140" nowrap align="right" id="lblField5"><font face="Arial">Field 5</font></td>
+    <td align="left" width="460" colspan="2"><input type="text" id="txtField5" size="50"
+    value="Field 5" tabindex="7"></td>
+  </tr>
+  <tr>
+    <td width="140" nowrap align="right" id="lblField6"><font face="Arial">Field 6</font></td>
+    <td align="left" width="460" colspan="2"><input type="text" id="txtField6" size="50"
+    value="Field 6" tabindex="8"></td>
+  </tr>
+  <tr>
+    <td width="140" nowrap align="right" id="lblField7"><font face="Arial">Field 7</font></td>
+    <td align="left" width="460" colspan="2"><input type="text" id="txtField7" size="50"
+    value="Field 7" tabindex="9"></td>
+  </tr>
+  <tr>
+    <td width="140" nowrap align="right" id="lblField8"><font face="Arial">Field 8</font></td>
+    <td align="left" width="460" colspan="2"><input type="text" id="txtField8" size="50"
+    value="Field 8" tabindex="10"></td>
+  </tr>
+  <tr>
+    <td width="140" nowrap align="right" id="lblField9"><font face="Arial">Field 9</font></td>
+    <td align="left" width="460" colspan="2"><input type="text" id="txtField9" size="50"
+    value="Field 9" tabindex="11"></td>
+  </tr>
+  <tr>
+    <td colspan="3" valign="middle" align="center" nowrap width="600">
+	<input type="button" value=" |&lt;" name="cmdMoveFirst" tabindex="12">
+	<input type="button" value=" &lt; " name="cmdMovePrevious" tabindex="14">
+	<input type="text" name="txtSource" size="30" value="library/table name" tabindex="1">
+	<input type="button" value=" &gt; " name="cmdMoveNext" tabindex="15">
+	<input type="button" value=" &gt;|" name="cmdMoveLast" tabindex="16"><p>
+	<input type="button" value="       Add      " name="cmdAdd">
+	<input type="button" value="       Edit     " name="cmdEdit" tabindex="17">
+	<input type="button" value="    Update    " name="cmdUpdate" tabindex="18">
+	<input type="button" value="    Cancel    " name="cmdCancel" tabindex="19">
+	<input type="button" value="    Delete    " name="cmdDelete" tabindex="20">
+   </td>
+ </tr>
+</table>
+</center></div>
+
+<p align="center"><a href="source.txt"><font face="Arial"><strong>View Source Code</strong></font></a></p>
+
+<script LANGUAGE="VBScript">
+<!--
+'Global Variables 
+Dim Conn
+Dim RS
+
+' -------------
+
+Function Window_OnLoad()
+	AllButtonEnabling False
+ 	txtSource.Disabled = True
+
+End Function
+
+' -------------
+
+Function cmdOpenRS_OnClick() 
+	On Error Resume Next
+	
+	AllButtonEnabling False
+	cmdOpenRS.Disabled = True
+
+	Set Conn = Nothing
+	Set RS = Nothing
+
+	Err.Clear
+	Set Conn = CreateObject("ADODB.Connection")
+	Set RS = CreateObject("ADODB.Recordset")
+	If Err.Description <> "" Then
+		Msgbox Err.Description,,"Microsoft ADO VBScript Sample" 
+		cmdOpenRS.Disabled = False
+		Exit Function
+	End If
+
+    	' Open ADO Connection and Recordset by allowing the user to specify connection information
+	
+	UserInput = InputBox("Enter a connection string:", "Microsoft ADO VBScript Sample", "Provider=SNAOLEDB;NetLib=SNA;NetAddr=;NetPort=;RemoteLU=DDMDEMO;LocalLU=LOCAL;ModeName=QPCSUPP;Password=SNA;User ID=SNA;Location=DDMDEMO;DefaultLibrary=PUBS;CCSID=37;PCCodePage=1252;HCDFileName=;BinAsChar=NO;RepairKeys=NO;StrictVal=NO;Data Source=Sample;")
+	
+	If UserInput = "" Then
+		cmdOpenRS.Disabled = False
+		Exit Function
+	End If
+	
+	Conn.ConnectionString = "Provider=SNAOLEDB;" & UserInput
+
+	Err.Clear
+	Conn.Open
+	If Err.Description  <> "" Then
+		Msgbox Err.Description,,"Microsoft ADO VBScript Sample"
+		cmdOpenRS.Disabled = False 
+		Exit Function
+	End If
+
+	UserInput = InputBox("Which file do you want to open?", "Microsoft ADO VBScript Sample", "Library/File; Library/File(Member); Data.Set; or Data.Set(Member)")
+	If UserInput = "" Then Exit Function
+
+	Err.Clear
+
+	' Required open method parameters: CursorType = 2 "adOpenDynamic"; LockType = 3 "adLockOptimistic"; Options = 1 "adCmdText"
+	RS.Open "Exec Open " & UserInput & " ", Conn, 2, 3, 1
+
+	If Err.Description  <> "" Then
+		Msgbox Err.Description,,"Microsoft ADO VBScript Sample"
+		cmdOpenRS.Disabled = False 
+		Exit Function
+	End If
+
+	ClearLabels
+	ClearTextBoxes
+	cmdCancel.Disabled = True
+	cmdUpdate.Disabled = True
+	txtSource.Disabled = True
+
+	DisplayColumnNames
+
+	'Display data
+	DisplayFormData
+
+	AllButtonEnabling True
+	cmdUpdate.Disabled = True
+	cmdCancel.Disabled = True
+	cmdOpenRS.Disabled = False
+
+End Function
+
+' -------------
+
+Sub DisplayFormData()
+	On Error Resume Next
+	txtField1.Value = RTrim(RS.Fields.Item(0))
+	txtField2.Value = RTrim(RS.Fields.Item(1))
+	txtField3.Value = RTrim(RS.Fields.Item(2))
+	txtField4.Value = RTrim(RS.Fields.Item(3))
+	txtField5.Value = RTrim(RS.Fields.Item(4))
+	txtField6.Value = RTrim(RS.Fields.Item(5))
+	txtField7.Value = RTrim(RS.Fields.Item(6))
+	txtField8.Value = RTrim(RS.Fields.Item(7))
+	txtField9.Value = RTrim(RS.Fields.Item(8))
+
+End Sub
+
+' -------------
+
+Sub DisplayColumnNames()
+	On Error Resume Next
+	lblField1.innerText = RS.Fields(0).Name
+	lblField2.innerText = RS.Fields(1).Name
+	lblField3.innerText = RS.Fields(2).Name
+	lblField4.innerText = RS.Fields(3).Name
+	lblField5.innerText = RS.Fields(4).Name
+	lblField6.innerText = RS.Fields(5).Name
+	lblField7.innerText = RS.Fields(6).Name
+	lblField8.innerText = RS.Fields(7).Name
+	lblField9.innerText = RS.Fields(8).Name
+
+	txtSource.value = RS.Source
+
+End Sub
+' -------------
+
+Sub cmdMoveFirst_OnClick()
+	RS.MoveFirst
+
+	DisplayFormData
+
+	cmdMoveFirst.Disabled = True
+	cmdMovePrevious.Disabled = True
+	cmdMoveLast.Disabled = False
+	cmdMoveNext.Disabled = False
+
+End Sub
+
+' -------------
+
+Sub cmdMovePrevious_OnClick()
+	RS.MovePrevious
+	If RS.BOF = False Then
+
+		DisplayFormData
+
+		cmdMoveLast.Disabled = False
+		cmdMoveNext.Disabled = False
+	Else
+		cmdMoveFirst.Disabled = True
+		cmdMovePrevious.Disabled = True
+		cmdMoveLast.Disabled = False
+		cmdMoveNext.Disabled = False
+	End If
+
+End Sub
+
+' -------------
+
+Sub cmdMoveNext_OnClick()
+	RS.MoveNext
+	If RS.EOF = False Then
+
+		DisplayFormData
+
+		cmdMoveFirst.Disabled = False
+		cmdMovePrevious.Disabled = False
+	Else
+		cmdMoveFirst.Disabled = False
+		cmdMovePrevious.Disabled = False
+		cmdMoveLast.Disabled = True
+		cmdMoveNext.Disabled = True
+	End If
+
+End Sub
+
+' -------------
+
+Sub cmdMoveLast_OnClick()
+	RS.MoveLast
+
+	cmdMoveFirst.Disabled = False
+	cmdMovePrevious.Disabled = False
+	cmdMoveLast.Disabled = True
+	cmdMoveNext.Disabled = True
+
+	DisplayFormData
+
+End Sub
+
+' -------------
+
+Function AllButtonEnabling(bEnabled)
+	cmdCancel.Disabled = Not bEnabled
+	cmdDelete.Disabled = Not bEnabled
+	cmdEdit.Disabled = Not bEnabled
+	cmdMoveFirst.Disabled = Not bEnabled
+	cmdMoveLast.Disabled = Not bEnabled
+	cmdMoveNext.Disabled = Not bEnabled
+	cmdMovePrevious.Disabled = Not bEnabled
+	cmdUpdate.Disabled = Not bEnabled
+	cmdAdd.Disabled = Not bEnabled
+
+End Function
+
+' -------------
+
+Sub ClearTextBoxes()
+	txtField1.Value = ""
+	txtField2.Value = ""
+	txtField3.Value = ""
+	txtField4.Value = ""
+	txtField5.Value = ""
+	txtField6.Value = ""
+	txtField7.Value = ""
+	txtField8.Value = ""
+	txtField9.Value = ""
+
+End Sub
+
+' -------------
+
+Sub ClearLabels()
+	lblField1.innerText = ""
+	lblField2.innerText = ""
+	lblField3.innerText = ""
+	lblField4.innerText = ""
+	lblField5.innerText = ""
+	lblField6.innerText = ""
+	lblField7.innerText = ""
+	lblField8.innerText = ""
+	lblField9.innerText = ""
+
+End Sub
+
+' -------------
+
+Sub cmdDelete_OnClick()
+	If MsgBox("Are you sure you want to delete this row?", 4, "Microsoft ADO VBScript Sample") = 7 Then
+		Exit Sub
+	Else        
+		RS.Delete
+		RS.MoveFirst
+		DisplayFormData
+	End If
+
+End Sub
+
+' -------------
+
+Sub cmdUpdate_OnClick()
+	On Error Resume Next
+	RS.Fields.Item(0) = txtField1.value 
+	RS.Fields.Item(1) = txtField2.value 
+	RS.Fields.Item(2) = txtField3.value 
+	RS.Fields.Item(3) = txtField4.value 
+	RS.Fields.Item(4) = txtField5.value 
+	RS.Fields.Item(5) = txtField6.value 
+	RS.Fields.Item(6) = txtField7.value 
+	RS.Fields.Item(7) = txtField8.value 
+	RS.Fields.Item(8) = txtField9.value 
+
+	RS.Update
+
+	AllButtonEnabling True
+
+	cmdCancel.Disabled = True
+	cmdUpdate.Disabled = True
+
+	DisplayFormData
+
+End Sub
+
+' -------------
+
+Sub cmdCancel_OnClick()
+	AllButtonEnabling True
+
+	RS.CancelUpdate
+
+	cmdCancel.Disabled = True
+	cmdUpdate.Disabled = True
+
+	DisplayFormData
+
+End Sub
+
+' -------------
+
+Sub cmdEdit_OnClick()
+	AllButtonEnabling False
+	cmdCancel.Disabled = False
+	cmdUpdate.Disabled = False
+
+End Sub
+
+Sub cmdAdd_OnClick()
+	ClearTextBoxes
+	
+	AllButtonEnabling False
+	cmdCancel.Disabled = False
+	cmdUpdate.Disabled = False
+	
+	RS.AddNew
+
+End Sub
+-->
+</script>
+
+</body>
+</html>
+<!--
+' Last updated on 12/10/98.
+' Copyright 1998 Microsoft Corporation
+-->

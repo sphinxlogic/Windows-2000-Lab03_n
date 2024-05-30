@@ -1,0 +1,21 @@
+Employee Surfer:
+
+Files:
+direct_reports.xml
+employeeSchema.xml
+employeeSurfer.htm
+raw-xml.xsl
+
+Description:
+This web page binds data from a data island to HTML elements using the C++ XMLDSO.  There is 
+no longer a need for Applet or Object tags, just a simple data island with a src attribute.
+Once the data is bound to the HTML, the user can navigate through that data using ADO methods.  The user can add employees by
+pressing the "Add Employee" button.  To see the changes that are made to the data set, view
+the XML.
+
+Changes made to data through the XMLDSO will be automatically reflected in the XML.  The same
+goes for changes made to the XML through the XML Object Model.  This new feature allows the 
+user to move back and forth between the XML and ADO object models.  
+
+Compatibility/Platform Compatibility:
+You must be running Microsoft Internet Explorer 5 or greater on Win32 or Unix platforms to view this demo.

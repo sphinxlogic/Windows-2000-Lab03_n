@@ -1,0 +1,86 @@
+[{2647F707-7840-11D2-9C0A-080009DC024D} - C1]
+Role1={2647F710-7840-11D2-9C0A-080009DC024D}
+Roles=1
+Clsid={3E0C98E0-9E9E-11D2-ABD6-0080C7665CC0}
+Description=
+ProgID=CML.Admin
+Transaction=Not supported
+RunInASP=Y
+InProc=N
+Local=Y
+Remote=N
+Internet=N
+Security=Y
+AuthLevel=4
+System=N
+Origin=
+Wrapped=Y
+CompDLL=cml.dll
+TypeLib=cml.dll
+Interfaces=0
+[{2647F707-7840-11D2-9C0A-080009DC024D} - C2]
+Roles=0
+Clsid={3E0C98E2-9E9E-11D2-ABD6-0080C7665CC0}
+Description=
+ProgID=CML.Search
+Transaction=Not supported
+RunInASP=Y
+InProc=N
+Local=Y
+Remote=N
+Internet=N
+Security=Y
+AuthLevel=4
+System=N
+Origin=
+Wrapped=Y
+CompDLL=cml.dll
+TypeLib=cml.dll
+Interfaces=0
+[{2647F707-7840-11D2-9C0A-080009DC024D} - C3]
+Role1={2647F70D-7840-11D2-9C0A-080009DC024D}
+Role2={2647F710-7840-11D2-9C0A-080009DC024D}
+Roles=2
+Clsid={3E0C98E6-9E9E-11D2-ABD6-0080C7665CC0}
+Description=
+ProgID=CML.User
+Transaction=Not supported
+RunInASP=Y
+InProc=N
+Local=Y
+Remote=N
+Internet=N
+Security=Y
+AuthLevel=4
+System=N
+Origin=
+Wrapped=Y
+CompDLL=cml.dll
+TypeLib=cml.dll
+Interfaces=0
+[{2647F707-7840-11D2-9C0A-080009DC024D} - R1]
+RoleID={2647F70D-7840-11D2-9C0A-080009DC024D}
+Description=
+Name=User
+[{2647F707-7840-11D2-9C0A-080009DC024D} - R2]
+RoleID={2647F710-7840-11D2-9C0A-080009DC024D}
+Description=
+Name=Admin
+[{2647F707-7840-11D2-9C0A-080009DC024D}]
+Name=Corporate Media Library
+Description=
+System=N
+Latency=3
+Shutdown=N
+Security=N
+AuthLevel=4
+Components=3
+Roles=2
+Activation=Local
+Changeable=Y
+Deleteable=Y
+[Packages]
+Package1={2647F707-7840-11D2-9C0A-080009DC024D}
+Packages=1
+Version=2.01
+ExtendedVersion=2.01

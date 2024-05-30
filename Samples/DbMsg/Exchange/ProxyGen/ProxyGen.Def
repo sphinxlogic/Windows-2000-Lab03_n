@@ -1,0 +1,14 @@
+LIBRARY proxygen
+
+DESCRIPTION 'Exchange Server SDK Proxy Address Generator'
+
+EXETYPE WINDOWS
+
+EXPORTS
+    RcInitProxies           @1
+    RcGenerateProxy         @2
+    RcUpdateProxy           @3
+    RcValidateProxy         @4
+    FreeProxy               @5
+    CloseProxies            @6
+    RcValidateSiteProxy     @7

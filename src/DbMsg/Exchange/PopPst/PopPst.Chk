@@ -1,0 +1,313 @@
+// --poppst.chk--------------------------------------------------------------
+//
+// Parameter checking for poppst.cpp.
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All rights reserved.
+//
+// ---------------------------------------------------------------------------
+
+#ifndef DEBUG
+
+#define CHK_HrCreateMessageAttachment(a,b)      NOERROR
+#define CHK_HrGetNextLine(a)                    NOERROR
+#define CHK_HrIsSectionLine(a,b)                NOERROR
+#define CHK_HrOpenFolder(a)                     NOERROR
+#define CHK_HrParseDateValue(a)                 NOERROR
+#define CHK_HrParseEncryptionValue(a)           NOERROR
+#define CHK_HrParseEntryLine(a)                 NOERROR
+#define CHK_HrParseNonNullStringValue(a)        NOERROR
+#define CHK_HrParsePriorityValue(a)             NOERROR
+#define CHK_HrParseSectionLine(a,b)             NOERROR
+#define CHK_HrParseStringValue(a)               NOERROR
+#define CHK_HrParseTimeValue(a)                 NOERROR
+#define CHK_HrResolveSenderName(a,b)            NOERROR
+#define CHK_HrResolveRecipientNames(a)          NOERROR
+#define CHK_HrSetMessageProperties(a)           NOERROR
+#define CHK_HrWriteMessageText(a,b)             NOERROR
+
+#else
+
+// external
+extern enum LINEREADSTATUS;
+
+//$--CHK_HrCreateMessageAttachment-------------------------------------------
+//  Check parameters for HrCreateMessageAttachment().
+// ---------------------------------------------------------------------------
+static inline HRESULT CHK_HrCreateMessageAttachment(
+	IN		LPMESSAGE	lpMsg,
+	IN		LPSTR		lpszAttachPath)
+{
+    HRESULT hr  =   NOERROR;    // return code
+
+    if( !TEST_IUNKNOWN_PTR(lpMsg) ||
+        !TEST_STRINGA_PTR(lpszAttachPath) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+}
+
+//$--CHK_HrGetNextLine-------------------------------------------------------
+//  Check parameters for HrGetNextLine().
+// ---------------------------------------------------------------------------
+static inline HRESULT CHK_HrGetNextLine(
+    OUT LINEREADSTATUS FAR * lpReadStatus)  // pointer to line read status
+{
+    HRESULT hr  =   NOERROR;    // return code
+
+    if( !TEST_WRITE_PTR(lpReadStatus, sizeof(LINEREADSTATUS)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+
+}
+
+//$--CHK_HrIsSectionLine-----------------------------------------------------
+//  Check parameters for HrIsSectionLine().
+// ---------------------------------------------------------------------------
+static inline HRESULT CHK_HrIsSectionLine(
+    IN      CHAR *  pch,                    // input line
+    OUT     BOOL FAR * lpbIsSectionLine)    // boolean pointer
+{
+    HRESULT hr  =   NOERROR; // return code
+
+    if( !TEST_STRINGA_PTR(pch) ||
+        !TEST_WRITE_PTR(lpbIsSectionLine, sizeof(BOOL)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+
+}
+
+//$--CHK_HrOpenFolder--------------------------------------------------------
+//  Check parameters for HrOpenFolder().
+// ---------------------------------------------------------------------------
+static inline HRESULT CHK_HrOpenFolder(
+    OUT LPMAPIFOLDER FAR * lppFolder)   // output folder pointer pointer
+{
+    HRESULT hr  =   NOERROR;    // return code
+
+    if( !TEST_WRITE_PTR(lppFolder, sizeof(LPMAPIFOLDER)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+
+}
+
+//$--CHK_HrParseDateValue----------------------------------------------------
+//  Check parameters for HrParseDateValue().
+// ---------------------------------------------------------------------------
+static inline HRESULT CHK_HrParseDateValue(
+    IN      CHAR *  pch)            // date string
+{
+    HRESULT hr  =   NOERROR;
+
+    if( !TEST_STRINGA_PTR(pch) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+
+}
+
+//$--CHK_HrParseEncryptionValue----------------------------------------------------
+//  Check parameters for HrParseEncryptionValue().
+// ---------------------------------------------------------------------------
+static inline HRESULT CHK_HrParseEncryptionValue(         // RETURNS: HRESULT
+    IN      CHAR *  pch)                // input encryption string
+{
+    HRESULT hr  =   NOERROR;
+
+    if( !TEST_STRINGA_PTR(pch) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+
+}
+
+//$--CHK_HrParseEntryLine----------------------------------------------------
+//  Check parameters for HrParseEntryLine().
+// ---------------------------------------------------------------------------
+static inline HRESULT CHK_HrParseEntryLine(       // RETURNS: HRESULT
+    IN      CHAR *  pch)        // input line
+{
+    HRESULT hr  =   NOERROR;
+
+    if( !TEST_STRINGA_PTR(pch) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+
+}
+
+//$--CHK_HrParseNonNullStringValue-------------------------------------------
+//  Check parameters for HrParseNonNullStringValue().
+// ---------------------------------------------------------------------------
+static inline HRESULT CHK_HrParseNonNullStringValue(          // RETURNS: HRESULT
+    IN      CHAR *  pch)                    // input line
+{
+    HRESULT hr  =   NOERROR;
+
+    if( !TEST_STRINGA_PTR(pch) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+
+}
+
+//$--CHK_HrParsePriorityValue-------------------------------------------
+//  Check parameters for HrParsePriorityValue().
+// ---------------------------------------------------------------------------
+static inline HRESULT CHK_HrParsePriorityValue(           // RETURNS: HRESULT
+    IN      CHAR *  pch)                // input line
+{
+    HRESULT hr  =   NOERROR;
+
+    if( !TEST_STRINGA_PTR(pch) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+
+}
+
+//$--CHK_HrParseSectionLine--------------------------------------------------
+//  Check parameters for HrParseSectionLine().
+// ---------------------------------------------------------------------------
+static inline HRESULT CHK_HrParseSectionLine(         // RETURNS: HRESULT
+    IN      CHAR *  pch,            // pointer to section keyword
+	IN		BOOL	fCommented)  	// TRUE if section is commented out
+{
+    HRESULT hr  =   NOERROR;
+
+    if( !TEST_STRINGA_PTR(pch) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+
+}
+
+//$--CHK_HrParseStringValue--------------------------------------------------
+//  Check parameters for HrParseStringValue().
+// ---------------------------------------------------------------------------
+static inline HRESULT CHK_HrParseStringValue(     // RETURNS: HRESULT
+    IN      CHAR *  pch)        // input line
+{
+    HRESULT hr  =   NOERROR;
+
+    if( !TEST_STRINGA_PTR(pch) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+
+}
+
+//$--CHK_HrParseTimeValue--------------------------------------------------
+//  Check parameters for HrParseTimeValue().
+// ---------------------------------------------------------------------------
+static inline HRESULT CHK_HrParseTimeValue(           // RETURNS: HRESULT
+    IN      CHAR *  pch)            // input line
+{
+    HRESULT hr  =   NOERROR;
+
+    if( !TEST_STRINGA_PTR(pch) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+
+}
+
+//$--CHK_HrResolveSenderName------------------------------------------------------
+//  Check parameters for HrResolveSenderName().
+// ---------------------------------------------------------------------------
+static inline HRESULT CHK_HrResolveSenderName(
+    IN LPSTR pszName,   // sender's display name
+    OUT LPADRLIST * ppAdrList)  // pointer to address list pointer
+{
+    HRESULT hr  =   NOERROR;
+
+    if( !TEST_STRINGA_PTR(pszName) ||
+        !TEST_WRITE_PTR(ppAdrList, sizeof(LPADRLIST)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+
+}
+
+//$--CHK_HrResolveRecipientNames---------------------------------------------
+//  Check parameters for HrResolveRecipientsNames().
+// ---------------------------------------------------------------------------
+static inline HRESULT CHK_HrResolveRecipientNames(            // RETURNS: HRESULT
+	OUT		LPADRLIST FAR *	lppAdrList)     // address list pointer
+{
+    HRESULT hr  =   NOERROR;
+
+    if( !TEST_WRITE_PTR(lppAdrList, sizeof(LPADRLIST)) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+
+}
+
+//$--CHK_HrSetMessageProperties----------------------------------------------
+//  Check parameters for HrSetMessageProperties().
+// ---------------------------------------------------------------------------
+static inline HRESULT CHK_HrSetMessageProperties(     // RETURNS: HRESULT
+	IN		LPMESSAGE	lpMsg)      // message pointer
+{
+    HRESULT hr  =   NOERROR;
+
+    if( !TEST_IUNKNOWN_PTR(lpMsg) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+
+}
+
+//$--CHK_HrWriteMessageText--------------------------------------------------
+//  Check parameters for HrWriteMessageText().
+// ---------------------------------------------------------------------------
+static inline HRESULT CHK_HrWriteMessageText(             // RETURNS: HRESULT
+	IN		LPMESSAGE	lpMsg,          // message pointer
+	IN		LPSTR		lpszFilePath)   // message text path
+{
+    HRESULT hr  =   NOERROR;
+
+    if( !TEST_IUNKNOWN_PTR(lpMsg) ||
+        !TEST_STRINGA_PTR(lpszFilePath) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+    }
+
+    return hr;
+
+}
+
+#endif /* DEBUG */

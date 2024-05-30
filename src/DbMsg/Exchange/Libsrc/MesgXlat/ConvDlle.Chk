@@ -1,0 +1,62 @@
+// --convdlle.chk---------------------------------------------------------------
+// 
+// Parameter checking for convdlle.cpp
+//
+// Copyright (C) Microsoft Corp. 1986-1996.  All Rights Reserved.
+//
+// -----------------------------------------------------------------------------
+
+#ifndef DEBUG
+#define CHK_CDllEntryPoint_HrEDKSet(a,b,c,d)  NOERROR
+
+#else
+
+//$--CHK_CDllEntryPoint_HrEDKSet------------------------------------------------------
+//
+//  DESCRIPTION: Parameter checking for CDllEntryPoint::HrEDKSet()
+//
+//  INPUT:  pszDllName  --  Dll name
+//          pszEntryPoint   --  entry point function name
+//          pszGwPoint  --
+//          pszOptions  --  options
+//
+//  RETURNS:    HRESULT --  NOERROR if successful,
+//                          E_INVALIDARG if bad input
+//
+//------------------------------------------------------------------------------
+static inline HRESULT CHK_CDllEntryPoint_HrEDKSet(   // RETURNS: HRESULT
+    IN LPCWSTR pszDllName,         // copied
+    IN LPCWSTR pszEntryPoint,       // entry point function name
+    IN LPCWSTR pszGwPoint,
+    IN LPCWSTR pszOptions)          // options
+{
+    HRESULT hr  =   NOERROR;        // return code
+
+    // Options string may be NULL.
+    if ( (pszDllName == NULL) || IsBadStringPtrW(pszDllName, INFINITE) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( (pszEntryPoint == NULL) || IsBadStringPtrW(pszEntryPoint, INFINITE) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+    if ( (pszGwPoint == NULL) || IsBadStringPtrW(pszGwPoint, INFINITE) )
+    {
+        hr = HR_LOG(E_INVALIDARG);
+
+        goto cleanup;
+    }
+
+cleanup:
+
+    return hr;
+
+}
+#endif

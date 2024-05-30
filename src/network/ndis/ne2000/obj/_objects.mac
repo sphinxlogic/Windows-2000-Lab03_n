@@ -1,0 +1,32 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\ne2000.res \
+    $(_OBJ_DIR)\alpha\interrup.obj \
+    $(_OBJ_DIR)\alpha\ne2000.obj \
+    $(_OBJ_DIR)\alpha\card.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\ne2000.res \
+    $(_OBJ_DIR)\axp64\interrup.obj \
+    $(_OBJ_DIR)\axp64\ne2000.obj \
+    $(_OBJ_DIR)\axp64\card.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\ne2000.res \
+    $(_OBJ_DIR)\i386\interrup.obj \
+    $(_OBJ_DIR)\i386\ne2000.obj \
+    $(_OBJ_DIR)\i386\card.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\ne2000.res \
+    $(_OBJ_DIR)\ia64\interrup.obj \
+    $(_OBJ_DIR)\ia64\ne2000.obj \
+    $(_OBJ_DIR)\ia64\card.obj
+
+PASS0_IA64_OBJECTS=
+

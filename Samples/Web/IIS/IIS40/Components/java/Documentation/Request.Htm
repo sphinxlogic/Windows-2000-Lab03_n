@@ -1,0 +1,410 @@
+<html>
+
+<head>
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 3.0">
+<title>Request</title>
+<meta NAME="Version" CONTENT="8.0.3410">
+<meta NAME="Date" CONTENT="10/11/96">
+<meta NAME="Template" CONTENT="C:\Program Files\Office\Office\HTML.DOT">
+</head>
+
+<body TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<font FACE="Arial" SIZE="4"><b>
+
+<p><a NAME="_Toc397403941">Request</a></p>
+</b></font>
+
+<p>The <b>Request</b> object retrieves the values that the client browser passed to the
+server during an HTTP request. The <b>Request</b> object encapsulates the <strong>IRequest</strong>
+interface.</p>
+
+<p>The <b>Request</b> object extends <b>InputStream</b>, the methods of which provide access to
+the data sent from the client to the server as part of a POST request. You can
+access the parameters that were provided by the browser in the HTTP request, query string,
+and so forth, by retrieving one of the five Dictionary objects that the <b>Request</b>
+object owns with the <b>getServerVariables, getClientCertificate, getForm, getCookies,</b>
+and <b>getQueryString</b> methods. 
+
+<dir>
+  <font FACE="Courier New" size="2">public class Request extends InputStream {<br>
+  &nbsp;&nbsp;&nbsp; public RequestDictionary <a HREF="#getServerVariables">getServerVariables</a>();<br>
+  &nbsp;&nbsp;&nbsp; public RequestDictionary <a HREF="#getClientCertificate">getClientCertificate</a>();
+  <br>
+  &nbsp;&nbsp;&nbsp; public RequestDictionary <a HREF="#getForm">getForm</a>();<br>
+  &nbsp;&nbsp;&nbsp; public CookieDictionary <a HREF="#getCookies">getCookies</a>();<br>
+  &nbsp;&nbsp;&nbsp; public RequestDictionary <a HREF="#getQueryString">getQueryString</a>();<br>
+  &nbsp;&nbsp;&nbsp; public int <a HREF="#getTotalBytes">getTotalBytes</a>();<br>
+  <i>&nbsp;&nbsp;&nbsp; // java.io.InputStream Methods<br>
+  </i>&nbsp;&nbsp;&nbsp; public int <a HREF="#available">available</a>();<br>
+  &nbsp;&nbsp;&nbsp; public void <a HREF="#close">close</a>() throws IOException;<br>
+  &nbsp;&nbsp;&nbsp; public synchronized void <a HREF="#mark">mark</a>(int iReadLimit);<br>
+  &nbsp;&nbsp;&nbsp; public Boolean <a HREF="#markSupported">markSupported</a>();<br>
+  &nbsp;&nbsp;&nbsp; public synchronized void <a HREF="#reset">reset</a>() throws
+  IOException;<br>
+  &nbsp;&nbsp;&nbsp; public long <a HREF="#skip">skip</a>(long iNumToSkip) throws
+  IOException;<br>
+  &nbsp;&nbsp;&nbsp; public int <a HREF="#read">read</a>() throws IOException,<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NullPointerException,<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IndexOutOfBoundsException;<br>
+  &nbsp;&nbsp;&nbsp; public int <a HREF="#read1">read</a>(byte[] b) throws IOException,<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  NullPointerException,<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  IndexOutOfBoundsException;<br>
+  &nbsp;&nbsp;&nbsp; public synchronized int <a HREF="#read2">read</a>(byte[] b, <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  int off, <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  int len) throws IOException,<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  NullPointerException,<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  IndexOutOfBoundsException;<br>
+  }</p>
+  </font><font FACE="Courier New" SIZE="1">
+</dir>
+</font>
+
+<hr>
+<font FACE="Arial"><b>
+
+<p><em><font color="#0000A0">Request Methods</font></em></p>
+
+<p><a NAME="getServerVariables"></a><a NAME="getServerVariables"></a>public
+RequestDictionary getServerVariables( )</p>
+</b></font>
+
+<p>Returns the RequestDictionary that contains the values of predetermined environment
+variables.&nbsp; The server variables that can then be retrieved from the dictionary
+&nbsp; are: 
+
+<dl>
+  <dd><table>
+<TBODY>
+      <tr vAlign="top">
+        <td><b>Variable</b></td>
+        <td><b>Description</b></td>
+      </tr>
+      <tr vAlign="top">
+        <td>ALL_HTTP</td>
+        <td>All HTTP headers sent by the client.</td>
+      </tr>
+      <tr vAlign="top">
+        <td>ALL_RAW</td>
+        <td>Retrieves all headers in the raw-form. The difference between ALL_RAW and ALL_HTTP is
+        that ALL_HTTP places an HTTP_ prefix before the header name and the header-name is always
+        capitalized. In ALL_RAW the header name and values appear as they are sent by the client. </td>
+      </tr>
+      <tr vAlign="top">
+        <td>APPL_MD_PATH</td>
+        <td>Retrieves the metabase path for the (WAM) Application for the ISAPI DLL.</td>
+      </tr>
+      <tr vAlign="top">
+        <td>APPL_PHYSICAL_PATH</td>
+        <td>Retrieves the physical path corresponding to the metabase path. IIS converts the
+        APPL_MD_PATH to the physical (directory) path to return this value.</td>
+      </tr>
+      <tr vAlign="top">
+        <td>AUTH_PASSWORD</td>
+        <td>Value entered in the client's authentication dialog. This variable is only
+        available if Basic authentication is used. </td>
+      </tr>
+      <tr vAlign="top">
+        <td>AUTH_TYPE</td>
+        <td>Authentication method that the server uses to validate users when they attempt to
+        access a protected script.</td>
+      </tr>
+      <tr vAlign="top">
+        <td>AUTH_USER</td>
+        <td>Raw authenticated user name </td>
+      </tr>
+      <tr vAlign="top">
+        <td>CERT_COOKIE</td>
+        <td>Unique ID for client certificate, returned as a string. Can be used as a signature for the whole client certificate.</td>
+      </tr>
+      <tr vAlign="top">
+        <td>CERT_FLAGS</td>
+        <td>bit0 is set to 1 if the client certificate is present. <p>bit1 is set to 1 if the
+        Certifying Authority of the client certificate is invalid (not in the list of recognized
+        Certifying Authorities on the server).</td>
+      </tr>
+      <tr vAlign="top">
+        <td>CERT_ISSUER</td>
+        <td>Issuer field of the client certificate (O=MS, OU=IAS, CN=user name, C=USA).</td>
+      </tr>
+      <tr vAlign="top">
+        <td>CERT_KEYSIZE</td>
+        <td>Number of bits in Secure Sockets Layer connection key size; for example, 128.</td>
+      </tr>
+      <tr vAlign="top">
+        <td>CERT_SECRETKEYSIZE</td>
+        <td>Number of bits in server certificate private key; for example, 1024.</td>
+      </tr>
+      <tr vAlign="top">
+        <td>CERT_SERIALNUMBER</td>
+        <td>Serial number field of the client certificate.</td>
+      </tr>
+      <tr vAlign="top">
+        <td>CERT_SERVER_ISSUER</td>
+        <td>Issuer field of the server certificate.</td>
+      </tr>
+      <tr vAlign="top">
+        <td>CERT_SERVER_SUBJECT</td>
+        <td>Subject field of the server certificate.</td>
+      </tr>
+      <tr vAlign="top">
+        <td>CERT_SUBJECT</td>
+        <td>Subject field of the client certificate.</td>
+      </tr>
+      <tr vAlign="top">
+        <td>CONTENT_LENGTH</td>
+        <td>Length of the content as given by the client. </td>
+      </tr>
+      <tr vAlign="top">
+        <td>CONTENT_TYPE</td>
+        <td>Data type of the content. Used with queries that have attached information, such
+        as the HTTP queries GET, POST, and PUT.</td>
+      </tr>
+      <tr vAlign="top">
+        <td>GATEWAY_INTERFACE</td>
+        <td>Revision of the CGI specification used by the server. The format is CGI/revision. </td>
+      </tr>
+      <tr vAlign="top">
+        <td>HTTP_&lt;<i>HeaderName</i>&gt;</td>
+        <td>Value stored in the header <i>HeaderName</i>. Any header other than those listed
+        in this table must be prefixed by HTTP_ in order for the <b>ServerVariables</b> collection
+        to retrieve its value. <p><b>Note</b> The server interprets any underscore (_) characters
+        in <i>HeaderName</i> as dashes in the actual header. For example, if you specify
+        HTTP_MY_HEADER, the server searches for a header sent as MY-HEADER. </td>
+      </tr>
+      <tr vAlign="top">
+        <td>HTTPS</td>
+        <td>Returns ON if the request came through secure channel (SSL). Returns OFF if
+        the request comes through a non-secure channel.</td>
+      </tr>
+      <tr vAlign="top">
+        <td>HTTPS_KEYSIZE</td>
+        <td>Number of bits in Secure Sockets Layer connection key size; for example, 128.</td>
+      </tr>
+      <tr vAlign="top">
+        <td>HTTPS_SECRETKEYSIZE</td>
+        <td>Number of bits in server certificate private key; for example, 1024.</td>
+      </tr>
+      <tr vAlign="top">
+        <td>HTTPS_SERVER_ISSUER</td>
+        <td>Issuer field of the server certificate.</td>
+      </tr>
+      <tr vAlign="top">
+        <td>HTTPS_SERVER_SUBJECT</td>
+        <td>Subject field of the server certificate.</td>
+      </tr>
+      <tr vAlign="top">
+        <td>INSTANCE_ID</td>
+        <td>ID for the IIS instance in textual format. If the instance ID is 1, it appears as
+        a string. You can use this variable to retrieve the ID of the Web-server instance (in the
+        metabase) to which the request belongs.</td>
+      </tr>
+      <tr vAlign="top">
+        <td>INSTANCE_META_PATH</td>
+        <td>Metabase path for the instance of IIS that responds to the request.</td>
+      </tr>
+      <tr vAlign="top">
+        <td>LOCAL_ADDR</td>
+        <td>Returns the Server Address from which the request came. This is important on
+        multi-homed machines where there can be multiple IP addresses bound to a machine and you
+        want to find out which address the request used.</td>
+      </tr>
+      <tr vAlign="top">
+        <td>LOGON_USER</td>
+        <td>The Windows NT® account that the user is logged into.</td>
+      </tr>
+      <tr vAlign="top">
+        <td>PATH_INFO</td>
+        <td>Extra path information as given by the client. You can access scripts by using the
+        virtual path and the PATH_INFO server variable. If this information comes from a URL, it
+        is decoded by the server before it is passed to the CGI script.</td>
+      </tr>
+      <tr vAlign="top">
+        <td>PATH_TRANSLATED</td>
+        <td>Translated version of PATH_INFO that takes the path and performs any necessary
+        virtual-to-physical mapping.</td>
+      </tr>
+      <tr vAlign="top">
+        <td>QUERY_STRING</td>
+        <td>Query information stored in the string following the question mark (?) in the HTTP
+        request. </td>
+      </tr>
+      <tr vAlign="top">
+        <td>REMOTE_ADDR</td>
+        <td>IP address of the remote host making the request. </td>
+      </tr>
+      <tr vAlign="top">
+        <td>REMOTE_HOST</td>
+        <td>Name of the host making the request. If the server does not have this information,
+        it will set REMOTE_ADDR and leave this empty.</td>
+      </tr>
+      <tr vAlign="top">
+        <td>REMOTE_USER</td>
+        <td>Unmapped user-name string sent in by the User. This is the name that is actually sent by
+        the user, as opposed to names that are modified by any authentication filter installed
+        on the server.</td>
+      </tr>
+      <tr vAlign="top">
+        <td>REQUEST_METHOD</td>
+        <td>Method used to make the request. For HTTP, this is GET, HEAD, POST, and so on.</td>
+      </tr>
+      <tr vAlign="top">
+        <td>SCRIPT_NAME</td>
+        <td>Virtual path to the script being executed. This is used for self-referencing URLs.</td>
+      </tr>
+      <tr vAlign="top">
+        <td>SERVER_NAME</td>
+        <td>Server's host name, DNS alias, or IP address as it would appear in
+        self-referencing URLs.</td>
+      </tr>
+      <tr vAlign="top">
+        <td>SERVER_PORT</td>
+        <td>Port number to which the request was sent.</td>
+      </tr>
+      <tr vAlign="top">
+        <td>SERVER_PORT_SECURE</td>
+        <td>String that contains either 0 or 1. If the request is being handled on the secure
+        port, then this will be 1. Otherwise, it will be 0.</td>
+      </tr>
+      <tr vAlign="top">
+        <td>SERVER_PROTOCOL</td>
+        <td>Name and revision of the request information protocol. The format is <i>protocol</i>/<i>revision</i>.</td>
+      </tr>
+      <tr vAlign="top">
+        <td>SERVER_SOFTWARE</td>
+        <td>Name and version of the server software that answers the request and runs the
+        gateway. The format is <i>name</i>/<i>version</i>.</td>
+      </tr>
+      <tr vAlign="top">
+        <td>URL </td>
+        <td>Gives the base portion of the URL.</td>
+      </tr>
+</TBODY>
+    </table>
+  </dd>
+</dl>
+<font FACE="Arial"><b>
+
+<p><a NAME="getClientCertificate"></a>public
+RequestDictionary getClientCertificate( )</p>
+</b></font>
+
+<p>Returns the RequestDictionary that contains the values of fields stored in the client
+certificate that is sent in the HTTP request.</p>
+<font FACE="Arial"><b>
+
+<p><a NAME="getForm"></a>public RequestDictionary getForm( )</p>
+</b></font>
+
+<p>Returns the RequestDictionary that contains the values of form elements in the HTTP
+request body. </p>
+<font FACE="Arial"><b>
+
+<p><a NAME="getCookies"></a>public CookieDictionary getCookies( )</p>
+</b></font>
+
+<p>Returns the <a href="CookieDictionary.htm">CookieDictionary</a> that contains the
+cookies sent in the HTTP request.</p>
+<font FACE="Arial"><b>
+
+<p><a NAME="getQueryString"></a>public RequestDictionary
+getQueryString( )</p>
+</b></font>
+
+<p>Returns the RequestDictionary that contains the values of variables in the HTTP query
+string.</p>
+<font FACE="Arial"><b>
+
+<p><a NAME="getTotalBytes"></a>public int getTotalBytes( )</p>
+</b></font>
+
+<p>Specifies the total number of bytes the client is sending in the body of the request.</p>
+<font FACE="Arial"><b>
+
+<p><em><font color="#0000A0">java.io.InputStream Methods</font></em></p>
+
+<p><a NAME="available"></a>public int available( );</p>
+
+<p></b></font>Returns the number of bytes available to be read from the stream, without
+blocking. For more information, see java.io.InputStream.<font FACE="Arial"><b></p>
+
+<p><a NAME="close"></a>public void close( ) throws IOException;</p>
+
+<p></b></font>Closes the stream. For more information, see java.io.InputStream.<font
+FACE="Arial"><b></p>
+
+<p><a NAME="mark"></a>public synchronized void mark(int iReadLimit);</p>
+
+<p></b></font>If <a href="#markSupported">markSupported</a> returns true, the input stream
+remembers <em>iReadLimit</em> bytes until a call to <a href="#reset">reset</a> is
+made. At that point, those bytes will be returned by one of the <a href="#read">read</a>
+methods. For more information, see java.io.InputStream.<font FACE="Arial"><b></p>
+
+<p><a NAME="markSupported"></a>public Boolean markSupported( );</p>
+
+<p></b></font>Returns <b>true</b> if the stream supports the <a href="#mark">mark</a> and <a
+href="#reset">reset</a> methods. For more information, see java.io.InputStream.</p>
+
+<p><font FACE="Arial"><b>public synchronized void <a NAME="reset">reset</a>( ) throws
+IOException;</p>
+
+<p></b></font>If <a href="#markSupported">markSupported</a> returns true: 
+
+<ul>
+  <li>If <a href="#mark">mark</a> has not been called, or the number of bytes read has
+    exceeded the<em> iReadLimit</em> parameter supplied to mark, then an IOException may be
+    thrown. </li>
+  <li>If an IOException has not been thrown, the bytes read since the call to <i>mark</i> will
+    be returned when the next call to read is made. </li>
+</ul>
+
+<p>For more information, see java.io.InputStream. </p>
+<font FACE="Arial"><b>
+
+<p><a NAME="skip"></a>public long skip(long iNumToSkip) throws IOException;</p>
+</b></font>
+
+<p>Attempts to skip of iNumToSkip bytes of data from the input stream. </p>
+
+<p>For more information, see java.io.InputStream. <font FACE="Arial"><b></p>
+
+<p><a NAME="read"></a>public int read( ) throws IOException, NullPointerException,
+IndexOutOfBoundsException</p>
+</b></font>
+
+<p>Reads a single byte from the input stream, returning it as an integer in the range 0 -
+255. If no byte is available, -1 is returned. </p>
+
+<p>For more information, see java.io.InputStream. <font FACE="Arial"><b></p>
+
+<p><a NAME="read1"></a>public int read(byte[ ] b) throws IOException, NullPointerException,
+IndexOutOfBoundsException</p>
+</b></font>
+
+<p>In general, attempts to read some number of bytes from the input stream, and stores the
+bytes into the buffer <em>b.</em> It returns the actual number of bytes read. If no
+bytes are available because the stream is at the end of input, -1 is returned.<font
+FACE="Arial"><b></p>
+
+<p></b></font>For more information, see java.io.InputStream.<font FACE="Arial"><b>.</p>
+
+<p><a NAME="read2"></a>public synchronized int read(byte[ ] b, int off, int len) throws
+IOException, NullPointerException, IndexOutOfBoundsException</p>
+</b></font>
+
+<p>Attempts to read the number of bytes from the input stream, and stores the
+bytes in the buffer <em>b</em>, at offset <em>off.</em> Attempts to read <em>len</em>
+bytes, but may read fewer bytes. The actual number of bytes read is returned. If no
+bytes are available because the stream is at the end of input, -1 is returned.<font
+FACE="Arial"><b></p>
+
+<p></b></font>For more information, see java.io.InputStream.<font FACE="Arial"><b></p>
+</b></font>
+</body>
+</html>

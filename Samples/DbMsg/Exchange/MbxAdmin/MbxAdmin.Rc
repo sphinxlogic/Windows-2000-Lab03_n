@@ -1,0 +1,275 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// German (Germany) (unknown sub-lang: 0x0) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
+#ifdef _WIN32
+LANGUAGE LANG_GERMAN, 0x0
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MBXADMIN DIALOG DISCARDABLE  0, 0, 301, 200
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "MBX Sample"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            6031,IDC_ADMINICON,6,6,18,20,WS_GROUP
+    LTEXT           "",IDC_TITLE,35,8,263,18
+    LTEXT           "&Password:(GER)",-1,5,40,147,8
+    EDITTEXT        IDC_PASSWORD,5,50,288,12,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "&Verify Password:(GER)",-1,5,70,142,8
+    EDITTEXT        IDC_PASSWORD2,5,80,288,12,ES_PASSWORD | ES_AUTOHSCROLL
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MBXADMIN            "MBX Sample (GER)"
+    IDS_INVALID_STRING      "Data field must not be blank.(GER)"
+    IDS_INVALID_POLLING_FREQUENCY 
+                            "The polling frequency must be at least one minute or more.  You may enter ""NONE"" if you want no polling.(GER)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_WARNING_NO_DATA_FOUND 
+                            "No extension configuration data found.  A default will be used.\nIf you can not save the data you must re-install. (GER)"
+    IDS_WARNING_ACL_CHANGE  "Changing default user access options may cause unexpected results in the Sample Mailbox Agent.  Please refer to the user documentation. (GER)"
+    IDS_MESSAGE_BOX_TITLE   "Administrator(GER)"
+    IDS_MESSAGE_BOX_WARNING "Warning(GER)"
+    IDS_ERROR_CONFIG_UNAVAILABLE 
+                            "Extension configuration data is not available.\nIf you can not save the data you must re-install. (GER)"
+    IDS_ERROR_CONFIG_CORRUPT 
+                            "Extension configuration data is out of date or corrupt.  It will be replaced by default data.\nIf you can not save the data you must re-install. (GER)"
+END
+
+#endif    // German (Germany) (unknown sub-lang: 0x0) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) (unknown sub-lang: 0x0) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, 0x0
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MBXADMIN DIALOG DISCARDABLE  0, 0, 301, 200
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "MBX Sample"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            6031,IDC_ADMINICON,6,6,18,20,WS_GROUP
+    LTEXT           "",IDC_TITLE,35,8,263,18
+    LTEXT           "&Password:",-1,5,40,147,8
+    EDITTEXT        IDC_PASSWORD,5,50,288,12,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "&Verify Password:",-1,5,70,142,8
+    EDITTEXT        IDC_PASSWORD2,5,80,288,12,ES_PASSWORD | ES_AUTOHSCROLL
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "#include ""afxres.rc""  // Standard components\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "Microsoft Corp.\0"
+            VALUE "FileDescription", "MBXADMIN MFC Extension DLL\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "MBXADMIN\0"
+            VALUE "LegalCopyright", "Copyright© Microsoft Corp. 1986-1996.  All Rights Reserved.\0"
+            VALUE "OriginalFilename", "MBXADMIN.DLL\0"
+            VALUE "ProductName", "MBXADMIN Dynamic Link Library\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MBXADMIN            "MBX Sample"
+    IDS_INVALID_STRING      "Data field must not be blank."
+    IDS_INVALID_POLLING_FREQUENCY 
+                            "The polling frequency must be at least one minute or more.  You may enter ""NONE"" if you want no polling."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_WARNING_NO_DATA_FOUND 
+                            "No extension configuration data found.  A default will be used.\nIf you can not save the data you must re-install. "
+    IDS_WARNING_ACL_CHANGE  "Changing default user access options may cause unexpected results in the Sample Mailbox Agent.  Please refer to the user documentation. "
+    IDS_MESSAGE_BOX_TITLE   "Administrator"
+    IDS_MESSAGE_BOX_WARNING "Warning"
+    IDS_ERROR_CONFIG_UNAVAILABLE 
+                            "Extension configuration data is not available.\nIf you can not save the data you must re-install. "
+    IDS_ERROR_CONFIG_CORRUPT 
+                            "Extension configuration data is out of date or corrupt.  It will be replaced by default data.\nIf you can not save the data you must re-install. "
+END
+
+#endif    // English (U.S.) (unknown sub-lang: 0x0) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// French (France) (unknown sub-lang: 0x0) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE LANG_FRENCH, 0x0
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MBXADMIN DIALOG DISCARDABLE  0, 0, 301, 200
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "MBX Sample"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            6031,IDC_ADMINICON,6,6,18,20,WS_GROUP
+    LTEXT           "",IDC_TITLE,35,8,263,18
+    LTEXT           "&Password:(FRN)",-1,5,40,147,8
+    EDITTEXT        IDC_PASSWORD,5,50,288,12,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "&Verify Password:(FRN)",-1,5,70,142,8
+    EDITTEXT        IDC_PASSWORD2,5,80,288,12,ES_PASSWORD | ES_AUTOHSCROLL
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MBXADMIN            "MBX Sample (FRN)"
+    IDS_INVALID_STRING      "Data field must not be blank.(FRN)"
+    IDS_INVALID_POLLING_FREQUENCY 
+                            "The polling frequency must be at least one minute or more.  You may enter ""NONE"" if you want no polling.(FRN)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_WARNING_NO_DATA_FOUND 
+                            "No extension configuration data found.  A default will be used.\nIf you can not save the data you must re-install. (FRN)"
+    IDS_WARNING_ACL_CHANGE  "Changing default user access options may cause unexpected results in the Sample Mailbox Agent.  Please refer to the user documentation. (FRN)"
+    IDS_MESSAGE_BOX_TITLE   "Administrator(FRN)"
+    IDS_MESSAGE_BOX_WARNING "Warning(FRN)"
+    IDS_ERROR_CONFIG_UNAVAILABLE 
+                            "Extension configuration data is not available.\nIf you can not save the data you must re-install. (FRN)"
+    IDS_ERROR_CONFIG_CORRUPT 
+                            "Extension configuration data is out of date or corrupt.  It will be replaced by default data.\nIf you can not save the data you must re-install. (FRN)"
+END
+
+#endif    // French (France) (unknown sub-lang: 0x0) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+#include "afxres.rc"  // Standard components
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

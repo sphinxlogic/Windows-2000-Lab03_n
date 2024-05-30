@@ -1,0 +1,114 @@
+<html>  
+
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+  <head>
+    <title>XML Data Source Applet</title>
+    <style>
+      td    {font-size:80%;}
+      xmp   {font-size:120%; background:yellow}
+    </style>
+  </head>
+  
+<BODY TOPMARGIN=0 LEFTMARGIN=40 BGCOLOR="#ffffff" LINK="#000066" VLINK="#666666" TEXT="#000000">
+<FONT FACE="verdana,arial,helvetica" SIZE=2>
+
+<table align=right>
+<tr><td bgcolor=black><a href=Example2.htm>
+        <font color=white onmouseover="this.style.color='gold'" 
+        onmouseout="this.style.color='white'" ><b>Next<b></font></a>
+</table>
+
+<h2>XML Data Source Applet</h2>
+<h3>Example 1</h3>
+<P>
+This example shows how the XML DSO can be used to bind XML data to
+an HTML table using the IE 4.0 Data Binding
+architecture. 
+<applet code=com.ms.xml.dso.XMLDSO.class width=100% height=50 id=xmldso MAYSCRIPT=true>
+    <PARAM NAME="url" VALUE="books.xml">
+</applet>
+<table id=table border=2 width=100% datasrc=#xmldso cellpadding=5>
+<thead>
+	<th>Author
+	<th>Title
+	<th>Price
+	<th>Publisher
+</thead>
+<tr>
+  <td valign=top><div datafld=AUTHOR dataformatas=HTML></td>
+  <td valign=top><div datafld=TITLE dataformatas=HTML></td>
+  <td valign=top><div datafld=PRICE dataformatas=HTML></td>
+  <td valign=top><div datafld=PUBLISHER dataformatas=HTML></td>
+</tr>
+</table>
+<P>
+The Applet tag that invokes the XML DSO is shown below:
+<xmp id=applet>
+<applet code=com.ms.xml.dso.XMLDSO.class 
+        width=100% height=25 id=xmldso MAYSCRIPT=true>
+    <PARAM NAME="url" VALUE="books.xml">
+</applet>
+</xmp>
+<P>
+The table the binds to the data that the XML DSO provides is
+shown below:
+<xmp id=tablexmp>
+<table id=table border=2 width=100% datasrc=#xmldso cellpadding=5>
+<thead>
+	<th>Author
+	<th>Title
+	<th>Price
+	<th>Publisher
+</thead>
+<tr>
+  <td valign=top><div datafld=AUTHOR dataformatas=HTML></td>
+  <td valign=top><div datafld=TITLE dataformatas=HTML></td>
+  <td valign=top><div datafld=PRICE dataformatas=HTML></td>
+  <td valign=top><div datafld=PUBLISHER dataformatas=HTML></td>
+</tr>
+</table>
+</xmp>
+<P>
+The XML data is retrieved from a separate XML file.  Click the
+Show XML Data button below to see this data.
+<P>
+<input type=button value="Show XML Data"
+    onclick='var xmldata = document.all.item("xmldata");
+            if (this.value == "Show XML Data") {
+                xmldata.innerText=xmldso.getXML();
+                this.value="Hide XML Data";
+            } else {
+                xmldata.innerText="";
+                this.value="Show XML Data";
+            }'>
+<xmp id=xmldata ></xmp>
+<P>
+The interesting thing about this data is that it includes no
+schema (or DTD) and it is not completely regular.  In particular the
+PUBLISHER tags are randomly specified and the relative ordering of 
+nodes in this data is not consistent. 
+The DSO first grovels the entire XML tree and generates a schema
+that it uses to normalize the XML data. Click the 
+Show Schema button below to see the generated schema.
+<P>
+<input type=button value="Show Schema" 
+    onclick='var schema = document.all.item("schema");
+            if (this.value == "Show Schema") {
+                schema.innerText=xmldso.getSchema();
+                this.value="Hide Schema";
+            } else {
+                schema.innerText="";
+                this.value="Show Schema";
+            }'>
+<xmp id=schema ></xmp>
+
+<P>
+The <a href=XMLDSO.java>XML DSO Source Code</a> is in Java.
+<p>
+<FONT FACE="MS SANS SERIF" SIZE="1" COLOR="BLACK">&#169; 1997 Microsoft Corporation. All rights reserved. <A HREF="../../art/cpyright.htm" target="_top">Legal Notices</a>.<P></FONT>
+
+
+  </body>
+</html>

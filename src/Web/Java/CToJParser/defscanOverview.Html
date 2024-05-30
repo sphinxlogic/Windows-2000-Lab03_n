@@ -1,0 +1,78 @@
+<HTML>
+<HEAD>
+<TITLE>Define Scanner docs</TITLE>
+</HEAD>
+<BODY>
+
+<H1 align=center>Define Scanner docs</H1>
+
+<h2>Intro</h2>
+
+<p>This parsing tool converts C <code>#define</code>'ed constants into 
+Java interfaces containing those constants.  It will handle most simple
+expressions and scanning through out-of-order #include files.  It will
+not handle macros.  It will only read but not execute casts.  It does
+do a reasonably good job, parsing over 97% of the Windows non-macro
+constants.</P>
+
+<p>You must give it input files consisting only of #define lines, with no
+other intervening whitespace or code.  Its output is a large interface
+containing all of your constants and an alphabetically split up set of
+interfaces.  The alphabetical breakdown should perform slightly better
+than the huge interface on a large number of constants (~10K or more).</p>
+
+<p>If you have a particular macro that you'd like the program to support,
+your best chance is to edit it to handle it.  There are a few hacks for
+about 3 common macros that only pass a number through (no changes 
+whatsoever) which would be trivial to adapt for your own trivial macros.
+If you're interested, most of your edits will be in <code>parseWords</code>.</p>
+
+<h2>Requirements</h2>
+
+<ul>
+<li>Your header files
+<li>A Java VM
+<li><code>grep</code>, <code>sed</code>, <code>tcsh</code>, and other 
+Unix command line utilities are strongly recommended but not strictly necessary
+</ul>
+
+<H2>Steps</H2>
+
+<OL>
+<li><p>Create <code>.def</code> files for your constants.  For each of your
+header files, grep for <code>#define</code> in your code.  Any 
+<code>#define</code> directives that span multiple lines are considered 
+unparsible.  If you have <code>tcsh</code> and a few command line 
+utilities, this tcsh command should work:</p>
+
+<pre><code>foreach i (*.h)
+grep ^#define $i > `echo $i | sed "s/\.h$/\.def$/"`
+end</pre></code>
+
+<p>The echo and sed command just converts the header file name to a def file,
+changing <code>your_header.h</code> into <code>your_header.def</code>, so
+you can do this by hand without needing a copy of <code>sed</code>.</p>
+
+<li>Make sure you don't have any unterminated C comments, such as a 
+<code>/*</code> without a corresponding <code>*/</code> on that same
+line.  You can do that with this command:</p>
+
+<code>grep \/\* *.def | grep -v \*\/</code>
+
+<p>Fix up any lines that <code>grep</code> outputs.  Edit the def file and get 
+rid of those comments.</p>
+
+<li><p>Edit defscan source code, if needed.  You can change the behavior for
+strings, the default package, and output directory.</p>
+
+<li>Run defscan on your <code>.def</code> files.  You can pass them in as
+command line parameters, but if you have a lot of them, you'd be better off
+listing them in a text file, <code>files.txt</code>.  List them one per 
+line.  Run defscan as:</p>
+
+<code>jview defscan [<i>your .def files</i>]</code>
+
+</ol>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+<?XML VERSION="1.0" RMD="NONE"?>
+<CUSTOMER>
+	<NAME>Bradley Bismark</>
+	<ORDER>
+		<NUMBER>16273</>
+		<DATE>June 11th, 1997</>
+		<ITEM>
+			<TITLE>Number, the Language of Science</>
+			<AUTHOR>Danzig</>
+			<PRICE>5.95</>
+		</>
+		<ITEM>
+			<TITLE>Tales of Grandpa Cat</>
+			<AUTHOR>Wardlaw, Lee</>
+			<PRICE>6.58</>
+		</>
+	</>
+</>

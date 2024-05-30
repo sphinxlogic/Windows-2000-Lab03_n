@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text-html; charset=Windows-1252">
+<title>Limit Query Results</title>
+<style type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 145%;}
+    h2		{ font-weight: bold; font-size: 125%; }
+    h3		{ font-weight: bold; font-size: 110%; }
+    h4		{ font-weight: bold; font-size: 100%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style>
+
+<style disabled type="text/css">
+    body	{ font-size: 75%; font-family: Verdana, Arial, Helvetica; }
+    h1		{ font-weight: bold; font-size: 55%;}
+    h2		{ font-weight: bold; font-size: 66%; }
+    h3		{ font-weight: bold; font-size: 77%; }
+    h4		{ font-weight: bold; font-size: 77%; }
+    h5		{ font-weight: bold; font-size: 95%; }
+    big 	{ font-weight: bold; }
+    code	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+    pre 	{ font-family: Lucida Sans Typewriter, Courier New, Courier; }
+</style></HEAD>
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+<font face="Verdana, Arial, Helvetica">
+<h3><a name="_limit_query_results"></a>  Limit Query Results</h3>
+<p>
+In an Internet environment, it is often desirable to limit the amount of information that a database query returns to a client browser. This example demonstrates how a script, using ASP and ADO, can limit the number of rows returned.</p>
+<p>
+The sample first creates an instance of the <b>Connection</b> object, and opens the ODBC connection with the this object's <b>Open</b> method. <b>CreateObject</b> is used again to instantiate an empty <b>Recordset</b> object. The <b>ActiveConnection</b> property of the new <b>Recordset</b> object is set to point at the open ODBC connection, an SQL source string is assigned, and cursor type specified. The key to limiting the results lies with the <b>Recordset</b> object's <b>PageSize</b> property. For this example, the value is set to 10, which indicates that ADO is to return at most 10 records. Finally, the <b>Open</b> method is called, and ADO searches for the first 10 records that fulfill the SQL search string. </p>
+<p>
+When ADO has returned and placed the results of the search into the <b>Recordset</b> object, the script loops through the page, displaying all fields of each record in a table. The script then performs the typical housecleaning operations, closing both the recordset and the connection. </p>
+<p>
+It is important to realize that if the SQL query had returned more than 10 records, this script would not display them. The property <b>PageCount</b> would need to be accessed to discover how many logical pages of data were returned. </p>
+<p>
+<b>Note</b>&nbsp;&nbsp;ODBC must be properly configured on the server before this sample will run properly. </p>
+</BODY>
+</HTML>

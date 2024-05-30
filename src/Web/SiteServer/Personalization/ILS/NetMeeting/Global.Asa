@@ -1,0 +1,61 @@
+<SCRIPT LANGUAGE="VBScript" RUNAT="Server">
+'Application_OnStart  Runs once when the first page of your application is run for the first time by any user
+ SUB Application_OnStart
+ 	On Error Resume Next
+	
+	Dim sz1, sz2, sz3, isz1, isz2, trash, iCount, iHash
+	iCount = 0
+	iBad = 0
+	iGood = 0
+
+	Dim aCountry( 3, 192 )
+	Dim aBuckets( 192 )
+	Dim aLastIndexOf( 192 )
+	
+	
+	Set objFileSys = Server.CreateObject("Scripting.FileSystemObject")
+	TextFile = Server.MapPath ("/") & "/countries.txt"	' this text file is expected to be in the format of:US,United States
+	Set TextFileIn = objFileSys.OpenTextFile(TextFile)			' sorted alphabetically by long country name
+	
+	Do While not TextFileIn.AtEndOfStream
+		sz1 = TextFileIn.Read(1)							' country abbrev first character
+		sz2 = TextFileIn.Read(1)							' country abbrev second character
+		aCountry( 1, iCount ) = sz1 & sz2					' full country abbrev
+		Trash = TextFileIn.Read(1)							' get rid of the space
+		aCountry( 2, iCount ) = TextFileIn.Readline			' full country name
+		iCount = iCount + 1
+	Loop
+	
+	iCount = iCount - 1		' fix array total
+	
+	TextFileIn.Close
+	
+	For i = 0 To iCount Step 1
+	
+		sz1 = LCase( Left(aCountry( 1, i ), 1 ) )
+		sz2 = LCase( Right( aCountry( 1, i ), 1 ) )
+		isz1 = Asc( sz1 )
+		isz2 = Asc( sz2 )
+
+		iHash = ( ( isz1 * 9 ) + ( isz2 * 5 ) ) Mod iCount
+	
+		If aBuckets( iHash ) = "" Then
+			aBuckets( iHash ) = i
+			aLastIndexOf( iHash ) = i
+		Else
+			aCountry( 3, aLastIndexOf( iHash ) ) = i
+			aLastIndexOf( iHash ) = i
+		End If
+	Next
+	
+	' Store the variables in the Application level
+	Application.Lock
+	Application("aCountry") = aCountry
+	Application("iCount") = iCount
+	Application("aBuckets") = aBuckets
+	Application.Unlock
+
+ END SUB
+'Application_OnEnd
+
+</SCRIPT>

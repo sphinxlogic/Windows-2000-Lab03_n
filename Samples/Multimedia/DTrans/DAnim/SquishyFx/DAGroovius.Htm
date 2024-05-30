@@ -1,0 +1,462 @@
+<HTML>
+<HEAD><TITLE>Groovius Direct Animation Sample</TITLE>
+
+<!-- ************************************************************************************** -->
+<!-- **********************************BGN SCRIPT ***************************************** -->
+<!-- ************************************************************************************** -->
+
+<script LANGUAGE="JavaScript">
+<!--
+toggle=true;
+savgrav=0;
+
+
+function presetz(num){
+
+groove.preset=num;
+initialstate();
+
+}
+
+
+
+
+function initialstate(){
+
+				
+			
+				
+				AmplitudeX.value=	groove.amplitudeX;
+	
+				AmplitudeY.value=groove.amplitudeY;
+			
+				AmplitudeZ.value=groove.amplitudeZ;
+			
+				Amplitude_radius.value=groove.amplitudeR;
+
+
+				speedX.value=	groove.speedx;
+	
+				speedY.value=groove.speedy;
+			
+				speedZ.value=groove.speedz;
+			
+				speedR.value=groove.speedr;
+
+
+
+			
+				FrequencyX.value=groove.frequencyX;
+			
+				FrequencyY.value=groove.frequencyY;
+			
+				FrequencyZ.value=groove.frequencyZ;
+			
+				Frequency_radius.value=groove.frequencyR;
+			
+				timeAccurate.value=groove.timeAccurate;
+				physics.value=groove.physics;				
+				decay.value=groove.decay;
+				oscillation.value=groove.oscillation;
+				oscillationspeed.value=groove.Speed
+				gravity.value=groove.gravity;				
+				lifespan.value=groove.lifespan;
+				lifespan_noise.value=groove.lifeSpanNoise;
+				VelocityX.value=groove.velocityX;
+				VelocityY.value=groove.velocityY;
+				VelocityZ.value=groove.velocityZ;
+				vNoiseX.value=groove.vNoiseX;
+				vNoiseY.value=groove.vNoiseY;
+			    vNoiseZ.value=groove.vNoiseZ;
+				bounciness.value=groove.bounciness;
+				roomsize.value=groove.roomsize;			
+				
+
+
+}
+
+
+function freeze(){
+
+
+	if(toggle){
+			
+				groove.physics=physics.value=0;				
+				savgrav=groove.gravity;
+				groove.gravity=gravity.value=.0;
+				toggle=!toggle				
+}
+
+else{
+			
+				groove.physics=physics.value=1;				
+				groove.gravity=gravity.value=savgrav;
+				toggle=!toggle				
+}
+				
+}
+
+
+
+function initparticle(){
+
+	groove.NewParticle="Particle  { position -1. 3 0 radius 1 frequency  0. 0. 0. 0. amplitude  0 0 0 1 phase  1 1 1 1 speed  1 1 1 1  }"
+	groove.NewParticle="Particle  { position -.5 3 0 radius 1 frequency  0. 0. 0. 0. amplitude  0 0 0 1 phase  1 1 1 1 speed  1 1 1 1  }"
+	groove.NewParticle="Particle  { position 0. 3 0 radius 1 frequency  0. 0. 0. 0. amplitude  0 0 0 1 phase  1 1 1 1 speed  1 1 1 1  }"
+	groove.NewParticle="Particle  { position .5 3 0 radius 1 frequency  0. 0. 0. 0. amplitude  0 0 0 1 phase  1 1 1 1 speed  1 1 1 1  }"
+	groove.NewParticle="Particle  { position 1..0 3 0 radius 1 frequency  0. 0. 0. 0. amplitude  0 0 0 1 phase  1 1 1 1 speed  1 1 1 1  }"
+
+}
+
+function initossparticle(){
+
+	groove.NewParticle="Particle  { position -1. 3 0 radius 1 frequency  0. 0. 0. 0. amplitude  0 0 0 1 phase  1 2 3 4 speed  1 1 1 1  }"
+		logParticle.value+=groove.NewParticle+"\r\n";
+	
+	
+	groove.NewParticle="Particle  { position -.5 3 0 radius 1 frequency  0. 0. 0. 0. amplitude  0 0 0 1 phase  2 3 4 5 speed  1 1 1 1  }"
+		logParticle.value+=groove.NewParticle+"\r\n";
+	groove.NewParticle="Particle  { position 0. 3 0 radius 1 frequency  0. 0. 0. 0. amplitude  0 0 0 1 phase   3 4 5 6 speed  1 1 1 1  }"
+		logParticle.value+=groove.NewParticle+"\r\n";
+	groove.NewParticle="Particle  { position .5 3 0 radius 1 frequency  0. 0. 0. 0. amplitude  0 0 0 1 phase   4 5 6 7 speed  1 1 1 1  }"
+		logParticle.value+=groove.NewParticle+"\r\n";
+	groove.NewParticle="Particle  { position 1..0 3 0 radius 1 frequency  0. 0. 0. 0. amplitude  0 0 0 1 phase 5 6 7 8 speed  1 1 1 1  }"
+		logParticle.value+=groove.NewParticle+"\r\n";
+}
+
+
+
+
+
+
+			
+
+//------------------------------------------------------------
+function update()
+{
+	
+	 
+
+	
+	groove.NewParticle=AddParticle.value;
+	logParticle.value+=groove.NewParticle+"\r\n";
+	
+
+}
+//------------------------------------------------------------
+
+
+//------------------------------------------------------------
+function updateall()
+{
+	
+
+
+
+				groove.amplitudeX=AmplitudeX.value;
+				groove.amplitudeY=AmplitudeY.value;
+				groove.amplitudeZ=AmplitudeZ.value;
+				groove.amplitudeR=Amplitude_radius.value;
+
+
+				groove.speedx=speedX.value;
+				groove.speedy=speedY.value;
+				groove.speedz=speedZ.value;
+				groove.speedr=speedR.value;
+			
+				groove.frequencyX=FrequencyX.value;
+				groove.frequencyY=FrequencyY.value;
+				//alert(groove.amplitudeY+"  "+groove.frequencyY+"   "+FrequencyY.value);
+				
+				
+				
+				groove.frequencyZ=FrequencyZ.value;
+			
+			//alert(groove.amplitudeY+"  "+groove.frequencyY);
+				groove.frequencyR=Frequency_radius.value;
+			
+				groove.timeAccurate=timeAccurate.value;
+				
+				groove.physics=physics.value;				
+				
+				groove.decay=decay.value;
+				
+				groove.oscillation=oscillation.value;
+				
+				
+				groove.gravity=gravity.value;				
+				
+				groove.lifespan=lifespan.value;
+				groove.lifeSpanNoise=lifespan_noise.value;
+				
+				groove.velocityX=VelocityX.value;
+				groove.velocityY=VelocityY.value;
+				groove.velocityZ=VelocityZ.value;
+				
+				groove.vNoiseX=vNoiseX.value;
+				groove.vNoiseY=vNoiseY.value;
+			    groove.vNoiseZ=vNoiseZ.value;
+				
+				groove.bounciness=bounciness.value;
+				groove.roomsize=roomsize.value;		
+
+	
+	
+}
+//------------------------------------------------------------
+
+
+
+
+
+
+var groove;
+
+function t3dLoad() 
+{
+		 m = DAControl.MeterLibrary;
+
+		groove=new ActiveXObject("DX3DTransform.SquishyFX.Groovius");
+		
+		
+		//animation parameters could pass evaluator to ApplyDXTransform
+		holdTime = m.DANumber(0).Duration(0);
+		forward = m.Interpolate(0, 1, 3);
+		back = m.Interpolate(1, 0, 3);
+
+		evaluator =m.Sequence(holdTime, m.Sequence(forward, back)).RepeatForever();
+		
+		
+		
+		
+		
+		result = m.ApplyDXTransform(groove, null, evaluator);
+		//result.PutBvrAsProperty("Progress", avar);
+
+camerapos=25;
+grooveGeo = result.OutputBvr;
+  
+ texture = m.ImportImage("media/joe.jpg");
+  texture = texture.MapToUnitSquare();
+  grooveGeo = grooveGeo.Texture(texture);
+  // a point light
+  light = m.PointLight.Transform(m.Translate3(camerapos, camerapos/2, 1.3*camerapos));
+
+  // a perspective camera
+  camera = m.PerspectiveCamera(.25, .001).Transform(m.Translate3(0, 1.5, camerapos));
+
+  // render the geometry with the light and camera
+  finalImg = m.UnionGeometry(grooveGeo, light).Render(camera);
+
+  fpsImg = m.StringImageAnim(m.ViewFrameRate.ToString(1),
+                            m.DefaultFont.Color(m.Red));
+  fpsImg = fpsImg.Transform(m.Scale2Uniform(2))
+		 .Transform(m.Translate2(0, -0.03));
+
+  fpsImg = m.Cond(m.LeftButtonState, fpsImg, m.EmptyImage);
+
+  finalImg = m.Overlay(fpsImg, finalImg);
+
+ // Use Trident timers for speed.
+  DAControl.TimerSource = 1;
+ 
+ 
+ 
+  DAControl.Image = m.Overlay(finalImg, m.SolidColorImage(m.Blue));
+
+  // start the animation       
+  DAControl.Start();
+
+
+logParticle.value="";
+initossparticle()
+
+initialstate();
+presetz(1);
+}
+
+
+  
+
+-->
+</script>
+
+<!-- ************************************************************************************** -->
+
+<!-- **********************************END SCRIPT AND BGN htXML********************************** -->
+
+<!-- ************************************************************************************** -->
+
+
+</HEAD>
+
+<BODY bgcolor="black" text="orange"	onload="t3dLoad()">
+
+<center>
+<h1>Groovius Hosted in Direct Animation</h1>
+<OBJECT ID="DAControl"
+  STYLE="position:relative; left:50; top:0;width:256;height:256" 
+  CLASSID="CLSID:69AD90EF-1C20-11d1-8801-00C04FC29D46">
+</OBJECT>
+</center>
+<!-- ************************************************************************************** -->
+<!-- **********************************CONSOLE********************************************* -->
+<!-- ************************************************************************************** -->
+
+<br>
+
+
+
+
+<table border =4>
+
+
+<tr>
+<td colspan=4>presets</td>
+<td><INPUT ID="update" TYPE="BUTTON" STYLE="width:60" VALUE="2dbounce" TITLE="update button" onClick="presetz(1)"></td>
+<td><INPUT ID="update" TYPE="BUTTON" STYLE="width:60" VALUE="3dbounce" TITLE="update button" onClick="presetz(2)"></td>
+<td><INPUT ID="update" TYPE="BUTTON" STYLE="width:60" VALUE="water" TITLE="update button" onClick="presetz(3)"></td>
+<td><INPUT ID="update" TYPE="BUTTON" STYLE="width:60" VALUE="air" TITLE="update button"   onClick="presetz(4)"></td>
+
+<td><INPUT ID="update" TYPE="BUTTON" STYLE="width:60" VALUE="oscill" TITLE="update button" onClick="presetz(5)"></td>
+<td><INPUT ID="update" TYPE="BUTTON" STYLE="width:60" VALUE="oscill1" TITLE="update button" onClick="presetz(6)"></td>
+<td><INPUT ID="update" TYPE="BUTTON" STYLE="width:60" VALUE="oscill2" TITLE="update button" onClick="presetz(7)"></td>
+<td><INPUT ID="update" TYPE="BUTTON" STYLE="width:60" VALUE="oscill3" TITLE="update button" onClick="presetz(8)"></td>
+
+
+
+</tr>
+</table>
+<br>
+<table border =4>
+<tr>
+<td colspan=8 align="center"><INPUT ID="update" TYPE="BUTTON"  VALUE="                                                    update                                           " TITLE="update button" onClick="updateall()"></input></td>
+</tr>
+<TR>
+<td>
+<table border =4>
+
+
+
+<tr>
+   <td colspan=2>velocity</td>   <td colspan=2>noise</td> <td colspan=2>frequency</td>    <td colspan=2>amplitude</td>   <td colspan=2>speed</td> 
+</tr>
+<tr>
+
+
+
+<td>vx</td> <td><INPUT ID="VelocityX" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="vx"></input></td>
+<td>nx</td> <td><INPUT ID="vNoiseX" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="nx"></input></td>
+<td>fx</td><td><INPUT ID="FrequencyX" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="fx"></input></td>
+<td>ax</td><td><INPUT ID="AmplitudeX" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="ax"></input></td>
+<td>sx</td><td><INPUT ID="speedX" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="speedx"></input></td>
+
+</tr>
+<tr>
+
+<td>vy</td><td><INPUT ID="VelocityY" TYPE="TEXT"  STYLE="width:40" VALUE=".0" TITLE="vy"></input></td>
+<td>ny</td><td><INPUT ID="vNoiseY" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="ny"></input></td>
+<td>fy</td><td><INPUT ID="FrequencyY" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="fy"></input></td>
+<td>ay</td><td><INPUT ID="AmplitudeY" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="ay"></input></td>
+<td>sy</td><td><INPUT ID="speedY" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="speedy"></input></td>
+
+
+</tr>
+
+
+<tr>
+
+
+<td>vz</td><td><INPUT ID="VelocityZ" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="vz"></input></td>
+<td>nz</td><td><INPUT ID="vNoiseZ" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="nz"></input></td>
+<td>fz</td><td><INPUT ID="FrequencyZ" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="fz"></input></td>
+<td>az</td><td><INPUT ID="AmplitudeZ" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="az"></input></td>
+<td>sz</td><td><INPUT ID="speedZ" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="speedz"></input></td>
+
+</tr>
+
+<tr>
+<td colspan=4></td>
+<td>fr</td><td><INPUT ID="Frequency_radius" TYPE="TEXT"    STYLE="width:40"  STYLE="width:880" VALUE="0" TITLE="fr"></input></td>
+<td>ar</td><td><INPUT ID="Amplitude_radius"  TYPE="TEXT"  STYLE="width:40" VALUE=".5" TITLE="ar"></input></td>
+<td>sr</td><td><INPUT ID="speedR"  TYPE="TEXT"  STYLE="width:40" VALUE=".5" TITLE="speedr"></input></td>
+
+
+
+</tr>
+</table>
+</td>
+<td>
+<table border=2>
+
+<tr>
+<td>oscillation (0/1)</td><td><INPUT ID="oscillation" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="oscill"></input></td>
+<td>physics (0/1)</td><td><INPUT ID="physics" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="ph"></input></td>
+
+
+
+</tr>
+
+<tr>
+
+<td>oscillspeed</td><td><INPUT ID="oscillationspeed" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="oscillspeed"></input></td>
+<td>grav</td><td><INPUT ID="gravity" TYPE="TEXT"  STYLE="width:50" VALUE="0" TITLE="gravity"></input></td>
+<td>bounciness</td><td><INPUT ID="bounciness" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="bounciness"></input></td>
+</tr>
+
+<tr>
+<td>roomsize</td><td><INPUT ID="roomsize" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="roomsize"></input></td>
+<td>lifespan</td><td><INPUT ID="lifespan" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="lifespan"></input></td>
+<td>decay(0/1)</td><td><INPUT ID="decay" TYPE="TEXT"  STYLE="width:40" VALUE=0 TITLE="decay"></td>
+
+
+</tr>
+
+
+<tr>
+<td>lifespan noise</td><td><INPUT ID="lifespan_noise" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="lifespan_noise"></input></td>
+<td>timeacc(0/1)</td><td><INPUT ID="timeAccurate" TYPE="TEXT"  STYLE="width:40" VALUE="0" TITLE="ta"></input></td>
+
+
+</tr>
+
+
+</table>
+</td>
+</TR>
+</table>
+
+<table border=4>
+<tr>
+<td>NewParticle</td>
+
+<td><INPUT ID="update" TYPE="BUTTON" ONCLICK="update();" STYLE="width:60" VALUE="add" TITLE="update button"></input></td>
+<td width=700></td>
+<td colspan=3><INPUT ID="AddParticle"  TYPE="TEXT"  STYLE="width:840;height=30" VALUE="Particle  { position 0 2 0 radius 1 frequency  0. 0. 0. 0. amplitude  0 0 0 1 phase  1 1 1 1 speed 1 1 1 1 }" TITLE="addparticle"></td>
+
+</tr>
+
+
+<tr rowspan=4>
+</TR>
+</table>
+
+<table border =4>
+
+<tr>
+<td>current particles</td>
+</tr>
+<tr>
+ <td colspan=3><TEXTAREA ID="logParticle"    STYLE="width:980;height=120" VALUE=" " TITLE="addparticle"></TEXTAREA>
+</TD>
+
+</TR>
+</table>
+
+
+
+
+
+</BODY>
+</HTML>
+

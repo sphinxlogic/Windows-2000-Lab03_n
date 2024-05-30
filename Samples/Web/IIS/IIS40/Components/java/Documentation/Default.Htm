@@ -1,0 +1,92 @@
+<html>
+
+<head>
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 3.0">
+<meta NAME="Version" CONTENT="8.0.3410">
+<meta NAME="Date" CONTENT="10/11/96">
+<meta NAME="Template" CONTENT="C:\Program Files\Office\Office\HTML.DOT">
+<title>ASP Java Component Framework Overview</title>
+</head>
+
+<body TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<font FACE="Arial" SIZE="4"><b>
+
+<p>ASP Java Component Framework</p>
+</b></font>
+
+<p>The Microsoft Active Server Pages (ASP) Java Component Framework simplifies the creation of Active Server components by adding new interfaces. The goal is to retain all of the features and flavor of the ASP programming model, but to present that model in a format that is more familiar to Java programmers. The classes use native Java types, and support native Java interfaces. For example, the Application and Session objects, which allow the programmer to store data and associate it with a name, extend the class java.util.Dictionary, the standard Java associative collection class.</p>
+
+<font FACE="Arial"><b>
+
+<p>Reference Pages</p>
+</b></font>
+
+<p>For detailed information about each of the Java Component Framework classes, see the reference pages listed below.</p>
+
+<table CELLSPACING="0" BORDER="0" CELLPADDING="7" WIDTH="638">
+  <tr>
+    <td WIDTH="33%" VALIGN="TOP"><a HREF="Request.htm">Request</a></td>
+    <td WIDTH="33%" VALIGN="TOP"><a HREF="Server.htm">Server</a></td>
+    <td WIDTH="33%" VALIGN="TOP"><a HREF="ObjectDictionary.htm">ObjectDictionary</a></td>
+  </tr>
+  <tr>
+    <td WIDTH="33%" VALIGN="TOP"><a HREF="Response.htm">Response</a></td>
+    <td WIDTH="33%" VALIGN="TOP"><a href="AspContext.htm">AspContext</a></td>
+    <td WIDTH="33%" VALIGN="TOP"><a HREF="RequestDictionary.htm">RequestDictionary</a></td>
+  </tr>
+  <tr>
+    <td WIDTH="33%" VALIGN="TOP"><a HREF="Session.htm">Session</a></td>
+    <td WIDTH="33%" VALIGN="TOP"><a HREF="CookieDictionary.htm">CookieDictionary</a></td>
+    <td WIDTH="33%" VALIGN="TOP"><a HREF="Map.htm">Map</a></td>
+  </tr>
+  <tr>
+    <td WIDTH="33%" VALIGN="TOP"><a HREF="Application.htm">Application</a></td>
+    <td WIDTH="33%" VALIGN="TOP"><a HREF="Cookie.htm">Cookie</a></td>
+    <td WIDTH="33%" VALIGN="TOP"><a HREF="Enumerator.htm">Enumerator</a></td>
+  </tr>
+</table>
+<font FACE="Arial"><b>
+
+<p>Using the Java Component Framework Classes</p>
+</b></font>
+
+<p>The framework has been provided in both source code (.java) and compiled byte code
+(.class) formats. In order to use the classes, though, you'll have to put them in a place
+where the Java VM can find them. Do this by performing the following steps: 
+
+<ol>
+  <li>Create a new directory named "aspcomp" in your java\TrustLib directory. This directory is usually found in the %windir% folder. Since the framework files have been created in a package called aspcomp, the Java VM will expect to find them there.</LI>
+  <li>Copy the framework files to the newly created java\TrustLib\aspcomp directory. </li>
+</ol>
+<font FACE="Arial"><b>
+
+<p>Using the Samples</p>
+</b></font>
+
+<p>The <i>Additional Samples</i> directory contains sample .java (and .class) files that
+are based on the framework classes, as well as .asp files that use them. See the <a
+HREF="../Additional%20Samples/readme.txt">readme.txt</a> file in the samples directory for
+information on how to install these on your system.</p>
+<font FACE="Arial" SIZE="4"><b>
+
+<p><a NAME="_Toc397403925">Creating Components</a> </p>
+</b></font>
+
+<p>First, a little terminology. Building a <I>component</I> in Java means creating a single Java class that you will instantiate from ASP as a COM object. This class is called <I>the component class</I>. It is entirely possible that the component will create other Java objects or COM objects, which it uses internally. So, while the source code for your component might consist of multiple Java source files, there will be a single Java class that represents your component. </P>
+<P>Creating components with the Java Component Framework is easy; you can create a component by following these steps:
+
+<ol>
+  <li>Create the .java file(s) for your component. Make sure that you include the &quot;import
+    aspcomp;&quot; in your source.</li>
+  <li>Compile the files to produce .class files.</li>
+  <li>Register your component&#146;s Java class with COM, so that it can be created (with
+    COM) from an ASP. You do this by running the javareg.exe tool that comes
+    with the Microsoft SDK for Java. Note that you only need to do this registration once, and
+    you only need to register the class that <i>is</i> your component. The following line
+    shows how to register a component:</li>
+<p>javareg /register /class:[&lt;packagename&gt;.]&lt;classname&gt; /progid:&lt;progid&gt;</p>
+</ol>
+<p>For more information on registering a Java component, enter "javareg/?" at the C: prompt.</p>
+</body>
+</html>

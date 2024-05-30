@@ -1,0 +1,92 @@
+ALPHA_OBJECTS= \
+    $(_OBJ_DIR)\alpha\fakeime.res \
+    $(_OBJ_DIR)\alpha\config.obj \
+    $(_OBJ_DIR)\alpha\data.obj \
+    $(_OBJ_DIR)\alpha\dic.obj \
+    $(_OBJ_DIR)\alpha\dic2.obj \
+    $(_OBJ_DIR)\alpha\fakeime.obj \
+    $(_OBJ_DIR)\alpha\fdebug.obj \
+    $(_OBJ_DIR)\alpha\imm.obj \
+    $(_OBJ_DIR)\alpha\immsec.obj \
+    $(_OBJ_DIR)\alpha\input.obj \
+    $(_OBJ_DIR)\alpha\process.obj \
+    $(_OBJ_DIR)\alpha\regword.obj \
+    $(_OBJ_DIR)\alpha\subs.obj \
+    $(_OBJ_DIR)\alpha\toascii.obj \
+    $(_OBJ_DIR)\alpha\ui.obj \
+    $(_OBJ_DIR)\alpha\uicand.obj \
+    $(_OBJ_DIR)\alpha\uicomp.obj \
+    $(_OBJ_DIR)\alpha\uiguide.obj \
+    $(_OBJ_DIR)\alpha\uistate.obj
+
+PASS0_ALPHA_OBJECTS=
+
+AXP64_OBJECTS= \
+    $(_OBJ_DIR)\axp64\fakeime.res \
+    $(_OBJ_DIR)\axp64\config.obj \
+    $(_OBJ_DIR)\axp64\data.obj \
+    $(_OBJ_DIR)\axp64\dic.obj \
+    $(_OBJ_DIR)\axp64\dic2.obj \
+    $(_OBJ_DIR)\axp64\fakeime.obj \
+    $(_OBJ_DIR)\axp64\fdebug.obj \
+    $(_OBJ_DIR)\axp64\imm.obj \
+    $(_OBJ_DIR)\axp64\immsec.obj \
+    $(_OBJ_DIR)\axp64\input.obj \
+    $(_OBJ_DIR)\axp64\process.obj \
+    $(_OBJ_DIR)\axp64\regword.obj \
+    $(_OBJ_DIR)\axp64\subs.obj \
+    $(_OBJ_DIR)\axp64\toascii.obj \
+    $(_OBJ_DIR)\axp64\ui.obj \
+    $(_OBJ_DIR)\axp64\uicand.obj \
+    $(_OBJ_DIR)\axp64\uicomp.obj \
+    $(_OBJ_DIR)\axp64\uiguide.obj \
+    $(_OBJ_DIR)\axp64\uistate.obj
+
+PASS0_AXP64_OBJECTS=
+
+386_OBJECTS= \
+    $(_OBJ_DIR)\i386\fakeime.res \
+    $(_OBJ_DIR)\i386\config.obj \
+    $(_OBJ_DIR)\i386\data.obj \
+    $(_OBJ_DIR)\i386\dic.obj \
+    $(_OBJ_DIR)\i386\dic2.obj \
+    $(_OBJ_DIR)\i386\fakeime.obj \
+    $(_OBJ_DIR)\i386\fdebug.obj \
+    $(_OBJ_DIR)\i386\imm.obj \
+    $(_OBJ_DIR)\i386\immsec.obj \
+    $(_OBJ_DIR)\i386\input.obj \
+    $(_OBJ_DIR)\i386\process.obj \
+    $(_OBJ_DIR)\i386\regword.obj \
+    $(_OBJ_DIR)\i386\subs.obj \
+    $(_OBJ_DIR)\i386\toascii.obj \
+    $(_OBJ_DIR)\i386\ui.obj \
+    $(_OBJ_DIR)\i386\uicand.obj \
+    $(_OBJ_DIR)\i386\uicomp.obj \
+    $(_OBJ_DIR)\i386\uiguide.obj \
+    $(_OBJ_DIR)\i386\uistate.obj
+
+PASS0_386_OBJECTS=
+
+IA64_OBJECTS= \
+    $(_OBJ_DIR)\ia64\fakeime.res \
+    $(_OBJ_DIR)\ia64\config.obj \
+    $(_OBJ_DIR)\ia64\data.obj \
+    $(_OBJ_DIR)\ia64\dic.obj \
+    $(_OBJ_DIR)\ia64\dic2.obj \
+    $(_OBJ_DIR)\ia64\fakeime.obj \
+    $(_OBJ_DIR)\ia64\fdebug.obj \
+    $(_OBJ_DIR)\ia64\imm.obj \
+    $(_OBJ_DIR)\ia64\immsec.obj \
+    $(_OBJ_DIR)\ia64\input.obj \
+    $(_OBJ_DIR)\ia64\process.obj \
+    $(_OBJ_DIR)\ia64\regword.obj \
+    $(_OBJ_DIR)\ia64\subs.obj \
+    $(_OBJ_DIR)\ia64\toascii.obj \
+    $(_OBJ_DIR)\ia64\ui.obj \
+    $(_OBJ_DIR)\ia64\uicand.obj \
+    $(_OBJ_DIR)\ia64\uicomp.obj \
+    $(_OBJ_DIR)\ia64\uiguide.obj \
+    $(_OBJ_DIR)\ia64\uistate.obj
+
+PASS0_IA64_OBJECTS=
+
