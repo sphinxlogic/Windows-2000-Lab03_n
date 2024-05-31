@@ -1,0 +1,845 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="robots" content="index,follow"/>
+	<title>How Windows is build &#63; &#124; Coffeehouse &#124; Forums &#124; Channel 9</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="generator" content="Rev9"/>
+	<meta name="WT.z_bdb" content="1"/>
+	<meta name="msapplication-task" content="name=Coffeehouse;action-uri=/forums/coffeehouse;icon-uri=/styles/images/favicon.ico"/>
+	<meta name="msapplication-task" content="name=Browse All Content;action-uri=/Browse;icon-uri=/styles/images/favicon.ico"/>
+	<meta name="msapplication-task" content="name=Shows;action-uri=/Browse/Shows;icon-uri=/styles/images/favicon.ico"/>
+	<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/styles/images/favicon.ico"/>
+	<link rel="apple-touch-icon" href="/styles/images/favicon_129x129.png"/>
+	<link href="/styles/site.css?v=qoTt0q9r3z2pobF4j9r-rujC8cM1" media="all" rel="stylesheet" type="text/css" />
+	<link href="/styles/print.css" media="print" rel="stylesheet" type="text/css"/>
+	<link href="/styles/handheld.css" media="handheld" rel="stylesheet" type="text/css"/>
+	<link href="/styles/paging.css?v=qoTt0q9r3z2pobF4j9r-rujC8cM1" media="all" rel="stylesheet" type="text/css" />
+	<link href="/styles/comments.css?v=qoTt0q9r3z2pobF4j9r-rujC8cM1" media="all" rel="stylesheet" type="text/css" />
+	<link href="/styles/sourcecode.css?v=qoTt0q9r3z2pobF4j9r-rujC8cM1" media="all" rel="stylesheet" type="text/css" />
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<link href="/styles/editforums.css?v=qoTt0q9r3z2pobF4j9r-rujC8cM1" media="all" rel="stylesheet" type="text/css" />
+	<link href="/styles/listposts.css?v=qoTt0q9r3z2pobF4j9r-rujC8cM1" media="all" rel="stylesheet" type="text/css" />
+  <link href="&#47;Forums&#47;Coffeehouse&#47;189875-How-Windows-is-build-&#47;rss" title="How Windows is build ? - RSS - Channel 9" rel="alternate" type="application/rss+xml"/>
+  <meta name="Search.PageType" content="Thread"/>
+  <meta name="Search.SectionType" content="Forums"/>
+  <meta name="Search.Section" content="Coffeehouse"/>
+  <meta name="Search.Title" content="How Windows is build &#63;"/>
+  <meta name="title" content="How Windows is build &#63;"/>
+	<noscript><link href="/styles/noscript.css?v=qoTt0q9r3z2pobF4j9r-rujC8cM1" media="all" rel="stylesheet" type="text/css" /></noscript>
+	<!--[if gt IE 8]><link href="/styles/ie9beta1.css?v=qoTt0q9r3z2pobF4j9r-rujC8cM1" media="all" rel="stylesheet" type="text/css" /><![endif]-->
+	<!--[if lt IE 8]><link href="/styles/ie7_6.css?v=qoTt0q9r3z2pobF4j9r-rujC8cM1" media="all" rel="stylesheet" type="text/css" /><![endif]-->
+	<!--[if lt IE 7]><link href="/styles/ie6.css?v=qoTt0q9r3z2pobF4j9r-rujC8cM1" media="all" rel="stylesheet" type="text/css" /><![endif]-->
+		<script src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.4.min.js" type="text/javascript"></script>
+
+	<script src="/scripts/globals.js?v=qoTt0q9r3z2pobF4j9r-rujC8cM1" type="text/javascript"></script>
+	<!--[if lt IE 7]><script>ch9.data.isIE6=true;</script><![endif]-->
+</head>
+<body class="forum">
+<div class="branding">
+	<div class="toolbar">
+		<div class="container"><ul>
+    <li class="followus"><a href="http://twitter.com/ch9">Follow Us @Ch9</a></li>
+	<li class="subscribe"><a href="&#47;Feeds&#47;RSS">Subscribe to Channel 9</a></li>
+	<!--IE7 needs a return here-->
+		<li class="signIn"><a href="https://login.live.com/login.srf?wa=wsignin1.0&amp;rpsnv=11&amp;ct=1295247140&amp;rver=6.1.6195.0&amp;wp=MBI&amp;wreply=http:%2F%2Fchannel9.msdn.com%2FForums%2FCoffeehouse%2F189875-How-Windows-is-build-&amp;id=47159">Sign In</a></li>
+</ul>
+		</div>
+	</div>
+	<div class="navigation">
+		<div class="container"><div class="logo"><a href="/">Channel&#160;9</a></div><div class="search">	
+	<span class="g l t"></span><span class="g l m"></span><span class="g l b"></span><span class="g c t"></span><span class="g c b"></span><span class="g r t"></span><span class="g r m"></span><span class="g r b"></span>     
+	<form action="/search">
+		<div class="inputHolder">
+			<input type="text" class="text inactive" value="Search this site" name="term" autocomplete="off"/>
+			<span class="bing logo"></span>
+			<div class="submitHolder">
+				<input class="theSubmit" type="image" alt="Submit" src="/styles/images/BingSearchSprite.png"/>
+			</div>
+		</div>
+	</form>
+</div>
+
+<ul>
+    <li class="browse">
+		<a href="&#47;Browse">Browse</a>
+		<ul class="rounded">
+			<li><a href="&#47;Browse&#47;Tags">Tags</a></li>
+			<li><a href="&#47;Browse&#47;Shows">Shows</a></li>
+			<li><a href="&#47;Browse&#47;Series">Series</a></li>
+			<li><a href="&#47;Browse&#47;Blogs">Blogs</a></li>
+			<li><a href="&#47;Browse&#47;Authors">Authors</a></li>
+		</ul>
+	</li>
+    <li class="learn">
+		<a href="&#47;Learn">Learn</a>
+		<ul class="rounded">
+			<li><a href="&#47;Learn&#47;Courses">Courses</a></li>
+			<li><a href="&#47;Blogs&#47;Learn">Announcements</a></li>
+		</ul>
+	</li>
+    <li class="forums active">
+		<a href="&#47;Forums">Forums</a>
+		<ul class="rounded">
+			<li><a href="&#47;Forums&#47;Coffeehouse">Coffeehouse</a></li>
+			<li><a href="&#47;Forums&#47;Feedback">Site Feedback</a></li>
+			<li><a href="&#47;Forums&#47;TechOff">Tech Off</a></li>
+		</ul>
+	</li>
+    <li class="about">
+		<a href="&#47;About">About</a>
+	</li>
+</ul>
+
+		</div>
+	</div>
+</div>
+<div class="mainHolder">
+	<div class="mainContent text">
+			<div class="breadcrumbs"><ul><li class="first"><a href="/Forums">Forums</a></li><li class="last"><a href="/Forums/Coffeehouse">Coffeehouse</a></li></ul></div>
+
+
+<div class="forums-header">
+	<h1>How Windows is build&#160;?</h1>
+</div>
+
+<div class="forums-meta">
+	<ul class="rss">
+		<li class="subscribe">
+			<a href="&#47;Forums&#47;Coffeehouse&#47;189875-How-Windows-is-build-&#47;rss">Subscribe to this feed</a>
+		</li>
+	</ul>
+</div>
+
+<div class="forums-nav">
+	<ul class="paging">
+					<li>
+							<span class="current">1</span>
+					</li>
+					<li>
+							<a href="&#47;Forums&#47;Coffeehouse&#47;189875-How-Windows-is-build-&#63;page&#61;2">2</a>
+					</li><li class="next">
+			<a href="&#47;Forums&#47;Coffeehouse&#47;189875-How-Windows-is-build-&#63;page&#61;2">next</a>
+		</li>
+	</ul>
+
+
+</div>
+
+<ul id="posts" class="posts"><li>
+<div class="author">
+	<a class="button" href="/Niners/L_Park1"><img alt="L_Park1" class="avatar" src="http://mschnlnine.vo.llnwd.net/d1/Dev/App_Themes/C9/images/avatars/c9classic/default.gif" title="L_Park1" /><span class="name">L_Park1</span></a>
+</div>
+
+<div class="post" id="c189875">
+	<div class="post-header">
+		<a class="permalink" href="/Forums/Coffeehouse/189875-How-Windows-is-build-/189875" title="Post Permalink">May 18, 2006 at 11:30&#160;AM</a>
+	</div>
+	<div class="post-content">
+		<p>A ... basic question: how Windows is build? What programs are used? Details, details ... Of course, what is public, not internal stories. <img src='http://ecn.channel9.msdn.com/o9/content/images/emoticons/emotion-1.gif' alt='Smiley' /> We don't want trouble. <img src='http://ecn.channel9.msdn.com/o9/content/images/emoticons/emotion-1.gif' alt='Smiley' /> How the team is structured? How many Labs etc. etc. Thanks</p>
+	</div>
+</div>
+
+	</li><li>
+<div class="author">
+	<a class="button" href="/Niners/Manip"><img alt="Manip" class="avatar" src="http://ecn.channel9.msdn.com/o9/avatars/Manip_c9.jpg" title="Manip" /><span class="name">Manip</span></a>
+</div>
+
+<div class="post" id="cd56be068b49042cca2309deb0163338d">
+	<div class="post-header">
+		<a class="permalink" href="/Forums/Coffeehouse/189875-How-Windows-is-build-/d56be068b49042cca2309deb0163338d" title="Post Permalink">May 18, 2006 at 11:45&#160;AM</a>
+	</div>
+	<div class="post-content">
+		<p>Windows, just like any modern operating system isn't built in one large chunk. Windows its self might have thousands or tens of thousands of isolated modules that all work together (and layer on top of one another).
+<br>
+<br>
+The kernel can't, for example, call into comdlg32.dll because comdlg32.dll&nbsp;would have to make calls back to the kernel and you'd get a infinite loop situation.
+<br>
+<br>
+For most things they use standard Visual Studio 2005 Enterprise Edition. They however have to have special building environments for the big stuff (e.g. Windows Kernel). These things can't be build on the developer's machines, but are instead build overnight
+ on servers who's soul purpose is to build releases. <br>
+<br>
+If you want a more accurate or details overview then I'm afraid your have to walk to a Microsoftee in the Windows group.
+</p>
+	</div>
+</div>
+
+	</li><li>
+<div class="author">
+	<a class="button" href="/Niners/L_Park1"><img alt="L_Park1" class="avatar" src="http://mschnlnine.vo.llnwd.net/d1/Dev/App_Themes/C9/images/avatars/c9classic/default.gif" title="L_Park1" /><span class="name">L_Park1</span></a>
+</div>
+
+<div class="post" id="c0bf9531dcb90413c8f159deb016333b7">
+	<div class="post-header">
+		<a class="permalink" href="/Forums/Coffeehouse/189875-How-Windows-is-build-/0bf9531dcb90413c8f159deb016333b7" title="Post Permalink">May 18, 2006 at 11:59&#160;AM</a>
+	</div>
+	<div class="post-content">
+		<p>Yeah - I forgot about the fact about modules. Vista can we tell that is more modular than ever? (modular - not sure about the term - I'm from Romania - sorry about bad EN). <img src='http://ecn.channel9.msdn.com/o9/content/images/emoticons/emotion-1.gif' alt='Smiley' /> I also forgot about the servers which compile a new version of Windows Vista
+ every night. <img src='http://ecn.channel9.msdn.com/o9/content/images/emoticons/emotion-1.gif' alt='Smiley' /> That's a lot of versioning. Question: they test every build they have every day? Not sure about this... details please.</p>
+	</div>
+</div>
+
+	</li><li>
+<div class="author">
+	<a class="button" href="/Niners/ben2004uk"><img alt="ben2004uk" class="avatar" src="http://ecn.channel9.msdn.com/o9/avatars/ben2004uk_c9.jpg" title="ben2004uk" /><span class="name">ben2004uk</span></a>
+</div>
+
+<div class="post" id="c46e5bd2a36b24607b9f19deb016333e1">
+	<div class="post-header">
+		<a class="permalink" href="/Forums/Coffeehouse/189875-How-Windows-is-build-/46e5bd2a36b24607b9f19deb016333e1" title="Post Permalink">May 18, 2006 at 12:10&#160;PM</a>
+	</div>
+	<div class="post-content">
+		<p>guessing they have a lot (LOT!) of automated test build scripts which are run everytime / weekly on the new build. Think I read it somewhere...</p>
+	</div>
+</div>
+
+	</li><li class="staff microsoft">
+<div class="author">
+	<a class="button" href="/Niners/Sampy"><img alt="Mike Sampson" class="avatar" src="https://rev9.blob.core.windows.net/avatar/8c26053b-859d-44b7-a1a1-599569961d81.jpg" title="Mike Sampson" /><span class="name">Sampy</span></a><span class="caption">And I come back to you now - at the turn of the&#160;tide</span>
+</div>
+
+<div class="post" id="c4d2cf4e41cff4caf85aa9deb0163340c">
+	<div class="post-header">
+		<a class="permalink" href="/Forums/Coffeehouse/189875-How-Windows-is-build-/4d2cf4e41cff4caf85aa9deb0163340c" title="Post Permalink">May 18, 2006 at 1:02&#160;PM</a>
+	</div>
+	<div class="post-content">
+		<p>Devdiv builds using MSBuild now but most things as Microsoft are built using the &quot;NT Build environment&quot; known as razzle. It uses super uniquely named tool build.exe.<br>
+<br>
+Devdiv still uses Razzle but it's just calling into msbuild undernieth. There's a file out there called Microsoft.VisualStudio.Publish.vbproj that's used to build the VS you'll install once Orcas CTPs start coming out.<br>
+<br>
+Actually, it's called Microsoft.VisualStudio.Publish2.vbproj but that's because I was a bit of an early adopter of the conversion to MSBuild and when the conversion team came thru they were kind and left my project file alone <img src='http://ecn.channel9.msdn.com/o9/content/images/emoticons/emotion-1.gif' alt='Smiley' /></p>
+	</div>
+</div>
+
+	</li><li>
+<div class="author">
+	<a class="button" href="/Niners/Xaero_Vincent"><img alt="Xaero_Vincent" class="avatar" src="http://ecn.channel9.msdn.com/o9/avatars/Xaero_Vincent_c9.jpg" title="Xaero_Vincent" /><span class="name">Xaero_&#8203;Vincent</span></a><span class="caption">Sexy&#160;me</span>
+</div>
+
+<div class="post" id="c78ac3e6afa934135bb489deb01633437">
+	<div class="post-header">
+		<a class="permalink" href="/Forums/Coffeehouse/189875-How-Windows-is-build-/78ac3e6afa934135bb489deb01633437" title="Post Permalink">May 18, 2006 at 1:56&#160;PM</a>
+	</div>
+	<div class="post-content">
+		<p>Oh... I always wanted to know this:<br>
+<br>
+What compiler options do they use? What is the target architecture for the x86-32 version?&nbsp;Is it compiled for&nbsp;i386 or i686? What about Windows Vista?&nbsp;Do they use special&nbsp;compiler&nbsp;options that&nbsp;support older architectures yet&nbsp;optimized for new processors, like
+ GCC's&nbsp;&quot;-mcpu&quot; option?<br>
+<br>
+<br>
+Regards,<br>
+Vincent</p>
+	</div>
+</div>
+
+	</li><li>
+<div class="author">
+	<a class="button" href="/Niners/IRenderable"><img alt="IRenderable" class="avatar" src="http://ecn.channel9.msdn.com/o9/avatars/IRenderable_c9.jpg" title="IRenderable" /><span class="name">IRenderable</span></a><span class="caption">Pi</span>
+</div>
+
+<div class="post" id="c1923b13f029f479ea6569deb01633461">
+	<div class="post-header">
+		<a class="permalink" href="/Forums/Coffeehouse/189875-How-Windows-is-build-/1923b13f029f479ea6569deb01633461" title="Post Permalink">May 18, 2006 at 1:57&#160;PM</a>
+	</div>
+	<div class="post-content">
+		<p><blockquote>
+<div class="quoteAuthor">Manip wrote:</div>
+<div class="quoteBody">
+<p>Windows, just like any modern operating system isn't built in one large chunk.&nbsp;
+</p>
+</div>
+</blockquote>
+<br>
+<br>
+The BSDs are all built with one make. Though I think that is seriously hindering them.<br></p>
+	</div>
+</div>
+
+	</li><li>
+<div class="author">
+	<a class="button" href="/Niners/ScanIAm"><img alt="ScanIAm" class="avatar" src="http://files.channel9.msdn.com/avatar/f013ab0a-4f9a-4afd-83eb-edfca04c6b4d.jpg" title="ScanIAm" /><span class="name">ScanIAm</span></a><span class="caption">20 Minutes into the&#160;future</span>
+</div>
+
+<div class="post" id="c5a95c2723abb4866a0499deb0163348e">
+	<div class="post-header">
+		<a class="permalink" href="/Forums/Coffeehouse/189875-How-Windows-is-build-/5a95c2723abb4866a0499deb0163348e" title="Post Permalink">May 18, 2006 at 2:00&#160;PM</a>
+	</div>
+	<div class="post-content">
+		<p><blockquote>
+<div class="quoteAuthor">IRenderable wrote:</div>
+<div class="quoteBody">&#65279;
+<blockquote>
+<table class="quoteTable">
+<tbody>
+<tr>
+<td valign="top" width="10"><img src="/Themes/AlmostGlass/images/icon-quote.gif"></td>
+<td class="txt3"><strong>Manip wrote:</strong>
+<hr size="1">
+<i>
+<p>Windows, just like any modern operating system isn't built in one large chunk.&nbsp;
+</p>
+</i></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<br>
+<br>
+The BSDs are all built with one make. Though I think that is seriously hindering them.<br>
+</div>
+</blockquote>
+<br>
+<br>
+So, only one .bin (or whatever) is spit out when it is done?</p>
+	</div>
+</div>
+
+	</li><li>
+<div class="author">
+	<a class="button" href="/Niners/IRenderable"><img alt="IRenderable" class="avatar" src="http://ecn.channel9.msdn.com/o9/avatars/IRenderable_c9.jpg" title="IRenderable" /><span class="name">IRenderable</span></a><span class="caption">Pi</span>
+</div>
+
+<div class="post" id="c76ba78a683a94718a57e9deb016334ba">
+	<div class="post-header">
+		<a class="permalink" href="/Forums/Coffeehouse/189875-How-Windows-is-build-/76ba78a683a94718a57e9deb016334ba" title="Post Permalink">May 18, 2006 at 3:59&#160;PM</a>
+	</div>
+	<div class="post-content">
+		<p><blockquote>
+<div class="quoteAuthor">ScanIAm wrote:</div>
+<div class="quoteBody">
+<blockquote>
+<table class="quoteTable">
+<tbody>
+<tr>
+<td valign="top" width="10"><img src="/Themes/AlmostGlass/images/icon-quote.gif"></td>
+<td class="txt3"><strong>IRenderable wrote:</strong>
+<hr size="1">
+<i>
+<blockquote>
+<table class="quoteTable">
+<tbody>
+<tr>
+<td valign="top" width="10"><img src="/Themes/AlmostGlass/images/icon-quote.gif"></td>
+<td class="txt3"><strong>Manip wrote:</strong>
+<hr size="1">
+<i>
+<p>Windows, just like any modern operating system isn't built in one large chunk.&nbsp;
+</p>
+</i></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<br>
+<br>
+The BSDs are all built with one make. Though I think that is seriously hindering them.<br>
+</i></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<br>
+<br>
+So, only one .bin (or whatever) is spit out when it is done?</div>
+</blockquote>
+<br>
+<br>
+You type in make and it builds all the packages, the kernel, drivers, everything.<br></p>
+	</div>
+</div>
+
+	</li><li>
+<div class="author">
+	<a class="button" href="/Niners/Sven%20Groot"><img alt="Sven Groot" class="avatar" src="http://ecn.channel9.msdn.com/o9/avatars/Sven Groot_c9.jpg" title="Sven Groot" /><span class="name">Sven&#160;Groot</span></a><span class="caption">Science knows it doesn't know everything; otherwise, it'd&#160;stop.</span>
+</div>
+
+<div class="post" id="c62186cd880234a0699099deb016334e4">
+	<div class="post-header">
+		<a class="permalink" href="/Forums/Coffeehouse/189875-How-Windows-is-build-/62186cd880234a0699099deb016334e4" title="Post Permalink">May 18, 2006 at 4:04&#160;PM</a>
+	</div>
+	<div class="post-content">
+		<p><blockquote>
+<div class="quoteAuthor">IRenderable wrote:</div>
+<div class="quoteBody">&#65279;You type in make and it builds all the packages, the kernel, drivers, everything.<br>
+</div>
+</blockquote>
+<br>
+I seriously doubt they have one makefile for the whole thing. Probably they just have one master makefile that recursively calls all other makefiles to build the whole system. Nothing wrong with that.</p>
+	</div>
+</div>
+
+	</li><li>
+<div class="author">
+	<a class="button" href="/Niners/Manip"><img alt="Manip" class="avatar" src="http://ecn.channel9.msdn.com/o9/avatars/Manip_c9.jpg" title="Manip" /><span class="name">Manip</span></a>
+</div>
+
+<div class="post" id="c28a8930ff7884d7885449deb0163350f">
+	<div class="post-header">
+		<a class="permalink" href="/Forums/Coffeehouse/189875-How-Windows-is-build-/28a8930ff7884d7885449deb0163350f" title="Post Permalink">May 18, 2006 at 4:06&#160;PM</a>
+	</div>
+	<div class="post-content">
+		<p><blockquote>
+<div class="quoteAuthor">Sven Groot wrote:</div>
+<div class="quoteBody">&#65279;
+<blockquote>
+<table class="quoteTable">
+<tbody>
+<tr>
+<td valign="top" width="10"><img src="/Themes/AlmostGlass/images/icon-quote.gif"></td>
+<td class="txt3"><strong>IRenderable wrote:</strong>
+<hr size="1">
+<i>&#65279;You type in make and it builds all the packages, the kernel, drivers, everything.<br>
+</i></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<br>
+I seriously doubt they have one makefile for the whole thing. Probably they just have one master makefile that recursively calls all other makefiles to build the whole system. Nothing wrong with that.</div>
+</blockquote>
+<br>
+<br>
+Your right they do. <br>
+<br>
+If you want to learn more I suggest download the &quot;leaked source.&quot; I'd imagine that you could view the makefiles in that *cough*</p>
+	</div>
+</div>
+
+	</li><li>
+<div class="author">
+	<a class="button" href="/Niners/L_Park1"><img alt="L_Park1" class="avatar" src="http://mschnlnine.vo.llnwd.net/d1/Dev/App_Themes/C9/images/avatars/c9classic/default.gif" title="L_Park1" /><span class="name">L_Park1</span></a>
+</div>
+
+<div class="post" id="c1ad6f51d2aac481a88109deb01633539">
+	<div class="post-header">
+		<a class="permalink" href="/Forums/Coffeehouse/189875-How-Windows-is-build-/1ad6f51d2aac481a88109deb01633539" title="Post Permalink">May 19, 2006 at 1:25&#160;AM</a>
+	</div>
+	<div class="post-content">
+		<p><img src='http://ecn.channel9.msdn.com/o9/content/images/emoticons/emotion-1.gif' alt='Smiley' /> good idea with the &quot;leaked source&quot;. Ups, we don't want trouble. How can you find it? How to search for it. <img src='http://ecn.channel9.msdn.com/o9/content/images/emoticons/emotion-1.gif' alt='Smiley' /> A clue or something. <img src='http://ecn.channel9.msdn.com/o9/content/images/emoticons/emotion-1.gif' alt='Smiley' /></p>
+	</div>
+</div>
+
+	</li><li>
+<div class="author">
+	<a class="button" href="/Niners/stevewo"><img alt="stevewo" class="avatar" src="http://mschnlnine.vo.llnwd.net/d1/Dev/App_Themes/C9/images/avatars/c9classic/default.gif" title="stevewo" /><span class="name">stevewo</span></a>
+</div>
+
+<div class="post" id="cac50ead59c9c4ef487539deb0163358f">
+	<div class="post-header">
+		<a class="permalink" href="/Forums/Coffeehouse/189875-How-Windows-is-build-/ac50ead59c9c4ef487539deb0163358f" title="Post Permalink">May 30, 2007 at 8:46&#160;PM</a>
+	</div>
+	<div class="post-content">
+		<p><blockquote>
+<div class="quoteAuthor">L_Park1 wrote:</div>
+<div class="quoteBody">&#65279;A ... basic question: how Windows is build? What programs are used? Details, details ... Of course, what is public, not internal stories.
+<img src="/emoticons/emotion-1.gif" border="0"> We don't want trouble. <img src="/emoticons/emotion-1.gif" border="0"> How the team is structured? How many Labs etc. etc. Thanks</div>
+</blockquote>
+<br>
+<br>
+Yes indeed - how is Windows (NT/2000/.NET) built ?<br>
+<br>
+I do not believe there is anything confidential about how it is built - just the source itself is what is trade secret - not how to build it.<br>
+<br>
+This is my understanding based on <a href="http://www.tinykrnl.org">www.tinykrnl.org</a> which elaborates on Razzle.<br>
+<br>
+1) Get Windows Driver Kit - Vista release or 2003 DDK or Windows 2000 DDK - not sure which will work (someone please advise ?) - but I think the WDK should work because it has both the HAL, IFS, and normal DDK systems to build whereas other versions (to my&nbsp;understanding)
+ split these systems.<br>
+<br>
+2) Once you have such - open a command prompt - now I suppose you could do this with the tinykrnl.org &quot;Dazzle&quot; build environment which works by building TinyKrnl - which is designed just like the NT source tree - using the WDK from the command line with a special
+ command - dazzle.cmd<br>
+<br>
+3) Does anyone know:<br>
+<br>
+A) - Which DDK or Environment will work to use as a base to build NT be it leaked source or real source and/or NT 4.0 or 2000 or even DOS and regardless of processor ?<br>
+<br>
+B) - What machine and operating system should be used - Server, 2000, or NT4.0 itself - it seems weird making 2000 on 2000 and even weirder making NT4.0 in the Windows 2000 DDK which would not have been invented when NT4.0 was not even invented seeing you are
+ using the NT4.0 source !!! So what operating system and setup (for each and every permutation - mainly for NT 4.0 and 2000 x86)&nbsp;?<br>
+<br>
+C) - What is the entire batch file contents of Razzle.CMD - can someone please show me this or send it to me ?<br>
+<br>
+D) - Can the TinyKRNL environment be used to build any NT (say leaked soruce) ? AND/OR can the dazzle.cmd script be changed TO build NT AND/OR TINYKRNL ?<br>
+<br>
+E) - Speaking of Tinykrnl - does any know of anyway to EASILY get up a Native Command Line Interface around the AUTOCHK.EXE execution point - I mean a command prompt that runs in place of SMSS.EXE or CSRSS.EXE ??? A real NTDLL.DLL based program. I think a lot
+ of people forget &quot;WINDOWS&quot; is really a &quot;program&quot; that runs on the NT &quot;operating system&quot;. But yes, can we get up a command prompt before &quot;WINDOWS&quot; and if so how ?<br>
+<br>
+F) - Can ANY of the leaked source be built at all - even ntoskrnl.exe or hal.dll or osloader.exe or ntldr or kernel32.dll or explorer.exe or iexplore.exe or anything at all whatsoever and if so how ?<br>
+<br>
+I just want to know how to bulid something from this leaked source - anything at all - succesfully.<br>
+<br>
+This is not for public release or commercial use and just my own private use - I want to see if I can build/create/make my own operating system.<br>
+<br>
+I would really like to be able to&nbsp;create a NT kernel that can talk to other NT kernels direct and the boot process stops there - like BIOS starts POST etc etc then MBR then NTLDR/OSLOADER and HAL and Boot Drivers - just the absolute basics - then the Kernel
+ comes up (I haven't forotten the registry and hives) - and then SMSS.EXE, CSRSS.EXE and WINLOGON.EXE - then SERVICES.EXE just enough to &quot;logon&quot; by starting a service like seclogon - thus officially completing the boot process - then having a MPI (message passing
+ interface) system run that links (over infiniband or ethernet or hypertransport or FPGAs or whatever !!!) executable run and just run - like the system idle process - waiting for more information to be processed - to come from other machines.<br>
+<br>
+Any thoughts ?<br>
+<br>
+Obviously there would need to be a cluster controlling kernel that monitors all these and assigns different node identifiers etc etc but that is the basic idea - there could be a server version of this kernel - one single system image could also be created
+ by a Virtual HAL spread over all machines - so all CPUs and RAM and HDDs merge together into one final system that is completely unified.
+<br>
+<br>
+Possible ?<br>
+<br>
+But keeping it simple for now - no Windows no Nothing - just a OS that uses the base NT core - up to end of boot which is defined as someone (including the computer itself) logging on to the computer system - so NT AUTHORITY\SYSTEM can &quot;logon&quot; - and the machine
+ can act as a cluster slave box...<br>
+&nbsp;<br>
+I know that can be done easy..<br>
+<br>
+And maybe even earlier than end of boot - like at Phase 0 or Phase 1 completion or in place of the actual system idle process ???<br>
+<br>
+Please email me at <a href="mailto:colesexmyer@gmail.com">colesexmyer@gmail.com</a> if anyone has any information or thoughts.<br>
+<br>
+I also have DOS source (as well as NT 4.0 and WIN2K) and on top of that have Award and Phoenix source and am not just creating my own Operating System - I am creating my own BIOS and - probably by using FPGAs - I am creating my own actual processor - all from&nbsp;leaked
+ source (to use as samples and not to steal) and pretty much&nbsp;a lot of red bull and no sleep - i mean NO sleep - nothing&nbsp;!!!<br>
+<br></p>
+	</div>
+</div>
+
+	</li><li>
+<div class="author">
+	<a class="button" href="/Niners/PaoloM"><img alt="PaoloM" class="avatar" src="http://ecn.channel9.msdn.com/o9/avatars/PaoloM_c9.jpg" title="PaoloM" /><span class="name">PaoloM</span></a><span class="caption">Hypermedioc&#8203;rity</span>
+</div>
+
+<div class="post" id="c555375a3551841da92a49deb016335b8">
+	<div class="post-header">
+		<a class="permalink" href="/Forums/Coffeehouse/189875-How-Windows-is-build-/555375a3551841da92a49deb016335b8" title="Post Permalink">May 30, 2007 at 9:38&#160;PM</a>
+	</div>
+	<div class="post-content">
+		<p>Brilliant <img src='http://ecn.channel9.msdn.com/o9/content/images/emoticons/emotion-8.gif' alt='Expressionless' /></p>
+	</div>
+</div>
+
+	</li><li>
+<div class="author">
+	<a class="button" href="/Niners/RoyalSchrubber"><img alt="RoyalSchrubber" class="avatar" src="http://ecn.channel9.msdn.com/o9/avatars/RoyalSchrubber_c9.jpg" title="RoyalSchrubber" /><span class="name">Royal&#8203;Schrubber</span></a><span class="caption">One. How many time travellers does it take to change a&#160;lightbulb?</span>
+</div>
+
+<div class="post" id="c76fa871a15ba42b291519deb016335e1">
+	<div class="post-header">
+		<a class="permalink" href="/Forums/Coffeehouse/189875-How-Windows-is-build-/76fa871a15ba42b291519deb016335e1" title="Post Permalink">May 30, 2007 at 11:30&#160;PM</a>
+	</div>
+	<div class="post-content">
+		<p>So that's what crazy nut&nbsp;professors do when not at university? <img src='http://ecn.channel9.msdn.com/o9/content/images/emoticons/emotion-7.gif' alt='Perplexed' /></p>
+	</div>
+</div>
+
+	</li><li>
+<div class="author">
+	<a class="button" href="/Niners/Izariath"><img alt="Izariath" class="avatar" src="http://mschnlnine.vo.llnwd.net/d1/Dev/App_Themes/C9/images/avatars/c9classic/default.gif" title="Izariath" /><span class="name">Izariath</span></a>
+</div>
+
+<div class="post" id="cd50b24f8b8b541ce9b839deb01633640">
+	<div class="post-header">
+		<a class="permalink" href="/Forums/Coffeehouse/189875-How-Windows-is-build-/d50b24f8b8b541ce9b839deb01633640" title="Post Permalink">Apr 16, 2010 at 1:49&#160;PM</a>
+	</div>
+	<div class="post-content">
+		<p><blockquote><div class="quoteUser">stevewo said:</div><div class="quoteText">
+<blockquote>
+<div class="quoteAuthor">L_Park1 wrote:</div>
+<div class="quoteBody">&#65279;A ... basic question: how Windows is build? What programs are used? Details, details ... Of course, what is public, not internal stories.
+<img src="/emoticons/emotion-1.gif" border="0"> We don't want trouble. <img src="/emoticons/emotion-1.gif" border="0"> How the team is structured? How many Labs etc. etc. Thanks</div>
+</blockquote>
+<br>
+<br>
+Yes indeed - how is Windows (NT/2000/.NET) built ?<br>
+<br>
+I do not believe there is anything confidential about how it is built - just the source itself is what is trade secret - not how to build it.<br>
+<br>
+This is my understanding based on <a href="http://www.tinykrnl.org">www.tinykrnl.org</a> which elaborates on Razzle.<br>
+<br>
+1) Get Windows Driver Kit - Vista release or 2003 DDK or Windows 2000 DDK - not sure which will work (someone please advise ?) - but I think the WDK should work because it has both the HAL, IFS, and normal DDK systems to build whereas other versions (to my&nbsp;understanding)
+ split these systems.<br>
+<br>
+2) Once you have such - open a command prompt - now I suppose you could do this with the tinykrnl.org &quot;Dazzle&quot; build environment which works by building TinyKrnl - which is designed just like the NT source tree - using the WDK from the command line with a special
+ command - dazzle.cmd<br>
+<br>
+3) Does anyone know:<br>
+<br>
+A) - Which DDK or Environment will work to use as a base to build NT be it leaked source or real source and/or NT 4.0 or 2000 or even DOS and regardless of processor ?<br>
+<br>
+B) - What machine and operating system should be used - Server, 2000, or NT4.0 itself - it seems weird making 2000 on 2000 and even weirder making NT4.0 in the Windows 2000 DDK which would not have been invented when NT4.0 was not even invented seeing you are
+ using the NT4.0 source !!! So what operating system and setup (for each and every permutation - mainly for NT 4.0 and 2000 x86)&nbsp;?<br>
+<br>
+C) - What is the entire batch file contents of Razzle.CMD - can someone please show me this or send it to me ?<br>
+<br>
+D) - Can the TinyKRNL environment be used to build any NT (say leaked soruce) ? AND/OR can the dazzle.cmd script be changed TO build NT AND/OR TINYKRNL ?<br>
+<br>
+E) - Speaking of Tinykrnl - does any know of anyway to EASILY get up a Native Command Line Interface around the AUTOCHK.EXE execution point - I mean a command prompt that runs in place of SMSS.EXE or CSRSS.EXE ??? A real NTDLL.DLL based program. I think a lot
+ of people forget &quot;WINDOWS&quot; is really a &quot;program&quot; that runs on the NT &quot;operating system&quot;. But yes, can we get up a command prompt before &quot;WINDOWS&quot; and if so how ?<br>
+<br>
+F) - Can ANY of the leaked source be built at all - even ntoskrnl.exe or hal.dll or osloader.exe or ntldr or kernel32.dll or explorer.exe or iexplore.exe or anything at all whatsoever and if so how ?<br>
+<br>
+I just want to know how to bulid something from this leaked source - anything at all - succesfully.<br>
+<br>
+This is not for public release or commercial use and just my own private use - I want to see if I can build/create/make my own operating system.<br>
+<br>
+I would really like to be able to&nbsp;create a NT kernel that can talk to other NT kernels direct and the boot process stops there - like BIOS starts POST etc etc then MBR then NTLDR/OSLOADER and HAL and Boot Drivers - just the absolute basics - then the Kernel
+ comes up (I haven't forotten the registry and hives) - and then SMSS.EXE, CSRSS.EXE and WINLOGON.EXE - then SERVICES.EXE just enough to &quot;logon&quot; by starting a service like seclogon - thus officially completing the boot process - then having a MPI (message passing
+ interface) system run that links (over infiniband or ethernet or hypertransport or FPGAs or whatever !!!) executable run and just run - like the system idle process - waiting for more information to be processed - to come from other machines.<br>
+<br>
+Any thoughts ?<br>
+<br>
+Obviously there would need to be a cluster controlling kernel that monitors all these and assigns different node identifiers etc etc but that is the basic idea - there could be a server version of this kernel - one single system image could also be created
+ by a Virtual HAL spread over all machines - so all CPUs and RAM and HDDs merge together into one final system that is completely unified.
+<br>
+<br>
+Possible ?<br>
+<br>
+But keeping it simple for now - no Windows no Nothing - just a OS that uses the base NT core - up to end of boot which is defined as someone (including the computer itself) logging on to the computer system - so NT AUTHORITY\SYSTEM can &quot;logon&quot; - and the machine
+ can act as a cluster slave box...<br>
+&nbsp;<br>
+I know that can be done easy..<br>
+<br>
+And maybe even earlier than end of boot - like at Phase 0 or Phase 1 completion or in place of the actual system idle process ???<br>
+<br>
+Please email me at <a href="mailto:colesexmyer@gmail.com">colesexmyer@gmail.com</a> if anyone has any information or thoughts.<br>
+<br>
+I also have DOS source (as well as NT 4.0 and WIN2K) and on top of that have Award and Phoenix source and am not just creating my own Operating System - I am creating my own BIOS and - probably by using FPGAs - I am creating my own actual processor - all from&nbsp;leaked
+ source (to use as samples and not to steal) and pretty much&nbsp;a lot of red bull and no sleep - i mean NO sleep - nothing&nbsp;!!!<br>
+<br>
+</div></blockquote>
+<p>A) You need to use DDK for Windows 2003 Server, plus the IFS DDK, for build only kernel, is posible that you need to modify the sources, due to lack the original modified libc library for kernel sources...</p>
+<p>&nbsp;</p>
+<p>B) The original Windows NT was targered as a new OS/2 operanting system independent from PC architecture, was built for a Microsoft internal architecture machine called Dazzle, that comes with the Intel i860 CPU, later ported to Microsoft MIPS featured architecture
+ called Jazz, and only later ported to i386 architecture... The original build system y source control tool, called SLM runs in Xenix powered servers with a special version of Microsoft commandline compiler &amp; some third party tools from various vendors, like
+ Intel, DEC, IBM, Insignia Software, Motorola, etc...later Windows Versions (98, NT4 , 2000 , XP, 2003) were build using Windows NT servers, &amp; the dependence on third party source creation tools ceased with Windows XP &amp; the new versions of Microsoft commandline
+ C compilers...</p>
+<p>&nbsp;</p>
+<p>You need the newest DDK &amp; IFS kit for build both Windows NT &amp; 2000 sources because it comes with technologies for sustitute these early and confidential tools, but you need modify the sources in order to build with these new tools correctly...</p>
+<p>&nbsp;</p>
+<p>C) The Razzle build system is not only &quot;Razzle.cmd&quot;, is a real build system, composed by makefiles, source tools, compilers and miscelaneous... Razzle first build the &quot;Enviroment&quot;, constructs the libraries and various microsoft internal tools that comes
+ in a source code form, and only then, constructs an entire operanting system... Razzle.cmd is only a simple &quot;launcher&quot;...</p>
+<p>&nbsp;</p>
+<p>D) No, Dazzle can't be used for build&nbsp; an entire NT OS, only Kernel (NTOSKRNL.EXE)...</p>
+<p>&nbsp;</p>
+<p>E) No, doesn't exists a command line from Microsoft that can run in a AUTOCHECK point, TinyKrnl comes with a Alex&nbsp; Ionescu custom made
+</p>
+<p>SMSS.EXE that features a little interpreter, but is very limited, you can't execute a external program, only works the commands bundled with it...</p>
+<p>&nbsp;</p>
+<p>F) No... the Windows NT leaked source is at 95% lacks the RTL LibC, and third party tools and sources, but with it and a Software enginer programmer experience, you can build at least the Kernel, Loader, and a Basic Win32 System, the windows 2000 is at 35%,
+ you can't build anything with it, but you can port the NTOS modules to WRK sources &amp; complete a fullfeatured Windows 2003 kernel...</p>
+<p>&nbsp;</p>
+<p>You can find a detailed Howtos for build at least a NT kernel using these leaked sources at <a href="http://www.betaarchive.co.uk">http&#58;&#47;&#47;www.betaarchive.co.uk</a></p></p>
+	</div>
+</div>
+
+	</li><li class=" microsoft">
+<div class="author">
+	<a class="button" href="/Niners/Larry%20Osterman"><img alt="Larry Osterman" class="avatar" src="http://avatar.xboxlive.com/avatar/Gafoon/avatar-body.png" title="Larry Osterman" /><span class="name">Larry&#160;Osterman</span></a>
+</div>
+
+<div class="post" id="ce61a31b5901c42e994f99deb01633687">
+	<div class="post-header">
+		<a class="permalink" href="/Forums/Coffeehouse/189875-How-Windows-is-build-/e61a31b5901c42e994f99deb01633687" title="Post Permalink">Apr 18, 2010 at 11:19&#160;AM</a>
+	</div>
+	<div class="post-content">
+		<p><blockquote><div class="quoteUser">Sven Groot said:</div><div class="quoteText">
+<blockquote>
+<div class="quoteAuthor">IRenderable wrote:</div>
+<div class="quoteBody">&#65279;You type in make and it builds all the packages, the kernel, drivers, everything.<br>
+</div>
+</blockquote>
+<br>
+I seriously doubt they have one makefile for the whole thing. Probably they just have one master makefile that recursively calls all other makefiles to build the whole system. Nothing wrong with that.</div></blockquote>
+<p>Windows is built in two phases.&nbsp; The first (called &quot;build&quot;) is done by running build.exe from the root of the tree.&nbsp; The second (called surprisingly &quot;post-build&quot;) takes the binaries built during the first phase and assembles them into a structure on disk
+ which fairly accurately matches the actual DVD formats.</p>
+<p>&nbsp;</p>
+<p>The rules for actually performing the build are kept in a number of global makefiles.&nbsp;
+</p>
+<p>&nbsp;</p>
+<p>Windows is built using a drop of the VC compiler and tools and&nbsp;a number of custom tools (most of which are in the DDK).</p></p>
+	</div>
+</div>
+
+	</li><li>
+<div class="author">
+	<a class="button" href="/Niners/spivonious"><img alt="Spivonious" class="avatar" src="http://ecn.channel9.msdn.com/o9/avatars/spivonious_c9.jpg" title="Spivonious" /><span class="name">spivonious</span></a>
+</div>
+
+<div class="post" id="c00bd06204b85477aadc39deb016336b4">
+	<div class="post-header">
+		<a class="permalink" href="/Forums/Coffeehouse/189875-How-Windows-is-build-/00bd06204b85477aadc39deb016336b4" title="Post Permalink">Apr 21, 2010 at 7:56&#160;AM</a>
+	</div>
+	<div class="post-content">
+		<p><blockquote><div class="quoteUser">Larry Osterman said:</div><div class="quoteText">
+<blockquote>
+<div class="quoteUser">Sven Groot said:</div>
+<div class="quoteText">*snip*</div>
+</blockquote>
+<p>Windows is built in two phases.&nbsp; The first (called &quot;build&quot;) is done by running build.exe from the root of the tree.&nbsp; The second (called surprisingly &quot;post-build&quot;) takes the binaries built during the first phase and assembles them into a structure on disk
+ which fairly accurately matches the actual DVD formats.</p>
+<p>&nbsp;</p>
+<p>The rules for actually performing the build are kept in a number of global makefiles.&nbsp;
+</p>
+<p>&nbsp;</p>
+<p>Windows is built using a drop of the VC compiler and tools and&nbsp;a number of custom tools (most of which are in the DDK).</p>
+</div></blockquote>
+<p>I'm curious as to the size of things. Larry, since you're familiar with the audio system, can you give any details on it? Number of libraries, lines of code, languages used? Is there still code in there from NT 3?</p></p>
+	</div>
+</div>
+
+	</li>
+</ul>
+
+	<ul class="paging">
+					<li>
+							<span class="current">1</span>
+					</li>
+					<li>
+							<a href="&#47;Forums&#47;Coffeehouse&#47;189875-How-Windows-is-build-&#63;page&#61;2">2</a>
+					</li><li class="next">
+			<a href="&#47;Forums&#47;Coffeehouse&#47;189875-How-Windows-is-build-&#63;page&#61;2">next</a>
+		</li>
+	</ul>
+
+
+<div class="comments add-comment">
+	<div class="comments-header">
+		<h2>Add your 2&cent;</h2>
+	</div>
+		<a class="add button" href="https://login.live.com/login.srf?wa=wsignin1.0&amp;rpsnv=11&amp;ct=1295247140&amp;rver=6.1.6195.0&amp;wp=MBI&amp;wreply=http:%2F%2Fchannel9.msdn.com%2FForums%2FCoffeehouse%2F189875-How-Windows-is-build-&amp;id=47159">sign in to&#160;reply</a>
+</div>
+
+
+
+	</div>
+
+	<div class="pageNavHolder">
+	</div>
+
+	<div class="sidebarHolder">	
+	</div>
+</div>
+
+<div class="footer">
+	<div class="container">
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/us/" class="ccl">
+	<img alt="Creative Commons License" src="/styles/images/somerights20.png"/>
+</a>
+<p class="copyright">
+	&copy; 2010 Microsoft. <a href="/info">Except where designated</a> as licensed by <br/>
+	<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/us/">Creative Commons Attribution-Noncommercial-No Derivative Works 3.0 License</a>,<br/>
+	Microsoft reserves all rights associated with the materials on this site.
+</p>
+<ul>
+	<li class="subscribe"><a href="&#47;Feeds&#47;RSS">Subscribe to Channel 9</a></li>
+	<li class="followus"><a href="http://twitter.com/ch9">Follow Us @Ch9</a></li>
+	<li class="feedback"><a href="http://r.ch9.ms/feedback">Feedback</a></li>
+	<li class="privacy"><a href="http://privacy.microsoft.com">Privacy Statement</a></li>
+	<li class="termsofuse"><a href="http://www.microsoft.com/info/cpyright.mspx">Terms Of Use</a></li>
+	<li class="codeofconduct"><a href="&#47;CodeOfConduct">Code Of Conduct</a></li>
+	<li class="contactus"><a href="&#47;ContactUs">Contact Us</a></li>
+</ul>
+
+	</div>
+</div>
+	<script src="/scripts/comments.js?v=qoTt0q9r3z2pobF4j9r-rujC8cM1" type="text/javascript"></script>
+	<script src="/scripts/markDirty.js?v=qoTt0q9r3z2pobF4j9r-rujC8cM1" type="text/javascript"></script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<script src="/scripts/tiny_mce_loader.js?v=qoTt0q9r3z2pobF4j9r-rujC8cM1" type="text/javascript"></script>
+	<script src="/scripts/syntaxhighlighter.js?v=qoTt0q9r3z2pobF4j9r-rujC8cM1" type="text/javascript"></script>
+	
+	<script src="/scripts/jquery/plugins/jquery.scrollTo-min.js?v=qoTt0q9r3z2pobF4j9r-rujC8cM1" type="text/javascript"></script>
+	
+	<!--[if gt IE 8]><script src="/scripts/ie9_perf.js?v=qoTt0q9r3z2pobF4j9r-rujC8cM1" type="text/javascript"></script><![endif]--><!-- START OF SmartSource Data Collector TAG -->
+<!-- Copyright (c) 1996-2009 WebTrends Inc.  All rights reserved. -->
+<!-- Version: MS.3.0.0 -->
+<script src="/scripts/wt.js?v=qoTt0q9r3z2pobF4j9r-rujC8cM1" type="text/javascript"></script>
+
+<!-- Warning: The two script blocks below must remain inline. Moving them to an external -->
+<!-- JavaScript include file can cause serious problems with cross-domain tracking.      -->
+<script type="text/javascript">
+	//<![CDATA[
+var _tag=new WebTrends();
+_tag.dcsid="dcs1wotjh10000w0irc493s0e_6x1g";
+_tag.fpcdom=".channel9.msdn.com";
+_tag.dcsGetId();
+_tag.trackevents=true;
+//]]>>
+</script>
+
+<script type="text/javascript">
+	//<![CDATA[
+// Add custom parameters here.
+//_tag.DCSext.param_name=param_value;
+_tag.dcsCollect();
+//]]>>
+</script>
+
+<noscript>
+	<div>
+		<img alt="DCSIMG" id="DCSIMG" width="1" height="1" src="http://m.webtrends.com/dcs1wotjh10000w0irc493s0e_6x1g/njs.gif?dcsuri=/nojavascript&amp;WT.js=No&amp;WT.tv=MS.3.0.0"/>
+	</div>
+</noscript>
+<!-- END OF SmartSource Data Collector TAG -->
+
+</body>
+</html>
